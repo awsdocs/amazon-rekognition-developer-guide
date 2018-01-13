@@ -1,8 +1,8 @@
 # Listing Faces in a Collection<a name="list-faces-in-collection-procedure"></a>
 
-You can use the [IndexFaces](API_IndexFaces.md) operation to list the faces in a collection\.
+You can use the [ListFaces](API_ListFaces.md) operation to list the faces in a collection\.
 
-The following procedures show how you can use the operation with the AWS CLI, the AWS SDK for Java\. 
+The following procedures show how you can use the operation with the AWS CLI and the AWS SDK for Java\. 
 
 For more information, see [Managing Collections](managing-collections.md)\. 
 
