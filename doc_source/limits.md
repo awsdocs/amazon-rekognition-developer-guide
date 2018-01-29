@@ -6,7 +6,7 @@ The following is a list of limits in Amazon Rekognition:
 
 + The minimum pixel resolution for height and width is 80 pixels
 
-+ To be detected, a face must be no smaller that 40x40 pixels in an image with 1920X1080 pixel resolution\. Higher resolution images will need a larger minimum face size\. 
++ To be detected, a face must be no smaller that 40x40 pixels in an image with 1920X1080 pixels\. Images with dimensions higher than 1920X1080 pixels will need a larger minimum face size proportionally\. 
 
 + Maximum images size as raw bytes passed in as parameter to an API is 5 MB\.
 

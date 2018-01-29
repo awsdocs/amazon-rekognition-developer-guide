@@ -8,9 +8,9 @@ This section covers the types of detection and recognition that Rekognition Vide
 + [Types of Detection and Recognition](#video-recognition-types)
 + [Rekognition Video API Overview](#video-api-overview)
 + [Calling Rekognition Video Operations](api-video.md)
-+ [Giving Rekognition Video Access to Your Amazon SNS Topics](api-video-roles.md)
-+ [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)
 + [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md)
++ [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)
++ [Giving Rekognition Video Access to Your Amazon SNS Topics](api-video-roles.md)
 + [Reference: Video Analysis Results Notification](video-notification-payload.md)
 
 ## Types of Detection and Recognition<a name="video-recognition-types"></a>

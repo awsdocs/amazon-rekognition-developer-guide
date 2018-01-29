@@ -70,7 +70,6 @@ Required: Yes
    "FaceRecords": [ 
       { 
          "Face": { 
-            "AssociationScore": number,
             "BoundingBox": { 
                "Height": number,
                "Left": number,

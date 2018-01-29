@@ -13,9 +13,9 @@ The following is the JSON syntax for a Kinesis data stream record\. For more inf
           "KinesisVideo": {
             "StreamArn": "string",
             "FragmentNumber": "string",
-            "ProducerTimestamp": long,
-            "ServerTimestamp": long,
-            "FrameOffsetInMillis": long
+            "ProducerTimestamp": double,
+            "ServerTimestamp": double,
+            "FrameOffsetInSeconds": double
           },
         },
         "StreamProcessorInformation":{
@@ -73,16 +73,16 @@ The JSON record includes information about a frame that's processed by Rekogniti
 
 Information about the Kinesis video stream that's used to stream video into Rekognition Video\.
 
-Type: [](streaming-video-kinesis-output-reference-inputinformation.md) object
+Type: [InputInformation](streaming-video-kinesis-output-reference-inputinformation.md) object
 
 **StreamProcessorInformation**
 
 Information about the Rekognition Video stream processor\. This includes status information for the current status of the stream processor\.
 
-Type: [](streaming-video-kinesis-output-reference-streamprocessorinformation.md) object 
+Type: [StreamProcessorInformation](streaming-video-kinesis-output-reference-streamprocessorinformation.md) object 
 
 **FaceSearchResponse**
 
 Information about faces in the streaming video frame that match faces in the input collection\.
 
-Type: [](streaming-video-kinesis-output-reference-facesearchresponse.md) object
+Type: [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md) object

@@ -21,6 +21,8 @@ The image does not need to be base64 encoded if you pass an image stored in an `
 
  If you use HTTP to call Rekognition Image operations, the image bytes must be a base64\-encoded string\. For more information, see [Working with Images](images.md)\.
 
+If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported\.
+
  The following examples show how to load images from the local file system and supply the image bytes to a Rekognition operation\. 
 
 
@@ -30,7 +32,7 @@ The image does not need to be base64 encoded if you pass an image stored in an `
 
 ## Supplying Images: Using the Local File System and Java<a name="images-bytes-java"></a>
 
-The following Java example shows how to load an image from the local file system and detect labels using the `detectLabels` AWS SDK operation\.
+The following Java example shows how to load an image from the local file system and detect labels using the [detectLabels](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\.
 
 ```
 import java.io.File;
@@ -102,39 +104,24 @@ public class DetectLabelsExampleImageBytes {
 
 ## Supplying Images: Using the Local File System and Python<a name="images-bytes-python"></a>
 
-The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and add them to a collection using the [IndexFaces](http://boto3.readthedocs.org/en/latest/reference/services/rekognition.html#Rekognition.Client.index_faces) operation\. 
+The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_labels](http://boto3.readthedocs.org/en/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) operation\. 
 
 ```
-#!/usr/bin/env python
-
-from argparse import ArgumentParser
 import boto3
-from os import environ
 
-def get_client(endpoint):
-    key_id = environ.get('AWS_ACCESS_KEY_ID')
-    secret_key = environ.get('AWS_SECRET_ACCESS_KEY')
-    token = environ.get('AWS_SESSION_TOKEN')
-    if not key_id or not secret_key or not token:
-        raise Exception('Missing AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, or AWS_SESSION_TOKEN')
-    client = boto3.client('rekognition', region_name='us-east-1', endpoint_url=endpoint, verify=False,
-                          aws_access_key_id=key_id, aws_secret_access_key=secret_key, aws_session_token=token)
-    return client
+if __name__ == "__main__":
 
-def get_args():
-    parser = ArgumentParser(description='Call index faces')
-    parser.add_argument('-e', '--endpoint')
-    parser.add_argument('-i', '--image')
-    parser.add_argument('-c', '--collection')
-    return parser.parse_args()
+    imageFile='input.jpg'
+    client=boto3.client('rekognition','us-west-2')
+   
+    with open(imageFile, 'rb') as image:
+        response = client.detect_labels(Image={'Bytes': image.read()})
+        
+    print('Detected labels in ' + imageFile)    
+    for label in response['Labels']:
+        print (label['Name'] + ' : ' + str(label['Confidence']))
 
-if __name__ == '__main__':
-    args = get_args()
-    client = get_client(args.endpoint)
-    with open(args.image, 'rb') as image:
-        response = client.index_faces(Image={'Bytes': image.read()}, CollectionId=args.collection)
-        print response
-    print "help"
+    print('Done...')
 ```
 
 ## Supplying Images: Using the Local File System and PHP<a name="images-bytes-php"></a>

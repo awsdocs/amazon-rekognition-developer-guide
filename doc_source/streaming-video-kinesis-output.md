@@ -91,8 +91,8 @@ Rekognition Video streams Rekognition Video analysis information to the Kinesis 
 
 In the JSON example, note the following:
 
-+ **InputInformation** – Information about the Kinesis video stream that's used to stream video into Rekognition Video\. For more information, see [](streaming-video-kinesis-output-reference-inputinformation.md)\.
++ **InputInformation** – Information about the Kinesis video stream that's used to stream video into Rekognition Video\. For more information, see [InputInformation](streaming-video-kinesis-output-reference-inputinformation.md)\.
 
-+ **StreamProcessorInformation** – Status information for the Rekognition Video stream processor\. Possible values for the `Status` field are STARTING, STARTED, IN\_PROGRESS, STOPPING, STOPPED, and FAILED\. For more information, see [](streaming-video-kinesis-output-reference-streamprocessorinformation.md)\.
++ **StreamProcessorInformation** – Status information for the Rekognition Video stream processor\. Possible values for the `Status` field are STARTING, STARTED, IN\_PROGRESS, STOPPING, STOPPED, and FAILED\. For more information, see [StreamProcessorInformation](streaming-video-kinesis-output-reference-streamprocessorinformation.md)\.
 
-+ **FaceSearchResponse** – Contains information about faces in the streaming video that match faces in the input collection\. `FaceSearchResponse` contains a `DetectedFaces` array, which is an array of faces that were matched in the analyzed video frame\. For each matched face, the array `MatchedFaces` contains information about the matching faces found in the input collection, along with a similarity score\. For more information, see [](streaming-video-kinesis-output-reference-facesearchresponse.md)\.
++ **FaceSearchResponse** – Contains information about faces in the streaming video that match faces in the input collection\. `FaceSearchResponse` contains a `DetectedFaces` array, which is an array of faces that were matched in the analyzed video frame\. For each matched face, the array `MatchedFaces` contains information about the matching faces found in the input collection, along with a similarity score\. For more information, see [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md)\.

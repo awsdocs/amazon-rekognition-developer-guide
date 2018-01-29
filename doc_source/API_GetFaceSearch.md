@@ -59,7 +59,6 @@ Required: No
          "FaceMatches": [ 
             { 
                "Face": { 
-                  "AssociationScore": number,
                   "BoundingBox": { 
                      "Height": number,
                      "Left": number,

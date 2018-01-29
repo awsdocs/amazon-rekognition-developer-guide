@@ -14,7 +14,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 
 **To configure Rekognition Video and upload a video**
 
-1. If you haven't already, create an IAM service role to give Rekognition Video access to multiple Amazon SNS topics\. Note the ARN\. For more information, see [](api-video-roles.md#api-video-roles-all-topics)\.
+1. If you haven't already, create an IAM service role to give Rekognition Video access to multiple Amazon SNS topics\. Note the ARN\. For more information, see [Giving Access to Multiple Amazon SNS Topics](api-video-roles.md#api-video-roles-all-topics)\.
 
 1. [Create an Amazon SNS topic](http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic Amazon Resource Name \(ARN\)\. 
 
@@ -31,7 +31,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 1. Run the following AWS CLI command to start detecting labels in a video\.
 
    ```
-   aws rekognition start-label-detection --video S3Object={Bucket="bucketname",Name="videofile"} \
+   aws rekognition start-label-detection --video "S3Object={Bucket="bucketname",Name="videofile"}" \
    --endpoint-url Endpoint \
    --notification-channel "SNSTopicArn=TopicARN,RoleArn=RoleARN" \
    --region us-east-1 \

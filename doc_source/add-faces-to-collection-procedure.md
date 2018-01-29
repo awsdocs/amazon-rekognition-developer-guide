@@ -12,11 +12,11 @@ For more information, see [Managing Collections](managing-collections.md)\.
 
    For instructions, see [Uploading Objects into Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
-1. On the command line, type the following command\. Replace `bucketname` and `input.jpg` with the S3 bucket name and image name that you used in step 1\. Replace `collection-id` with the name of the collection you want the face to be stored in\.
+1. On the command line, type the following command\. Replace `bucket-name` and `file-name` with the S3 bucket name and image name that you used in step 1\. Replace `collection-id` with the name of the collection you want the face to be stored in\.
 
    ```
    aws rekognition index-faces \
-         --image '{"S3Object":{"Bucket":"bucketname","input.jpg":"file-name"}}' \
+         --image '{"S3Object":{"Bucket":"bucket-name","Name":"file-name"}}' \
          --collection-id "collection-id" \
          --detection-attributes "ALL" \
          --external-image-id "example-image.jpg" \

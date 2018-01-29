@@ -1,7 +1,7 @@
 # Amazon Rekognition Developer Guide
 
 -----
-*****Copyright &copy; 2017 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -41,9 +41,9 @@ Amazon's trademarks and trade dress may not be used in
    + [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)
 + [Working with Stored Videos](video.md)
    + [Calling Rekognition Video Operations](api-video.md)
-   + [Giving Rekognition Video Access to Your Amazon SNS Topics](api-video-roles.md)
-   + [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)
    + [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md)
+   + [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)
+   + [Giving Rekognition Video Access to Your Amazon SNS Topics](api-video-roles.md)
    + [Reference: Video Analysis Results Notification](video-notification-payload.md)
 + [Working with Streaming Videos](streaming-video.md)
    + [Recognizing Faces in a Streaming Video](recognize-faces-in-a-video-stream.md)
@@ -52,7 +52,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Reading Streaming Video Analysis Results](streaming-video-kinesis-output.md)
    + [Reference: Kinesis Face Recognition Record](streaming-video-kinesis-output-reference.md)
       + [InputInformation](streaming-video-kinesis-output-reference-inputinformation.md)
-      + [KinesisVideo](streaming-video-kinesis-output-reference-kinesisvideostreams.md)
+      + [KinesisVideo](streaming-video-kinesis-output-reference-kinesisvideostreams-kinesisvideo.md)
       + [StreamProcessorInformation](streaming-video-kinesis-output-reference-streamprocessorinformation.md)
       + [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md)
       + [DetectedFace](streaming-video-kinesis-output-reference-detectedface.md)

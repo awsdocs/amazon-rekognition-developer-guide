@@ -8,7 +8,7 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
 
 **To recognize faces in a video stream \(AWS SDK\)**
 
-1. If you haven't already, create an IAM service role to give Rekognition Video access to your Kinesis video streams and your Kinesis data streams\. Note the ARN\. For more information, see [](api-streaming-video-roles.md#api-streaming-video-roles-all-stream)\.
+1. If you haven't already, create an IAM service role to give Rekognition Video access to your Kinesis video streams and your Kinesis data streams\. Note the ARN\. For more information, see [Giving Access to Your Kinesis Video Streams and Kinesis Data Streams](api-streaming-video-roles.md#api-streaming-video-roles-all-stream)\.
 
 1. Create a collection and note the collection identifier you used\.
 

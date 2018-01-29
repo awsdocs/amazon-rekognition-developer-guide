@@ -4,11 +4,6 @@ Describes the face properties such as the bounding box, face ID, image ID of the
 
 ## Contents<a name="API_Face_Contents"></a>
 
- **AssociationScore**   
-Type: Float  
-Valid Range: Minimum value of 0\. Maximum value of 100\.  
-Required: No
-
  **BoundingBox**   
 Bounding box of the face\.  
 Type: [BoundingBox](API_BoundingBox.md) object  

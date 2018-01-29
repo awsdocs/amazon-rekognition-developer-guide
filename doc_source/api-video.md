@@ -28,19 +28,10 @@ You start a Rekognition Video label detection request by calling `StartLabelDete
         "RoleArn": "arn:aws:iam::nnnnnnnnnn:role/roleopic"
     },
     "JobTag": "DetectingLabels"
-}}
 }
 ```
 
-`Video` provides the video file name and the Amazon S3 bucket to retrieve it from\. `NotificationChannel` contains the Amazon Resource Name \(ARN\) of the Amazon SNS topic that Rekognition Video notifies when the video analysis request finishes\. The Amazon SNS topic must be in the same AWS region as the Rekognition Video endpoint that you're calling\. `NotificationChannel` also contains the ARN for a role that allows Rekognition Video to publish to the Amazon SNS topic\. You give Amazon Rekognition publishing permissions to your Amazon SNS topics by creating an IAM service role\. For more information, see [Giving Rekognition Video Access to Your Amazon SNS Topics](api-video-roles.md)\.
-
-You can create an Amazon SNS topic for each video analysis request, or you can use a single topic for all requests\. To create an Amazon SNS topic, use either the Amazon SNS AWS console or create the topic by using code\. 
-
-The response to the `StartLabelDetection` operation is a job identifier \(`JobId`\)\. Use `JobId` to track requests and get the analysis results after Rekognition Video has published the completion status to the Amazon SNS topic\. For example:
-
-```
-{"JobId":"270c1cc5e1d0ea2fbc59d97cb69a72a5495da75851976b14a1784ca90fc180e3"}
-```
+The input parameter `Video` provides the video file name and the Amazon S3 bucket to retrieve it from\. `NotificationChannel` contains the Amazon Resource Name \(ARN\) of the Amazon SNS topic that Rekognition Video notifies when the video analysis request finishes\. The Amazon SNS topic must be in the same AWS region as the Rekognition Video endpoint that you're calling\. `NotificationChannel` also contains the ARN for a role that allows Rekognition Video to publish to the Amazon SNS topic\. You give Amazon Rekognition publishing permissions to your Amazon SNS topics by creating an IAM service role\. For more information, see [Giving Rekognition Video Access to Your Amazon SNS Topics](api-video-roles.md)\.
 
 You can also specify an optional input parameter, `JobTag`, that allows you to identify the job in the completion status that's published to the Amazon SNS topic\. 
 
@@ -51,6 +42,12 @@ To prevent accidental duplication of analysis jobs, you can optionally provide a
 + If you reuse the token with the same `Start` operation and a minor input parameter change, you get an `idempotentparametermismatchexception` exception raised\.
 
 + If you reuse the token with a different `Start` operation, the operation succeeds\.
+
+The response to the `StartLabelDetection` operation is a job identifier \(`JobId`\)\. Use `JobId` to track requests and get the analysis results after Rekognition Video has published the completion status to the Amazon SNS topic\. For example:
+
+```
+{"JobId":"270c1cc5e1d0ea2fbc59d97cb69a72a5495da75851976b14a1784ca90fc180e3"}
+```
 
 ## Getting the Completion Status of a Rekognition Video Analysis Request<a name="api-video-get-status"></a>
 

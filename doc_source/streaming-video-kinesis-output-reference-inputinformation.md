@@ -4,6 +4,4 @@ Information about a source video stream that's used by Rekognition Video\. For m
 
 **KinesisVideo**
 
-Information about the Kinesis data stream that's used to stream video into Rekognition Video\.
-
-Type: [](streaming-video-kinesis-output-reference-kinesisvideostreams.md) object
+Type: [KinesisVideo](streaming-video-kinesis-output-reference-kinesisvideostreams-kinesisvideo.md) object

@@ -44,7 +44,6 @@ Required: No
    "FaceModelVersion": "string",
    "Faces": [ 
       { 
-         "AssociationScore": number,
          "BoundingBox": { 
             "Height": number,
             "Left": number,

@@ -18,11 +18,11 @@ You can give Rekognition Video access to multiple Amazon SNS topics by using the
 
 1. Note the ARN of the service role\. You need it to start video analysis operations\.
 
-## Giving Access to a Single Amazon SNS Topic<a name="api-video-roles-single-topics"></a>
+## Giving Access to an Existing Amazon SNS Topic<a name="api-video-roles-single-topics"></a>
 
-You can create a permissions policy that allows Rekognition Video access to a single Amazon SNS topic\.
+You can create a permissions policy that allows Rekognition Video access to an existing Amazon SNS topic\.
 
-**To give Rekognition Video access to an individual Amazon SNS topic**
+**To give Rekognition Video access to an existing Amazon SNS topic**
 
 1. [ Create a new permissions policy with the IAM JSON policy editor](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-json-editor), and use the following policy\. Replace `topicarn` with the Amazon Resource Name \(ARN\) of the desired Amazon SNS topic\.
 

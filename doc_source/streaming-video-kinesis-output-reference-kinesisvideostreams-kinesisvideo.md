@@ -1,4 +1,4 @@
-# KinesisVideo<a name="streaming-video-kinesis-output-reference-kinesisvideostreams"></a>
+# KinesisVideo<a name="streaming-video-kinesis-output-reference-kinesisvideostreams-kinesisvideo"></a>
 
 Information about the Kinesis video stream that streams the source video into Rekognition Video\. For more information, see [Working with Streaming Videos](streaming-video.md)\.
 

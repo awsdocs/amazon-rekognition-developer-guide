@@ -185,6 +185,35 @@ Note the following:
 + The following illustration shows the relative location of the facial landmarks on the face returned by the `DetectFaces` API operation\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/landmarks-10.png)
 
+The labels on the image map as follows to the [Landmark](API_Landmark.md) data type\. For clarity, The left eye and right eye landmark points are not shown on the image\.
+
+
+| Label | Landmark | 
+| --- | --- | 
+|  b\_ll  |  leftEyeBrowLeft  | 
+|  b\_lu  |  leftEyeBrowUp  | 
+|  b\_lr  |  leftEyeBrowRight  | 
+|  e\_ll  |  leftEyeLeft  | 
+|  e\_lu  |  leftEyeUp  | 
+|  e\_lr  |  leftEyeRight  | 
+|  e\_ld  |  leftEyeDown  | 
+|  e\_lp  |  leftPupil  | 
+|  n\_l  |  noseLeft  | 
+|  n  |  nose  | 
+|  n\_r  |  noseRight  | 
+|  m\_u  |   mouthUp   | 
+|  m\_d  |  mouthDown  | 
+|  m\_l  |  mouthLeft  | 
+|  m\_r  |  mouthRight  | 
+|  b\_rl  |  rightEyeBrowLeft  | 
+|  b\_ru  |  rightEyeBrowUp  | 
+|  b\_rr  |  rightEyeBrowRight  | 
+|  e\_rl  |  rightEyeLeft  | 
+|  e\_ru  |  rightEyeUp  | 
+|  e\_rr  |  rightEyeRight   | 
+|  e\_rp  |  rightPupil  | 
+|  e\_rd  |  rightEyeDown  | 
+
 ## Compare Faces in Images<a name="faces-comparefaces"></a>
 
 To compare a face in the *source* image with each face in the *target* image, use the [CompareFaces](API_CompareFaces.md) operation\. 
