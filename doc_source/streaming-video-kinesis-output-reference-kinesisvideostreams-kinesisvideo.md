@@ -16,13 +16,13 @@ Type: String
 
 **ProducerTimestamp**
 
-The producer\-side time stamp of the fragment\. For more information, see [GetMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html#API_dataplane_GetMedia_ResponseElements)\.
+The producer\-side time stamp of the fragment\. For more information, see [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\.
 
 Type: Timestamp
 
 **ServerTimestamp**
 
-The server\-side time stamp of the fragment\. For more information, see [GetMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_GetMedia.html#API_dataplane_GetMedia_ResponseElements)\.
+The server\-side time stamp of the fragment\. For more information, see [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\.
 
 Type: Timestamp
 

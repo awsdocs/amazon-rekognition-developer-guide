@@ -26,9 +26,9 @@ For more information, see [Managing Collections](managing-collections.md)\.
 
 1. To run the command, choose **Enter**\. The JSON output for the `IndexFaces` operation is displayed\. 
 
-**To add faces to a collection collection \(AWS SDK for Java\)**
+**To add faces to a collection \(AWS SDK for Java\)**
 
-+ To delete a collection, use the following AWS SDK for Java example code\.
++ To add faces to a collection, use the following AWS SDK for Java example code\.
 
   ```
   package com.amazonaws.samples;

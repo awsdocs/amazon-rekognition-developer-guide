@@ -1,6 +1,6 @@
 # Types of Detection and Recognition<a name="how-it-works-types"></a>
 
-The following are the types of detection and recognition that the Rekognition Image API and Rekognition Video API can perform\. For information about the APIs, see [](how-it-works-operations-intro.md)\.
+The following are the types of detection and recognition that the Rekognition Image API and Rekognition Video API can perform\. For information about the APIs, see [Image and Video Operations](how-it-works-operations-intro.md)\.
 
 ## Labels<a name="how-it-works-labels-intro"></a>
 

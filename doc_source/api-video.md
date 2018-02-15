@@ -11,7 +11,7 @@ The information in the following sections uses label detection operations to sho
 
 ## Starting Video Analysis<a name="api-video-start"></a>
 
-You start a Rekognition Video label detection request by calling `StartLabelDetection`\. The following is an example of a JSON request that's passed by `StartLabelDetection`\.
+You start a Rekognition Video label detection request by calling [StartLabelDetection](API_StartLabelDetection.md)\. The following is an example of a JSON request that's passed by `StartLabelDetection`\.
 
 ```
 {
@@ -39,7 +39,7 @@ To prevent accidental duplication of analysis jobs, you can optionally provide a
 
 + If you reuse the token with same `Start` operation and the same input parameters, the same `JobId` is returned\. The job is not performed again and Rekognition Video does not send a completion status to the registered Amazon SNS topic\.
 
-+ If you reuse the token with the same `Start` operation and a minor input parameter change, you get an `idempotentparametermismatchexception` exception raised\.
++ If you reuse the token with the same `Start` operation and a minor input parameter change, you get an `idempotentparametermismatchexception` \(HTTP status code: 400\) exception raised\.
 
 + If you reuse the token with a different `Start` operation, the operation succeeds\.
 
@@ -48,6 +48,10 @@ The response to the `StartLabelDetection` operation is a job identifier \(`JobId
 ```
 {"JobId":"270c1cc5e1d0ea2fbc59d97cb69a72a5495da75851976b14a1784ca90fc180e3"}
 ```
+
+If you start too many jobs concurrently, calls to `StartLabelDetection` raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\. 
+
+If you find that LimitExceededException exceptions are raised with bursts of activity, consider using an Amazon SQS queue to manage incoming requests\. Contact AWS support if you find that your average number of concurrent requests cannot be managed by an Amazon SQS queue and you are still receiving `LimitExceededException` exceptions\. 
 
 ## Getting the Completion Status of a Rekognition Video Analysis Request<a name="api-video-get-status"></a>
 

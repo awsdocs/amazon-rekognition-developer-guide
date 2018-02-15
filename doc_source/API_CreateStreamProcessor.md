@@ -99,7 +99,7 @@ Input parameter violated a constraint\. Validate your parameter before calling t
 HTTP Status Code: 400
 
  **LimitExceededException**   
-  
+An Amazon Rekognition service limit was exceeded\. For example, if you start too many Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
 HTTP Status Code: 400
 
  **ProvisionedThroughputExceededException**   
