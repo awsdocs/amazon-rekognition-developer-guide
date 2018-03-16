@@ -4,12 +4,12 @@ Provides information about a face in a target image that matches the source imag
 
 ## Contents<a name="API_CompareFacesMatch_Contents"></a>
 
- **Face**   
+ **Face**   <a name="rekognition-Type-CompareFacesMatch-Face"></a>
 Provides face metadata \(bounding box and confidence that the bounding box actually contains a face\)\.  
 Type: [ComparedFace](API_ComparedFace.md) object  
 Required: No
 
- **Similarity**   
+ **Similarity**   <a name="rekognition-Type-CompareFacesMatch-Similarity"></a>
 Level of confidence that the faces match\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  

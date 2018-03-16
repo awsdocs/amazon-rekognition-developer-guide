@@ -17,3 +17,11 @@ The following is a list of limits in Amazon Rekognition:
 + The maximum matching faces the search API returns is 4096\.
 
 + Rekognition Video can analyze stored videos up to 8GB in size\.
+
++ A Kinesis Video input stream can be associated with at most 1 Rekognition Video stream processor\.
+
++ A Kinesis Data output stream can be associated with at most 1 Rekognition Video stream processor\. 
+
++ The Kinesis Video input stream and Kinesis Data output stream associated with a Rekognition Video stream processor cannot be shared by multiple processors\.
+
++ For a given AWS account, the maximum number of Rekognition Video stream processors that can simultaneously exist in a single region is 10\. An AWS account can have more than 10 simultaneously existing stream processors by using multiple regions\. 

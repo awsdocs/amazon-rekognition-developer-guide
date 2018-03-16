@@ -38,16 +38,16 @@ This operation requires permissions to perform the `rekognition:DetectLabels` ac
 
 ```
 {
-   "Image": { 
-      "Bytes": blob,
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[Image](#rekognition-DetectLabels-request-Image)": { 
+      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
+      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    },
-   "MaxLabels": number,
-   "MinConfidence": number
+   "[MaxLabels](#rekognition-DetectLabels-request-MaxLabels)": number,
+   "[MinConfidence](#rekognition-DetectLabels-request-MinConfidence)": number
 }
 ```
 
@@ -55,18 +55,18 @@ This operation requires permissions to perform the `rekognition:DetectLabels` ac
 
 The request accepts the following data in JSON format\.
 
- ** Image **   
+ ** [Image](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-Image"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
 Type: [Image](API_Image.md) object  
 Required: Yes
 
- ** MaxLabels **   
+ ** [MaxLabels](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-MaxLabels"></a>
 Maximum number of labels you want the service to return in the response\. The service returns the specified number of highest confidence labels\.   
 Type: Integer  
 Valid Range: Minimum value of 0\.  
 Required: No
 
- ** MinConfidence **   
+ ** [MinConfidence](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-MinConfidence"></a>
 Specifies the minimum confidence level for the labels to return\. Amazon Rekognition doesn't return any labels with confidence lower than this specified value\.  
 If `MinConfidence` is not specified, the operation returns labels with a confidence values greater than or equal to 50 percent\.  
 Type: Float  
@@ -77,13 +77,13 @@ Required: No
 
 ```
 {
-   "Labels": [ 
+   "[Labels](#rekognition-DetectLabels-response-Labels)": [ 
       { 
-         "Confidence": number,
-         "Name": "string"
+         "[Confidence](API_Label.md#rekognition-Type-Label-Confidence)": number,
+         "[Name](API_Label.md#rekognition-Type-Label-Name)": "string"
       }
    ],
-   "OrientationCorrection": "string"
+   "[OrientationCorrection](#rekognition-DetectLabels-response-OrientationCorrection)": "string"
 }
 ```
 
@@ -93,11 +93,11 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** Labels **   
+ ** [Labels](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-Labels"></a>
 An array of labels for the real\-world objects detected\.   
 Type: Array of [Label](API_Label.md) objects
 
- ** OrientationCorrection **   
+ ** [OrientationCorrection](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-OrientationCorrection"></a>
  The orientation of the input image \(counter\-clockwise direction\)\. If your application displays the image, you can use this value to correct the orientation\. If Amazon Rekognition detects that the input image was rotated \(for example, by 90 degrees\), it first corrects the orientation before detecting the labels\.   
 If the input image Exif metadata populates the orientation field, Amazon Rekognition does not perform orientation correction and the value of OrientationCorrection will be null\.
 Type: String  

@@ -6,12 +6,12 @@ An array of `Point` objects, `Polygon`, is returned by [DetectText](API_DetectTe
 
 ## Contents<a name="API_Point_Contents"></a>
 
- **X**   
+ **X**   <a name="rekognition-Type-Point-X"></a>
 The value of the X coordinate for a point on a `Polygon`\.  
 Type: Float  
 Required: No
 
- **Y**   
+ **Y**   <a name="rekognition-Type-Point-Y"></a>
 The value of the Y coordinate for a point on a `Polygon`\.  
 Type: Float  
 Required: No

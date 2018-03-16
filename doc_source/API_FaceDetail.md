@@ -4,78 +4,78 @@ Structure containing attributes of the face that the algorithm detected\.
 
 ## Contents<a name="API_FaceDetail_Contents"></a>
 
- **AgeRange**   
+ **AgeRange**   <a name="rekognition-Type-FaceDetail-AgeRange"></a>
 The estimated age range, in years, for the face\. Low represents the lowest estimated age and High represents the highest estimated age\.  
 Type: [AgeRange](API_AgeRange.md) object  
 Required: No
 
- **Beard**   
+ **Beard**   <a name="rekognition-Type-FaceDetail-Beard"></a>
 Indicates whether or not the face has a beard, and the confidence level in the determination\.  
 Type: [Beard](API_Beard.md) object  
 Required: No
 
- **BoundingBox**   
+ **BoundingBox**   <a name="rekognition-Type-FaceDetail-BoundingBox"></a>
 Bounding box of the face\.  
 Type: [BoundingBox](API_BoundingBox.md) object  
 Required: No
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-FaceDetail-Confidence"></a>
 Confidence level that the bounding box contains a face \(and not a different object such as a tree\)\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Emotions**   
+ **Emotions**   <a name="rekognition-Type-FaceDetail-Emotions"></a>
 The emotions detected on the face, and the confidence level in the determination\. For example, HAPPY, SAD, and ANGRY\.   
 Type: Array of [Emotion](API_Emotion.md) objects  
 Required: No
 
- **Eyeglasses**   
+ **Eyeglasses**   <a name="rekognition-Type-FaceDetail-Eyeglasses"></a>
 Indicates whether or not the face is wearing eye glasses, and the confidence level in the determination\.  
 Type: [Eyeglasses](API_Eyeglasses.md) object  
 Required: No
 
- **EyesOpen**   
+ **EyesOpen**   <a name="rekognition-Type-FaceDetail-EyesOpen"></a>
 Indicates whether or not the eyes on the face are open, and the confidence level in the determination\.  
 Type: [EyeOpen](API_EyeOpen.md) object  
 Required: No
 
- **Gender**   
+ **Gender**   <a name="rekognition-Type-FaceDetail-Gender"></a>
 Gender of the face and the confidence level in the determination\.  
 Type: [Gender](API_Gender.md) object  
 Required: No
 
- **Landmarks**   
+ **Landmarks**   <a name="rekognition-Type-FaceDetail-Landmarks"></a>
 Indicates the location of landmarks on the face\.  
 Type: Array of [Landmark](API_Landmark.md) objects  
 Required: No
 
- **MouthOpen**   
+ **MouthOpen**   <a name="rekognition-Type-FaceDetail-MouthOpen"></a>
 Indicates whether or not the mouth on the face is open, and the confidence level in the determination\.  
 Type: [MouthOpen](API_MouthOpen.md) object  
 Required: No
 
- **Mustache**   
+ **Mustache**   <a name="rekognition-Type-FaceDetail-Mustache"></a>
 Indicates whether or not the face has a mustache, and the confidence level in the determination\.  
 Type: [Mustache](API_Mustache.md) object  
 Required: No
 
- **Pose**   
+ **Pose**   <a name="rekognition-Type-FaceDetail-Pose"></a>
 Indicates the pose of the face as determined by its pitch, roll, and yaw\.  
 Type: [Pose](API_Pose.md) object  
 Required: No
 
- **Quality**   
+ **Quality**   <a name="rekognition-Type-FaceDetail-Quality"></a>
 Identifies image brightness and sharpness\.  
 Type: [ImageQuality](API_ImageQuality.md) object  
 Required: No
 
- **Smile**   
+ **Smile**   <a name="rekognition-Type-FaceDetail-Smile"></a>
 Indicates whether or not the face is smiling, and the confidence level in the determination\.  
 Type: [Smile](API_Smile.md) object  
 Required: No
 
- **Sunglasses**   
+ **Sunglasses**   <a name="rekognition-Type-FaceDetail-Sunglasses"></a>
 Indicates whether or not the face is wearing sunglasses, and the confidence level in the determination\.  
 Type: [Sunglasses](API_Sunglasses.md) object  
 Required: No

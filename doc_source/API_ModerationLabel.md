@@ -4,19 +4,19 @@ Provides information about a single type of moderated content found in an image 
 
 ## Contents<a name="API_ModerationLabel_Contents"></a>
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-ModerationLabel-Confidence"></a>
 Specifies the confidence that Amazon Rekognition has that the label has been correctly identified\.  
 If you don't specify the `MinConfidence` parameter in the call to `DetectModerationLabels`, the operation returns labels with a confidence value greater than or equal to 50 percent\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Name**   
+ **Name**   <a name="rekognition-Type-ModerationLabel-Name"></a>
 The label name for the type of content detected in the image\.  
 Type: String  
 Required: No
 
- **ParentName**   
+ **ParentName**   <a name="rekognition-Type-ModerationLabel-ParentName"></a>
 The name for the parent label\. Labels at the top\-level of the hierarchy have the parent label `""`\.  
 Type: String  
 Required: No

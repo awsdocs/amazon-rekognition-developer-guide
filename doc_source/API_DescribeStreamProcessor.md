@@ -6,7 +6,7 @@ Provides information about a stream processor created by [CreateStreamProcessor]
 
 ```
 {
-   "Name": "string"
+   "[Name](#rekognition-DescribeStreamProcessor-request-Name)": "string"
 }
 ```
 
@@ -14,7 +14,7 @@ Provides information about a stream processor created by [CreateStreamProcessor]
 
 The request accepts the following data in JSON format\.
 
- ** Name **   
+ ** [Name](#API_DescribeStreamProcessor_RequestSyntax) **   <a name="rekognition-DescribeStreamProcessor-request-Name"></a>
 Name of the stream processor for which you want information\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
@@ -25,29 +25,29 @@ Required: Yes
 
 ```
 {
-   "CreationTimestamp": number,
-   "Input": { 
-      "KinesisVideoStream": { 
-         "Arn": "string"
+   "[CreationTimestamp](#rekognition-DescribeStreamProcessor-response-CreationTimestamp)": number,
+   "[Input](#rekognition-DescribeStreamProcessor-response-Input)": { 
+      "[KinesisVideoStream](API_StreamProcessorInput.md#rekognition-Type-StreamProcessorInput-KinesisVideoStream)": { 
+         "[Arn](API_KinesisVideoStream.md#rekognition-Type-KinesisVideoStream-Arn)": "string"
       }
    },
-   "LastUpdateTimestamp": number,
-   "Name": "string",
-   "Output": { 
-      "KinesisDataStream": { 
-         "Arn": "string"
+   "[LastUpdateTimestamp](#rekognition-DescribeStreamProcessor-response-LastUpdateTimestamp)": number,
+   "[Name](#rekognition-DescribeStreamProcessor-response-Name)": "string",
+   "[Output](#rekognition-DescribeStreamProcessor-response-Output)": { 
+      "[KinesisDataStream](API_StreamProcessorOutput.md#rekognition-Type-StreamProcessorOutput-KinesisDataStream)": { 
+         "[Arn](API_KinesisDataStream.md#rekognition-Type-KinesisDataStream-Arn)": "string"
       }
    },
-   "RoleArn": "string",
-   "Settings": { 
-      "FaceSearch": { 
-         "CollectionId": "string",
-         "FaceMatchThreshold": number
+   "[RoleArn](#rekognition-DescribeStreamProcessor-response-RoleArn)": "string",
+   "[Settings](#rekognition-DescribeStreamProcessor-response-Settings)": { 
+      "[FaceSearch](API_StreamProcessorSettings.md#rekognition-Type-StreamProcessorSettings-FaceSearch)": { 
+         "[CollectionId](API_FaceSearchSettings.md#rekognition-Type-FaceSearchSettings-CollectionId)": "string",
+         "[FaceMatchThreshold](API_FaceSearchSettings.md#rekognition-Type-FaceSearchSettings-FaceMatchThreshold)": number
       }
    },
-   "Status": "string",
-   "StatusMessage": "string",
-   "StreamProcessorArn": "string"
+   "[Status](#rekognition-DescribeStreamProcessor-response-Status)": "string",
+   "[StatusMessage](#rekognition-DescribeStreamProcessor-response-StatusMessage)": "string",
+   "[StreamProcessorArn](#rekognition-DescribeStreamProcessor-response-StreamProcessorArn)": "string"
 }
 ```
 
@@ -57,47 +57,47 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** CreationTimestamp **   
+ ** [CreationTimestamp](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-CreationTimestamp"></a>
 Date and time the stream processor was created  
 Type: Timestamp
 
- ** Input **   
+ ** [Input](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-Input"></a>
 Kinesis video stream that provides the source streaming video\.  
 Type: [StreamProcessorInput](API_StreamProcessorInput.md) object
 
- ** LastUpdateTimestamp **   
+ ** [LastUpdateTimestamp](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-LastUpdateTimestamp"></a>
 The time, in Unix format, the stream processor was last updated\. For example, when the stream processor moves from a running state to a failed state, or when the user starts or stops the stream processor\.  
 Type: Timestamp
 
- ** Name **   
+ ** [Name](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-Name"></a>
 Name of the stream processor\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `[a-zA-Z0-9_.\-]+` 
 
- ** Output **   
+ ** [Output](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-Output"></a>
 Kinesis data stream to which Rekognition Video puts the analysis results\.  
 Type: [StreamProcessorOutput](API_StreamProcessorOutput.md) object
 
- ** RoleArn **   
+ ** [RoleArn](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-RoleArn"></a>
 ARN of the IAM role that allows access to the stream processor\.  
 Type: String  
 Pattern: `arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+` 
 
- ** Settings **   
+ ** [Settings](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-Settings"></a>
 Face recognition input parameters that are being used by the stream processor\. Includes the collection to use for face recognition and the face attributes to detect\.  
 Type: [StreamProcessorSettings](API_StreamProcessorSettings.md) object
 
- ** Status **   
+ ** [Status](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-Status"></a>
 Current status of the stream processor\.  
 Type: String  
 Valid Values:` STOPPED | STARTING | RUNNING | FAILED | STOPPING` 
 
- ** StatusMessage **   
+ ** [StatusMessage](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-StatusMessage"></a>
 Detailed status message about the stream processor\.  
 Type: String
 
- ** StreamProcessorArn **   
+ ** [StreamProcessorArn](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-StreamProcessorArn"></a>
 ARN of the stream processor\.  
 Type: String  
 Pattern: `(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:streamprocessor\/.+$)` 

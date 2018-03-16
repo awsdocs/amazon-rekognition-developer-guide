@@ -4,17 +4,17 @@ Details about a person detected in a video analysis request\.
 
 ## Contents<a name="API_PersonDetail_Contents"></a>
 
- **BoundingBox**   
+ **BoundingBox**   <a name="rekognition-Type-PersonDetail-BoundingBox"></a>
 Bounding box around the detected person\.  
 Type: [BoundingBox](API_BoundingBox.md) object  
 Required: No
 
- **Face**   
+ **Face**   <a name="rekognition-Type-PersonDetail-Face"></a>
 Face details for the detected person\.  
 Type: [FaceDetail](API_FaceDetail.md) object  
 Required: No
 
- **Index**   
+ **Index**   <a name="rekognition-Type-PersonDetail-Index"></a>
 Identifier for the person detected person within a video\. Use to keep track of the person throughout the video\. The identifier is not stored by Amazon Rekognition\.  
 Type: Long  
 Required: No

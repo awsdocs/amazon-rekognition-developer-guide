@@ -4,19 +4,19 @@ Indicates the pose of the face as determined by its pitch, roll, and yaw\.
 
 ## Contents<a name="API_Pose_Contents"></a>
 
- **Pitch**   
+ **Pitch**   <a name="rekognition-Type-Pose-Pitch"></a>
 Value representing the face rotation on the pitch axis\.  
 Type: Float  
 Valid Range: Minimum value of \-180\. Maximum value of 180\.  
 Required: No
 
- **Roll**   
+ **Roll**   <a name="rekognition-Type-Pose-Roll"></a>
 Value representing the face rotation on the roll axis\.  
 Type: Float  
 Valid Range: Minimum value of \-180\. Maximum value of 180\.  
 Required: No
 
- **Yaw**   
+ **Yaw**   <a name="rekognition-Type-Pose-Yaw"></a>
 Value representing the face rotation on the yaw axis\.  
 Type: Float  
 Valid Range: Minimum value of \-180\. Maximum value of 180\.  

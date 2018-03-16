@@ -4,17 +4,17 @@ Information about a person whose face matches a face\(s\) in a Amazon Rekognitio
 
 ## Contents<a name="API_PersonMatch_Contents"></a>
 
- **FaceMatches**   
+ **FaceMatches**   <a name="rekognition-Type-PersonMatch-FaceMatches"></a>
 Information about the faces in the input collection that match the face of a person in the video\.  
 Type: Array of [FaceMatch](API_FaceMatch.md) objects  
 Required: No
 
- **Person**   
+ **Person**   <a name="rekognition-Type-PersonMatch-Person"></a>
 Information about the matched person\.  
 Type: [PersonDetail](API_PersonDetail.md) object  
 Required: No
 
- **Timestamp**   
+ **Timestamp**   <a name="rekognition-Type-PersonMatch-Timestamp"></a>
 The time, in milliseconds from the beginning of the video, that the person was matched in the video\.  
 Type: Long  
 Required: No

@@ -4,7 +4,7 @@ Video file stored in an Amazon S3 bucket\. Amazon Rekognition video start operat
 
 ## Contents<a name="API_Video_Contents"></a>
 
- **S3Object**   
+ **S3Object**   <a name="rekognition-Type-Video-S3Object"></a>
 The Amazon S3 bucket name and file name for the video\.  
 Type: [S3Object](API_S3Object.md) object  
 Required: No

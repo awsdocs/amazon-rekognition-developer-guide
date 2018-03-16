@@ -8,20 +8,20 @@ For Amazon Rekognition to process an S3 object, the user must have permission to
 
 ## Contents<a name="API_S3Object_Contents"></a>
 
- **Bucket**   
+ **Bucket**   <a name="rekognition-Type-S3Object-Bucket"></a>
 Name of the S3 bucket\.  
 Type: String  
 Length Constraints: Minimum length of 3\. Maximum length of 255\.  
 Pattern: `[0-9A-Za-z\.\-_]*`   
 Required: No
 
- **Name**   
+ **Name**   <a name="rekognition-Type-S3Object-Name"></a>
 S3 object key name\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  
 Required: No
 
- **Version**   
+ **Version**   <a name="rekognition-Type-S3Object-Version"></a>
 If the bucket is versioning enabled, you can specify the object version\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 1024\.  

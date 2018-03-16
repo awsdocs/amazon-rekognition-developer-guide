@@ -29,13 +29,15 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
 
 **To Detect Labels in a Video**
 
-1. If you haven't already, create an IAM service role to give Rekognition Video access to your Amazon SNS topics\. Note the ARN\. For more information, see [Giving Access to Multiple Amazon SNS Topics](api-video-roles.md#api-video-roles-all-topics)\.
+1. Configure user access to Rekognition Video and configure Rekognition Video access to Amazon SNS\. For more information, see [Configuring Rekognition Video](api-video-roles.md)\.
 
-1. [Create an Amazon SNS topic](http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic Amazon Resource Name \(ARN\)\. 
+1. [Create an Amazon SNS topic](http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic Amazon Resource Name \(ARN\)\. Ensure the topic is in the same region as the AWS endpoint that you are using\.
 
 1. [Create an Amazon SQS standard queue](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-create-queue.html) by using the [Amazon SQS console](https://console.aws.amazon.com/sqs/)\. Note the queue ARN\.
 
 1. [Subscribe the queue to the topic](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-subscribe-queue-sns-topic.html) you created in step 2\.
+
+1. [Give permission to the Amazon SNS topic to send messages to the Amazon SQS queue](http://docs.aws.amazon.com/sns/latest/dg/SendMessageToSQS.html#SendMessageToSQS.sqs.permissions)\.
 
 1. Upload an \.mp4, \.mov or \.avi format video file to your S3 Bucket\. For test purposes, upload a video that's no longer than 30 seconds in length\.
 
@@ -71,6 +73,7 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
    import com.amazonaws.services.rekognition.model.Face;
    import com.amazonaws.services.rekognition.model.FaceDetection;
    import com.amazonaws.services.rekognition.model.FaceMatch;
+   import com.amazonaws.services.rekognition.model.FaceSearchSortBy;
    import com.amazonaws.services.rekognition.model.GetCelebrityRecognitionRequest;
    import com.amazonaws.services.rekognition.model.GetCelebrityRecognitionResult;
    import com.amazonaws.services.rekognition.model.GetContentModerationRequest;

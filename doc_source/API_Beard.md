@@ -4,13 +4,13 @@ Indicates whether or not the face has a beard, and the confidence level in the d
 
 ## Contents<a name="API_Beard_Contents"></a>
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-Beard-Confidence"></a>
 Level of confidence in the determination\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Value**   
+ **Value**   <a name="rekognition-Type-Beard-Value"></a>
 Boolean value that indicates whether the face has beard or not\.  
 Type: Boolean  
 Required: No

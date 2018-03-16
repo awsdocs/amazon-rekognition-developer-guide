@@ -4,7 +4,7 @@ The Kinesis data stream Amazon Rekognition to which the analysis results of a Am
 
 ## Contents<a name="API_KinesisDataStream_Contents"></a>
 
- **Arn**   
+ **Arn**   <a name="rekognition-Type-KinesisDataStream-Arn"></a>
 ARN of the output Amazon Kinesis Data Streams stream\.  
 Type: String  
 Pattern: `(^arn:([a-z\d-]+):kinesis:([a-z\d-]+):\d{12}:.+$)`   

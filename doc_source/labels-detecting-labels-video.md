@@ -89,6 +89,6 @@ In the response, note the following:
 
 + **Label information** – The `LabelDetection` array element contains a \([Label](API_Label.md)\) object which contains the label name and the confidence Amazon Rekognition has in the accuracy of the detected label\. `Timestamp` is the time, in milliseconds from the start of the video, that the label was detected\.
 
-+ **Paging information** – The example shows one page of label detection information\. You can specify how many `LabelDetection` objects to return in the `MaxResults` input parameter for `GetLabelDetection`\. If more results than `MaxResults` exist, `GetLabelDetection` returns a token \(`NextToken`\) used to get the next page of results\. For more information, see [](api-video.md#api-video-get)\.
++ **Paging information** – The example shows one page of label detection information\. You can specify how many `LabelDetection` objects to return in the `MaxResults` input parameter for `GetLabelDetection`\. If more results than `MaxResults` exist, `GetLabelDetection` returns a token \(`NextToken`\) used to get the next page of results\. For more information, see [Getting Rekognition Video Analysis Results](api-video.md#api-video-get)\.
 
 + **Video information** – The response includes information about the video format \(`VideoMetadata`\) in each page of information returned by `GetLabelDetection`\.

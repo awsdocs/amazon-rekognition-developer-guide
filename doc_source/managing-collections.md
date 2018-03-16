@@ -35,4 +35,4 @@ Amazon Rekognition provides the following operations for you to manage collectio
 
   Amazon Rekognition deletes the specified collection\. 
 
-For information about storing faces in a collection, see [Storing Faces in a Face Collection](collections-index-faces.md)\. For information about searching faces, see [Searching for Faces with Rekognition Image Collection](collections-search-faces.md) and [[ERROR] BAD/MISSING LINK TEXT](collections-search-person.md)\.
+For information about storing faces in a collection, see [Storing Faces in a Face Collection](collections-index-faces.md)\. For information about searching faces, see [Searching for Faces with Rekognition Image Collection](collections-search-faces.md) and [Searching for Faces with Rekognition Video](collections-search-person.md)\.

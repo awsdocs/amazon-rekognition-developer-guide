@@ -4,13 +4,13 @@ Indicates whether or not the face is wearing sunglasses, and the confidence leve
 
 ## Contents<a name="API_Sunglasses_Contents"></a>
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-Sunglasses-Confidence"></a>
 Level of confidence in the determination\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Value**   
+ **Value**   <a name="rekognition-Type-Sunglasses-Value"></a>
 Boolean value that indicates whether the face is wearing sunglasses or not\.  
 Type: Boolean  
 Required: No

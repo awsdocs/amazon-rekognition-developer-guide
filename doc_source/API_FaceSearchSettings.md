@@ -4,14 +4,14 @@ Input face recognition parameters for an Amazon Rekognition stream processor\. `
 
 ## Contents<a name="API_FaceSearchSettings_Contents"></a>
 
- **CollectionId**   
+ **CollectionId**   <a name="rekognition-Type-FaceSearchSettings-CollectionId"></a>
 The ID of a collection that contains faces that you want to search for\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
 Pattern: `[a-zA-Z0-9_.\-]+`   
 Required: No
 
- **FaceMatchThreshold**   
+ **FaceMatchThreshold**   <a name="rekognition-Type-FaceSearchSettings-FaceMatchThreshold"></a>
 Minimum face match confidence score that must be met to return a result for a recognized face\. Default is 70\. 0 is the lowest confidence\. 100 is the highest confidence\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  

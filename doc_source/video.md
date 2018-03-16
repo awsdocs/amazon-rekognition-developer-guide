@@ -8,24 +8,25 @@ This section covers the types of detection and recognition that Rekognition Vide
 + [Types of Detection and Recognition](#video-recognition-types)
 + [Rekognition Video API Overview](#video-api-overview)
 + [Calling Rekognition Video Operations](api-video.md)
++ [Configuring Rekognition Video](api-video-roles.md)
 + [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md)
 + [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)
-+ [Giving Rekognition Video Access to Your Amazon SNS Topics](api-video-roles.md)
 + [Reference: Video Analysis Results Notification](video-notification-payload.md)
++ [Troubleshooting Rekognition Video](video-troubleshooting.md)
 
 ## Types of Detection and Recognition<a name="video-recognition-types"></a>
 
 You can use Rekognition Video to analyze videos for the following information:
 
-+ Labels
++ [Labels](labels.md)
 
-+ Faces
++ [Faces](faces.md)
 
-+ People
++ [People](persons.md)
 
-+ Celebrities
++ [Celebrities](celebrities.md)
 
-+ Suggestive and explicit adult content
++ [Suggestive and explicit adult content](moderation.md)
 
 For more information, see [Amazon Rekognition: How It Works](how-it-works.md)\.
 

@@ -4,7 +4,7 @@ Information about the Amazon Kinesis Data Streams stream to which a Rekognition 
 
 ## Contents<a name="API_StreamProcessorOutput_Contents"></a>
 
- **KinesisDataStream**   
+ **KinesisDataStream**   <a name="rekognition-Type-StreamProcessorOutput-KinesisDataStream"></a>
 The Amazon Kinesis Data Streams stream to which the Amazon Rekognition stream processor streams the analysis results\.  
 Type: [KinesisDataStream](API_KinesisDataStream.md) object  
 Required: No

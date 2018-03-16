@@ -4,12 +4,12 @@ Provides face metadata\. In addition, it also provides the confidence in the mat
 
 ## Contents<a name="API_FaceMatch_Contents"></a>
 
- **Face**   
+ **Face**   <a name="rekognition-Type-FaceMatch-Face"></a>
 Describes the face properties such as the bounding box, face ID, image ID of the source image, and external image ID that you assigned\.  
 Type: [Face](API_Face.md) object  
 Required: No
 
- **Similarity**   
+ **Similarity**   <a name="rekognition-Type-FaceMatch-Similarity"></a>
 Confidence in the match of this face with the input face\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  

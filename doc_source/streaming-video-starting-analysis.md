@@ -6,11 +6,11 @@ You start processing a video by calling the [ StartStreamProcessor APIrequestsSt
 
 ```
 {
-   "Name": "string"
+   "[Name](#rekognition-StartStreamProcessor-request-Name)": "string"
 }
 ```   Request Parameters  The request accepts the following data in JSON format\.  
 
- ** Name **   
+ ** [Name](#API_StartStreamProcessor_RequestSyntax) **   <a name="rekognition-StartStreamProcessor-request-Name"></a>
 The name of the stream processor to start processing\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  

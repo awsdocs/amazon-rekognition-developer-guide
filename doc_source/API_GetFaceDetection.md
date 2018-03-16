@@ -12,9 +12,9 @@ Use MaxResults parameter to limit the number of labels returned\. If there are m
 
 ```
 {
-   "JobId": "string",
-   "MaxResults": number,
-   "NextToken": "string"
+   "[JobId](#rekognition-GetFaceDetection-request-JobId)": "string",
+   "[MaxResults](#rekognition-GetFaceDetection-request-MaxResults)": number,
+   "[NextToken](#rekognition-GetFaceDetection-request-NextToken)": "string"
 }
 ```
 
@@ -22,20 +22,20 @@ Use MaxResults parameter to limit the number of labels returned\. If there are m
 
 The request accepts the following data in JSON format\.
 
- ** JobId **   
+ ** [JobId](#API_GetFaceDetection_RequestSyntax) **   <a name="rekognition-GetFaceDetection-request-JobId"></a>
 Unique identifier for the face detection job\. The `JobId` is returned from `StartFaceDetection`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
 Required: Yes
 
- ** MaxResults **   
-Maximum number of detected faces to return\. The default is 1000\.  
+ ** [MaxResults](#API_GetFaceDetection_RequestSyntax) **   <a name="rekognition-GetFaceDetection-request-MaxResults"></a>
+Maximum number of results to return per paginated call\. The largest value you can specify is 1000\. If you specify a value greater than 1000, a maximum of 1000 results is returned\. The default value is 1000\.  
 Type: Integer  
 Valid Range: Minimum value of 1\.  
 Required: No
 
- ** NextToken **   
+ ** [NextToken](#API_GetFaceDetection_RequestSyntax) **   <a name="rekognition-GetFaceDetection-request-NextToken"></a>
 If the previous response was incomplete \(because there are more faces to retrieve\), Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of faces\.  
 Type: String  
 Length Constraints: Maximum length of 255\.  
@@ -45,88 +45,88 @@ Required: No
 
 ```
 {
-   "Faces": [ 
+   "[Faces](#rekognition-GetFaceDetection-response-Faces)": [ 
       { 
-         "Face": { 
-            "AgeRange": { 
-               "High": number,
-               "Low": number
+         "[Face](API_FaceDetection.md#rekognition-Type-FaceDetection-Face)": { 
+            "[AgeRange](API_FaceDetail.md#rekognition-Type-FaceDetail-AgeRange)": { 
+               "[High](API_AgeRange.md#rekognition-Type-AgeRange-High)": number,
+               "[Low](API_AgeRange.md#rekognition-Type-AgeRange-Low)": number
             },
-            "Beard": { 
-               "Confidence": number,
-               "Value": boolean
+            "[Beard](API_FaceDetail.md#rekognition-Type-FaceDetail-Beard)": { 
+               "[Confidence](API_Beard.md#rekognition-Type-Beard-Confidence)": number,
+               "[Value](API_Beard.md#rekognition-Type-Beard-Value)": boolean
             },
-            "BoundingBox": { 
-               "Height": number,
-               "Left": number,
-               "Top": number,
-               "Width": number
+            "[BoundingBox](API_FaceDetail.md#rekognition-Type-FaceDetail-BoundingBox)": { 
+               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
             },
-            "Confidence": number,
-            "Emotions": [ 
+            "[Confidence](API_FaceDetail.md#rekognition-Type-FaceDetail-Confidence)": number,
+            "[Emotions](API_FaceDetail.md#rekognition-Type-FaceDetail-Emotions)": [ 
                { 
-                  "Confidence": number,
-                  "Type": "string"
+                  "[Confidence](API_Emotion.md#rekognition-Type-Emotion-Confidence)": number,
+                  "[Type](API_Emotion.md#rekognition-Type-Emotion-Type)": "string"
                }
             ],
-            "Eyeglasses": { 
-               "Confidence": number,
-               "Value": boolean
+            "[Eyeglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Eyeglasses)": { 
+               "[Confidence](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Confidence)": number,
+               "[Value](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Value)": boolean
             },
-            "EyesOpen": { 
-               "Confidence": number,
-               "Value": boolean
+            "[EyesOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-EyesOpen)": { 
+               "[Confidence](API_EyeOpen.md#rekognition-Type-EyeOpen-Confidence)": number,
+               "[Value](API_EyeOpen.md#rekognition-Type-EyeOpen-Value)": boolean
             },
-            "Gender": { 
-               "Confidence": number,
-               "Value": "string"
+            "[Gender](API_FaceDetail.md#rekognition-Type-FaceDetail-Gender)": { 
+               "[Confidence](API_Gender.md#rekognition-Type-Gender-Confidence)": number,
+               "[Value](API_Gender.md#rekognition-Type-Gender-Value)": "string"
             },
-            "Landmarks": [ 
+            "[Landmarks](API_FaceDetail.md#rekognition-Type-FaceDetail-Landmarks)": [ 
                { 
-                  "Type": "string",
-                  "X": number,
-                  "Y": number
+                  "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
+                  "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
+                  "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
                }
             ],
-            "MouthOpen": { 
-               "Confidence": number,
-               "Value": boolean
+            "[MouthOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-MouthOpen)": { 
+               "[Confidence](API_MouthOpen.md#rekognition-Type-MouthOpen-Confidence)": number,
+               "[Value](API_MouthOpen.md#rekognition-Type-MouthOpen-Value)": boolean
             },
-            "Mustache": { 
-               "Confidence": number,
-               "Value": boolean
+            "[Mustache](API_FaceDetail.md#rekognition-Type-FaceDetail-Mustache)": { 
+               "[Confidence](API_Mustache.md#rekognition-Type-Mustache-Confidence)": number,
+               "[Value](API_Mustache.md#rekognition-Type-Mustache-Value)": boolean
             },
-            "Pose": { 
-               "Pitch": number,
-               "Roll": number,
-               "Yaw": number
+            "[Pose](API_FaceDetail.md#rekognition-Type-FaceDetail-Pose)": { 
+               "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
+               "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
+               "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
             },
-            "Quality": { 
-               "Brightness": number,
-               "Sharpness": number
+            "[Quality](API_FaceDetail.md#rekognition-Type-FaceDetail-Quality)": { 
+               "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
+               "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
             },
-            "Smile": { 
-               "Confidence": number,
-               "Value": boolean
+            "[Smile](API_FaceDetail.md#rekognition-Type-FaceDetail-Smile)": { 
+               "[Confidence](API_Smile.md#rekognition-Type-Smile-Confidence)": number,
+               "[Value](API_Smile.md#rekognition-Type-Smile-Value)": boolean
             },
-            "Sunglasses": { 
-               "Confidence": number,
-               "Value": boolean
+            "[Sunglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Sunglasses)": { 
+               "[Confidence](API_Sunglasses.md#rekognition-Type-Sunglasses-Confidence)": number,
+               "[Value](API_Sunglasses.md#rekognition-Type-Sunglasses-Value)": boolean
             }
          },
-         "Timestamp": number
+         "[Timestamp](API_FaceDetection.md#rekognition-Type-FaceDetection-Timestamp)": number
       }
    ],
-   "JobStatus": "string",
-   "NextToken": "string",
-   "StatusMessage": "string",
-   "VideoMetadata": { 
-      "Codec": "string",
-      "DurationMillis": number,
-      "Format": "string",
-      "FrameHeight": number,
-      "FrameRate": number,
-      "FrameWidth": number
+   "[JobStatus](#rekognition-GetFaceDetection-response-JobStatus)": "string",
+   "[NextToken](#rekognition-GetFaceDetection-response-NextToken)": "string",
+   "[StatusMessage](#rekognition-GetFaceDetection-response-StatusMessage)": "string",
+   "[VideoMetadata](#rekognition-GetFaceDetection-response-VideoMetadata)": { 
+      "[Codec](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Codec)": "string",
+      "[DurationMillis](API_VideoMetadata.md#rekognition-Type-VideoMetadata-DurationMillis)": number,
+      "[Format](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Format)": "string",
+      "[FrameHeight](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameHeight)": number,
+      "[FrameRate](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameRate)": number,
+      "[FrameWidth](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameWidth)": number
    }
 }
 ```
@@ -137,25 +137,25 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** Faces **   
+ ** [Faces](#API_GetFaceDetection_ResponseSyntax) **   <a name="rekognition-GetFaceDetection-response-Faces"></a>
 An array of faces detected in the video\. Each element contains a detected face's details and the time, in milliseconds from the start of the video, the face was detected\.   
 Type: Array of [FaceDetection](API_FaceDetection.md) objects
 
- ** JobStatus **   
+ ** [JobStatus](#API_GetFaceDetection_ResponseSyntax) **   <a name="rekognition-GetFaceDetection-response-JobStatus"></a>
 The current status of the face detection job\.  
 Type: String  
 Valid Values:` IN_PROGRESS | SUCCEEDED | FAILED` 
 
- ** NextToken **   
+ ** [NextToken](#API_GetFaceDetection_ResponseSyntax) **   <a name="rekognition-GetFaceDetection-response-NextToken"></a>
 If the response is truncated, Amazon Rekognition returns this token that you can use in the subsequent request to retrieve the next set of faces\.   
 Type: String  
 Length Constraints: Maximum length of 255\.
 
- ** StatusMessage **   
+ ** [StatusMessage](#API_GetFaceDetection_ResponseSyntax) **   <a name="rekognition-GetFaceDetection-response-StatusMessage"></a>
 If the job fails, `StatusMessage` provides a descriptive error message\.  
 Type: String
 
- ** VideoMetadata **   
+ ** [VideoMetadata](#API_GetFaceDetection_ResponseSyntax) **   <a name="rekognition-GetFaceDetection-response-VideoMetadata"></a>
 Information about a video that Rekognition Video analyzed\. `Videometadata` is returned in every page of paginated responses from a Amazon Rekognition video operation\.  
 Type: [VideoMetadata](API_VideoMetadata.md) object
 

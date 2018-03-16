@@ -16,10 +16,10 @@ For more information, see [Detecting Unsafe Content](moderation.md)\.
 
 ```
 {
-   "JobId": "string",
-   "MaxResults": number,
-   "NextToken": "string",
-   "SortBy": "string"
+   "[JobId](#rekognition-GetContentModeration-request-JobId)": "string",
+   "[MaxResults](#rekognition-GetContentModeration-request-MaxResults)": number,
+   "[NextToken](#rekognition-GetContentModeration-request-NextToken)": "string",
+   "[SortBy](#rekognition-GetContentModeration-request-SortBy)": "string"
 }
 ```
 
@@ -27,26 +27,26 @@ For more information, see [Detecting Unsafe Content](moderation.md)\.
 
 The request accepts the following data in JSON format\.
 
- ** JobId **   
+ ** [JobId](#API_GetContentModeration_RequestSyntax) **   <a name="rekognition-GetContentModeration-request-JobId"></a>
 The identifier for the content moderation job\. Use `JobId` to identify the job in a subsequent call to `GetContentModeration`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
 Required: Yes
 
- ** MaxResults **   
-Maximum number of content moderation labels to return\. The default is 1000\.  
+ ** [MaxResults](#API_GetContentModeration_RequestSyntax) **   <a name="rekognition-GetContentModeration-request-MaxResults"></a>
+Maximum number of results to return per paginated call\. The largest value you can specify is 1000\. If you specify a value greater than 1000, a maximum of 1000 results is returned\. The default value is 1000\.  
 Type: Integer  
 Valid Range: Minimum value of 1\.  
 Required: No
 
- ** NextToken **   
+ ** [NextToken](#API_GetContentModeration_RequestSyntax) **   <a name="rekognition-GetContentModeration-request-NextToken"></a>
 If the previous response was incomplete \(because there is more data to retrieve\), Amazon Rekognition returns a pagination token in the response\. You can use this pagination token to retrieve the next set of content moderation labels\.  
 Type: String  
 Length Constraints: Maximum length of 255\.  
 Required: No
 
- ** SortBy **   
+ ** [SortBy](#API_GetContentModeration_RequestSyntax) **   <a name="rekognition-GetContentModeration-request-SortBy"></a>
 Sort to use for elements in the `ModerationLabelDetections` array\. Use `TIMESTAMP` to sort array elements by the time labels are detected\. Use `NAME` to alphabetically group elements for a label together\. Within each label group, the array element are sorted by detection confidence\. The default sort is by `TIMESTAMP`\.  
 Type: String  
 Valid Values:` NAME | TIMESTAMP`   
@@ -56,26 +56,26 @@ Required: No
 
 ```
 {
-   "JobStatus": "string",
-   "ModerationLabels": [ 
+   "[JobStatus](#rekognition-GetContentModeration-response-JobStatus)": "string",
+   "[ModerationLabels](#rekognition-GetContentModeration-response-ModerationLabels)": [ 
       { 
-         "ModerationLabel": { 
-            "Confidence": number,
-            "Name": "string",
-            "ParentName": "string"
+         "[ModerationLabel](API_ContentModerationDetection.md#rekognition-Type-ContentModerationDetection-ModerationLabel)": { 
+            "[Confidence](API_ModerationLabel.md#rekognition-Type-ModerationLabel-Confidence)": number,
+            "[Name](API_ModerationLabel.md#rekognition-Type-ModerationLabel-Name)": "string",
+            "[ParentName](API_ModerationLabel.md#rekognition-Type-ModerationLabel-ParentName)": "string"
          },
-         "Timestamp": number
+         "[Timestamp](API_ContentModerationDetection.md#rekognition-Type-ContentModerationDetection-Timestamp)": number
       }
    ],
-   "NextToken": "string",
-   "StatusMessage": "string",
-   "VideoMetadata": { 
-      "Codec": "string",
-      "DurationMillis": number,
-      "Format": "string",
-      "FrameHeight": number,
-      "FrameRate": number,
-      "FrameWidth": number
+   "[NextToken](#rekognition-GetContentModeration-response-NextToken)": "string",
+   "[StatusMessage](#rekognition-GetContentModeration-response-StatusMessage)": "string",
+   "[VideoMetadata](#rekognition-GetContentModeration-response-VideoMetadata)": { 
+      "[Codec](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Codec)": "string",
+      "[DurationMillis](API_VideoMetadata.md#rekognition-Type-VideoMetadata-DurationMillis)": number,
+      "[Format](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Format)": "string",
+      "[FrameHeight](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameHeight)": number,
+      "[FrameRate](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameRate)": number,
+      "[FrameWidth](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameWidth)": number
    }
 }
 ```
@@ -86,25 +86,25 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** JobStatus **   
+ ** [JobStatus](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-JobStatus"></a>
 The current status of the content moderation job\.  
 Type: String  
 Valid Values:` IN_PROGRESS | SUCCEEDED | FAILED` 
 
- ** ModerationLabels **   
+ ** [ModerationLabels](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-ModerationLabels"></a>
 The detected moderation labels and the time\(s\) they were detected\.  
 Type: Array of [ContentModerationDetection](API_ContentModerationDetection.md) objects
 
- ** NextToken **   
+ ** [NextToken](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-NextToken"></a>
 If the response is truncated, Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of moderation labels\.   
 Type: String  
 Length Constraints: Maximum length of 255\.
 
- ** StatusMessage **   
+ ** [StatusMessage](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-StatusMessage"></a>
 If the job fails, `StatusMessage` provides a descriptive error message\.  
 Type: String
 
- ** VideoMetadata **   
+ ** [VideoMetadata](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-VideoMetadata"></a>
 Information about a video that Amazon Rekognition analyzed\. `Videometadata` is returned in every page of paginated responses from `GetContentModeration`\.   
 Type: [VideoMetadata](API_VideoMetadata.md) object
 

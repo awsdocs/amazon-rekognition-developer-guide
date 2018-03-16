@@ -8,17 +8,17 @@ Rekognition Video can detect celebrities in a video must be stored in an Amazon 
 
 ```
 {
-   "ClientRequestToken": "string",
-   "JobTag": "string",
-   "NotificationChannel": { 
-      "RoleArn": "string",
-      "SNSTopicArn": "string"
+   "[ClientRequestToken](#rekognition-StartCelebrityRecognition-request-ClientRequestToken)": "string",
+   "[JobTag](#rekognition-StartCelebrityRecognition-request-JobTag)": "string",
+   "[NotificationChannel](#rekognition-StartCelebrityRecognition-request-NotificationChannel)": { 
+      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
+      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
    },
-   "Video": { 
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[Video](#rekognition-StartCelebrityRecognition-request-Video)": { 
+      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    }
 }
@@ -28,26 +28,26 @@ Rekognition Video can detect celebrities in a video must be stored in an Amazon 
 
 The request accepts the following data in JSON format\.
 
- ** ClientRequestToken **   
+ ** [ClientRequestToken](#API_StartCelebrityRecognition_RequestSyntax) **   <a name="rekognition-StartCelebrityRecognition-request-ClientRequestToken"></a>
 Idempotent token used to identify the start request\. If you use the same token with multiple `StartCelebrityRecognition` requests, the same `JobId` is returned\. Use `ClientRequestToken` to prevent the same job from being accidently started more than once\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
 Required: No
 
- ** JobTag **   
+ ** [JobTag](#API_StartCelebrityRecognition_RequestSyntax) **   <a name="rekognition-StartCelebrityRecognition-request-JobTag"></a>
 Unique identifier you specify to identify the job in the completion status published to the Amazon Simple Notification Service topic\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.\-:]+`   
 Required: No
 
- ** NotificationChannel **   
+ ** [NotificationChannel](#API_StartCelebrityRecognition_RequestSyntax) **   <a name="rekognition-StartCelebrityRecognition-request-NotificationChannel"></a>
 The Amazon SNS topic ARN that you want Rekognition Video to publish the completion status of the celebrity recognition analysis to\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
- ** Video **   
+ ** [Video](#API_StartCelebrityRecognition_RequestSyntax) **   <a name="rekognition-StartCelebrityRecognition-request-Video"></a>
 The video in which you want to recognize celebrities\. The video must be stored in an Amazon S3 bucket\.  
 Type: [Video](API_Video.md) object  
 Required: Yes
@@ -56,7 +56,7 @@ Required: Yes
 
 ```
 {
-   "JobId": "string"
+   "[JobId](#rekognition-StartCelebrityRecognition-response-JobId)": "string"
 }
 ```
 
@@ -66,7 +66,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** JobId **   
+ ** [JobId](#API_StartCelebrityRecognition_ResponseSyntax) **   <a name="rekognition-StartCelebrityRecognition-response-JobId"></a>
 The identifier for the celebrity recognition analysis job\. Use `JobId` to identify the job in a subsequent call to `GetCelebrityRecognition`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  

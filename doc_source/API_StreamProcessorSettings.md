@@ -4,7 +4,7 @@ Input parameters used to recognize faces in a streaming video analyzed by a Amaz
 
 ## Contents<a name="API_StreamProcessorSettings_Contents"></a>
 
- **FaceSearch**   
+ **FaceSearch**   <a name="rekognition-Type-StreamProcessorSettings-FaceSearch"></a>
 Face search settings to use on a streaming video\.   
 Type: [FaceSearchSettings](API_FaceSearchSettings.md) object  
 Required: No

@@ -4,12 +4,12 @@ Information about a face detected in a video analysis request and the time the f
 
 ## Contents<a name="API_FaceDetection_Contents"></a>
 
- **Face**   
+ **Face**   <a name="rekognition-Type-FaceDetection-Face"></a>
 The face properties for the detected face\.  
 Type: [FaceDetail](API_FaceDetail.md) object  
 Required: No
 
- **Timestamp**   
+ **Timestamp**   <a name="rekognition-Type-FaceDetection-Timestamp"></a>
 Time, in milliseconds from the start of the video, that the face was detected\.  
 Type: Long  
 Required: No

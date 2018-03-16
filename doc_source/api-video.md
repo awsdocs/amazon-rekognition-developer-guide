@@ -31,7 +31,7 @@ You start a Rekognition Video label detection request by calling [StartLabelDete
 }
 ```
 
-The input parameter `Video` provides the video file name and the Amazon S3 bucket to retrieve it from\. `NotificationChannel` contains the Amazon Resource Name \(ARN\) of the Amazon SNS topic that Rekognition Video notifies when the video analysis request finishes\. The Amazon SNS topic must be in the same AWS region as the Rekognition Video endpoint that you're calling\. `NotificationChannel` also contains the ARN for a role that allows Rekognition Video to publish to the Amazon SNS topic\. You give Amazon Rekognition publishing permissions to your Amazon SNS topics by creating an IAM service role\. For more information, see [Giving Rekognition Video Access to Your Amazon SNS Topics](api-video-roles.md)\.
+The input parameter `Video` provides the video file name and the Amazon S3 bucket to retrieve it from\. `NotificationChannel` contains the Amazon Resource Name \(ARN\) of the Amazon SNS topic that Rekognition Video notifies when the video analysis request finishes\. The Amazon SNS topic must be in the same AWS region as the Rekognition Video endpoint that you're calling\. `NotificationChannel` also contains the ARN for a role that allows Rekognition Video to publish to the Amazon SNS topic\. You give Amazon Rekognition publishing permissions to your Amazon SNS topics by creating an IAM service role\. For more information, see [Configuring Rekognition Video](api-video-roles.md)\.
 
 You can also specify an optional input parameter, `JobTag`, that allows you to identify the job in the completion status that's published to the Amazon SNS topic\. 
 
@@ -94,7 +94,7 @@ We don't recommend getting the request completion status by repeatedly calling t
 }
 ```
 
-JobId is the identifier for the video analysis operation\. Because video analysis can generate large amounts of data, use `MaxResults` to specify the maximum number of results to return in a single Get operation\. If the operation doesn't return the entire set of results, a pagination token for the next page is returned in the operation response\. If you have a pagination token from a previous Get request, use it with `NextToken` to get the next page of results\. The default page size is 1000\.
+JobId is the identifier for the video analysis operation\. Because video analysis can generate large amounts of data, use `MaxResults` to specify the maximum number of results to return in a single Get operation\. The default value for `MaxResults` is 1000\. If you specify a value greater than 1000, a maximum of 1000 results is returned\. If the operation doesn't return the entire set of results, a pagination token for the next page is returned in the operation response\. If you have a pagination token from a previous Get request, use it with `NextToken` to get the next page of results\.
 
 **Note**  
 Amazon Rekognition retains the results of a video analysis operation for 7 days\. You will not be able to retrieve the analysis results after this time\.

@@ -4,12 +4,12 @@ Object containing both the face metadata \(stored in the back\-end database\) an
 
 ## Contents<a name="API_FaceRecord_Contents"></a>
 
- **Face**   
+ **Face**   <a name="rekognition-Type-FaceRecord-Face"></a>
 Describes the face properties such as the bounding box, face ID, image ID of the input image, and external image ID that you assigned\.   
 Type: [Face](API_Face.md) object  
 Required: No
 
- **FaceDetail**   
+ **FaceDetail**   <a name="rekognition-Type-FaceRecord-FaceDetail"></a>
 Structure containing attributes of the face that the algorithm detected\.  
 Type: [FaceDetail](API_FaceDetail.md) object  
 Required: No

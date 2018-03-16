@@ -8,7 +8,7 @@ This operation requires permissions to perform the `rekognition:GetCelebrityInfo
 
 ```
 {
-   "Id": "string"
+   "[Id](#rekognition-GetCelebrityInfo-request-Id)": "string"
 }
 ```
 
@@ -16,7 +16,7 @@ This operation requires permissions to perform the `rekognition:GetCelebrityInfo
 
 The request accepts the following data in JSON format\.
 
- ** Id **   
+ ** [Id](#API_GetCelebrityInfo_RequestSyntax) **   <a name="rekognition-GetCelebrityInfo-request-Id"></a>
 The ID for the celebrity\. You get the celebrity ID from a call to the [RecognizeCelebrities](API_RecognizeCelebrities.md) operation, which recognizes celebrities in an image\.   
 Type: String  
 Pattern: `[0-9A-Za-z]*`   
@@ -26,8 +26,8 @@ Required: Yes
 
 ```
 {
-   "Name": "string",
-   "Urls": [ "string" ]
+   "[Name](#rekognition-GetCelebrityInfo-response-Name)": "string",
+   "[Urls](#rekognition-GetCelebrityInfo-response-Urls)": [ "string" ]
 }
 ```
 
@@ -37,11 +37,11 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** Name **   
+ ** [Name](#API_GetCelebrityInfo_ResponseSyntax) **   <a name="rekognition-GetCelebrityInfo-response-Name"></a>
 The name of the celebrity\.  
 Type: String
 
- ** Urls **   
+ ** [Urls](#API_GetCelebrityInfo_ResponseSyntax) **   <a name="rekognition-GetCelebrityInfo-response-Urls"></a>
 An array of URLs pointing to additional celebrity information\.   
 Type: Array of strings
 

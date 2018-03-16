@@ -4,31 +4,31 @@ Describes the face properties such as the bounding box, face ID, image ID of the
 
 ## Contents<a name="API_Face_Contents"></a>
 
- **BoundingBox**   
+ **BoundingBox**   <a name="rekognition-Type-Face-BoundingBox"></a>
 Bounding box of the face\.  
 Type: [BoundingBox](API_BoundingBox.md) object  
 Required: No
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-Face-Confidence"></a>
 Confidence level that the bounding box contains a face \(and not a different object such as a tree\)\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **ExternalImageId**   
+ **ExternalImageId**   <a name="rekognition-Type-Face-ExternalImageId"></a>
 Identifier that you assign to all the faces in the input image\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
 Pattern: `[a-zA-Z0-9_.\-:]+`   
 Required: No
 
- **FaceId**   
+ **FaceId**   <a name="rekognition-Type-Face-FaceId"></a>
 Unique identifier that Amazon Rekognition assigns to the face\.  
 Type: String  
 Pattern: `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}`   
 Required: No
 
- **ImageId**   
+ **ImageId**   <a name="rekognition-Type-Face-ImageId"></a>
 Unique identifier that Amazon Rekognition assigns to the input image\.  
 Type: String  
 Pattern: `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}`   

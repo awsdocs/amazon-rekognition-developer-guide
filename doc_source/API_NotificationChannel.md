@@ -4,13 +4,13 @@ The Amazon Simple Notification Service topic to which Amazon Rekognition publish
 
 ## Contents<a name="API_NotificationChannel_Contents"></a>
 
- **RoleArn**   
+ **RoleArn**   <a name="rekognition-Type-NotificationChannel-RoleArn"></a>
 The ARN of an IAM role that gives Amazon Rekognition publishing permissions to the Amazon SNS topic\.   
 Type: String  
 Pattern: `arn:aws:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+`   
 Required: Yes
 
- **SNSTopicArn**   
+ **SNSTopicArn**   <a name="rekognition-Type-NotificationChannel-SNSTopicArn"></a>
 The Amazon SNS topic to which Amazon Rekognition to posts the completion status\.  
 Type: String  
 Pattern: `(^arn:aws:sns:.*:\w{12}:.+$)`   

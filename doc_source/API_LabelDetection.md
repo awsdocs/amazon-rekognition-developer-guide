@@ -4,12 +4,12 @@ Information about a label detected in a video analysis request and the time the 
 
 ## Contents<a name="API_LabelDetection_Contents"></a>
 
- **Label**   
+ **Label**   <a name="rekognition-Type-LabelDetection-Label"></a>
 Details about the detected label\.  
 Type: [Label](API_Label.md) object  
 Required: No
 
- **Timestamp**   
+ **Timestamp**   <a name="rekognition-Type-LabelDetection-Timestamp"></a>
 Time, in milliseconds from the start of the video, that the label was detected\.  
 Type: Long  
 Required: No

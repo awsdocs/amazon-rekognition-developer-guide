@@ -10,35 +10,35 @@ For more information, see [Detecting Text](text-detection.md)\.
 
 ## Contents<a name="API_TextDetection_Contents"></a>
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-TextDetection-Confidence"></a>
 The confidence that Amazon Rekognition has in the accuracy of the detected text and the accuracy of the geometry points around the detected text\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **DetectedText**   
+ **DetectedText**   <a name="rekognition-Type-TextDetection-DetectedText"></a>
 The word or line of text recognized by Amazon Rekognition\.   
 Type: String  
 Required: No
 
- **Geometry**   
+ **Geometry**   <a name="rekognition-Type-TextDetection-Geometry"></a>
 The location of the detected text on the image\. Includes an axis aligned coarse bounding box surrounding the text and a finer grain polygon for more accurate spatial information\.  
 Type: [Geometry](API_Geometry.md) object  
 Required: No
 
- **Id**   
+ **Id**   <a name="rekognition-Type-TextDetection-Id"></a>
 The identifier for the detected text\. The identifier is only unique for a single call to `DetectText`\.   
 Type: Integer  
 Valid Range: Minimum value of 0\.  
 Required: No
 
- **ParentId**   
+ **ParentId**   <a name="rekognition-Type-TextDetection-ParentId"></a>
 The Parent identifier for the detected text identified by the value of `ID`\. If the type of detected text is `LINE`, the value of `ParentId` is `Null`\.   
 Type: Integer  
 Valid Range: Minimum value of 0\.  
 Required: No
 
- **Type**   
+ **Type**   <a name="rekognition-Type-TextDetection-Type"></a>
 The type of text that was detected\.  
 Type: String  
 Valid Values:` LINE | WORD`   

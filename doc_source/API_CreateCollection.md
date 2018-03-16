@@ -13,7 +13,7 @@ This operation requires permissions to perform the `rekognition:CreateCollection
 
 ```
 {
-   "CollectionId": "string"
+   "[CollectionId](#rekognition-CreateCollection-request-CollectionId)": "string"
 }
 ```
 
@@ -21,7 +21,7 @@ This operation requires permissions to perform the `rekognition:CreateCollection
 
 The request accepts the following data in JSON format\.
 
- ** CollectionId **   
+ ** [CollectionId](#API_CreateCollection_RequestSyntax) **   <a name="rekognition-CreateCollection-request-CollectionId"></a>
 ID for the collection that you are creating\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
@@ -32,9 +32,9 @@ Required: Yes
 
 ```
 {
-   "CollectionArn": "string",
-   "FaceModelVersion": "string",
-   "StatusCode": number
+   "[CollectionArn](#rekognition-CreateCollection-response-CollectionArn)": "string",
+   "[FaceModelVersion](#rekognition-CreateCollection-response-FaceModelVersion)": "string",
+   "[StatusCode](#rekognition-CreateCollection-response-StatusCode)": number
 }
 ```
 
@@ -44,15 +44,15 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** CollectionArn **   
+ ** [CollectionArn](#API_CreateCollection_ResponseSyntax) **   <a name="rekognition-CreateCollection-response-CollectionArn"></a>
 Amazon Resource Name \(ARN\) of the collection\. You can use this to manage permissions on your resources\.   
 Type: String
 
- ** FaceModelVersion **   
+ ** [FaceModelVersion](#API_CreateCollection_ResponseSyntax) **   <a name="rekognition-CreateCollection-response-FaceModelVersion"></a>
 Version number of the face detection model associated with the collection you are creating\.  
 Type: String
 
- ** StatusCode **   
+ ** [StatusCode](#API_CreateCollection_ResponseSyntax) **   <a name="rekognition-CreateCollection-response-StatusCode"></a>
 HTTP status code indicating the result of the operation\.  
 Type: Integer  
 Valid Range: Minimum value of 0\.

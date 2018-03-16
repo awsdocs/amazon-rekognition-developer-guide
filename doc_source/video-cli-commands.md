@@ -14,13 +14,15 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 
 **To configure Rekognition Video and upload a video**
 
-1. If you haven't already, create an IAM service role to give Rekognition Video access to multiple Amazon SNS topics\. Note the ARN\. For more information, see [Giving Access to Multiple Amazon SNS Topics](api-video-roles.md#api-video-roles-all-topics)\.
+1. Configure user access to Rekognition Video and configure Rekognition Video access to Amazon SNS\. For more information, see [Configuring Rekognition Video](api-video-roles.md)\.
 
 1. [Create an Amazon SNS topic](http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic Amazon Resource Name \(ARN\)\. 
 
 1. [Create an Amazon SQS standard queue](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-create-queue.html) by using the [Amazon SQS console](https://console.aws.amazon.com/sqs/)\. Note the queue ARN\.
 
 1. [Subscribe the queue to the topic](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-subscribe-queue-sns-topic.html) you created in step 2\.
+
+1. [Give permission to the Amazon SNS topic to send messages to the Amazon SQS queue](http://docs.aws.amazon.com/sns/latest/dg/SendMessageToSQS.html#SendMessageToSQS.sqs.permissions)\.
 
 1. Upload an \.mp4, \.mov or \.avi format video file to your S3 bucket\. While developing and testing, we suggest using short videos no longer than 30 seconds in length\.
 

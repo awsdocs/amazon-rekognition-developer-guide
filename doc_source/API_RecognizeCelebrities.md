@@ -18,12 +18,12 @@ This operation requires permissions to perform the `rekognition:RecognizeCelebri
 
 ```
 {
-   "Image": { 
-      "Bytes": blob,
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[Image](#rekognition-RecognizeCelebrities-request-Image)": { 
+      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
+      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    }
 }
@@ -33,7 +33,7 @@ This operation requires permissions to perform the `rekognition:RecognizeCelebri
 
 The request accepts the following data in JSON format\.
 
- ** Image **   
+ ** [Image](#API_RecognizeCelebrities_RequestSyntax) **   <a name="rekognition-RecognizeCelebrities-request-Image"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
 Type: [Image](API_Image.md) object  
 Required: Yes
@@ -42,64 +42,64 @@ Required: Yes
 
 ```
 {
-   "CelebrityFaces": [ 
+   "[CelebrityFaces](#rekognition-RecognizeCelebrities-response-CelebrityFaces)": [ 
       { 
-         "Face": { 
-            "BoundingBox": { 
-               "Height": number,
-               "Left": number,
-               "Top": number,
-               "Width": number
+         "[Face](API_Celebrity.md#rekognition-Type-Celebrity-Face)": { 
+            "[BoundingBox](API_ComparedFace.md#rekognition-Type-ComparedFace-BoundingBox)": { 
+               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
             },
-            "Confidence": number,
-            "Landmarks": [ 
+            "[Confidence](API_ComparedFace.md#rekognition-Type-ComparedFace-Confidence)": number,
+            "[Landmarks](API_ComparedFace.md#rekognition-Type-ComparedFace-Landmarks)": [ 
                { 
-                  "Type": "string",
-                  "X": number,
-                  "Y": number
+                  "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
+                  "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
+                  "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
                }
             ],
-            "Pose": { 
-               "Pitch": number,
-               "Roll": number,
-               "Yaw": number
+            "[Pose](API_ComparedFace.md#rekognition-Type-ComparedFace-Pose)": { 
+               "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
+               "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
+               "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
             },
-            "Quality": { 
-               "Brightness": number,
-               "Sharpness": number
+            "[Quality](API_ComparedFace.md#rekognition-Type-ComparedFace-Quality)": { 
+               "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
+               "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
             }
          },
-         "Id": "string",
-         "MatchConfidence": number,
-         "Name": "string",
-         "Urls": [ "string" ]
+         "[Id](API_Celebrity.md#rekognition-Type-Celebrity-Id)": "string",
+         "[MatchConfidence](API_Celebrity.md#rekognition-Type-Celebrity-MatchConfidence)": number,
+         "[Name](API_Celebrity.md#rekognition-Type-Celebrity-Name)": "string",
+         "[Urls](API_Celebrity.md#rekognition-Type-Celebrity-Urls)": [ "string" ]
       }
    ],
-   "OrientationCorrection": "string",
-   "UnrecognizedFaces": [ 
+   "[OrientationCorrection](#rekognition-RecognizeCelebrities-response-OrientationCorrection)": "string",
+   "[UnrecognizedFaces](#rekognition-RecognizeCelebrities-response-UnrecognizedFaces)": [ 
       { 
-         "BoundingBox": { 
-            "Height": number,
-            "Left": number,
-            "Top": number,
-            "Width": number
+         "[BoundingBox](API_ComparedFace.md#rekognition-Type-ComparedFace-BoundingBox)": { 
+            "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+            "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+            "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+            "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
          },
-         "Confidence": number,
-         "Landmarks": [ 
+         "[Confidence](API_ComparedFace.md#rekognition-Type-ComparedFace-Confidence)": number,
+         "[Landmarks](API_ComparedFace.md#rekognition-Type-ComparedFace-Landmarks)": [ 
             { 
-               "Type": "string",
-               "X": number,
-               "Y": number
+               "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
+               "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
+               "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
             }
          ],
-         "Pose": { 
-            "Pitch": number,
-            "Roll": number,
-            "Yaw": number
+         "[Pose](API_ComparedFace.md#rekognition-Type-ComparedFace-Pose)": { 
+            "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
+            "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
+            "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
          },
-         "Quality": { 
-            "Brightness": number,
-            "Sharpness": number
+         "[Quality](API_ComparedFace.md#rekognition-Type-ComparedFace-Quality)": { 
+            "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
+            "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
          }
       }
    ]
@@ -112,17 +112,17 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** CelebrityFaces **   
+ ** [CelebrityFaces](#API_RecognizeCelebrities_ResponseSyntax) **   <a name="rekognition-RecognizeCelebrities-response-CelebrityFaces"></a>
 Details about each celebrity found in the image\. Amazon Rekognition can detect a maximum of 15 celebrities in an image\.  
 Type: Array of [Celebrity](API_Celebrity.md) objects
 
- ** OrientationCorrection **   
+ ** [OrientationCorrection](#API_RecognizeCelebrities_ResponseSyntax) **   <a name="rekognition-RecognizeCelebrities-response-OrientationCorrection"></a>
 The orientation of the input image \(counterclockwise direction\)\. If your application displays the image, you can use this value to correct the orientation\. The bounding box coordinates returned in `CelebrityFaces` and `UnrecognizedFaces` represent face locations before the image orientation is corrected\.   
 If the input image is in \.jpeg format, it might contain exchangeable image \(Exif\) metadata that includes the image's orientation\. If so, and the Exif metadata for the input image populates the orientation field, the value of `OrientationCorrection` is null and the `CelebrityFaces` and `UnrecognizedFaces` bounding box coordinates represent face locations after Exif metadata is used to correct the image orientation\. Images in \.png format don't contain Exif metadata\. 
 Type: String  
 Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270` 
 
- ** UnrecognizedFaces **   
+ ** [UnrecognizedFaces](#API_RecognizeCelebrities_ResponseSyntax) **   <a name="rekognition-RecognizeCelebrities-response-UnrecognizedFaces"></a>
 Details about each unrecognized face in the image\.  
 Type: Array of [ComparedFace](API_ComparedFace.md) objects
 

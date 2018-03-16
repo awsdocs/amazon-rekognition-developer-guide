@@ -4,34 +4,34 @@ Information about a video that Amazon Rekognition analyzed\. `Videometadata` is 
 
 ## Contents<a name="API_VideoMetadata_Contents"></a>
 
- **Codec**   
+ **Codec**   <a name="rekognition-Type-VideoMetadata-Codec"></a>
 Type of compression used in the analyzed video\.   
 Type: String  
 Required: No
 
- **DurationMillis**   
+ **DurationMillis**   <a name="rekognition-Type-VideoMetadata-DurationMillis"></a>
 Length of the video in milliseconds\.  
 Type: Long  
 Valid Range: Minimum value of 0\.  
 Required: No
 
- **Format**   
+ **Format**   <a name="rekognition-Type-VideoMetadata-Format"></a>
 Format of the analyzed video\. Possible values are MP4, MOV and AVI\.   
 Type: String  
 Required: No
 
- **FrameHeight**   
+ **FrameHeight**   <a name="rekognition-Type-VideoMetadata-FrameHeight"></a>
 Vertical pixel dimension of the video\.  
 Type: Long  
 Valid Range: Minimum value of 0\.  
 Required: No
 
- **FrameRate**   
+ **FrameRate**   <a name="rekognition-Type-VideoMetadata-FrameRate"></a>
 Number of frames per second in the video\.  
 Type: Float  
 Required: No
 
- **FrameWidth**   
+ **FrameWidth**   <a name="rekognition-Type-VideoMetadata-FrameWidth"></a>
 Horizontal pixel dimension of the video\.  
 Type: Long  
 Valid Range: Minimum value of 0\.  

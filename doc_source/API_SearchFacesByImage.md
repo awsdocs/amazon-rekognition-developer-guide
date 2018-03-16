@@ -18,17 +18,17 @@ This operation requires permissions to perform the `rekognition:SearchFacesByIma
 
 ```
 {
-   "CollectionId": "string",
-   "FaceMatchThreshold": number,
-   "Image": { 
-      "Bytes": blob,
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[CollectionId](#rekognition-SearchFacesByImage-request-CollectionId)": "string",
+   "[FaceMatchThreshold](#rekognition-SearchFacesByImage-request-FaceMatchThreshold)": number,
+   "[Image](#rekognition-SearchFacesByImage-request-Image)": { 
+      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
+      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    },
-   "MaxFaces": number
+   "[MaxFaces](#rekognition-SearchFacesByImage-request-MaxFaces)": number
 }
 ```
 
@@ -36,25 +36,25 @@ This operation requires permissions to perform the `rekognition:SearchFacesByIma
 
 The request accepts the following data in JSON format\.
 
- ** CollectionId **   
+ ** [CollectionId](#API_SearchFacesByImage_RequestSyntax) **   <a name="rekognition-SearchFacesByImage-request-CollectionId"></a>
 ID of the collection to search\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
 Pattern: `[a-zA-Z0-9_.\-]+`   
 Required: Yes
 
- ** FaceMatchThreshold **   
+ ** [FaceMatchThreshold](#API_SearchFacesByImage_RequestSyntax) **   <a name="rekognition-SearchFacesByImage-request-FaceMatchThreshold"></a>
 \(Optional\) Specifies the minimum confidence in the face match to return\. For example, don't return any matches where confidence in matches is less than 70%\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- ** Image **   
+ ** [Image](#API_SearchFacesByImage_RequestSyntax) **   <a name="rekognition-SearchFacesByImage-request-Image"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
 Type: [Image](API_Image.md) object  
 Required: Yes
 
- ** MaxFaces **   
+ ** [MaxFaces](#API_SearchFacesByImage_RequestSyntax) **   <a name="rekognition-SearchFacesByImage-request-MaxFaces"></a>
 Maximum number of faces to return\. The operation returns the maximum number of faces with the highest confidence in the match\.  
 Type: Integer  
 Valid Range: Minimum value of 1\. Maximum value of 4096\.  
@@ -64,31 +64,31 @@ Required: No
 
 ```
 {
-   "FaceMatches": [ 
+   "[FaceMatches](#rekognition-SearchFacesByImage-response-FaceMatches)": [ 
       { 
-         "Face": { 
-            "BoundingBox": { 
-               "Height": number,
-               "Left": number,
-               "Top": number,
-               "Width": number
+         "[Face](API_FaceMatch.md#rekognition-Type-FaceMatch-Face)": { 
+            "[BoundingBox](API_Face.md#rekognition-Type-Face-BoundingBox)": { 
+               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
             },
-            "Confidence": number,
-            "ExternalImageId": "string",
-            "FaceId": "string",
-            "ImageId": "string"
+            "[Confidence](API_Face.md#rekognition-Type-Face-Confidence)": number,
+            "[ExternalImageId](API_Face.md#rekognition-Type-Face-ExternalImageId)": "string",
+            "[FaceId](API_Face.md#rekognition-Type-Face-FaceId)": "string",
+            "[ImageId](API_Face.md#rekognition-Type-Face-ImageId)": "string"
          },
-         "Similarity": number
+         "[Similarity](API_FaceMatch.md#rekognition-Type-FaceMatch-Similarity)": number
       }
    ],
-   "FaceModelVersion": "string",
-   "SearchedFaceBoundingBox": { 
-      "Height": number,
-      "Left": number,
-      "Top": number,
-      "Width": number
+   "[FaceModelVersion](#rekognition-SearchFacesByImage-response-FaceModelVersion)": "string",
+   "[SearchedFaceBoundingBox](#rekognition-SearchFacesByImage-response-SearchedFaceBoundingBox)": { 
+      "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+      "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+      "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+      "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
    },
-   "SearchedFaceConfidence": number
+   "[SearchedFaceConfidence](#rekognition-SearchFacesByImage-response-SearchedFaceConfidence)": number
 }
 ```
 
@@ -98,19 +98,19 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** FaceMatches **   
+ ** [FaceMatches](#API_SearchFacesByImage_ResponseSyntax) **   <a name="rekognition-SearchFacesByImage-response-FaceMatches"></a>
 An array of faces that match the input face, along with the confidence in the match\.  
 Type: Array of [FaceMatch](API_FaceMatch.md) objects
 
- ** FaceModelVersion **   
+ ** [FaceModelVersion](#API_SearchFacesByImage_ResponseSyntax) **   <a name="rekognition-SearchFacesByImage-response-FaceModelVersion"></a>
 Version number of the face detection model associated with the input collection \(`CollectionId`\)\.  
 Type: String
 
- ** SearchedFaceBoundingBox **   
+ ** [SearchedFaceBoundingBox](#API_SearchFacesByImage_ResponseSyntax) **   <a name="rekognition-SearchFacesByImage-response-SearchedFaceBoundingBox"></a>
 The bounding box around the face in the input image that Amazon Rekognition used for the search\.  
 Type: [BoundingBox](API_BoundingBox.md) object
 
- ** SearchedFaceConfidence **   
+ ** [SearchedFaceConfidence](#API_SearchFacesByImage_ResponseSyntax) **   <a name="rekognition-SearchFacesByImage-response-SearchedFaceConfidence"></a>
 The level of confidence that the `searchedFaceBoundingBox`, contains a face\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.

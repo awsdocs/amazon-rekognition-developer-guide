@@ -4,7 +4,7 @@ Kinesis video stream stream that provides the source streaming video for a Rekog
 
 ## Contents<a name="API_KinesisVideoStream_Contents"></a>
 
- **Arn**   
+ **Arn**   <a name="rekognition-Type-KinesisVideoStream-Arn"></a>
 ARN of the Kinesis video stream stream that streams the source video\.  
 Type: String  
 Pattern: `(^arn:([a-z\d-]+):kinesisvideo:([a-z\d-]+):\d{12}:.+$)`   

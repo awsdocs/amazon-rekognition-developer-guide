@@ -6,7 +6,7 @@ Deletes the stream processor identified by `Name`\. You assign the value for `Na
 
 ```
 {
-   "Name": "string"
+   "[Name](#rekognition-DeleteStreamProcessor-request-Name)": "string"
 }
 ```
 
@@ -14,7 +14,7 @@ Deletes the stream processor identified by `Name`\. You assign the value for `Na
 
 The request accepts the following data in JSON format\.
 
- ** Name **   
+ ** [Name](#API_DeleteStreamProcessor_RequestSyntax) **   <a name="rekognition-DeleteStreamProcessor-request-Name"></a>
 The name of the stream processor you want to delete\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  

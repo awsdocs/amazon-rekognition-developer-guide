@@ -11,22 +11,22 @@ The `width` and `height` values represent the dimensions of the bounding box as 
 
 ## Contents<a name="API_BoundingBox_Contents"></a>
 
- **Height**   
+ **Height**   <a name="rekognition-Type-BoundingBox-Height"></a>
 Height of the bounding box as a ratio of the overall image height\.  
 Type: Float  
 Required: No
 
- **Left**   
+ **Left**   <a name="rekognition-Type-BoundingBox-Left"></a>
 Left coordinate of the bounding box as a ratio of overall image width\.  
 Type: Float  
 Required: No
 
- **Top**   
+ **Top**   <a name="rekognition-Type-BoundingBox-Top"></a>
 Top coordinate of the bounding box as a ratio of overall image height\.  
 Type: Float  
 Required: No
 
- **Width**   
+ **Width**   <a name="rekognition-Type-BoundingBox-Width"></a>
 Width of the bounding box as a ratio of the overall image width\.  
 Type: Float  
 Required: No

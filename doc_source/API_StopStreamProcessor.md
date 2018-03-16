@@ -6,7 +6,7 @@ Stops a running stream processor that was created by [CreateStreamProcessor](API
 
 ```
 {
-   "Name": "string"
+   "[Name](#rekognition-StopStreamProcessor-request-Name)": "string"
 }
 ```
 
@@ -14,7 +14,7 @@ Stops a running stream processor that was created by [CreateStreamProcessor](API
 
 The request accepts the following data in JSON format\.
 
- ** Name **   
+ ** [Name](#API_StopStreamProcessor_RequestSyntax) **   <a name="rekognition-StopStreamProcessor-request-Name"></a>
 The name of a stream processor created by [CreateStreamProcessor](API_CreateStreamProcessor.md)\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  

@@ -4,12 +4,12 @@ Type that describes the face Amazon Rekognition chose to compare with the faces 
 
 ## Contents<a name="API_ComparedSourceImageFace_Contents"></a>
 
- **BoundingBox**   
+ **BoundingBox**   <a name="rekognition-Type-ComparedSourceImageFace-BoundingBox"></a>
 Bounding box of the face\.  
 Type: [BoundingBox](API_BoundingBox.md) object  
 Required: No
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-ComparedSourceImageFace-Confidence"></a>
 Confidence level that the selected bounding box contains a face\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  

@@ -4,13 +4,13 @@ Indicates whether or not the face is wearing eye glasses, and the confidence lev
 
 ## Contents<a name="API_Eyeglasses_Contents"></a>
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-Eyeglasses-Confidence"></a>
 Level of confidence in the determination\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Value**   
+ **Value**   <a name="rekognition-Type-Eyeglasses-Value"></a>
 Boolean value that indicates whether the face is wearing eye glasses or not\.  
 Type: Boolean  
 Required: No

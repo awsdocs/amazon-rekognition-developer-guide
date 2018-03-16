@@ -30,7 +30,7 @@ Amazon Rekognition can also detect numbers and common symbols such as @, /, $,%,
 
 ## Calling the DetectText Operation<a name="text-calling-detecttext"></a>
 
-In the `DetectText` operation, you supply an input image either as a byte64\-encoded byte array or as an image stored in an Amazon S3 bucket\. For an example, see [](text-detecting-text-procedure.md)\. 
+In the `DetectText` operation, you supply an input image either as a byte64\-encoded byte array or as an image stored in an Amazon S3 bucket\. For an example, see [Detecting Text in an Image](text-detecting-text-procedure.md)\. 
 
 The `DetectText` operation analyses the image and returns an array, TextDetections, where each element \(`[TextDetection](API_TextDetection.md)`\) represents a line or word detected in the image\. For each element, `DetectText` returns the following information: 
 
@@ -63,7 +63,7 @@ Each `TextDetection` element has an identifier field, `Id`\. The `Id` shows the 
 
 ### Text Location on an Image<a name="text-location"></a>
 
-To determine where the recognized text is on an image, use the bounding box \([Geometry](API_Geometry.md)\) information returned by `DetectText`\. The `Geometry` oject contains two types of bounding box information for detected lines and words:
+To determine where the recognized text is on an image, use the bounding box \([Geometry](API_Geometry.md)\) information returned by `DetectText`\. The `Geometry` object contains two types of bounding box information for detected lines and words:
 
 + An axis\-aligned coarse rectangular outline in a [BoundingBox](API_BoundingBox.md) object
 

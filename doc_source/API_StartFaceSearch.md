@@ -8,19 +8,19 @@ The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to s
 
 ```
 {
-   "ClientRequestToken": "string",
-   "CollectionId": "string",
-   "FaceMatchThreshold": number,
-   "JobTag": "string",
-   "NotificationChannel": { 
-      "RoleArn": "string",
-      "SNSTopicArn": "string"
+   "[ClientRequestToken](#rekognition-StartFaceSearch-request-ClientRequestToken)": "string",
+   "[CollectionId](#rekognition-StartFaceSearch-request-CollectionId)": "string",
+   "[FaceMatchThreshold](#rekognition-StartFaceSearch-request-FaceMatchThreshold)": number,
+   "[JobTag](#rekognition-StartFaceSearch-request-JobTag)": "string",
+   "[NotificationChannel](#rekognition-StartFaceSearch-request-NotificationChannel)": { 
+      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
+      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
    },
-   "Video": { 
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[Video](#rekognition-StartFaceSearch-request-Video)": { 
+      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    }
 }
@@ -30,39 +30,39 @@ The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to s
 
 The request accepts the following data in JSON format\.
 
- ** ClientRequestToken **   
+ ** [ClientRequestToken](#API_StartFaceSearch_RequestSyntax) **   <a name="rekognition-StartFaceSearch-request-ClientRequestToken"></a>
 Idempotent token used to identify the start request\. If you use the same token with multiple `StartFaceSearch` requests, the same `JobId` is returned\. Use `ClientRequestToken` to prevent the same job from being accidently started more than once\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
 Required: No
 
- ** CollectionId **   
+ ** [CollectionId](#API_StartFaceSearch_RequestSyntax) **   <a name="rekognition-StartFaceSearch-request-CollectionId"></a>
 ID of the collection that contains the faces you want to search for\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
 Pattern: `[a-zA-Z0-9_.\-]+`   
 Required: Yes
 
- ** FaceMatchThreshold **   
+ ** [FaceMatchThreshold](#API_StartFaceSearch_RequestSyntax) **   <a name="rekognition-StartFaceSearch-request-FaceMatchThreshold"></a>
 The minimum confidence in the person match to return\. For example, don't return any matches where confidence in matches is less than 70%\.   
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- ** JobTag **   
+ ** [JobTag](#API_StartFaceSearch_RequestSyntax) **   <a name="rekognition-StartFaceSearch-request-JobTag"></a>
 Unique identifier you specify to identify the job in the completion status published to the Amazon Simple Notification Service topic\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.\-:]+`   
 Required: No
 
- ** NotificationChannel **   
+ ** [NotificationChannel](#API_StartFaceSearch_RequestSyntax) **   <a name="rekognition-StartFaceSearch-request-NotificationChannel"></a>
 The ARN of the Amazon SNS topic to which you want Rekognition Video to publish the completion status of the search\.   
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
- ** Video **   
+ ** [Video](#API_StartFaceSearch_RequestSyntax) **   <a name="rekognition-StartFaceSearch-request-Video"></a>
 The video you want to search\. The video must be stored in an Amazon S3 bucket\.   
 Type: [Video](API_Video.md) object  
 Required: Yes
@@ -71,7 +71,7 @@ Required: Yes
 
 ```
 {
-   "JobId": "string"
+   "[JobId](#rekognition-StartFaceSearch-response-JobId)": "string"
 }
 ```
 
@@ -81,7 +81,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** JobId **   
+ ** [JobId](#API_StartFaceSearch_ResponseSyntax) **   <a name="rekognition-StartFaceSearch-response-JobId"></a>
 The identifier for the search job\. Use `JobId` to identify the job in a subsequent call to `GetFaceSearch`\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  

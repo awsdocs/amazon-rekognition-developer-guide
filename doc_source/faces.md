@@ -531,6 +531,6 @@ In the response, note the following:
 
 + **Face information** – The `FaceDetection` array element contains information about the detected face \([FaceDetail](API_FaceDetail.md) and the time the face was detected in the video \(`Timestamp`\)\.
 
-+ **Paging information** – The example shows one page of face detection information\. You can specify how many person elements to return in the `MaxResults` input parameter for `GetFaceDetection`\. If more results than `MaxResults` exist, `GetFaceDetection` returns a token \(`NextToken`\) used to get the next page of results\. For more information, see [](api-video.md#api-video-get)\.
++ **Paging information** – The example shows one page of face detection information\. You can specify how many person elements to return in the `MaxResults` input parameter for `GetFaceDetection`\. If more results than `MaxResults` exist, `GetFaceDetection` returns a token \(`NextToken`\) used to get the next page of results\. For more information, see [Getting Rekognition Video Analysis Results](api-video.md#api-video-get)\.
 
 + **Video information** – The response includes information about the video format \(`VideoMetadata`\) in each page of information returned by `GetFaceDetection`\.

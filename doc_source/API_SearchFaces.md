@@ -15,10 +15,10 @@ This operation requires permissions to perform the `rekognition:SearchFaces` act
 
 ```
 {
-   "CollectionId": "string",
-   "FaceId": "string",
-   "FaceMatchThreshold": number,
-   "MaxFaces": number
+   "[CollectionId](#rekognition-SearchFaces-request-CollectionId)": "string",
+   "[FaceId](#rekognition-SearchFaces-request-FaceId)": "string",
+   "[FaceMatchThreshold](#rekognition-SearchFaces-request-FaceMatchThreshold)": number,
+   "[MaxFaces](#rekognition-SearchFaces-request-MaxFaces)": number
 }
 ```
 
@@ -26,26 +26,26 @@ This operation requires permissions to perform the `rekognition:SearchFaces` act
 
 The request accepts the following data in JSON format\.
 
- ** CollectionId **   
+ ** [CollectionId](#API_SearchFaces_RequestSyntax) **   <a name="rekognition-SearchFaces-request-CollectionId"></a>
 ID of the collection the face belongs to\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
 Pattern: `[a-zA-Z0-9_.\-]+`   
 Required: Yes
 
- ** FaceId **   
+ ** [FaceId](#API_SearchFaces_RequestSyntax) **   <a name="rekognition-SearchFaces-request-FaceId"></a>
 ID of a face to find matches for in the collection\.  
 Type: String  
 Pattern: `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}`   
 Required: Yes
 
- ** FaceMatchThreshold **   
+ ** [FaceMatchThreshold](#API_SearchFaces_RequestSyntax) **   <a name="rekognition-SearchFaces-request-FaceMatchThreshold"></a>
 Optional value specifying the minimum confidence in the face match to return\. For example, don't return any matches where confidence in matches is less than 70%\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- ** MaxFaces **   
+ ** [MaxFaces](#API_SearchFaces_RequestSyntax) **   <a name="rekognition-SearchFaces-request-MaxFaces"></a>
 Maximum number of faces to return\. The operation returns the maximum number of faces with the highest confidence in the match\.  
 Type: Integer  
 Valid Range: Minimum value of 1\. Maximum value of 4096\.  
@@ -55,25 +55,25 @@ Required: No
 
 ```
 {
-   "FaceMatches": [ 
+   "[FaceMatches](#rekognition-SearchFaces-response-FaceMatches)": [ 
       { 
-         "Face": { 
-            "BoundingBox": { 
-               "Height": number,
-               "Left": number,
-               "Top": number,
-               "Width": number
+         "[Face](API_FaceMatch.md#rekognition-Type-FaceMatch-Face)": { 
+            "[BoundingBox](API_Face.md#rekognition-Type-Face-BoundingBox)": { 
+               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
             },
-            "Confidence": number,
-            "ExternalImageId": "string",
-            "FaceId": "string",
-            "ImageId": "string"
+            "[Confidence](API_Face.md#rekognition-Type-Face-Confidence)": number,
+            "[ExternalImageId](API_Face.md#rekognition-Type-Face-ExternalImageId)": "string",
+            "[FaceId](API_Face.md#rekognition-Type-Face-FaceId)": "string",
+            "[ImageId](API_Face.md#rekognition-Type-Face-ImageId)": "string"
          },
-         "Similarity": number
+         "[Similarity](API_FaceMatch.md#rekognition-Type-FaceMatch-Similarity)": number
       }
    ],
-   "FaceModelVersion": "string",
-   "SearchedFaceId": "string"
+   "[FaceModelVersion](#rekognition-SearchFaces-response-FaceModelVersion)": "string",
+   "[SearchedFaceId](#rekognition-SearchFaces-response-SearchedFaceId)": "string"
 }
 ```
 
@@ -83,15 +83,15 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** FaceMatches **   
+ ** [FaceMatches](#API_SearchFaces_ResponseSyntax) **   <a name="rekognition-SearchFaces-response-FaceMatches"></a>
 An array of faces that matched the input face, along with the confidence in the match\.  
 Type: Array of [FaceMatch](API_FaceMatch.md) objects
 
- ** FaceModelVersion **   
+ ** [FaceModelVersion](#API_SearchFaces_ResponseSyntax) **   <a name="rekognition-SearchFaces-response-FaceModelVersion"></a>
 Version number of the face detection model associated with the input collection \(`CollectionId`\)\.  
 Type: String
 
- ** SearchedFaceId **   
+ ** [SearchedFaceId](#API_SearchFaces_ResponseSyntax) **   <a name="rekognition-SearchFaces-response-SearchedFaceId"></a>
 ID of the face that was searched for matches in a collection\.  
 Type: String  
 Pattern: `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` 

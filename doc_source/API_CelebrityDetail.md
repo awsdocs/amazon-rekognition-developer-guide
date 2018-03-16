@@ -4,34 +4,34 @@ Information about a recognized celebrity\.
 
 ## Contents<a name="API_CelebrityDetail_Contents"></a>
 
- **BoundingBox**   
+ **BoundingBox**   <a name="rekognition-Type-CelebrityDetail-BoundingBox"></a>
 Bounding box around the body of a celebrity\.  
 Type: [BoundingBox](API_BoundingBox.md) object  
 Required: No
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-CelebrityDetail-Confidence"></a>
 The confidence, in percentage, that Amazon Rekognition has that the recognized face is the celebrity\.   
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Face**   
+ **Face**   <a name="rekognition-Type-CelebrityDetail-Face"></a>
 Face details for the recognized celebrity\.  
 Type: [FaceDetail](API_FaceDetail.md) object  
 Required: No
 
- **Id**   
+ **Id**   <a name="rekognition-Type-CelebrityDetail-Id"></a>
 The unique identifier for the celebrity\.   
 Type: String  
 Pattern: `[0-9A-Za-z]*`   
 Required: No
 
- **Name**   
+ **Name**   <a name="rekognition-Type-CelebrityDetail-Name"></a>
 The name of the celebrity\.  
 Type: String  
 Required: No
 
- **Urls**   
+ **Urls**   <a name="rekognition-Type-CelebrityDetail-Urls"></a>
 An array of URLs pointing to additional celebrity information\.   
 Type: Array of strings  
 Required: No

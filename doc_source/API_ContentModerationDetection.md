@@ -4,12 +4,12 @@ Information about a moderation label detection in a stored video\.
 
 ## Contents<a name="API_ContentModerationDetection_Contents"></a>
 
- **ModerationLabel**   
+ **ModerationLabel**   <a name="rekognition-Type-ContentModerationDetection-ModerationLabel"></a>
 The moderation label detected by in the stored video\.  
 Type: [ModerationLabel](API_ModerationLabel.md) object  
 Required: No
 
- **Timestamp**   
+ **Timestamp**   <a name="rekognition-Type-ContentModerationDetection-Timestamp"></a>
 Time, in milliseconds from the beginning of the video, that the moderation label was detected\.  
 Type: Long  
 Required: No

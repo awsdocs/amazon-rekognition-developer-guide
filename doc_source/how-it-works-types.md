@@ -20,20 +20,20 @@ Amazon Rekognition can search for faces\. Facial information is indexed into a c
 
 To search for known faces in images, use [DetectFaces](API_DetectFaces.md)\. To search for known faces in stored videos, use [StartFaceDetection](API_StartFaceDetection.md)\. To search for known faces in streaming videos, use [CreateStreamProcessor](API_CreateStreamProcessor.md)\.
 
-## Persons<a name="how-it-works-persons-intro"></a>
+## People<a name="how-it-works-persons-intro"></a>
 
-Amazon Rekognition can track persons in a stored video\. Rekognition Video provides tracking, face details, and in\-frame location information for persons detected in a video\. Persons cannot be detected in images\. For more information, see [Tracking People](persons.md)\. 
+Amazon Rekognition can track people in a stored video\. Rekognition Video provides tracking, face details, and in\-frame location information for people detected in a video\. People cannot be detected in images\. For more information, see [Tracking People](persons.md)\. 
 
-To detect persons in stored videos, use [StartPersonTracking](API_StartPersonTracking.md)\.
+To detect people in stored videos, use [StartPersonTracking](API_StartPersonTracking.md)\.
 
 ## Celebrities<a name="how-it-works-celebrities-intro"></a>
 
- Amazon Rekognition can recognize thousand of celebrities in images and stored videos\. You can get information about where a celebrity's face is located on an image, facial landmarks and the pose of a celebrity's face\. You can get tracking information for celebrities as the appear throughout a stored video\. You can also get further information about a recognize celebrity\. For more information, see [Recognizing Celebrities](celebrities.md)\. 
+ Amazon Rekognition can recognize thousands of celebrities in images and stored videos\. You can get information about where a celebrity's face is located on an image, facial landmarks and the pose of a celebrity's face\. You can get tracking information for celebrities as they appear throughout a stored video\. You can also get further information about a recognized celebrity\. For more information, see [Recognizing Celebrities](celebrities.md)\. 
 
 To recognize celebrities in images, use [RecognizeCelebrities](API_RecognizeCelebrities.md)\. To recognize celebrities in stored videos, use [StartCelebrityRecognition](API_StartCelebrityRecognition.md)\.
 
 ## Unsafe Content<a name="how-it-works-moderation-intro"></a>
 
-Amazon Rekognition can analyse images and stored videos for explicit or suggestive adult content\. For more information, see [Detecting Unsafe Content](moderation.md)\.
+Amazon Rekognition can analyze images and stored videos for explicit or suggestive adult content\. For more information, see [Detecting Unsafe Content](moderation.md)\.
 
 To detect unsage images, use [DetectModerationLabels](API_DetectModerationLabels.md)\. To detect unsafe stored videos, use [StartContentModeration](API_StartContentModeration.md)\.

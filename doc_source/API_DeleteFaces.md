@@ -8,8 +8,8 @@ This operation requires permissions to perform the `rekognition:DeleteFaces` act
 
 ```
 {
-   "CollectionId": "string",
-   "FaceIds": [ "string" ]
+   "[CollectionId](#rekognition-DeleteFaces-request-CollectionId)": "string",
+   "[FaceIds](#rekognition-DeleteFaces-request-FaceIds)": [ "string" ]
 }
 ```
 
@@ -17,14 +17,14 @@ This operation requires permissions to perform the `rekognition:DeleteFaces` act
 
 The request accepts the following data in JSON format\.
 
- ** CollectionId **   
+ ** [CollectionId](#API_DeleteFaces_RequestSyntax) **   <a name="rekognition-DeleteFaces-request-CollectionId"></a>
 Collection from which to remove the specific faces\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
 Pattern: `[a-zA-Z0-9_.\-]+`   
 Required: Yes
 
- ** FaceIds **   
+ ** [FaceIds](#API_DeleteFaces_RequestSyntax) **   <a name="rekognition-DeleteFaces-request-FaceIds"></a>
 An array of face IDs to delete\.  
 Type: Array of strings  
 Array Members: Minimum number of 1 item\. Maximum number of 4096 items\.  
@@ -35,7 +35,7 @@ Required: Yes
 
 ```
 {
-   "DeletedFaces": [ "string" ]
+   "[DeletedFaces](#rekognition-DeleteFaces-response-DeletedFaces)": [ "string" ]
 }
 ```
 
@@ -45,7 +45,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** DeletedFaces **   
+ ** [DeletedFaces](#API_DeleteFaces_ResponseSyntax) **   <a name="rekognition-DeleteFaces-response-DeletedFaces"></a>
 An array of strings \(face IDs\) of the faces that were deleted\.  
 Type: Array of strings  
 Array Members: Minimum number of 1 item\. Maximum number of 4096 items\.  

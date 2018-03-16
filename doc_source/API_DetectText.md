@@ -20,12 +20,12 @@ For more information, see [Detecting Text](text-detection.md)\.
 
 ```
 {
-   "Image": { 
-      "Bytes": blob,
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[Image](#rekognition-DetectText-request-Image)": { 
+      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
+      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    }
 }
@@ -35,7 +35,7 @@ For more information, see [Detecting Text](text-detection.md)\.
 
 The request accepts the following data in JSON format\.
 
- ** Image **   
+ ** [Image](#API_DetectText_RequestSyntax) **   <a name="rekognition-DetectText-request-Image"></a>
 The input image as base64\-encoded bytes or an Amazon S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, you can't pass image bytes\.   
 Type: [Image](API_Image.md) object  
 Required: Yes
@@ -44,27 +44,27 @@ Required: Yes
 
 ```
 {
-   "TextDetections": [ 
+   "[TextDetections](#rekognition-DetectText-response-TextDetections)": [ 
       { 
-         "Confidence": number,
-         "DetectedText": "string",
-         "Geometry": { 
-            "BoundingBox": { 
-               "Height": number,
-               "Left": number,
-               "Top": number,
-               "Width": number
+         "[Confidence](API_TextDetection.md#rekognition-Type-TextDetection-Confidence)": number,
+         "[DetectedText](API_TextDetection.md#rekognition-Type-TextDetection-DetectedText)": "string",
+         "[Geometry](API_TextDetection.md#rekognition-Type-TextDetection-Geometry)": { 
+            "[BoundingBox](API_Geometry.md#rekognition-Type-Geometry-BoundingBox)": { 
+               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
             },
-            "Polygon": [ 
+            "[Polygon](API_Geometry.md#rekognition-Type-Geometry-Polygon)": [ 
                { 
-                  "X": number,
-                  "Y": number
+                  "[X](API_Point.md#rekognition-Type-Point-X)": number,
+                  "[Y](API_Point.md#rekognition-Type-Point-Y)": number
                }
             ]
          },
-         "Id": number,
-         "ParentId": number,
-         "Type": "string"
+         "[Id](API_TextDetection.md#rekognition-Type-TextDetection-Id)": number,
+         "[ParentId](API_TextDetection.md#rekognition-Type-TextDetection-ParentId)": number,
+         "[Type](API_TextDetection.md#rekognition-Type-TextDetection-Type)": "string"
       }
    ]
 }
@@ -76,7 +76,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** TextDetections **   
+ ** [TextDetections](#API_DetectText_ResponseSyntax) **   <a name="rekognition-DetectText-response-TextDetections"></a>
 An array of text that was detected in the input image\.  
 Type: Array of [TextDetection](API_TextDetection.md) objects
 

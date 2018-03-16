@@ -4,12 +4,12 @@ Identifies face image brightness and sharpness\.
 
 ## Contents<a name="API_ImageQuality_Contents"></a>
 
- **Brightness**   
+ **Brightness**   <a name="rekognition-Type-ImageQuality-Brightness"></a>
 Value representing brightness of the face\. The service returns a value between 0 and 100 \(inclusive\)\. A higher value indicates a brighter face image\.  
 Type: Float  
 Required: No
 
- **Sharpness**   
+ **Sharpness**   <a name="rekognition-Type-ImageQuality-Sharpness"></a>
 Value representing sharpness of the face\. The service returns a value between 0 and 100 \(inclusive\)\. A higher value indicates a sharper face image\.  
 Type: Float  
 Required: No

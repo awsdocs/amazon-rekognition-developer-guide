@@ -4,28 +4,28 @@ Provides face metadata for target image faces that are analysed by `CompareFaces
 
 ## Contents<a name="API_ComparedFace_Contents"></a>
 
- **BoundingBox**   
+ **BoundingBox**   <a name="rekognition-Type-ComparedFace-BoundingBox"></a>
 Bounding box of the face\.  
 Type: [BoundingBox](API_BoundingBox.md) object  
 Required: No
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-ComparedFace-Confidence"></a>
 Level of confidence that what the bounding box contains is a face\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Landmarks**   
+ **Landmarks**   <a name="rekognition-Type-ComparedFace-Landmarks"></a>
 An array of facial landmarks\.  
 Type: Array of [Landmark](API_Landmark.md) objects  
 Required: No
 
- **Pose**   
+ **Pose**   <a name="rekognition-Type-ComparedFace-Pose"></a>
 Indicates the pose of the face as determined by its pitch, roll, and yaw\.  
 Type: [Pose](API_Pose.md) object  
 Required: No
 
- **Quality**   
+ **Quality**   <a name="rekognition-Type-ComparedFace-Quality"></a>
 Identifies face image brightness and sharpness\.   
 Type: [ImageQuality](API_ImageQuality.md) object  
 Required: No

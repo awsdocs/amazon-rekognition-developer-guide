@@ -8,7 +8,7 @@ This operation requires permissions to perform the `rekognition:DeleteCollection
 
 ```
 {
-   "CollectionId": "string"
+   "[CollectionId](#rekognition-DeleteCollection-request-CollectionId)": "string"
 }
 ```
 
@@ -16,7 +16,7 @@ This operation requires permissions to perform the `rekognition:DeleteCollection
 
 The request accepts the following data in JSON format\.
 
- ** CollectionId **   
+ ** [CollectionId](#API_DeleteCollection_RequestSyntax) **   <a name="rekognition-DeleteCollection-request-CollectionId"></a>
 ID of the collection to delete\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
@@ -27,7 +27,7 @@ Required: Yes
 
 ```
 {
-   "StatusCode": number
+   "[StatusCode](#rekognition-DeleteCollection-response-StatusCode)": number
 }
 ```
 
@@ -37,7 +37,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** StatusCode **   
+ ** [StatusCode](#API_DeleteCollection_ResponseSyntax) **   <a name="rekognition-DeleteCollection-response-StatusCode"></a>
 HTTP status code that indicates the result of the operation\.  
 Type: Integer  
 Valid Range: Minimum value of 0\.

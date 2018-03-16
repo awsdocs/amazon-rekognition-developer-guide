@@ -4,7 +4,7 @@ Information about the source streaming video\.
 
 ## Contents<a name="API_StreamProcessorInput_Contents"></a>
 
- **KinesisVideoStream**   
+ **KinesisVideoStream**   <a name="rekognition-Type-StreamProcessorInput-KinesisVideoStream"></a>
 The Kinesis video stream input stream for the source streaming video\.  
 Type: [KinesisVideoStream](API_KinesisVideoStream.md) object  
 Required: No

@@ -29,21 +29,21 @@ This operation requires permissions to perform the `rekognition:CompareFaces` ac
 
 ```
 {
-   "SimilarityThreshold": number,
-   "SourceImage": { 
-      "Bytes": blob,
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[SimilarityThreshold](#rekognition-CompareFaces-request-SimilarityThreshold)": number,
+   "[SourceImage](#rekognition-CompareFaces-request-SourceImage)": { 
+      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
+      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    },
-   "TargetImage": { 
-      "Bytes": blob,
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[TargetImage](#rekognition-CompareFaces-request-TargetImage)": { 
+      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
+      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    }
 }
@@ -53,18 +53,18 @@ This operation requires permissions to perform the `rekognition:CompareFaces` ac
 
 The request accepts the following data in JSON format\.
 
- ** SimilarityThreshold **   
+ ** [SimilarityThreshold](#API_CompareFaces_RequestSyntax) **   <a name="rekognition-CompareFaces-request-SimilarityThreshold"></a>
 The minimum level of confidence in the face matches that a match must meet to be included in the `FaceMatches` array\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- ** SourceImage **   
+ ** [SourceImage](#API_CompareFaces_RequestSyntax) **   <a name="rekognition-CompareFaces-request-SourceImage"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
 Type: [Image](API_Image.md) object  
 Required: Yes
 
- ** TargetImage **   
+ ** [TargetImage](#API_CompareFaces_RequestSyntax) **   <a name="rekognition-CompareFaces-request-TargetImage"></a>
 The target image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
 Type: [Image](API_Image.md) object  
 Required: Yes
@@ -73,71 +73,71 @@ Required: Yes
 
 ```
 {
-   "FaceMatches": [ 
+   "[FaceMatches](#rekognition-CompareFaces-response-FaceMatches)": [ 
       { 
-         "Face": { 
-            "BoundingBox": { 
-               "Height": number,
-               "Left": number,
-               "Top": number,
-               "Width": number
+         "[Face](API_CompareFacesMatch.md#rekognition-Type-CompareFacesMatch-Face)": { 
+            "[BoundingBox](API_ComparedFace.md#rekognition-Type-ComparedFace-BoundingBox)": { 
+               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
             },
-            "Confidence": number,
-            "Landmarks": [ 
+            "[Confidence](API_ComparedFace.md#rekognition-Type-ComparedFace-Confidence)": number,
+            "[Landmarks](API_ComparedFace.md#rekognition-Type-ComparedFace-Landmarks)": [ 
                { 
-                  "Type": "string",
-                  "X": number,
-                  "Y": number
+                  "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
+                  "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
+                  "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
                }
             ],
-            "Pose": { 
-               "Pitch": number,
-               "Roll": number,
-               "Yaw": number
+            "[Pose](API_ComparedFace.md#rekognition-Type-ComparedFace-Pose)": { 
+               "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
+               "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
+               "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
             },
-            "Quality": { 
-               "Brightness": number,
-               "Sharpness": number
+            "[Quality](API_ComparedFace.md#rekognition-Type-ComparedFace-Quality)": { 
+               "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
+               "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
             }
          },
-         "Similarity": number
+         "[Similarity](API_CompareFacesMatch.md#rekognition-Type-CompareFacesMatch-Similarity)": number
       }
    ],
-   "SourceImageFace": { 
-      "BoundingBox": { 
-         "Height": number,
-         "Left": number,
-         "Top": number,
-         "Width": number
+   "[SourceImageFace](#rekognition-CompareFaces-response-SourceImageFace)": { 
+      "[BoundingBox](API_ComparedSourceImageFace.md#rekognition-Type-ComparedSourceImageFace-BoundingBox)": { 
+         "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+         "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+         "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+         "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
       },
-      "Confidence": number
+      "[Confidence](API_ComparedSourceImageFace.md#rekognition-Type-ComparedSourceImageFace-Confidence)": number
    },
-   "SourceImageOrientationCorrection": "string",
-   "TargetImageOrientationCorrection": "string",
-   "UnmatchedFaces": [ 
+   "[SourceImageOrientationCorrection](#rekognition-CompareFaces-response-SourceImageOrientationCorrection)": "string",
+   "[TargetImageOrientationCorrection](#rekognition-CompareFaces-response-TargetImageOrientationCorrection)": "string",
+   "[UnmatchedFaces](#rekognition-CompareFaces-response-UnmatchedFaces)": [ 
       { 
-         "BoundingBox": { 
-            "Height": number,
-            "Left": number,
-            "Top": number,
-            "Width": number
+         "[BoundingBox](API_ComparedFace.md#rekognition-Type-ComparedFace-BoundingBox)": { 
+            "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+            "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+            "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+            "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
          },
-         "Confidence": number,
-         "Landmarks": [ 
+         "[Confidence](API_ComparedFace.md#rekognition-Type-ComparedFace-Confidence)": number,
+         "[Landmarks](API_ComparedFace.md#rekognition-Type-ComparedFace-Landmarks)": [ 
             { 
-               "Type": "string",
-               "X": number,
-               "Y": number
+               "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
+               "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
+               "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
             }
          ],
-         "Pose": { 
-            "Pitch": number,
-            "Roll": number,
-            "Yaw": number
+         "[Pose](API_ComparedFace.md#rekognition-Type-ComparedFace-Pose)": { 
+            "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
+            "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
+            "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
          },
-         "Quality": { 
-            "Brightness": number,
-            "Sharpness": number
+         "[Quality](API_ComparedFace.md#rekognition-Type-ComparedFace-Quality)": { 
+            "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
+            "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
          }
       }
    ]
@@ -150,27 +150,27 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** FaceMatches **   
+ ** [FaceMatches](#API_CompareFaces_ResponseSyntax) **   <a name="rekognition-CompareFaces-response-FaceMatches"></a>
 An array of faces in the target image that match the source image face\. Each `CompareFacesMatch` object provides the bounding box, the confidence level that the bounding box contains a face, and the similarity score for the face in the bounding box and the face in the source image\.  
 Type: Array of [CompareFacesMatch](API_CompareFacesMatch.md) objects
 
- ** SourceImageFace **   
+ ** [SourceImageFace](#API_CompareFaces_ResponseSyntax) **   <a name="rekognition-CompareFaces-response-SourceImageFace"></a>
 The face in the source image that was used for comparison\.  
 Type: [ComparedSourceImageFace](API_ComparedSourceImageFace.md) object
 
- ** SourceImageOrientationCorrection **   
+ ** [SourceImageOrientationCorrection](#API_CompareFaces_ResponseSyntax) **   <a name="rekognition-CompareFaces-response-SourceImageOrientationCorrection"></a>
  The orientation of the source image \(counterclockwise direction\)\. If your application displays the source image, you can use this value to correct image orientation\. The bounding box coordinates returned in `SourceImageFace` represent the location of the face before the image orientation is corrected\.   
 If the source image is in \.jpeg format, it might contain exchangeable image \(Exif\) metadata that includes the image's orientation\. If the Exif metadata for the source image populates the orientation field, the value of `OrientationCorrection` is null and the `SourceImageFace` bounding box coordinates represent the location of the face after Exif metadata is used to correct the orientation\. Images in \.png format don't contain Exif metadata\.
 Type: String  
 Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270` 
 
- ** TargetImageOrientationCorrection **   
+ ** [TargetImageOrientationCorrection](#API_CompareFaces_ResponseSyntax) **   <a name="rekognition-CompareFaces-response-TargetImageOrientationCorrection"></a>
  The orientation of the target image \(in counterclockwise direction\)\. If your application displays the target image, you can use this value to correct the orientation of the image\. The bounding box coordinates returned in `FaceMatches` and `UnmatchedFaces` represent face locations before the image orientation is corrected\.   
 If the target image is in \.jpg format, it might contain Exif metadata that includes the orientation of the image\. If the Exif metadata for the target image populates the orientation field, the value of `OrientationCorrection` is null and the bounding box coordinates in `FaceMatches` and `UnmatchedFaces` represent the location of the face after Exif metadata is used to correct the orientation\. Images in \.png format don't contain Exif metadata\.
 Type: String  
 Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270` 
 
- ** UnmatchedFaces **   
+ ** [UnmatchedFaces](#API_CompareFaces_ResponseSyntax) **   <a name="rekognition-CompareFaces-response-UnmatchedFaces"></a>
 An array of faces in the target image that did not match the source image face\.  
 Type: Array of [ComparedFace](API_ComparedFace.md) objects
 

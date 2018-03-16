@@ -4,29 +4,29 @@ Provides information about a celebrity recognized by the [RecognizeCelebrities](
 
 ## Contents<a name="API_Celebrity_Contents"></a>
 
- **Face**   
+ **Face**   <a name="rekognition-Type-Celebrity-Face"></a>
 Provides information about the celebrity's face, such as its location on the image\.  
 Type: [ComparedFace](API_ComparedFace.md) object  
 Required: No
 
- **Id**   
+ **Id**   <a name="rekognition-Type-Celebrity-Id"></a>
 A unique identifier for the celebrity\.   
 Type: String  
 Pattern: `[0-9A-Za-z]*`   
 Required: No
 
- **MatchConfidence**   
+ **MatchConfidence**   <a name="rekognition-Type-Celebrity-MatchConfidence"></a>
 The confidence, in percentage, that Rekognition has that the recognized face is the celebrity\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Name**   
+ **Name**   <a name="rekognition-Type-Celebrity-Name"></a>
 The name of the celebrity\.  
 Type: String  
 Required: No
 
- **Urls**   
+ **Urls**   <a name="rekognition-Type-Celebrity-Urls"></a>
 An array of URLs pointing to additional information about the celebrity\. If there is no additional information about the celebrity, this list is empty\.  
 Type: Array of strings  
 Required: No

@@ -3,7 +3,7 @@
 You can use Amazon Rekognition Video to detect and recognize faces in streaming video\. A typical use case is surveillance where you want to detect a known face in a video stream\. Rekognition Video uses Amazon Kinesis Video Streams to receive and process a video stream\. The analysis results are output from Rekognition Video to a Kinesis data stream and then read by your client application\. Rekognition Video provides a stream processor \([CreateStreamProcessor](API_CreateStreamProcessor.md)\) that you can use to start and manage the analysis of streaming video\.
 
 **Note**  
-The Rekognition Video streaming API is not available in the US East \(Ohio\) region\.
+The Rekognition Video streaming API is not available in either the US East \(Ohio\) region or the Asia Pacific \(Sydney\) region\.
 
 The following diagram shows how Rekognition Video detects and recognizes faces in a streaming video\.
 

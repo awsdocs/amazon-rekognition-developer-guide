@@ -6,13 +6,13 @@ Rekognition estimates an age\-range for faces detected in the input image\. Esti
 
 ## Contents<a name="API_AgeRange_Contents"></a>
 
- **High**   
+ **High**   <a name="rekognition-Type-AgeRange-High"></a>
 The highest estimated age\.  
 Type: Integer  
 Valid Range: Minimum value of 0\.  
 Required: No
 
- **Low**   
+ **Low**   <a name="rekognition-Type-AgeRange-Low"></a>
 The lowest estimated age\.  
 Type: Integer  
 Valid Range: Minimum value of 0\.  

@@ -4,14 +4,14 @@ An object that recognizes faces in a streaming video\. An Amazon Rekognition str
 
 ## Contents<a name="API_StreamProcessor_Contents"></a>
 
- **Name**   
+ **Name**   <a name="rekognition-Type-StreamProcessor-Name"></a>
 Name of the Amazon Rekognition stream processor\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `[a-zA-Z0-9_.\-]+`   
 Required: No
 
- **Status**   
+ **Status**   <a name="rekognition-Type-StreamProcessor-Status"></a>
 Current status of the Amazon Rekognition stream processor\.  
 Type: String  
 Valid Values:` STOPPED | STARTING | RUNNING | FAILED | STOPPING`   

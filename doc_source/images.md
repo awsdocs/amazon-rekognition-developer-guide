@@ -35,7 +35,7 @@ If you use HTTP and pass the image bytes as part of an Rekognition Image operati
 
 If you use the AWS CLI to call Rekognition Image operations, passing image bytes as part of the call is not supported\. You must first upload the image to an Amazon S3 bucket and then call the operation referencing the uploaded image\.
 
-For information about ensuring the lowest possible latency for Rekognition Image operations, see [](image-best-practices.md#operation-latency)\. 
+For information about ensuring the lowest possible latency for Rekognition Image operations, see [Rekognition Image Operation Latency](image-best-practices.md#operation-latency)\. 
 
 ### Correcting Image Orientation<a name="images-image-orientation-correction"></a>
 

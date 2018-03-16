@@ -10,8 +10,8 @@ This operation requires permissions to perform the `rekognition:ListCollections`
 
 ```
 {
-   "MaxResults": number,
-   "NextToken": "string"
+   "[MaxResults](#rekognition-ListCollections-request-MaxResults)": number,
+   "[NextToken](#rekognition-ListCollections-request-NextToken)": "string"
 }
 ```
 
@@ -19,13 +19,13 @@ This operation requires permissions to perform the `rekognition:ListCollections`
 
 The request accepts the following data in JSON format\.
 
- ** MaxResults **   
+ ** [MaxResults](#API_ListCollections_RequestSyntax) **   <a name="rekognition-ListCollections-request-MaxResults"></a>
 Maximum number of collection IDs to return\.   
 Type: Integer  
 Valid Range: Minimum value of 0\. Maximum value of 4096\.  
 Required: No
 
- ** NextToken **   
+ ** [NextToken](#API_ListCollections_RequestSyntax) **   <a name="rekognition-ListCollections-request-NextToken"></a>
 Pagination token from the previous response\.  
 Type: String  
 Length Constraints: Maximum length of 255\.  
@@ -35,9 +35,9 @@ Required: No
 
 ```
 {
-   "CollectionIds": [ "string" ],
-   "FaceModelVersions": [ "string" ],
-   "NextToken": "string"
+   "[CollectionIds](#rekognition-ListCollections-response-CollectionIds)": [ "string" ],
+   "[FaceModelVersions](#rekognition-ListCollections-response-FaceModelVersions)": [ "string" ],
+   "[NextToken](#rekognition-ListCollections-response-NextToken)": "string"
 }
 ```
 
@@ -47,17 +47,17 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** CollectionIds **   
+ ** [CollectionIds](#API_ListCollections_ResponseSyntax) **   <a name="rekognition-ListCollections-response-CollectionIds"></a>
 An array of collection IDs\.  
 Type: Array of strings  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
 Pattern: `[a-zA-Z0-9_.\-]+` 
 
- ** FaceModelVersions **   
+ ** [FaceModelVersions](#API_ListCollections_ResponseSyntax) **   <a name="rekognition-ListCollections-response-FaceModelVersions"></a>
 Version numbers of the face detection models associated with the collections in the array `CollectionIds`\. For example, the value of `FaceModelVersions[2]` is the version number for the face detection model used by the collection in `CollectionId[2]`\.  
 Type: Array of strings
 
- ** NextToken **   
+ ** [NextToken](#API_ListCollections_ResponseSyntax) **   <a name="rekognition-ListCollections-response-NextToken"></a>
 If the result is truncated, the response provides a `NextToken` that you can use in the subsequent request to fetch the next set of collection IDs\.  
 Type: String  
 Length Constraints: Maximum length of 255\.

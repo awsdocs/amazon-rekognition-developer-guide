@@ -4,13 +4,13 @@ Structure containing details about the detected label, including name, and level
 
 ## Contents<a name="API_Label_Contents"></a>
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-Label-Confidence"></a>
 Level of confidence\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Name**   
+ **Name**   <a name="rekognition-Type-Label-Name"></a>
 The name \(label\) of the object\.  
 Type: String  
 Required: No

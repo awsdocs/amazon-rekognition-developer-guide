@@ -4,13 +4,13 @@ Gender of the face and the confidence level in the determination\.
 
 ## Contents<a name="API_Gender_Contents"></a>
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-Gender-Confidence"></a>
 Level of confidence in the determination\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Value**   
+ **Value**   <a name="rekognition-Type-Gender-Value"></a>
 Gender of the face\.  
 Type: String  
 Valid Values:` Male | Female`   

@@ -14,18 +14,18 @@ To get the results of the label detection operation, first check that the status
 
 ```
 {
-   "ClientRequestToken": "string",
-   "JobTag": "string",
-   "MinConfidence": number,
-   "NotificationChannel": { 
-      "RoleArn": "string",
-      "SNSTopicArn": "string"
+   "[ClientRequestToken](#rekognition-StartLabelDetection-request-ClientRequestToken)": "string",
+   "[JobTag](#rekognition-StartLabelDetection-request-JobTag)": "string",
+   "[MinConfidence](#rekognition-StartLabelDetection-request-MinConfidence)": number,
+   "[NotificationChannel](#rekognition-StartLabelDetection-request-NotificationChannel)": { 
+      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
+      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
    },
-   "Video": { 
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[Video](#rekognition-StartLabelDetection-request-Video)": { 
+      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    }
 }
@@ -35,33 +35,33 @@ To get the results of the label detection operation, first check that the status
 
 The request accepts the following data in JSON format\.
 
- ** ClientRequestToken **   
+ ** [ClientRequestToken](#API_StartLabelDetection_RequestSyntax) **   <a name="rekognition-StartLabelDetection-request-ClientRequestToken"></a>
 Idempotent token used to identify the start request\. If you use the same token with multiple `StartLabelDetection` requests, the same `JobId` is returned\. Use `ClientRequestToken` to prevent the same job from being accidently started more than once\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
 Required: No
 
- ** JobTag **   
+ ** [JobTag](#API_StartLabelDetection_RequestSyntax) **   <a name="rekognition-StartLabelDetection-request-JobTag"></a>
 Unique identifier you specify to identify the job in the completion status published to the Amazon Simple Notification Service topic\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.\-:]+`   
 Required: No
 
- ** MinConfidence **   
+ ** [MinConfidence](#API_StartLabelDetection_RequestSyntax) **   <a name="rekognition-StartLabelDetection-request-MinConfidence"></a>
 Specifies the minimum confidence that Rekognition Video must have in order to return a detected label\. Confidence represents how certain Amazon Rekognition is that a label is correctly identified\.0 is the lowest confidence\. 100 is the highest confidence\. Rekognition Video doesn't return any labels with a confidence level lower than this specified value\.  
 If you don't specify `MinConfidence`, the operation returns labels with confidence values greater than or equal to 50 percent\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- ** NotificationChannel **   
+ ** [NotificationChannel](#API_StartLabelDetection_RequestSyntax) **   <a name="rekognition-StartLabelDetection-request-NotificationChannel"></a>
 The Amazon SNS topic ARN you want Rekognition Video to publish the completion status of the label detection operation to\.   
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
- ** Video **   
+ ** [Video](#API_StartLabelDetection_RequestSyntax) **   <a name="rekognition-StartLabelDetection-request-Video"></a>
 The video in which you want to detect labels\. The video must be stored in an Amazon S3 bucket\.  
 Type: [Video](API_Video.md) object  
 Required: Yes
@@ -70,7 +70,7 @@ Required: Yes
 
 ```
 {
-   "JobId": "string"
+   "[JobId](#rekognition-StartLabelDetection-response-JobId)": "string"
 }
 ```
 
@@ -80,7 +80,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** JobId **   
+ ** [JobId](#API_StartLabelDetection_ResponseSyntax) **   <a name="rekognition-StartLabelDetection-response-JobId"></a>
 The identifier for the label detection job\. Use `JobId` to identify the job in a subsequent call to `GetLabelDetection`\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  

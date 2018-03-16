@@ -155,7 +155,7 @@ In the response, note the following:
 
   Facial features are not returned at every timestamp for which the person is tracked\. Furthermore, in some circumstances a tracked person's body might not be visible, in which case only their face location is returned\.
 
-+ **Paging information** – The example shows one page of person detection information\. You can specify how many person elements to return in the `MaxResults` input parameter for `GetPersonTracking`\. If more results than `MaxResults` exist, `GetPersonTracking` returns a token \(`NextToken`\) used to get the next page of results\. For more information, see [](api-video.md#api-video-get)\.
++ **Paging information** – The example shows one page of person detection information\. You can specify how many person elements to return in the `MaxResults` input parameter for `GetPersonTracking`\. If more results than `MaxResults` exist, `GetPersonTracking` returns a token \(`NextToken`\) used to get the next page of results\. For more information, see [Getting Rekognition Video Analysis Results](api-video.md#api-video-get)\.
 
 + **Index** – A unique identifier for tracking the person throughout the video\. 
 

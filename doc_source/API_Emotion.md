@@ -4,13 +4,13 @@ The emotions detected on the face, and the confidence level in the determination
 
 ## Contents<a name="API_Emotion_Contents"></a>
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-Emotion-Confidence"></a>
 Level of confidence in the determination\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Type**   
+ **Type**   <a name="rekognition-Type-Emotion-Type"></a>
 Type of emotion detected\.  
 Type: String  
 Valid Values:` HAPPY | SAD | ANGRY | CONFUSED | DISGUSTED | SURPRISED | CALM | UNKNOWN`   

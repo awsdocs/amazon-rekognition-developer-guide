@@ -4,12 +4,12 @@ Information about a detected celebrity and the time the celebrity was detected i
 
 ## Contents<a name="API_CelebrityRecognition_Contents"></a>
 
- **Celebrity**   
+ **Celebrity**   <a name="rekognition-Type-CelebrityRecognition-Celebrity"></a>
 Information about a recognized celebrity\.  
 Type: [CelebrityDetail](API_CelebrityDetail.md) object  
 Required: No
 
- **Timestamp**   
+ **Timestamp**   <a name="rekognition-Type-CelebrityRecognition-Timestamp"></a>
 The time, in milliseconds from the start of the video, that the celebrity was recognized\.  
 Type: Long  
 Required: No

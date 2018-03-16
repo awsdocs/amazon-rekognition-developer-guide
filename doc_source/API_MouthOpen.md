@@ -4,13 +4,13 @@ Indicates whether or not the mouth on the face is open, and the confidence level
 
 ## Contents<a name="API_MouthOpen_Contents"></a>
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-MouthOpen-Confidence"></a>
 Level of confidence in the determination\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Value**   
+ **Value**   <a name="rekognition-Type-MouthOpen-Value"></a>
 Boolean value that indicates whether the mouth on the face is open or not\.  
 Type: Boolean  
 Required: No

@@ -14,13 +14,13 @@ For Amazon Rekognition to process an S3 object, the user must have permission to
 
 ## Contents<a name="API_Image_Contents"></a>
 
- **Bytes**   
+ **Bytes**   <a name="rekognition-Type-Image-Bytes"></a>
 Blob of image bytes up to 5 MBs\.  
 Type: Base64\-encoded binary data object  
 Length Constraints: Minimum length of 1\. Maximum length of 5242880\.  
 Required: No
 
- **S3Object**   
+ **S3Object**   <a name="rekognition-Type-Image-S3Object"></a>
 Identifies an S3 object as the image source\.  
 Type: [S3Object](API_S3Object.md) object  
 Required: No

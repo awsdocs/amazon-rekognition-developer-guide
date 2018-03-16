@@ -8,18 +8,18 @@ Rekognition Video can detect faces in a video stored in an Amazon S3 bucket\. Us
 
 ```
 {
-   "ClientRequestToken": "string",
-   "FaceAttributes": "string",
-   "JobTag": "string",
-   "NotificationChannel": { 
-      "RoleArn": "string",
-      "SNSTopicArn": "string"
+   "[ClientRequestToken](#rekognition-StartFaceDetection-request-ClientRequestToken)": "string",
+   "[FaceAttributes](#rekognition-StartFaceDetection-request-FaceAttributes)": "string",
+   "[JobTag](#rekognition-StartFaceDetection-request-JobTag)": "string",
+   "[NotificationChannel](#rekognition-StartFaceDetection-request-NotificationChannel)": { 
+      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
+      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
    },
-   "Video": { 
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[Video](#rekognition-StartFaceDetection-request-Video)": { 
+      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    }
 }
@@ -29,14 +29,14 @@ Rekognition Video can detect faces in a video stored in an Amazon S3 bucket\. Us
 
 The request accepts the following data in JSON format\.
 
- ** ClientRequestToken **   
+ ** [ClientRequestToken](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-ClientRequestToken"></a>
 Idempotent token used to identify the start request\. If you use the same token with multiple `StartFaceDetection` requests, the same `JobId` is returned\. Use `ClientRequestToken` to prevent the same job from being accidently started more than once\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
 Required: No
 
- ** FaceAttributes **   
+ ** [FaceAttributes](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-FaceAttributes"></a>
 The face attributes you want returned\.  
  `DEFAULT` \- The following subset of facial attributes are returned: BoundingBox, Confidence, Pose, Quality and Landmarks\.   
  `ALL` \- All facial attributes are returned\.  
@@ -44,19 +44,19 @@ Type: String
 Valid Values:` DEFAULT | ALL`   
 Required: No
 
- ** JobTag **   
+ ** [JobTag](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-JobTag"></a>
 Unique identifier you specify to identify the job in the completion status published to the Amazon Simple Notification Service topic\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.\-:]+`   
 Required: No
 
- ** NotificationChannel **   
+ ** [NotificationChannel](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-NotificationChannel"></a>
 The ARN of the Amazon SNS topic to which you want Rekognition Video to publish the completion status of the face detection operation\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
- ** Video **   
+ ** [Video](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-Video"></a>
 The video in which you want to detect faces\. The video must be stored in an Amazon S3 bucket\.  
 Type: [Video](API_Video.md) object  
 Required: Yes
@@ -65,7 +65,7 @@ Required: Yes
 
 ```
 {
-   "JobId": "string"
+   "[JobId](#rekognition-StartFaceDetection-response-JobId)": "string"
 }
 ```
 
@@ -75,7 +75,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** JobId **   
+ ** [JobId](#API_StartFaceDetection_ResponseSyntax) **   <a name="rekognition-StartFaceDetection-response-JobId"></a>
 The identifier for the face detection job\. Use `JobId` to identify the job in a subsequent call to `GetFaceDetection`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  

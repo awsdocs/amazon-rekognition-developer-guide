@@ -4,13 +4,13 @@ Indicates whether or not the face has a mustache, and the confidence level in th
 
 ## Contents<a name="API_Mustache_Contents"></a>
 
- **Confidence**   
+ **Confidence**   <a name="rekognition-Type-Mustache-Confidence"></a>
 Level of confidence in the determination\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Value**   
+ **Value**   <a name="rekognition-Type-Mustache-Value"></a>
 Boolean value that indicates whether the face has mustache or not\.  
 Type: Boolean  
 Required: No
