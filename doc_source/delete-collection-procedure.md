@@ -20,7 +20,6 @@ For more information, see [Managing Collections](managing-collections.md)\.
 1. To run the command, choose **Enter**\. The JSON output for the `DeleteCollection` operation is displayed\. 
 
 **To delete a collection \(AWS SDK for Java\)**
-
 + To delete a collection, use the following AWS SDK for Java example code\.
 
   ```

@@ -1,6 +1,6 @@
 # Reference: Kinesis Face Recognition Record<a name="streaming-video-kinesis-output-reference"></a>
 
-Rekognition Video can recognize faces in a streaming video\. For each analyzed frame, Rekognition Video outputs a JSON frame record to a Kinesis data stream\. Rekognition Video doesn't analyze every frame that's passed to it though the Kinesis video stream\. 
+Rekognition Video can recognize faces in a streaming video\. For each analyzed frame, Rekognition Video outputs a JSON frame record to a Kinesis data stream\. Rekognition Video doesn't analyze every frame that's passed to it through the Kinesis video stream\. 
 
 The JSON frame record contains information about the input and output stream, the status of the stream processor, and information about faces that are recognized in the analyzed frame\. This section contains reference information for the JSON frame record\.
 
@@ -8,61 +8,68 @@ The following is the JSON syntax for a Kinesis data stream record\. For more inf
 
 ```
 {
-
-        "InputInformation":{
-          "KinesisVideo": {
+    "InputInformation": {
+        "KinesisVideo": {
             "StreamArn": "string",
             "FragmentNumber": "string",
-            "ProducerTimestamp": double,
-            "ServerTimestamp": double,
-            "FrameOffsetInSeconds": double
-          },
+            "ProducerTimestamp": number,
+            "ServerTimestamp": number,
+            "FrameOffsetInSeconds": number
         },
-        "StreamProcessorInformation":{
-            "Status": "STARTING|IN_PROGRESS|STOPPING|STOPPED|FAILED"
-           },
-        "FaceSearchResponse":{
-          "DetectedFace":[
-             {
-                "BoundingBox":{
-                    "Width":number,
-                    "Top":number,
-                    "Height":number,
-                    "Left":number
-                 },
-                 "Confidence":number,
-                 "Landmarks":[
-                    {
-                       "Type":"string",
-                       "X":number,
-                       "Y":number
+        
+    },
+    "StreamProcessorInformation": {
+        "Status": "RUNNING"
+    },
+    "FaceSearchResponse": [
+        {
+            "DetectedFace": {
+                {
+                    "BoundingBox": {
+                        "Width": number,
+                        "Top": number,
+                        "Height": number,
+                        "Left": number
+                    },
+                    "Confidence": number,
+                    "Landmarks": [
+                        {
+                            "Type": "string",
+                            "X": number,
+                            "Y": number
+                        }
+                    ],
+                    "Pose": {
+                        "Pitch": number,
+                        "Roll": number,
+                        "Yaw": number
+                    },
+                    "Quality": {
+                        "Brightness": number,
+                        "Sharpness": number
                     }
-                 ],
-                 "Pose":{
-                    "Pitch":number,
-                    "Roll":number,
-                    "Yaw":number
-                 },
-                 "Quality":{
-                    "Brightness":number,
-                    "Sharpness":number
-                 },
-                 "MatchedFaces":[
-                    {
-                       "Face": {
-                          "BoundingBox": <>,
-                          "Confidence": number,
-                          "ExternalImageId": "string",
-                          "FaceId":"string",
-                          "ImageId":"string"
-                       },
-                       "Similarity":number
-                    }
-                 ]
-              }
-           ]
-      }
-    }
+                }
+            },
+            "MatchedFaces": [
+                {
+                    "Face": {
+                        "BoundingBox": {
+                            "Width": number,
+                            "Top": number,
+                            "Height": number,
+                            "Left": number
+                        },
+                        "Confidence": number,
+                        "ExternalImageId": "string",
+                        "FaceId": "string",
+                        "ImageId": "string"
+                    },
+                    "Similarity": number
+                }
+            ]
+        }
+    ]
+}
 ```
 
 ## JSON Record<a name="streaming-video-kinesis-output-reference-processorresult"></a>
@@ -83,6 +90,6 @@ Type: [StreamProcessorInformation](streaming-video-kinesis-output-reference-stre
 
 **FaceSearchResponse**
 
-Information about faces in the streaming video frame that match faces in the input collection\.
+Information about the faces detected in a streaming video frame and the matching faces found in the input collection\.
 
-Type: [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md) object
+Type: [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md) object array

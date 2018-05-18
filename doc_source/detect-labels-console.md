@@ -2,7 +2,7 @@
 
 This section shows how, at a very high level, Amazon Rekognition's objects and scenes detection capability works\. When you specify an image as input, the service detects the objects and scenes in the image and returns them along with a percent confidence score for each object and scene\.
 
-For example, Amazon Rekognition detects the following objects and scenes in the sample image: skateboard, sport, person, auto, car and vehicle\. To see all the confidence scores shown in this response, choose **Show more** in the **Labels | Confidence** pane\.
+For example, Amazon Rekognition detects the following objects and scenes in the sample image: skateboard, sport, person, auto, car and vehicle\. To see all the confidence scores shown in this response, choose **Show more** in the **Labels \| Confidence** pane\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/detect-scenes.png)
 
@@ -199,9 +199,7 @@ The image must be less than 5MB in size and must be of JPEG or PNG format\.
 1. Choose **Object and scene detection**\.
 
 1. Do one of the following: 
-
    + Upload an image – Choose **Upload**, go to the location where you stored your image, and then select the image\. 
-
    + Use a URL – Type the URL in the text box, and then choose **Go**\.
 
-1. View the confidence score of each label detected in the **Labels | Confidence** pane\.
+1. View the confidence score of each label detected in the **Labels \| Confidence** pane\.

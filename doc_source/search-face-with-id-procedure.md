@@ -23,7 +23,6 @@ For more information, see [Managing Collections](managing-collections.md)\.
 1. To run the command, choose **Enter**\. The JSON output for the `SearchFaces` operation is displayed\. 
 
 **To search for a face in a collection using its face ID \(AWS SDK for Java\)**
-
 + To search for a face in a collection using its face ID, use the following AWS SDK for Java example code\.
 
   ```
@@ -43,9 +42,8 @@ For more information, see [Managing Collections](managing-collections.md)\.
   import com.fasterxml.jackson.databind.ObjectMapper;
   
     public class SearchFaceMatchingId {
-        public static final String collectionId = "exampleCollection";
-        public static final String bucket = "photo-label-detect";
-        public static final String faceId = "3689c89f-08a6-527d-8dc8-ea2d48cebb58";
+        public static final String collectionId = "collection-id";
+        public static final String faceId = "face-id";
         
       public static void main(String[] args) throws Exception {
           AWSCredentials credentials;

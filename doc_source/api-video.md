@@ -4,7 +4,7 @@ Rekognition Video is an asynchronous API that you can use to analyze videos that
 
 The information in the following sections uses label detection operations to show how Rekognition Video detects labels \(objects, events, concepts, and activities\) in a video that's stored in an Amazon S3 bucket\. The same approach works for the other Rekognition Video operations—for example, [StartFaceDetection](API_StartFaceDetection.md) and [StartPersonTracking](API_StartPersonTracking.md)\. The AWS SDK for Java example [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md) shows how to analyze a video by using an Amazon SQS queue to get the completion status from the Amazon SNS topic\. It's also used as a basis for other Rekognition Video examples, such as [Tracking People through a Stored Video \(SDK for Java\)](video-sqs-persons.md)\. For AWS CLI examples, see [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)\.
 
-
+**Topics**
 + [Starting Video Analysis](#api-video-start)
 + [Getting the Completion Status of a Rekognition Video Analysis Request](#api-video-get-status)
 + [Getting Rekognition Video Analysis Results](#api-video-get)
@@ -36,11 +36,8 @@ The input parameter `Video` provides the video file name and the Amazon S3 bucke
 You can also specify an optional input parameter, `JobTag`, that allows you to identify the job in the completion status that's published to the Amazon SNS topic\. 
 
 To prevent accidental duplication of analysis jobs, you can optionally provide an idempotent token, `ClientRequestToken`\. If you supply a value for `ClientRequestToken`, the `Start` operation returns the same `JobId` for multiple identical calls to the start operation, such as `StartLabelDetection`\. A `ClientRequestToken` token has a lifetime of 7 days\. After 7 days, you can reuse it\. If you reuse the token during the token lifetime, the following happens: 
-
 + If you reuse the token with same `Start` operation and the same input parameters, the same `JobId` is returned\. The job is not performed again and Rekognition Video does not send a completion status to the registered Amazon SNS topic\.
-
 + If you reuse the token with the same `Start` operation and a minor input parameter change, you get an `idempotentparametermismatchexception` \(HTTP status code: 400\) exception raised\.
-
 + If you reuse the token with a different `Start` operation, the operation succeeds\.
 
 The response to the `StartLabelDetection` operation is a job identifier \(`JobId`\)\. Use `JobId` to track requests and get the analysis results after Rekognition Video has published the completion status to the Amazon SNS topic\. For example:
@@ -74,9 +71,7 @@ Rekognition Video sends an analysis completion notification to the registered Am
 For more information, see [Reference: Video Analysis Results Notification](video-notification-payload.md)\.
 
 To get the status information that's published to the Amazon SNS topic by Rekognition Video, use one of the following options:
-
 + **AWS Lambda** – You can subscribe an AWS Lambda function that you write to an Amazon SNS topic\. The function is called when Amazon Rekognition notifies the Amazon SNS topic that the request has completed\. Use a Lambda function if you want server\-side code to process the results of a video analysis request\. For example, you might want to use server\-side code to annotate the video or create a report on the video contents before returning the information to a client application\. We also recommend server\-side processing for large videos because the Amazon Rekognition API might return large volumes of data\. 
-
 + **Amazon Simple Queue Service** – You can subscribe an Amazon SQS queue to an Amazon SNS topic\. You then poll the Amazon SQS queue to retrieve the completion status that's published by Amazon Rekognition when a video analysis request completes\. For more information, see [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md)\. Use an Amazon SQS queue if you want to call Rekognition Video operations only from a client application\. 
 
 **Important**  
@@ -99,7 +94,7 @@ JobId is the identifier for the video analysis operation\. Because video analysi
 **Note**  
 Amazon Rekognition retains the results of a video analysis operation for 7 days\. You will not be able to retrieve the analysis results after this time\.
 
-The `GetLabelDetectionResponse` operation response JSON is similar to the following:
+The `GetLabelDetection` operation response JSON is similar to the following:
 
 ```
 {

@@ -4,7 +4,7 @@ This section shows you how to use a subset of Amazon Rekognition's capabilities 
 
 This section also shows you how to see aggregated Amazon CloudWatch metrics for Rekognition by using the Rekognition console\.
 
-
+**Topics**
 + [Exercise 1: Detect Objects and Scenes in an Image \(Console\)](detect-labels-console.md)
 + [Exercise 2: Analyze Faces in an Image \(Console\)](detect-faces-console.md)
 + [Exercise 3: Compare Faces in Images \(Console\)](compare-faces-console.md)

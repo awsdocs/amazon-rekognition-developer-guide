@@ -4,7 +4,10 @@ Gets the face search results for Rekognition Video face search started by [Start
 
 Face search in a video is an asynchronous operation\. You start face search by calling to [StartFaceSearch](API_StartFaceSearch.md) which returns a job identifier \(`JobId`\)\. When the search operation finishes, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartFaceSearch`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetFaceSearch` and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\. For more information, see [Searching Faces in a Collection](collections.md)\.
 
-The search results are retured in an array, `Persons`, of [PersonMatch](API_PersonMatch.md) objects\. Each`PersonMatch` element contains details about the matching faces in the input collection, person information for the matched person, and the time the person was matched in the video\.
+The search results are retured in an array, `Persons`, of [PersonMatch](API_PersonMatch.md) objects\. Each`PersonMatch` element contains details about the matching faces in the input collection, person information \(facial attributes, bounding boxes, and person identifer\) for the matched person, and the time the person was matched in the video\.
+
+**Note**  
+ `GetFaceSearch` only returns the default facial attributes \(`BoundingBox`, `Confidence`, `Landmarks`, `Pose`, and `Quality`\)\. The other facial attributes listed in the `Face` object of the following response syntax are not returned\. For more information, see [FaceDetail](API_FaceDetail.md)\. 
 
 By default, the `Persons` array is sorted by the time, in milliseconds from the start of the video, persons are matched\. You can also sort by persons by specifying `INDEX` for the `SORTBY` input parameter\.
 
@@ -225,21 +228,12 @@ HTTP Status Code: 500
 ## See Also<a name="API_GetFaceSearch_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/GetFaceSearch) 
-
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/GetFaceSearch) 
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/GetFaceSearch) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/GetFaceSearch) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/GetFaceSearch) 
-
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/GetFaceSearch) 
-
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/GetFaceSearch) 
-
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/GetFaceSearch) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/GetFaceSearch) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/GetFaceSearch) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/GetFaceSearch) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/GetFaceSearch) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/GetFaceSearch) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/GetFaceSearch) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/GetFaceSearch) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/GetFaceSearch) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/GetFaceSearch) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/GetFaceSearch) 

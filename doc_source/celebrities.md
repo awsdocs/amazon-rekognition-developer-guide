@@ -2,7 +2,7 @@
 
 Amazon Rekognition can recognize thousands of celebrities in a wide range of categories, such as entertainment and media, sports, business, and politics\. With Amazon Rekognition you can recognize celebrities in images and in stored videos\. You can also get additional information for recognized celebrities\.
 
-
+**Topics**
 + [Celebrities in Images](#recognize-celebrities-calling-image)
 + [Celebrities in Video](#recognize-celebrities-calling-video)
 + [Recognizing Celebrities in an Image](celebrities-procedure-image.md)
@@ -112,11 +112,8 @@ You provide an input image to `RecognizeCelebrities` either as image bytes or by
 ```
 
 The response includes the following:
-
 + **Recognized celebrities** – `Celebrities` is an array of recognized celebrities\. Each [Celebrity](API_Celebrity.md) object in the array contains the celebrity name and a list of URLs pointing to related content; for example, the celebrity's IMDB link\. Amazon Rekognition returns an [ComparedFace](API_ComparedFace.md) object that your application can use to determine where the celebrity's face is on the image and a unique identifier for the celebrity\. Use the unique identifier to retrieve celebrity information later with the [GetCelebrityInfo](API_GetCelebrityInfo.md) API operation\. 
-
 + **Unrecognized faces** – `UnrecognizedFaces` is an array of faces that didn't match any known celebrities\. Each [ComparedFace](API_ComparedFace.md) object in the array contains a bounding box \(as well as other information\) that you can use to locate the face in the image\.
-
 + **Image orientation** – Image orientation information is provided to allow you to correctly display of the image\.
 
 ## Celebrities in Video<a name="recognize-celebrities-calling-video"></a>
@@ -204,9 +201,6 @@ The response from `GetCelebrityRecognition` includes an array, `Celebrities`, of
 ```
 
 The response includes the following:
-
 + **Recognized celebrities** – `Celebrities` is an array of celebrities and the time\(s\) they are recognized in a video\. A [CelebrityRecognition](API_CelebrityRecognition.md) object exists for each time the celebrity is recognized in the video\. Each `CelebrityRecognition` contains information about a recognized celebrity \([CelebrityDetail](API_CelebrityDetail.md)\) and the time \(`Timestamp`\) the celebrity was recognized in the video\. Timestamp is measured in milliseconds from the start of the video\. 
-
 + **CelebrityDetail** – Contains information about a recognized celebrity\. It includes the celebrity name \(`Name`\), identifer \(`ID`\), and a list of URLs pointing to related content \(`Urls`\)\. It also includes the bounding box for the celebrity's body, The confidence Rekognition Video has in the accuracy of the recognition, and details about the celebrity's face, [FaceDetail](API_FaceDetail.md)\. If you need to get the related content later, you can use `ID` with [GetCelebrityInfo](API_GetCelebrityInfo.md)\. 
-
 + **VideoMetadata** – Information about the video that was analyzed\.

@@ -16,18 +16,18 @@ Type: String
 
 **ProducerTimestamp**
 
-The producer\-side time stamp of the fragment\. For more information, see [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\.
+The producer\-side Unix time stamp of the fragment\. For more information, see [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\.
 
-Type: Timestamp
+Type: Number
 
 **ServerTimestamp**
 
-The server\-side time stamp of the fragment\. For more information, see [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\.
+The server\-side Unix time stamp of the fragment\. For more information, see [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html)\.
 
-Type: Timestamp
+Type: Number
 
-**FrameOffsetInMillis**
+**FrameOffsetInSeconds**
 
-The offset of the frame \(in milliseconds\) inside the fragment\.
+The offset of the frame \(in seconds\) inside the fragment\.
 
 Type: Number 

@@ -1,6 +1,6 @@
 # Image and Video Operations<a name="how-it-works-operations-intro"></a>
 
-Amazon Rekognition provides two API sets\. Rekognition Image for analyzing images and Rekognition Video for analyzing stored and streaming videos\. The following topic gives a brief overview of each API set\.
+Amazon Rekognition provides two API sets\. They are Rekognition Image, for analyzing images, and Rekognition Video, for analyzing stored and streaming videos\. The following topic gives a brief overview of each API set\.
 
 The Rekognition Image and Rekognition Video API can detect or recognize a variety of entities such as faces or objects\. For information about the types of recognition and detection that are supported, see [Types of Detection and Recognition](how-it-works-types.md)\.
 
@@ -19,9 +19,7 @@ With Rekognition Video streaming video operations you can search for faces store
 ## Non\-Storage and Storage Based Operations<a name="how-it-works-operations-video-storage"></a>
 
 Amazon Rekognition operations are grouped into the following categories\.
-
-+ **Non\-storage API operations** – In these operations, Amazon Rekognition does not persist any information\. You provide input images and videos, the operation performs the analysis, and returns results, but nothing is saved by Amazon Rekognition\. For more information, see [](how-it-works-storage-non-storage.md#how-it-works-non-storage)\.
-
++ **Non\-storage API operations** – In these operations, Amazon Rekognition does not persist any information\. You provide input images and videos, the operation performs the analysis, and returns results, but nothing is saved by Amazon Rekognition\. For more information, see [Non\-Storage Operations](how-it-works-storage-non-storage.md#how-it-works-non-storage)\.
 + **Storage\-based API operations** – Amazon Rekognition servers can store detected facial information in containers known as collections\. Amazon Rekognition provides additional API operations you can use to search the persisted face information for face matches\. For more information, see [Storage\-Based API Operations](how-it-works-storage-non-storage.md#how-it-works-storage-based)\.
 
 ## Using the AWS SDK or HTTP to Call Amazon Rekognition API Operations<a name="images-java-http"></a>

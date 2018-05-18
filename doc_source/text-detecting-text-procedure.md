@@ -5,9 +5,7 @@ You can provide an input image as an image byte array \(base64\-encoded image by
 ## Prerequisites<a name="text-detection-prerequisites"></a>
 
 To detect text in images:
-
 + You need the AWS Command Line Interface \(AWS CLI\) or AWS SDK for Java\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\.
-
 + The AWS account you use must have access permissions to the Amazon Rekognition API\. For more information, see [Amazon Rekognition API Permissions: Actions, Permissions, and Resources Reference](api-permissions-reference.md)\. 
 
 ## <a name="procedure-detect-text-cli"></a>

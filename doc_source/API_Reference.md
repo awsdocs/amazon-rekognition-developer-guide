@@ -14,7 +14,5 @@ Beyond the usual HTTP headers, Amazon Rekognition HTTP operations have the follo
 |  X\-Amz\-Target:  |  RekognitionService\.<operation>  |  The target Amazon Rekognition operation\. For example, use `RekognitionService.ListCollections` to call the `ListCollections` operation\.  | 
 
 **Topics**
-
 + [Actions](API_Operations.md)
-
 + [Data Types](API_Types.md)

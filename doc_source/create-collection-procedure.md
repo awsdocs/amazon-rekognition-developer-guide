@@ -20,7 +20,6 @@ For more information, see [Managing Collections](managing-collections.md)\.
 1. To run the command, choose **Enter**\. The JSON output for the `CreateCollection` API operation is displayed\.
 
 **To create a collection \(AWS SDK for Java\)**
-
 + To create a collection, use the following AWS SDK for Java example code\.
 
   ```

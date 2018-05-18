@@ -1,6 +1,6 @@
 # Reading Streaming Video Analysis Results<a name="streaming-video-kinesis-output"></a>
 
-You can use the Amazon Kinesis Data Streams Client Library to consume analysis results that are sent to the Amazon Kinesis Data Streams output stream\. For more information, see [Reading Data from a Kinesis Data Stream](http://docs.aws.amazon.com/streams/latest/dev/building-consumers.html)\. Rekognition Video places a JSON frame record for each analyzed frame into the Kinesis output stream\. Rekognition Video doesn't analyze every frame that's passed to it though the Kinesis video stream\. 
+You can use the Amazon Kinesis Data Streams Client Library to consume analysis results that are sent to the Amazon Kinesis Data Streams output stream\. For more information, see [Reading Data from a Kinesis Data Stream](http://docs.aws.amazon.com/streams/latest/dev/building-consumers.html)\. Rekognition Video places a JSON frame record for each analyzed frame into the Kinesis output stream\. Rekognition Video doesn't analyze every frame that's passed to it through the Kinesis video stream\. 
 
 A frame record that's sent to a Kinesis data stream contains information about which Kinesis video stream fragment the frame is in, where the frame is in the fragment, and faces that are recognized in the frame\. It also includes status information for the stream processor\. For more information, see [Reference: Kinesis Face Recognition Record](streaming-video-kinesis-output-reference.md)\.
 
@@ -90,12 +90,9 @@ Rekognition Video streams Rekognition Video analysis information to the Kinesis 
 ```
 
 In the JSON example, note the following:
-
 + **InputInformation** – Information about the Kinesis video stream that's used to stream video into Rekognition Video\. For more information, see [InputInformation](streaming-video-kinesis-output-reference-inputinformation.md)\.
-
-+ **StreamProcessorInformation** – Status information for the Rekognition Video stream processor\. Possible values for the `Status` field are STARTING, STARTED, IN\_PROGRESS, STOPPING, STOPPED, and FAILED\. For more information, see [StreamProcessorInformation](streaming-video-kinesis-output-reference-streamprocessorinformation.md)\.
-
-+ **FaceSearchResponse** – Contains information about faces in the streaming video that match faces in the input collection\. `FaceSearchResponse` contains a `DetectedFaces` array, which is an array of faces that were matched in the analyzed video frame\. For each matched face, the array `MatchedFaces` contains information about the matching faces found in the input collection, along with a similarity score\. For more information, see [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md)\.
++ **StreamProcessorInformation** – Status information for the Rekognition Video stream processor\. The only possible value for the `Status` field is RUNNING\. For more information, see [StreamProcessorInformation](streaming-video-kinesis-output-reference-streamprocessorinformation.md)\.
++ **FaceSearchResponse** – Contains information about faces in the streaming video that match faces in the input collection\. [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md) contains a [DetectedFace](streaming-video-kinesis-output-reference-detectedface.md) object, which is a face that was detected in in the analyzed video frame\. For each detected face, the array `MatchedFaces` contains an array of matching face objects \([MatchedFace](streaming-video-kinesis-output-reference-facematch.md)\) found in the input collection, along with a similarity score\. 
 
 ## Mapping the Kinesis Video Stream to the Kinesis Data Stream<a name="mapping-streams"></a>
 

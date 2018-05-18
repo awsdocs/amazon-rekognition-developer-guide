@@ -10,7 +10,7 @@ This section provides an examples for both image and video facial analysis\. For
 
 You can use storage operations to save facial metadata for faces detected in an image\. Later you can search for stored faces in both images and videos\. For example, this enables searching for a specific person in a surveillance video\. For more information, see [Searching Faces in a Collection](collections.md)\.
 
-
+**Topics**
 + [Detect Faces in an Image](#faces-detect-images)
 + [Compare Faces in Images](#faces-comparefaces)
 + [Detecting Faces in a Stored Video](#faces-video)
@@ -21,167 +21,223 @@ You can use storage operations to save facial metadata for faces detected in an 
 ## Detect Faces in an Image<a name="faces-detect-images"></a>
 
 Rekognition Image provides the [DetectFaces](API_DetectFaces.md) operation that looks for key facial features such as eyes, nose, and mouth to detect faces in an input image\. Rekognition Image detects the 100 largest faces in an image\. The operation response returns the following information for each detected face:
-
 + **Bounding box** – Coordinates of the bounding box surrounding the face\.
-
 + **Confidence** – Level of confidence that the bounding box contains a face\. 
-
 + **Facial landmarks** – An array of facial landmarks\. For each landmark, such as the left eye, right eye, and mouth, the response provides the x, y coordinates\.
-
 + **Facial attributes** – A set of facial attributes, including gender, or whether the face has a beard\. For each such attribute, the response provides a value\. The value can be of different types such as a Boolean \(whether a person is wearing sunglasses\), a string \(whether the person is male or female\), etc\. In addition, for most attributes the response also provides a confidence in the detected value for the attribute\. 
-
 + **Quality** – Describes the brightness and the sharpness of the face\. For information about ensuring the best possible face detection, see [](image-best-practices.md#recommendations-for-images)\.
-
 + **Pose** – Describes the rotation of the face inside the image\.
-
 + **Emotions** – A set of emotions with confidence in the analysis\.
 
 The following is an example response of a `DetectFaces` API call\. 
 
 ```
 {
-   "FaceDetails":[
-      {
-         "BoundingBox":{
-            "Height":0.18000000715255737,
-            "Left":0.5555555820465088,
-            "Top":0.33666667342185974,
-            "Width":0.23999999463558197
-         },
-         "Confidence":100.0,
-         "Landmarks":[
-            {
-               "Type":"eyeLeft",
-               "X":0.6394737362861633,
-               "Y":0.40819624066352844
+    "FaceDetails": [
+        {
+            "AgeRange": {
+                "High": 36,
+                "Low": 19
             },
-            {
-               "Type":"eyeRight",
-               "X":0.7266660928726196,
-               "Y":0.41039225459098816
+            "Beard": {
+                "Confidence": 99.99388122558594,
+                "Value": false
             },
-            {
-               "Type":"nose",
-               "X":0.6912462115287781,
-               "Y":0.44240960478782654
+            "BoundingBox": {
+                "Height": 0.35353535413742065,
+                "Left": 0.10707070678472519,
+                "Top": 0.12777778506278992,
+                "Width": 0.47138047218322754
             },
-            {
-               "Type":"mouthLeft",
-               "X":0.6306198239326477,
-               "Y":0.46700039505958557
+            "Confidence": 99.99736785888672,
+            "Emotions": [
+                {
+                    "Confidence": 89.59288024902344,
+                    "Type": "HAPPY"
+                },
+                {
+                    "Confidence": 5.3619384765625,
+                    "Type": "CALM"
+                },
+                {
+                    "Confidence": 4.1074934005737305,
+                    "Type": "ANGRY"
+                }
+            ],
+            "Eyeglasses": {
+                "Confidence": 99.96102142333984,
+                "Value": false
             },
-            {
-               "Type":"mouthRight",
-               "X":0.7215608954429626,
-               "Y":0.47114261984825134
+            "EyesOpen": {
+                "Confidence": 99.97982788085938,
+                "Value": true
+            },
+            "Gender": {
+                "Confidence": 100,
+                "Value": "Female"
+            },
+            "Landmarks": [
+                {
+                    "Type": "eyeLeft",
+                    "X": 0.23772846162319183,
+                    "Y": 0.2778792679309845
+                },
+                {
+                    "Type": "eyeRight",
+                    "X": 0.3944779932498932,
+                    "Y": 0.2527812421321869
+                },
+                {
+                    "Type": "nose",
+                    "X": 0.28617316484451294,
+                    "Y": 0.3367626965045929
+                },
+                {
+                    "Type": "mouthLeft",
+                    "X": 0.288897842168808,
+                    "Y": 0.4019121527671814
+                },
+                {
+                    "Type": "mouthRight",
+                    "X": 0.41363197565078735,
+                    "Y": 0.38766127824783325
+                },
+                {
+                    "Type": "leftPupil",
+                    "X": 0.25244733691215515,
+                    "Y": 0.27739065885543823
+                },
+                {
+                    "Type": "rightPupil",
+                    "X": 0.4029206931591034,
+                    "Y": 0.24940147995948792
+                },
+                {
+                    "Type": "leftEyeBrowLeft",
+                    "X": 0.17436790466308594,
+                    "Y": 0.24362699687480927
+                },
+                {
+                    "Type": "leftEyeBrowUp",
+                    "X": 0.21201953291893005,
+                    "Y": 0.2338741421699524
+                },
+                {
+                    "Type": "leftEyeBrowRight",
+                    "X": 0.2513192892074585,
+                    "Y": 0.24069637060165405
+                },
+                {
+                    "Type": "rightEyeBrowLeft",
+                    "X": 0.32193484902381897,
+                    "Y": 0.21918891370296478
+                },
+                {
+                    "Type": "rightEyeBrowUp",
+                    "X": 0.38548189401626587,
+                    "Y": 0.19604144990444183
+                },
+                {
+                    "Type": "rightEyeBrowRight",
+                    "X": 0.45430734753608704,
+                    "Y": 0.2027731090784073
+                },
+                {
+                    "Type": "leftEyeLeft",
+                    "X": 0.20944036543369293,
+                    "Y": 0.28281378746032715
+                },
+                {
+                    "Type": "leftEyeRight",
+                    "X": 0.2710888683795929,
+                    "Y": 0.2738289535045624
+                },
+                {
+                    "Type": "leftEyeUp",
+                    "X": 0.2339935451745987,
+                    "Y": 0.2687133252620697
+                },
+                {
+                    "Type": "leftEyeDown",
+                    "X": 0.23892717063426971,
+                    "Y": 0.28660306334495544
+                },
+                {
+                    "Type": "rightEyeLeft",
+                    "X": 0.36334219574928284,
+                    "Y": 0.2598327100276947
+                },
+                {
+                    "Type": "rightEyeRight",
+                    "X": 0.4293186664581299,
+                    "Y": 0.249033123254776
+                },
+                {
+                    "Type": "rightEyeUp",
+                    "X": 0.39038628339767456,
+                    "Y": 0.2431529313325882
+                },
+                {
+                    "Type": "rightEyeDown",
+                    "X": 0.3967171609401703,
+                    "Y": 0.26075780391693115
+                },
+                {
+                    "Type": "noseLeft",
+                    "X": 0.28841185569763184,
+                    "Y": 0.3598580062389374
+                },
+                {
+                    "Type": "noseRight",
+                    "X": 0.3451237976551056,
+                    "Y": 0.3516968786716461
+                },
+                {
+                    "Type": "mouthUp",
+                    "X": 0.3349839448928833,
+                    "Y": 0.38809144496917725
+                },
+                {
+                    "Type": "mouthDown",
+                    "X": 0.3422594964504242,
+                    "Y": 0.41868656873703003
+                }
+            ],
+            "MouthOpen": {
+                "Confidence": 99.97990417480469,
+                "Value": false
+            },
+            "Mustache": {
+                "Confidence": 99.97885131835938,
+                "Value": false
+            },
+            "Pose": {
+                "Pitch": 1.0711474418640137,
+                "Roll": -10.933034896850586,
+                "Yaw": -25.838171005249023
+            },
+            "Quality": {
+                "Brightness": 43.86729431152344,
+                "Sharpness": 99.95819854736328
+            },
+            "Smile": {
+                "Confidence": 96.89310455322266,
+                "Value": true
+            },
+            "Sunglasses": {
+                "Confidence": 80.4033432006836,
+                "Value": false
             }
-         ],
-         "Pose":{
-            "Pitch":4.050806522369385,
-            "Roll":0.9950747489929199,
-            "Yaw":13.693790435791016
-         },
-         "Quality":{
-            "Brightness":37.60169982910156,
-            "Sharpness":80.0
-         }
-      },
-      {
-         "BoundingBox":{
-            "Height":0.16555555164813995,
-            "Left":0.3096296191215515,
-            "Top":0.7066666483879089,
-            "Width":0.22074073553085327
-         },
-         "Confidence":99.99998474121094,
-         "Landmarks":[
-            {
-               "Type":"eyeLeft",
-               "X":0.3767718970775604,
-               "Y":0.7863991856575012
-            },
-            {
-               "Type":"eyeRight",
-               "X":0.4517287313938141,
-               "Y":0.7715709209442139
-            },
-            {
-               "Type":"nose",
-               "X":0.42001065611839294,
-               "Y":0.8192070126533508
-            },
-            {
-               "Type":"mouthLeft",
-               "X":0.3915625810623169,
-               "Y":0.8374140858650208
-            },
-            {
-               "Type":"mouthRight",
-               "X":0.46825936436653137,
-               "Y":0.823401689529419
-            }
-         ],
-         "Pose":{
-            "Pitch":-16.320178985595703,
-            "Roll":-15.097439765930176,
-            "Yaw":-5.771541118621826
-         },
-         "Quality":{
-            "Brightness":31.440860748291016,
-            "Sharpness":60.000003814697266
-         }
-      }
-   ],
-   "OrientationCorrection":"ROTATE_0"
+        }
+    ]
 }
 ```
 
 Note the following:
-
 + The `Pose` data describes the rotation of the face detected\. You can use the combination of the `BoundingBox` and `Pose` data to draw the bounding box around faces that your application displays\.
-
-   
-
 + The `Quality` describes the brightness and the sharpness of the face\. You might find this useful to compare faces across images and find the best face\.
-
-   
-
 + The `DetectFaces` operation first detects orientation of the input image, before detecting facial features\. The `OrientationCorrection` in the response returns the degrees of rotation detected \(counter\-clockwise direction\)\. Your application can use this value to correct the image orientation when displaying the image\. 
-
-+ The preceding response shows all facial `landmarks` the service can detect, all facial attributes and emotions\. To get all of these in the response, you must specify the `attributes` parameter with value `ALL`\. By default, the `DetectFaces` API returns only the following five facial `landmarks`, `Pose`, and `Quality`\.
-
-  ```
-  ...
-     "Landmarks": [
-         {
-             "Y": 0.41730427742004395,
-             "X": 0.36835095286369324,
-             "Type": "eyeLeft"
-         },
-         {
-             "Y": 0.4281611740589142,
-             "X": 0.5960656404495239,
-             "Type": "eyeRight"
-         },
-         {
-             "Y": 0.5349795818328857,
-             "X": 0.47817257046699524,
-             "Type": "nose"
-         },
-         {
-             "Y": 0.5721957683563232,
-             "X": 0.352621465921402,
-             "Type": "mouthLeft"
-         },
-         {
-             "Y": 0.5792245864868164,
-             "X": 0.5936088562011719,
-             "Type": "mouthRight"
-         }
-     ]
-  ...
-  ```
-
++ The preceding response shows all facial `landmarks` the service can detect, all facial attributes and emotions\. To get all of these in the response, you must specify the `attributes` parameter with value `ALL`\. By default, the `DetectFaces` API returns only the following five facial attributes: `BoundingBox`, `Confidence`, `Pose`, `Quality` and `landmarks`\. The default landmarks returned are: `eyeLeft`, `eyeRight`, `nose`, `mouthLeft`, and `mouthRight`\. 
 + The following illustration shows the relative location of the facial landmarks on the face returned by the `DetectFaces` API operation\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/landmarks-10.png)
 
@@ -333,15 +389,11 @@ The API returns an array of face matches, source face information, image orienta
 ```
 
 In the response, note the following:
-
 + **Face match information** – The example shows that one face match was found in the target image\. For that face match, it provides a bounding box and a confidence value \(the level of confidence that Amazon Rekognition has that the bounding box contains a face\)\. The `similarity` score of 99\.99 indicates how similar the faces are\. The face match information also includes an array of landmark locations\.
 
   If multiple faces match, the `faceMatches` array includes all of the face matches\. 
-
 + **Source face information** – The response includes information about the face from the source image that was used for comparison, including the bounding box and confidence value\.
-
 + **Image Orientation** – The response includes information about the orientation of the source and target images\. Amazon Rekognition needs this to display the images and retrieve the correct location of the matched face in the target image\.
-
 + **Unmatched face match information** – The example shows one face that Amazon Rekognition found in the target image that didn't match the face analyzed in the source image\. For that face, it provides a bounding box and a confidence value, indicating the level of confidence that Amazon Rekognition has that the bounding box contains a face\. The face information also includes an array of landmark locations\.
 
   If Amazon Rekognition finds mutiple faces that do not match, the `UnmatchedFaces` array includes all of the faces that didn't match\. 
@@ -349,11 +401,8 @@ In the response, note the following:
 ## Detecting Faces in a Stored Video<a name="faces-video"></a>
 
 Rekognition Video can detect faces in videos stored in an Amazon S3 bucket and provide information such as: 
-
 + The time\(s\) faces are detected in a video\.
-
 + The location of faces in the video frame at the time they were detected\.
-
 + Facial landmarks such as the position of the left eye\. 
 
 ### Using Rekognition Video Face Operations with Video<a name="video-face-overview"></a>
@@ -528,9 +577,6 @@ For information about calling the video recognition API operations, see [Calling
 ```
 
 In the response, note the following:
-
 + **Face information** – The `FaceDetection` array element contains information about the detected face \([FaceDetail](API_FaceDetail.md) and the time the face was detected in the video \(`Timestamp`\)\.
-
 + **Paging information** – The example shows one page of face detection information\. You can specify how many person elements to return in the `MaxResults` input parameter for `GetFaceDetection`\. If more results than `MaxResults` exist, `GetFaceDetection` returns a token \(`NextToken`\) used to get the next page of results\. For more information, see [Getting Rekognition Video Analysis Results](api-video.md#api-video-get)\.
-
 + **Video information** – The response includes information about the video format \(`VideoMetadata`\) in each page of information returned by `GetFaceDetection`\.

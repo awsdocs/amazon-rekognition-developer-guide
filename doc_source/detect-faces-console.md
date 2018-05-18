@@ -10,7 +10,7 @@ The following shows the sample response\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/detect-faces-confidence-score.png)
 
-If there are multiple faces in the input image, Rekognition detects up to 100 faces in the image\. Each face detected is marked with a square\. When you click the area marked with a square on a face, Rekognition displays the confidence score of that face and its attributes detected in the **Faces | Confidence** pane\. 
+If there are multiple faces in the input image, Rekognition detects up to 100 faces in the image\. Each face detected is marked with a square\. When you click the area marked with a square on a face, Rekognition displays the confidence score of that face and its attributes detected in the **Faces \| Confidence** pane\. 
 
 ## Analyze Faces in an Image You Provide<a name="detect-faces-own-image"></a>
 
@@ -26,11 +26,9 @@ The image must be less than 5MB in size and must be of JPEG or PNG format\.
 1. Choose **Facial analysis**\.
 
 1. Do one of the following: 
-
    + Upload an image – Choose **Upload**, go to the location where you stored your image, and then select the image\. 
-
    + Use a URL – Type the URL in the text box, and then choose **Go**\.
 
-1. View the confidence score of one the faces detected and its facial attributes in the **Faces | Confidence** pane\.
+1. View the confidence score of one the faces detected and its facial attributes in the **Faces \| Confidence** pane\.
 
 1. If there are multiple faces in the image, choose one of the other faces to see its attributes and scores\.

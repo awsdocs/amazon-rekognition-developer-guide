@@ -2,6 +2,15 @@
 
 Structure containing attributes of the face that the algorithm detected\.
 
+A `FaceDetail` object contains either the default facial attributes or all facial attributes\. The default attributes are `BoundingBox`, `Confidence`, `Landmarks`, `Pose`, and `Quality`\.
+
+ [GetFaceDetection](API_GetFaceDetection.md) is the only Rekognition Video stored video operation that can return a `FaceDetail` object with all attributes\. To specify which attributes to return, use the `FaceAttributes` input parameter for [StartFaceDetection](API_StartFaceDetection.md)\. The following Rekognition Video operations return only the default attributes\. The corresponding Start operations don't have a `FaceAttributes` input parameter\.
++ GetCelebrityRecognition
++ GetPersonTracking
++ GetFaceSearch
+
+The Rekognition Image [DetectFaces](API_DetectFaces.md) and [IndexFaces](API_IndexFaces.md) operations can return all facial attributes\. To specify which attributes to return, use the `Attributes` input parameter for `DetectFaces`\. For `IndexFaces`, use the `DetectAttributes` input parameter\.
+
 ## Contents<a name="API_FaceDetail_Contents"></a>
 
  **AgeRange**   <a name="rekognition-Type-FaceDetail-AgeRange"></a>
@@ -15,12 +24,12 @@ Type: [Beard](API_Beard.md) object
 Required: No
 
  **BoundingBox**   <a name="rekognition-Type-FaceDetail-BoundingBox"></a>
-Bounding box of the face\.  
+Bounding box of the face\. Default attribute\.  
 Type: [BoundingBox](API_BoundingBox.md) object  
 Required: No
 
  **Confidence**   <a name="rekognition-Type-FaceDetail-Confidence"></a>
-Confidence level that the bounding box contains a face \(and not a different object such as a tree\)\.  
+Confidence level that the bounding box contains a face \(and not a different object such as a tree\)\. Default attribute\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
@@ -46,7 +55,7 @@ Type: [Gender](API_Gender.md) object
 Required: No
 
  **Landmarks**   <a name="rekognition-Type-FaceDetail-Landmarks"></a>
-Indicates the location of landmarks on the face\.  
+Indicates the location of landmarks on the face\. Default attribute\.  
 Type: Array of [Landmark](API_Landmark.md) objects  
 Required: No
 
@@ -61,12 +70,12 @@ Type: [Mustache](API_Mustache.md) object
 Required: No
 
  **Pose**   <a name="rekognition-Type-FaceDetail-Pose"></a>
-Indicates the pose of the face as determined by its pitch, roll, and yaw\.  
+Indicates the pose of the face as determined by its pitch, roll, and yaw\. Default attribute\.  
 Type: [Pose](API_Pose.md) object  
 Required: No
 
  **Quality**   <a name="rekognition-Type-FaceDetail-Quality"></a>
-Identifies image brightness and sharpness\.  
+Identifies image brightness and sharpness\. Default attribute\.  
 Type: [ImageQuality](API_ImageQuality.md) object  
 Required: No
 
@@ -83,11 +92,7 @@ Required: No
 ## See Also<a name="API_FaceDetail_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/FaceDetail) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/FaceDetail) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/FaceDetail) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/FaceDetail) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/FaceDetail) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/FaceDetail) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/FaceDetail) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/FaceDetail) 

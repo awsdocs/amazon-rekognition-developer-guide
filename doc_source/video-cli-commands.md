@@ -41,15 +41,10 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
    ```
 
    Update the following values:
-
-   + Change `bucketname` and `videofile` to the Amazon S3 bucket name and file name of the video that you want to detect labels in\.
-
+   + Change `bucketname` and `videofile` to the Amazon S3 bucket name and file name that you specified in step 6\.
    + Change `Endpoint` and `us-east-1` to the AWS endpoint and region that you're using\.
-
    + Change `TopicARN` to the ARN of the Amazon SNS topic you created in step 2 of the previous procedure\.
-
    + Change `RoleARN` to the ARN of the IAM role you created in step 1 of the previous procedure\.
-
    + Change `RekognitionUser` to an AWS account that has permissions to call Rekognition Video operations\.
 
 1. Note the value of `JobId` in the response\. The response looks similar to the following JSON example\.
@@ -74,11 +69,8 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
    ```
 
    Update the following values:
-
    + Change `JobId` to match the job identifier that you noted in step 2\.
-
    + Change `Endpoint` and `us-east-1` to the AWS endpoint and region that you're using\.
-
    + Change `RekognitionUser` to an AWS account that has permissions to call Rekognition Video operations\.
 
    The results look similar to the following example JSON:

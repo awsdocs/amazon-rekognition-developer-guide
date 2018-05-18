@@ -41,11 +41,8 @@ The Getting Started exercises in this guide assume that you have a user \(`admin
 1. A user can sign in to the AWS Management Console using a special URL\. For more information, [How Users Sign In to Your Account](http://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html) in the *IAM User Guide*\.
 
 For more information about IAM, see the following:
-
 + [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam/)
-
 + [Getting Started](http://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html)
-
 + [IAM User Guide](http://docs.aws.amazon.com/IAM/latest/UserGuide/)
 
 ## Next Step<a name="setting-up-next-step-2"></a>

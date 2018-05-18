@@ -5,7 +5,7 @@ This topic provides examples of identity\-based policies that demonstrate how an
 **Important**  
 We recommend that you first review the introductory topics that explain the basic concepts and options available to manage access to your Amazon Rekognition resources\. For more information, see [Overview of Managing Access Permissions to Your Amazon Rekognition Resources](access-control-overview.md)\. 
 
-
+**Topics**
 + [Permissions Required to Use the Amazon Rekognition Console](#console-permissions)
 + [AWS Managed \(Predefined\) Policies for Amazon Rekognition](#access-policy-aws-managed-policies)
 + [Customer Managed Policy Examples](#access-policy-customer-managed-examples)
@@ -31,7 +31,7 @@ The following shows an example of a permissions policy\.
     ]
 ```
 
-This policy example grants read\-only access to a user\. That is, the user can't list perform write actions in your account\.
+This policy example grants a user read\-only access to resources using a limited set of Amazon Rekognition operations\.
 
 For a table showing all of the Amazon Rekognition API operations and the resources that they apply to, see [Amazon Rekognition API Permissions: Actions, Permissions, and Resources Reference](api-permissions-reference.md)\. 
 
@@ -44,11 +44,8 @@ Amazon Rekognition does not require any additional permissions when working with
 AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. These AWS managed policies grant necessary permissions for common use cases so that you can avoid having to investigate what permissions are needed\. For more information, see [AWS Managed Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\. 
 
 The following AWS managed policies, which you can attach to users in your account, are specific to Amazon Rekognition:
-
 + **AmazonRekognitionFullAccess** – Grants full access to Amazon Rekognition resources including creating and deleting collections\.
-
 + **AmazonRekognitionReadOnlyAccess** – Grants read\-only access to Amazon Rekognition resources\.
-
 + **AmazonRekognitionServiceRole** – Allows Amazon Rekognition to call Amazon Kinesis Data Streams and Amazon SNS services on your behalf\.
 
 **Note**  
@@ -64,7 +61,7 @@ In this section, you can find example user policies that grant permissions for v
 **Note**  
 All examples use the us\-west\-2 region and contain fictitious account IDs\.
 
-
+**Topics**
 + [Example 1: Allow a User Read\-Only Access to Resources](#access-policy-customer-managed-first-example)
 + [Example 2: Allow a User Full Access to Resources](#access-policy-customer-managed-second-example)
 
@@ -85,7 +82,19 @@ The following example grants read\-only access to Amazon Rekognition resources\.
                 "rekognition:ListCollections",
                 "rekognition:ListFaces",
                 "rekognition:SearchFaces",
-                "rekognition:SearchFacesByImage"
+                "rekognition:SearchFacesByImage",
+                "rekognition:DetectText",
+                "rekognition:GetCelebrityInfo",
+                "rekognition:RecognizeCelebrities",
+                "rekognition:DetectModerationLabels",
+                "rekognition:GetLabelDetection",
+                "rekognition:GetFaceDetection",
+                "rekognition:GetContentModeration",
+                "rekognition:GetPersonTracking",
+                "rekognition:GetCelebrityRecognition",
+                "rekognition:GetFaceSearch",
+                "rekognition:DescribeStreamProcessor",
+                "rekognition:ListStreamProcessors"
             ],
             "Resource": "*"
         }
@@ -105,16 +114,24 @@ The following example grants full access to Amazon Rekognition resources\.
             "Effect": "Allow",
             "Action": [
                 "rekognition:CompareFaces",
-                "rekognition:CreateCollection",
-                "rekognition:DeleteCollection",
-                "rekognition:DeleteFaces",
                 "rekognition:DetectFaces",
                 "rekognition:DetectLabels",
-                "rekognition:IndexFaces",
                 "rekognition:ListCollections",
                 "rekognition:ListFaces",
                 "rekognition:SearchFaces",
-                "rekognition:SearchFacesByImage"
+                "rekognition:SearchFacesByImage",
+                "rekognition:DetectText",
+                "rekognition:GetCelebrityInfo",
+                "rekognition:RecognizeCelebrities",
+                "rekognition:DetectModerationLabels",
+                "rekognition:GetLabelDetection",
+                "rekognition:GetFaceDetection",
+                "rekognition:GetContentModeration",
+                "rekognition:GetPersonTracking",
+                "rekognition:GetCelebrityRecognition",
+                "rekognition:GetFaceSearch",
+                "rekognition:DescribeStreamProcessor",
+                "rekognition:ListStreamProcessors"
             ],
             "Resource": "*"
         }

@@ -3,13 +3,9 @@
 This procedure shows you how to detect labels in a video by using Rekognition Video label detection operations, a video stored in an Amazon S3 bucket, and an Amazon SNS topic\. The procedure also shows how to use an Amazon SQS queue to get the completion status from the Amazon SNS topic\. For more information, see [Calling Rekognition Video Operations](api-video.md)\. You aren't restricted to using an Amazon SQS queue\. For example, you can use an AWS Lambda function to get the completion status\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](http://docs.aws.amazon.com/sns/latest/dg/sns-lambda.html)\.
 
 The procedure shows you how to use the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home) to do the following:
-
 + Create the Amazon SNS topic\.
-
 + Create the Amazon SQS queue\.
-
 + Give Rekognition Video permission to publish the completion status of a video analysis operation to the Amazon SNS topic\.
-
 + Subscribe the Amazon SQS queue to the Amazon SNS topic\.
 
 **Note**  
@@ -44,15 +40,10 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
    For instructions, see [Uploading Objects into Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 1. Use the following AWS SDK for Java code to detect labels in a video\. 
-
    + Replace `TopicArn`, `RoleArn`, and `QueueURL` with the Amazon SNS topic ARN, IAM role ARN, and Amazon SQS queue URL that you previously noted\.
-
-   + Replace `Bucket` and `VideoFile` with the bucket and video file name that you uploaded in step 5\. 
-
+   + Replace `Bucket` and `VideoFile` with the bucket and video file name that you specified in step 6\. 
    +  Replace `Endpoint` and `Region` with the AWS endpoint and region that you're using\.
-
    + Update `.withRegion` parameters to the region you are using\.
-
    + Change `RekognitionUser` to an AWS account that has permissions to call Rekognition Video operations\. 
 
    ```

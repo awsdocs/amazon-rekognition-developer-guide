@@ -8,6 +8,6 @@ For example, in the following image, Rekognition Image is able to detect the pre
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/detect-scenes.png)
 
-
+**Topics**
 + [Detecting Labels in an Image](labels-detect-labels-image.md)
 + [Detecting Labels in a Video](labels-detecting-labels-video.md)

@@ -51,9 +51,9 @@ For more information, see [Searching for Faces with Rekognition Image Collection
        import com.fasterxml.jackson.databind.ObjectMapper;
    
        public class SearchFacesMatchingImage {
-           public static final String collectionId = "exampleCollection";
-           public static final String bucket = "photo-label-detect";
-           public static final String fileName = "filename.jpg";
+           public static final String collectionId = "collection-id";
+           public static final String bucket = "bucket-name";
+           public static final String fileName = "example.jpg";
              
            public static void main(String[] args) throws Exception {
                AWSCredentials credentials;

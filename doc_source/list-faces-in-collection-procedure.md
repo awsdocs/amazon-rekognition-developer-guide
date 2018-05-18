@@ -1,6 +1,6 @@
 # Listing Faces in a Collection<a name="list-faces-in-collection-procedure"></a>
 
-You can use the [IndexFaces](API_IndexFaces.md) operation to list the faces in a collection\.
+You can use the [ListFaces](API_ListFaces.md) operation to list the faces in a collection\.
 
 The following procedures show how you can use the operation with the AWS CLI, the AWS SDK for Java\. 
 
@@ -26,7 +26,6 @@ For more information, see [Managing Collections](managing-collections.md)\.
    The command returns faces in the collection along with a `NextToken` in the response\. You can use this in your subsequent request \(by adding the `--next-token` parameter in the AWS CLI command\) to fetch next set of faces\.
 
 **To list faces in a collection \(AWS SDK for Java\)**
-
 + To list faces in a collection, use the following AWS SDK for Java example code\.
 
   ```
@@ -47,9 +46,7 @@ For more information, see [Managing Collections](managing-collections.md)\.
   import com.fasterxml.jackson.databind.ObjectMapper;
   
   public class ListFaces {
-      public static final String collectionId = "exampleCollection";
-      public static final String bucket = "photo-label-detect";
-  
+      public static final String collectionId = "collection-id";
   
      public static void main(String[] args) throws Exception {
         AWSCredentials credentials;

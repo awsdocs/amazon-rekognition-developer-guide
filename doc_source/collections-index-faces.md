@@ -6,19 +6,15 @@ After you create a face collection, you can store faces in it\. Amazon Rekogniti
 Amazon Rekognition does not save the actual faces detected\. Instead, the underlying detection algorithm first detects the faces in the input image, extracts facial features for each face, and then stores the feature information in a database\. Then, Amazon Rekognition uses this information in subsequent operations such as searching a face collection for matching faces\. 
 
 For each face, the `IndexFaces` operation persists the following information:
-
 + **Multidimensional facial features** – `IndexFaces` uses facial analysis to extract multidimensional information about the facial features and stores the information in the face collection\. You cannot access this information directly\. However, Amazon Rekognition uses this information when searching a face collection for face matches\.
 
    
-
 + **Metadata** – The metadata for each face includes a bounding box, confidence level \(that the bounding box contains a face\), IDs assigned by Amazon Rekognition \(face ID and image ID\), and an external image ID \(if you provided it\) in the request\. This information is returned to you in response to the `IndexFaces` API call\. For an example, see the `face` element in the following example response\.
 
   The service returns this metadata in response to the following API calls:
 
    
-
   +  `ListFaces` 
-
   + Search faces operations – The responses for `SearchFaces` and `SearchFacesByImage` return the confidence in the match for each matching face, along with this metadata of the matched face\.
 
 You might want to associate indexed faces with the image they were detected in\. For example, you might want to maintain a client\-side index of images and faces in the images\. To associate faces with an image, specify an image ID in the `ExternalImageId` request parameter\. The image ID can be the file name or another ID that you create\.
@@ -95,11 +91,8 @@ In addition to the preceding information that the API persists in the face colle
 ```
 
 To get all facial information, specify 'ALL' for the `DetectionAttributes` request parameter\. For example, in the following example response, note the additional information in the `faceDetail` element, which is not persisted on the server:
-
 + 25 facial landmarks \(compared to only five in the preceding example\)
-
 + Nine facial attributes \(eyeglasses, beard, etc\) 
-
 + Emotions \(see the `emotion` element\)
 
 The `face` element provides metadata that is persisted on the server\.

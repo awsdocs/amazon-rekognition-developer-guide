@@ -27,7 +27,6 @@ For more information, see [Managing Collections](managing-collections.md)\.
 1. To run the command, choose **Enter**\. The JSON output for the `IndexFaces` operation is displayed\. 
 
 **To add faces to a collection \(AWS SDK for Java\)**
-
 + To add faces to a collection, use the following AWS SDK for Java example code\.
 
   ```
@@ -48,9 +47,9 @@ For more information, see [Managing Collections](managing-collections.md)\.
   import com.amazonaws.services.rekognition.model.S3Object;
   
   public class AddFaces {
-     public static final String collectionId = "exampleCollection";
-     public static final String bucket = "photo-label-detect";
-     public static final String fileName = "filename.jpg";
+     public static final String collectionId = "collection-id";
+     public static final String bucket = "bucket-name";
+     public static final String fileName = "example.jpg";
   
      public static void main(String[] args) throws Exception {
         AWSCredentials credentials;

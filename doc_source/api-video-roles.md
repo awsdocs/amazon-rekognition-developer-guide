@@ -1,15 +1,10 @@
 # Configuring Rekognition Video<a name="api-video-roles"></a>
 
 To use the Rekognition Video API with stored videos, you have to configure the IAM user and an IAM service role to access your Amazon SNS topics\. The following procedures show you how to configure Rekognition Video for use with the examples in this section\. To do this, you: 
-
 + Create an IAM user, or give an IAM user access to the Rekognition Video API\. In this example, full access to the entire Amazon Rekognition API is given, but you can restrict access as required\.
-
 + Set up credentials for the user\. The example uses a named profile called *RekognitionUser*\. 
-
 + Create an IAM service role that allows Rekognition Video to publish the completion status of an analysis request to an Amazon SNS topic\. 
-
 + Give the example code access to the Amazon SQS queue that the Amazon SNS message is retrieved from\. Full access is required because the example code deletes the message from the queue\.
-
 + Give the example code read access to the Amazon S3 bucket that contains the stored video file\. 
 
 **Note**  
@@ -18,17 +13,11 @@ The examples in this section create a new Amazon SNS topic by using the instruct
 **To configure Rekognition Video**
 
 1. [Create an IAM user](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) to be used by the example code\. Do the following: 
-
    + Under **Select AWS access type**, choose **Programmatic access**\.
-
    + On the permissions page, choose **Attach existing policies directly**, and add the following existing permissions policies:
-
      + AmazonSQSFullAccess
-
      + AmazonRekognitionFullAccess
-
      + AmazonS3ReadOnlyAccess
-
    + Note the IAM user's access key and secret access key\.
 
 1. [Add a named profile](http://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html) called *RekognitionUser* to the credentials file\. For example:

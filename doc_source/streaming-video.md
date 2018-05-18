@@ -10,16 +10,13 @@ The following diagram shows how Rekognition Video detects and recognizes faces i
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/VideoRekognitionStream.png)
 
 To use Rekognition Video with streaming video, your application needs to implement the following:
-
 + A Kinesis video stream for sending streaming video to Rekognition Video\. For more information, see [Kinesis video stream](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/what-is-kinesis-video.html)\. 
-
 + A Rekognition Video stream processor to manage the analysis of the streaming video\. For more information, see [Starting Streaming Video Analysis](streaming-video-starting-analysis.md)\.
-
 + A Kinesis data stream consumer to read the analysis results that Rekognition Video sends to the Kinesis data stream\. For more information, see [Consumers for Amazon Kinesis Streams](http://docs.aws.amazon.com/streams/latest/dev/amazon-kinesis-consumers.html)\. 
 
 This section contains information about writing an application that creates the Kinesis video stream and the Kinesis data stream, streams video into Rekognition Video, and consumes the analysis results\. For more information, see [Recognizing Faces in a Streaming Video](recognize-faces-in-a-video-stream.md)\.
 
-
+**Topics**
 + [Recognizing Faces in a Streaming Video](recognize-faces-in-a-video-stream.md)
 + [Giving Rekognition Video Access to Your Kinesis Streams](api-streaming-video-roles.md)
 + [Starting Streaming Video Analysis](streaming-video-starting-analysis.md)

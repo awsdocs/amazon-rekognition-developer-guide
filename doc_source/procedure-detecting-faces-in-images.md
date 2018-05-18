@@ -11,7 +11,6 @@ For more information, see [Detect Faces in an Image](faces.md#faces-detect-image
    For instructions, see [Uploading Objects into Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 1. Use the following example code to call the `DetectFaces` API operation\.
-
    + Using the AWS CLI
 
      ```
@@ -21,7 +20,6 @@ For more information, see [Detect Faces in an Image](faces.md#faces-detect-image
      --region us-east-1 \
      --profile adminuser
      ```
-
    + Using the AWS SDK for Java\. This example displays the estimated age range for detected faces and lists the JSON for all detected facial attributes\.
 
      ```
@@ -101,7 +99,6 @@ For more information, see [Detect Faces in an Image](faces.md#faces-detect-image
      
      }
      ```
-
    + Using AWS SDK for Python \(Boto\)\. This example displays the estimated age range for detected faces and lists the JSON for all detected facial attributes\.
 
      ```

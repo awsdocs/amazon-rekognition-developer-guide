@@ -11,7 +11,6 @@ The following examples show how you can use the operation with the AWS CLI, the 
    For instructions, see [Uploading Objects into Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 1. Use the following example code to call the `DetectLabels` operation\.
-
    + Using the AWS CLI
 **Note**  
 The command specifies the `adminuser` profile that you set up in [Step 2: Set Up the AWS Command Line Interface \(AWS CLI\)](setup-awscli.md)\. Then, the AWS CLI command uses the credentials associated with the adminuser profile to sign and authenticate the request\. If you don't provide this profile, the default profile is assumed\.
@@ -22,7 +21,6 @@ The command specifies the `adminuser` profile that you set up in [Step 2: Set Up
      --region us-east-1 \
      --profile adminuser
      ```
-
    + Using the AWS SDK for Java\.
 
      ```
@@ -84,7 +82,6 @@ The command specifies the `adminuser` profile that you set up in [Step 2: Set Up
         }
      }
      ```
-
    + Using AWS SDK for Python \(Boto\)\.
 
      ```

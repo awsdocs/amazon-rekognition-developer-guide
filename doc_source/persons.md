@@ -1,9 +1,7 @@
 # Tracking People<a name="persons"></a>
 
 Rekognition Video can track people in videos and provide information such as: 
-
 + The location of the person in the video frame at the time they were tracked\.
-
 + Facial landmarks such as the position of the left eye, when detected\. 
 
 With Rekognition Video you can also search a video for people whose facial metadata is stored in a collection\. For more information, see [Searching for Faces with Rekognition Video](collections-search-person.md)\.
@@ -150,13 +148,9 @@ You can sort `Persons` by using the `SortBy` input parameter\. Specify `TIMESTAM
 ```
 
 In the response, note the following:
-
 + **Person information** – The `PersonDetection` array element contains information about the detected person\. For example, the time the person was detected \(`Timestamp`\), the position of the person in the video frame at the time they were detected \(`BoundingBox`\), and how confident Rekognition Video is that the person has been correctly detected \(`Confidence`\)\.
 
   Facial features are not returned at every timestamp for which the person is tracked\. Furthermore, in some circumstances a tracked person's body might not be visible, in which case only their face location is returned\.
-
 + **Paging information** – The example shows one page of person detection information\. You can specify how many person elements to return in the `MaxResults` input parameter for `GetPersonTracking`\. If more results than `MaxResults` exist, `GetPersonTracking` returns a token \(`NextToken`\) used to get the next page of results\. For more information, see [Getting Rekognition Video Analysis Results](api-video.md#api-video-get)\.
-
 + **Index** – A unique identifier for tracking the person throughout the video\. 
-
 + **Video information** – The response includes information about the video format \(`VideoMetadata`\) in each page of information returned by `GetPersonDetection`\.
