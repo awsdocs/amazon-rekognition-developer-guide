@@ -6,12 +6,12 @@ An array of `Point` objects, `Polygon`, is returned by [DetectText](API_DetectTe
 
 ## Contents<a name="API_Point_Contents"></a>
 
- **X**   
+ **X**   <a name="rekognition-Type-Point-X"></a>
 The value of the X coordinate for a point on a `Polygon`\.  
 Type: Float  
 Required: No
 
- **Y**   
+ **Y**   <a name="rekognition-Type-Point-Y"></a>
 The value of the Y coordinate for a point on a `Polygon`\.  
 Type: Float  
 Required: No
@@ -19,11 +19,7 @@ Required: No
 ## See Also<a name="API_Point_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/Point) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/Point) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/Point) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/Point) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/Point) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/Point) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/Point) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/Point) 

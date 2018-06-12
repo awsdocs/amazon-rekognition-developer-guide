@@ -8,9 +8,9 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
 
 **To search a video**
 
-1. Create a collection\.
+1. [Create a collection](create-collection-procedure.md)\.
 
-1. Index a face into the collection\.
+1. [Index a face into the collection](add-faces-to-collection-procedure.md)\.
 
 1. Perform [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md)\.
 

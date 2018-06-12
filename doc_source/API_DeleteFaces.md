@@ -8,8 +8,8 @@ This operation requires permissions to perform the `rekognition:DeleteFaces` act
 
 ```
 {
-   "CollectionId": "string",
-   "FaceIds": [ "string" ]
+   "[CollectionId](#rekognition-DeleteFaces-request-CollectionId)": "string",
+   "[FaceIds](#rekognition-DeleteFaces-request-FaceIds)": [ "string" ]
 }
 ```
 
@@ -17,14 +17,14 @@ This operation requires permissions to perform the `rekognition:DeleteFaces` act
 
 The request accepts the following data in JSON format\.
 
- ** CollectionId **   
+ ** [CollectionId](#API_DeleteFaces_RequestSyntax) **   <a name="rekognition-DeleteFaces-request-CollectionId"></a>
 Collection from which to remove the specific faces\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
 Pattern: `[a-zA-Z0-9_.\-]+`   
 Required: Yes
 
- ** FaceIds **   
+ ** [FaceIds](#API_DeleteFaces_RequestSyntax) **   <a name="rekognition-DeleteFaces-request-FaceIds"></a>
 An array of face IDs to delete\.  
 Type: Array of strings  
 Array Members: Minimum number of 1 item\. Maximum number of 4096 items\.  
@@ -35,7 +35,7 @@ Required: Yes
 
 ```
 {
-   "DeletedFaces": [ "string" ]
+   "[DeletedFaces](#rekognition-DeleteFaces-response-DeletedFaces)": [ "string" ]
 }
 ```
 
@@ -45,7 +45,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** DeletedFaces **   
+ ** [DeletedFaces](#API_DeleteFaces_ResponseSyntax) **   <a name="rekognition-DeleteFaces-response-DeletedFaces"></a>
 An array of strings \(face IDs\) of the faces that were deleted\.  
 Type: Array of strings  
 Array Members: Minimum number of 1 item\. Maximum number of 4096 items\.  
@@ -125,21 +125,12 @@ Authorization: AWS4-HMAC-SHA256 Credential=XXXXXXXX/20170105/us-west-2/rekogniti
 ## See Also<a name="API_DeleteFaces_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/DeleteFaces) 
-
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DeleteFaces) 
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DeleteFaces) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DeleteFaces) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DeleteFaces) 
-
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DeleteFaces) 
-
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DeleteFaces) 
-
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DeleteFaces) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/DeleteFaces) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/DeleteFaces) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DeleteFaces) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DeleteFaces) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DeleteFaces) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DeleteFaces) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DeleteFaces) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DeleteFaces) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DeleteFaces) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/DeleteFaces) 

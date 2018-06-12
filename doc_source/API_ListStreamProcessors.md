@@ -6,8 +6,8 @@ Gets a list of stream processors that you have created with [CreateStreamProcess
 
 ```
 {
-   "MaxResults": number,
-   "NextToken": "string"
+   "[MaxResults](#rekognition-ListStreamProcessors-request-MaxResults)": number,
+   "[NextToken](#rekognition-ListStreamProcessors-request-NextToken)": "string"
 }
 ```
 
@@ -15,13 +15,13 @@ Gets a list of stream processors that you have created with [CreateStreamProcess
 
 The request accepts the following data in JSON format\.
 
- ** MaxResults **   
+ ** [MaxResults](#API_ListStreamProcessors_RequestSyntax) **   <a name="rekognition-ListStreamProcessors-request-MaxResults"></a>
 Maximum number of stream processors you want Rekognition Video to return in the response\. The default is 1000\.   
 Type: Integer  
 Valid Range: Minimum value of 1\.  
 Required: No
 
- ** NextToken **   
+ ** [NextToken](#API_ListStreamProcessors_RequestSyntax) **   <a name="rekognition-ListStreamProcessors-request-NextToken"></a>
 If the previous response was incomplete \(because there are more stream processors to retrieve\), Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of stream processors\.   
 Type: String  
 Length Constraints: Maximum length of 255\.  
@@ -31,11 +31,11 @@ Required: No
 
 ```
 {
-   "NextToken": "string",
-   "StreamProcessors": [ 
+   "[NextToken](#rekognition-ListStreamProcessors-response-NextToken)": "string",
+   "[StreamProcessors](#rekognition-ListStreamProcessors-response-StreamProcessors)": [ 
       { 
-         "Name": "string",
-         "Status": "string"
+         "[Name](API_StreamProcessor.md#rekognition-Type-StreamProcessor-Name)": "string",
+         "[Status](API_StreamProcessor.md#rekognition-Type-StreamProcessor-Status)": "string"
       }
    ]
 }
@@ -47,12 +47,12 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** NextToken **   
+ ** [NextToken](#API_ListStreamProcessors_ResponseSyntax) **   <a name="rekognition-ListStreamProcessors-response-NextToken"></a>
 If the response is truncated, Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of stream processors\.   
 Type: String  
 Length Constraints: Maximum length of 255\.
 
- ** StreamProcessors **   
+ ** [StreamProcessors](#API_ListStreamProcessors_ResponseSyntax) **   <a name="rekognition-ListStreamProcessors-response-StreamProcessors"></a>
 List of stream processors that you have created\.  
 Type: Array of [StreamProcessor](API_StreamProcessor.md) objects
 
@@ -85,21 +85,12 @@ HTTP Status Code: 500
 ## See Also<a name="API_ListStreamProcessors_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/ListStreamProcessors) 
-
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/ListStreamProcessors) 
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/ListStreamProcessors) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/ListStreamProcessors) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/ListStreamProcessors) 
-
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/ListStreamProcessors) 
-
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/ListStreamProcessors) 
-
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/ListStreamProcessors) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/ListStreamProcessors) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/ListStreamProcessors) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/ListStreamProcessors) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/ListStreamProcessors) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/ListStreamProcessors) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/ListStreamProcessors) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/ListStreamProcessors) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/ListStreamProcessors) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/ListStreamProcessors) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/ListStreamProcessors) 

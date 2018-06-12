@@ -4,7 +4,7 @@ Kinesis video stream stream that provides the source streaming video for a Rekog
 
 ## Contents<a name="API_KinesisVideoStream_Contents"></a>
 
- **Arn**   
+ **Arn**   <a name="rekognition-Type-KinesisVideoStream-Arn"></a>
 ARN of the Kinesis video stream stream that streams the source video\.  
 Type: String  
 Pattern: `(^arn:([a-z\d-]+):kinesisvideo:([a-z\d-]+):\d{12}:.+$)`   
@@ -13,11 +13,7 @@ Required: No
 ## See Also<a name="API_KinesisVideoStream_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/KinesisVideoStream) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/KinesisVideoStream) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/KinesisVideoStream) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/KinesisVideoStream) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/KinesisVideoStream) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/KinesisVideoStream) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/KinesisVideoStream) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/KinesisVideoStream) 

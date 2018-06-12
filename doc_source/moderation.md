@@ -13,7 +13,7 @@ The `ModerationLabel` array contains labels in the preceding categories and an e
 **Note**  
 Rekognition Unsafe Image Detection API is not an authority on, or in any way purports to be an exhaustive filter of, explicit and suggestive adult content\. Furthermore, the Unsafe Image Detection API does not detect whether an image includes illegal content \(such as child pornography\) or unnatural adult content\.
 
-
+**Topics**
 + [Unsafe Image Detection](#moderate-images)
 + [Unsafe Video Detection](#moderate-video)
 + [Detecting Unsafe Images \(API\)](procedure-moderate-images.md)
@@ -46,7 +46,6 @@ Rekognition Unsafe Image Detection API is not an authority on, or in any way pur
 ```
 
 The response includes the following:
-
 + **Unsafe Image Detection information** – The example shows a list of moderation labels for explicit or suggestive content found in the image\. The list includes the top\-level label and each second\-level label detected in the image\.
 
   **Label** – Each label has a name, an estimation of the confidence that Amazon Rekognition has that the label is accurate, and the name of its parent label\. The parent name for a top\-level label is `""`\.

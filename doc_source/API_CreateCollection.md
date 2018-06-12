@@ -13,7 +13,7 @@ This operation requires permissions to perform the `rekognition:CreateCollection
 
 ```
 {
-   "CollectionId": "string"
+   "[CollectionId](#rekognition-CreateCollection-request-CollectionId)": "string"
 }
 ```
 
@@ -21,7 +21,7 @@ This operation requires permissions to perform the `rekognition:CreateCollection
 
 The request accepts the following data in JSON format\.
 
- ** CollectionId **   
+ ** [CollectionId](#API_CreateCollection_RequestSyntax) **   <a name="rekognition-CreateCollection-request-CollectionId"></a>
 ID for the collection that you are creating\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
@@ -32,9 +32,9 @@ Required: Yes
 
 ```
 {
-   "CollectionArn": "string",
-   "FaceModelVersion": "string",
-   "StatusCode": number
+   "[CollectionArn](#rekognition-CreateCollection-response-CollectionArn)": "string",
+   "[FaceModelVersion](#rekognition-CreateCollection-response-FaceModelVersion)": "string",
+   "[StatusCode](#rekognition-CreateCollection-response-StatusCode)": number
 }
 ```
 
@@ -44,15 +44,15 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** CollectionArn **   
+ ** [CollectionArn](#API_CreateCollection_ResponseSyntax) **   <a name="rekognition-CreateCollection-response-CollectionArn"></a>
 Amazon Resource Name \(ARN\) of the collection\. You can use this to manage permissions on your resources\.   
 Type: String
 
- ** FaceModelVersion **   
+ ** [FaceModelVersion](#API_CreateCollection_ResponseSyntax) **   <a name="rekognition-CreateCollection-response-FaceModelVersion"></a>
 Version number of the face detection model associated with the collection you are creating\.  
 Type: String
 
- ** StatusCode **   
+ ** [StatusCode](#API_CreateCollection_ResponseSyntax) **   <a name="rekognition-CreateCollection-response-StatusCode"></a>
 HTTP status code indicating the result of the operation\.  
 Type: Integer  
 Valid Range: Minimum value of 0\.
@@ -125,21 +125,12 @@ Connection: keep-alive
 ## See Also<a name="API_CreateCollection_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/CreateCollection) 
-
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/CreateCollection) 
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/CreateCollection) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/CreateCollection) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/CreateCollection) 
-
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/CreateCollection) 
-
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/CreateCollection) 
-
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/CreateCollection) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/CreateCollection) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/CreateCollection) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/CreateCollection) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/CreateCollection) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/CreateCollection) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/CreateCollection) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/CreateCollection) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/CreateCollection) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/CreateCollection) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/CreateCollection) 

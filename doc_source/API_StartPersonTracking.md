@@ -10,17 +10,17 @@ To get the results of the person detection operation, first check that the statu
 
 ```
 {
-   "ClientRequestToken": "string",
-   "JobTag": "string",
-   "NotificationChannel": { 
-      "RoleArn": "string",
-      "SNSTopicArn": "string"
+   "[ClientRequestToken](#rekognition-StartPersonTracking-request-ClientRequestToken)": "string",
+   "[JobTag](#rekognition-StartPersonTracking-request-JobTag)": "string",
+   "[NotificationChannel](#rekognition-StartPersonTracking-request-NotificationChannel)": { 
+      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
+      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
    },
-   "Video": { 
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[Video](#rekognition-StartPersonTracking-request-Video)": { 
+      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    }
 }
@@ -30,26 +30,26 @@ To get the results of the person detection operation, first check that the statu
 
 The request accepts the following data in JSON format\.
 
- ** ClientRequestToken **   
+ ** [ClientRequestToken](#API_StartPersonTracking_RequestSyntax) **   <a name="rekognition-StartPersonTracking-request-ClientRequestToken"></a>
 Idempotent token used to identify the start request\. If you use the same token with multiple `StartPersonTracking` requests, the same `JobId` is returned\. Use `ClientRequestToken` to prevent the same job from being accidently started more than once\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
 Required: No
 
- ** JobTag **   
+ ** [JobTag](#API_StartPersonTracking_RequestSyntax) **   <a name="rekognition-StartPersonTracking-request-JobTag"></a>
 Unique identifier you specify to identify the job in the completion status published to the Amazon Simple Notification Service topic\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.\-:]+`   
 Required: No
 
- ** NotificationChannel **   
+ ** [NotificationChannel](#API_StartPersonTracking_RequestSyntax) **   <a name="rekognition-StartPersonTracking-request-NotificationChannel"></a>
 The Amazon SNS topic ARN you want Rekognition Video to publish the completion status of the people detection operation to\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
- ** Video **   
+ ** [Video](#API_StartPersonTracking_RequestSyntax) **   <a name="rekognition-StartPersonTracking-request-Video"></a>
 The video in which you want to detect people\. The video must be stored in an Amazon S3 bucket\.  
 Type: [Video](API_Video.md) object  
 Required: Yes
@@ -58,7 +58,7 @@ Required: Yes
 
 ```
 {
-   "JobId": "string"
+   "[JobId](#rekognition-StartPersonTracking-response-JobId)": "string"
 }
 ```
 
@@ -68,7 +68,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** JobId **   
+ ** [JobId](#API_StartPersonTracking_ResponseSyntax) **   <a name="rekognition-StartPersonTracking-response-JobId"></a>
 The identifier for the person detection job\. Use `JobId` to identify the job in a subsequent call to `GetPersonTracking`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
@@ -97,7 +97,7 @@ Amazon Rekognition is unable to access the S3 object specified in the request\.
 HTTP Status Code: 400
 
  **LimitExceededException**   
-  
+An Amazon Rekognition service limit was exceeded\. For example, if you start too many Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
 HTTP Status Code: 400
 
  **ProvisionedThroughputExceededException**   
@@ -115,21 +115,12 @@ HTTP Status Code: 400
 ## See Also<a name="API_StartPersonTracking_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/StartPersonTracking) 
-
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartPersonTracking) 
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartPersonTracking) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartPersonTracking) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartPersonTracking) 
-
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartPersonTracking) 
-
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartPersonTracking) 
-
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartPersonTracking) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/StartPersonTracking) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/StartPersonTracking) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartPersonTracking) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartPersonTracking) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartPersonTracking) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartPersonTracking) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartPersonTracking) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartPersonTracking) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartPersonTracking) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/StartPersonTracking) 

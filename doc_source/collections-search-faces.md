@@ -1,7 +1,6 @@
 # Searching for Faces with Rekognition Image Collection<a name="collections-search-faces"></a>
 
 After you create a face collection and store faces, you can search a face collection for face matches\. For more information about storing faces in a face collection, see [Managing Collections](managing-collections.md) and [Storing Faces in a Face Collection](collections-index-faces.md)\. With Amazon Rekognition, you can do the following:
-
 + **Search a face collection given an image \([SearchFacesByImage](API_SearchFacesByImage.md)\)** – For a given input image \(\.jpeg or \.png\), the operation first detects the face in the input image, and then searches the specified face collection for similar faces\. 
 **Note**  
 If the service detects multiple faces in the input image, it uses the largest face detected for searching the face collection\.
@@ -20,7 +19,6 @@ If the service detects multiple faces in the input image, it uses the largest fa
       "FaceMatches": [ list of face matches found ]
   }
   ```
-
 + **Search a face collection given a face ID \([SearchFaces](API_SearchFaces.md)\) ** – Given a face ID \(each face stored in the face collection has a face ID\), `SearchFaces` searches the specified face collection for similar faces\. The response doesn't include the face you are searching for, it includes only similar faces\. 
 
   The operation returns an array of face matches found and the face ID you provided as input\.
@@ -75,7 +73,5 @@ By default, both of these operations return faces for which the algorithm detect
 ```
 
 The `CompareFaces` operation and the two search faces operations differ as follows:
-
 + The `CompareFaces` operation compares a face in a source image with faces in the target image\. The scope of this comparison is limited to the faces detected in the target image\. For more information, see [Compare Faces in Images](faces.md#faces-comparefaces)\.
-
 + `SearchFaces` and `SearchFacesByImage` compare a face \(identified either by a `FaceId` or an input image\) with all faces in a given face collection\. Therefore, the scope of this search is much larger\. Also, because the facial feature information is persisted for faces already stored in the face collection, you can search for matching faces multiple times\.

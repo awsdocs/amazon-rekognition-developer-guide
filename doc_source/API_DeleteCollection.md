@@ -8,7 +8,7 @@ This operation requires permissions to perform the `rekognition:DeleteCollection
 
 ```
 {
-   "CollectionId": "string"
+   "[CollectionId](#rekognition-DeleteCollection-request-CollectionId)": "string"
 }
 ```
 
@@ -16,7 +16,7 @@ This operation requires permissions to perform the `rekognition:DeleteCollection
 
 The request accepts the following data in JSON format\.
 
- ** CollectionId **   
+ ** [CollectionId](#API_DeleteCollection_RequestSyntax) **   <a name="rekognition-DeleteCollection-request-CollectionId"></a>
 ID of the collection to delete\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
@@ -27,7 +27,7 @@ Required: Yes
 
 ```
 {
-   "StatusCode": number
+   "[StatusCode](#rekognition-DeleteCollection-response-StatusCode)": number
 }
 ```
 
@@ -37,7 +37,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** StatusCode **   
+ ** [StatusCode](#API_DeleteCollection_ResponseSyntax) **   <a name="rekognition-DeleteCollection-response-StatusCode"></a>
 HTTP status code that indicates the result of the operation\.  
 Type: Integer  
 Valid Range: Minimum value of 0\.
@@ -108,21 +108,12 @@ Connection: keep-alive
 ## See Also<a name="API_DeleteCollection_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/DeleteCollection) 
-
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DeleteCollection) 
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DeleteCollection) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DeleteCollection) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DeleteCollection) 
-
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DeleteCollection) 
-
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DeleteCollection) 
-
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DeleteCollection) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/DeleteCollection) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/DeleteCollection) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DeleteCollection) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DeleteCollection) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DeleteCollection) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DeleteCollection) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DeleteCollection) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DeleteCollection) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DeleteCollection) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/DeleteCollection) 

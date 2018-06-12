@@ -8,18 +8,18 @@ Rekognition Video can detect faces in a video stored in an Amazon S3 bucket\. Us
 
 ```
 {
-   "ClientRequestToken": "string",
-   "FaceAttributes": "string",
-   "JobTag": "string",
-   "NotificationChannel": { 
-      "RoleArn": "string",
-      "SNSTopicArn": "string"
+   "[ClientRequestToken](#rekognition-StartFaceDetection-request-ClientRequestToken)": "string",
+   "[FaceAttributes](#rekognition-StartFaceDetection-request-FaceAttributes)": "string",
+   "[JobTag](#rekognition-StartFaceDetection-request-JobTag)": "string",
+   "[NotificationChannel](#rekognition-StartFaceDetection-request-NotificationChannel)": { 
+      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
+      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
    },
-   "Video": { 
-      "S3Object": { 
-         "Bucket": "string",
-         "Name": "string",
-         "Version": "string"
+   "[Video](#rekognition-StartFaceDetection-request-Video)": { 
+      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
+         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
+         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
+         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    }
 }
@@ -29,14 +29,14 @@ Rekognition Video can detect faces in a video stored in an Amazon S3 bucket\. Us
 
 The request accepts the following data in JSON format\.
 
- ** ClientRequestToken **   
+ ** [ClientRequestToken](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-ClientRequestToken"></a>
 Idempotent token used to identify the start request\. If you use the same token with multiple `StartFaceDetection` requests, the same `JobId` is returned\. Use `ClientRequestToken` to prevent the same job from being accidently started more than once\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
 Required: No
 
- ** FaceAttributes **   
+ ** [FaceAttributes](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-FaceAttributes"></a>
 The face attributes you want returned\.  
  `DEFAULT` \- The following subset of facial attributes are returned: BoundingBox, Confidence, Pose, Quality and Landmarks\.   
  `ALL` \- All facial attributes are returned\.  
@@ -44,19 +44,19 @@ Type: String
 Valid Values:` DEFAULT | ALL`   
 Required: No
 
- ** JobTag **   
+ ** [JobTag](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-JobTag"></a>
 Unique identifier you specify to identify the job in the completion status published to the Amazon Simple Notification Service topic\.   
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.\-:]+`   
 Required: No
 
- ** NotificationChannel **   
+ ** [NotificationChannel](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-NotificationChannel"></a>
 The ARN of the Amazon SNS topic to which you want Rekognition Video to publish the completion status of the face detection operation\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
- ** Video **   
+ ** [Video](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-Video"></a>
 The video in which you want to detect faces\. The video must be stored in an Amazon S3 bucket\.  
 Type: [Video](API_Video.md) object  
 Required: Yes
@@ -65,7 +65,7 @@ Required: Yes
 
 ```
 {
-   "JobId": "string"
+   "[JobId](#rekognition-StartFaceDetection-response-JobId)": "string"
 }
 ```
 
@@ -75,7 +75,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** JobId **   
+ ** [JobId](#API_StartFaceDetection_ResponseSyntax) **   <a name="rekognition-StartFaceDetection-response-JobId"></a>
 The identifier for the face detection job\. Use `JobId` to identify the job in a subsequent call to `GetFaceDetection`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
@@ -104,7 +104,7 @@ Amazon Rekognition is unable to access the S3 object specified in the request\.
 HTTP Status Code: 400
 
  **LimitExceededException**   
-  
+An Amazon Rekognition service limit was exceeded\. For example, if you start too many Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
 HTTP Status Code: 400
 
  **ProvisionedThroughputExceededException**   
@@ -122,21 +122,12 @@ HTTP Status Code: 400
 ## See Also<a name="API_StartFaceDetection_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/StartFaceDetection) 
-
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartFaceDetection) 
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartFaceDetection) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartFaceDetection) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartFaceDetection) 
-
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartFaceDetection) 
-
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartFaceDetection) 
-
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartFaceDetection) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/StartFaceDetection) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/StartFaceDetection) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartFaceDetection) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartFaceDetection) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartFaceDetection) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartFaceDetection) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartFaceDetection) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartFaceDetection) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartFaceDetection) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/StartFaceDetection) 

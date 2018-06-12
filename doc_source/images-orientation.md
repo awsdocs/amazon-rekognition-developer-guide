@@ -5,23 +5,15 @@ Applications that use Rekognition Image commonly need to display the images that
 To display a box around a face, you need the coordinates for the face's bounding box and, if the box isn't oriented correctly, you might need to adjust those coordinates\. Rekognition Image face detection operations return bounding box coordinates for each detected face\. 
 
 The following Rekognition Image operations return information for correcting an image's orientation and bounding box coordinates: 
-
 + [CompareFaces](API_CompareFaces.md)
-
 + [DetectFaces](API_DetectFaces.md)
-
 + [DetectLabels](API_DetectLabels.md) \(returns only information to correct image orientation\)
-
 + [IndexFaces](API_IndexFaces.md)
-
 + [RecognizeCelebrities](API_RecognizeCelebrities.md)
 
 This example shows how to get the following information for your code:
-
 + The estimated orientation of an image \(if there is no orientation information in Exif metadata\)
-
 + The bounding box coordinates for the faces detected in an image 
-
 + Translated bounding box coordinates for bounding boxes that are affected by estimated image orientation
 
 Use the information in this example to ensure that your images are oriented correctly and that bounding boxes are displayed in the correct location in your application\. 
@@ -58,9 +50,7 @@ To display a bounding box around a face similar to the box shown in the followin
 ### Displaying Bounding Boxes When Orientation Information Is Not Present in Exif Metadata<a name="images-no-exif-metadata"></a>
 
 If an image doesn't have Exif metadata, or if the `orientation` field in the Exif metadata is not populated, Rekognition Image operations return the following:
-
 + An estimated orientation for the image
-
 + The bounding box coordinates oriented to the estimated orientation
 
 If you need to rotate the image to display it correctly, you also need to rotate the bounding box\.
@@ -84,19 +74,15 @@ When you rotate the image to 0 degrees orientation, you also need to rotate the 
 1. Translate the top and left bounding box coordinates to 0 degrees orientation and convert them to pixel points on the image in your code\. Use the formula in the following list that matches the estimated orientation you noted in step 2\.
 
    Note the following definitions: 
-
    + `ROTATE_(n)` is the estimated image orientation returned by an Rekognition Image operation\.
-
    + `<face>` represents information about the face that is returned by an Rekognition Image operation\. For example, the [FaceDetail](API_FaceDetail.md) data type that the [DetectFaces](API_DetectFaces.md) operation returns contains bounding box information for faces detected in the source image\.
-
    + `image.width` and `image.height` are pixel values for the width and height of the source image\. 
-
    + The bounding box coordinates are a value between 0 and 1 relative to the image size\. For example, for an image with 0 degree orientation, a `BoundingBox.left` value of 0\.9 puts the left coordinate close to the right side of the image\. To display the box, translate the bounding box coordinate values to pixel points on the image and rotate them to 0 degrees, as shown in each of the following formulas\. For more information, see [BoundingBox](API_BoundingBox.md)\.  
 **ROTATE\_0**  
 `left = image.width*BoundingBox.Left`  
 `top = image.height*BoundingBox.Top`  
 **ROTATE\_90**  
-`left = image.height * (1 - (<face>.BoundingBox.Top + <face>.BoundingBox.Height)`  
+`left = image.height * (1 - (<face>.BoundingBox.Top + <face>.BoundingBox.Height))`  
 `top = image.width * <face>.BoundingBox.Left`  
 **ROTATE\_180**  
 `left = image.width - (image.width*(<face>.BoundingBox.Left+<face>.BoundingBox.Width))`  
@@ -117,9 +103,7 @@ When you rotate the image to 0 degrees orientation, you also need to rotate the 
 ### Displaying Bounding Boxes When Orientation Information is Present in Exif Metadata<a name="images-exif-metadata"></a>
 
 If an image's orientation is included in Exif metadata, Rekognition Image operations do the following:
-
 + Return null in the orientation correction field in the operation's response\. To rotate the image, use the orientation provided in the Exif metadata in your code\.
-
 + Return bounding box coordinates already oriented to 0 degrees\. To show the bounding box in the correct position, use the coordinates that were returned\. You do not need to translate them\.
 
 ## Example: Getting Image Orientation and Bounding Box Coordinates For an Image<a name="images-correcting-image-orientation-java"></a>

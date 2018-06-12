@@ -11,22 +11,22 @@ The `width` and `height` values represent the dimensions of the bounding box as 
 
 ## Contents<a name="API_BoundingBox_Contents"></a>
 
- **Height**   
+ **Height**   <a name="rekognition-Type-BoundingBox-Height"></a>
 Height of the bounding box as a ratio of the overall image height\.  
 Type: Float  
 Required: No
 
- **Left**   
+ **Left**   <a name="rekognition-Type-BoundingBox-Left"></a>
 Left coordinate of the bounding box as a ratio of overall image width\.  
 Type: Float  
 Required: No
 
- **Top**   
+ **Top**   <a name="rekognition-Type-BoundingBox-Top"></a>
 Top coordinate of the bounding box as a ratio of overall image height\.  
 Type: Float  
 Required: No
 
- **Width**   
+ **Width**   <a name="rekognition-Type-BoundingBox-Width"></a>
 Width of the bounding box as a ratio of the overall image width\.  
 Type: Float  
 Required: No
@@ -34,11 +34,7 @@ Required: No
 ## See Also<a name="API_BoundingBox_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/BoundingBox) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/BoundingBox) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/BoundingBox) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/BoundingBox) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/BoundingBox) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/BoundingBox) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/BoundingBox) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/BoundingBox) 

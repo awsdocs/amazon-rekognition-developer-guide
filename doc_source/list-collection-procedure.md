@@ -19,7 +19,6 @@ For more information, see [Managing Collections](managing-collections.md)\.
 1. To run the command, choose **Enter**\. The JSON output for the `ListCollections` API operation is displayed\. 
 
 **To list collections \(AWS SDK for Java\)**
-
 + To list collections, use the following AWS SDK for Java example code\.
 
   ```

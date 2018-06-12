@@ -14,13 +14,15 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 
 **To configure Rekognition Video and upload a video**
 
-1. If you haven't already, create an IAM service role to give Rekognition Video access to multiple Amazon SNS topics\. Note the ARN\. For more information, see [](api-video-roles.md#api-video-roles-all-topics)\.
+1. Configure user access to Rekognition Video and configure Rekognition Video access to Amazon SNS\. For more information, see [Configuring Rekognition Video](api-video-roles.md)\.
 
 1. [Create an Amazon SNS topic](http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic Amazon Resource Name \(ARN\)\. 
 
 1. [Create an Amazon SQS standard queue](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-create-queue.html) by using the [Amazon SQS console](https://console.aws.amazon.com/sqs/)\. Note the queue ARN\.
 
 1. [Subscribe the queue to the topic](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-subscribe-queue-sns-topic.html) you created in step 2\.
+
+1. [Give permission to the Amazon SNS topic to send messages to the Amazon SQS queue](http://docs.aws.amazon.com/sns/latest/dg/SendMessageToSQS.html#SendMessageToSQS.sqs.permissions)\.
 
 1. Upload an \.mp4, \.mov or \.avi format video file to your S3 bucket\. While developing and testing, we suggest using short videos no longer than 30 seconds in length\.
 
@@ -31,7 +33,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 1. Run the following AWS CLI command to start detecting labels in a video\.
 
    ```
-   aws rekognition start-label-detection --video S3Object={Bucket="bucketname",Name="videofile"} \
+   aws rekognition start-label-detection --video "S3Object={Bucket="bucketname",Name="videofile"}" \
    --endpoint-url Endpoint \
    --notification-channel "SNSTopicArn=TopicARN,RoleArn=RoleARN" \
    --region us-east-1 \
@@ -39,15 +41,10 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
    ```
 
    Update the following values:
-
-   + Change `bucketname` and `videofile` to the Amazon S3 bucket name and file name of the video that you want to detect labels in\.
-
+   + Change `bucketname` and `videofile` to the Amazon S3 bucket name and file name that you specified in step 6\.
    + Change `Endpoint` and `us-east-1` to the AWS endpoint and region that you're using\.
-
    + Change `TopicARN` to the ARN of the Amazon SNS topic you created in step 2 of the previous procedure\.
-
    + Change `RoleARN` to the ARN of the IAM role you created in step 1 of the previous procedure\.
-
    + Change `RekognitionUser` to an AWS account that has permissions to call Rekognition Video operations\.
 
 1. Note the value of `JobId` in the response\. The response looks similar to the following JSON example\.
@@ -72,11 +69,8 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
    ```
 
    Update the following values:
-
    + Change `JobId` to match the job identifier that you noted in step 2\.
-
    + Change `Endpoint` and `us-east-1` to the AWS endpoint and region that you're using\.
-
    + Change `RekognitionUser` to an AWS account that has permissions to call Rekognition Video operations\.
 
    The results look similar to the following example JSON:

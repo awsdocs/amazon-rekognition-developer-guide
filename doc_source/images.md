@@ -1,24 +1,19 @@
 # Working with Images<a name="images"></a>
 
 This section covers the types of detection and recognition that Rekognition Image can perform on images\. Rekognition Image can perform the following analysis on images: 
-
 + Label detection
-
 + Face detection and comparison
-
 + Celebrity recognition
-
 + Image moderation
-
 + Text in image detection
 
-These are performed by non\-storage API operations where Rekognition Image doesn't persist any information discovered by the operation\. No input image bytes are persisted by non\-storage API operations\. For more information, see [Non Storage and Storage API Operations](how-it-works-storage-non-storage.md)\.
+These are performed by non\-storage API operations where Rekognition Image doesn't persist any information discovered by the operation\. No input image bytes are persisted by non\-storage API operations\. For more information, see [Non\-Storage and Storage API Operations](how-it-works-storage-non-storage.md)\.
 
 Rekognition Image can also store facial metadata in collections for later retrieval\. For more information, see [Searching Faces in a Collection](collections.md)\.
 
 In this section you use the Rekognition Image API operations to analyze images stored in an Amazon S3 bucket and images bytes loaded from the local file system\. This section also covers getting image orientation information from a \.jpg image\. 
 
-
+**Topics**
 + [Images](#images-information)
 + [Best Practices for Working With Images](image-best-practices.md)
 + [Analysing Images Stored in an Amazon S3 Bucket](images-s3.md)
@@ -35,7 +30,7 @@ If you use HTTP and pass the image bytes as part of an Rekognition Image operati
 
 If you use the AWS CLI to call Rekognition Image operations, passing image bytes as part of the call is not supported\. You must first upload the image to an Amazon S3 bucket and then call the operation referencing the uploaded image\.
 
-For information about ensuring the lowest possible latency for Rekognition Image operations, see [](image-best-practices.md#operation-latency)\. 
+For information about ensuring the lowest possible latency for Rekognition Image operations, see [Rekognition Image Operation Latency](image-best-practices.md#operation-latency)\. 
 
 ### Correcting Image Orientation<a name="images-image-orientation-correction"></a>
 

@@ -15,7 +15,6 @@ The following examples show how you can use the operation with the AWS CLI, the 
    For instructions, see [Uploading Objects into Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 1. Use the following example code to call the `CompareFaces` operation\.
-
    + Using AWS CLI
 
      ```
@@ -25,7 +24,6 @@ The following examples show how you can use the operation with the AWS CLI, the 
      --region us-east-1 \
      --profile adminuser
      ```
-
    + Using the AWS SDK for Java\. This example compares two images loaded from the local file system\. 
 
      ```
@@ -134,7 +132,6 @@ The following examples show how you can use the operation with the AWS CLI, the 
         }
      }
      ```
-
    + Using AWS SDK for Python \(Boto\)\.
 
      ```

@@ -15,10 +15,10 @@ This operation requires permissions to perform the `rekognition:SearchFaces` act
 
 ```
 {
-   "CollectionId": "string",
-   "FaceId": "string",
-   "FaceMatchThreshold": number,
-   "MaxFaces": number
+   "[CollectionId](#rekognition-SearchFaces-request-CollectionId)": "string",
+   "[FaceId](#rekognition-SearchFaces-request-FaceId)": "string",
+   "[FaceMatchThreshold](#rekognition-SearchFaces-request-FaceMatchThreshold)": number,
+   "[MaxFaces](#rekognition-SearchFaces-request-MaxFaces)": number
 }
 ```
 
@@ -26,26 +26,26 @@ This operation requires permissions to perform the `rekognition:SearchFaces` act
 
 The request accepts the following data in JSON format\.
 
- ** CollectionId **   
+ ** [CollectionId](#API_SearchFaces_RequestSyntax) **   <a name="rekognition-SearchFaces-request-CollectionId"></a>
 ID of the collection the face belongs to\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
 Pattern: `[a-zA-Z0-9_.\-]+`   
 Required: Yes
 
- ** FaceId **   
+ ** [FaceId](#API_SearchFaces_RequestSyntax) **   <a name="rekognition-SearchFaces-request-FaceId"></a>
 ID of a face to find matches for in the collection\.  
 Type: String  
 Pattern: `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}`   
 Required: Yes
 
- ** FaceMatchThreshold **   
+ ** [FaceMatchThreshold](#API_SearchFaces_RequestSyntax) **   <a name="rekognition-SearchFaces-request-FaceMatchThreshold"></a>
 Optional value specifying the minimum confidence in the face match to return\. For example, don't return any matches where confidence in matches is less than 70%\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- ** MaxFaces **   
+ ** [MaxFaces](#API_SearchFaces_RequestSyntax) **   <a name="rekognition-SearchFaces-request-MaxFaces"></a>
 Maximum number of faces to return\. The operation returns the maximum number of faces with the highest confidence in the match\.  
 Type: Integer  
 Valid Range: Minimum value of 1\. Maximum value of 4096\.  
@@ -55,26 +55,25 @@ Required: No
 
 ```
 {
-   "FaceMatches": [ 
+   "[FaceMatches](#rekognition-SearchFaces-response-FaceMatches)": [ 
       { 
-         "Face": { 
-            "AssociationScore": number,
-            "BoundingBox": { 
-               "Height": number,
-               "Left": number,
-               "Top": number,
-               "Width": number
+         "[Face](API_FaceMatch.md#rekognition-Type-FaceMatch-Face)": { 
+            "[BoundingBox](API_Face.md#rekognition-Type-Face-BoundingBox)": { 
+               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
             },
-            "Confidence": number,
-            "ExternalImageId": "string",
-            "FaceId": "string",
-            "ImageId": "string"
+            "[Confidence](API_Face.md#rekognition-Type-Face-Confidence)": number,
+            "[ExternalImageId](API_Face.md#rekognition-Type-Face-ExternalImageId)": "string",
+            "[FaceId](API_Face.md#rekognition-Type-Face-FaceId)": "string",
+            "[ImageId](API_Face.md#rekognition-Type-Face-ImageId)": "string"
          },
-         "Similarity": number
+         "[Similarity](API_FaceMatch.md#rekognition-Type-FaceMatch-Similarity)": number
       }
    ],
-   "FaceModelVersion": "string",
-   "SearchedFaceId": "string"
+   "[FaceModelVersion](#rekognition-SearchFaces-response-FaceModelVersion)": "string",
+   "[SearchedFaceId](#rekognition-SearchFaces-response-SearchedFaceId)": "string"
 }
 ```
 
@@ -84,15 +83,15 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** FaceMatches **   
+ ** [FaceMatches](#API_SearchFaces_ResponseSyntax) **   <a name="rekognition-SearchFaces-response-FaceMatches"></a>
 An array of faces that matched the input face, along with the confidence in the match\.  
 Type: Array of [FaceMatch](API_FaceMatch.md) objects
 
- ** FaceModelVersion **   
+ ** [FaceModelVersion](#API_SearchFaces_ResponseSyntax) **   <a name="rekognition-SearchFaces-response-FaceModelVersion"></a>
 Version number of the face detection model associated with the input collection \(`CollectionId`\)\.  
 Type: String
 
- ** SearchedFaceId **   
+ ** [SearchedFaceId](#API_SearchFaces_ResponseSyntax) **   <a name="rekognition-SearchFaces-response-SearchedFaceId"></a>
 ID of the face that was searched for matches in a collection\.  
 Type: String  
 Pattern: `[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}` 
@@ -215,21 +214,12 @@ Connection: keep-alive
 ## See Also<a name="API_SearchFaces_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/SearchFaces) 
-
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/SearchFaces) 
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/SearchFaces) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/SearchFaces) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/SearchFaces) 
-
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/SearchFaces) 
-
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/SearchFaces) 
-
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/SearchFaces) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/SearchFaces) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/SearchFaces) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/SearchFaces) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/SearchFaces) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/SearchFaces) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/SearchFaces) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/SearchFaces) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/SearchFaces) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/SearchFaces) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/SearchFaces) 

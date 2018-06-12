@@ -12,11 +12,11 @@ For more information, see [Managing Collections](managing-collections.md)\.
 
    For instructions, see [Uploading Objects into Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
-1. On the command line, type the following command\. Replace `bucketname` and `input.jpg` with the S3 bucket name and image name that you used in step 1\. Replace `collection-id` with the name of the collection you want the face to be stored in\.
+1. On the command line, type the following command\. Replace `bucket-name` and `file-name` with the S3 bucket name and image name that you used in step 1\. Replace `collection-id` with the name of the collection you want the face to be stored in\.
 
    ```
    aws rekognition index-faces \
-         --image '{"S3Object":{"Bucket":"bucketname","input.jpg":"file-name"}}' \
+         --image '{"S3Object":{"Bucket":"bucket-name","Name":"file-name"}}' \
          --collection-id "collection-id" \
          --detection-attributes "ALL" \
          --external-image-id "example-image.jpg" \
@@ -26,9 +26,8 @@ For more information, see [Managing Collections](managing-collections.md)\.
 
 1. To run the command, choose **Enter**\. The JSON output for the `IndexFaces` operation is displayed\. 
 
-**To add faces to a collection collection \(AWS SDK for Java\)**
-
-+ To delete a collection, use the following AWS SDK for Java example code\.
+**To add faces to a collection \(AWS SDK for Java\)**
++ To add faces to a collection, use the following AWS SDK for Java example code\.
 
   ```
   package com.amazonaws.samples;
@@ -48,9 +47,9 @@ For more information, see [Managing Collections](managing-collections.md)\.
   import com.amazonaws.services.rekognition.model.S3Object;
   
   public class AddFaces {
-     public static final String collectionId = "exampleCollection";
-     public static final String bucket = "photo-label-detect";
-     public static final String fileName = "filename.jpg";
+     public static final String collectionId = "collection-id";
+     public static final String bucket = "bucket-name";
+     public static final String fileName = "example.jpg";
   
      public static void main(String[] args) throws Exception {
         AWSCredentials credentials;

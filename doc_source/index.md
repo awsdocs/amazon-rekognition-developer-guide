@@ -1,7 +1,7 @@
 # Amazon Rekognition Developer Guide
 
 -----
-*****Copyright &copy; 2017 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -18,7 +18,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Amazon Rekognition: How It Works](how-it-works.md)
    + [Types of Detection and Recognition](how-it-works-types.md)
    + [Image and Video Operations](how-it-works-operations-intro.md)
-   + [Non Storage and Storage API Operations](how-it-works-storage-non-storage.md)
+   + [Non-Storage and Storage API Operations](how-it-works-storage-non-storage.md)
    + [Model Versioning](face-detection-model.md)
 + [Getting Started with Amazon Rekognition](getting-started.md)
    + [Step 1: Set Up an AWS Account and Create an Administrator User](setting-up.md)
@@ -38,13 +38,19 @@ Amazon's trademarks and trade dress may not be used in
    + [Best Practices for Working With Images](image-best-practices.md)
    + [Analysing Images Stored in an Amazon S3 Bucket](images-s3.md)
    + [Analysing an Image Loaded from a Local File System](images-bytes.md)
+      + [Using Java](images-bytes-java.md)
+      + [Using JavaScript](image-bytes-javascript.md)
+      + [Using Python](images-bytes-python.md)
+      + [Using PHP](images-bytes-php.md)
    + [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)
 + [Working with Stored Videos](video.md)
    + [Calling Rekognition Video Operations](api-video.md)
-   + [Giving Rekognition Video Access to Your Amazon SNS Topics](api-video-roles.md)
-   + [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)
+   + [Configuring Rekognition Video](api-video-roles.md)
    + [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md)
+   + [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)
+   + [Tutorial: Creating an Amazon Rekognition Lambda Function](stored-video-lambda.md)
    + [Reference: Video Analysis Results Notification](video-notification-payload.md)
+   + [Troubleshooting Rekognition Video](video-troubleshooting.md)
 + [Working with Streaming Videos](streaming-video.md)
    + [Recognizing Faces in a Streaming Video](recognize-faces-in-a-video-stream.md)
    + [Giving Rekognition Video Access to Your Kinesis Streams](api-streaming-video-roles.md)
@@ -52,7 +58,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Reading Streaming Video Analysis Results](streaming-video-kinesis-output.md)
    + [Reference: Kinesis Face Recognition Record](streaming-video-kinesis-output-reference.md)
       + [InputInformation](streaming-video-kinesis-output-reference-inputinformation.md)
-      + [KinesisVideo](streaming-video-kinesis-output-reference-kinesisvideostreams.md)
+      + [KinesisVideo](streaming-video-kinesis-output-reference-kinesisvideostreams-kinesisvideo.md)
       + [StreamProcessorInformation](streaming-video-kinesis-output-reference-streamprocessorinformation.md)
       + [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md)
       + [DetectedFace](streaming-video-kinesis-output-reference-detectedface.md)
@@ -91,6 +97,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Monitoring](rekognition_monitoring.md)
    + [Monitoring Rekognition](rekognition-monitoring.md)
    + [CloudWatch Metrics for Rekognition](cloudwatch-metricsdim.md)
+   + [Logging Amazon Rekognition API Calls with AWS CloudTrail](logging-using-cloudtrail.md)
 + [API Reference](API_Reference.md)
    + [Actions](API_Operations.md)
       + [CompareFaces](API_CompareFaces.md)

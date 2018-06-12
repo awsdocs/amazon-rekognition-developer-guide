@@ -30,15 +30,11 @@ The image must be less than 5MB in size and must be of JPEG or PNG format\.
 1. Choose **Face comparison**\.
 
 1. For your source image, do one of the following: 
-
    + Upload an image – Choose **Upload** on the left, go to the location where you stored your source image, and then select the image\. 
-
    + Use a URL – Type the URL of your source image in the text box, and then choose **Go**\.
 
 1. For your target image, do one of the following: 
-
    + Upload an image – Choose **Upload** on the right, go to the location where you stored your source image, and then select the image\. 
-
    + Use a URL – Type the URL of your source image in the text box, and then choose **Go**\.
 
 1. Rekognition matches the largest face in your source image with up to 100 faces in the target image and then displays the similarity score for each pair in the **Results** pane\.

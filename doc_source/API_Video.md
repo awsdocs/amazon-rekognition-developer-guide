@@ -4,7 +4,7 @@ Video file stored in an Amazon S3 bucket\. Amazon Rekognition video start operat
 
 ## Contents<a name="API_Video_Contents"></a>
 
- **S3Object**   
+ **S3Object**   <a name="rekognition-Type-Video-S3Object"></a>
 The Amazon S3 bucket name and file name for the video\.  
 Type: [S3Object](API_S3Object.md) object  
 Required: No
@@ -12,11 +12,7 @@ Required: No
 ## See Also<a name="API_Video_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/Video) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/Video) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/Video) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/Video) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/Video) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/Video) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/Video) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/Video) 

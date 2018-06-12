@@ -6,7 +6,7 @@ Deletes the stream processor identified by `Name`\. You assign the value for `Na
 
 ```
 {
-   "Name": "string"
+   "[Name](#rekognition-DeleteStreamProcessor-request-Name)": "string"
 }
 ```
 
@@ -14,7 +14,7 @@ Deletes the stream processor identified by `Name`\. You assign the value for `Na
 
 The request accepts the following data in JSON format\.
 
- ** Name **   
+ ** [Name](#API_DeleteStreamProcessor_RequestSyntax) **   <a name="rekognition-DeleteStreamProcessor-request-Name"></a>
 The name of the stream processor you want to delete\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
@@ -58,21 +58,12 @@ HTTP Status Code: 500
 ## See Also<a name="API_DeleteStreamProcessor_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-
-+  [AWS Command Line Interface](http://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/DeleteStreamProcessor) 
-
-+  [AWS SDK for \.NET](http://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DeleteStreamProcessor) 
-
-+  [AWS SDK for C\+\+](http://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DeleteStreamProcessor) 
-
-+  [AWS SDK for Go](http://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DeleteStreamProcessor) 
-
-+  [AWS SDK for Java](http://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DeleteStreamProcessor) 
-
-+  [AWS SDK for JavaScript](http://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DeleteStreamProcessor) 
-
-+  [AWS SDK for PHP V3](http://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DeleteStreamProcessor) 
-
-+  [AWS SDK for Python](http://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DeleteStreamProcessor) 
-
-+  [AWS SDK for Ruby V2](http://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/DeleteStreamProcessor) 
++  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/DeleteStreamProcessor) 
++  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DeleteStreamProcessor) 
++  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DeleteStreamProcessor) 
++  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DeleteStreamProcessor) 
++  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DeleteStreamProcessor) 
++  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DeleteStreamProcessor) 
++  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DeleteStreamProcessor) 
++  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DeleteStreamProcessor) 
++  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/DeleteStreamProcessor) 

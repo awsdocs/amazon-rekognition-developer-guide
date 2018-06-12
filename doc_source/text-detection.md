@@ -1,15 +1,10 @@
 # Detecting Text<a name="text-detection"></a>
 
 Amazon Rekognition Text in Image can detect text in images and convert it into machine\-readable text\. You can use the machine\-readable text to implement solutions such as:
-
 + Visual search\. For example, retrieving and displaying images that contain the same text\.
-
 + Content insights\. For example, providing insights into themes that occur in text recognized in extracted video frames\. Your application can search recognized text for relevant content, such as news, sport scores, athlete numbers, and captions\.
-
 + Navigation\. For example, developing a speech enabled mobile app for visually impaired people that recognizes the names of restaurants, shops, or street signs\. 
-
 + Public safety and transportation support\. For example, detecting car licence plate numbers from traffic camera images\. 
-
 + Filtering\. For example, filtering out personally identifiable information from images\. 
 
 [DetectText](API_DetectText.md) detects text in \.jpeg or \.png format images and supports most fonts including highly stylized ones\. After detecting text, `DetectText` creates a representation of detected words and lines of text and shows the relationship between them\. The `DetectText` API also tells you where the text is on an image\.
@@ -30,18 +25,13 @@ Amazon Rekognition can also detect numbers and common symbols such as @, /, $,%,
 
 ## Calling the DetectText Operation<a name="text-calling-detecttext"></a>
 
-In the `DetectText` operation, you supply an input image either as a byte64\-encoded byte array or as an image stored in an Amazon S3 bucket\. For an example, see [](text-detecting-text-procedure.md)\. 
+In the `DetectText` operation, you supply an input image either as a byte64\-encoded byte array or as an image stored in an Amazon S3 bucket\. For an example, see [Detecting Text in an Image](text-detecting-text-procedure.md)\. 
 
 The `DetectText` operation analyses the image and returns an array, TextDetections, where each element \(`[TextDetection](API_TextDetection.md)`\) represents a line or word detected in the image\. For each element, `DetectText` returns the following information: 
-
 + The detected text \(`DetectedText`\)
-
 + The relationships between words and lines \(`Id` and `ParentId`\)
-
 + The location of text on the image \(`Geometry`\)
-
 + The confidence Amazon Rekognition has in the accuracy of the detected text and bounding box \(`Confidence`\)
-
 + The type of the detected text \(`Type`\)
 
 ### Detected Text<a name="text-detected-text"></a>
@@ -63,10 +53,8 @@ Each `TextDetection` element has an identifier field, `Id`\. The `Id` shows the 
 
 ### Text Location on an Image<a name="text-location"></a>
 
-To determine where the recognized text is on an image, use the bounding box \([Geometry](API_Geometry.md)\) information returned by `DetectText`\. The `Geometry` oject contains two types of bounding box information for detected lines and words:
-
+To determine where the recognized text is on an image, use the bounding box \([Geometry](API_Geometry.md)\) information returned by `DetectText`\. The `Geometry` object contains two types of bounding box information for detected lines and words:
 + An axis\-aligned coarse rectangular outline in a [BoundingBox](API_BoundingBox.md) object
-
 + A finer\-grained polygon made up of multiple X and Y coordinates in a [Point](API_Point.md) array
 
 The bounding box and polygon coordinates show where the text is located on the source image\. The coordinate values are a ratio of the overall image size\. For more information, see [BoundingBox](API_BoundingBox.md)\. 

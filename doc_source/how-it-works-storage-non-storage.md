@@ -1,35 +1,23 @@
-# Non Storage and Storage API Operations<a name="how-it-works-storage-non-storage"></a>
+# Non\-Storage and Storage API Operations<a name="how-it-works-storage-non-storage"></a>
 
-Amazon Rekognition provides two types of API operations\. Non\-storage operations in which no information is stored by Amazon Rekognition and Storage operations in which certain facial information is stored by Amazon Rekognition\. 
+Amazon Rekognition provides two types of API operations\. They are non\-storage operations where no information is stored by Amazon Rekognition, and storage operations where certain facial information is stored by Amazon Rekognition\. 
 
-## Non Storage Operations<a name="how-it-works-non-storage"></a>
+## Non\-Storage Operations<a name="how-it-works-non-storage"></a>
 
 Amazon Rekognition provides the following non\-storage API operations for images:
-
 + [DetectLabels](API_DetectLabels.md)
-
 + [DetectFaces](API_DetectFaces.md) 
-
 + [CompareFaces](API_CompareFaces.md) 
-
 + [DetectModerationLabels](API_DetectModerationLabels.md) 
-
 + [RecognizeCelebrities](API_RecognizeCelebrities.md) 
-
 + [DetectText](API_DetectText.md) 
-
 + [DetectModerationLabels](API_DetectModerationLabels.md) 
 
 Amazon Rekognition provides the following non\-storage API operations for videos:
-
 + [StartLabelDetection](API_StartLabelDetection.md) 
-
 + [StartFaceDetection](API_StartFaceDetection.md) 
-
 + [StartPersonTracking](API_StartPersonTracking.md)
-
 + [StartCelebrityRecognition](API_StartCelebrityRecognition.md)
-
 + [StartContentModeration](API_StartContentModeration.md)
 
 These are referred to as *non\-storage* API operations because when you make the operation call, Amazon Rekognition does not persist any information discovered about the input image\. Like all other Amazon Rekognition API operations, no input image bytes are persisted by non\-storage API operations\. 
@@ -72,21 +60,14 @@ Then, you can use the information in the index to enhance the images when your a
 Rekognition Image supports the [IndexFaces](API_IndexFaces.md) operation, which you can use to detect faces in an image and persist information about facial features detected in a Amazon Rekognition collection\. This is an example of a *storage\-based* API operation because the service persists information on the server\. 
 
 Rekognition Image provides the following storage API operations:
-
 + [IndexFaces](API_IndexFaces.md)
-
 + [ListFaces](API_ListFaces.md) 
-
 + [SearchFacesByImage](API_SearchFacesByImage.md) 
-
 + [SearchFaces](API_SearchFaces.md) 
-
 + [DeleteFaces](API_DeleteFaces.md) 
 
 Rekognition Video provides the following storage API operations:
-
 + [StartFaceSearch](API_StartFaceSearch.md) 
-
 + [CreateStreamProcessor](API_CreateStreamProcessor.md)
 
 To store facial information, you must first create a face collection in one of AWS Regions in your account\. You specify this face collection when you call the `IndexFaces` operation\. After you create a face collection and store facial feature information for all faces, you can search the collection for face matches\. For example, you can detect the largest face in an image and search for matching faces in a collection by calling `searchFacesByImage.`

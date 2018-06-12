@@ -9,7 +9,7 @@ The service does not persist actual image bytes\. Instead, the underlying detect
 
 You can use collections in a variety of scenarios\. For example, you might create a face collection to store scanned badge images using the `IndexFaces` operation\. When an employee enters the building, an image of the employee's face is captured and sent to the `SearchFacesByImage` operation\. If the face match produces a sufficiently high similarity score \(say 99%\), you can authenticate the employee\. 
 
-
+**Topics**
 + [Managing Collections](managing-collections.md)
 + [Storing Faces in a Face Collection](collections-index-faces.md)
 + [Searching for Faces with Rekognition Image Collection](collections-search-faces.md)
