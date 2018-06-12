@@ -26,7 +26,7 @@ The following is an example JSON request for `StartFaceSearch`\.
 
 The request includes the collection to use for the search, the bucket the video is stored in, and the Amazon SNS topic to which Amazon Rekognition publishes the completion status of the search\.
 
-Once you have the completion status from the AWS SMS topic, you get the search results by calling `GetFaceSearch.` The following is an example JSON response from `GetFaceSearch`\.
+Once you have the completion status from the AWS SNS topic, you get the search results by calling `GetFaceSearch.` The following is an example JSON response from `GetFaceSearch`\.
 
 ```
 {
