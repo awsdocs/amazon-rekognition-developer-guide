@@ -1,10 +1,10 @@
-# Searching for Faces with Rekognition Video<a name="collections-search-person"></a>
+# Searching for Faces with Amazon Rekognition Video<a name="collections-search-person"></a>
 
-You can search a collection for faces that match faces of persons detected in a stored video or a streaming video\. This section covers searching for faces in a stored video\. For information about searching for faces in a streaming video, see [Working with Streaming Videos](streaming-video.md)\.
+You can search a collection for faces that match faces of people who are detected in a stored video or a streaming video\. This section covers searching for faces in a stored video\. For information about searching for faces in a streaming video, see [Working with Streaming Videos](streaming-video.md)\.
 
- The faces you search for must first be indexed into a collection by using [IndexFaces](API_IndexFaces.md)\. For more information see [Adding Faces to a Collection](add-faces-to-collection-procedure.md)\. Rekognition Video face searching follows the same asynchronous workflow as other Rekognition Video operations that analyze videos stored in an Amazon S3 bucket\. For more information, see [Calling Rekognition Video Operations](api-video.md)\. 
+The faces that you search for must first be indexed into a collection by using [IndexFaces](API_IndexFaces.md)\. For more information, see [Adding Faces to a Collection](add-faces-to-collection-procedure.md)\. Amazon Rekognition Video face searching follows the same asynchronous workflow as other Amazon Rekognition Video operations that analyze videos stored in an Amazon S3 bucket\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\. 
 
-To start searching for faces in a stored video, call [StartFaceSearch](API_StartFaceSearch.md)\. After you get the the completion status from the Amazon SNS topic, you call [GetFaceSearch](API_GetFaceSearch.md) to get the search results\. For an example, see [ Searching Stored Videos for Faces \(SDK for Java\)](procedure-person-search-videos.md)\.
+To start searching for faces in a stored video, call [StartFaceSearch](API_StartFaceSearch.md)\. After you get the completion status from the Amazon SNS topic, you call [GetFaceSearch](API_GetFaceSearch.md) to get the search results\. For an example, see [ Searching Stored Videos for Faces \(AWS SDK for Java\)](procedure-person-search-videos.md)\.
 
 The following is an example JSON request for `StartFaceSearch`\.
 
@@ -24,9 +24,9 @@ The following is an example JSON request for `StartFaceSearch`\.
 }
 ```
 
-The request includes the collection to use for the search, the bucket the video is stored in, and the Amazon SNS topic to which Amazon Rekognition publishes the completion status of the search\.
+The request includes the collection to use for the search, the bucket that the video is stored in, and the Amazon SNS topic to which Amazon Rekognition publishes the completion status of the search\.
 
-Once you have the completion status from the AWS SMS topic, you get the search results by calling `GetFaceSearch.` The following is an example JSON response from `GetFaceSearch`\.
+After you have the completion status from the Amazon SNS topic, you get the search results by calling `GetFaceSearch`\. The following is an example JSON response from `GetFaceSearch`\.
 
 ```
 {
@@ -234,4 +234,4 @@ Once you have the completion status from the AWS SMS topic, you get the search r
 }
 ```
 
-The response includes an array of persons, `Persons`, detected in the video whose face\(s\) matches a face in the input collection\. An array element, [PersonMatch](API_PersonMatch.md), exists for each time the person is matched in the video\. Each `PersonMatch` includes an array of face matches from the input collection, [FaceMatch](API_FaceMatch.md), information about the matched person, [PersonDetail](API_PersonDetail.md), and the time the person was matched in the video\. 
+The response includes an array of people \(`Persons`\) detected in the video whose faces matches a face in the input collection\. An array element, [PersonMatch](API_PersonMatch.md), exists for each time the person is matched in the video\. Each `PersonMatch` includes an array of face matches from the input collection, [FaceMatch](API_FaceMatch.md), information about the matched person, [PersonDetail](API_PersonDetail.md), and the time the person was matched in the video\. 

@@ -2,7 +2,7 @@
 
 The following JavaScript webpage example allows a user to choose an image and view the estimated ages of faces that are detected in the image\. The estimated ages are returned by a call to [DetectFaces](API_DetectFaces.md)\. 
 
-The chosen image is loaded by using the JavaScript `FileReader.readAsDataURL` function, which base64 encodes the image\. This is useful for displaying the image on an HTML canvas\. But, it means the image bytes have to be unencoded before they're passed to a Rekognition Image operation\. This example shows how to unencode the loaded image bytes\. If the encoded image bytes aren't useful to you, use `FileReader.readAsArrayBuffer` instead because the loaded image isn't encoded\. This means that Rekognition Image operations can be called without first unencoding the image bytes\. For an example, see [Using readAsArrayBuffer](#image-bytes-javascript-unencoded)\.
+The chosen image is loaded by using the JavaScript `FileReader.readAsDataURL` function, which base64\-encodes the image\. This is useful for displaying the image on an HTML canvas\. But, it means the image bytes have to be unencoded before they're passed to a Amazon Rekognition Image operation\. This example shows how to unencode the loaded image bytes\. If the encoded image bytes aren't useful to you, use `FileReader.readAsArrayBuffer` instead because the loaded image isn't encoded\. This means that Amazon Rekognition Image operations can be called without first unencoding the image bytes\. For an example, see [Using readAsArrayBuffer](#image-bytes-javascript-unencoded)\.
 
 **To run the JavaScript example**
 
@@ -10,7 +10,7 @@ The chosen image is loaded by using the JavaScript `FileReader.readAsDataURL` fu
 
 1. Get the Amazon Cognito identity pool identifier\. For more information, see [Getting the Amazon Cognito Identity Pool Identifier](#image-bytes-javascript-auth)\.
 
-1. In the `AnonLog` function of the example code, change `IdentityPoolIdToUse` and `RegionToUse` for the values that you noted in step 9 of [Getting the Amazon Cognito Identity Pool Identifier](#image-bytes-javascript-auth)\. 
+1. In the `AnonLog` function of the example code, change `IdentityPoolIdToUse` and `RegionToUse` to the values that you noted in step 9 of [Getting the Amazon Cognito Identity Pool Identifier](#image-bytes-javascript-auth)\. 
 
 1. In the `DetectFaces` function, change `RegionToUse` to the value you used in the previous step\.
 
@@ -134,7 +134,7 @@ The chosen image is loaded by using the JavaScript `FileReader.readAsDataURL` fu
 
 ### Using readAsArrayBuffer<a name="image-bytes-javascript-unencoded"></a>
 
-The following code snippet is an alternative implementation of the `ProcessImage` function in the sample code\. It uses `readAsArrayBuffer` to load an image and call `DetectFaces`\. Because `readAsArrayBuffer` doesn't base64 encode the loaded file, it's not necessary to unencode the image bytes before calling a Rekognition Image operation\.
+The following code snippet is an alternative implementation of the `ProcessImage` function in the sample code\. It uses `readAsArrayBuffer` to load an image and call `DetectFaces`\. Because `readAsArrayBuffer` doesn't base64\-encode the loaded file, it's not necessary to unencode the image bytes before calling a Amazon Rekognition Image operation\.
 
 ```
   function ProcessImage() {
@@ -179,7 +179,7 @@ The following code snippet is an alternative implementation of the `ProcessImage
 
 ## Getting the Amazon Cognito Identity Pool Identifier<a name="image-bytes-javascript-auth"></a>
 
-For simplicity, the example uses an anonymous Amazon Cognito identity pool to provide unauthenticated access to the Rekognition Image API\. This might be suitable for your needs\. For example, you can use unauthenticated access to provide free, or trial, access to your website before users sign up\. To provide authenticated access, use an Amazon Cognito user pool\. For more information, see [Amazon Cognito User Pool](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)\. 
+For simplicity, the example uses an anonymous Amazon Cognito identity pool to provide unauthenticated access to the Amazon Rekognition Image API\. This might be suitable for your needs\. For example, you can use unauthenticated access to provide free, or trial, access to your website before users sign up\. To provide authenticated access, use an Amazon Cognito user pool\. For more information, see [Amazon Cognito User Pool](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)\. 
 
 The following procedure shows how to create an identity pool that enables access to unauthenticated identities, and how to get the identity pool identifier that's needed in the example code\.
 

@@ -2,7 +2,9 @@
 
 Starts asynchronous detection of faces in a stored video\.
 
-Rekognition Video can detect faces in a video stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceDetection` returns a job identifier \(`JobId`\) that you use to get the results of the operation\. When face detection is finished, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the results of the label detection operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceDetection](API_GetFaceDetection.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceDetection`\. For more information, see [Detecting Faces in a Stored Video](faces.md#faces-video)\.
+Amazon Rekognition Video can detect faces in a video stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceDetection` returns a job identifier \(`JobId`\) that you use to get the results of the operation\. When face detection is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the results of the label detection operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceDetection](API_GetFaceDetection.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceDetection`\.
+
+For more information, see [Detecting Faces in a Stored Video](faces-video.md)\.
 
 ## Request Syntax<a name="API_StartFaceDetection_RequestSyntax"></a>
 
@@ -52,7 +54,7 @@ Pattern: `[a-zA-Z0-9_.\-:]+`
 Required: No
 
  ** [NotificationChannel](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-NotificationChannel"></a>
-The ARN of the Amazon SNS topic to which you want Rekognition Video to publish the completion status of the face detection operation\.  
+The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the face detection operation\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
@@ -104,7 +106,7 @@ Amazon Rekognition is unable to access the S3 object specified in the request\.
 HTTP Status Code: 400
 
  **LimitExceededException**   
-An Amazon Rekognition service limit was exceeded\. For example, if you start too many Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
+An Amazon Rekognition service limit was exceeded\. For example, if you start too many Amazon Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
 HTTP Status Code: 400
 
  **ProvisionedThroughputExceededException**   

@@ -1,6 +1,6 @@
 # RecognizeCelebrities<a name="API_RecognizeCelebrities"></a>
 
-Returns an array of celebrities recognized in the input image\. For more information, see [Recognizing Celebrities](celebrities.md)\. 
+Returns an array of celebrities recognized in the input image\. For more information, see [Recognizing Celebrities](celebrities.md)\.
 
  `RecognizeCelebrities` returns the 100 largest faces in the image\. It lists recognized celebrities in the `CelebrityFaces` array and unrecognized faces in the `UnrecognizedFaces` array\. `RecognizeCelebrities` doesn't return celebrities whose faces are not amongst the largest 100 faces in the image\.
 

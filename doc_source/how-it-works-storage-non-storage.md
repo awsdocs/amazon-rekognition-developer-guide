@@ -57,22 +57,22 @@ Then, you can use the information in the index to enhance the images when your a
 
 ## Storage\-Based API Operations<a name="how-it-works-storage-based"></a>
 
-Rekognition Image supports the [IndexFaces](API_IndexFaces.md) operation, which you can use to detect faces in an image and persist information about facial features detected in a Amazon Rekognition collection\. This is an example of a *storage\-based* API operation because the service persists information on the server\. 
+Amazon Rekognition Image supports the [IndexFaces](API_IndexFaces.md) operation, which you can use to detect faces in an image and persist information about facial features detected in a Amazon Rekognition collection\. This is an example of a *storage\-based* API operation because the service persists information on the server\. 
 
-Rekognition Image provides the following storage API operations:
+Amazon Rekognition Image provides the following storage API operations:
 + [IndexFaces](API_IndexFaces.md)
 + [ListFaces](API_ListFaces.md) 
 + [SearchFacesByImage](API_SearchFacesByImage.md) 
 + [SearchFaces](API_SearchFaces.md) 
 + [DeleteFaces](API_DeleteFaces.md) 
 
-Rekognition Video provides the following storage API operations:
+Amazon Rekognition Video provides the following storage API operations:
 + [StartFaceSearch](API_StartFaceSearch.md) 
 + [CreateStreamProcessor](API_CreateStreamProcessor.md)
 
 To store facial information, you must first create a face collection in one of AWS Regions in your account\. You specify this face collection when you call the `IndexFaces` operation\. After you create a face collection and store facial feature information for all faces, you can search the collection for face matches\. For example, you can detect the largest face in an image and search for matching faces in a collection by calling `searchFacesByImage.`
 
-Facial information stored in collections by `IndexFaces` is accessible to Rekognition Video operations\. For example you can search a video for persons whose faces match those in an exisiting collection by calling [StartFaceSearch](API_StartFaceSearch.md)\.
+Facial information stored in collections by `IndexFaces` is accessible to Amazon Rekognition Video operations\. For example you can search a video for persons whose faces match those in an exisiting collection by calling [StartFaceSearch](API_StartFaceSearch.md)\.
 
 For information about creating and managing collections, see [Searching Faces in a Collection](collections.md)\.
 

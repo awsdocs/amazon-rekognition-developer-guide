@@ -2,103 +2,233 @@
 
 You can use the [SearchFacesByImage](API_SearchFacesByImage.md) operation to search for faces in a collection that match the largest face in a supplied image\.
 
-The following procedures show how you can use the operation with the AWS CLI, the AWS SDK for Java\. 
+For more information, see [Searching for Faces Within a Collection](collections.md#collections-search-faces)\. 
 
-For more information, see [Searching for Faces with Rekognition Image Collection](collections-search-faces.md)\. 
+**To search for a face in a collection using an image \(SDK\)**
 
-**To search for a face in a collection using an image \(AWS CLI\)**
+1. If you haven't already:
 
-1. Upload an image \(containing one or more faces\) to your S3 bucket\. 
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+
+1. Upload an image \(that contains one or more faces\) to your S3 bucket\. 
 
    For instructions, see [Uploading Objects into Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
-1. On the command line, type the following command\. Replace `bucket-name` with the S3 bucket you are using\. Replace `example.jpg` with the image file name that contains the face you want to search for\. Replace `collection-id` with the collection you want to search in\.
+1. Use the following examples to call the `SearchFacesByImage` operation\.
+
+------
+#### [ Java ]
+
+   This example displays information about faces that match the largest face in an image\. The code example specifies both the `FaceMatchThreshold` and `MaxFaces` parameters to limit the results that are returned in the response\.
+
+   In the following example, change the following: change the value of `collectionId` to the collection you want to search, change the value of `bucket` to the bucket containing the input image, and change the value of `photo` to the input image\. 
+
+   ```
+   
+   package aws.example.rekognition.image;
+   import com.amazonaws.services.rekognition.AmazonRekognition;
+   import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
+   import com.amazonaws.services.rekognition.model.FaceMatch;
+   import com.amazonaws.services.rekognition.model.Image;
+   import com.amazonaws.services.rekognition.model.S3Object;
+   import com.amazonaws.services.rekognition.model.SearchFacesByImageRequest;
+   import com.amazonaws.services.rekognition.model.SearchFacesByImageResult;
+   import java.util.List;
+   import com.fasterxml.jackson.databind.ObjectMapper;
+   
+   
+   public class SearchFacesMatchingImage {
+       public static final String collectionId = "MyCollection";
+       public static final String bucket = "bucket";
+       public static final String photo = "input.jpg";
+         
+       public static void main(String[] args) throws Exception {
+   
+          AmazonRekognition rekognitionClient = AmazonRekognitionClientBuilder.defaultClient();
+           
+         ObjectMapper objectMapper = new ObjectMapper();
+         
+          // Get an image object from S3 bucket.
+         Image image=new Image()
+                 .withS3Object(new S3Object()
+                         .withBucket(bucket)
+                         .withName(photo));
+         
+         // Search collection for faces similar to the largest face in the image.
+         SearchFacesByImageRequest searchFacesByImageRequest = new SearchFacesByImageRequest()
+                 .withCollectionId(collectionId)
+                 .withImage(image)
+                 .withFaceMatchThreshold(70F)
+                 .withMaxFaces(2);
+              
+          SearchFacesByImageResult searchFacesByImageResult = 
+                  rekognitionClient.searchFacesByImage(searchFacesByImageRequest);
+   
+          System.out.println("Faces matching largest face in image from" + photo);
+         List < FaceMatch > faceImageMatches = searchFacesByImageResult.getFaceMatches();
+         for (FaceMatch face: faceImageMatches) {
+             System.out.println(objectMapper.writerWithDefaultPrettyPrinter()
+                     .writeValueAsString(face));
+            System.out.println();
+         }
+      }
+   }
+   ```
+
+------
+#### [ AWS CLI ]
+
+   This AWS CLI command displays the JSON output for the `search-faces-by-image` CLI operation\. Replace the value of `Bucket` with the S3 bucket that you used in step 2\. Replace the value of `Name` with the image file name that you used in step 2\. Replace the value of `collection-id` with the collection you want to search in\.
 
    ```
    aws rekognition search-faces-by-image \
        --image '{"S3Object":{"Bucket":"bucket-name","Name":"Example.jpg"}}' \
-       --collection-id "collection-id" \
-       --region us-east-1 \
-       --profile adminuser
+       --collection-id "collection-id"
    ```
 
-1. To run the command, choose **Enter**\. The JSON output for the `SearchFacesByImage` operation is displayed\. 
+------
+#### [ Python ]
 
-**To search for a face in a collection using an image \(AWS SDK for Java\)**
+   This example displays information about faces that match the largest face in an image\. The code example specifies both the `FaceMatchThreshold` and `MaxFaces` parameters to limit the results that are returned in the response\.
 
-1. Upload an image \(containing one or more faces\) to your S3 bucket\. 
-
-   For instructions, see [Uploading Objects into Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
-
-1. To search for a face in a collection using an image, use the following AWS SDK for Java example code\.
+   In the following example, change the following: change the value of `collectionId` to the collection you want to search, and replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in Step 2\. 
 
    ```
-   package com.amazonaws.samples;
+   import boto3
    
-       import java.util.List;
-       import com.amazonaws.AmazonClientException;
-       import com.amazonaws.auth.AWSCredentials;
-       import com.amazonaws.auth.AWSStaticCredentialsProvider;
-       import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-       import com.amazonaws.regions.Regions;
-       import com.amazonaws.services.rekognition.AmazonRekognition;
-       import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
-       import com.amazonaws.services.rekognition.model.FaceMatch;
-       import com.amazonaws.services.rekognition.model.Image;
-       import com.amazonaws.services.rekognition.model.S3Object;
-       import com.amazonaws.services.rekognition.model.SearchFacesByImageRequest;
-       import com.amazonaws.services.rekognition.model.SearchFacesByImageResult;
-       import com.fasterxml.jackson.databind.ObjectMapper;
+   if __name__ == "__main__":
    
-       public class SearchFacesMatchingImage {
-           public static final String collectionId = "collection-id";
-           public static final String bucket = "bucket-name";
-           public static final String fileName = "example.jpg";
-             
-           public static void main(String[] args) throws Exception {
-               AWSCredentials credentials;
-             try {
-                credentials = new ProfileCredentialsProvider("AdminUser").getCredentials();
-             } catch (Exception e) {
-                throw new AmazonClientException(
-                   "Cannot load the credentials from the credential profiles file. " +
-                   "Please make sure that your credentials file is at the correct " +
-                   "location (/Users/userid/.aws/credentials), and is in a valid format.",
-                   e);
-             }
-             AmazonRekognition amazonRekognition = AmazonRekognitionClientBuilder
-                .standard()
-                .withRegion(Regions.US_WEST_2)
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .build();
-               
-             ObjectMapper objectMapper = new ObjectMapper();
-             
-              // Get an image object from S3 bucket.
-             Image image=new Image()
-                     .withS3Object(new S3Object()
-                             .withBucket(bucket)
-                             .withName(fileName));
-             
-             // Search collection for faces similar to the largest face in the image.
-             SearchFacesByImageRequest searchFacesByImageRequest = new SearchFacesByImageRequest()
-                     .withCollectionId(collectionId)
-                     .withImage(image)
-                     .withFaceMatchThreshold(70F)
-                     .withMaxFaces(2);
-                  
-              SearchFacesByImageResult searchFacesByImageResult = 
-                      amazonRekognition.searchFacesByImage(searchFacesByImageRequest);
+       bucket='bucket'
+       collectionId='MyCollection'
+       fileName='input.jpg'
+       threshold = 70
+       maxFaces=2
    
-              System.out.println("Faces matching largest face in image from" + fileName);
-             List < FaceMatch > faceImageMatches = searchFacesByImageResult.getFaceMatches();
-             for (FaceMatch face: faceImageMatches) {
-                 System.out.println(objectMapper.writerWithDefaultPrettyPrinter()
-                         .writeValueAsString(face));
-                System.out.println();
-             }
-          }
-      }
+       client=boto3.client('rekognition')
+   
+     
+       response=client.search_faces_by_image(CollectionId=collectionId,
+                                   Image={'S3Object':{'Bucket':bucket,'Name':fileName}},
+                                   FaceMatchThreshold=threshold,
+                                   MaxFaces=maxFaces)
+   
+                                   
+       faceMatches=response['FaceMatches']
+       print ('Matching faces')
+       for match in faceMatches:
+               print ('FaceId:' + match['Face']['FaceId'])
+               print ('Similarity: ' + "{:.2f}".format(match['Similarity']) + "%")
+               print ()
    ```
 
-   The code example stores three faces to an Amazon Rekognition face collection\. Then, it searches the face collection for face matches\. It shows usage of both `SearchFaces` and `SearchFacesByImage` API operations\. The code example specifies both the `FaceMatchThreshold` and `MaxFaces` parameters to limit the results returned in the response\.
+------
+#### [ \.NET ]
+
+   This example displays information about faces that match the largest face in an image\. The code example specifies both the `FaceMatchThreshold` and `MaxFaces` parameters to limit the results that are returned in the response\.
+
+   In the following example, change the following: change the value of `collectionId` to the collection you want to search, and replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in step 2\. 
+
+   ```
+   using System;
+   using Amazon.Rekognition;
+   using Amazon.Rekognition.Model;
+   
+   public class SearchFacesMatchingImage
+   {
+       public static void Example()
+       {
+           String collectionId = "MyCollection";
+           String bucket = "bucket";
+           String photo = "input.jpg";
+   
+           AmazonRekognitionClient rekognitionClient = new AmazonRekognitionClient();
+   
+           // Get an image object from S3 bucket.
+           Image image = new Image()
+           {
+               S3Object = new S3Object()
+               {
+                   Bucket = bucket,
+                   Name = photo
+               }
+           };
+   
+           SearchFacesByImageRequest searchFacesByImageRequest = new SearchFacesByImageRequest()
+           {
+               CollectionId = collectionId,
+               Image = image,
+               FaceMatchThreshold = 70F,
+               MaxFaces = 2
+           };
+   
+           SearchFacesByImageResponse searchFacesByImageResponse = rekognitionClient.SearchFacesByImage(searchFacesByImageRequest);
+   
+           Console.WriteLine("Faces matching largest face in image from " + photo);
+           foreach (FaceMatch face in searchFacesByImageResponse.FaceMatches)
+               Console.WriteLine("FaceId: " + face.Face.FaceId + ", Similarity: " + face.Similarity);
+       }
+   }
+   ```
+
+------
+
+## SearchFacesByImage Operation Request<a name="searchfacesbyimage-operation-request"></a>
+
+The input parameters to `SearchFacesImageByImage` are the collection to search in and the source image location\. In this example, the source image is stored in an Amazon S3 bucket \(`S3Object`\)\. Also specified are the maximum number of faces to return \(`Maxfaces`\) and the minimum confidence that must be matched for a face to be returned \(`FaceMatchThreshold`\)\.
+
+```
+{
+    "CollectionId": "MyCollection",
+    "Image": {
+        "S3Object": {
+            "Bucket": "bucket",
+            "Name": "input.jpg"
+        }
+    },
+    "MaxFaces": 2,
+    "FaceMatchThreshold": 70
+}
+```
+
+## SearchFacesByImage Operation Response<a name="searchfacesbyimage-operation-response"></a>
+
+Given an input image \(\.jpeg or \.png\), the operation first detects the face in the input image, and then searches the specified face collection for similar faces\. 
+
+**Note**  
+If the service detects multiple faces in the input image, it uses the largest face that's detected for searching the face collection\.
+
+The operation returns an array of face matches that were found, and information about the input face\. This includes information such as the bounding box, along with the confidence value, which indicates the level of confidence that the bounding box contains a face\. 
+
+By default, `SearchFacesByImage` returns faces for which the algorithm detects similarity of greater than 80%\. The similarity indicates how closely the face matches with the input face\. Optionally, you can use `FaceMatchThreshold` to specify a different value\. For each face match found, the response includes similarity and face metadata, as shown in the following example response: 
+
+```
+{
+    "FaceMatches": [
+        {
+            "Face": {
+                "BoundingBox": {
+                    "Height": 0.06333330273628235,
+                    "Left": 0.1718519926071167,
+                    "Top": 0.7366669774055481,
+                    "Width": 0.11061699688434601
+                },
+                "Confidence": 100,
+                "ExternalImageId": "input.jpg",
+                "FaceId": "578e2e1b-d0b0-493c-aa39-ba476a421a34",
+                "ImageId": "9ba38e68-35b6-5509-9d2e-fcffa75d1653"
+            },
+            "Similarity": 99.9764175415039
+        }
+    ],
+    "FaceModelVersion": "3.0",
+    "SearchedFaceBoundingBox": {
+        "Height": 0.06333333253860474,
+        "Left": 0.17185185849666595,
+        "Top": 0.7366666793823242,
+        "Width": 0.11061728745698929
+    },
+    "SearchedFaceConfidence": 99.99999237060547
+}
+```

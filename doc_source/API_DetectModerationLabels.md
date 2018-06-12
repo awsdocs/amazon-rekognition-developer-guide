@@ -2,7 +2,9 @@
 
 Detects explicit or suggestive adult content in a specified JPEG or PNG format image\. Use `DetectModerationLabels` to moderate images depending on your requirements\. For example, you might want to filter images that contain nudity, but not images containing suggestive content\.
 
-To filter images, use the labels returned by `DetectModerationLabels` to determine which types of content are appropriate\. For information about moderation labels, see [Detecting Unsafe Content](moderation.md)\.
+To filter images, use the labels returned by `DetectModerationLabels` to determine which types of content are appropriate\.
+
+For information about moderation labels, see [Detecting Unsafe Content](moderation.md)\.
 
 You pass the input image either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the Amazon CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
 

@@ -27,7 +27,7 @@ Common use cases for using Amazon Rekognition include the following:
 + **Celebrity recognition** – Amazon Rekognition can recognize celebrities within supplied images and in videos\. Rekognition can recognize thousands of celebrities across a number of categories, such as politics, sports, business, entertainment, and media\. 
 
    
-+ **Text detection** – Amazon Rekognition Text in Image allows you to recognize and extract textual content from images\. Text in Image supports most fonts including highly stylized ones\. It detects text and numbers in different orientations such as those commonly found in banners and posters\. In image sharing and social media applications, you can use it to enable visual search based on an index of images that contain the same keywords\. In media and entertainment applications, you can catalogue videos based on relevant text on screen, such as ads, news, sport scores, and captions\. Finally, in security and surveillance applications, you can identify vehicles based on license plate numbers from images taken by street cameras\. 
++ **Text detection** – Amazon Rekognition Text in Image allows you to recognize and extract textual content from images\. Text in Image supports most fonts including highly stylized ones\. It detects text and numbers in different orientations such as those commonly found in banners and posters\. In image sharing and social media applications, you can use it to enable visual search based on an index of images that contain the same keywords\. In media and entertainment applications, you can catalogue videos based on relevant text on screen, such as ads, news, sport scores, and captions\. Finally, in public safety applications, you can identify vehicles based on license plate numbers from images taken by street cameras\. 
 
 Some of the benefits of using Amazon Rekognition include:
 + **Integrate powerful image and video recognition into your apps** – Amazon Rekognition removes the complexity of building image recognition capabilities into your applications by making powerful and accurate analysis available with a simple API\. You don’t need computer vision or deep learning expertise to take advantage of Rekognition’s reliable image and video analysis\. With Rekognition’s API, you can easily and quickly build image and video analysis into any web, mobile or connected device application\.
@@ -43,6 +43,10 @@ Some of the benefits of using Amazon Rekognition include:
 
    
 + **Low cost** – With Amazon Rekognition, you pay for the images and videos you analyze and the face metadata that you store\. There are no minimum fees or upfront commitments\. Get started for free, and save more as you grow with Rekognition's tiered pricing model\. 
+
+## Amazon Rekognition and HIPAA Eligibility<a name="hipaa"></a>
+
+This is a HIPAA Eligible Service\. For more information about AWS, U\.S\. Health Insurance Portability and Accountability Act of 1996 \(HIPAA\), and using AWS services to process, store, and transmit protected health information \(PHI\), see [HIPAA Overview](https://aws.amazon.com/compliance/hipaa-compliance/)\.
 
 ## Are You a First\-Time Amazon Rekognition User?<a name="first-time-user"></a>
 

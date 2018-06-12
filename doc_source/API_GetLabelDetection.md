@@ -1,6 +1,6 @@
 # GetLabelDetection<a name="API_GetLabelDetection"></a>
 
-Gets the label detection results of a Rekognition Video analysis started by [StartLabelDetection](API_StartLabelDetection.md)\. 
+Gets the label detection results of a Amazon Rekognition Video analysis started by [StartLabelDetection](API_StartLabelDetection.md)\. 
 
 The label detection operation is started by a call to [StartLabelDetection](API_StartLabelDetection.md) which returns a job identifier \(`JobId`\)\. When the label detection operation finishes, Amazon Rekognition publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartlabelDetection`\. To get the results of the label detection operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetLabelDetection](#API_GetLabelDetection) and pass the job identifier \(`JobId`\) from the initial call to `StartLabelDetection`\.
 
@@ -39,7 +39,7 @@ Valid Range: Minimum value of 1\.
 Required: No
 
  ** [NextToken](#API_GetLabelDetection_RequestSyntax) **   <a name="rekognition-GetLabelDetection-request-NextToken"></a>
-If the previous response was incomplete \(because there are more labels to retrieve\), Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of labels\.   
+If the previous response was incomplete \(because there are more labels to retrieve\), Amazon Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of labels\.   
 Type: String  
 Length Constraints: Maximum length of 255\.  
 Required: No
@@ -93,7 +93,7 @@ An array of labels detected in the video\. Each element contains the detected la
 Type: Array of [LabelDetection](API_LabelDetection.md) objects
 
  ** [NextToken](#API_GetLabelDetection_ResponseSyntax) **   <a name="rekognition-GetLabelDetection-response-NextToken"></a>
-If the response is truncated, Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of labels\.  
+If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of labels\.  
 Type: String  
 Length Constraints: Maximum length of 255\.
 
@@ -102,7 +102,7 @@ If the job fails, `StatusMessage` provides a descriptive error message\.
 Type: String
 
  ** [VideoMetadata](#API_GetLabelDetection_ResponseSyntax) **   <a name="rekognition-GetLabelDetection-response-VideoMetadata"></a>
-Information about a video that Rekognition Video analyzed\. `Videometadata` is returned in every page of paginated responses from a Amazon Rekognition video operation\.  
+Information about a video that Amazon Rekognition Video analyzed\. `Videometadata` is returned in every page of paginated responses from a Amazon Rekognition video operation\.  
 Type: [VideoMetadata](API_VideoMetadata.md) object
 
 ## Errors<a name="API_GetLabelDetection_Errors"></a>

@@ -1,6 +1,6 @@
 # Recognizing Faces in a Streaming Video<a name="recognize-faces-in-a-video-stream"></a>
 
-Rekognition Video can search faces in a collection that match faces that are detected in a streaming video\. For more information about collections, see [Searching Faces in a Collection](collections.md)\. The following procedure describes the steps you take to recognize faces in a streaming video\.
+Amazon Rekognition Video can search faces in a collection that match faces that are detected in a streaming video\. For more information about collections, see [Searching Faces in a Collection](collections.md)\. The following procedure describes the steps you take to recognize faces in a streaming video\.
 
 ## Prerequisites<a name="streaming-video-prerequisites"></a>
 
@@ -8,7 +8,7 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
 
 **To recognize faces in a video stream \(AWS SDK\)**
 
-1. If you haven't already, create an IAM service role to give Rekognition Video access to your Kinesis video streams and your Kinesis data streams\. Note the ARN\. For more information, see [Giving Access to Your Kinesis Video Streams and Kinesis Data Streams](api-streaming-video-roles.md#api-streaming-video-roles-all-stream)\.
+1. If you haven't already, create an IAM service role to give Amazon Rekognition Video access to your Kinesis video streams and your Kinesis data streams\. Note the ARN\. For more information, see [Giving Access to Your Kinesis Video Streams and Kinesis Data Streams](api-streaming-video-roles.md#api-streaming-video-roles-all-stream)\.
 
 1. [Create a collection](create-collection-procedure.md) and note the collection identifier you used\.
 
@@ -24,4 +24,4 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
 
 1. Use the [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) operation to stream the source video into the Kinesis video stream that you created in step 4\. For more information, see [PutMedia API Example](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-putmedia.html)\.
 
-1. [Consume the analysis output from Rekognition Video](streaming-video-kinesis-output.md)\.
+1. [Consume the analysis output from Amazon Rekognition Video](streaming-video-kinesis-output.md)\.

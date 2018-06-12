@@ -1,6 +1,6 @@
 # KinesisVideoStream<a name="API_KinesisVideoStream"></a>
 
-Kinesis video stream stream that provides the source streaming video for a Rekognition Video stream processor\. For more information, see [CreateStreamProcessor](API_CreateStreamProcessor.md)\.
+Kinesis video stream stream that provides the source streaming video for a Amazon Rekognition Video stream processor\. For more information, see [CreateStreamProcessor](API_CreateStreamProcessor.md)\.
 
 ## Contents<a name="API_KinesisVideoStream_Contents"></a>
 

@@ -11,8 +11,6 @@ You pass the input image either as base64\-encoded image bytes or as a reference
 **Note**  
 This is a stateless API operation\. That is, the operation does not persist any data\.
 
-For an example, see [Detecting Faces in an Image \(SDK\)](procedure-detecting-faces-in-images.md)\.
-
 This operation requires permissions to perform the `rekognition:DetectFaces` action\. 
 
 ## Request Syntax<a name="API_DetectFaces_RequestSyntax"></a>

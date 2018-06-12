@@ -2,7 +2,7 @@
 
 Starts the asynchronous search for faces in a collection that match the faces of persons detected in a stored video\.
 
-The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceSearch` returns a job identifier \(`JobId`\) which you use to get the search results once the search has completed\. When searching is finished, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceSearch](API_GetFaceSearch.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\. For more information, see [Searching for Faces with Rekognition Video](collections-search-person.md)\.
+The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceSearch` returns a job identifier \(`JobId`\) which you use to get the search results once the search has completed\. When searching is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceSearch](API_GetFaceSearch.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\. For more information, see [Searching for Faces with Amazon Rekognition Video](collections-search-person.md)\.
 
 ## Request Syntax<a name="API_StartFaceSearch_RequestSyntax"></a>
 
@@ -58,7 +58,7 @@ Pattern: `[a-zA-Z0-9_.\-:]+`
 Required: No
 
  ** [NotificationChannel](#API_StartFaceSearch_RequestSyntax) **   <a name="rekognition-StartFaceSearch-request-NotificationChannel"></a>
-The ARN of the Amazon SNS topic to which you want Rekognition Video to publish the completion status of the search\.   
+The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the search\.   
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
@@ -110,7 +110,7 @@ Amazon Rekognition is unable to access the S3 object specified in the request\.
 HTTP Status Code: 400
 
  **LimitExceededException**   
-An Amazon Rekognition service limit was exceeded\. For example, if you start too many Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
+An Amazon Rekognition service limit was exceeded\. For example, if you start too many Amazon Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
 HTTP Status Code: 400
 
  **ProvisionedThroughputExceededException**   

@@ -4,11 +4,15 @@ Detects faces in the input image and adds them to the specified collection\.
 
 Amazon Rekognition does not save the actual faces detected\. Instead, the underlying detection algorithm first detects the faces in the input image, and for each face extracts facial features into a feature vector, and stores it in the back\-end database\. Amazon Rekognition uses feature vectors when performing face match and search operations using the [SearchFaces](API_SearchFaces.md) and [SearchFacesByImage](API_SearchFacesByImage.md) operations\.
 
-If you are using version 1\.0 of the face detection model, `IndexFaces` indexes the 15 largest faces in the input image\. Later versions of the face detection model index the 100 largest faces in the input image\. To determine which version of the model you are using, check the the value of `FaceModelVersion` in the response from `IndexFaces`\. For more information, see [Model Versioning](face-detection-model.md)\.
+If you are using version 1\.0 of the face detection model, `IndexFaces` indexes the 15 largest faces in the input image\. Later versions of the face detection model index the 100 largest faces in the input image\. To determine which version of the model you are using, check the the value of `FaceModelVersion` in the response from `IndexFaces`\. 
+
+For more information, [Model Versioning](face-detection-model.md)\.
 
 If you provide the optional `ExternalImageID` for the input image you provided, Amazon Rekognition associates this ID with all faces that it detects\. When you call the [ListFaces](API_ListFaces.md) operation, the response returns the external ID\. You can use this external image ID to create a client\-side index to associate the faces with each image\. You can then use the index to find all faces in an image\. 
 
-In response, the operation returns an array of metadata for all detected faces\. This includes, the bounding box of the detected face, confidence value \(indicating the bounding box contains a face\), a face ID assigned by the service for each face that is detected and stored, and an image ID assigned by the service for the input image\. If you request all facial attributes \(using the `detectionAttributes` parameter, Amazon Rekognition returns detailed facial attributes such as facial landmarks \(for example, location of eye and mount\) and other facial attributes such gender\. If you provide the same image, specify the same collection, and use the same external ID in the `IndexFaces` operation, Amazon Rekognition doesn't save duplicate face metadata\. 
+In response, the operation returns an array of metadata for all detected faces\. This includes, the bounding box of the detected face, confidence value \(indicating the bounding box contains a face\), a face ID assigned by the service for each face that is detected and stored, and an image ID assigned by the service for the input image\. If you request all facial attributes \(using the `detectionAttributes` parameter, Amazon Rekognition returns detailed facial attributes such as facial landmarks \(for example, location of eye and mount\) and other facial attributes such gender\. If you provide the same image, specify the same collection, and use the same external ID in the `IndexFaces` operation, Amazon Rekognition doesn't save duplicate face metadata\.
+
+For more information, see [Adding Faces to a Collection](add-faces-to-collection-procedure.md)\.
 
 The input image is passed either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the Amazon CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
 
@@ -165,7 +169,7 @@ Version number of the face detection model associated with the input collection 
 Type: String
 
  ** [FaceRecords](#API_IndexFaces_ResponseSyntax) **   <a name="rekognition-IndexFaces-response-FaceRecords"></a>
-An array of faces detected and added to the collection\. For more information, see [Storing Faces in a Face Collection](collections-index-faces.md)\.   
+An array of faces detected and added to the collection\. For more information, see [Managing Faces in a Collection](collections.md#collections-index-faces)\.   
 Type: Array of [FaceRecord](API_FaceRecord.md) objects
 
  ** [OrientationCorrection](#API_IndexFaces_ResponseSyntax) **   <a name="rekognition-IndexFaces-response-OrientationCorrection"></a>

@@ -1,8 +1,10 @@
 # GetFaceSearch<a name="API_GetFaceSearch"></a>
 
-Gets the face search results for Rekognition Video face search started by [StartFaceSearch](API_StartFaceSearch.md)\. The search returns faces in a collection that match the faces of persons detected in a video\. It also includes the time\(s\) that faces are matched in the video\.
+Gets the face search results for Amazon Rekognition Video face search started by [StartFaceSearch](API_StartFaceSearch.md)\. The search returns faces in a collection that match the faces of persons detected in a video\. It also includes the time\(s\) that faces are matched in the video\.
 
-Face search in a video is an asynchronous operation\. You start face search by calling to [StartFaceSearch](API_StartFaceSearch.md) which returns a job identifier \(`JobId`\)\. When the search operation finishes, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartFaceSearch`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetFaceSearch` and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\. For more information, see [Searching Faces in a Collection](collections.md)\.
+Face search in a video is an asynchronous operation\. You start face search by calling to [StartFaceSearch](API_StartFaceSearch.md) which returns a job identifier \(`JobId`\)\. When the search operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartFaceSearch`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetFaceSearch` and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\.
+
+For more information, see [Searching Faces in a Collection](collections.md)\.
 
 The search results are retured in an array, `Persons`, of [PersonMatch](API_PersonMatch.md) objects\. Each`PersonMatch` element contains details about the matching faces in the input collection, person information \(facial attributes, bounding boxes, and person identifer\) for the matched person, and the time the person was matched in the video\.
 
@@ -40,7 +42,7 @@ Valid Range: Minimum value of 1\.
 Required: No
 
  ** [NextToken](#API_GetFaceSearch_RequestSyntax) **   <a name="rekognition-GetFaceSearch-request-NextToken"></a>
-If the previous response was incomplete \(because there is more search results to retrieve\), Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of search results\.   
+If the previous response was incomplete \(because there is more search results to retrieve\), Amazon Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of search results\.   
 Type: String  
 Length Constraints: Maximum length of 255\.  
 Required: No
@@ -179,7 +181,7 @@ Type: String
 Valid Values:` IN_PROGRESS | SUCCEEDED | FAILED` 
 
  ** [NextToken](#API_GetFaceSearch_ResponseSyntax) **   <a name="rekognition-GetFaceSearch-response-NextToken"></a>
-If the response is truncated, Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of search results\.   
+If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of search results\.   
 Type: String  
 Length Constraints: Maximum length of 255\.
 
@@ -192,7 +194,7 @@ If the job fails, `StatusMessage` provides a descriptive error message\.
 Type: String
 
  ** [VideoMetadata](#API_GetFaceSearch_ResponseSyntax) **   <a name="rekognition-GetFaceSearch-response-VideoMetadata"></a>
-Information about a video that Amazon Rekognition analyzed\. `Videometadata` is returned in every page of paginated responses from a Rekognition Video operation\.   
+Information about a video that Amazon Rekognition analyzed\. `Videometadata` is returned in every page of paginated responses from a Amazon Rekognition Video operation\.   
 Type: [VideoMetadata](API_VideoMetadata.md) object
 
 ## Errors<a name="API_GetFaceSearch_Errors"></a>

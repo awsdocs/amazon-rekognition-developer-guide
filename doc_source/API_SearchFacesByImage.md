@@ -3,7 +3,7 @@
 For a given input image, first detects the largest face in the image, and then searches the specified collection for matching faces\. The operation compares the features of the input face with faces in the specified collection\. 
 
 **Note**  
- To search for all faces in an input image, you might first call the [IndexFaces](API_IndexFaces.md) operation, and then use the face IDs returned in subsequent calls to the [SearchFaces](API_SearchFaces.md) operation\.   
+To search for all faces in an input image, you might first call the [IndexFaces](API_IndexFaces.md) operation, and then use the face IDs returned in subsequent calls to the [SearchFaces](API_SearchFaces.md) operation\.   
  You can also call the `DetectFaces` operation and use the bounding boxes in the response to make face crops, which then you can pass in to the `SearchFacesByImage` operation\. 
 
 You pass the input image either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the Amazon CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 

@@ -1,6 +1,6 @@
 # Analyzing a Video with the AWS Command Line Interface<a name="video-cli-commands"></a>
 
-You can use the AWS Command Line Interface \(AWS CLI\) to call Rekognition Video operations\. The design pattern is the same as using the Rekognition Video API with the AWS SDK for Java or other AWS SDKs\. For more information, see [](video.md#video-api-overview)\. The following procedures show how to use the AWS CLI to detect labels in a video\.
+You can use the AWS Command Line Interface \(AWS CLI\) to call Amazon Rekognition Video operations\. The design pattern is the same as using the Amazon Rekognition Video API with the AWS SDK for Java or other AWS SDKs\. For more information, see [](video.md#video-api-overview)\. The following procedures show how to use the AWS CLI to detect labels in a video\.
 
 You start detecting labels in a video by calling `start-label-detection`\. When Amazon Rekognition finishes analyzing the video, the completion status is sent to the Amazon SNS topic that's specified in the `--notification-channel` parameter of `start-label-detection`\. You can get the completion status by subscribing an Amazon Simple Queue Service \(Amazon SQS\) queue to the Amazon SNS topic\. You then poll [receive\-message](http://docs.aws.amazon.com/cli/latest/reference/sqs/receive-message.html) to get the completion status from the Amazon SQS queue\.
 
@@ -12,9 +12,9 @@ The following procedures don't include code to poll the Amazon SQS queue\. Also,
 
 To run this procedure, you need to have the AWS CLI installed\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\. The AWS account that you use must have access permissions to the Amazon Rekognition API\. For more information, see [Amazon Rekognition API Permissions: Actions, Permissions, and Resources Reference](api-permissions-reference.md)\. 
 
-**To configure Rekognition Video and upload a video**
+**To configure Amazon Rekognition Video and upload a video**
 
-1. Configure user access to Rekognition Video and configure Rekognition Video access to Amazon SNS\. For more information, see [Configuring Rekognition Video](api-video-roles.md)\.
+1. Configure user access to Amazon Rekognition Video and configure Amazon Rekognition Video access to Amazon SNS\. For more information, see [Configuring Amazon Rekognition Video](api-video-roles.md)\.
 
 1. [Create an Amazon SNS topic](http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic Amazon Resource Name \(ARN\)\. 
 
@@ -45,7 +45,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
    + Change `Endpoint` and `us-east-1` to the AWS endpoint and region that you're using\.
    + Change `TopicARN` to the ARN of the Amazon SNS topic you created in step 2 of the previous procedure\.
    + Change `RoleARN` to the ARN of the IAM role you created in step 1 of the previous procedure\.
-   + Change `RekognitionUser` to an AWS account that has permissions to call Rekognition Video operations\.
+   + Change `RekognitionUser` to an AWS account that has permissions to call Amazon Rekognition Video operations\.
 
 1. Note the value of `JobId` in the response\. The response looks similar to the following JSON example\.
 
@@ -71,7 +71,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
    Update the following values:
    + Change `JobId` to match the job identifier that you noted in step 2\.
    + Change `Endpoint` and `us-east-1` to the AWS endpoint and region that you're using\.
-   + Change `RekognitionUser` to an AWS account that has permissions to call Rekognition Video operations\.
+   + Change `RekognitionUser` to an AWS account that has permissions to call Amazon Rekognition Video operations\.
 
    The results look similar to the following example JSON:
 

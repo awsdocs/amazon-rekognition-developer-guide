@@ -1,20 +1,20 @@
 # Image and Video Operations<a name="how-it-works-operations-intro"></a>
 
-Amazon Rekognition provides two API sets\. They are Rekognition Image, for analyzing images, and Rekognition Video, for analyzing stored and streaming videos\. The following topic gives a brief overview of each API set\.
+Amazon Rekognition provides two API sets\. They are Amazon Rekognition Image, for analyzing images, and Amazon Rekognition Video, for analyzing stored and streaming videos\. The following topic gives a brief overview of each API set\.
 
-The Rekognition Image and Rekognition Video API can detect or recognize a variety of entities such as faces or objects\. For information about the types of recognition and detection that are supported, see [Types of Detection and Recognition](how-it-works-types.md)\.
+The Amazon Rekognition Image and Amazon Rekognition Video API can detect or recognize a variety of entities such as faces or objects\. For information about the types of recognition and detection that are supported, see [Types of Detection and Recognition](how-it-works-types.md)\.
 
-## Rekognition Image Operations<a name="how-it-works-operations-images"></a>
+## Amazon Rekognition Image Operations<a name="how-it-works-operations-images"></a>
 
-Amazon Rekognition image operations are synchronous\. The input and response are in JSON format\. Amazon Rekognition Image operations analyze an input image that is in \.jpg or \.png image format\. The image passed to a Rekognition Image operation can be stored in an Amazon S3 bucket\. If you are not using the AWS CLI, you can also pass byte64 encoded images bytes directly to an Amazon Rekognition operation\. For more information, see [Working with Images](images.md)\.
+Amazon Rekognition image operations are synchronous\. The input and response are in JSON format\. Amazon Rekognition Image operations analyze an input image that is in \.jpg or \.png image format\. The image passed to a Amazon Rekognition Image operation can be stored in an Amazon S3 bucket\. If you are not using the AWS CLI, you can also pass byte64 encoded images bytes directly to an Amazon Rekognition operation\. For more information, see [Working with Images](images.md)\.
 
-## Rekognition Video Operations<a name="how-it-works-operations-video-intro"></a>
+## Amazon Rekognition Video Operations<a name="how-it-works-operations-video-intro"></a>
 
-Rekognition Video can analyze videos stored in an Amazon S3 bucket and videos streamed through Amazon Kinesis Video Streams\.
+Amazon Rekognition Video can analyze videos stored in an Amazon S3 bucket and videos streamed through Amazon Kinesis Video Streams\.
 
-Rekognition Video video operations are asynchronous\. With Rekognition Video storage video operations, you start analysis by calling the start operation for the type of analysis you want\. For example, to detect faces in a stored video, call [StartFaceDetection](API_StartFaceDetection.md)\. Once completed, Amazon Rekognition publishes the completion status to an Amazon SNS topic\. To get the results of the analysis operation, you call the get operation for the type of analysis you requested\. For example [GetFaceDetection](API_GetFaceDetection.md)\. For more information, see [Working with Stored Videos](video.md)\. 
+Amazon Rekognition Video video operations are asynchronous\. With Amazon Rekognition Video storage video operations, you start analysis by calling the start operation for the type of analysis you want\. For example, to detect faces in a stored video, call [StartFaceDetection](API_StartFaceDetection.md)\. Once completed, Amazon Rekognition publishes the completion status to an Amazon SNS topic\. To get the results of the analysis operation, you call the get operation for the type of analysis you requested\. For example [GetFaceDetection](API_GetFaceDetection.md)\. For more information, see [Working with Stored Videos](video.md)\. 
 
-With Rekognition Video streaming video operations you can search for faces stored in Rekognition Video collections\. Rekognition Video analyzes a Kinesis video stream and outputs the search results to a Kinesis data stream\. You manage video analysis by creating and using a Rekognition Video stream processor\. For example, you create a stream processor by calling [CreateStreamProcessor](API_CreateStreamProcessor.md)\. For more information, see [Working with Streaming Videos](streaming-video.md)\. 
+With Amazon Rekognition Video streaming video operations you can search for faces stored in Amazon Rekognition Video collections\. Amazon Rekognition Video analyzes a Kinesis video stream and outputs the search results to a Kinesis data stream\. You manage video analysis by creating and using a Amazon Rekognition Video stream processor\. For example, you create a stream processor by calling [CreateStreamProcessor](API_CreateStreamProcessor.md)\. For more information, see [Working with Streaming Videos](streaming-video.md)\. 
 
 ## Non\-Storage and Storage Based Operations<a name="how-it-works-operations-video-storage"></a>
 
@@ -25,6 +25,8 @@ Amazon Rekognition operations are grouped into the following categories\.
 ## Using the AWS SDK or HTTP to Call Amazon Rekognition API Operations<a name="images-java-http"></a>
 
 You can call Amazon Rekognition API operations using either the AWS SDK or directly by using HTTP\. Unless you have a good reason not to, you should always use the AWS SDK\. The Java examples in this section use the [AWS SDK](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-install.html)\. A Java project file is not provided, but you can use the [AWS Toolkit for Eclipse](http://docs.aws.amazon.com/AWSToolkitEclipse/latest/GettingStartedGuide/) to develop AWS applications using Java\. 
+
+The \.NET examples in this section uses the [AWS SDK for \.NET](http://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/welcome.html)\. You can use the [AWS Toolkit for Visual Studio](http://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/welcome.html) to develop AWS applications using \.NET\. It includes helpful templates and the AWS Explorer for deploying applications and managing services\. For a \.NET developer perspective of AWS, see the [AWS Guide for \.NET Developers](http://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/ndg/welcome.html)\. 
 
 The [API Reference](API_Reference.md) in this guide covers calling Amazon Rekognition operations using HTTP\. For Java reference information, see [AWS SDK for Java](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/index.html)\.
 

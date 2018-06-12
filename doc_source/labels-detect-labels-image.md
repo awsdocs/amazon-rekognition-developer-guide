@@ -1,8 +1,29 @@
 # Detecting Labels in an Image<a name="labels-detect-labels-image"></a>
 
-You can use the [DetectLabels](API_DetectLabels.md) operation to detect labels in an image\. For an example, see [Analysing Images Stored in an Amazon S3 Bucket](images-s3.md)\.
+You can use the [DetectLabels](API_DetectLabels.md) operation to detect labels in an image\. For an example, see [Analyzing Images Stored in an Amazon S3 Bucket](images-s3.md)\.
 
-For each label, Rekognition Image returns a name and a confidence value in the analysis\. The following is an example response from `DetectLabels`\.
+## DetectLabels Operation Request<a name="detectlabels-request"></a>
+
+The input to `DetectLabel` is an image\. In this example JSON input, the source image is loaded from an Amazon S3 Bucket\. `MaxLabels` is the maximum number of labels to return in the response\. `MinConfidence` is the minimum confidence that Amazon Rekognition Image must have in the accuracy of the detected label for it to be returned in the response\.
+
+```
+{
+    "Image": {
+        "S3Object": {
+            "Bucket": "bucket",
+            "Name": "input.jpg"
+        }
+    },
+    "MaxLabels": 10,
+    "MinConfidence": 75
+}
+```
+
+## DetectLabels Response<a name="detectlabels-response"></a>
+
+The reponse from `DetectLabels` is an array of labels detected in the image and the level of confidence by which they were detected\. 
+
+The following is an example response from `DetectLabels`\.
 
 ```
 {

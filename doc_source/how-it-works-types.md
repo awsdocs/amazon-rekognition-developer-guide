@@ -1,6 +1,6 @@
 # Types of Detection and Recognition<a name="how-it-works-types"></a>
 
-The following are the types of detection and recognition that the Rekognition Image API and Rekognition Video API can perform\. For information about the APIs, see [Image and Video Operations](how-it-works-operations-intro.md)\.
+The following are the types of detection and recognition that the Amazon Rekognition Image API and Amazon Rekognition Video API can perform\. For information about the APIs, see [Image and Video Operations](how-it-works-operations-intro.md)\.
 
 ## Labels<a name="how-it-works-labels-intro"></a>
 
@@ -22,7 +22,7 @@ To search for known faces in images, use [DetectFaces](API_DetectFaces.md)\. To 
 
 ## People<a name="how-it-works-persons-intro"></a>
 
-Amazon Rekognition can track people in a stored video\. Rekognition Video provides tracking, face details, and in\-frame location information for people detected in a video\. People cannot be detected in images\. For more information, see [Tracking People](persons.md)\. 
+Amazon Rekognition can track people in a stored video\. Amazon Rekognition Video provides tracking, face details, and in\-frame location information for people detected in a video\. People cannot be detected in images\. For more information, see [Tracking People](persons.md)\. 
 
 To detect people in stored videos, use [StartPersonTracking](API_StartPersonTracking.md)\.
 

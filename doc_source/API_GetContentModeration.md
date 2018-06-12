@@ -1,8 +1,10 @@
 # GetContentModeration<a name="API_GetContentModeration"></a>
 
-Gets the content moderation analysis results for a Rekognition Video analysis started by [StartContentModeration](API_StartContentModeration.md)\.
+Gets the content moderation analysis results for a Amazon Rekognition Video analysis started by [StartContentModeration](API_StartContentModeration.md)\.
 
-Content moderation analysis of a video is an asynchronous operation\. You start analysis by calling [StartContentModeration](API_StartContentModeration.md)\. which returns a job identifier \(`JobId`\)\. When analysis finishes, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartContentModeration`\. To get the results of the content moderation analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetCelebrityDetection` and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityDetection`\. For more information, see [Working with Stored Videos](video.md)\. 
+Content moderation analysis of a video is an asynchronous operation\. You start analysis by calling [StartContentModeration](API_StartContentModeration.md)\. which returns a job identifier \(`JobId`\)\. When analysis finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartContentModeration`\. To get the results of the content moderation analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetCelebrityDetection` and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityDetection`\. 
+
+For more information, see [Working with Stored Videos](video.md)\. 
 
  `GetContentModeration` returns detected content moderation labels, and the time they are detected, in an array, `ModerationLabels`, of [ContentModerationDetection](API_ContentModerationDetection.md) objects\. 
 
@@ -96,7 +98,7 @@ The detected moderation labels and the time\(s\) they were detected\.
 Type: Array of [ContentModerationDetection](API_ContentModerationDetection.md) objects
 
  ** [NextToken](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-NextToken"></a>
-If the response is truncated, Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of moderation labels\.   
+If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of moderation labels\.   
 Type: String  
 Length Constraints: Maximum length of 255\.
 

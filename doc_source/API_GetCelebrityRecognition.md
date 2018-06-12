@@ -1,8 +1,10 @@
 # GetCelebrityRecognition<a name="API_GetCelebrityRecognition"></a>
 
-Gets the celebrity recognition results for a Rekognition Video analysis started by [StartCelebrityRecognition](API_StartCelebrityRecognition.md)\.
+Gets the celebrity recognition results for a Amazon Rekognition Video analysis started by [StartCelebrityRecognition](API_StartCelebrityRecognition.md)\.
 
-Celebrity recognition in a video is an asynchronous operation\. Analysis is started by a call to [StartCelebrityRecognition](API_StartCelebrityRecognition.md) which returns a job identifier \(`JobId`\)\. When the celebrity recognition operation finishes, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartCelebrityRecognition`\. To get the results of the celebrity recognition analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetCelebrityDetection` and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityDetection`\. For more information, see [Working with Stored Videos](video.md)\.
+Celebrity recognition in a video is an asynchronous operation\. Analysis is started by a call to [StartCelebrityRecognition](API_StartCelebrityRecognition.md) which returns a job identifier \(`JobId`\)\. When the celebrity recognition operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartCelebrityRecognition`\. To get the results of the celebrity recognition analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetCelebrityDetection` and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityDetection`\. 
+
+For more information, see [Working with Stored Videos](video.md)\.
 
  `GetCelebrityRecognition` returns detected celebrities and the time\(s\) they are detected in an array \(`Celebrities`\) of [CelebrityRecognition](API_CelebrityRecognition.md) objects\. Each `CelebrityRecognition` contains information about the celebrity in a [CelebrityDetail](API_CelebrityDetail.md) object and the time, `Timestamp`, the celebrity was detected\. 
 
@@ -46,7 +48,7 @@ Valid Range: Minimum value of 1\.
 Required: No
 
  ** [NextToken](#API_GetCelebrityRecognition_RequestSyntax) **   <a name="rekognition-GetCelebrityRecognition-request-NextToken"></a>
-If the previous response was incomplete \(because there is more recognized celebrities to retrieve\), Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of celebrities\.   
+If the previous response was incomplete \(because there is more recognized celebrities to retrieve\), Amazon Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of celebrities\.   
 Type: String  
 Length Constraints: Maximum length of 255\.  
 Required: No
@@ -175,7 +177,7 @@ Type: String
 Valid Values:` IN_PROGRESS | SUCCEEDED | FAILED` 
 
  ** [NextToken](#API_GetCelebrityRecognition_ResponseSyntax) **   <a name="rekognition-GetCelebrityRecognition-response-NextToken"></a>
-If the response is truncated, Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of celebrities\.  
+If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of celebrities\.  
 Type: String  
 Length Constraints: Maximum length of 255\.
 
@@ -184,7 +186,7 @@ If the job fails, `StatusMessage` provides a descriptive error message\.
 Type: String
 
  ** [VideoMetadata](#API_GetCelebrityRecognition_ResponseSyntax) **   <a name="rekognition-GetCelebrityRecognition-response-VideoMetadata"></a>
-Information about a video that Rekognition Video analyzed\. `Videometadata` is returned in every page of paginated responses from a Rekognition Video operation\.  
+Information about a video that Amazon Rekognition Video analyzed\. `Videometadata` is returned in every page of paginated responses from a Amazon Rekognition Video operation\.  
 Type: [VideoMetadata](API_VideoMetadata.md) object
 
 ## Errors<a name="API_GetCelebrityRecognition_Errors"></a>

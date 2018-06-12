@@ -6,7 +6,7 @@ If the target image contains multiple faces, Rekognition matches the face in the
 
 If the source image contains multiple faces, the service detects the largest face in the source image and uses it to compare with each face detected in the target image\. 
 
-For more information, see [Compare Faces in Images](faces.md#faces-comparefaces)\.
+For more information, see [Comparing Faces in Images](faces-comparefaces.md)\.
 
 For example, with the sample image shown on the left as a source image and the sample image on the right as a target image, Rekognition compares the face in the source image, matches it with each face in the target image, displays a similarity score for each face it detects\.
 

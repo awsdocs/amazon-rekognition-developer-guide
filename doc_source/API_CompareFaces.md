@@ -21,7 +21,7 @@ If no faces are detected in the source or target images, `CompareFaces` returns 
 **Note**  
  This is a stateless API operation\. That is, data returned by this operation doesn't persist\.
 
-For an example, see [Comparing Faces in Images \(SDK\)](faces-compare-images.md)\.
+For an example, see [Comparing Faces in Images](faces-comparefaces.md)\.
 
 This operation requires permissions to perform the `rekognition:CompareFaces` action\.
 

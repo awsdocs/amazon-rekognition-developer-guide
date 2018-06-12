@@ -2,7 +2,7 @@
 
 Creates an Amazon Rekognition stream processor that you can use to detect and recognize faces in a streaming video\.
 
-Rekognition Video is a consumer of live video from Amazon Kinesis Video Streams\. Rekognition Video sends analysis results to Amazon Kinesis Data Streams\.
+Amazon Rekognition Video is a consumer of live video from Amazon Kinesis Video Streams\. Amazon Rekognition Video sends analysis results to Amazon Kinesis Data Streams\.
 
 You provide as input a Kinesis video stream \(`Input`\) and a Kinesis data stream \(`Output`\) stream\. You also specify the face recognition criteria in `Settings`\. For example, the collection containing faces that you want to recognize\. Use `Name` to assign an identifier for the stream processor\. You use `Name` to manage the stream processor\. For example, you can start processing the source video by calling [StartStreamProcessor](API_StartStreamProcessor.md) with the `Name` field\. 
 
@@ -50,7 +50,7 @@ Pattern: `[a-zA-Z0-9_.\-]+`
 Required: Yes
 
  ** [Output](#API_CreateStreamProcessor_RequestSyntax) **   <a name="rekognition-CreateStreamProcessor-request-Output"></a>
-Kinesis data stream stream to which Rekognition Video puts the analysis results\. If you are using the AWS CLI, the parameter name is `StreamProcessorOutput`\.  
+Kinesis data stream stream to which Amazon Rekognition Video puts the analysis results\. If you are using the AWS CLI, the parameter name is `StreamProcessorOutput`\.  
 Type: [StreamProcessorOutput](API_StreamProcessorOutput.md) object  
 Required: Yes
 
@@ -99,7 +99,7 @@ Input parameter violated a constraint\. Validate your parameter before calling t
 HTTP Status Code: 400
 
  **LimitExceededException**   
-An Amazon Rekognition service limit was exceeded\. For example, if you start too many Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
+An Amazon Rekognition service limit was exceeded\. For example, if you start too many Amazon Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
 HTTP Status Code: 400
 
  **ProvisionedThroughputExceededException**   

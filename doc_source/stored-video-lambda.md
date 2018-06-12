@@ -2,11 +2,11 @@
 
 This tutorial shows how to get the results of a video analysis operation for label detection by using a Java Lambda function\. 
 
-You can use Lambda functions with Rekognition Video operations\. For example, the following diagram shows a website that uses a Lambda function to automatically start analysis of a video when it's uploaded to an Amazon S3 bucket\. When the Lambda function is triggered, it calls [StartLabelDetection](API_StartLabelDetection.md) to start detecting labels in the uploaded video\. A second Lambda function is triggered when the analysis completion status is sent to the registered Amazon SNS topic\. The second Lambda function calls [GetLabelDetection](API_GetLabelDetection.md) to get the analysis results\. The results are then stored in a database in preparation for displaying on a webpage\. 
+You can use Lambda functions with Amazon Rekognition Video operations\. For example, the following diagram shows a website that uses a Lambda function to automatically start analysis of a video when it's uploaded to an Amazon S3 bucket\. When the Lambda function is triggered, it calls [StartLabelDetection](API_StartLabelDetection.md) to start detecting labels in the uploaded video\. A second Lambda function is triggered when the analysis completion status is sent to the registered Amazon SNS topic\. The second Lambda function calls [GetLabelDetection](API_GetLabelDetection.md) to get the analysis results\. The results are then stored in a database in preparation for displaying on a webpage\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/VideoRekognitionLambda.png)
 
-In this tutorial, the Lambda function is triggered when Rekognition Video sends the completion status for the video analysis to the registered Amazon SNS topic\. It then collects video analysis results by calling [GetLabelDetection](API_GetLabelDetection.md)\. For demonstration purposes, this tutorial writes label detection results to a CloudWatch log\. In your application's Lambda function, you should store the analysis results for later use\. For example, you can use Amazon DynamoDB to save the analysis results\. For more information, see [Working with DynamoDB](url-ddb-dev;WorkingWithDynamo.html)\.
+In this tutorial, the Lambda function is triggered when Amazon Rekognition Video sends the completion status for the video analysis to the registered Amazon SNS topic\. It then collects video analysis results by calling [GetLabelDetection](API_GetLabelDetection.md)\. For demonstration purposes, this tutorial writes label detection results to a CloudWatch log\. In your application's Lambda function, you should store the analysis results for later use\. For example, you can use Amazon DynamoDB to save the analysis results\. For more information, see [Working with DynamoDB](url-ddb-dev;WorkingWithDynamo.html)\.
 
 The following procedures show you how to:
 + Create the Amazon SNS topic and set up permissions\.
@@ -21,11 +21,11 @@ This tutorial assumes that you're familiar with the AWS Toolkit for Eclipse\. Fo
 
 ## Create the SNS Topic<a name="lambda-create-sns-topic"></a>
 
-The completion status of a Rekognition Video video analysis operation is sent to an Amazon SNS topic\. This procedure creates the Amazon SNS topic and the IAM service role that gives Rekognition Video access to your Amazon SNS topics\. For more information, see [Calling Rekognition Video Operations](api-video.md)\.
+The completion status of a Amazon Rekognition Video video analysis operation is sent to an Amazon SNS topic\. This procedure creates the Amazon SNS topic and the IAM service role that gives Amazon Rekognition Video access to your Amazon SNS topics\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\.
 
 **To create an Amazon SNS topic**
 
-1. If you haven't already, create an IAM service role to give Rekognition Video access to your Amazon SNS topics\. Note the Amazon Resource Name \(ARN\)\. For more information, see [Giving Access to Multiple Amazon SNS Topics](api-video-roles.md#api-video-roles-all-topics)\.
+1. If you haven't already, create an IAM service role to give Amazon Rekognition Video access to your Amazon SNS topics\. Note the Amazon Resource Name \(ARN\)\. For more information, see [Giving Access to Multiple Amazon SNS Topics](api-video-roles.md#api-video-roles-all-topics)\.
 
 1. [Create an Amazon SNS topic](http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic ARN\. 
 
@@ -85,7 +85,7 @@ After you create the Lambda function, you configure it to be triggered by the Am
 
 ## Configure the IAM Lambda Role<a name="configure-lambda-role"></a>
 
-To call Rekognition Video operations, you add the *AmazonRekognitionFullAccess* AWS managed policy to the IAM Lambda role\. Start operations, such as [StartLabelDetection](API_StartLabelDetection.md), also require pass role permissions for the IAM service role that Rekognition Video uses to access the Amazon SNS topic\.
+To call Amazon Rekognition Video operations, you add the *AmazonRekognitionFullAccess* AWS managed policy to the IAM Lambda role\. Start operations, such as [StartLabelDetection](API_StartLabelDetection.md), also require pass role permissions for the IAM service role that Amazon Rekognition Video uses to access the Amazon SNS topic\.
 
 **To configure the role**
 
@@ -300,7 +300,7 @@ Use the following AWS CLI command to test the Lambda function by starting the la
    + Change `Endpoint` and `us-east-1` to the AWS endpoint and region that you're using\.
    + Change `TopicARN` to the ARN of the Amazon SNS topic that you created in [Create the SNS Topic](#lambda-create-sns-topic)\.
    + Change `RoleARN` to the ARN of the IAM role that you created in [Create the SNS Topic](#lambda-create-sns-topic)\.
-   + Change `RekognitionUser` to an AWS account that has permissions to call Rekognition Video operations\.
+   + Change `RekognitionUser` to an AWS account that has permissions to call Amazon Rekognition Video operations\.
 
 1. Note the value of `JobId` in the response\. The response looks similar to the following JSON example\.
 

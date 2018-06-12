@@ -1,15 +1,16 @@
 # GetPersonTracking<a name="API_GetPersonTracking"></a>
 
-Gets the person tracking results of a Rekognition Video analysis started by [StartPersonTracking](API_StartPersonTracking.md)\.
+Gets the person tracking results of a Amazon Rekognition Video analysis started by [StartPersonTracking](API_StartPersonTracking.md)\.
 
-The person detection operation is started by a call to `StartPersonTracking` which returns a job identifier \(`JobId`\)\. When the person detection operation finishes, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartPersonTracking`\.
+The person detection operation is started by a call to `StartPersonTracking` which returns a job identifier \(`JobId`\)\. When the person detection operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartPersonTracking`\.
 
 To get the results of the person tracking operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetPersonTracking](#API_GetPersonTracking) and pass the job identifier \(`JobId`\) from the initial call to `StartPersonTracking`\.
 
  `GetPersonTracking` returns an array, `Persons`, of tracked persons and the time\(s\) they were tracked in the video\. 
 
 **Note**  
- `GetPersonTracking` only returns the default facial attributes \(`BoundingBox`, `Confidence`, `Landmarks`, `Pose`, and `Quality`\)\. The other facial attributes listed in the `Face` object of the following response syntax are not returned\. For more information, see [FaceDetail](API_FaceDetail.md)\. 
+ `GetPersonTracking` only returns the default facial attributes \(`BoundingBox`, `Confidence`, `Landmarks`, `Pose`, and `Quality`\)\. The other facial attributes listed in the `Face` object of the following response syntax are not returned\.   
+For more information, see [FaceDetail](API_FaceDetail.md)\. 
 
 By default, the array is sorted by the time\(s\) a person is tracked in the video\. You can sort by tracked persons by specifying `INDEX` for the `SortBy` input parameter\.
 
@@ -44,7 +45,7 @@ Valid Range: Minimum value of 1\.
 Required: No
 
  ** [NextToken](#API_GetPersonTracking_RequestSyntax) **   <a name="rekognition-GetPersonTracking-request-NextToken"></a>
-If the previous response was incomplete \(because there are more persons to retrieve\), Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of persons\.   
+If the previous response was incomplete \(because there are more persons to retrieve\), Amazon Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of persons\.   
 Type: String  
 Length Constraints: Maximum length of 255\.  
 Required: No
@@ -166,7 +167,7 @@ Type: String
 Valid Values:` IN_PROGRESS | SUCCEEDED | FAILED` 
 
  ** [NextToken](#API_GetPersonTracking_ResponseSyntax) **   <a name="rekognition-GetPersonTracking-response-NextToken"></a>
-If the response is truncated, Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of persons\.   
+If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of persons\.   
 Type: String  
 Length Constraints: Maximum length of 255\.
 
@@ -179,7 +180,7 @@ If the job fails, `StatusMessage` provides a descriptive error message\.
 Type: String
 
  ** [VideoMetadata](#API_GetPersonTracking_ResponseSyntax) **   <a name="rekognition-GetPersonTracking-response-VideoMetadata"></a>
-Information about a video that Rekognition Video analyzed\. `Videometadata` is returned in every page of paginated responses from a Rekognition Video operation\.  
+Information about a video that Amazon Rekognition Video analyzed\. `Videometadata` is returned in every page of paginated responses from a Amazon Rekognition Video operation\.  
 Type: [VideoMetadata](API_VideoMetadata.md) object
 
 ## Errors<a name="API_GetPersonTracking_Errors"></a>

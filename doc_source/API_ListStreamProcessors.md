@@ -16,13 +16,13 @@ Gets a list of stream processors that you have created with [CreateStreamProcess
 The request accepts the following data in JSON format\.
 
  ** [MaxResults](#API_ListStreamProcessors_RequestSyntax) **   <a name="rekognition-ListStreamProcessors-request-MaxResults"></a>
-Maximum number of stream processors you want Rekognition Video to return in the response\. The default is 1000\.   
+Maximum number of stream processors you want Amazon Rekognition Video to return in the response\. The default is 1000\.   
 Type: Integer  
 Valid Range: Minimum value of 1\.  
 Required: No
 
  ** [NextToken](#API_ListStreamProcessors_RequestSyntax) **   <a name="rekognition-ListStreamProcessors-request-NextToken"></a>
-If the previous response was incomplete \(because there are more stream processors to retrieve\), Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of stream processors\.   
+If the previous response was incomplete \(because there are more stream processors to retrieve\), Amazon Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of stream processors\.   
 Type: String  
 Length Constraints: Maximum length of 255\.  
 Required: No
@@ -48,7 +48,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [NextToken](#API_ListStreamProcessors_ResponseSyntax) **   <a name="rekognition-ListStreamProcessors-response-NextToken"></a>
-If the response is truncated, Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of stream processors\.   
+If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of stream processors\.   
 Type: String  
 Length Constraints: Maximum length of 255\.
 

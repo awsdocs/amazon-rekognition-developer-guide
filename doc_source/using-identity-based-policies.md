@@ -58,9 +58,6 @@ You can also create your own custom IAM policies to allow permissions for Amazon
 
 In this section, you can find example user policies that grant permissions for various Amazon Rekognition actions\. These policies work when you are using AWS SDKs or the AWS CLI\. When you are using the console, you need to grant additional permissions specific to the console, which is discussed in [Permissions Required to Use the Amazon Rekognition Console](#console-permissions)\.
 
-**Note**  
-All examples use the us\-west\-2 region and contain fictitious account IDs\.
-
 **Topics**
 + [Example 1: Allow a User Read\-Only Access to Resources](#access-policy-customer-managed-first-example)
 + [Example 2: Allow a User Full Access to Resources](#access-policy-customer-managed-second-example)
@@ -113,25 +110,7 @@ The following example grants full access to Amazon Rekognition resources\.
         {
             "Effect": "Allow",
             "Action": [
-                "rekognition:CompareFaces",
-                "rekognition:DetectFaces",
-                "rekognition:DetectLabels",
-                "rekognition:ListCollections",
-                "rekognition:ListFaces",
-                "rekognition:SearchFaces",
-                "rekognition:SearchFacesByImage",
-                "rekognition:DetectText",
-                "rekognition:GetCelebrityInfo",
-                "rekognition:RecognizeCelebrities",
-                "rekognition:DetectModerationLabels",
-                "rekognition:GetLabelDetection",
-                "rekognition:GetFaceDetection",
-                "rekognition:GetContentModeration",
-                "rekognition:GetPersonTracking",
-                "rekognition:GetCelebrityRecognition",
-                "rekognition:GetFaceSearch",
-                "rekognition:DescribeStreamProcessor",
-                "rekognition:ListStreamProcessors"
+                "rekognition:*"
             ],
             "Resource": "*"
         }

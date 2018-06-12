@@ -2,9 +2,11 @@
 
  Starts asynchronous detection of explicit or suggestive adult content in a stored video\.
 
-Rekognition Video can moderate content in a video stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartContentModeration` returns a job identifier \(`JobId`\) which you use to get the results of the analysis\. When content moderation analysis is finished, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\.
+Amazon Rekognition Video can moderate content in a video stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartContentModeration` returns a job identifier \(`JobId`\) which you use to get the results of the analysis\. When content moderation analysis is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\.
 
-To get the results of the content moderation analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetContentModeration](API_GetContentModeration.md) and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. For more information, see [Detecting Unsafe Content](moderation.md)\.
+To get the results of the content moderation analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetContentModeration](API_GetContentModeration.md) and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. 
+
+For more information, see [Detecting Unsafe Content](moderation.md)\.
 
 ## Request Syntax<a name="API_StartContentModeration_RequestSyntax"></a>
 
@@ -52,7 +54,7 @@ Valid Range: Minimum value of 0\. Maximum value of 100\.
 Required: No
 
  ** [NotificationChannel](#API_StartContentModeration_RequestSyntax) **   <a name="rekognition-StartContentModeration-request-NotificationChannel"></a>
-The Amazon SNS topic ARN that you want Rekognition Video to publish the completion status of the content moderation analysis to\.  
+The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish the completion status of the content moderation analysis to\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
@@ -104,7 +106,7 @@ Amazon Rekognition is unable to access the S3 object specified in the request\.
 HTTP Status Code: 400
 
  **LimitExceededException**   
-An Amazon Rekognition service limit was exceeded\. For example, if you start too many Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
+An Amazon Rekognition service limit was exceeded\. For example, if you start too many Amazon Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
 HTTP Status Code: 400
 
  **ProvisionedThroughputExceededException**   

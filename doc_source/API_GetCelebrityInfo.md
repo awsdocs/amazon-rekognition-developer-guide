@@ -1,6 +1,8 @@
 # GetCelebrityInfo<a name="API_GetCelebrityInfo"></a>
 
-Gets the name and additional information about a celebrity based on his or her Rekognition ID\. The additional information is returned as an array of URLs\. If there is no additional information about the celebrity, this list is empty\. For more information, see [Getting Information about a Celebrity](get-celebrity-info-procedure.md)\.
+Gets the name and additional information about a celebrity based on his or her Rekognition ID\. The additional information is returned as an array of URLs\. If there is no additional information about the celebrity, this list is empty\.
+
+For more information, see [Getting Information About a Celebrity](get-celebrity-info-procedure.md)\.
 
 This operation requires permissions to perform the `rekognition:GetCelebrityInfo` action\. 
 

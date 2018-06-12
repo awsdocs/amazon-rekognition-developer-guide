@@ -1,8 +1,8 @@
 # GetFaceDetection<a name="API_GetFaceDetection"></a>
 
-Gets face detection results for a Rekognition Video analysis started by [StartFaceDetection](API_StartFaceDetection.md)\.
+Gets face detection results for a Amazon Rekognition Video analysis started by [StartFaceDetection](API_StartFaceDetection.md)\.
 
-Face detection with Rekognition Video is an asynchronous operation\. You start face detection by calling [StartFaceDetection](API_StartFaceDetection.md) which returns a job identifier \(`JobId`\)\. When the face detection operation finishes, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartFaceDetection`\. To get the results of the face detection operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceDetection](#API_GetFaceDetection) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceDetection`\.
+Face detection with Amazon Rekognition Video is an asynchronous operation\. You start face detection by calling [StartFaceDetection](API_StartFaceDetection.md) which returns a job identifier \(`JobId`\)\. When the face detection operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartFaceDetection`\. To get the results of the face detection operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceDetection](#API_GetFaceDetection) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceDetection`\.
 
  `GetFaceDetection` returns an array of detected faces \(`Faces`\) sorted by the time the faces were detected\. 
 
@@ -36,7 +36,7 @@ Valid Range: Minimum value of 1\.
 Required: No
 
  ** [NextToken](#API_GetFaceDetection_RequestSyntax) **   <a name="rekognition-GetFaceDetection-request-NextToken"></a>
-If the previous response was incomplete \(because there are more faces to retrieve\), Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of faces\.  
+If the previous response was incomplete \(because there are more faces to retrieve\), Amazon Rekognition Video returns a pagination token in the response\. You can use this pagination token to retrieve the next set of faces\.  
 Type: String  
 Length Constraints: Maximum length of 255\.  
 Required: No
@@ -156,7 +156,7 @@ If the job fails, `StatusMessage` provides a descriptive error message\.
 Type: String
 
  ** [VideoMetadata](#API_GetFaceDetection_ResponseSyntax) **   <a name="rekognition-GetFaceDetection-response-VideoMetadata"></a>
-Information about a video that Rekognition Video analyzed\. `Videometadata` is returned in every page of paginated responses from a Amazon Rekognition video operation\.  
+Information about a video that Amazon Rekognition Video analyzed\. `Videometadata` is returned in every page of paginated responses from a Amazon Rekognition video operation\.  
 Type: [VideoMetadata](API_VideoMetadata.md) object
 
 ## Errors<a name="API_GetFaceDetection_Errors"></a>

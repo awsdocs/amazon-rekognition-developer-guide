@@ -1,6 +1,8 @@
 # PersonDetection<a name="API_PersonDetection"></a>
 
-Details and tracking information for a single time a person is tracked in a video\. Amazon Rekognition operations that track persons return an array of `PersonDetection` objects with elements for each time a person is tracked in a video\. For more information, see [GetPersonTracking](API_GetPersonTracking.md)\. 
+Details and tracking information for a single time a person is tracked in a video\. Amazon Rekognition operations that track persons return an array of `PersonDetection` objects with elements for each time a person is tracked in a video\. 
+
+For more information, see [GetPersonTracking](API_GetPersonTracking.md)\. 
 
 ## Contents<a name="API_PersonDetection_Contents"></a>
 

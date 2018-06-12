@@ -1,6 +1,6 @@
 # Starting Streaming Video Analysis<a name="streaming-video-starting-analysis"></a>
 
-You start analyzing a streaming video by starting a Rekognition Video stream processor and streaming video into Rekognition Video\. A Rekognition Video stream processor allows you to start, stop, and manage stream processors\. You create a stream processor by calling [CreateStreamProcessor](API_CreateStreamProcessor.md)\. The request parameters include the Amazon Resource Names \(ARNs\) for the Kinesis video stream, the Kinesis data stream, and the identifier for the collection that's used to recognize faces in the streaming video\. It also includes the name that you specify for the stream processor\.
+You start analyzing a streaming video by starting a Amazon Rekognition Video stream processor and streaming video into Amazon Rekognition Video\. A Amazon Rekognition Video stream processor allows you to start, stop, and manage stream processors\. You create a stream processor by calling [CreateStreamProcessor](API_CreateStreamProcessor.md)\. The request parameters include the Amazon Resource Names \(ARNs\) for the Kinesis video stream, the Kinesis data stream, and the identifier for the collection that's used to recognize faces in the streaming video\. It also includes the name that you specify for the stream processor\.
 
 You start processing a video by calling the [ StartStreamProcessor APIrequestsStartStreamProcessor  Starts processing a stream processor\. You create a stream processor by calling [CreateStreamProcessor](API_CreateStreamProcessor.md)\. To tell `StartStreamProcessor` which stream processor to start, use the value of the `Name` field specified in the call to `CreateStreamProcessor`\.  Request Syntax  
 
@@ -45,13 +45,13 @@ HTTP Status Code: 400
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500    See Also   For more information about using this API in one of the language\-specific AWS SDKs, see the following:    [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/StartStreamProcessor)    ](API_StartStreamProcessor.md) operation\. To get status information for a stream processor, call [DescribeStreamProcessor](API_DescribeStreamProcessor.md)\. Other operations you can call are [StopStreamProcessor](API_StopStreamProcessor.md) to stop a stream processor, and [DeleteStreamProcessor](API_DeleteStreamProcessor.md) to delete a stream processor\. To get a list of stream processors in your account, call [ListStreamProcessors](API_ListStreamProcessors.md)\. 
 
-After the stream processor starts running, you stream the video into Rekognition Video through the Kinesis video stream that you specified in `CreateStreamProcessor`\. Use the Kinesis Video Streams SDK [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) operation to deliver video into the Kinesis video stream\. For an example, see [PutMedia API Example](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-putmedia.html)\.
+After the stream processor starts running, you stream the video into Amazon Rekognition Video through the Kinesis video stream that you specified in `CreateStreamProcessor`\. Use the Kinesis Video Streams SDK [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) operation to deliver video into the Kinesis video stream\. For an example, see [PutMedia API Example](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-putmedia.html)\.
 
-For information about how your application can consume Rekognition Video analysis results, see [Reading Streaming Video Analysis Results](streaming-video-kinesis-output.md)\.
+For information about how your application can consume Amazon Rekognition Video analysis results, see [Reading Streaming Video Analysis Results](streaming-video-kinesis-output.md)\.
 
-## Creating the Rekognition Video Stream Processor<a name="streaming-video-creating-stream-processor"></a>
+## Creating the Amazon Rekognition Video Stream Processor<a name="streaming-video-creating-stream-processor"></a>
 
-Before you can analyze a streaming video, you create a Rekognition Video stream processor \([CreateStreamProcessor](API_CreateStreamProcessor.md)\)\. The stream processor contains information about the Kinesis data stream and the Kinesis video stream\. It also contains the identifier for the collection that contains the faces you want to recognize in the input streaming video\. You also specify a name for the stream processor\. The following is a JSON example for the `CreateStreamProcessor` request\.
+Before you can analyze a streaming video, you create a Amazon Rekognition Video stream processor \([CreateStreamProcessor](API_CreateStreamProcessor.md)\)\. The stream processor contains information about the Kinesis data stream and the Kinesis video stream\. It also contains the identifier for the collection that contains the faces you want to recognize in the input streaming video\. You also specify a name for the stream processor\. The following is a JSON example for the `CreateStreamProcessor` request\.
 
 ```
 {
@@ -84,7 +84,7 @@ The following is an example response from `CreateStreamProcessor`\.
 }
 ```
 
-## Starting the Rekognition Video Stream Processor<a name="streaming-video-starting-stream-processor"></a>
+## Starting the Amazon Rekognition Video Stream Processor<a name="streaming-video-starting-stream-processor"></a>
 
 You start analyzing streaming video by calling [StartStreamProcessor](API_StartStreamProcessor.md) with the stream processor name that you specified in `CreateStreamProcessor`\. The following is a JSON example for the `StartStreamProcessor` request\.
 
@@ -196,8 +196,8 @@ public class StreamProcessorSample {
 }
 ```
 
-## Streaming Video into Rekognition Video<a name="video-streaming-kinesisvideostreams-stream"></a>
+## Streaming Video into Amazon Rekognition Video<a name="video-streaming-kinesisvideostreams-stream"></a>
 
-To stream video into Rekognition Video, you use the Amazon Kinesis Video Streams SDK to create and use a Kinesis video stream\. The `PutMedia` operation writes video data *fragments* into a Kinesis video stream that Rekognition Video consumes\. Each video data fragment is typically 2–10 seconds in length and contains a self\-contained sequence of video frames\. Rekognition Video supports H\.264 encoded videos, which can have three types of frames \(I, B, and P\)\. For more information, see [Inter Frame](https://en.wikipedia.org/wiki/Inter_frame)\. The first frame in the fragment must be an I\-frame\. An I\-frame can be decoded independent of any other frame\. 
+To stream video into Amazon Rekognition Video, you use the Amazon Kinesis Video Streams SDK to create and use a Kinesis video stream\. The `PutMedia` operation writes video data *fragments* into a Kinesis video stream that Amazon Rekognition Video consumes\. Each video data fragment is typically 2–10 seconds in length and contains a self\-contained sequence of video frames\. Amazon Rekognition Video supports H\.264 encoded videos, which can have three types of frames \(I, B, and P\)\. For more information, see [Inter Frame](https://en.wikipedia.org/wiki/Inter_frame)\. The first frame in the fragment must be an I\-frame\. An I\-frame can be decoded independent of any other frame\. 
 
 As video data arrives into the Kinesis video stream, Kinesis Video Streams assigns a unique number to the fragment\. For an example, see [PutMedia API Example](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-putmedia.html)\.

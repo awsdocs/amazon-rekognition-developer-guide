@@ -76,7 +76,7 @@ Length Constraints: Minimum length of 1\. Maximum length of 128\.
 Pattern: `[a-zA-Z0-9_.\-]+` 
 
  ** [Output](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-Output"></a>
-Kinesis data stream to which Rekognition Video puts the analysis results\.  
+Kinesis data stream to which Amazon Rekognition Video puts the analysis results\.  
 Type: [StreamProcessorOutput](API_StreamProcessorOutput.md) object
 
  ** [RoleArn](#API_DescribeStreamProcessor_ResponseSyntax) **   <a name="rekognition-DescribeStreamProcessor-response-RoleArn"></a>

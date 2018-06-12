@@ -4,12 +4,12 @@ Structure containing attributes of the face that the algorithm detected\.
 
 A `FaceDetail` object contains either the default facial attributes or all facial attributes\. The default attributes are `BoundingBox`, `Confidence`, `Landmarks`, `Pose`, and `Quality`\.
 
- [GetFaceDetection](API_GetFaceDetection.md) is the only Rekognition Video stored video operation that can return a `FaceDetail` object with all attributes\. To specify which attributes to return, use the `FaceAttributes` input parameter for [StartFaceDetection](API_StartFaceDetection.md)\. The following Rekognition Video operations return only the default attributes\. The corresponding Start operations don't have a `FaceAttributes` input parameter\.
+ [GetFaceDetection](API_GetFaceDetection.md) is the only Amazon Rekognition Video stored video operation that can return a `FaceDetail` object with all attributes\. To specify which attributes to return, use the `FaceAttributes` input parameter for [StartFaceDetection](API_StartFaceDetection.md)\. The following Amazon Rekognition Video operations return only the default attributes\. The corresponding Start operations don't have a `FaceAttributes` input parameter\.
 + GetCelebrityRecognition
 + GetPersonTracking
 + GetFaceSearch
 
-The Rekognition Image [DetectFaces](API_DetectFaces.md) and [IndexFaces](API_IndexFaces.md) operations can return all facial attributes\. To specify which attributes to return, use the `Attributes` input parameter for `DetectFaces`\. For `IndexFaces`, use the `DetectAttributes` input parameter\.
+The Amazon Rekognition Image [DetectFaces](API_DetectFaces.md) and [IndexFaces](API_IndexFaces.md) operations can return all facial attributes\. To specify which attributes to return, use the `Attributes` input parameter for `DetectFaces`\. For `IndexFaces`, use the `DetectAttributes` input parameter\.
 
 ## Contents<a name="API_FaceDetail_Contents"></a>
 

@@ -2,7 +2,9 @@
 
 Starts asynchronous recognition of celebrities in a stored video\.
 
-Rekognition Video can detect celebrities in a video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartCelebrityRecognition` returns a job identifier \(`JobId`\) which you use to get the results of the analysis\. When celebrity recognition analysis is finished, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the results of the celebrity recognition analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetCelebrityRecognition](API_GetCelebrityRecognition.md) and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityRecognition`\. For more information, see [Recognizing Celebrities](celebrities.md)\.
+Amazon Rekognition Video can detect celebrities in a video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartCelebrityRecognition` returns a job identifier \(`JobId`\) which you use to get the results of the analysis\. When celebrity recognition analysis is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the results of the celebrity recognition analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetCelebrityRecognition](API_GetCelebrityRecognition.md) and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityRecognition`\. 
+
+For more information, see [Recognizing Celebrities](celebrities.md)\.
 
 ## Request Syntax<a name="API_StartCelebrityRecognition_RequestSyntax"></a>
 
@@ -43,7 +45,7 @@ Pattern: `[a-zA-Z0-9_.\-:]+`
 Required: No
 
  ** [NotificationChannel](#API_StartCelebrityRecognition_RequestSyntax) **   <a name="rekognition-StartCelebrityRecognition-request-NotificationChannel"></a>
-The Amazon SNS topic ARN that you want Rekognition Video to publish the completion status of the celebrity recognition analysis to\.  
+The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish the completion status of the celebrity recognition analysis to\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
@@ -95,7 +97,7 @@ Amazon Rekognition is unable to access the S3 object specified in the request\.
 HTTP Status Code: 400
 
  **LimitExceededException**   
-An Amazon Rekognition service limit was exceeded\. For example, if you start too many Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
+An Amazon Rekognition service limit was exceeded\. For example, if you start too many Amazon Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
 HTTP Status Code: 400
 
  **ProvisionedThroughputExceededException**   

@@ -2,9 +2,9 @@
 
 Starts asynchronous detection of labels in a stored video\.
 
-Rekognition Video can detect labels in a video\. Labels are instances of real\-world entities\. This includes objects like flower, tree, and table; events like wedding, graduation, and birthday party; concepts like landscape, evening, and nature; and activities like a person getting out of a car or a person skiing\.
+Amazon Rekognition Video can detect labels in a video\. Labels are instances of real\-world entities\. This includes objects like flower, tree, and table; events like wedding, graduation, and birthday party; concepts like landscape, evening, and nature; and activities like a person getting out of a car or a person skiing\.
 
-The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartLabelDetection` returns a job identifier \(`JobId`\) which you use to get the results of the operation\. When label detection is finished, Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\.
+The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartLabelDetection` returns a job identifier \(`JobId`\) which you use to get the results of the operation\. When label detection is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\.
 
 To get the results of the label detection operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetLabelDetection](API_GetLabelDetection.md) and pass the job identifier \(`JobId`\) from the initial call to `StartLabelDetection`\.
 
@@ -50,14 +50,14 @@ Pattern: `[a-zA-Z0-9_.\-:]+`
 Required: No
 
  ** [MinConfidence](#API_StartLabelDetection_RequestSyntax) **   <a name="rekognition-StartLabelDetection-request-MinConfidence"></a>
-Specifies the minimum confidence that Rekognition Video must have in order to return a detected label\. Confidence represents how certain Amazon Rekognition is that a label is correctly identified\.0 is the lowest confidence\. 100 is the highest confidence\. Rekognition Video doesn't return any labels with a confidence level lower than this specified value\.  
+Specifies the minimum confidence that Amazon Rekognition Video must have in order to return a detected label\. Confidence represents how certain Amazon Rekognition is that a label is correctly identified\.0 is the lowest confidence\. 100 is the highest confidence\. Amazon Rekognition Video doesn't return any labels with a confidence level lower than this specified value\.  
 If you don't specify `MinConfidence`, the operation returns labels with confidence values greater than or equal to 50 percent\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
  ** [NotificationChannel](#API_StartLabelDetection_RequestSyntax) **   <a name="rekognition-StartLabelDetection-request-NotificationChannel"></a>
-The Amazon SNS topic ARN you want Rekognition Video to publish the completion status of the label detection operation to\.   
+The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the completion status of the label detection operation to\.   
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
@@ -109,7 +109,7 @@ Amazon Rekognition is unable to access the S3 object specified in the request\.
 HTTP Status Code: 400
 
  **LimitExceededException**   
-An Amazon Rekognition service limit was exceeded\. For example, if you start too many Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
+An Amazon Rekognition service limit was exceeded\. For example, if you start too many Amazon Rekognition Video jobs concurrently, calls to start operations \(`StartLabelDetection`, for example\) will raise a `LimitExceededException` exception \(HTTP status code: 400\) until the number of concurrently running jobs is below the Amazon Rekognition service limit\.   
 HTTP Status Code: 400
 
  **ProvisionedThroughputExceededException**   

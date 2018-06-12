@@ -10,7 +10,7 @@ Type: [BoundingBox](API_BoundingBox.md) object
 
 **Confidence**
 
-The confidence level \(1\-100\) that Rekognition Video has that the detected face is actually a face\. 1 is the lowest confidence, 100 is the highest\.
+The confidence level \(1\-100\) that Amazon Rekognition Video has that the detected face is actually a face\. 1 is the lowest confidence, 100 is the highest\.
 
 Type: Number
 
