@@ -36,7 +36,7 @@ For more information, see [Receiving CloudTrail Log Files from Multiple Regions]
 
  A trail is a configuration that enables delivery of events as log files to an Amazon S3 bucket that you specify\. CloudTrail log files contain one or more log entries\. An event represents a single request from any source and includes information about the requested action, the date and time of the action, request parameters, and so on\. CloudTrail log files are not an ordered stack trace of the public API calls, so they do not appear in any specific order\.
 
-The following example shows a CloudTrail log entry with actions for the following API: `CreateCollection`, `DeleteCollection`, `CreateStreamProcessor`, `DeleteStreamProcessor`, `DescribeStreamPrcoessor`, `ListStreamProcessors`, and `ListCollections`\.
+The following example shows a CloudTrail log entry with actions for the following API: `CreateCollection`, `DeleteCollection`, `CreateStreamProcessor`, `DeleteStreamProcessor`, `DescribeStreamProcessor`, `ListStreamProcessors`, and `ListCollections`\.
 
 ```
 {
