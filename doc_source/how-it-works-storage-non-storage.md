@@ -57,7 +57,7 @@ Then, you can use the information in the index to enhance the images when your a
 
 ## Storage\-Based API Operations<a name="how-it-works-storage-based"></a>
 
-Amazon Rekognition Image supports the [IndexFaces](API_IndexFaces.md) operation, which you can use to detect faces in an image and persist information about facial features detected in a Amazon Rekognition collection\. This is an example of a *storage\-based* API operation because the service persists information on the server\. 
+Amazon Rekognition Image supports the [IndexFaces](API_IndexFaces.md) operation, which you can use to detect faces in an image and persist information about facial features detected in an Amazon Rekognition collection\. This is an example of a *storage\-based* API operation because the service persists information on the server\. 
 
 Amazon Rekognition Image provides the following storage API operations:
 + [IndexFaces](API_IndexFaces.md)

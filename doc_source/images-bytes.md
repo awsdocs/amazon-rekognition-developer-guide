@@ -38,9 +38,7 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
    The following Java example shows how to load an image from the local file system and detect labels by using the [detectLabels](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
 
    ```
-   
    package aws.example.rekognition.image;
-   
    import java.io.File;
    import java.io.FileInputStream;
    import java.io.InputStream;

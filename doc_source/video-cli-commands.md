@@ -1,12 +1,12 @@
 # Analyzing a Video with the AWS Command Line Interface<a name="video-cli-commands"></a>
 
-You can use the AWS Command Line Interface \(AWS CLI\) to call Amazon Rekognition Video operations\. The design pattern is the same as using the Amazon Rekognition Video API with the AWS SDK for Java or other AWS SDKs\. For more information, see [](video.md#video-api-overview)\. The following procedures show how to use the AWS CLI to detect labels in a video\.
+You can use the AWS Command Line Interface \(AWS CLI\) to call Amazon Rekognition Video operations\. The design pattern is the same as using the Amazon Rekognition Video API with the AWS SDK for Java or other AWS SDKs\. For more information, see [Amazon Rekognition Video API Overview](video.md#video-api-overview)\. The following procedures show how to use the AWS CLI to detect labels in a video\.
 
 You start detecting labels in a video by calling `start-label-detection`\. When Amazon Rekognition finishes analyzing the video, the completion status is sent to the Amazon SNS topic that's specified in the `--notification-channel` parameter of `start-label-detection`\. You can get the completion status by subscribing an Amazon Simple Queue Service \(Amazon SQS\) queue to the Amazon SNS topic\. You then poll [receive\-message](http://docs.aws.amazon.com/cli/latest/reference/sqs/receive-message.html) to get the completion status from the Amazon SQS queue\.
 
 The completion status notification is a JSON structure within the `receive-message` response\. You need to extract the JSON from the response\. For information about the completion status JSON, see [Reference: Video Analysis Results Notification](video-notification-payload.md)\. If the value of the `Status` field of the completed status JSON is `SUCCEEDED`, you can get the results of the video analysis request by calling `get-label-detection`\.
 
-The following procedures don't include code to poll the Amazon SQS queue\. Also, they don't include code to parse the JSON that's returned from the Amazon SQS queue\. For an example in Java, see [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md)\. 
+The following procedures don't include code to poll the Amazon SQS queue\. Also, they don't include code to parse the JSON that's returned from the Amazon SQS queue\. For an example in Java, see [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\. 
 
 ## Prerequisites<a name="video-prerequisites"></a>
 

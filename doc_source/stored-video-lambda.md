@@ -21,7 +21,7 @@ This tutorial assumes that you're familiar with the AWS Toolkit for Eclipse\. Fo
 
 ## Create the SNS Topic<a name="lambda-create-sns-topic"></a>
 
-The completion status of a Amazon Rekognition Video video analysis operation is sent to an Amazon SNS topic\. This procedure creates the Amazon SNS topic and the IAM service role that gives Amazon Rekognition Video access to your Amazon SNS topics\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\.
+The completion status of an Amazon Rekognition Video video analysis operation is sent to an Amazon SNS topic\. This procedure creates the Amazon SNS topic and the IAM service role that gives Amazon Rekognition Video access to your Amazon SNS topics\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\.
 
 **To create an Amazon SNS topic**
 
@@ -163,7 +163,7 @@ When the Lambda function is triggered, the following code gets the completion st
    import com.fasterxml.jackson.databind.JsonNode;
    import com.fasterxml.jackson.databind.ObjectMapper;
    
-   //LambdaFunctionHandler
+   
    
    public class JobCompletionHandler implements RequestHandler<SNSEvent, String> {
    

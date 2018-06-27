@@ -1,16 +1,22 @@
-# Detecting Faces in a Stored Video \(AWS SDK for Java\)<a name="faces-sqs-video"></a>
+# Detecting Faces in a Stored Video<a name="faces-sqs-video"></a>
 
-Amazon Rekognition can detect faces in a video that's stored in an Amazon S3 bucket\. This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md), which uses an Amazon Simple Queue Service \(Amazon SQS\) queue to get the completion status of a video analysis request\. 
+Amazon Rekognition Video can detect faces in videos that are stored in an Amazon S3 bucket and provide information such as: 
++ The time or times faces are detected in a video\.
++ The location of faces in the video frame at the time they were detected\.
++ Facial landmarks such as the position of the left eye\. 
 
-## Prerequisites<a name="moderate-images-prerequisites"></a>
+Amazon Rekognition Video face detection in stored videos is an asynchronous operation\. To start the detection of faces in videos, call [StartFaceDetection](API_StartFaceDetection.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service \(Amazon SNS\) topic\. If the video analysis is successful, you can call [GetFaceDetection](API_GetFaceDetection.md) to get the results of the video analysis\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video Operations](api-video.md)\. 
 
-To run this procedure, you need to have the AWS SDK for Java installed\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\. The AWS account you use must have access permissions to the Amazon Rekognition API\. For more information, see [Amazon Rekognition API Permissions: Actions, Permissions, and Resources Reference](api-permissions-reference.md)\. 
+This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), which uses an Amazon Simple Queue Service \(Amazon SQS\) queue to get the completion status of a video analysis request\. 
 
-**To detect faces in a video stored in an Amazon S3 bucket**
+**To detect faces in a video stored in an Amazon S3 bucket \(SDK\)**
 
-1. Perform [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md)\.
+1. Perform [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\.
 
-1. Add the following code to the project you created in step 1\.
+1. Add the following code to the class `VideoDetect` that you created in step 1\.
+
+------
+#### [ Java ]
 
    ```
     //Faces=======================================================================
@@ -70,33 +76,93 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
       }
    ```
 
-1. In the function `main`, replace the line 
+   2a\. In the function `main`, replace the line: 
 
-    `StartLabels("bucket","file");` 
+    `StartLabels(bucket,video);` 
 
-   with
+   with:
 
-    `StartFaces("bucket","file");` 
+    `StartFaces(bucket,video);` 
 
-   If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md), the function name to replace is different\.
-
-1. In the call to `StartFaces`, replace *bucket* and *file* with the Amazon S3 bucket name and file name of the video you want to analyze\.
-
-1. In the function `main`, replace the line 
+   2b\. Replace the line: 
 
    `GetResultsLabels();`
 
-   with
+   with:
 
    `GetResultsFaces();`
 
-   If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md), the function name to replace is different\.
+------
+#### [ Python ]
+
+   ```
+       def GetResultsFaces(self, jobId):
+           maxResults = 10
+           paginationToken = ''
+           finished = False
+   
+           while finished == False:
+               response = self.rek.get_face_detection(JobId=jobId,
+                                               MaxResults=maxResults,
+                                               NextToken=paginationToken)
+   
+               print(response['VideoMetadata']['Codec'])
+               print(str(response['VideoMetadata']['DurationMillis']))
+               print(response['VideoMetadata']['Format'])
+               print(response['VideoMetadata']['FrameRate'])
+   
+               for faceDetection in response['Faces']:
+                   print('Face: ' + str(faceDetection['Face']))
+                   print('Confidence: ' + str(faceDetection['Face']['Confidence']))
+                   print('Timestamp: ' + str(faceDetection['Timestamp']))
+                   print()
+   
+               if 'NextToken' in response:
+                   paginationToken = response['NextToken']
+               else:
+                   finished = True
+   ```
+
+   2a\. In the function `main`, replace the line: 
+
+   ```
+           response = self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
+                                            NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.topicArn})
+   ```
+
+   with:
+
+   ```
+           response = self.rek.start_face_detection(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
+               NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
+   ```
+
+   2b\. Replace the line: 
+
+   ```
+                           self.GetResultsLabels(rekMessage['JobId'])
+   ```
+
+   with:
+
+   ```
+                           self.GetResultsFaces(rekMessage['JobId'])
+   ```
+
+------
+**Note**  
+If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the function name to replace is different\.
 
 1. Run the code\. Information about the faces that were detected in the video is shown\.
 
-## <a name="getfacedetection-operation-response"></a>
+## GetFaceDetection Operation Response<a name="getfacedetection-operation-response"></a>
 
-`GetFaceDetection` returns an array \(`Faces`\) that contains information about the faces detected in the video\. An array element, [FaceDetection](API_FaceDetection.md), exists for each time a face is detected in the video\. The array elements returned are sorted by time, in milliseconds since the start of the video\.  The following example is a partial JSON response from `GetFaceDetection`\.
+`GetFaceDetection` returns an array \(`Faces`\) that contains information about the faces detected in the video\. An array element, [FaceDetection](API_FaceDetection.md), exists for each time a face is detected in the video\. The array elements returned are sorted by time, in milliseconds since the start of the video\.  
+
+The following example is a partial JSON response from `GetFaceDetection`\. In the response, note the following:
++ **Face information** – The `FaceDetection` array element contains information about the detected face \([FaceDetail](API_FaceDetail.md)\) and the time that the face was detected in the video \(`Timestamp`\)\.
++ **Paging information** – The example shows one page of face detection information\. You can specify how many person elements to return in the `MaxResults` input parameter for `GetFaceDetection`\. If more results than `MaxResults` exist, `GetFaceDetection` returns a token \(`NextToken`\) that's used to get the next page of results\. For more information, see [Getting Amazon Rekognition Video Analysis Results](api-video.md#api-video-get)\.
++ **Video information** – The response includes information about the video format \(`VideoMetadata`\) in each page of information that's returned by `GetFaceDetection`\.
 
 ```
 {
@@ -260,8 +326,3 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
     }
 }
 ```
-
-In the response, note the following:
-+ **Face information** – The `FaceDetection` array element contains information about the detected face \([FaceDetail](API_FaceDetail.md) and the time that the face was detected in the video \(`Timestamp`\)\.
-+ **Paging information** – The example shows one page of face detection information\. You can specify how many person elements to return in the `MaxResults` input parameter for `GetFaceDetection`\. If more results than `MaxResults` exist, `GetFaceDetection` returns a token \(`NextToken`\) that's used to get the next page of results\. For more information, see [Getting Amazon Rekognition Video Analysis Results](api-video.md#api-video-get)\.
-+ **Video information** – The response includes information about the video format \(`VideoMetadata`\) in each page of information that's returned by `GetFaceDetection`\.

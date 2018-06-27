@@ -30,7 +30,7 @@ You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from
    import java.util.List;
    
    
-   public class DeleteFaces {
+   public class DeleteFacesFromCollection {
       public static final String collectionId = "MyCollection";
       public static final String faces[] = {"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"};
    

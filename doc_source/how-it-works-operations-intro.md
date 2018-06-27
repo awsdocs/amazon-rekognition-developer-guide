@@ -6,7 +6,7 @@ The Amazon Rekognition Image and Amazon Rekognition Video API can detect or reco
 
 ## Amazon Rekognition Image Operations<a name="how-it-works-operations-images"></a>
 
-Amazon Rekognition image operations are synchronous\. The input and response are in JSON format\. Amazon Rekognition Image operations analyze an input image that is in \.jpg or \.png image format\. The image passed to a Amazon Rekognition Image operation can be stored in an Amazon S3 bucket\. If you are not using the AWS CLI, you can also pass byte64 encoded images bytes directly to an Amazon Rekognition operation\. For more information, see [Working with Images](images.md)\.
+Amazon Rekognition image operations are synchronous\. The input and response are in JSON format\. Amazon Rekognition Image operations analyze an input image that is in \.jpg or \.png image format\. The image passed to an Amazon Rekognition Image operation can be stored in an Amazon S3 bucket\. If you are not using the AWS CLI, you can also pass byte64 encoded images bytes directly to an Amazon Rekognition operation\. For more information, see [Working with Images](images.md)\.
 
 ## Amazon Rekognition Video Operations<a name="how-it-works-operations-video-intro"></a>
 
@@ -14,7 +14,7 @@ Amazon Rekognition Video can analyze videos stored in an Amazon S3 bucket and vi
 
 Amazon Rekognition Video video operations are asynchronous\. With Amazon Rekognition Video storage video operations, you start analysis by calling the start operation for the type of analysis you want\. For example, to detect faces in a stored video, call [StartFaceDetection](API_StartFaceDetection.md)\. Once completed, Amazon Rekognition publishes the completion status to an Amazon SNS topic\. To get the results of the analysis operation, you call the get operation for the type of analysis you requested\. For example [GetFaceDetection](API_GetFaceDetection.md)\. For more information, see [Working with Stored Videos](video.md)\. 
 
-With Amazon Rekognition Video streaming video operations you can search for faces stored in Amazon Rekognition Video collections\. Amazon Rekognition Video analyzes a Kinesis video stream and outputs the search results to a Kinesis data stream\. You manage video analysis by creating and using a Amazon Rekognition Video stream processor\. For example, you create a stream processor by calling [CreateStreamProcessor](API_CreateStreamProcessor.md)\. For more information, see [Working with Streaming Videos](streaming-video.md)\. 
+With Amazon Rekognition Video streaming video operations you can search for faces stored in Amazon Rekognition Video collections\. Amazon Rekognition Video analyzes a Kinesis video stream and outputs the search results to a Kinesis data stream\. You manage video analysis by creating and using an Amazon Rekognition Video stream processor\. For example, you create a stream processor by calling [CreateStreamProcessor](API_CreateStreamProcessor.md)\. For more information, see [Working with Streaming Videos](streaming-video.md)\. 
 
 ## Non\-Storage and Storage Based Operations<a name="how-it-works-operations-video-storage"></a>
 

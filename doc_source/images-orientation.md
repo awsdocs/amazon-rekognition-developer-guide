@@ -82,7 +82,7 @@ When you rotate the image to 0 degrees orientation, you also need to rotate the 
 `left = image.width*BoundingBox.Left`  
 `top = image.height*BoundingBox.Top`  
 **ROTATE\_90**  
-`left = image.height * (1 - (<face>.BoundingBox.Top + <face>.BoundingBox.Height)`  
+`left = image.height * (1 - (<face>.BoundingBox.Top + <face>.BoundingBox.Height))`  
 `top = image.width * <face>.BoundingBox.Left`  
 **ROTATE\_180**  
 `left = image.width - (image.width*(<face>.BoundingBox.Left+<face>.BoundingBox.Width))`  

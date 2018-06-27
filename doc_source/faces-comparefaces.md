@@ -26,9 +26,7 @@ You can provide the source and target images as an image byte array \(base64\-en
    Replace the values of `sourceImage` and `targetImage` with the path and file name of the source and target images\.
 
    ```
-   
    package aws.example.rekognition.image;
-   
    import com.amazonaws.services.rekognition.AmazonRekognition;
    import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
    import com.amazonaws.services.rekognition.model.Image;

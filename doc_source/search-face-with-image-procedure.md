@@ -39,7 +39,7 @@ For more information, see [Searching for Faces Within a Collection](collections.
    import com.fasterxml.jackson.databind.ObjectMapper;
    
    
-   public class SearchFacesMatchingImage {
+   public class SearchFaceMatchingImageCollection {
        public static final String collectionId = "MyCollection";
        public static final String bucket = "bucket";
        public static final String photo = "input.jpg";
@@ -116,11 +116,11 @@ For more information, see [Searching for Faces Within a Collection](collections.
    
                                    
        faceMatches=response['FaceMatches']
-       print ('Matching faces')
+       print 'Matching faces'
        for match in faceMatches:
-               print ('FaceId:' + match['Face']['FaceId'])
-               print ('Similarity: ' + "{:.2f}".format(match['Similarity']) + "%")
-               print ()
+               print 'FaceId:' + match['Face']['FaceId']
+               print 'Similarity: ' + "{:.2f}".format(match['Similarity']) + "%"
+               print
    ```
 
 ------

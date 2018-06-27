@@ -2,7 +2,7 @@
 
 Starts the asynchronous search for faces in a collection that match the faces of persons detected in a stored video\.
 
-The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceSearch` returns a job identifier \(`JobId`\) which you use to get the search results once the search has completed\. When searching is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceSearch](API_GetFaceSearch.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\. For more information, see [Searching for Faces with Amazon Rekognition Video](collections-search-person.md)\.
+The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceSearch` returns a job identifier \(`JobId`\) which you use to get the search results once the search has completed\. When searching is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceSearch](API_GetFaceSearch.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\. For more information, see [ Searching Stored Videos for Faces](procedure-person-search-videos.md)\.
 
 ## Request Syntax<a name="API_StartFaceSearch_RequestSyntax"></a>
 

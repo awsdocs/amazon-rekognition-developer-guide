@@ -33,7 +33,7 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    import java.util.List;
    
    
-     public class SearchFacesMatchingId {
+     public class SearchFaceMatchingIdCollection {
          public static final String collectionId = "MyCollection";
          public static final String faceId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
          
@@ -93,25 +93,25 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    
        bucket='bucket'
        collectionId='MyCollection'
-       fileName='input.jpg'
-       threshold = 70
+       threshold = 50
        maxFaces=2
+       faceId='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
    
        client=boto3.client('rekognition')
    
      
-       response=client.search_faces_by_image(CollectionId=collectionId,
-                                   Image={'S3Object':{'Bucket':bucket,'Name':fileName}},
+       response=client.search_faces(CollectionId=collectionId,
+                                   FaceId=faceId,
                                    FaceMatchThreshold=threshold,
                                    MaxFaces=maxFaces)
    
-                                   
+                           
        faceMatches=response['FaceMatches']
-       print ('Matching faces')
+       print 'Matching faces'
        for match in faceMatches:
-               print ('FaceId:' + match['Face']['FaceId'])
-               print ('Similarity: ' + "{:.2f}".format(match['Similarity']) + "%")
-               print ()
+               print 'FaceId:' + match['Face']['FaceId']
+               print 'Similarity: ' + "{:.2f}".format(match['Similarity']) + "%"
+               print
    ```
 
 ------

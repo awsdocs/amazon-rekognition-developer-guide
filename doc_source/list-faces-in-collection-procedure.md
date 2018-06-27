@@ -34,7 +34,7 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
    
    
    
-   public class ListFaces {
+   public class ListFacesInCollection {
        public static final String collectionId = "MyCollection";
    
       public static void main(String[] args) throws Exception {

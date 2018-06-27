@@ -52,7 +52,7 @@ For more information, see [Managing Collections](collections.md#managing-collect
          System.out.println("Status code : " +
             createCollectionResult.getStatusCode().toString());
    
-      }
+      } 
    
    }
    ```

@@ -33,7 +33,7 @@ For more information, see [Managing Collections](collections.md#managing-collect
       public static void main(String[] args) throws Exception {
    
    
-   	  AmazonRekognition amazonRekognition = AmazonRekognitionClientBuilder.defaultClient();
+         RotateImageAmazonRekognition amazonRekognition = AmazonRekognitionClientBuilder.defaultClient();
     
    
          System.out.println("Listing collections");
@@ -56,7 +56,7 @@ For more information, see [Managing Collections](collections.md#managing-collect
          } while (listCollectionsResult != null && listCollectionsResult.getNextToken() !=
             null);
         
-      }
+      } 
    }
    ```
 

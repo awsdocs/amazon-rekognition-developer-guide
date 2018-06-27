@@ -24,7 +24,7 @@ The following is a list of limits in Amazon Rekognition\. For information about 
 ## Amazon Rekognition Video Streaming Video<a name="limits-streaming-video"></a>
 + A Kinesis Video input stream can be associated with at most 1 Amazon Rekognition Video stream processor\.
 + A Kinesis Data output stream can be associated with at most 1 Amazon Rekognition Video stream processor\. 
-+ The Kinesis Video input stream and Kinesis Data output stream associated with a Amazon Rekognition Video stream processor cannot be shared by multiple processors\.
++ The Kinesis Video input stream and Kinesis Data output stream associated with an Amazon Rekognition Video stream processor cannot be shared by multiple processors\.
 + For a given AWS account, the default number of Amazon Rekognition Video stream processors that can simultaneously exist in a single region is 10\. 
 + The default TPS limits, per account, for all streaming video operations are:  
 ****    

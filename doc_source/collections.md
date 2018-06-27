@@ -30,7 +30,7 @@ After you create a face collection, you can store faces in it\. Amazon Rekogniti
 After you create a face collection and store faces, you can search a face collection for face matches\. With Amazon Rekognition, you can search for faces in a collection that match:
 + A supplied face ID \([SearchFaces](API_SearchFaces.md)\)\. For more information, see [Searching for a Face Using Its Face ID](search-face-with-id-procedure.md)\.
 + The largest face in a supplied image \([SearchFacesByImage](API_SearchFacesByImage.md)\)\. For more information, see [Searching for a Face Using an Image](search-face-with-image-procedure.md)\.
-+ Faces in a stored video\. For more information, see [ Searching Stored Videos for Faces \(AWS SDK for Java\)](procedure-person-search-videos.md)\.
++ Faces in a stored video\. For more information, see [ Searching Stored Videos for Faces](procedure-person-search-videos.md)\.
 + Faces in a streaming video\. For more information, see [Working with Streaming Videos](streaming-video.md)\.
 
 The `CompareFaces` operation and the search faces operations differ as follows:

@@ -37,7 +37,7 @@ You can provide an input image as an image byte array \(base64\-encoded image by
    
    
    
-   public class TextDetectionInImage {
+   public class DetectText {
    
       public static void main(String[] args) throws Exception {
          
@@ -111,16 +111,16 @@ You can provide an input image as an image byte array \(base64\-encoded image by
    
                            
        textDetections=response['TextDetections']
-       print (response)
-       print ('Matching faces')
+       print response
+       print 'Matching faces'
        for text in textDetections:
-               print ('Detected text:' + text['DetectedText'])
-               print ('Confidence: ' + "{:.2f}".format(text['Confidence']) + "%")
-               print ('Id: {}'.format(text['Id']))
+               print 'Detected text:' + text['DetectedText']
+               print 'Confidence: ' + "{:.2f}".format(text['Confidence']) + "%"
+               print 'Id: {}'.format(text['Id'])
                if 'ParentId' in text:
-                   print ('Parent Id: {}'.format(text['ParentId']))
-               print ('Type:' + text['Type'])
-               print ()
+                   print 'Parent Id: {}'.format(text['ParentId'])
+               print 'Type:' + text['Type']
+               print
    ```
 
 ------

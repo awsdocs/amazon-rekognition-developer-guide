@@ -4,5 +4,5 @@ Amazon Rekognition can recognize thousands of celebrities in a wide range of cat
 
 **Topics**
 + [Recognizing Celebrities in an Image](celebrities-procedure-image.md)
-+ [Recognizing Celebrities in a Stored Video \(AWS SDK for Java\)](celebrities-video-sqs.md)
++ [Recognizing Celebrities in a Stored Video](celebrities-video-sqs.md)
 + [Getting Information About a Celebrity](get-celebrity-info-procedure.md)

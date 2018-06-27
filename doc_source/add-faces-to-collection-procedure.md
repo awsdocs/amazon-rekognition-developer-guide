@@ -59,7 +59,7 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
    import java.util.List;
    
    
-   public class AddFaces {
+   public class AddFacesToCollection {
       public static final String collectionId = "MyCollection";
       public static final String bucket = "bucket";
       public static final String photo = "input.jpg";
@@ -91,7 +91,7 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
             System.out.println("Face detected: Faceid is " +
                faceRecord.getFace().getFaceId());
          }
-      }
+      } 
    }
    ```
 

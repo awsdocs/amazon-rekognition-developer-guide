@@ -1,18 +1,17 @@
-# Recognizing Celebrities in a Stored Video \(AWS SDK for Java\)<a name="celebrities-video-sqs"></a>
+# Recognizing Celebrities in a Stored Video<a name="celebrities-video-sqs"></a>
 
-To recognize celebrities in a video stored in an Amazon S3 bucket, you use [StartCelebrityRecognition](API_StartCelebrityRecognition.md) and [GetCelebrityRecognition](API_GetCelebrityRecognition.md)\. Analyzing videos stored in an Amazon S3 bucket is an asynchronous workflow\. For more information, see [Working with Stored Videos](video.md)\. 
+Amazon Rekognition Video celebrity recognition in stored videos is an asynchronous operation\. To recognize celebrities in a stored video, use [StartCelebrityRecognition](API_StartCelebrityRecognition.md) to start video analysis\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is succesful, call [GetCelebrityRecognition](API_GetCelebrityRecognition.md)\. to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video Operations](api-video.md)\. 
 
-You can recognize celebrities in a video stored in an Amazon S3 bucket\. This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md), which uses an Amazon SQS queue to get the completion status of a video analysis request\. 
+This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), which uses an Amazon SQS queue to get the completion status of a video analysis request\. To run this procedure, you need a video file that contains one or more celebrity faces\.
 
-## Recognizing celebrities in a stored video \(SDK\)<a name="recognize-video-example"></a>
+**To detect celebrities in a video stored in an Amazon S3 bucket \(SDK\)**
 
-To run this procedure, you need to have the AWS SDK for Java installed\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\. The AWS account you use must have access permissions to the Amazon Rekognition API\. For more information, see [Amazon Rekognition API Permissions: Actions, Permissions, and Resources Reference](api-permissions-reference.md)\. You also need a video file that contains one or more celebrity faces\.
+1. Perform [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\.
 
-**To detect celebrities in a video stored in an Amazon S3 bucket**
+1. Add the following code to the class `VideoDetect` that you created in step 1\.
 
-1. Perform [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md)\.
-
-1. Add the following code to the project created in step 1\.
+------
+#### [ Java ]
 
    ```
    // Celebrities=====================================================================
@@ -78,33 +77,91 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
    }
    ```
 
-1. In the function `main`, replace the line 
+   2a\. In the function `main`, replace the line: 
 
-    `StartLabels("bucket","file");` 
+    `StartLabels(bucket,video);` 
 
-   with
+   with:
 
-    `StartCelebrities("bucket","file");` 
+    `StartCelebrities(bucket,video);` 
 
-   If you have already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md), the function name to replace is different\. 
-
-1. In the call to `StartCelebrities`, replace *bucket* and *file* with the Amazon S3 bucket name and file name of the video that you want to analyze\.
-
-1. In the function `main`, replace the line 
+   2b\. Replace the line: 
 
    `GetResultsLabels();`
 
-   with
+   with:
 
    `GetResultsCelebrities();`
 
-   If you have already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md), the function name to replace is different\. 
+------
+#### [ Python ]
+
+   ```
+       def GetResultsCelebrities(self, jobId):
+           maxResults = 10
+           paginationToken = ''
+           finished = False
+   
+           while finished == False:
+               response = self.rek.get_celebrity_recognition(JobId=jobId,
+                                                       MaxResults=maxResults,
+                                                       NextToken=paginationToken)
+   
+               print(response['VideoMetadata']['Codec'])
+               print(str(response['VideoMetadata']['DurationMillis']))
+               print(response['VideoMetadata']['Format'])
+               print(response['VideoMetadata']['FrameRate'])
+   
+               for celebrityRecognition in response['Celebrities']:
+                   print('Celebrity: ' +
+                       str(celebrityRecognition['Celebrity']['Name']))
+                   print('Timestamp: ' + str(celebrityRecognition['Timestamp']))
+                   print()
+   
+               if 'NextToken' in response:
+                   paginationToken = response['NextToken']
+               else:
+                   finished = True
+   ```
+
+   2a\. In the function `main`, replace the line:
+
+   ```
+           response = self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
+                                            NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.topicArn})
+   ```
+
+   with:
+
+   ```
+           response = self.rek.start_celebrity_recognition(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
+               NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
+   ```
+
+   2b\. Replace the line:
+
+   ```
+                           self.GetResultsLabels(rekMessage['JobId'])
+   ```
+
+   with:
+
+   ```
+                           self.GetResultsCelebrities(rekMessage['JobId'])
+   ```
+
+------
+**Note**  
+If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the function name to replace is different\.
 
 1. Run the code\. Information about the celebrities recognized in the video is shown\.
 
 ## GetCelebrityRecognition Operation Response<a name="getcelebrityrecognition-operation-output"></a>
 
-The response from `GetCelebrityRecognition` includes an array, `Celebrities`, of celebrities \([CelebrityRecognition](API_CelebrityRecognition.md)\) that were recognized in the video and the times they were recognized\. The following is an example JSON response\.
+The following is an example JSON response\. The response includes the following:
++ **Recognized celebrities** – `Celebrities` is an array of celebrities and the times that they are recognized in a video\. A [CelebrityRecognition](API_CelebrityRecognition.md) object exists for each time the celebrity is recognized in the video\. Each `CelebrityRecognition` contains information about a recognized celebrity \([CelebrityDetail](API_CelebrityDetail.md)\) and the time \(`Timestamp`\) the celebrity was recognized in the video\. `Timestamp` is measured in milliseconds from the start of the video\. 
++ **CelebrityDetail** – Contains information about a recognized celebrity\. It includes the celebrity name \(`Name`\), identifier \(`ID`\), and a list of URLs pointing to related content \(`Urls`\)\. It also includes the bounding box for the celebrity's body, the confidence level that Amazon Rekognition Video has in the accuracy of the recognition, and details about the celebrity's face, [FaceDetail](API_FaceDetail.md)\. If you need to get the related content later, you can use `ID` with [GetCelebrityInfo](API_GetCelebrityInfo.md)\. 
++ **VideoMetadata** – Information about the video that was analyzed\.
 
 ```
 {
@@ -183,8 +240,3 @@ The response from `GetCelebrityRecognition` includes an array, `Celebrities`, of
     }
 }
 ```
-
-The response includes the following:
-+ **Recognized celebrities** – `Celebrities` is an array of celebrities and the times that they are recognized in a video\. A [CelebrityRecognition](API_CelebrityRecognition.md) object exists for each time the celebrity is recognized in the video\. Each `CelebrityRecognition` contains information about a recognized celebrity \([CelebrityDetail](API_CelebrityDetail.md)\) and the time \(`Timestamp`\) the celebrity was recognized in the video\. `Timestamp` is measured in milliseconds from the start of the video\. 
-+ **CelebrityDetail** – Contains information about a recognized celebrity\. It includes the celebrity name \(`Name`\), identifier \(`ID`\), and a list of URLs pointing to related content \(`Urls`\)\. It also includes the bounding box for the celebrity's body, the confidence level that Amazon Rekognition Video has in the accuracy of the recognition, and details about the celebrity's face, [FaceDetail](API_FaceDetail.md)\. If you need to get the related content later, you can use `ID` with [GetCelebrityInfo](API_GetCelebrityInfo.md)\. 
-+ **VideoMetadata** – Information about the video that was analyzed\.

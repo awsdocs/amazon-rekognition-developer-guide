@@ -4,7 +4,7 @@ Starts asynchronous detection of faces in a stored video\.
 
 Amazon Rekognition Video can detect faces in a video stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceDetection` returns a job identifier \(`JobId`\) that you use to get the results of the operation\. When face detection is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the results of the label detection operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceDetection](API_GetFaceDetection.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceDetection`\.
 
-For more information, see [Detecting Faces in a Stored Video](faces-video.md)\.
+For more information, see [Detecting Faces in a Stored Video](faces-sqs-video.md)\.
 
 ## Request Syntax<a name="API_StartFaceDetection_RequestSyntax"></a>
 

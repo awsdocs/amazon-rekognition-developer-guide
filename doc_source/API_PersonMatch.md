@@ -1,6 +1,6 @@
 # PersonMatch<a name="API_PersonMatch"></a>
 
-Information about a person whose face matches a face\(s\) in a Amazon Rekognition collection\. Includes information about the faces in the Amazon Rekognition collection \([FaceMatch](API_FaceMatch.md), information about the person \([PersonDetail](API_PersonDetail.md)\) and the timestamp for when the person was detected in a video\. An array of `PersonMatch` objects is returned by [GetFaceSearch](API_GetFaceSearch.md)\. 
+Information about a person whose face matches a face\(s\) in a Amazon Rekognition collection\. Includes information about the faces in the Amazon Rekognition collection \([FaceMatch](API_FaceMatch.md)\), information about the person \([PersonDetail](API_PersonDetail.md)\) and the timestamp for when the person was detected in a video\. An array of `PersonMatch` objects is returned by [GetFaceSearch](API_GetFaceSearch.md)\. 
 
 ## Contents<a name="API_PersonMatch_Contents"></a>
 

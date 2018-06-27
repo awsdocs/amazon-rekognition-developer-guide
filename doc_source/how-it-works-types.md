@@ -32,6 +32,12 @@ To detect people in stored videos, use [StartPersonTracking](API_StartPersonTrac
 
 To recognize celebrities in images, use [RecognizeCelebrities](API_RecognizeCelebrities.md)\. To recognize celebrities in stored videos, use [StartCelebrityRecognition](API_StartCelebrityRecognition.md)\.
 
+## Text Detection<a name="how-it-works-text-intro"></a>
+
+Amazon Rekognition Text in Image can detect text in images and convert it into machine\-readable text\. For more information, see [Detecting Text](text-detection.md)\.
+
+To detect text in images, use [DetectText](API_DetectText.md)\.
+
 ## Unsafe Content<a name="how-it-works-moderation-intro"></a>
 
 Amazon Rekognition can analyze images and stored videos for explicit or suggestive adult content\. For more information, see [Detecting Unsafe Content](moderation.md)\.

@@ -15,4 +15,4 @@ Rekognition Unsafe Image Detection API is not an authority on, or in any way pur
 
 **Topics**
 + [Detecting Unsafe Images \(API\)](procedure-moderate-images.md)
-+ [Detecting Unsafe Stored Videos \(SDK for Java\)](procedure-moderate-videos.md)
++ [Detecting Unsafe Stored Videos](procedure-moderate-videos.md)

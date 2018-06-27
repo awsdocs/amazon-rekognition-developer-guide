@@ -47,7 +47,7 @@ For more information, see [Managing Collections](collections.md#managing-collect
          System.out.println(collectionId + ": " + deleteCollectionResult.getStatusCode()
             .toString());
    
-      }
+      } 
    
    }
    ```

@@ -52,7 +52,7 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    import com.amazonaws.services.rekognition.model.S3Object;
    import java.util.List;
    
-   public class DetectLabelsExample {
+   public class DetectLabels {
    
       public static void main(String[] args) throws Exception {
    

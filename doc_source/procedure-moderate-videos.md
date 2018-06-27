@@ -1,18 +1,17 @@
-# Detecting Unsafe Stored Videos \(SDK for Java\)<a name="procedure-moderate-videos"></a>
+# Detecting Unsafe Stored Videos<a name="procedure-moderate-videos"></a>
 
-To detect suggestive and adult content in a video stored in an Amazon S3 bucket, you use [StartContentModeration](API_StartContentModeration.md) and [GetContentModeration](API_GetContentModeration.md)\. Analyzing videos stored in an Amazon S3 bucket is an asynchronous workflow\. For more information, see [Working with Stored Videos](video.md)\.
+Amazon Rekognition Video unsafe content detection in stored videos is an asynchronous operation\. To started detecting unsafe content, call [StartContentModeration](API_StartContentModeration.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is succesful, call [GetContentModeration](API_GetContentModeration.md) to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video Operations](api-video.md)\.
 
-## Detecting Unsafe Content in a Stored Video \(SDK\)<a name="moderate-video-example"></a>
+ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), which uses an Amazon Simple Queue Service queue to get the completion status of a video analysis request\.
 
- This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md), which uses an Amazon Simple Queue Service queue to get the completion status of a video analysis request\.
+**To detect unsafe content in a video stored in an Amazon S3 bucket \(SDK\)**
 
-To run these procedures, you need to have the AWS CLI and AWS SDK for Java installed\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\. The AWS account you use must have access permissions to the Amazon Rekognition API\. For more information, see [Amazon Rekognition API Permissions: Actions, Permissions, and Resources Reference](api-permissions-reference.md)\. 
+1. Perform [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\.
 
-**To detect unsafe content in a video stored in an Amazon S3 bucket**
+1. Add the following code to the class `VideoDetect` that you created in step 1\.
 
-1. Perform [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md)\.
-
-1. Add the following code to the project created in step one\.
+------
+#### [ Java ]
 
    ```
        //Content moderation ==================================================================
@@ -75,31 +74,92 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
         }
    ```
 
-1. In the function `main`, replace the line 
+   2a\. In the function `main`, replace the line: 
 
-    `StartLabels("bucket","file");` 
+    `StartLabels(bucket,video);` 
 
-   with
+   with:
 
-    `StartModerationLabels("bucket","file");` 
+    `StartModerationLabels(bucket,video);` 
 
-   If you have already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md), the function name to replace will be different\. 
-
-1. In the call to `StartModerationLabels`, replace *bucket* and *file* with the Amazon S3 bucket name and file name of the video you want to analyze\.
-
-1. In the function `main`, replace the line 
+   2b\. Replace the line:
 
    `GetResultsLabels();`
 
-   with
+   with:
 
    `GetResultsModerationLabels();`
 
-   If you have already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md), the function name to replace will be different\.
+------
+#### [ Python ]
+
+   ```
+       def GetResultsModerationLabels(self, jobId):
+           maxResults = 10
+           paginationToken = ''
+           finished = False
+   
+           while finished == False:
+               response = self.rek.get_content_moderation(JobId=jobId,
+                                                   MaxResults=maxResults,
+                                                   NextToken=paginationToken)
+   
+               print(response['VideoMetadata']['Codec'])
+               print(str(response['VideoMetadata']['DurationMillis']))
+               print(response['VideoMetadata']['Format'])
+               print(response['VideoMetadata']['FrameRate'])
+   
+               for contentModerationDetection in response['ModerationLabels']:
+                   print('Label: ' +
+                       str(contentModerationDetection['ModerationLabel']['Name']))
+                   print('Confidence: ' +
+                       str(contentModerationDetection['ModerationLabel']['Confidence']))
+                   print('Parent category: ' +
+                       str(contentModerationDetection['ModerationLabel']['ParentName']))
+                   print('Timestamp: ' + str(contentModerationDetection['Timestamp']))
+                   print()
+   
+               if 'NextToken' in response:
+                   paginationToken = response['NextToken']
+               else:
+                   finished = True
+   ```
+
+   2a\. In the function `main`, replace the line:
+
+   ```
+           response = self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
+                                            NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.topicArn})
+   ```
+
+   with:
+
+   ```
+           response = self.rek.start_content_moderation(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
+               NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
+   ```
+
+   2b\. Replace the line:
+
+   ```
+                           self.GetResultsLabels(rekMessage['JobId'])
+   ```
+
+   with:
+
+   ```
+                           self.GetResultsModerationLabels(rekMessage['JobId'])
+   ```
+
+------
+**Note**  
+If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the function name to replace is different\.
 
 1. Run the code\. A list of unsafe content labels detected in the video is shown\.
 
-## Operation Response<a name="getcontentmoderation-operationresponse"></a>
+## GetContentModeration Operation Response<a name="getcontentmoderation-operationresponse"></a>
+
+The response from `GetContentModeration` is an array, `ModerationLabels`, of [ContentModerationDetection](API_ContentModerationDetection.md) objects\. The array contains an element for each time a moderation label is detected\. Within a `ContentModerationDetectionObject` object, [ModerationLabel](API_ModerationLabel.md) contains information for a detected item of suggestive or adult content\. `Timestamp` is the time, in milliseconds from the start of the video, when the label was detected\. The labels are organized hierarchically in the same manner as the moderation labels detected by image analysis\. For more information, see [Detecting Unsafe Content](moderation.md)\.
 
 The following is an example response from `GetContentModeration`\.
 
@@ -159,5 +219,3 @@ The following is an example response from `GetContentModeration`\.
     }
 }
 ```
-
-The response from `GetContentModeration` is an array, `ModerationLabels`, of [ContentModerationDetection](API_ContentModerationDetection.md) objects\. The array contains an element for each time a moderation label is detected\. Within a `ContentModerationDetectionObject` object, [ModerationLabel](API_ModerationLabel.md) contains information for a detected item of suggestive or adult content\. `Timestamp` is the time, in milliseconds from the start of the video, when the label was detected\. The labels are organized hierarchically in the same manner as the moderation labels detected by image analysis\. For more information, see [Detecting Unsafe Content](moderation.md)\.

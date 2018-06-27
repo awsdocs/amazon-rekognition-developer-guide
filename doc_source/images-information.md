@@ -6,7 +6,7 @@ You pass image bytes to an Amazon Rekognition Image operation as part of the cal
 
 If you use HTTP and pass the image bytes as part of an Amazon Rekognition Image operation, the image bytes must be a base64\-encoded string\. If you use the AWS SDK and pass image bytes as part of the API operation call, the need to base64\-encode the image bytes depends on the language you use\. 
 
-The following common AWS SDKs automatically base64\-encode images, and you don't need to encode image bytes before calling a Amazon Rekognition Image API operation\.
+The following common AWS SDKs automatically base64\-encode images, and you don't need to encode image bytes before calling an Amazon Rekognition Image API operation\.
 + Java
 + JavaScript
 + Python

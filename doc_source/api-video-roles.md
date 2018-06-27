@@ -2,7 +2,7 @@
 
 To use the Amazon Rekognition Video API with stored videos, you have to configure the IAM user and an IAM service role to access your Amazon SNS topics\. The following procedures show you how to configure Amazon Rekognition Video for use with the examples in this section\. To do this, you: 
 + Create an IAM user, or give an IAM user access to the Amazon Rekognition Video API\. In this example, full access to the entire Amazon Rekognition API is given, but you can restrict access as required\.
-+ Set up credentials for the user\. The example uses a named profile called *RekognitionUser*\. 
++ Install and configure the AWS SDK that you want to use\. 
 + Create an IAM service role that allows Amazon Rekognition Video to publish the completion status of an analysis request to an Amazon SNS topic\. 
 + Give the example code access to the Amazon SQS queue that the Amazon SNS message is retrieved from\. Full access is required because the example code deletes the message from the queue\.
 + Give the example code read access to the Amazon S3 bucket that contains the stored video file\. 
@@ -12,21 +12,14 @@ The examples in this section create a new Amazon SNS topic by using the instruct
 
 **To configure Amazon Rekognition Video**
 
-1. [Create an IAM user](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html#id_users_create_console) to be used by the example code\. Do the following: 
-   + Under **Select AWS access type**, choose **Programmatic access**\.
-   + On the permissions page, choose **Attach existing policies directly**, and add the following existing permissions policies:
-     + AmazonSQSFullAccess
-     + AmazonRekognitionFullAccess
-     + AmazonS3ReadOnlyAccess
-   + Note the IAM user's access key and secret access key\.
+1. Set up an AWS account to access Amazon Rekognition Video\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md)\.
 
-1. [Add a named profile](http://docs.aws.amazon.com/cli/latest/userguide/cli-multiple-profiles.html) called *RekognitionUser* to the credentials file\. For example:
+   Ensure the user has at least the following permissions:
+   + AmazonSQSFullAccess
+   + AmazonRekognitionFullAccess
+   + AmazonS3ReadOnlyAccess
 
-   ```
-   [RekognitionUser]
-   aws_access_key_id=User Access Key ID from step 1.
-   aws_secret_access_key=User secret access key from step 1.
-   ```
+1. Install and configure the required AWS SDK\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\. 
 
 1. Create an IAM service role to give Amazon Rekognition Video access to your Amazon SNS topics\. Note the Amazon Resource Name \(ARN\) of the service role\. For more information, see [Giving Access to Multiple Amazon SNS Topics](#api-video-roles-all-topics)\.
 
@@ -48,11 +41,11 @@ The examples in this section create a new Amazon SNS topic by using the instruct
 
    Give the inline policy a name of your choosing\.
 
-1. You can now run the examples in [Analyzing a Video Stored in an Amazon S3 Bucket with the AWS SDK for Java](video-analyzing-with-sqs.md) and [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)\.
+1. You can now run the examples in [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md) and [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)\.
 
 ## Giving Access to Multiple Amazon SNS Topics<a name="api-video-roles-all-topics"></a>
 
-You use an IAM service role to give Amazon Rekognition Video access to Amazon SNS topics that you create\. IAM provides the *Rekognition* use case for creating a Amazon Rekognition Video service role\.
+You use an IAM service role to give Amazon Rekognition Video access to Amazon SNS topics that you create\. IAM provides the *Rekognition* use case for creating an Amazon Rekognition Video service role\.
 
 You can give Amazon Rekognition Video access to multiple Amazon SNS topics by using the `AmazonRekognitionServiceRole` permissions policy and prepending the topic names with *AmazonRekognition*—for example, `AmazonRekognitionMyTopicName`\. 
 

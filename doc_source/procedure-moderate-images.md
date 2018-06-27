@@ -32,6 +32,7 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
    Replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
    ```
+   
    package aws.example.rekognition.image;
    import com.amazonaws.services.rekognition.AmazonRekognition;
    import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
