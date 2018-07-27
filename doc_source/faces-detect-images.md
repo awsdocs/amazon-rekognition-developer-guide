@@ -24,22 +24,23 @@ You can provide the input image as an image byte array \(base64\-encoded image b
    This example displays the estimated age range for detected faces, and lists the JSON for all detected facial attributes\. Change the value of `photo` to the image file name\. Change the value of `bucket` to the Amazon S3 bucket where the image is stored\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    package aws.example.rekognition.image;
    
    import com.amazonaws.services.rekognition.AmazonRekognition;
    import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
    import com.amazonaws.services.rekognition.model.AmazonRekognitionException;
    import com.amazonaws.services.rekognition.model.Image;
-   
    import com.amazonaws.services.rekognition.model.S3Object;
-   import java.util.List;
-   
    import com.amazonaws.services.rekognition.model.AgeRange;
    import com.amazonaws.services.rekognition.model.Attribute;
    import com.amazonaws.services.rekognition.model.DetectFacesRequest;
    import com.amazonaws.services.rekognition.model.DetectFacesResult;
    import com.amazonaws.services.rekognition.model.FaceDetail;
    import com.fasterxml.jackson.databind.ObjectMapper;
+   import java.util.List;
    
    
    public class DetectFaces {
@@ -106,6 +107,8 @@ You can provide the input image as an image byte array \(base64\-encoded image b
    This example displays the estimated age range for detected faces, and lists the JSON for all detected facial attributes\. Change the value of `photo` to the image file name\. Change the value of `bucket` to the Amazon S3 bucket where the image is stored\.
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    import boto3
    import json
@@ -131,6 +134,9 @@ You can provide the input image as an image byte array \(base64\-encoded image b
    This example displays the estimated age range for detected faces, and lists the JSON for all detected facial attributes\. Change the value of `photo` to the image file name\. Change the value of `bucket` to the Amazon S3 bucket where the image is stored\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using System.Collections.Generic;
    using Amazon.Rekognition;

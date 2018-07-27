@@ -80,7 +80,7 @@ The following is an example response from `CreateStreamProcessor`\.
 
 ```
 {
-       “StreamProcessorArn”: “arn:aws:rekognition:us-east-1:987654321098:streamprocessor/streamProcessorForCam”
+       “StreamProcessorArn”: “arn:aws:rekognition:us-east-1:nnnnnnnnnnnn:streamprocessor/streamProcessorForCam”
 }
 ```
 
@@ -98,12 +98,71 @@ If the stream processor successfully starts, an HTTP 200 response is returned, a
 
 ## Using Stream Processors<a name="using-stream-processors"></a>
 
-The following example code shows how to call various stream processor operations, such as [CreateStreamProcessor](API_CreateStreamProcessor.md) and [StartStreamProcessor](API_StartStreamProcessor.md)\.
+The following example code shows how to call various stream processor operations, such as [CreateStreamProcessor](API_CreateStreamProcessor.md) and [StartStreamProcessor](API_StartStreamProcessor.md)\. The example includes a stream processor manager class \(StreamManager\) that provides methods to call stream processor operations\. The starter class \(Starter\) creates a StreamManager object and calls various operations\. 
+
+**To configure the example:**
+
+1. Set the values of the Starter class member fields to your desired values\.
+
+1. In the Starter class function `main`, uncomment the desired function call\.
+
+### Starter Class<a name="streaming-started"></a>
 
 ```
-package com.amazonaws.rekognition.video.streaming;
+//Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
 
-import com.amazonaws.services.rekognition.AmazonRekognitionClient;
+// Starter class. Use to create a StreamManager class
+// and call stream processor operations.
+package com.amazonaws.samples;
+import com.amazonaws.samples.*;
+
+public class Starter {
+
+	public static void main(String[] args) {
+		
+		
+    	String streamProcessorName="Stream Processor Name";
+    	String kinesisVideoStreamArn="Kinesis Video Stream Arn";
+    	String kinesisDataStreamArn="Kinesis Data Stream Arn";
+    	String roleArn="Role Arn";
+    	String collectionId="Collection ID";
+    	Float matchThreshold=50F;
+
+		try {
+			StreamManager sm= new StreamManager(streamProcessorName,
+					kinesisVideoStreamArn,
+					kinesisDataStreamArn,
+					roleArn,
+					collectionId,
+					matchThreshold);
+			//sm.createStreamProcessor();
+			//sm.startStreamProcessor();
+			//sm.deleteStreamProcessor();
+			//sm.deleteStreamProcessor();
+			//sm.stopStreamProcessor();
+			//sm.listStreamProcessors();
+			//sm.describeStreamProcessor();
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+}
+```
+
+### StreamManager Class<a name="streaming-manager"></a>
+
+```
+//Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+
+// Stream manager class. Provides methods for calling
+// Stream Processor operations.
+package com.amazonaws.samples;
+
+import com.amazonaws.services.rekognition.AmazonRekognition;
+import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.CreateStreamProcessorRequest;
 import com.amazonaws.services.rekognition.model.CreateStreamProcessorResult;
 import com.amazonaws.services.rekognition.model.DeleteStreamProcessorRequest;
@@ -124,7 +183,7 @@ import com.amazonaws.services.rekognition.model.StreamProcessorInput;
 import com.amazonaws.services.rekognition.model.StreamProcessorOutput;
 import com.amazonaws.services.rekognition.model.StreamProcessorSettings;
 
-public class StreamProcessorSample {
+public class StreamManager {
 
     private String streamProcessorName;
     private String kinesisVideoStreamArn;
@@ -133,9 +192,27 @@ public class StreamProcessorSample {
     private String collectionId;
     private float matchThreshold;
 
-    private AmazonRekognitionClient rekognitionClient;
+    private AmazonRekognition rekognitionClient;
+    
 
-    public void createStreamProcessorSample() {
+    public StreamManager(String spName,
+    		String kvStreamArn,
+    		String kdStreamArn,
+    		String iamRoleArn,
+    		String collId,
+    		Float threshold){
+    	streamProcessorName=spName;
+    	kinesisVideoStreamArn=kvStreamArn;
+    	kinesisDataStreamArn=kdStreamArn;
+    	roleArn=iamRoleArn;
+    	collectionId=collId;
+    	matchThreshold=threshold;
+    	rekognitionClient=AmazonRekognitionClientBuilder.defaultClient();
+    	
+    }
+    
+    public void createStreamProcessor() {
+    	//Setup input parameters
         KinesisVideoStream kinesisVideoStream = new KinesisVideoStream().withArn(kinesisVideoStreamArn);
         StreamProcessorInput streamProcessorInput =
                 new StreamProcessorInput().withKinesisVideoStream(kinesisVideoStream);
@@ -147,30 +224,39 @@ public class StreamProcessorSample {
         StreamProcessorSettings streamProcessorSettings =
                 new StreamProcessorSettings().withFaceSearch(faceSearchSettings);
 
+        //Create the stream processor
         CreateStreamProcessorResult createStreamProcessorResult = rekognitionClient.createStreamProcessor(
                 new CreateStreamProcessorRequest().withInput(streamProcessorInput).withOutput(streamProcessorOutput)
                         .withSettings(streamProcessorSettings).withRoleArn(roleArn).withName(streamProcessorName));
+
+        //Display result
+        System.out.println("Stream Processor " + streamProcessorName + " created.");
         System.out.println("StreamProcessorArn - " + createStreamProcessorResult.getStreamProcessorArn());
     }
 
-    public void startStreamProcessorSample() {
+    public void startStreamProcessor() {
         StartStreamProcessorResult startStreamProcessorResult =
                 rekognitionClient.startStreamProcessor(new StartStreamProcessorRequest().withName(streamProcessorName));
+        System.out.println("Stream Processor " + streamProcessorName + " started.");
     }
 
-    public void stopStreamProcessorSample() {
+    public void stopStreamProcessor() {
         StopStreamProcessorResult stopStreamProcessorResult =
                 rekognitionClient.stopStreamProcessor(new StopStreamProcessorRequest().withName(streamProcessorName));
+        System.out.println("Stream Processor " + streamProcessorName + " stopped.");
     }
 
-    public void deleteStreamProcessorSample() {
+    public void deleteStreamProcessor() {
         DeleteStreamProcessorResult deleteStreamProcessorResult = rekognitionClient
                 .deleteStreamProcessor(new DeleteStreamProcessorRequest().withName(streamProcessorName));
+        System.out.println("Stream Processor " + streamProcessorName + " deleted.");
     }
 
-    public void describeStreamProcessorSample() {
+    public void describeStreamProcessor() {
         DescribeStreamProcessorResult describeStreamProcessorResult = rekognitionClient
                 .describeStreamProcessor(new DescribeStreamProcessorRequest().withName(streamProcessorName));
+
+        //Display various stream processor attributes.
         System.out.println("Arn - " + describeStreamProcessorResult.getStreamProcessorArn());
         System.out.println("Input kinesisVideo stream - "
                 + describeStreamProcessorResult.getInput().getKinesisVideoStream().getArn());
@@ -185,9 +271,11 @@ public class StreamProcessorSample {
         System.out.println("Last update timestamp - " + describeStreamProcessorResult.getLastUpdateTimestamp());
     }
 
-    public void listStreamProcessorSample() {
+    public void listStreamProcessors() {
         ListStreamProcessorsResult listStreamProcessorsResult =
                 rekognitionClient.listStreamProcessors(new ListStreamProcessorsRequest().withMaxResults(100));
+
+        //List all stream processors (and state) returned from Rekognition
         for (StreamProcessor streamProcessor : listStreamProcessorsResult.getStreamProcessors()) {
             System.out.println("StreamProcessor name - " + streamProcessor.getName());
             System.out.println("Status - " + streamProcessor.getStatus());

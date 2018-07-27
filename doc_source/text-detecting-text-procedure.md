@@ -24,6 +24,9 @@ You can provide an input image as an image byte array \(base64\-encoded image by
    Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in step 2\. 
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    package aws.example.rekognition.image;
    import com.amazonaws.services.rekognition.AmazonRekognition;
    import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
@@ -97,6 +100,9 @@ You can provide an input image as an image byte array \(base64\-encoded image by
    Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in step 2\. 
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    import boto3
    
    if __name__ == "__main__":
@@ -131,6 +137,9 @@ You can provide an input image as an image byte array \(base64\-encoded image by
    Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in step 2\. 
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using Amazon.Rekognition;
    using Amazon.Rekognition.Model;

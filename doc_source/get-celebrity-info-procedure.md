@@ -24,6 +24,8 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
    Replace `id` with one of the celebrity IDs displayed in [Recognizing Celebrities in an Image](celebrities-procedure-image.md)\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    package aws.example.rekognition.image;
    import com.amazonaws.services.rekognition.AmazonRekognition;
@@ -73,6 +75,9 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
    Replace `id` with one of the celebrity IDs displayed in [Recognizing Celebrities in an Image](celebrities-procedure-image.md)\.
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    import boto3
    
    if __name__ == "__main__":
@@ -99,6 +104,9 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
    Replace `id` with one of the celebrity IDs displayed in [Recognizing Celebrities in an Image](celebrities-procedure-image.md)\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using Amazon.Rekognition;
    using Amazon.Rekognition.Model;

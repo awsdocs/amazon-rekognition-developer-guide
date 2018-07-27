@@ -14,6 +14,9 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
 #### [ Java ]
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    // Celebrities=====================================================================
    private static void StartCelebrities(String bucket, String video) throws Exception{
    
@@ -97,6 +100,9 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
 #### [ Python ]
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
        def GetResultsCelebrities(self, jobId):
            maxResults = 10
            paginationToken = ''
@@ -217,7 +223,7 @@ The following is an example JSON response\. The response includes the following:
                     },
                     "Quality": {
                         "Brightness": 43.312068939208984,
-                        "Sharpness": 99.80813598632812
+                        "Sharpness": 99.9305191040039
                     }
                 },
                 "Id": "XXXXXX",

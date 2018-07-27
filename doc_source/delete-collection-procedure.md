@@ -22,6 +22,8 @@ For more information, see [Managing Collections](collections.md#managing-collect
    Change the value `collectionId` to the collection that you want to delete\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    package aws.example.rekognition.image;
    import com.amazonaws.services.rekognition.AmazonRekognition;
@@ -70,6 +72,9 @@ For more information, see [Managing Collections](collections.md#managing-collect
    Change the value `collectionId` to the collection that you want to delete\.
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    import boto3
    from botocore.exceptions import ClientError
    from os import environ
@@ -102,6 +107,9 @@ For more information, see [Managing Collections](collections.md#managing-collect
    Change the value `collectionId` to the collection that you want to delete\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using Amazon.Rekognition;
    using Amazon.Rekognition.Model;

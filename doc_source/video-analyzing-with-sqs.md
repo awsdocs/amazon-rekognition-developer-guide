@@ -47,6 +47,9 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
 #### [ Java ]
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    package com.amazonaws.samples;
    import com.amazonaws.services.rekognition.AmazonRekognition;
    import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
@@ -255,6 +258,9 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
 #### [ Python ]
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    import boto3
    import json
    import sys

@@ -19,8 +19,10 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
 #### [ Java ]
 
    ```
-    //Faces=======================================================================
-      
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
+   
       private static void StartFaces(String bucket, String video) throws Exception{
           
           StartFaceDetectionRequest req = new StartFaceDetectionRequest()
@@ -96,6 +98,9 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
 #### [ Python ]
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
        def GetResultsFaces(self, jobId):
            maxResults = 10
            paginationToken = ''

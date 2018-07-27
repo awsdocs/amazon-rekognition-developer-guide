@@ -22,6 +22,9 @@ The following procedure shows how to search a collection for faces that match th
 #### [ Java ]
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
        //Face collection search in video ==================================================================
        private static void StartFaceSearchCollection(String bucket, String video) throws Exception{
    
@@ -121,6 +124,9 @@ The following procedure shows how to search a collection for faces that match th
 #### [ Python ]
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
        def GetResultsFaceSearchCollection(self, jobId):
            maxResults = 10
            paginationToken = ''

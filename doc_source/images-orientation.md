@@ -118,6 +118,9 @@ To use this code, replace the value of `photo` with the name and path of an imag
 #### [ Java ]
 
 ```
+//Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+
 package aws.example.rekognition.image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -261,6 +264,9 @@ public static void ShowBoundingBoxPositions(int imageHeight, int imageWidth, Bou
 This example uses the PIL/Pillow image library to get the image width and height\. For more information, see [Pillow](http://pillow.readthedocs.io/en/3.0.x/index.html#)\. This example preserves exif metadata which you might need elsewhere in your application\. If you choose to not save the exif metadata, the estimated orientation is returned from the call to `DetectFaces`\. 
 
 ```
+#Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+#PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+
 import boto3
 import io
 from PIL import Image
@@ -339,6 +345,9 @@ if __name__ == "__main__":
 #### [ \.NET ]
 
 ```
+//Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+
 using System;
 using System.Collections.Generic;
 using System.IO;

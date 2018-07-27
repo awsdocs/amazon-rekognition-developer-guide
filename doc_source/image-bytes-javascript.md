@@ -23,6 +23,10 @@ The chosen image is loaded by using the JavaScript `FileReader.readAsDataURL` fu
 ## JavaScript Example Code<a name="image-bytes-javascript-code"></a>
 
 ```
+<!--
+Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,6 +141,9 @@ The chosen image is loaded by using the JavaScript `FileReader.readAsDataURL` fu
 The following code snippet is an alternative implementation of the `ProcessImage` function in the sample code\. It uses `readAsArrayBuffer` to load an image and call `DetectFaces`\. Because `readAsArrayBuffer` doesn't base64\-encode the loaded file, it's not necessary to unencode the image bytes before calling a Amazon Rekognition Image operation\.
 
 ```
+//Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+//PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+
 function ProcessImage() {
     AnonLog();
     var control = document.getElementById("fileToUpload");

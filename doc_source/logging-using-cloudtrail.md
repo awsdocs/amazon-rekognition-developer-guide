@@ -46,8 +46,8 @@ The following example shows a CloudTrail log entry with actions for the followin
             "userIdentity": {
                 "type": "IAMUser",
                 "principalId": "EX_PRINCIPAL_ID",
-                "arn": "arn:aws:iam::012345678910:user/Alice",
-                "accountId": "012345678910",
+                "arn": "arn:aws:iam::111122223333:user/Alice",
+                "accountId": "111122223333",
                 "accessKeyId": "EXAMPLE_KEY_ID",
                 "userName": "Alice"
             },
@@ -61,22 +61,22 @@ The following example shows a CloudTrail log entry with actions for the followin
                 "collectionId": "8fa6aa65-cab4-4d0a-b976-7fd5df63f38a"
             },
             "responseElements": {
-                "collectionArn": "aws:rekognition:us-east-1:012345678910:collection/8fa6aa65-cab4-4d0a-b976-7fd5df63f38a",
+                "collectionArn": "aws:rekognition:us-east-1:111122223333:collection/8fa6aa65-cab4-4d0a-b976-7fd5df63f38a",
                 "faceModelVersion": "2.0",
                 "statusCode": 200
             },
             "requestID": "1e77d2d5-313f-11e8-8c0e-75c0272f31a4",
             "eventID": "c6da4992-a9a1-4962-93b6-7d0483d95c30",
             "eventType": "AwsApiCall",
-            "recipientAccountId": "012345678910"
+            "recipientAccountId": "111122223333"
         },
         {
             "eventVersion": "1.05",
             "userIdentity": {
                 "type": "IAMUser",
                 "principalId": "EX_PRINCIPAL_ID",
-                "arn": "arn:aws:iam::012345678910:user/Alice",
-                "accountId": "012345678910",
+                "arn": "arn:aws:iam::111122223333:user/Alice",
+                "accountId": "111122223333",
                 "accessKeyId": "EXAMPLE_KEY_ID",
                 "userName": "Alice"
             },
@@ -95,15 +95,15 @@ The following example shows a CloudTrail log entry with actions for the followin
             "requestID": "213d5b78-313f-11e8-8c0e-75c0272f31a4",
             "eventID": "3ed4f4c9-22f8-4de4-a051-0d9d0c2faec9",
             "eventType": "AwsApiCall",
-            "recipientAccountId": "012345678910"
+            "recipientAccountId": "111122223333"
         },
         {
             "eventVersion": "1.05",
             "userIdentity": {
                 "type": "AssumedRole",
                 "principalId": "EX_PRINCIPAL_ID",
-                "arn": "arn:aws:sts::012345678910:assumed-role/Admin/Alice",
-                "accountId": "012345678910",
+                "arn": "arn:aws:sts::111122223333:assumed-role/Admin/Alice",
+                "accountId": "111122223333",
                 "accessKeyId": "EXAMPLE_KEY_ID",
                 "sessionContext": {
                     "attributes": {
@@ -113,8 +113,8 @@ The following example shows a CloudTrail log entry with actions for the followin
                     "sessionIssuer": {
                         "type": "Role",
                         "principalId": "EX_PRINCIPAL_ID",
-                        "arn": "arn:aws:iam::012345678910:role/Admin",
-                        "accountId": "012345678910",
+                        "arn": "arn:aws:iam::111122223333:role/Admin",
+                        "accountId": "111122223333",
                         "userName": "Admin"
                     }
                 }
@@ -130,15 +130,15 @@ The following example shows a CloudTrail log entry with actions for the followin
             "requestID": "116a57f5-3140-11e8-8c0e-75c0272f31a4",
             "eventID": "94bb5ddd-7836-4fb1-a63e-a782eb009824",
             "eventType": "AwsApiCall",
-            "recipientAccountId": "012345678910"
+            "recipientAccountId": "111122223333"
         },
         {
             "eventVersion": "1.05",
             "userIdentity": {
                 "type": "AssumedRole",
                 "principalId": "EX_PRINCIPAL_ID",
-                "arn": "arn:aws:sts::012345678910:assumed-role/Admin/Alice",
-                "accountId": "012345678910",
+                "arn": "arn:aws:sts::111122223333:assumed-role/Admin/Alice",
+                "accountId": "111122223333",
                 "accessKeyId": "EXAMPLE_KEY_ID",
                 "sessionContext": {
                     "attributes": {
@@ -148,8 +148,8 @@ The following example shows a CloudTrail log entry with actions for the followin
                     "sessionIssuer": {
                         "type": "Role",
                         "principalId": "EX_PRINCIPAL_ID",
-                        "arn": "arn:aws:iam::012345678910:role/Admin",
-                        "accountId": "012345678910",
+                        "arn": "arn:aws:iam::111122223333:role/Admin",
+                        "accountId": "111122223333",
                         "userName": "Admin"
                     }
                 }
@@ -161,7 +161,7 @@ The following example shows a CloudTrail log entry with actions for the followin
             "sourceIPAddress": "127.0.0.1",
             "userAgent": "aws-cli/1.14.63 Python/3.4.7 Linux/3.2.45-0.6.wd.971.49.326.metal1.x86_64 botocore/1.9.16",
             "requestParameters": {
-                "roleArn": "arn:aws:iam::012345678910:role/AmazonRekognition-StreamProcessorRole",
+                "roleArn": "arn:aws:iam::111122223333:role/AmazonRekognition-StreamProcessorRole",
                 "settings": {
                     "faceSearch": {
                         "collectionId": "test"
@@ -170,30 +170,30 @@ The following example shows a CloudTrail log entry with actions for the followin
                 "name": "ProcessorName",
                 "input": {
                     "kinesisVideoStream": {
-                        "arn": "arn:aws:kinesisvideo:us-east-1:012345678910:stream/VideoStream"
+                        "arn": "arn:aws:kinesisvideo:us-east-1:111122223333:stream/VideoStream"
                     }
                 },
                 "output": {
                     "kinesisDataStream": {
-                        "arn": "arn:aws:kinesis:us-east-1:012345678910:stream/AmazonRekognition-DataStream"
+                        "arn": "arn:aws:kinesis:us-east-1:111122223333:stream/AmazonRekognition-DataStream"
                     }
                 }
             },
             "responseElements": {
-                "StreamProcessorArn": "arn:aws:rekognition:us-east-1:012345678910:streamprocessor/ProcessorName"
+                "StreamProcessorArn": "arn:aws:rekognition:us-east-1:111122223333:streamprocessor/ProcessorName"
             },
             "requestID": "e8fb2b3c-3141-11e8-8c0e-75c0272f31a4",
             "eventID": "44ff8f90-fcc2-4740-9e57-0c47610df8e3",
             "eventType": "AwsApiCall",
-            "recipientAccountId": "012345678910"
+            "recipientAccountId": "111122223333"
         },
         {
             "eventVersion": "1.05",
             "userIdentity": {
                 "type": "AssumedRole",
                 "principalId": "EX_PRINCIPAL_ID",
-                "arn": "arn:aws:sts::012345678910:assumed-role/Admin/Alice",
-                "accountId": "012345678910",
+                "arn": "arn:aws:sts::111122223333:assumed-role/Admin/Alice",
+                "accountId": "111122223333",
                 "accessKeyId": "EXAMPLE_KEY_ID",
                 "sessionContext": {
                     "attributes": {
@@ -203,8 +203,8 @@ The following example shows a CloudTrail log entry with actions for the followin
                     "sessionIssuer": {
                         "type": "Role",
                         "principalId": "EX_PRINCIPAL_ID",
-                        "arn": "arn:aws:iam::012345678910:role/Admin",
-                        "accountId": "012345678910",
+                        "arn": "arn:aws:iam::111122223333:role/Admin",
+                        "accountId": "111122223333",
                         "userName": "Admin"
                     }
                 }
@@ -222,15 +222,15 @@ The following example shows a CloudTrail log entry with actions for the followin
             "requestID": "624c4c3e-3142-11e8-8c0e-75c0272f31a4",
             "eventID": "27fd784e-fbf3-4163-9f0b-0006c6eed39f",
             "eventType": "AwsApiCall",
-            "recipientAccountId": "012345678910"
+            "recipientAccountId": "111122223333"
         },
         {
             "eventVersion": "1.05",
             "userIdentity": {
                 "type": "AssumedRole",
                 "principalId": "EX_PRINCIPAL_ID",
-                "arn": "arn:aws:sts::012345678910:assumed-role/Admin/Alice",
-                "accountId": "012345678910",
+                "arn": "arn:aws:sts::111122223333:assumed-role/Admin/Alice",
+                "accountId": "111122223333",
                 "accessKeyId": "EXAMPLE_KEY_ID",
                 "sessionContext": {
                     "attributes": {
@@ -240,8 +240,8 @@ The following example shows a CloudTrail log entry with actions for the followin
                     "sessionIssuer": {
                         "type": "Role",
                         "principalId": "EX_PRINCIPAL_ID",
-                        "arn": "arn:aws:iam::012345678910:role/Admin",
-                        "accountId": "012345678910",
+                        "arn": "arn:aws:iam::111122223333:role/Admin",
+                        "accountId": "111122223333",
                         "userName": "Admin"
                     }
                 }
@@ -257,15 +257,15 @@ The following example shows a CloudTrail log entry with actions for the followin
             "requestID": "811735f9-3140-11e8-8c0e-75c0272f31a4",
             "eventID": "5cfc86a6-758c-4fb9-af13-557b04805c4e",
             "eventType": "AwsApiCall",
-            "recipientAccountId": "012345678910"
+            "recipientAccountId": "111122223333"
         },
         {
             "eventVersion": "1.05",
             "userIdentity": {
                 "type": "AssumedRole",
                 "principalId": "EX_PRINCIPAL_ID",
-                "arn": "arn:aws:sts::012345678910:assumed-role/Admin/Alice",
-                "accountId": "012345678910",
+                "arn": "arn:aws:sts::111122223333:assumed-role/Admin/Alice",
+                "accountId": "111122223333",
                 "accessKeyId": "EXAMPLE_KEY_ID",
                 "sessionContext": {
                     "attributes": {
@@ -275,8 +275,8 @@ The following example shows a CloudTrail log entry with actions for the followin
                     "sessionIssuer": {
                         "type": "Role",
                         "principalId": "EX_PRINCIPAL_ID",
-                        "arn": "arn:aws:iam::012345678910:role/Admin",
-                        "accountId": "012345678910",
+                        "arn": "arn:aws:iam::111122223333:role/Admin",
+                        "accountId": "111122223333",
                         "userName": "Admin"
                     }
                 }
@@ -294,7 +294,7 @@ The following example shows a CloudTrail log entry with actions for the followin
             "requestID": "14b2dd34-3149-11e8-8c0e-75c0272f31a4",
             "eventID": "0db3498c-e084-4b30-b5fb-aa0b71ef9b7b",
             "eventType": "AwsApiCall",
-            "recipientAccountId": "012345678910"
+            "recipientAccountId": "111122223333"
         }
     ]
 }

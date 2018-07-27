@@ -11,7 +11,7 @@ Follow the steps to download and configure the AWS SDKs\.
 1. Download and install the AWS CLI and the AWS SDKs that you want to use\. This guide provides examples for the AWS CLI, Java, Python, PHP, \.NET, and JavaScript\. For information about other AWS SDKs, see [Tools for Amazon Web Services](https://aws.amazon.com/tools/)\.
    + [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-set-up.html)
    + [AWS SDK for Java](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/)
-   + [AWS SDK for Python \(Boto 3\)](AWS SDK for Python (Boto 3) Getting Started)
+   + [AWS SDK for Python \(Boto 3\)](http://boto3.readthedocs.org/en/latest/)
    + [AWS SDK for PHP](http://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/welcome.html#getting-started)
    + [AWS SDK for \.NET](http://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/welcome.html)
    + [AWS SDK for JavaScript](http://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/)

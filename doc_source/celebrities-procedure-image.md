@@ -30,6 +30,8 @@ To run this procedure, you need an image file that contains one or more celebrit
    Change the value of `photo` to the path and file name of an image file that contains one or more celebrity faces\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    package aws.example.rekognition.image;
    import com.amazonaws.services.rekognition.AmazonRekognition;
@@ -115,6 +117,8 @@ To run this procedure, you need an image file that contains one or more celebrit
    Change the value of `photo` to the path and file name of an image file that contains one or more celebrity faces\.
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    import boto3
    import json
@@ -148,6 +152,9 @@ To run this procedure, you need an image file that contains one or more celebrit
    Change the value of `photo` to the path and file name of an image file that contains one or more celebrity faces \(\.jpg or \.png format\)\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using System.IO;
    using Amazon.Rekognition;
@@ -312,7 +319,7 @@ The following is example JSON input and output for `RecognizeCelebrities`\.
         },
         "Quality": {
             "Brightness": 37.16635513305664,
-            "Sharpness": 99.884521484375
+            "Sharpness": 99.9305191040039
         }
     }]
 }

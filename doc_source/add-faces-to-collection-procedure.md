@@ -47,6 +47,8 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
    Change the value of `collectionId` to the name of the collection that you want to add a face to\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in step 2\. 
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    package aws.example.rekognition.image;
    import com.amazonaws.services.rekognition.AmazonRekognition;
@@ -118,6 +120,9 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
    Change the value of `collectionId` to the name of the collection that you want to add a face to\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in step 2\. 
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    import boto3
    
    if __name__ == "__main__":
@@ -148,6 +153,9 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
    Change the value of `collectionId` to the name of the collection that you want to add a face to\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in step 2\. 
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using System.Collections.Generic;
    using Amazon.Rekognition;

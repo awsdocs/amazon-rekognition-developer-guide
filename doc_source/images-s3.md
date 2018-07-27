@@ -4,6 +4,8 @@ Amazon Rekognition Image can analyze images that are stored in an Amazon S3 buck
 
 In this topic, you use the [DetectLabels](API_DetectLabels.md) API operation to detect objects, concepts, and scenes in an image \(JPEG or PNG\) that's stored in an Amazon S3 bucket\. You pass an image to a Amazon Rekognition Image API operation by using the [Image](API_Image.md) input parameter\. Within `Image`, you specify the [S3Object](API_S3Object.md) object property to reference an image stored in an S3 bucket\. Image bytes for images stored in Amazon S3 buckets don't need to be base64 encoded\. For more information, see [Images](images-information.md)\. 
 
+The region for the S3 bucket containing the S3 object must match the region you use for Amazon Rekognition Image operations\. 
+
 In this example JSON request for `DetectLabels`, the source image \(`input.jpg`\) is loaded from an Amazon S3 bucket named `MyBucket`\.
 
 ```
@@ -41,6 +43,9 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    This example displays a list of labels that were detected in the input image\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in step 2\. 
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    package com.amazonaws.samples;
    import com.amazonaws.services.rekognition.AmazonRekognition;
    import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
@@ -100,6 +105,8 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    This example displays the labels that were detected in the input image\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in Step 2\. 
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    import boto3
    
@@ -122,6 +129,9 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    This example displays a list of labels that were detected in the input image\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in Step 2\. 
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using Amazon.Rekognition;
    using Amazon.Rekognition.Model;

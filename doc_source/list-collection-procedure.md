@@ -20,6 +20,9 @@ For more information, see [Managing Collections](collections.md#managing-collect
    The following example lists the collections in the current region\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    package aws.example.rekognition.image;
    
    import java.util.List;
@@ -75,6 +78,9 @@ For more information, see [Managing Collections](collections.md#managing-collect
    The following example lists the collections in the current region\.
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    import boto3
    
    if __name__ == "__main__":
@@ -108,6 +114,9 @@ For more information, see [Managing Collections](collections.md#managing-collect
    The following example lists the collections in the current region\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using Amazon.Rekognition;
    using Amazon.Rekognition.Model;

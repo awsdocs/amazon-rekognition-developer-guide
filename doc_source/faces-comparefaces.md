@@ -26,6 +26,9 @@ You can provide the source and target images as an image byte array \(base64\-en
    Replace the values of `sourceImage` and `targetImage` with the path and file name of the source and target images\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    package aws.example.rekognition.image;
    import com.amazonaws.services.rekognition.AmazonRekognition;
    import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
@@ -127,6 +130,9 @@ You can provide the source and target images as an image byte array \(base64\-en
    Replace the values of `sourceFile` and `targetFile` with the path and file name of the source and target images\.
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    import boto3
    
    if __name__ == "__main__":
@@ -162,6 +168,9 @@ You can provide the source and target images as an image byte array \(base64\-en
    Replace the values of `sourceImage` and `targetImage` with the path and file name of the source and target images\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using System.IO;
    using Amazon.Rekognition;

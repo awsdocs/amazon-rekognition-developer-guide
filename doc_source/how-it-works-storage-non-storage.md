@@ -11,7 +11,6 @@ Amazon Rekognition provides the following non\-storage API operations for images
 + [DetectModerationLabels](API_DetectModerationLabels.md) 
 + [RecognizeCelebrities](API_RecognizeCelebrities.md) 
 + [DetectText](API_DetectText.md) 
-+ [DetectModerationLabels](API_DetectModerationLabels.md) 
 
 Amazon Rekognition provides the following non\-storage API operations for videos:
 + [StartLabelDetection](API_StartLabelDetection.md) 

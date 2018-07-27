@@ -38,6 +38,9 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
    The following Java example shows how to load an image from the local file system and detect labels by using the [detectLabels](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    package aws.example.rekognition.image;
    import java.io.File;
    import java.io.FileInputStream;
@@ -97,6 +100,9 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
    The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_labels](http://boto3.readthedocs.org/en/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) operation\. Change the value of `imageFile` to the path and file name of an image file \(\.jpg or \.png format\)\. 
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    import boto3
    
    if __name__ == "__main__":
@@ -120,6 +126,9 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
    The following example shows how to load an image from the local file system and detect labels by using the `DetectLabels` operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using System.IO;
    using Amazon.Rekognition;
@@ -178,7 +187,11 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
    The following [AWS SDK for PHP](http://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/welcome.html#getting-started) example shows how to load an image from the local file system and call the [DetectFaces](http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-rekognition-2016-06-27.html#detectfaces) API operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\. 
 
    ```
+   
    <?php
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
        require 'vendor/autoload.php';
    
        use Aws\Rekognition\RekognitionClient;
@@ -190,14 +203,14 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
    
        $rekognition = new RekognitionClient($options);
    	
-       #Get local image
+       // Get local image
        $photo = 'input.jpg';
        $fp_image = fopen($photo, 'r');
        $image = fread($fp_image, filesize($photo));
        fclose($fp_image);
    
    
-       # Call DetectFaces
+       // Call DetectFaces
        $result = $rekognition->DetectFaces(array(
           'Image' => array(
              'Bytes' => $image,
@@ -206,7 +219,7 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
           )
        );
    
-       # Display info for each detected person
+       // Display info for each detected person
        print 'People: Image position and estimated age' . PHP_EOL;
        for ($n=0;$n<sizeof($result['FaceDetails']); $n++){
    

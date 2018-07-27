@@ -22,6 +22,8 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    Change the value of `collectionID` to the collection that contains the required face\. Change the value of `faceId` to the identifier of the face you want to find\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    package aws.example.rekognition.image;
    import com.amazonaws.services.rekognition.AmazonRekognition;
@@ -87,6 +89,9 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    Change the value of `collectionID` to the collection that contains the required face\. Change the value of `faceId` to the identifier of the face you want to find\.
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    import boto3
    
    if __name__ == "__main__":
@@ -122,6 +127,9 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    Change the value of `collectionID` to the collection that contains the required face\. Change the value of `faceId` to the identifier of the face that you want to find\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using Amazon.Rekognition;
    using Amazon.Rekognition.Model;

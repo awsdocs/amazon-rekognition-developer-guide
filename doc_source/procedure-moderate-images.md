@@ -32,6 +32,8 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
    Replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    package aws.example.rekognition.image;
    import com.amazonaws.services.rekognition.AmazonRekognition;
@@ -97,6 +99,8 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
    Replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    import boto3
    
@@ -122,6 +126,9 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
    Replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using Amazon.Rekognition;
    using Amazon.Rekognition.Model;

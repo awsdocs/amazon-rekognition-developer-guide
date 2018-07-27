@@ -18,9 +18,11 @@ The following procedure shows how to track people through a video stored in an A
 #### [ Java ]
 
    ```
-     //Persons========================================================================
-      
-      private static void StartPersons(String bucket, String video) throws Exception{
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
+       //Persons========================================================================
+       private static void StartPersons(String bucket, String video) throws Exception{
           
           int maxResults=10;
           String paginationToken=null;
@@ -98,6 +100,9 @@ The following procedure shows how to track people through a video stored in an A
 #### [ Python ]
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
        def GetResultsPersons(self, jobId):
            maxResults = 10
            paginationToken = ''

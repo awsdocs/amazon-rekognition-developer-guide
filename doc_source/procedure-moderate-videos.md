@@ -14,6 +14,9 @@ Amazon Rekognition Video unsafe content detection in stored videos is an asynchr
 #### [ Java ]
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
        //Content moderation ==================================================================
        private static void StartModerationLabels(String bucket, String video) throws Exception{
            
@@ -94,6 +97,9 @@ Amazon Rekognition Video unsafe content detection in stored videos is an asynchr
 #### [ Python ]
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
        def GetResultsModerationLabels(self, jobId):
            maxResults = 10
            paginationToken = ''

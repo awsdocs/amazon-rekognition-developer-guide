@@ -17,9 +17,11 @@ You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from
 
    This example deletes a single face from a collection\.
 
-   Change the value of `collectionId` to the collection that contains the face that you want to delete\. Change the value of `faces`to the ID of the face that you want to delete\.
+   Change the value of `collectionId` to the collection that contains the face that you want to delete\. Change the value of `faces` to the ID of the face that you want to delete\. To delete multiple faces, add the face IDs to the `faces` array\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    package aws.example.rekognition.image;
    import com.amazonaws.services.rekognition.AmazonRekognition;
@@ -67,11 +69,14 @@ You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from
 ------
 #### [ Python ]
 
-   This example deletes a collection\.
+   This example deletes a single face from a collection\.
 
-   Change the value `collectionId` to the collection that you want to delete\.
+   Change the value of `collectionId` to the collection that contains the face that you want to delete\. Change the value of `faces` to the ID of the face that you want to delete\. To delete multiple faces, add the face IDs to the `faces` array\.
 
    ```
+   #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    import boto3
    
    if __name__ == "__main__":
@@ -95,9 +100,12 @@ You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from
 
    This example deletes a single face from a collection\.
 
-   Change the value of `collectionId` to the collection that contains the face that you want to delete\. Change the value of `faces`to the ID of the face that you want to delete\.
+   Change the value of `collectionId` to the collection that contains the face that you want to delete\. Change the value of `faces` to the ID of the face that you want to delete\. To delete multiple faces, add the face IDs to the `faces` list\.
 
    ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
    using System;
    using System.Collections.Generic;
    using Amazon.Rekognition;
