@@ -4,7 +4,7 @@ To recognize celebrities within images and get additional information about reco
 
 If you haven't stored the additional information for a celebrity that's returned by `RecognizeCelebrities` and you want to avoid reanalyzing an image to get it, use [GetCelebrityInfo](API_GetCelebrityInfo.md)\. To call `GetCelebrityInfo`, you need the unique identifier that Amazon Rekognition assigns to each celebrity\. The identifier is returned as part of the `RecognizeCelebrities` response for each celebrity recognized in an image\. 
 
-If you have a large collection of images to process for celebrity recognition, consider using [AWS Batch](http://docs.aws.amazon.com/batch/latest/userguide/) to process calls to `RecognizeCelebrities` in batches in the background\. When you add a new image to your collection, you can use an AWS Lambda function to recognize celebrities by calling `RecognizeCelebrities` as the image is uploaded into an S3 bucket\.
+If you have a large collection of images to process for celebrity recognition, consider using [AWS Batch](https://docs.aws.amazon.com/batch/latest/userguide/) to process calls to `RecognizeCelebrities` in batches in the background\. When you add a new image to your collection, you can use an AWS Lambda function to recognize celebrities by calling `RecognizeCelebrities` as the image is uploaded into an S3 bucket\.
 
 ## Calling RecognizeCelebrities<a name="recognize-image-example"></a>
 

@@ -35,7 +35,7 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
 ------
 #### [ Java ]
 
-   The following Java example shows how to load an image from the local file system and detect labels by using the [detectLabels](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
+   The following Java example shows how to load an image from the local file system and detect labels by using the [detectLabels](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
 
    ```
    //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -97,7 +97,7 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
 ------
 #### [ Python ]
 
-   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_labels](http://boto3.readthedocs.org/en/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) operation\. Change the value of `imageFile` to the path and file name of an image file \(\.jpg or \.png format\)\. 
+   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_labels](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) operation\. Change the value of `imageFile` to the path and file name of an image file \(\.jpg or \.png format\)\. 
 
    ```
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -184,7 +184,7 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
 ------
 #### [ PHP ]
 
-   The following [AWS SDK for PHP](http://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/welcome.html#getting-started) example shows how to load an image from the local file system and call the [DetectFaces](http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-rekognition-2016-06-27.html#detectfaces) API operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\. 
+   The following [AWS SDK for PHP](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/welcome.html#getting-started) example shows how to load an image from the local file system and call the [DetectFaces](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-rekognition-2016-06-27.html#detectfaces) API operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\. 
 
    ```
    

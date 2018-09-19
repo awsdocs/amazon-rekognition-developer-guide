@@ -68,43 +68,6 @@ HTTP Status Code: 400
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500
 
-## Example<a name="API_DeleteCollection_Examples"></a>
-
-### Example Request<a name="API_DeleteCollection_Example_1"></a>
-
-The following example shows a request that deletes a collection named mycollection\.
-
-#### Sample Request<a name="API_DeleteCollection_Example_1_Request"></a>
-
-```
-POST https://rekognition.us-west-2.amazonaws.com/ HTTP/1.1
-Host: rekognition.us-west-2.amazonaws.com
-Accept-Encoding: identity
-Content-Length: 32
-X-Amz-Target: RekognitionService.DeleteCollection
-X-Amz-Date: 20170105T170937Z
-User-Agent: aws-cli/1.11.25 Python/2.7.9 Windows/8 botocore/1.4.82
-Content-Type: application/x-amz-json-1.1
-Authorization: AWS4-HMAC-SHA256 Credential=XXXXX/us-west-2/rekognition/aws4_request,
- SignedHeaders=content-type;host;x-amz-date;x-amz-target,
-   Signature=XXXXXXXXXXXXXXXX
-
-{"CollectionId": "mycollection"}
-```
-
-#### Sample Response<a name="API_DeleteCollection_Example_1_Response"></a>
-
-```
-HTTP/1.1 200 OK
-Content-Type: application/x-amz-json-1.1
-Date: Thu, 05 Jan 2017 17:09:39 GMT
-x-amzn-RequestId: bde4e432-d369-11e6-9921-8744f72327ab
-Content-Length: 18
-Connection: keep-alive
-
-{"StatusCode":200}
-```
-
 ## See Also<a name="API_DeleteCollection_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:

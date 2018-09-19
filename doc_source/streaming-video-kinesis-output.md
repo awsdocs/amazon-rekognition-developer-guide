@@ -1,6 +1,6 @@
 # Reading Streaming Video Analysis Results<a name="streaming-video-kinesis-output"></a>
 
-You can use the Amazon Kinesis Data Streams Client Library to consume analysis results that are sent to the Amazon Kinesis Data Streams output stream\. For more information, see [Reading Data from a Kinesis Data Stream](http://docs.aws.amazon.com/streams/latest/dev/building-consumers.html)\. Amazon Rekognition Video places a JSON frame record for each analyzed frame into the Kinesis output stream\. Amazon Rekognition Video doesn't analyze every frame that's passed to it through the Kinesis video stream\. 
+You can use the Amazon Kinesis Data Streams Client Library to consume analysis results that are sent to the Amazon Kinesis Data Streams output stream\. For more information, see [Reading Data from a Kinesis Data Stream](https://docs.aws.amazon.com/streams/latest/dev/building-consumers.html)\. Amazon Rekognition Video places a JSON frame record for each analyzed frame into the Kinesis output stream\. Amazon Rekognition Video doesn't analyze every frame that's passed to it through the Kinesis video stream\. 
 
 A frame record that's sent to a Kinesis data stream contains information about which Kinesis video stream fragment the frame is in, where the frame is in the fragment, and faces that are recognized in the frame\. It also includes status information for the stream processor\. For more information, see [Reference: Kinesis Face Recognition Record](streaming-video-kinesis-output-reference.md)\.
 
@@ -104,7 +104,7 @@ The technique that you use to map the Kinesis video stream to the Kinesis data s
 
 **To map a Kinesis video stream frame to a Kinesis data stream frame**
 
-1. Set the input parameter `FragmentTimeCodeType` of the [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) operation to `RELATIVE`\. 
+1. Set the input parameter `FragmentTimeCodeType` of the [PutMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) operation to `RELATIVE`\. 
 
 1. Call `PutMedia` to deliver live media into the Kinesis video stream\.
 
@@ -116,10 +116,10 @@ The technique that you use to map the Kinesis video stream to the Kinesis data s
 
 **To map a Kinesis video stream frame to a Kinesis data stream frame**
 
-1. Call [PutMedia](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) to deliver archived media into the Kinesis video stream\.
+1. Call [PutMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) to deliver archived media into the Kinesis video stream\.
 
-1. When you receive an `Acknowledgement` object from the `PutMedia` operation response, store the `FragmentNumber` field value from the [Payload](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html#API_dataplane_PutMedia_ResponseSyntax) field\. `FragmentNumber` is the fragment number for the MKV cluster\. 
+1. When you receive an `Acknowledgement` object from the `PutMedia` operation response, store the `FragmentNumber` field value from the [Payload](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html#API_dataplane_PutMedia_ResponseSyntax) field\. `FragmentNumber` is the fragment number for the MKV cluster\. 
 
 1. When you receive a Kinesis Face Recognition Record from the Kinesis data stream, store the `FrameOffsetInSeconds` field value from the [KinesisVideo](streaming-video-kinesis-output-reference-kinesisvideostreams-kinesisvideo.md) field\. 
 
-1. Calculate the mapping by using the `FrameOffsetInSeconds` and `FragmentNumber` values that you stored in steps 2 and 3\. `FrameOffsetInSeconds` is the offset into the fragment with the specific `FragmentNumber` that's sent to the Amazon Kinesis data stream\. For more information about getting the video frames for a given fragment number, see [Amazon Kinesis Video Streams Archived Media](http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_Operations_Amazon_Kinesis_Video_Streams_Archived_Media.html)\.
+1. Calculate the mapping by using the `FrameOffsetInSeconds` and `FragmentNumber` values that you stored in steps 2 and 3\. `FrameOffsetInSeconds` is the offset into the fragment with the specific `FragmentNumber` that's sent to the Amazon Kinesis data stream\. For more information about getting the video frames for a given fragment number, see [Amazon Kinesis Video Streams Archived Media](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_Operations_Amazon_Kinesis_Video_Streams_Archived_Media.html)\.

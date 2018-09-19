@@ -1,6 +1,6 @@
 # Monitoring Rekognition<a name="rekognition-monitoring"></a>
 
-With CloudWatch, you can get metrics for individual Rekognition operations or global Rekognition metrics for your account, You can use metrics to track the health of your Rekognition\-based solution and set up alarms to notify you when one or more metrics fall outside a defined threshold\. For example, you can see metrics for the number of server errors that have occurred, or metrics for the number of faces that have been detected\. You can also see metrics for the number of times a specific Rekognition operation has succeeded\. To see metrics, you can use [Amazon CloudWatch](https://console.aws.amazon.com/cloudwatch/), [Amazon AWS Command Line Interface](http://docs.aws.amazon.com/AmazonCloudWatch/latest/cli/), or the [CloudWatch API](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/)\.
+With CloudWatch, you can get metrics for individual Rekognition operations or global Rekognition metrics for your account, You can use metrics to track the health of your Rekognition\-based solution and set up alarms to notify you when one or more metrics fall outside a defined threshold\. For example, you can see metrics for the number of server errors that have occurred, or metrics for the number of faces that have been detected\. You can also see metrics for the number of times a specific Rekognition operation has succeeded\. To see metrics, you can use [Amazon CloudWatch](https://console.aws.amazon.com/cloudwatch/), [Amazon AWS Command Line Interface](https://docs.aws.amazon.com/AmazonCloudWatch/latest/cli/), or the [CloudWatch API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/)\.
 
 You can also see aggregated metrics, for a chosen period of time, by using the Rekognition console\. For more information, see [Exercise 4: See Aggregated Metrics \(Console\)](aggregated-metrics.md)\.
 
@@ -26,7 +26,7 @@ The following list shows some common uses for the metrics\. These are suggestion
 |  How can I monitor the latency of `Rekognition` operation calls?  |  Use the `ResponseTime` metric\.  | 
 |  How can I monitor how many times `IndexFaces` successfully added faces to Rekognition collections?  |  Monitor the `Sum` statistic with the `SuccessfulRequestCount` metric and `IndexFaces` operation\. Use the `Operation` dimension to select the operation and metric\.  | 
 
-You must have the appropriate CloudWatch permissions to monitor Rekognition with CloudWatch\. For more information, see [Authentication and Access Control for Amazon CloudWatch](http://docs.aws.amazon.com//AmazonCloudWatch/latest/monitoring/auth-and-access-control-cw.html)\.
+You must have the appropriate CloudWatch permissions to monitor Rekognition with CloudWatch\. For more information, see [Authentication and Access Control for Amazon CloudWatch](https://docs.aws.amazon.com//AmazonCloudWatch/latest/monitoring/auth-and-access-control-cw.html)\.
 
 ## Access Rekognition Metrics<a name="how-to-access"></a>
 
@@ -49,10 +49,10 @@ The following examples show how to access Rekognition metrics using the CloudWat
 
   `aws cloudwatch get-metric-statistics --metric-name SuccessfulRequestCount --start-time 2017-1-1T19:46:20 --end-time 2017-1-6T19:46:57 --period 3600 --namespace AWS/Rekognition --statistics Sum --dimensions Name=Operation,Value=DetectFaces --region us-west-2` 
 
-  This example shows the successful `DetectFaces` operation calls made over a period of time\. For more information, see [get\-metric\-statistics](http://docs.aws.amazon.com/cli/latest/reference/get-metric-statistics.html)\.
+  This example shows the successful `DetectFaces` operation calls made over a period of time\. For more information, see [get\-metric\-statistics](https://docs.aws.amazon.com/cli/latest/reference/get-metric-statistics.html)\.
 
 **To access metrics \(CloudWatch API\)**
-+  Call `[GetMetricStatistics](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html)`\. For more information, see the [Amazon CloudWatch API Reference](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/)\. 
++  Call `[GetMetricStatistics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html)`\. For more information, see the [Amazon CloudWatch API Reference](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/)\. 
 
 ## Create an Alarm<a name="alarms"></a>
 
@@ -85,7 +85,7 @@ If you use **Create topic** to create a new Amazon SNS topic, the email addresse
 
   `aws cloudwatch put-metric-alarm --alarm-name UserErrors --alarm-description "Alarm when more than 10 user errors occur" --metric-name UserErrorCount --namespace AWS/Rekognition --statistic Average --period 300 --threshold 10 --comparison-operator GreaterThanThreshold --evaluation-periods 2 --alarm-actions arn:aws:sns:us-west-2:111111111111:UserError --unit Count`
 
-  This example shows how to create an alarm for when more than 10 user errors occur within 5 minutes\. For more information, see [put\-metric\-alarm](http://docs.aws.amazon.com/cli/latest/reference/put-metric-alarm.html)\.
+  This example shows how to create an alarm for when more than 10 user errors occur within 5 minutes\. For more information, see [put\-metric\-alarm](https://docs.aws.amazon.com/cli/latest/reference/put-metric-alarm.html)\.
 
 **To set an alarm \(CloudWatch API\)**
-+ Call `[PutMetricAlarm](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricAlarm.html)`\. For more information, see *[Amazon CloudWatch API Reference](http://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/)*\.
++ Call `[PutMetricAlarm](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_PutMetricAlarm.html)`\. For more information, see *[Amazon CloudWatch API Reference](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/)*\.

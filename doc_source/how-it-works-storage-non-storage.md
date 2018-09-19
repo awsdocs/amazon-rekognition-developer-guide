@@ -64,6 +64,7 @@ Amazon Rekognition Image provides the following storage API operations:
 + [SearchFacesByImage](API_SearchFacesByImage.md) 
 + [SearchFaces](API_SearchFaces.md) 
 + [DeleteFaces](API_DeleteFaces.md) 
++ [DescribeCollection](API_DescribeCollection.md) 
 
 Amazon Rekognition Video provides the following storage API operations:
 + [StartFaceSearch](API_StartFaceSearch.md) 

@@ -27,7 +27,7 @@ The completion status of an Amazon Rekognition Video video analysis operation is
 
 1. If you haven't already, create an IAM service role to give Amazon Rekognition Video access to your Amazon SNS topics\. Note the Amazon Resource Name \(ARN\)\. For more information, see [Giving Access to Multiple Amazon SNS Topics](api-video-roles.md#api-video-roles-all-topics)\.
 
-1. [Create an Amazon SNS topic](http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic ARN\. 
+1. [Create an Amazon SNS topic](https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic ARN\. 
 
 ## Create the Lambda Function<a name="lambda-create-function"></a>
 
@@ -286,7 +286,7 @@ Use the following AWS CLI command to test the Lambda function by starting the la
 
 1. Upload an \.mp4, \.mov, or \.avi format video file to your S3 bucket\. For test purposes, upload a video that's no longer than 30 seconds in length\.
 
-   For instructions, see [Uploading Objects into Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
+   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 1. Run the following AWS CLI command to start detecting labels in a video\.
 

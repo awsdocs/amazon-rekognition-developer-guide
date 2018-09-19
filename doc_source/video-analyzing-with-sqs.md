@@ -1,8 +1,8 @@
 # Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)<a name="video-analyzing-with-sqs"></a>
 
-This procedure shows you how to detect labels in a video by using Amazon Rekognition Video label detection operations, a video stored in an Amazon S3 bucket, and an Amazon SNS topic\. The procedure also shows how to use an Amazon SQS queue to get the completion status from the Amazon SNS topic\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\. You aren't restricted to using an Amazon SQS queue\. For example, you can use an AWS Lambda function to get the completion status\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](http://docs.aws.amazon.com/sns/latest/dg/sns-lambda.html)\.
+This procedure shows you how to detect labels in a video by using Amazon Rekognition Video label detection operations, a video stored in an Amazon S3 bucket, and an Amazon SNS topic\. The procedure also shows how to use an Amazon SQS queue to get the completion status from the Amazon SNS topic\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\. You aren't restricted to using an Amazon SQS queue\. For example, you can use an AWS Lambda function to get the completion status\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-lambda.html)\.
 
-The procedure shows you how to use the [Amazon SNS console](https://console.aws.amazon.com/ssns/v2/home) to do the following:
+The procedure shows you how to use the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home) to do the following:
 + Create the Amazon SNS topic\.
 + Create the Amazon SQS queue\.
 + Give Amazon Rekognition Video permission to publish the completion status of a video analysis operation to the Amazon SNS topic\.
@@ -27,17 +27,17 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
 
 1. Configure user access to Amazon Rekognition Video and configure Amazon Rekognition Video access to Amazon SNS\. For more information, see [Configuring Amazon Rekognition Video](api-video-roles.md)\.
 
-1. [Create an Amazon SNS topic](http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic Amazon Resource Name \(ARN\)\. Ensure the topic is in the same region as the AWS endpoint that you are using\.
+1. [Create an Amazon SNS topic](https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic Amazon Resource Name \(ARN\)\. Ensure the topic is in the same region as the AWS endpoint that you are using\.
 
-1. [Create an Amazon SQS standard queue](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-create-queue.html) by using the [Amazon SQS console](https://console.aws.amazon.com/sqs/)\. Note the queue ARN\.
+1. [Create an Amazon SQS standard queue](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-create-queue.html) by using the [Amazon SQS console](https://console.aws.amazon.com/sqs/)\. Note the queue ARN\.
 
-1. [Subscribe the queue to the topic](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-subscribe-queue-sns-topic.html) you created in step 2\.
+1. [Subscribe the queue to the topic](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-subscribe-queue-sns-topic.html) you created in step 2\.
 
-1. [Give permission to the Amazon SNS topic to send messages to the Amazon SQS queue](http://docs.aws.amazon.com/sns/latest/dg/SendMessageToSQS.html#SendMessageToSQS.sqs.permissions)\.
+1. [Give permission to the Amazon SNS topic to send messages to the Amazon SQS queue](https://docs.aws.amazon.com/sns/latest/dg/SendMessageToSQS.html#SendMessageToSQS.sqs.permissions)\.
 
 1. Upload an \.mp4, \.mov or \.avi format video file to your S3 Bucket\. For test purposes, upload a video that's no longer than 30 seconds in length\.
 
-   For instructions, see [Uploading Objects into Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
+   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 1. Use the following AWS SDK for Java code to detect labels in a video\. 
    + Replace `topicArn`, `roleArn`, and `queueUrl` with the Amazon SNS topic ARN, IAM role ARN, and Amazon SQS queue URL that you previously noted\.

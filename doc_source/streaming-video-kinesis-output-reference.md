@@ -15,8 +15,7 @@ The following is the JSON syntax for a Kinesis data stream record\. For more inf
             "ProducerTimestamp": number,
             "ServerTimestamp": number,
             "FrameOffsetInSeconds": number
-        },
-        
+        }
     },
     "StreamProcessorInformation": {
         "Status": "RUNNING"
@@ -24,34 +23,33 @@ The following is the JSON syntax for a Kinesis data stream record\. For more inf
     "FaceSearchResponse": [
         {
             "DetectedFace": {
-                {
-                    "BoundingBox": {
-                        "Width": number,
-                        "Top": number,
-                        "Height": number,
-                        "Left": number
-                    },
-                    "Confidence": number,
-                    "Landmarks": [
-                        {
-                            "Type": "string",
-                            "X": number,
-                            "Y": number
-                        }
-                    ],
-                    "Pose": {
-                        "Pitch": number,
-                        "Roll": number,
-                        "Yaw": number
-                    },
-                    "Quality": {
-                        "Brightness": number,
-                        "Sharpness": number
+                "BoundingBox": {
+                    "Width": number,
+                    "Top": number,
+                    "Height": number,
+                    "Left": number
+                },
+                "Confidence": 23,
+                "Landmarks": [
+                    {
+                        "Type": "string",
+                        "X": number,
+                        "Y": number
                     }
+                ],
+                "Pose": {
+                    "Pitch": number,
+                    "Roll": number,
+                    "Yaw": number
+                },
+                "Quality": {
+                    "Brightness": number,
+                    "Sharpness": number
                 }
             },
             "MatchedFaces": [
                 {
+                    "Similarity": number,
                     "Face": {
                         "BoundingBox": {
                             "Width": number,
@@ -63,8 +61,7 @@ The following is the JSON syntax for a Kinesis data stream record\. For more inf
                         "ExternalImageId": "string",
                         "FaceId": "string",
                         "ImageId": "string"
-                    },
-                    "Similarity": number
+                    }
                 }
             ]
         }

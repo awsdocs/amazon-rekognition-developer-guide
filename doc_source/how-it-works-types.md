@@ -42,4 +42,4 @@ To detect text in images, use [DetectText](API_DetectText.md)\.
 
 Amazon Rekognition can analyze images and stored videos for explicit or suggestive adult content\. For more information, see [Detecting Unsafe Content](moderation.md)\.
 
-To detect unsage images, use [DetectModerationLabels](API_DetectModerationLabels.md)\. To detect unsafe stored videos, use [StartContentModeration](API_StartContentModeration.md)\.
+To detect unsafe images, use [DetectModerationLabels](API_DetectModerationLabels.md)\. To detect unsafe stored videos, use [StartContentModeration](API_StartContentModeration.md)\.

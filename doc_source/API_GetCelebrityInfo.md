@@ -1,6 +1,6 @@
 # GetCelebrityInfo<a name="API_GetCelebrityInfo"></a>
 
-Gets the name and additional information about a celebrity based on his or her Rekognition ID\. The additional information is returned as an array of URLs\. If there is no additional information about the celebrity, this list is empty\.
+Gets the name and additional information about a celebrity based on his or her Amazon Rekognition ID\. The additional information is returned as an array of URLs\. If there is no additional information about the celebrity, this list is empty\.
 
 For more information, see [Getting Information About a Celebrity](get-celebrity-info-procedure.md)\.
 
@@ -72,38 +72,6 @@ HTTP Status Code: 400
  **ThrottlingException**   
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500
-
-## Example<a name="API_GetCelebrityInfo_Examples"></a>
-
-### Example Request<a name="API_GetCelebrityInfo_Example_1"></a>
-
-The following example shows a request that gets information about a celebrity\.
-
-#### Sample Request<a name="API_GetCelebrityInfo_Example_1_Request"></a>
-
-```
-POST https://rekognition.us-west-2.amazonaws.com/ HTTP/1.1
-Host: rekognition.us-west-2.amazonaws.com
-Accept-Encoding: identity
-Content-Length: 18
-X-Amz-Target: RekognitionService.GetCelebrityInfo
-X-Amz-Date: 20170414T184757Z
-User-Agent: aws-cli/1.11.47 Python/2.7.9 Windows/8 botocore/1.5.10
-Content-Type: application/x-amz-json-1.1
-Authorization: AWS4-HMAC-SHA256 Credential=XXXXX/us-west-2/rekognition/aws4_request, SignedHeaders=content-type;host;x-amz-date;x-amz-target,
-   Signature=XXXXXXXXXXXXXXXXXXX
-
-{"Id": "3Ir0du6"}
-```
-
-#### Sample Response<a name="API_GetCelebrityInfo_Example_1_Response"></a>
-
-```
-{
-   "Name": "Jeff Bezos",
-   "Urls": ["www.imdb.com/name/nm1757263"]
-}
-```
 
 ## See Also<a name="API_GetCelebrityInfo_SeeAlso"></a>
 

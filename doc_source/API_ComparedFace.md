@@ -1,6 +1,6 @@
 # ComparedFace<a name="API_ComparedFace"></a>
 
-Provides face metadata for target image faces that are analysed by `CompareFaces` and `RecognizeCelebrities`\.
+Provides face metadata for target image faces that are analyzed by `CompareFaces` and `RecognizeCelebrities`\.
 
 ## Contents<a name="API_ComparedFace_Contents"></a>
 

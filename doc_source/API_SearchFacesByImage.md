@@ -6,7 +6,7 @@ For a given input image, first detects the largest face in the image, and then s
 To search for all faces in an input image, you might first call the [IndexFaces](API_IndexFaces.md) operation, and then use the face IDs returned in subsequent calls to the [SearchFaces](API_SearchFaces.md) operation\.   
  You can also call the `DetectFaces` operation and use the bounding boxes in the response to make face crops, which then you can pass in to the `SearchFacesByImage` operation\. 
 
-You pass the input image either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the Amazon CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
+You pass the input image either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
 
  The response returns an array of faces that match, ordered by similarity score with the highest similarity first\. More specifically, it is an array of metadata for each face match found\. Along with the metadata, the response also includes a `similarity` indicating how similar the face is to the input face\. In the response, the operation also returns the bounding box \(and a confidence level that the bounding box contains a face\) of the face that Amazon Rekognition used for the input image\. 
 
@@ -152,120 +152,6 @@ HTTP Status Code: 400
  **ThrottlingException**   
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500
-
-## Example<a name="API_SearchFacesByImage_Examples"></a>
-
-### Example Request<a name="API_SearchFacesByImage_Example_1"></a>
-
-The following example shows a request that determines the largest face in the supplied image \(people\.img\) and scans a collection \(examplemyphotos\) for matching faces\.
-
-#### Sample Request<a name="API_SearchFacesByImage_Example_1_Request"></a>
-
-```
-POST https://rekognition.us-west-2.amazonaws.com/ HTTP/1.1
-Host: rekognition.us-west-2.amazonaws.com
-Accept-Encoding: identity
-Content-Length: 107
-X-Amz-Target: RekognitionService.SearchFacesByImage
-X-Amz-Date: 20170105T162552Z
-User-Agent: aws-cli/1.11.25 Python/2.7.9 Windows/8 botocore/1.4.82
-Content-Type: application/x-amz-json-1.1
-Authorization: AWS4-HMAC-SHA256 Credential=XXXXXXXX/us-west-2/rekognition/aws4_request,
-  SignedHeaders=content-type;host;x-amz-date;x-amz-target, Signature=XXXXXXXX
-
-{
-   "Image":{
-      "S3Object":{
-         "Bucket":"example-photos",
-         "Name":"people.jpg"
-      }
-   },
-   "CollectionId":"examplemyphotos"
-}
-```
-
-#### Sample Response<a name="API_SearchFacesByImage_Example_1_Response"></a>
-
-```
-HTTP/1.1 200 OK
-Content-Type: application/x-amz-json-1.1
-Date: Thu, 05 Jan 2017 16:25:54 GMT
-x-amzn-RequestId: a0c13bb0-d363-11e6-86be-1d11e90c3f85
-Content-Length: 1460
-Connection: keep-alive
-
-{
-   "FaceMatches":[
-      {
-         "Face":{
-            "BoundingBox":{
-               "Height":0.2220669984817505,
-               "Left":0.5033329725265503,
-               "Top":0.21229000389575958,
-               "Width":0.1766670048236847
-            },
-            "Confidence":99.99970245361328,
-            "FaceId":"11111111-2222-3333-4444-555555555555",
-            "ImageId":"11111111-2222-3333-4444-555555555555"
-         },
-         "Similarity":100.0
-      },
-      {
-         "Face":{
-            "BoundingBox":{
-               "Height":0.1622219979763031,
-               "Left":0.18942700326442719,
-               "Top":0.008888890035450459,
-               "Width":0.21292200684547424
-            },
-            "Confidence":99.96389770507812,
-            "ExternalImageId":"jadenoah2",
-            "FaceId":"11111111-2222-3333-4444-555555555555",
-            "ImageId":"11111111-2222-3333-4444-555555555555"
-         },
-         "Similarity":95.46002960205078
-      },
-      {
-         "Face":{
-            "BoundingBox":{
-               "Height":0.09666670113801956,
-               "Left":0.04154299944639206,
-               "Top":0.05444439873099327,
-               "Width":0.12907999753952026
-            },
-            "Confidence":99.99909973144531,
-            "ExternalImageId":"jadegarrettelinoah",
-            "FaceId":"11111111-2222-3333-4444-555555555555",
-            "ImageId":"11111111-2222-3333-4444-555555555555"
-         },
-         "Similarity":92.89849090576172
-      },
-      {
-         "Face":{
-            "BoundingBox":{
-               "Height":0.11222200095653534,
-               "Left":0.04154299944639206,
-               "Top":0.01888890005648136,
-               "Width":0.149851992726326
-            },
-            "Confidence":99.99949645996094,
-            "ExternalImageId":"noahjade",
-            "FaceId":"11111111-2222-3333-4444-555555555555",
-            "ImageId":"11111111-2222-3333-4444-555555555555"
-         },
-         "Similarity":92.22525787353516
-      }
-   ],
-   "FaceModelVersion":"2.0",
-   "SearchedFaceBoundingBox":{
-      "Height":0.22206704318523407,
-      "Left":0.503333330154419,
-      "Top":0.21229049563407898,
-      "Width":0.17666666209697723
-   },
-   "SearchedFaceConfidence":99.9996566772461
-}
-```
 
 ## See Also<a name="API_SearchFacesByImage_SeeAlso"></a>
 

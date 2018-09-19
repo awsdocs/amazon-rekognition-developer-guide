@@ -17,7 +17,7 @@ Type: String
 Required: No
 
  **ParentName**   <a name="rekognition-Type-ModerationLabel-ParentName"></a>
-The name for the parent label\. Labels at the top\-level of the hierarchy have the parent label `""`\.  
+The name for the parent label\. Labels at the top level of the hierarchy have the parent label `""`\.  
 Type: String  
 Required: No
 

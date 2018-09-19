@@ -46,5 +46,6 @@ The following data types are supported:
 +  [StreamProcessorSettings](API_StreamProcessorSettings.md) 
 +  [Sunglasses](API_Sunglasses.md) 
 +  [TextDetection](API_TextDetection.md) 
++  [UnindexedFace](API_UnindexedFace.md) 
 +  [Video](API_Video.md) 
 +  [VideoMetadata](API_VideoMetadata.md) 

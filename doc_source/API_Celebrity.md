@@ -16,7 +16,7 @@ Pattern: `[0-9A-Za-z]*`
 Required: No
 
  **MatchConfidence**   <a name="rekognition-Type-Celebrity-MatchConfidence"></a>
-The confidence, in percentage, that Rekognition has that the recognized face is the celebrity\.  
+The confidence, in percentage, that Amazon Rekognition has that the recognized face is the celebrity\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No

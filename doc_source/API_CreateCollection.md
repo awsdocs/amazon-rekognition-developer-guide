@@ -83,45 +83,6 @@ HTTP Status Code: 400
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500
 
-## Example<a name="API_CreateCollection_Examples"></a>
-
-### Example Request<a name="API_CreateCollection_Example_1"></a>
-
-The following example shows a request that creates a collection named mycollection\.
-
-#### Sample Request<a name="API_CreateCollection_Example_1_Request"></a>
-
-```
-POST https://rekognition.us-west-2.amazonaws.com/ HTTP/1.1
-Host: rekognition.us-west-2.amazonaws.com
-Accept-Encoding: identity
-Content-Length: 32
-X-Amz-Target: RekognitionService.CreateCollection
-X-Amz-Date: 20170105T155520Z
-User-Agent: aws-cli/1.11.25 Python/2.7.9 Windows/8 botocore/1.4.82
-Content-Type: application/x-amz-json-1.1
-Authorization: AWS4-HMAC-SHA256 Credential=XXXXXXXXXXXXXXXXXX/20170105/us-west-2/rekognition/aws4_request,
-  SignedHeaders=content-type;host;x-amz-date;x-amz-target, Signature=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-{"CollectionId": "mycollection"}
-```
-
-#### Sample Response<a name="API_CreateCollection_Example_1_Response"></a>
-
-```
-HTTP/1.1 200 OK
-Content-Type: application/x-amz-json-1.1
-Date: Thu, 05 Jan 2017 15:55:22 GMT
-x-amzn-RequestId: 5d4c8b73-d35f-11e6-96d5-039839f35287
-Content-Length: 99
-Connection: keep-alive
-{
-   "CollectionArn":"aws:rekognition:us-west-2:11111111111:collection/mycollection",
-   "FaceModelVersion":"2.0",
-   "StatusCode":200
-}
-```
-
 ## See Also<a name="API_CreateCollection_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:

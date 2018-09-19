@@ -5,7 +5,7 @@ Compares a face in the *source* input image with each of the 100 largest faces d
 **Note**  
  If the source image contains multiple faces, the service detects the largest face and compares it with each face detected in the target image\. 
 
-You pass the input and target images either as base64\-encoded image bytes or as a references to images in an Amazon S3 bucket\. If you use the Amazon CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
+You pass the input and target images either as base64\-encoded image bytes or as references to images in an Amazon S3 bucket\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes isn't supported\. The image must be formatted as a PNG or JPEG file\. 
 
 In response, the operation returns an array of face matches ordered by similarity score in descending order\. For each face match, the response provides a bounding box of the face, facial landmarks, pose details \(pitch, role, and yaw\), quality \(brightness and sharpness\), and confidence value \(indicating the level of confidence that the bounding box contains a face\)\. The response also provides a similarity score, which indicates how closely the faces match\. 
 
@@ -160,13 +160,13 @@ Type: [ComparedSourceImageFace](API_ComparedSourceImageFace.md) object
 
  ** [SourceImageOrientationCorrection](#API_CompareFaces_ResponseSyntax) **   <a name="rekognition-CompareFaces-response-SourceImageOrientationCorrection"></a>
  The orientation of the source image \(counterclockwise direction\)\. If your application displays the source image, you can use this value to correct image orientation\. The bounding box coordinates returned in `SourceImageFace` represent the location of the face before the image orientation is corrected\.   
-If the source image is in \.jpeg format, it might contain exchangeable image \(Exif\) metadata that includes the image's orientation\. If the Exif metadata for the source image populates the orientation field, the value of `OrientationCorrection` is null and the `SourceImageFace` bounding box coordinates represent the location of the face after Exif metadata is used to correct the orientation\. Images in \.png format don't contain Exif metadata\.
+If the source image is in \.jpeg format, it might contain exchangeable image \(Exif\) metadata that includes the image's orientation\. If the Exif metadata for the source image populates the orientation field, the value of `OrientationCorrection` is null\. The `SourceImageFace` bounding box coordinates represent the location of the face after Exif metadata is used to correct the orientation\. Images in \.png format don't contain Exif metadata\.
 Type: String  
 Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270` 
 
  ** [TargetImageOrientationCorrection](#API_CompareFaces_ResponseSyntax) **   <a name="rekognition-CompareFaces-response-TargetImageOrientationCorrection"></a>
  The orientation of the target image \(in counterclockwise direction\)\. If your application displays the target image, you can use this value to correct the orientation of the image\. The bounding box coordinates returned in `FaceMatches` and `UnmatchedFaces` represent face locations before the image orientation is corrected\.   
-If the target image is in \.jpg format, it might contain Exif metadata that includes the orientation of the image\. If the Exif metadata for the target image populates the orientation field, the value of `OrientationCorrection` is null and the bounding box coordinates in `FaceMatches` and `UnmatchedFaces` represent the location of the face after Exif metadata is used to correct the orientation\. Images in \.png format don't contain Exif metadata\.
+If the target image is in \.jpg format, it might contain Exif metadata that includes the orientation of the image\. If the Exif metadata for the target image populates the orientation field, the value of `OrientationCorrection` is null\. The bounding box coordinates in `FaceMatches` and `UnmatchedFaces` represent the location of the face after Exif metadata is used to correct the orientation\. Images in \.png format don't contain Exif metadata\.
 Type: String  
 Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270` 
 
@@ -207,149 +207,6 @@ HTTP Status Code: 400
  **ThrottlingException**   
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500
-
-## Example<a name="API_CompareFaces_Examples"></a>
-
-### Example Request<a name="API_CompareFaces_Example_1"></a>
-
-The following example shows a request that compares a source image \(people\.img\) with a target image \(family\.jpg\)\.
-
-#### Sample Request<a name="API_CompareFaces_Example_1_Request"></a>
-
-```
-POST https://rekognition.us-west-2.amazonaws.com/ HTTP/1.1
-Host: rekognition.us-west-2.amazonaws.com
-Accept-Encoding: identity
-Content-Length: 170
-X-Amz-Target: RekognitionService.CompareFaces
-X-Amz-Date: 20170105T165437Z
-User-Agent: aws-cli/1.11.25 Python/2.7.9 Windows/8 botocore/1.4.82
-Content-Type: application/x-amz-json-1.1
-Authorization: AWS4-HMAC-SHA256 Credential=XXXXXXXX/20170105/us-west-2/rekognition/aws4_request,
- SignedHeaders=content-type;host;x-amz-date;x-amz-target, Signature=XXXXXXXX
-{
-   "TargetImage":{
-      "S3Object":{
-         "Bucket":"example-photos",
-         "Name":"family.jpg"
-      }
-   },
-   "SourceImage":{
-      "S3Object":{
-         "Bucket":"example-photos",
-         "Name":"people.jpg"
-      }
-   }
-```
-
-#### Sample Response<a name="API_CompareFaces_Example_1_Response"></a>
-
-```
-{
-    "FaceMatches": [{
-        "Face": {
-            "BoundingBox": {
-                "Width": 0.5521978139877319,
-                "Top": 0.1203877404332161,
-                "Left": 0.23626373708248138,
-                "Height": 0.3126954436302185
-            },
-            "Confidence": 99.98751068115234,
-            "Pose": {
-                "Yaw": -82.36799621582031,
-                "Roll": -62.13221740722656,
-                "Pitch": 0.8652129173278809
-            },
-            "Quality": {
-                "Sharpness": 99.99880981445312,
-                "Brightness": 54.49755096435547
-            },
-            "Landmarks": [{
-                    "Y": 0.2996366024017334,
-                    "X": 0.41685718297958374,
-                    "Type": "eyeLeft"
-                },
-                {
-                    "Y": 0.2658946216106415,
-                    "X": 0.4414493441581726,
-                    "Type": "eyeRight"
-                },
-                {
-                    "Y": 0.3465650677680969,
-                    "X": 0.48636093735694885,
-                    "Type": "nose"
-                },
-                {
-                    "Y": 0.30935320258140564,
-                    "X": 0.6251809000968933,
-                    "Type": "mouthLeft"
-                },
-                {
-                    "Y": 0.26942989230155945,
-                    "X": 0.6454493403434753,
-                    "Type": "mouthRight"
-                }
-            ]
-        },
-        "Similarity": 100.0
-    }],
-    "SourceImageOrientationCorrection": "ROTATE_90",
-    "TargetImageOrientationCorrection": "ROTATE_90",
-    "UnmatchedFaces": [{
-        "BoundingBox": {
-            "Width": 0.4890109896659851,
-            "Top": 0.6566604375839233,
-            "Left": 0.10989011079072952,
-            "Height": 0.278298944234848
-        },
-        "Confidence": 99.99992370605469,
-        "Pose": {
-            "Yaw": 51.51519012451172,
-            "Roll": -110.32493591308594,
-            "Pitch": -2.322134017944336
-        },
-        "Quality": {
-            "Sharpness": 99.99671173095703,
-            "Brightness": 57.23163986206055
-        },
-        "Landmarks": [{
-                "Y": 0.8288310766220093,
-                "X": 0.3133862614631653,
-                "Type": "eyeLeft"
-            },
-            {
-                "Y": 0.7632885575294495,
-                "X": 0.28091415762901306,
-                "Type": "eyeRight"
-            },
-            {
-                "Y": 0.7417283654212952,
-                "X": 0.3631140887737274,
-                "Type": "nose"
-            },
-            {
-                "Y": 0.8081989884376526,
-                "X": 0.48565614223480225,
-                "Type": "mouthLeft"
-            },
-            {
-                "Y": 0.7548204660415649,
-                "X": 0.46090251207351685,
-                "Type": "mouthRight"
-            }
-        ]
-    }],
-    "SourceImageFace": {
-        "BoundingBox": {
-            "Width": 0.5521978139877319,
-            "Top": 0.1203877404332161,
-            "Left": 0.23626373708248138,
-            "Height": 0.3126954436302185
-        },
-        "Confidence": 99.98751068115234
-    }
-}
-```
 
 ## See Also<a name="API_CompareFaces_SeeAlso"></a>
 

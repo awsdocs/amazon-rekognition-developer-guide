@@ -24,12 +24,12 @@ Amazon Rekognition operations are grouped into the following categories\.
 
 ## Using the AWS SDK or HTTP to Call Amazon Rekognition API Operations<a name="images-java-http"></a>
 
-You can call Amazon Rekognition API operations using either the AWS SDK or directly by using HTTP\. Unless you have a good reason not to, you should always use the AWS SDK\. The Java examples in this section use the [AWS SDK](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-install.html)\. A Java project file is not provided, but you can use the [AWS Toolkit for Eclipse](http://docs.aws.amazon.com/AWSToolkitEclipse/latest/GettingStartedGuide/) to develop AWS applications using Java\. 
+You can call Amazon Rekognition API operations using either the AWS SDK or directly by using HTTP\. Unless you have a good reason not to, you should always use the AWS SDK\. The Java examples in this section use the [AWS SDK](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-install.html)\. A Java project file is not provided, but you can use the [AWS Toolkit for Eclipse](https://docs.aws.amazon.com/AWSToolkitEclipse/latest/GettingStartedGuide/) to develop AWS applications using Java\. 
 
-The \.NET examples in this section uses the [AWS SDK for \.NET](http://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/welcome.html)\. You can use the [AWS Toolkit for Visual Studio](http://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/welcome.html) to develop AWS applications using \.NET\. It includes helpful templates and the AWS Explorer for deploying applications and managing services\. For a \.NET developer perspective of AWS, see the [AWS Guide for \.NET Developers](http://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/ndg/welcome.html)\. 
+The \.NET examples in this section uses the [AWS SDK for \.NET](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/welcome.html)\. You can use the [AWS Toolkit for Visual Studio](https://docs.aws.amazon.com/AWSToolkitVS/latest/UserGuide/welcome.html) to develop AWS applications using \.NET\. It includes helpful templates and the AWS Explorer for deploying applications and managing services\. 
 
-The [API Reference](API_Reference.md) in this guide covers calling Amazon Rekognition operations using HTTP\. For Java reference information, see [AWS SDK for Java](http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/index.html)\.
+The [API Reference](API_Reference.md) in this guide covers calling Amazon Rekognition operations using HTTP\. For Java reference information, see [AWS SDK for Java](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/index.html)\.
 
-The Amazon Rekognition service endpoints you can use are documented at [AWS Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html#rekognition_region)\. 
+The Amazon Rekognition service endpoints you can use are documented at [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#rekognition_region)\. 
 
 When calling Amazon Rekognition with HTTP, use POST HTTP operations\.

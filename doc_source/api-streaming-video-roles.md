@@ -8,7 +8,7 @@ You use an AWS Identity and Access Management \(IAM\) service role to give Amazo
 
 **To give Amazon Rekognition Video access to your Kinesis video stream and Kinesis data stream**
 
-1. [Create an IAM service role](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html?icmpid=docs_iam_console)\. Use the following information to create the IAM service role:
+1. [Create an IAM service role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html?icmpid=docs_iam_console)\. Use the following information to create the IAM service role:
 
    1. Choose **Rekognition** for the service name\.
 
@@ -24,7 +24,7 @@ You can create a permissions policy that allows Amazon Rekognition Video access 
 
 **To give Amazon Rekognition Video access to an individual Kinesis video stream and Kinesis data stream**
 
-1. [ Create a new permissions policy with the IAM JSON policy editor](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-json-editor), and use the following policy\. Replace `data-arn` with the ARN of the desired Kinesis data stream and `video-arn` with the ARN of the desired Kinesis video stream\.
+1. [ Create a new permissions policy with the IAM JSON policy editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-json-editor), and use the following policy\. Replace `data-arn` with the ARN of the desired Kinesis data stream and `video-arn` with the ARN of the desired Kinesis video stream\.
 
    ```
    {
@@ -50,7 +50,7 @@ You can create a permissions policy that allows Amazon Rekognition Video access 
    }
    ```
 
-1. [Create an IAM service role](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html?icmpid=docs_iam_console), or update an existing IAM service role\. Use the following information to create the IAM service role:
+1. [Create an IAM service role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html?icmpid=docs_iam_console), or update an existing IAM service role\. Use the following information to create the IAM service role:
 
    1. Choose **Rekognition** for the service name\.
 

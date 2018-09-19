@@ -6,7 +6,7 @@ To filter images, use the labels returned by `DetectModerationLabels` to determi
 
 For information about moderation labels, see [Detecting Unsafe Content](moderation.md)\.
 
-You pass the input image either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the Amazon CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
+You pass the input image either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
 
 ## Request Syntax<a name="API_DetectModerationLabels_RequestSyntax"></a>
 
@@ -97,63 +97,6 @@ HTTP Status Code: 400
  **ThrottlingException**   
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500
-
-## Examples<a name="API_DetectModerationLabels_Examples"></a>
-
-### Example Request<a name="API_DetectModerationLabels_Example_1"></a>
-
-The following example shows the request for a `DetectModerationLabels` API operation\.
-
-#### Sample Request<a name="API_DetectModerationLabels_Example_1_Request"></a>
-
-```
-POST / HTTP/1.1
-Host: rekognition.us-west-2.amazonaws.com
-Accept-Encoding: identity
-Content-Length: 77
-X-Amz-Target: RekognitionService.DetectModerationLabels
-X-Amz-Date: 20170424T195840Z
-User-Agent: aws-cli/1.11.44 Python/2.7.6 Linux/4.2.0-42-generic botocore/1.5.7
-Content-Type: application/x-amz-json-1.1
-Authorization: AWS4-HMAC-SHA256 Credential=XXXXXXXXXXXXXXXXXXXXXXXXX/20170424/us-west-2/rekognition/aws4_request,
-SignedHeaders=content-type;host;x-amz-date;x-amz-target, Signature=XXXXXXXXXXXXXXXXXXXXXXXXX
-{
-   "Image":{
-      "S3Object":{
-         "Bucket":"example-photos",
-         "Name":"input.jpg"
-      }
-   }
-}
-```
-
-### Example Response<a name="API_DetectModerationLabels_Example_2"></a>
-
-The following example shows the response of a call to `DetectmoderationLabels`\.
-
-#### Sample Response<a name="API_DetectModerationLabels_Example_2_Response"></a>
-
-```
-{
-    "ModerationLabels": [
-        {
-            "Confidence": 79.03318786621094,
-            "ParentName": "",
-            "Name": "Explicit Nudity"
-        },
-        {
-            "Confidence": 79.03318786621094,
-            "ParentName": "Explicit Nudity",
-            "Name": "Graphic Male Nudity"
-        },
-        {
-            "Confidence": 68.99967956542969,
-            "ParentName": "Explicit Nudity",
-            "Name": "Sexual Activity"
-        }
-    ]
-}
-```
 
 ## See Also<a name="API_DetectModerationLabels_SeeAlso"></a>
 

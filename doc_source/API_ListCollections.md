@@ -92,51 +92,6 @@ HTTP Status Code: 400
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500
 
-## Example<a name="API_ListCollections_Examples"></a>
-
-### Example Request<a name="API_ListCollections_Example_1"></a>
-
-The following example shows a request that lists the available collections\.
-
-#### Sample Request<a name="API_ListCollections_Example_1_Request"></a>
-
-```
-POST https://rekognition.us-west-2.amazonaws.com/ HTTP/1.1
-Host: rekognition.us-west-2.amazonaws.com
-Accept-Encoding: identity
-Content-Length: 2
-X-Amz-Target: RekognitionService.ListCollections
-X-Amz-Date: 20170105T155800Z
-User-Agent: aws-cli/1.11.25 Python/2.7.9 Windows/8 botocore/1.4.82
-Content-Type: application/x-amz-json-1.1
-Authorization: AWS4-HMAC-SHA256 Credential=XXXXXXXX/20170105/us-west-2/rekognition/aws4_request,
-  SignedHeaders=content-type;host;x-amz-date;x-amz-target, Signature=XXXXXXXX
-
-{}
-```
-
-#### Sample Response<a name="API_ListCollections_Example_1_Response"></a>
-
-```
-HTTP/1.1 200 OK
-Content-Type: application/x-amz-json-1.1
-Date: Thu, 05 Jan 2017 15:58:07 GMT
-x-amzn-RequestId: bfe63e6c-d35f-11e6-840b-e97493937970
-Content-Length: 45
-Connection: keep-alive
-
-{
-   "CollectionIds":[
-      "mycollection",
-      "examplemyphotos"
-   ],
-   "FaceModelVersions":[
-     "2.0",
-     "2.0"
-     ]
-}
-```
-
 ## See Also<a name="API_ListCollections_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:

@@ -4,7 +4,7 @@ You can search a collection for faces that match faces of people who are detecte
 
 The faces that you search for must first be indexed into a collection by using [IndexFaces](API_IndexFaces.md)\. For more information, see [Adding Faces to a Collection](add-faces-to-collection-procedure.md)\. 
 
-Amazon Rekognition Video face searching follows the same asynchronous workflow as other Amazon Rekognition Video operations that analyze videos stored in an Amazon S3 bucket\. To start searching for faces in a stored video, call [StartFaceSearch](API_StartFaceSearch.md) and provide the ID of the collection that you want to search\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is succesful, call [GetFaceSearch](API_GetFaceSearch.md) to get the search results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video Operations](api-video.md)\. 
+Amazon Rekognition Video face searching follows the same asynchronous workflow as other Amazon Rekognition Video operations that analyze videos stored in an Amazon S3 bucket\. To start searching for faces in a stored video, call [StartFaceSearch](API_StartFaceSearch.md) and provide the ID of the collection that you want to search\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service \(Amazon SNS\) topic\. If the video analysis is successful, call [GetFaceSearch](API_GetFaceSearch.md) to get the search results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video Operations](api-video.md)\. 
 
 The following procedure shows how to search a collection for faces that match the faces of people who are detected in a video\. The procedure also shows how to get the tracking data for people who are matched in the video\. The procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), which uses an Amazon Simple Queue Service \(Amazon SQS\) queue to get the completion status of a video analysis request\. 
 
@@ -198,7 +198,7 @@ The following procedure shows how to search a collection for faces that match th
 
 The following is an example JSON response from `GetFaceSearch`\.
 
-The response includes an array of people \(`Persons`\) detected in the video whose faces matches a face in the input collection\. An array element, [PersonMatch](API_PersonMatch.md), exists for each time the person is matched in the video\. Each `PersonMatch` includes an array of face matches from the input collection, [FaceMatch](API_FaceMatch.md), information about the matched person, [PersonDetail](API_PersonDetail.md), and the time the person was matched in the video\. 
+The response includes an array of people \(`Persons`\) detected in the video whose faces match a face in the input collection\. An array element, [PersonMatch](API_PersonMatch.md), exists for each time the person is matched in the video\. Each `PersonMatch` includes an array of face matches from the input collection, [FaceMatch](API_FaceMatch.md), information about the matched person, [PersonDetail](API_PersonDetail.md), and the time the person was matched in the video\. 
 
 ```
 {

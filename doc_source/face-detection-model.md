@@ -11,7 +11,7 @@ When you create a new collection, it's associated with the most recent version o
 
 Different versions of the model aren't compatible with each other\. Specifically, if an image is indexed into multiples collections that use different versions of the model, the face identifiers for the same detected faces are different\. If an image is indexed into multiple collections that are associated with the same model, the face identifiers are the same\. 
 
-Your application might face compatibility issues if your collection management doesn't account for updates to the model\. You can determine the version of the model a collection uses by using the `FaceModelVersion` field that's returned by collection operation responses\. For example, `CreateCollection`\. 
+Your application might face compatibility issues if your collection management doesn't account for updates to the model\. You can determine the version of the model a collection uses by using the `FaceModelVersion` field that's returned by collection operation responses\. For example, `CreateCollection`\. You can get the model version of an existing collection by calling [DescribeCollection](API_DescribeCollection.md)\. For more information, see [Describing a Collection](describe-collection-procedure.md)\.
 
 Existing face vectors in a collection can't be updated to a later version of the model\. Because Amazon Rekognition doesn't store source image bytes, it can't automatically reindex images by using a later version of the model\.
 

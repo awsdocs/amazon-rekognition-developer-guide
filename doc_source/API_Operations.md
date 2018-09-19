@@ -7,6 +7,7 @@ The following actions are supported:
 +  [DeleteCollection](API_DeleteCollection.md) 
 +  [DeleteFaces](API_DeleteFaces.md) 
 +  [DeleteStreamProcessor](API_DeleteStreamProcessor.md) 
++  [DescribeCollection](API_DescribeCollection.md) 
 +  [DescribeStreamProcessor](API_DescribeStreamProcessor.md) 
 +  [DetectFaces](API_DetectFaces.md) 
 +  [DetectLabels](API_DetectLabels.md) 

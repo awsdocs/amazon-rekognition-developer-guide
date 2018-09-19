@@ -41,7 +41,7 @@ Amazon Rekognition does not require any additional permissions when working with
 
 ## AWS Managed \(Predefined\) Policies for Amazon Rekognition<a name="access-policy-aws-managed-policies"></a>
 
-AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. These AWS managed policies grant necessary permissions for common use cases so that you can avoid having to investigate what permissions are needed\. For more information, see [AWS Managed Policies](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\. 
+AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. These AWS managed policies grant necessary permissions for common use cases so that you can avoid having to investigate what permissions are needed\. For more information, see [AWS Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\. 
 
 The following AWS managed policies, which you can attach to users in your account, are specific to Amazon Rekognition:
 + **AmazonRekognitionFullAccess** – Grants full access to Amazon Rekognition resources including creating and deleting collections\.

@@ -12,7 +12,7 @@ A line is a string of equally spaced words\. A line isn't necessarily a complete
 
 To determine whether a `TextDetection` element is a line of text or a word, use the `TextDetection` object `Type` field\. 
 
-To be detected, text must be within \+/\- 30 degrees orientation of the horizontal axis\.
+To be detected, text must be within \+/\- 90 degrees orientation of the horizontal axis\.
 
 For more information, see [Detecting Text](text-detection.md)\.
 

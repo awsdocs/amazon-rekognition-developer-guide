@@ -13,7 +13,7 @@ Consider the following image:
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/text.png)
 
-The blue boxes represent information about the detected text and location of the text that the `DetectText` operation returns\. To be detected, text must be within \+/\- 30\-degrees orientation of the horizontal axis\. `DetectText` categorizes recognized text as either a word or a line of text\.
+The blue boxes represent information about the detected text and location of the text that the `DetectText` operation returns\. To be detected, text must be within \+/\- 90 degrees orientation of the horizontal axis\. `DetectText` categorizes recognized text as either a word or a line of text\.
 
 A *word* is one or more ISO basic Latin script characters that aren't separated by spaces\. `DetectText` can detect up to 50 words in an image\.
 

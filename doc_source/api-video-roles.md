@@ -23,7 +23,7 @@ The examples in this section create a new Amazon SNS topic by using the instruct
 
 1. Create an IAM service role to give Amazon Rekognition Video access to your Amazon SNS topics\. Note the Amazon Resource Name \(ARN\) of the service role\. For more information, see [Giving Access to Multiple Amazon SNS Topics](#api-video-roles-all-topics)\.
 
-1. [ Add the following inline policy](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#embed-inline-policy-console) to the IAM user that you created in step 1: 
+1. [ Add the following inline policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#embed-inline-policy-console) to the IAM user that you created in step 1: 
 
    ```
    {
@@ -51,7 +51,7 @@ You can give Amazon Rekognition Video access to multiple Amazon SNS topics by us
 
 **To give Amazon Rekognition Video access to multiple Amazon SNS topics**
 
-1. [Create an IAM service role](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html?icmpid=docs_iam_console)\. Use the following information to create the IAM service role:
+1. [Create an IAM service role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html?icmpid=docs_iam_console)\. Use the following information to create the IAM service role:
 
    1. Choose **Rekognition** for the service name\.
 
@@ -67,7 +67,7 @@ You can create a permissions policy that allows Amazon Rekognition Video access 
 
 **To give Amazon Rekognition Video access to an existing Amazon SNS topic**
 
-1. [ Create a new permissions policy with the IAM JSON policy editor](http://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-json-editor), and use the following policy\. Replace `topicarn` with the Amazon Resource Name \(ARN\) of the desired Amazon SNS topic\.
+1. [ Create a new permissions policy with the IAM JSON policy editor](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-json-editor), and use the following policy\. Replace `topicarn` with the Amazon Resource Name \(ARN\) of the desired Amazon SNS topic\.
 
    ```
    {
@@ -84,7 +84,7 @@ You can create a permissions policy that allows Amazon Rekognition Video access 
    }
    ```
 
-1. [Create an IAM service role](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html?icmpid=docs_iam_console), or update an existing IAM service role\. Use the following information to create the IAM service role:
+1. [Create an IAM service role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html?icmpid=docs_iam_console), or update an existing IAM service role\. Use the following information to create the IAM service role:
 
    1. Choose **Rekognition** for the service name\.
 
