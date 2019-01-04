@@ -4,7 +4,7 @@ Amazon Rekognition provides two API sets\. They are Amazon Rekognition Image, fo
 
 Both API perform detection and recognition analysis of images and videos to provide insights you can use in your applications\. For example, you could use Amazon Rekognition Image to enhance the customer experience for a photo management application\. When a customer uploads a photo, your application can use Amazon Rekognition Image to detect real\-world objects or faces in the image\. After your application stores the information returned from Amazon Rekognition Image, the user could then query their photo collection for photos with a specific object or face\. Deeper querying is possible\. For example, the user could query for faces that are smiling or query for faces that are a certain age\.
 
-You can use Amazon Rekognition Video to track where a person is detected throughout a stored video\. Alternatively, you can use Amazon Rekognition Video to search a streaming video for persons whose facial descriptions match facial descriptions already stored by Amazon Rekognition\. 
+You can use Amazon Rekognition Video to track the path of people in a stored video\. Alternatively, you can use Amazon Rekognition Video to search a streaming video for persons whose facial descriptions match facial descriptions already stored by Amazon Rekognition\. 
 
 The Amazon Rekognition API makes deep learning image analysis easy to use\. For example, [RecognizeCelebrities](API_RecognizeCelebrities.md) returns information for up to 100 celebrities detected in an image\. This includes information about where celebrity faces are detected on the image and where to get further information about the celebrity\.
 

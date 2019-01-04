@@ -118,7 +118,7 @@ You can provide an input image as an image byte array \(base64\-encoded image by
                            
        textDetections=response['TextDetections']
        print response
-       print 'Matching faces'
+       print 'Detected text'
        for text in textDetections:
                print 'Detected text:' + text['DetectedText']
                print 'Confidence: ' + "{:.2f}".format(text['Confidence']) + "%"

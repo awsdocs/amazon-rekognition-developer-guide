@@ -5,10 +5,7 @@ Applications that use Amazon Rekognition Image commonly need to display the imag
 To display a box around a face, you need the coordinates for the face's bounding box\. If the box isn't oriented correctly, you might need to adjust those coordinates\. Amazon Rekognition Image face detection operations return bounding box coordinates for each detected face\. 
 
 The following Amazon Rekognition Image operations return information for correcting an image's orientation and bounding box coordinates: 
-+ [CompareFaces](API_CompareFaces.md)
-+ [DetectFaces](API_DetectFaces.md)
-+ [DetectLabels](API_DetectLabels.md) \(returns only information to correct image orientation\)
-+ [IndexFaces](API_IndexFaces.md)
++ [IndexFaces](API_IndexFaces.md) \(Face model associated the collection must be version 3 or earlier\)
 + [RecognizeCelebrities](API_RecognizeCelebrities.md)
 
 This example shows how to get the following information for your code:
@@ -39,7 +36,7 @@ The `CompareFaces` operation returns the source image orientation in the `Source
 
 When you know an image's orientation, you can write code to rotate and correctly display it\.
 
-## Displaying Bounding Boxes<a name="images-displaying-bounding-boxes"></a>
+## Displaying Bounding Boxes<a name="images-bounding-boxes"></a>
 
 The Amazon Rekognition Image operations that analyze faces in an image also return the coordinates of the bounding boxes that surround the faces\. For more information, see [BoundingBox](API_BoundingBox.md)\. 
 
@@ -77,7 +74,7 @@ When you rotate the image to 0 degrees orientation, you also need to rotate the 
    + `ROTATE_(n)` is the estimated image orientation returned by an Amazon Rekognition Image operation\.
    + `<face>` represents information about the face that is returned by an Amazon Rekognition Image operation\. For example, the [FaceDetail](API_FaceDetail.md) data type that the [DetectFaces](API_DetectFaces.md) operation returns contains bounding box information for faces detected in the source image\.
    + `image.width` and `image.height` are pixel values for the width and height of the source image\. 
-   + The bounding box coordinates are a value between 0 and 1 relative to the image size\. For example, for an image with 0 degree orientation, a `BoundingBox.left` value of 0\.9 puts the left coordinate close to the right side of the image\. To display the box, translate the bounding box coordinate values to pixel points on the image and rotate them to 0 degrees, as shown in each of the following formulas\. For more information, see [BoundingBox](API_BoundingBox.md)\.  
+   + The bounding box coordinates are a value between 0 and 1 relative to the image size\. For example, for an image with 0\-degree orientation, a `BoundingBox.left` value of 0\.9 puts the left coordinate close to the right side of the image\. To display the box, translate the bounding box coordinate values to pixel points on the image and rotate them to 0 degrees, as shown in each of the following formulas\. For more information, see [BoundingBox](API_BoundingBox.md)\.  
 **ROTATE\_0**  
 `left = image.width*BoundingBox.Left`  
 `top = image.height*BoundingBox.Top`  
@@ -121,7 +118,7 @@ To use this code, replace the value of `photo` with the name and path of an imag
 //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
 
-package aws.example.rekognition.image;
+package com.amazonaws.samples;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -134,20 +131,19 @@ import javax.imageio.ImageIO;
 import com.amazonaws.services.rekognition.AmazonRekognition;
 import com.amazonaws.services.rekognition.AmazonRekognitionClientBuilder;
 import com.amazonaws.services.rekognition.model.Image;
+import com.amazonaws.services.rekognition.model.RecognizeCelebritiesRequest;
+import com.amazonaws.services.rekognition.model.RecognizeCelebritiesResult;
 import com.amazonaws.util.IOUtils;
-import com.amazonaws.services.rekognition.model.AgeRange;
 import com.amazonaws.services.rekognition.model.AmazonRekognitionException;
-import com.amazonaws.services.rekognition.model.Attribute;
 import com.amazonaws.services.rekognition.model.BoundingBox;
-import com.amazonaws.services.rekognition.model.DetectFacesRequest;
-import com.amazonaws.services.rekognition.model.DetectFacesResult;
-import com.amazonaws.services.rekognition.model.FaceDetail;
+import com.amazonaws.services.rekognition.model.Celebrity;
+import com.amazonaws.services.rekognition.model.ComparedFace;
 
 public class RotateImage {
 
 public static void main(String[] args) throws Exception {
 
-  String photo = "input.png";
+  String photo = "photo.png";
 
   //Get Rekognition client
  AmazonRekognition amazonRekognition = AmazonRekognitionClientBuilder.defaultClient();
@@ -183,29 +179,27 @@ public static void main(String[] args) throws Exception {
   System.out.println("Image Height: " + Integer.toString(height));
   System.out.println("Image Width: " + Integer.toString(width));
 
-  //Call detect faces and show face age and placement
+  //Call GetCelebrities
 
   try{
-    DetectFacesRequest request = new DetectFacesRequest()
+    RecognizeCelebritiesRequest request = new RecognizeCelebritiesRequest()
            .withImage(new Image()
-              .withBytes((imageBytes)))
-           .withAttributes(Attribute.ALL);
+              .withBytes((imageBytes)));
 
 
-      DetectFacesResult result = amazonRekognition.detectFaces(request);
+      RecognizeCelebritiesResult result = amazonRekognition.recognizeCelebrities(request);
       System.out.println("Orientation: " + result.getOrientationCorrection() + "\n");
-      List <FaceDetail> faceDetails = result.getFaceDetails();
+      List <Celebrity> celebs = result.getCelebrityFaces();
 
-      for (FaceDetail face: faceDetails) {
-        System.out.println("Face:");
-          ShowBoundingBoxPositions(height,
+      for (Celebrity celebrity: celebs) {
+          System.out.println("Celebrity recognized: " + celebrity.getName());
+          System.out.println("Celebrity ID: " + celebrity.getId());
+          ComparedFace  face = celebrity.getFace()
+;             ShowBoundingBoxPositions(height,
                   width,
                   face.getBoundingBox(),
                   result.getOrientationCorrection());
-          AgeRange ageRange = face.getAgeRange();
-          System.out.println("The detected face is estimated to be between "
-               + ageRange.getLow().toString() + " and " + ageRange.getHigh().toString()
-               + " years old.");
+                 
             System.out.println();
        }
 
@@ -300,7 +294,7 @@ def ShowBoundingBoxPositions(imageHeight, imageWidth, box, rotation):
 
 if __name__ == "__main__":
 
-    photo='input.png'
+    photo='photo.png'
     client=boto3.client('rekognition')
  
 
@@ -324,144 +318,24 @@ if __name__ == "__main__":
         image.save(stream, format=image.format)    
     image_binary = stream.getvalue()
    
-    response = client.detect_faces(Image={'Bytes': image_binary}, Attributes=['ALL'])
+    response = client.recognize_celebrities(Image={'Bytes': image_binary})
+
+    if 'OrientationCorrection'  in response:
+        print('Orientation: ' + response['OrientationCorrection'])
+    else: 
+        print('No estimated orientation. Check Exif')    
     
-    print('Detected faces for ' + photo)    
-    for faceDetail in response['FaceDetails']:
-        print ('Face:')
-        if 'OrientationCorrection'  in response:
-            print('Orientation: ' + response['OrientationCorrection'])
-            ShowBoundingBoxPositions(height, width, faceDetail['BoundingBox'], response['OrientationCorrection'])
-            
-        else:
-            print ('No estimated orientation. Check Exif data')
- 
-        print('The detected face is estimated to be between ' + str(faceDetail['AgeRange']['Low']) 
-              + ' and ' + str(faceDetail['AgeRange']['High']) + ' years')
+    print()
+    print('Detected celebrities for ' + photo) 
+
+    for celebrity in response['CelebrityFaces']:
+        print ('Name: ' + celebrity['Name'])
+        print ('Id: ' + celebrity['Id'])
+        
+        if 'OrientationCorrection'  in response:            
+            ShowBoundingBoxPositions(height, width, celebrity['Face']['BoundingBox'], response['OrientationCorrection'])
+
         print()
-```
-
-------
-#### [ \.NET ]
-
-```
-//Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-//PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using Amazon.Rekognition;
-using Amazon.Rekognition.Model;
-
-public class ImageOrientationAndBoundingBox
-{
-    public static void Example()
-    {
-        String photo = "photo.jpg";
-
-        AmazonRekognitionClient rekognitionClient = new AmazonRekognitionClient();
-
-        Image image = new Image();
-        try
-        {
-            using (FileStream fs = new FileStream(photo, FileMode.Open, FileAccess.Read))
-            {
-                byte[] data = null;
-                data = new byte[fs.Length];
-                fs.Read(data, 0, (int)fs.Length);
-                image.Bytes = new MemoryStream(data);
-            }
-        }
-        catch (Exception)
-        {
-            Console.WriteLine("Failed to load file " + photo);
-            return;
-        }
-
-        int height;
-        int width;
-        // Used to extract original photo width/height
-        using (System.Drawing.Bitmap imageBitmap = new System.Drawing.Bitmap(photo))
-        {
-            height = imageBitmap.Height;
-            width = imageBitmap.Width;
-        }
-
-        Console.WriteLine("Image Information:");
-        Console.WriteLine(photo);
-        Console.WriteLine("Image Height: " + height);
-        Console.WriteLine("Image Width: " + width);
-
-        try
-        {
-            DetectFacesRequest detectFacesRequest = new DetectFacesRequest()
-            {
-                Image = image,
-                Attributes = new List<String>() { "ALL" }
-            };
-
-            DetectFacesResponse detectFacesResponse = rekognitionClient.DetectFaces(detectFacesRequest);
-            foreach (FaceDetail face in detectFacesResponse.FaceDetails)
-            {
-                Console.WriteLine("Face:");
-                ShowBoundingBoxPositions(height, width, 
-                    face.BoundingBox, detectFacesResponse.OrientationCorrection);
-                Console.WriteLine("BoundingBox: top={0} left={1} width={2} height={3}", face.BoundingBox.Left,
-                    face.BoundingBox.Top, face.BoundingBox.Width, face.BoundingBox.Height);
-                Console.WriteLine("The detected face is estimated to be between " +
-                    face.AgeRange.Low + " and " + face.AgeRange.High + " years old.");
-                Console.WriteLine();
-            }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
-    }
-
-    public static void ShowBoundingBoxPositions(int imageHeight, int imageWidth, BoundingBox box, String rotation)
-    {
-        float left = 0;
-        float top = 0;
-
-        if (rotation == null)
-        {
-            Console.WriteLine("No estimated estimated orientation. Check Exif data.");
-            return;
-        }
-        //Calculate face position based on image orientation.
-        switch (rotation)
-        {
-            case "ROTATE_0":
-                left = imageWidth * box.Left;
-                top = imageHeight * box.Top;
-                break;
-            case "ROTATE_90":
-                left = imageHeight * (1 - (box.Top + box.Height));
-                top = imageWidth * box.Left;
-                break;
-            case "ROTATE_180":
-                left = imageWidth - (imageWidth * (box.Left + box.Width));
-                top = imageHeight * (1 - (box.Top + box.Height));
-                break;
-            case "ROTATE_270":
-                left = imageHeight * box.Top;
-                top = imageWidth * (1 - box.Left - box.Width);
-                break;
-            default:
-                Console.WriteLine("No estimated orientation information. Check Exif data.");
-                return;
-        }
-
-        //Display face location information.
-        Console.WriteLine("Left: " + left);
-        Console.WriteLine("Top: " + top);
-        Console.WriteLine("Face Width: " + imageWidth * box.Width);
-        Console.WriteLine("Face Height: " + imageHeight * box.Height);
-
-    }
-}
 ```
 
 ------

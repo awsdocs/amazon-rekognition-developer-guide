@@ -19,8 +19,8 @@ If you use the AWS CLI to call Amazon Rekognition Image operations, passing imag
 **Note**  
 The image doesn't need to be base64 encoded if you pass an image stored in an `S3Object` instead of image bytes\.
 
-For information about ensuring the lowest possible latency for Amazon Rekognition Image operations, see [Amazon Rekognition Image Operation Latency](image-best-practices.md#operation-latency)\. 
+For information about ensuring the lowest possible latency for Amazon Rekognition Image operations, see [Amazon Rekognition Image Operation Latency](operation-latency.md)\. 
 
 ## Correcting Image Orientation<a name="images-image-orientation-correction"></a>
 
-In several Rekognition API operations, the orientation of an analyzed image is returned\. For example, the [DetectFaces](API_DetectFaces.md) API operation returns orientation information about the source image in the `OrientationCorrection` field\. Knowing image orientation is important as it allows you to reorient images for display\. Rekognition API operations that analyze faces also return bounding boxes for the location of faces within an image\. You can use bounding boxes to display a box around a face on an image\. The bounding box coordinates returned are affected by image orientation and you may need to translate bounding box coordinates to correctly display a box around a face\. For more information, see [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)\. 
+In several Rekognition API operations, the orientation of an analyzed image is returned\. Knowing image orientation is important as it allows you to reorient images for display\. Rekognition API operations that analyze faces also return bounding boxes for the location of faces within an image\. You can use bounding boxes to display a box around a face on an image\. The bounding box coordinates returned are affected by image orientation and you may need to translate bounding box coordinates to correctly display a box around a face\. For more information, see [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)\. 

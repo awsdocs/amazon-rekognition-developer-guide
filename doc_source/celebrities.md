@@ -5,6 +5,7 @@ Amazon Rekognition can recognize thousands of celebrities in a wide range of cat
 The Amazon Rekognition celebrity recognition API is tuned to detect as many celebrities as possible in different settings, cosmetic makeup, and other conditions\. Social, media, and entertainment customers can build apps that use celebrity recognition\. For example, an entertainment app that identifies celebrity lookalikes or an app that identifies celebrities as part of automated footage tagging\. Amazon Rekognition celebrity recognition is designed to be exclusively used in cases where you expect there may be a known celebrity in an image or a video\. For information about recognizing faces that are not celebrities, see [Searching Faces in a Collection](collections.md)\.
 
 **Topics**
++ [Celebrity Recognition Compared to Face Search](celebrity-recognition-vs-face-search.md)
 + [Recognizing Celebrities in an Image](celebrities-procedure-image.md)
 + [Recognizing Celebrities in a Stored Video](celebrities-video-sqs.md)
 + [Getting Information About a Celebrity](get-celebrity-info-procedure.md)

@@ -16,3 +16,5 @@ Your application might face compatibility issues if your collection management d
 Existing face vectors in a collection can't be updated to a later version of the model\. Because Amazon Rekognition doesn't store source image bytes, it can't automatically reindex images by using a later version of the model\.
 
 To use the latest model on faces that are stored in an existing collection, create a new collection \([CreateCollection](API_CreateCollection.md)\) and reindex the source images into the new collection \(`Indexfaces`\)\. You need to update any face identifiers that are stored by your application because the face identifiers in the new collection are different from the face identifiers in the old collection\. If you no longer need the old collection, you can delete it by using [DeleteCollection](API_DeleteCollection.md)\. 
+
+Stateless operations, such as [DetectFaces](API_DetectFaces.md), use the latest version of the model\.

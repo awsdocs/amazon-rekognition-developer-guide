@@ -2,7 +2,7 @@
 
 You can use the [IndexFaces](API_IndexFaces.md) operation to detect faces in an image and add them to a collection\. For each face detected, Amazon Rekognition extracts facial features and stores the feature information in a database\. In addition, the command stores metadata for each face that's detected in the specified face collection\. Amazon Rekognition doesn't store the actual image bytes\.
 
-For information about providing suitable faces for indexing, see [Recommendations for Facial Recognition Input Images](image-best-practices.md#recommendations-for-images)\.
+For information about providing suitable faces for indexing, see [Recommendations for Facial Recognition Input Images](recommendations-facial-input-images.md)\.
 
 For each face, the `IndexFaces` operation persists the following information:
 + **Multidimensional facial features** – `IndexFaces` uses facial analysis to extract multidimensional information about the facial features and stores the information in the face collection\. You can't access this information directly\. However, Amazon Rekognition uses this information when it searches a face collection for face matches\.
@@ -334,7 +334,7 @@ The input to `IndexFaces` is the image to be indexed and the collection to add t
             }
         }
     ],
-    "OrientationCorrection": "ROTATE_0",
+    "OrientationCorrection": "",
     "UnindexedFaces": [
         {
             "FaceDetail": {
@@ -399,7 +399,7 @@ The `face` element provides metadata that's persisted on the server\.
 
  `FaceModelVersion` is the version of the face model that's associated with the collection\. For more information, see [Model Versioning](face-detection-model.md)\.
 
-`OrientationCorrection` is the estimated orientation of the image\. For more information, see [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)\.
+`OrientationCorrection` is the estimated orientation of the image\. Orientation correction information is not returned if you are using a version of the face detection model that is greater than version 3\. For more information, see [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)\.
 
 ```
 {

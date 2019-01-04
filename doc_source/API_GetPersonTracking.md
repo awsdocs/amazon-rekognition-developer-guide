@@ -1,18 +1,18 @@
 # GetPersonTracking<a name="API_GetPersonTracking"></a>
 
-Gets the person tracking results of a Amazon Rekognition Video analysis started by [StartPersonTracking](API_StartPersonTracking.md)\.
+Gets the path tracking results of a Amazon Rekognition Video analysis started by [StartPersonTracking](API_StartPersonTracking.md)\.
 
-The person detection operation is started by a call to `StartPersonTracking` which returns a job identifier \(`JobId`\)\. When the person detection operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartPersonTracking`\.
+The person path tracking operation is started by a call to `StartPersonTracking` which returns a job identifier \(`JobId`\)\. When the operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartPersonTracking`\.
 
-To get the results of the person tracking operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetPersonTracking](#API_GetPersonTracking) and pass the job identifier \(`JobId`\) from the initial call to `StartPersonTracking`\.
+To get the results of the person path tracking operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetPersonTracking](#API_GetPersonTracking) and pass the job identifier \(`JobId`\) from the initial call to `StartPersonTracking`\.
 
- `GetPersonTracking` returns an array, `Persons`, of tracked persons and the time\(s\) they were tracked in the video\. 
+ `GetPersonTracking` returns an array, `Persons`, of tracked persons and the time\(s\) their paths were tracked in the video\. 
 
 **Note**  
  `GetPersonTracking` only returns the default facial attributes \(`BoundingBox`, `Confidence`, `Landmarks`, `Pose`, and `Quality`\)\. The other facial attributes listed in the `Face` object of the following response syntax are not returned\.   
 For more information, see [FaceDetail](API_FaceDetail.md)\. 
 
-By default, the array is sorted by the time\(s\) a person is tracked in the video\. You can sort by tracked persons by specifying `INDEX` for the `SortBy` input parameter\.
+By default, the array is sorted by the time\(s\) a person's path is tracked in the video\. You can sort by tracked persons by specifying `INDEX` for the `SortBy` input parameter\.
 
 Use the `MaxResults` parameter to limit the number of items returned\. If there are more results than specified in `MaxResults`, the value of `NextToken` in the operation response contains a pagination token for getting the next set of results\. To get the next page of results, call `GetPersonTracking` and populate the `NextToken` request parameter with the token value returned from the previous call to `GetPersonTracking`\.
 
@@ -172,7 +172,7 @@ Type: String
 Length Constraints: Maximum length of 255\.
 
  ** [Persons](#API_GetPersonTracking_ResponseSyntax) **   <a name="rekognition-GetPersonTracking-response-Persons"></a>
-An array of the persons detected in the video and the times they are tracked throughout the video\. An array element will exist for each time the person is tracked\.   
+An array of the persons detected in the video and the time\(s\) their path was tracked throughout the video\. An array element will exist for each time a person's path is tracked\.   
 Type: Array of [PersonDetection](API_PersonDetection.md) objects
 
  ** [StatusMessage](#API_GetPersonTracking_ResponseSyntax) **   <a name="rekognition-GetPersonTracking-response-StatusMessage"></a>

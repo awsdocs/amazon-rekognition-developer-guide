@@ -8,7 +8,11 @@ For more information, see [Adding Faces to a Collection](add-faces-to-collection
 
 To get the number of faces in a collection, call [DescribeCollection](API_DescribeCollection.md)\. 
 
-If you're using version 1\.0 of the face detection model, `IndexFaces` indexes the 15 largest faces in the input image\. Later versions of the face detection model index the 100 largest faces in the input image\. To determine which version of the model you're using, call [DescribeCollection](API_DescribeCollection.md) and supply the collection ID\. You can also get the model version from the value of `FaceModelVersion` in the response from `IndexFaces`\. 
+If you're using version 1\.0 of the face detection model, `IndexFaces` indexes the 15 largest faces in the input image\. Later versions of the face detection model index the 100 largest faces in the input image\. 
+
+If you're using version 4 or later of the face model, image orientation information is not returned in the `OrientationCorrection` field\. 
+
+To determine which version of the model you're using, call [DescribeCollection](API_DescribeCollection.md) and supply the collection ID\. You can also get the model version from the value of `FaceModelVersion` in the response from `IndexFaces` 
 
 For more information, see [Model Versioning](face-detection-model.md)\.
 
@@ -285,8 +289,11 @@ An array of faces detected and added to the collection\. For more information, s
 Type: Array of [FaceRecord](API_FaceRecord.md) objects
 
  ** [OrientationCorrection](#API_IndexFaces_ResponseSyntax) **   <a name="rekognition-IndexFaces-response-OrientationCorrection"></a>
-The orientation of the input image \(counterclockwise direction\)\. If your application displays the image, you can use this value to correct image orientation\. The bounding box coordinates returned in `FaceRecords` represent face locations before the image orientation is corrected\.   
-If the input image is in jpeg format, it might contain exchangeable image \(Exif\) metadata\. If so, and the Exif metadata populates the orientation field, the value of `OrientationCorrection` is null\. The bounding box coordinates in `FaceRecords` represent face locations after Exif metadata is used to correct the image orientation\. Images in \.png format don't contain Exif metadata\.
+If your collection is associated with a face detection model that's later than version 3\.0, the value of `OrientationCorrection` is always null and no orientation information is returned\.  
+If your collection is associated with a face detection model that's version 3\.0 or earlier, the following applies:  
++ If the input image is in \.jpeg format, it might contain exchangeable image file format \(Exif\) metadata that includes the image's orientation\. Amazon Rekognition uses this orientation information to perform image correction \- the bounding box coordinates are translated to represent object locations after the orientation information in the Exif metadata is used to correct the image orientation\. Images in \.png format don't contain Exif metadata\. The value of `OrientationCorrection` is null\.
++ If the image doesn't contain orientation information in its Exif metadata, Amazon Rekognition returns an estimated orientation \(ROTATE\_0, ROTATE\_90, ROTATE\_180, ROTATE\_270\)\. Amazon Rekognition doesn’t perform image correction for images\. The bounding box coordinates aren't translated and represent the object locations before the image is rotated\.
+Bounding box information is returned in the `FaceRecords` array\. You can get the version of the face detection model by calling [DescribeCollection](API_DescribeCollection.md)\.   
 Type: String  
 Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270` 
 

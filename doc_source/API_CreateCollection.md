@@ -4,6 +4,8 @@ Creates a collection in an AWS Region\. You can add faces to the collection usin
 
 For example, you might create collections, one for each of your application users\. A user can then index faces using the `IndexFaces` operation and persist results in a specific collection\. Then, a user can search the collection for faces in the user\-specific container\. 
 
+When you create a collection, it is associated with the latest version of the face model version\.
+
 **Note**  
 Collection names are case\-sensitive\.
 

@@ -159,14 +159,16 @@ The face in the source image that was used for comparison\.
 Type: [ComparedSourceImageFace](API_ComparedSourceImageFace.md) object
 
  ** [SourceImageOrientationCorrection](#API_CompareFaces_ResponseSyntax) **   <a name="rekognition-CompareFaces-response-SourceImageOrientationCorrection"></a>
- The orientation of the source image \(counterclockwise direction\)\. If your application displays the source image, you can use this value to correct image orientation\. The bounding box coordinates returned in `SourceImageFace` represent the location of the face before the image orientation is corrected\.   
-If the source image is in \.jpeg format, it might contain exchangeable image \(Exif\) metadata that includes the image's orientation\. If the Exif metadata for the source image populates the orientation field, the value of `OrientationCorrection` is null\. The `SourceImageFace` bounding box coordinates represent the location of the face after Exif metadata is used to correct the orientation\. Images in \.png format don't contain Exif metadata\.
+The value of `SourceImageOrientationCorrection` is always null\.  
+If the input image is in \.jpeg format, it might contain exchangeable image file format \(Exif\) metadata that includes the image's orientation\. Amazon Rekognition uses this orientation information to perform image correction\. The bounding box coordinates are translated to represent object locations after the orientation information in the Exif metadata is used to correct the image orientation\. Images in \.png format don't contain Exif metadata\.  
+Amazon Rekognition doesn’t perform image correction for images in \.png format and \.jpeg images without orientation information in the image Exif metadata\. The bounding box coordinates aren't translated and represent the object locations before the image is rotated\.   
 Type: String  
 Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270` 
 
  ** [TargetImageOrientationCorrection](#API_CompareFaces_ResponseSyntax) **   <a name="rekognition-CompareFaces-response-TargetImageOrientationCorrection"></a>
- The orientation of the target image \(in counterclockwise direction\)\. If your application displays the target image, you can use this value to correct the orientation of the image\. The bounding box coordinates returned in `FaceMatches` and `UnmatchedFaces` represent face locations before the image orientation is corrected\.   
-If the target image is in \.jpg format, it might contain Exif metadata that includes the orientation of the image\. If the Exif metadata for the target image populates the orientation field, the value of `OrientationCorrection` is null\. The bounding box coordinates in `FaceMatches` and `UnmatchedFaces` represent the location of the face after Exif metadata is used to correct the orientation\. Images in \.png format don't contain Exif metadata\.
+The value of `TargetImageOrientationCorrection` is always null\.  
+If the input image is in \.jpeg format, it might contain exchangeable image file format \(Exif\) metadata that includes the image's orientation\. Amazon Rekognition uses this orientation information to perform image correction\. The bounding box coordinates are translated to represent object locations after the orientation information in the Exif metadata is used to correct the image orientation\. Images in \.png format don't contain Exif metadata\.  
+Amazon Rekognition doesn’t perform image correction for images in \.png format and \.jpeg images without orientation information in the image Exif metadata\. The bounding box coordinates aren't translated and represent the object locations before the image is rotated\.   
 Type: String  
 Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270` 
 

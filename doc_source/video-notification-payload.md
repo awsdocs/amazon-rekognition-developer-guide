@@ -12,7 +12,7 @@ The payload is in the following JSON format:
   "JobTag": "String",
   "Timestamp": Number,
   "Video": {
-    "S3ObjectName": "Sting",
+    "S3ObjectName": "String",
     "S3Bucket": "String"
   }
 }

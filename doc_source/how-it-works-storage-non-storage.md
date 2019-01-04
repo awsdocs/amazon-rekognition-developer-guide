@@ -70,7 +70,7 @@ Amazon Rekognition Video provides the following storage API operations:
 + [StartFaceSearch](API_StartFaceSearch.md) 
 + [CreateStreamProcessor](API_CreateStreamProcessor.md)
 
-To store facial information, you must first create a face collection in one of AWS Regions in your account\. You specify this face collection when you call the `IndexFaces` operation\. After you create a face collection and store facial feature information for all faces, you can search the collection for face matches\. For example, you can detect the largest face in an image and search for matching faces in a collection by calling `searchFacesByImage.`
+To store facial information, you must first create a face collection in one of the AWS Regions in your account\. You specify this face collection when you call the `IndexFaces` operation\. After you create a face collection and store facial feature information for all faces, you can search the collection for face matches\. For example, you can detect the largest face in an image and search for matching faces in a collection by calling `searchFacesByImage.`
 
 Facial information stored in collections by `IndexFaces` is accessible to Amazon Rekognition Video operations\. For example you can search a video for persons whose faces match those in an exisiting collection by calling [StartFaceSearch](API_StartFaceSearch.md)\.
 

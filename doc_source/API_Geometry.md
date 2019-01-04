@@ -1,6 +1,6 @@
 # Geometry<a name="API_Geometry"></a>
 
-Information about where text detected by [DetectText](API_DetectText.md) is located on an image\.
+Information about where the text detected by [DetectText](API_DetectText.md) is located on an image\.
 
 ## Contents<a name="API_Geometry_Contents"></a>
 

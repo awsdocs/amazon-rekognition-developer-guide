@@ -15,7 +15,7 @@ In this section, you use the Amazon Rekognition Image API operations to analyze 
 
 **Topics**
 + [Images](images-information.md)
-+ [Best Practices for Working With Images](image-best-practices.md)
 + [Analyzing Images Stored in an Amazon S3 Bucket](images-s3.md)
 + [Analyzing an Image Loaded from a Local File System](images-bytes.md)
++ [Displaying Bounding Boxes](images-displaying-bounding-boxes.md)
 + [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)

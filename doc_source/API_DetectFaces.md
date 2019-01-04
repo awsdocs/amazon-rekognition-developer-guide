@@ -6,7 +6,7 @@ Detects faces within an image that is provided as input\.
 
 The face\-detection algorithm is most effective on frontal faces\. For non\-frontal or obscured faces, the algorithm might not detect the faces or might detect faces with lower confidence\. 
 
-You pass the input image either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
+You pass the input image either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
 
 **Note**  
 This is a stateless API operation\. That is, the operation does not persist any data\.
@@ -133,8 +133,9 @@ Details of each face found in the image\.
 Type: Array of [FaceDetail](API_FaceDetail.md) objects
 
  ** [OrientationCorrection](#API_DetectFaces_ResponseSyntax) **   <a name="rekognition-DetectFaces-response-OrientationCorrection"></a>
- The orientation of the input image \(counter\-clockwise direction\)\. If your application displays the image, you can use this value to correct image orientation\. The bounding box coordinates returned in `FaceDetails` represent face locations before the image orientation is corrected\.   
-If the input image is in \.jpeg format, it might contain exchangeable image \(Exif\) metadata that includes the image's orientation\. If so, and the Exif metadata for the input image populates the orientation field, the value of `OrientationCorrection` is null\. The `FaceDetails` bounding box coordinates represent face locations after Exif metadata is used to correct the image orientation\. Images in \.png format don't contain Exif metadata\.
+The value of `OrientationCorrection` is always null\.  
+If the input image is in \.jpeg format, it might contain exchangeable image file format \(Exif\) metadata that includes the image's orientation\. Amazon Rekognition uses this orientation information to perform image correction\. The bounding box coordinates are translated to represent object locations after the orientation information in the Exif metadata is used to correct the image orientation\. Images in \.png format don't contain Exif metadata\.  
+Amazon Rekognition doesn’t perform image correction for images in \.png format and \.jpeg images without orientation information in the image Exif metadata\. The bounding box coordinates aren't translated and represent the object locations before the image is rotated\.   
 Type: String  
 Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270` 
 

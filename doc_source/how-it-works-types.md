@@ -20,9 +20,9 @@ Amazon Rekognition can search for faces\. Facial information is indexed into a c
 
 To search for known faces in images, use [DetectFaces](API_DetectFaces.md)\. To search for known faces in stored videos, use [StartFaceDetection](API_StartFaceDetection.md)\. To search for known faces in streaming videos, use [CreateStreamProcessor](API_CreateStreamProcessor.md)\.
 
-## People<a name="how-it-works-persons-intro"></a>
+## People Paths<a name="how-it-works-persons-intro"></a>
 
-Amazon Rekognition can track people in a stored video\. Amazon Rekognition Video provides tracking, face details, and in\-frame location information for people detected in a video\. People cannot be detected in images\. For more information, see [Tracking People](persons.md)\. 
+Amazon Rekognition can track the paths of people detected in a stored video\. Amazon Rekognition Video provides path tracking, face details, and in\-frame location information for people detected in a video\. For more information, see [People Pathing](persons.md)\. 
 
 To detect people in stored videos, use [StartPersonTracking](API_StartPersonTracking.md)\.
 

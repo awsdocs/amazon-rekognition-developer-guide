@@ -26,6 +26,22 @@ After you create a face collection, you can store faces in it\. Amazon Rekogniti
 + The [ListFaces](API_ListFaces.md) operation lists the faces in a collection\. For more information, see [Adding Faces to a Collection](add-faces-to-collection-procedure.md)\.
 + The [DeleteFaces](API_DeleteFaces.md) operation deletes faces from a collection\. For more information, see [Deleting Faces from a Collection](delete-faces-procedure.md)\.
 
+## Guidance for using IndexFaces<a name="guidance-index-faces"></a>
+
+The following is guidance for using `IndexFaces` in common scenarios\.
+
+### Critical or Public Safety Applications<a name="guidance-index-faces-critical"></a>
++ Call [IndexFaces](API_IndexFaces.md) with images which contain only one face in each image and associate the returned Face ID with the identifier for the subject of the image\.
++ You can use [DetectFaces](API_DetectFaces.md) ahead of indexing to verify there is only one face in the image\. If more than one face is detected, re\-submit the image after review and with only one face present\. This prevents inadvertently indexing multiple faces and associating them with the same person\.
+
+### Photo Sharing and Social Media Applications<a name="guidance-index-faces-social"></a>
++ You should call `IndexFaces` without restrictions on images that contain multiple faces in use cases such as family albums\. In such cases, you need to identify each person in every photo and use that information to group photos by the people present in them\. 
+
+### General Usage<a name="guidance-index-faces-general"></a>
++ Index multiple different images of the same person, particularly with different face attributes \(facial poses, facial hair, etc\) to improve matching quality\. 
++ Include a review process so that failed matches can be indexed with the correct face identifier to improve subsequent face matching ability\.
++ For information about image quality, see [Recommendations for Facial Recognition Input Images](recommendations-facial-input-images.md)\. 
+
 ## Searching for Faces Within a Collection<a name="collections-search-faces"></a>
 
 After you create a face collection and store faces, you can search a face collection for face matches\. With Amazon Rekognition, you can search for faces in a collection that match:
@@ -47,15 +63,3 @@ The similarity threshold input attribute for `SearchFaces` and `SearchFacesByIma
 All machine learning systems are probabilistic\. You should use your judgment in setting the right similarity threshold, depending on your use case\. For example, if you're looking to build a photos app to identify similar\-looking family members, you might choose a lower threshold \(such as 80%\)\. On the other hand, for many law enforcement use cases, we recommend using a high threshold value of 99% or above to reduce accidental misidentification\.
 
 In addition to `FaceMatchThreshold`, you can use the `Similarity` response attribute as a means to reduce accidental misidentification\. For instance, you can choose to use a low threshold \(like 80%\) to return more results\. Then you can use the response attribute `Similarity` \(percentage of similarity\) to narrow the choice and filter for the right responses in your application\. Again, using a higher similarity \(such as 99% and above\) reduces the risk of misidentification\. 
-
-### Using Amazon Rekognition to Help Public Safety<a name="public-safety"></a>
-
-Amazon Rekognition can help in public safety and law enforcement scenarios—such as finding lost children, combating human trafficking, or preventing crimes\. In public safety and law enforcement scenarios, consider the following:
-+ Use Amazon Rekognition as the first step in recognizing an individual\. The responses from Amazon Rekognition face operations allow you to quickly get a set of potential matches for further consideration\.
-+ Don’t use Amazon Rekognition responses to make autonomous decisions for scenarios that require analysis by a human\. An example of this is determining who committed a crime\. Instead, have a human review the responses, and use that information to inform further decisions\.
-+ Some scenarios might not need human review of Amazon Rekognition responses\. An example of this is two\-factor authentication with a badge and a face that’s recognized by Amazon Rekognition with a high \(99%\) similarity\.
-+ Use a 99% similarity threshold for scenarios where highly accurate face similarity matches are necessary\. An example of this is authenticating access to a building\.
-+ Use a similarity threshold lower than 99% for scenarios that benefit from a larger set of potential matches\. An example of this is finding missing persons\. If necessary, you can use the Similarity response attribute to determine how similar potential matches are to the person you want to recognize\. 
-+ Have a plan for false\-positive face matches that are returned by Amazon Rekognition\. For example, improve matching by using multiple images of the same person when you build the index with the [IndexFaces](API_IndexFaces.md) operation\.
-
-In other use cases \(such as social media\), there isn’t the same need to double check responses\. Also, depending on your application’s requirements, the similarity threshold can be lower\. 

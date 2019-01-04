@@ -32,6 +32,10 @@ In response, the API returns an array of labels\. In addition, the response also
 **Note**  
 If the object detected is a person, the operation doesn't provide the same facial details that the [DetectFaces](API_DetectFaces.md) operation provides\.
 
+ `DetectLabels` returns bounding boxes for instances of common object labels in an array of [Instance](API_Instance.md) objects\. An `Instance` object contains a [BoundingBox](API_BoundingBox.md) object, for the location of the label on the image\. It also includes the confidence by which the bounding box was detected\.
+
+ `DetectLabels` also returns a hierarchical taxonomy of detected labels\. For example, a detected car might be assigned the label *car*\. The label *car* has two parent labels: *Vehicle* \(its parent\) and *Transportation* \(its grandparent\)\. The response returns the entire list of ancestors for a label\. Each ancestor is a unique label in the response\. In the previous example, *Car*, *Vehicle*, and *Transportation* are returned as unique labels in the response\. 
+
 This is a stateless API operation\. That is, the operation does not persist any data\.
 
 This operation requires permissions to perform the `rekognition:DetectLabels` action\. 
@@ -79,10 +83,27 @@ Required: No
 
 ```
 {
+   "[LabelModelVersion](#rekognition-DetectLabels-response-LabelModelVersion)": "string",
    "[Labels](#rekognition-DetectLabels-response-Labels)": [ 
       { 
          "[Confidence](API_Label.md#rekognition-Type-Label-Confidence)": number,
-         "[Name](API_Label.md#rekognition-Type-Label-Name)": "string"
+         "[Instances](API_Label.md#rekognition-Type-Label-Instances)": [ 
+            { 
+               "[BoundingBox](API_Instance.md#rekognition-Type-Instance-BoundingBox)": { 
+                  "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+                  "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+                  "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+                  "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+               },
+               "[Confidence](API_Instance.md#rekognition-Type-Instance-Confidence)": number
+            }
+         ],
+         "[Name](API_Label.md#rekognition-Type-Label-Name)": "string",
+         "[Parents](API_Label.md#rekognition-Type-Label-Parents)": [ 
+            { 
+               "[Name](API_Parent.md#rekognition-Type-Parent-Name)": "string"
+            }
+         ]
       }
    ],
    "[OrientationCorrection](#rekognition-DetectLabels-response-OrientationCorrection)": "string"
@@ -95,13 +116,18 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
+ ** [LabelModelVersion](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-LabelModelVersion"></a>
+Version number of the label detection model that was used to detect labels\.  
+Type: String
+
  ** [Labels](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-Labels"></a>
 An array of labels for the real\-world objects detected\.   
 Type: Array of [Label](API_Label.md) objects
 
  ** [OrientationCorrection](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-OrientationCorrection"></a>
- The orientation of the input image \(counter\-clockwise direction\)\. If your application displays the image, you can use this value to correct the orientation\. If Amazon Rekognition detects that the input image was rotated \(for example, by 90 degrees\), it first corrects the orientation before detecting the labels\.   
-If the input image Exif metadata populates the orientation field, Amazon Rekognition does not perform orientation correction and the value of OrientationCorrection will be null\.
+The value of `OrientationCorrection` is always null\.  
+If the input image is in \.jpeg format, it might contain exchangeable image file format \(Exif\) metadata that includes the image's orientation\. Amazon Rekognition uses this orientation information to perform image correction\. The bounding box coordinates are translated to represent object locations after the orientation information in the Exif metadata is used to correct the image orientation\. Images in \.png format don't contain Exif metadata\.  
+Amazon Rekognition doesn’t perform image correction for images in \.png format and \.jpeg images without orientation information in the image Exif metadata\. The bounding box coordinates aren't translated and represent the object locations before the image is rotated\.   
 Type: String  
 Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270` 
 

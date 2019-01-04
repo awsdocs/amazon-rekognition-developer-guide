@@ -1,18 +1,18 @@
 # PersonDetection<a name="API_PersonDetection"></a>
 
-Details and tracking information for a single time a person is tracked in a video\. Amazon Rekognition operations that track persons return an array of `PersonDetection` objects with elements for each time a person is tracked in a video\. 
+Details and path tracking information for a single time a person's path is tracked in a video\. Amazon Rekognition operations that track people's paths return an array of `PersonDetection` objects with elements for each time a person's path is tracked in a video\. 
 
 For more information, see [GetPersonTracking](API_GetPersonTracking.md)\. 
 
 ## Contents<a name="API_PersonDetection_Contents"></a>
 
  **Person**   <a name="rekognition-Type-PersonDetection-Person"></a>
-Details about a person tracked in a video\.  
+Details about a person whose path was tracked in a video\.  
 Type: [PersonDetail](API_PersonDetail.md) object  
 Required: No
 
  **Timestamp**   <a name="rekognition-Type-PersonDetection-Timestamp"></a>
-The time, in milliseconds from the start of the video, that the person was tracked\.  
+The time, in milliseconds from the start of the video, that the person's path was tracked\.  
 Type: Long  
 Required: No
 

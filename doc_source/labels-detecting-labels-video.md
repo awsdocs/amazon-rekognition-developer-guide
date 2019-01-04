@@ -8,7 +8,10 @@ Amazon Rekognition Video label detection is an asynchronous operation\. To start
 
 `GetLabelDetection` returns an array \(`Labels`\) that contains information about the labels detected in the video\. The array can be sorted either by time or by the label detected by specifying the `SortBy` parameter\.
 
-The following example is the JSON response of the `GetLabelDetection`\.In the response, note the following:
+**Note**  
+`GetLabelDetection` doesn't support the hierarchical taxonomy or bounding box information that the image operation `DetectLabels` supports\. GetLabelDetection returns `null` for the `Parents` and `Instances` attributes\. 
+
+The following example is the JSON response of the `GetLabelDetection`\. In the response, note the following:
 + **Sort order** – The array of labels returned is sorted by time\. To sort by label, specify `NAME` in the `SortBy` input parameter for `GetLabelDetection`\. If the label appears multiple times in the video, there will be multiples instances of the \([LabelDetection](API_LabelDetection.md)\) element\. 
 + **Label information** – The `LabelDetection` array element contains a \([Label](API_Label.md)\) object which contains the label name and the confidence Amazon Rekognition has in the accuracy of the detected label\. `Timestamp` is the time, in milliseconds from the start of the video, that the label was detected\.
 + **Paging information** – The example shows one page of label detection information\. You can specify how many `LabelDetection` objects to return in the `MaxResults` input parameter for `GetLabelDetection`\. If more results than `MaxResults` exist, `GetLabelDetection` returns a token \(`NextToken`\) used to get the next page of results\. For more information, see [Getting Amazon Rekognition Video Analysis Results](api-video.md#api-video-get)\.

@@ -2,7 +2,7 @@
 
 Amazon Rekognition Image can analyze images that are stored in an Amazon S3 bucket or images that are supplied as image bytes\.
 
-In this topic, you use the [DetectLabels](API_DetectLabels.md) API operation to detect objects, concepts, and scenes in an image \(JPEG or PNG\) that's stored in an Amazon S3 bucket\. You pass an image to a Amazon Rekognition Image API operation by using the [Image](API_Image.md) input parameter\. Within `Image`, you specify the [S3Object](API_S3Object.md) object property to reference an image stored in an S3 bucket\. Image bytes for images stored in Amazon S3 buckets don't need to be base64 encoded\. For more information, see [Images](images-information.md)\. 
+In this topic, you use the [DetectLabels](API_DetectLabels.md) API operation to detect objects, concepts, and scenes in an image \(JPEG or PNG\) that's stored in an Amazon S3 bucket\. You pass an image to an Amazon Rekognition Image API operation by using the [Image](API_Image.md) input parameter\. Within `Image`, you specify the [S3Object](API_S3Object.md) object property to reference an image stored in an S3 bucket\. Image bytes for images stored in Amazon S3 buckets don't need to be base64 encoded\. For more information, see [Images](images-information.md)\. 
 
 The region for the S3 bucket containing the S3 object must match the region you use for Amazon Rekognition Image operations\. 
 

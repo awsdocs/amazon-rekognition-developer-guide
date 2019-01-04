@@ -138,7 +138,7 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
 
 ### Using readAsArrayBuffer<a name="image-bytes-javascript-unencoded"></a>
 
-The following code snippet is an alternative implementation of the `ProcessImage` function in the sample code\. It uses `readAsArrayBuffer` to load an image and call `DetectFaces`\. Because `readAsArrayBuffer` doesn't base64\-encode the loaded file, it's not necessary to unencode the image bytes before calling a Amazon Rekognition Image operation\.
+The following code snippet is an alternative implementation of the `ProcessImage` function in the sample code\. It uses `readAsArrayBuffer` to load an image and call `DetectFaces`\. Because `readAsArrayBuffer` doesn't base64\-encode the loaded file, it's not necessary to unencode the image bytes before calling an Amazon Rekognition Image operation\.
 
 ```
 //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.

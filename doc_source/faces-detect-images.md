@@ -214,11 +214,11 @@ The input to `DetectFaces` is an image\. In this example, the image is loaded fr
 ## DetectFaces Operation Response<a name="detectfaces-response"></a>
 
  `DetectFaces` returns the following information for each detected face:
-+ **Bounding box** – The coordinates of the bounding box that surrounds the face\. For more information, see [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)\.
++ **Bounding box** – The coordinates of the bounding box that surrounds the face\.
 + **Confidence** – The level of confidence that the bounding box contains a face\. 
 + **Facial landmarks** – An array of facial landmarks\. For each landmark \(such as the left eye, right eye, and mouth\), the response provides the x and y coordinates\.
 + **Facial attributes** – A set of facial attributes, including gender, or whether the face has a beard\. For each such attribute, the response provides a value\. The value can be of different types, such as a Boolean type \(whether a person is wearing sunglasses\) or a string \(whether the person is male or female\)\. In addition, for most attributes, the response also provides a confidence in the detected value for the attribute\. 
-+ **Quality** – Describes the brightness and the sharpness of the face\. For information about ensuring the best possible face detection, see [Recommendations for Facial Recognition Input Images](image-best-practices.md#recommendations-for-images)\.
++ **Quality** – Describes the brightness and the sharpness of the face\. For information about ensuring the best possible face detection, see [Recommendations for Facial Recognition Input Images](recommendations-facial-input-images.md)\.
 + **Pose** – Describes the rotation of the face inside the image\.
 + **Emotions** – A set of emotions with confidence in the analysis\.
 
@@ -229,196 +229,237 @@ The following is an example response of a `DetectFaces` API call\.
     "FaceDetails": [
         {
             "AgeRange": {
-                "High": 36,
-                "Low": 19
+                "High": 43,
+                "Low": 26
             },
             "Beard": {
-                "Confidence": 99.99388122558594,
-                "Value": false
+                "Confidence": 97.48941802978516,
+                "Value": true
             },
             "BoundingBox": {
-                "Height": 0.35353535413742065,
-                "Left": 0.10707070678472519,
-                "Top": 0.12777778506278992,
-                "Width": 0.47138047218322754
+                "Height": 0.6968063116073608,
+                "Left": 0.26937249302864075,
+                "Top": 0.11424895375967026,
+                "Width": 0.42325547337532043
             },
-            "Confidence": 99.99736785888672,
+            "Confidence": 99.99995422363281,
             "Emotions": [
                 {
-                    "Confidence": 89.59288024902344,
+                    "Confidence": 0.042965151369571686,
+                    "Type": "DISGUSTED"
+                },
+                {
+                    "Confidence": 0.002022328320890665,
                     "Type": "HAPPY"
                 },
                 {
-                    "Confidence": 5.3619384765625,
+                    "Confidence": 0.4482877850532532,
+                    "Type": "SURPRISED"
+                },
+                {
+                    "Confidence": 0.007082826923578978,
+                    "Type": "ANGRY"
+                },
+                {
+                    "Confidence": 0,
+                    "Type": "CONFUSED"
+                },
+                {
+                    "Confidence": 99.47616577148438,
                     "Type": "CALM"
                 },
                 {
-                    "Confidence": 4.1074934005737305,
-                    "Type": "ANGRY"
+                    "Confidence": 0.017732391133904457,
+                    "Type": "SAD"
                 }
             ],
             "Eyeglasses": {
-                "Confidence": 99.96102142333984,
+                "Confidence": 99.42405700683594,
                 "Value": false
             },
             "EyesOpen": {
-                "Confidence": 99.97982788085938,
+                "Confidence": 99.99604797363281,
                 "Value": true
             },
             "Gender": {
-                "Confidence": 100,
-                "Value": "Female"
+                "Confidence": 99.722412109375,
+                "Value": "Male"
             },
             "Landmarks": [
                 {
                     "Type": "eyeLeft",
-                    "X": 0.23772846162319183,
-                    "Y": 0.2778792679309845
+                    "X": 0.38549351692199707,
+                    "Y": 0.3959200084209442
                 },
                 {
                     "Type": "eyeRight",
-                    "X": 0.3944779932498932,
-                    "Y": 0.2527812421321869
-                },
-                {
-                    "Type": "nose",
-                    "X": 0.28617316484451294,
-                    "Y": 0.3367626965045929
+                    "X": 0.5773905515670776,
+                    "Y": 0.394561767578125
                 },
                 {
                     "Type": "mouthLeft",
-                    "X": 0.288897842168808,
-                    "Y": 0.4019121527671814
+                    "X": 0.40410104393959045,
+                    "Y": 0.6479480862617493
                 },
                 {
                     "Type": "mouthRight",
-                    "X": 0.41363197565078735,
-                    "Y": 0.38766127824783325
+                    "X": 0.5623446702957153,
+                    "Y": 0.647117555141449
                 },
                 {
-                    "Type": "leftPupil",
-                    "X": 0.25244733691215515,
-                    "Y": 0.27739065885543823
-                },
-                {
-                    "Type": "rightPupil",
-                    "X": 0.4029206931591034,
-                    "Y": 0.24940147995948792
+                    "Type": "nose",
+                    "X": 0.47763553261756897,
+                    "Y": 0.5337067246437073
                 },
                 {
                     "Type": "leftEyeBrowLeft",
-                    "X": 0.17436790466308594,
-                    "Y": 0.24362699687480927
-                },
-                {
-                    "Type": "leftEyeBrowUp",
-                    "X": 0.21201953291893005,
-                    "Y": 0.2338741421699524
+                    "X": 0.3114689588546753,
+                    "Y": 0.3376390337944031
                 },
                 {
                     "Type": "leftEyeBrowRight",
-                    "X": 0.2513192892074585,
-                    "Y": 0.24069637060165405
+                    "X": 0.4224424660205841,
+                    "Y": 0.3232649564743042
+                },
+                {
+                    "Type": "leftEyeBrowUp",
+                    "X": 0.36654090881347656,
+                    "Y": 0.3104579746723175
                 },
                 {
                     "Type": "rightEyeBrowLeft",
-                    "X": 0.32193484902381897,
-                    "Y": 0.21918891370296478
-                },
-                {
-                    "Type": "rightEyeBrowUp",
-                    "X": 0.38548189401626587,
-                    "Y": 0.19604144990444183
+                    "X": 0.5353175401687622,
+                    "Y": 0.3223199248313904
                 },
                 {
                     "Type": "rightEyeBrowRight",
-                    "X": 0.45430734753608704,
-                    "Y": 0.2027731090784073
+                    "X": 0.6546239852905273,
+                    "Y": 0.3348073363304138
+                },
+                {
+                    "Type": "rightEyeBrowUp",
+                    "X": 0.5936762094497681,
+                    "Y": 0.3080498278141022
                 },
                 {
                     "Type": "leftEyeLeft",
-                    "X": 0.20944036543369293,
-                    "Y": 0.28281378746032715
+                    "X": 0.3524211347103119,
+                    "Y": 0.3936865031719208
                 },
                 {
                     "Type": "leftEyeRight",
-                    "X": 0.2710888683795929,
-                    "Y": 0.2738289535045624
+                    "X": 0.4229775369167328,
+                    "Y": 0.3973258435726166
                 },
                 {
                     "Type": "leftEyeUp",
-                    "X": 0.2339935451745987,
-                    "Y": 0.2687133252620697
+                    "X": 0.38467878103256226,
+                    "Y": 0.3836822807788849
                 },
                 {
                     "Type": "leftEyeDown",
-                    "X": 0.23892717063426971,
-                    "Y": 0.28660306334495544
+                    "X": 0.38629674911499023,
+                    "Y": 0.40618783235549927
                 },
                 {
                     "Type": "rightEyeLeft",
-                    "X": 0.36334219574928284,
-                    "Y": 0.2598327100276947
+                    "X": 0.5374732613563538,
+                    "Y": 0.39637991786003113
                 },
                 {
                     "Type": "rightEyeRight",
-                    "X": 0.4293186664581299,
-                    "Y": 0.249033123254776
+                    "X": 0.609208345413208,
+                    "Y": 0.391626238822937
                 },
                 {
                     "Type": "rightEyeUp",
-                    "X": 0.39038628339767456,
-                    "Y": 0.2431529313325882
+                    "X": 0.5750962495803833,
+                    "Y": 0.3821527063846588
                 },
                 {
                     "Type": "rightEyeDown",
-                    "X": 0.3967171609401703,
-                    "Y": 0.26075780391693115
+                    "X": 0.5740782618522644,
+                    "Y": 0.40471214056015015
                 },
                 {
                     "Type": "noseLeft",
-                    "X": 0.28841185569763184,
-                    "Y": 0.3598580062389374
+                    "X": 0.4441811740398407,
+                    "Y": 0.5608476400375366
                 },
                 {
                     "Type": "noseRight",
-                    "X": 0.3451237976551056,
-                    "Y": 0.3516968786716461
+                    "X": 0.5155643820762634,
+                    "Y": 0.5569332242012024
                 },
                 {
                     "Type": "mouthUp",
-                    "X": 0.3349839448928833,
-                    "Y": 0.38809144496917725
+                    "X": 0.47968366742134094,
+                    "Y": 0.6176465749740601
                 },
                 {
                     "Type": "mouthDown",
-                    "X": 0.3422594964504242,
-                    "Y": 0.41868656873703003
+                    "X": 0.4807897210121155,
+                    "Y": 0.690782368183136
+                },
+                {
+                    "Type": "leftPupil",
+                    "X": 0.38549351692199707,
+                    "Y": 0.3959200084209442
+                },
+                {
+                    "Type": "rightPupil",
+                    "X": 0.5773905515670776,
+                    "Y": 0.394561767578125
+                },
+                {
+                    "Type": "upperJawlineLeft",
+                    "X": 0.27245330810546875,
+                    "Y": 0.3902156949043274
+                },
+                {
+                    "Type": "midJawlineLeft",
+                    "X": 0.31561678647994995,
+                    "Y": 0.6596118807792664
+                },
+                {
+                    "Type": "chinBottom",
+                    "X": 0.48385748267173767,
+                    "Y": 0.8160444498062134
+                },
+                {
+                    "Type": "midJawlineRight",
+                    "X": 0.6625112891197205,
+                    "Y": 0.656606137752533
+                },
+                {
+                    "Type": "upperJawlineRight",
+                    "X": 0.7042999863624573,
+                    "Y": 0.3863988518714905
                 }
             ],
             "MouthOpen": {
-                "Confidence": 99.97990417480469,
+                "Confidence": 99.83820343017578,
                 "Value": false
             },
             "Mustache": {
-                "Confidence": 99.97885131835938,
+                "Confidence": 72.20288848876953,
                 "Value": false
             },
             "Pose": {
-                "Pitch": 1.0711474418640137,
-                "Roll": -10.933034896850586,
-                "Yaw": -25.838171005249023
+                "Pitch": -4.970901966094971,
+                "Roll": -1.4911699295043945,
+                "Yaw": -10.983647346496582
             },
             "Quality": {
-                "Brightness": 43.86729431152344,
-                "Sharpness": 99.95819854736328
+                "Brightness": 73.81391906738281,
+                "Sharpness": 86.86019134521484
             },
             "Smile": {
-                "Confidence": 96.89310455322266,
-                "Value": true
+                "Confidence": 99.93638610839844,
+                "Value": false
             },
             "Sunglasses": {
-                "Confidence": 80.4033432006836,
+                "Confidence": 99.81478881835938,
                 "Value": false
             }
         }
@@ -429,36 +470,6 @@ The following is an example response of a `DetectFaces` API call\.
 Note the following:
 + The `Pose` data describes the rotation of the face detected\. You can use the combination of the `BoundingBox` and `Pose` data to draw the bounding box around faces that your application displays\.
 + The `Quality` describes the brightness and the sharpness of the face\. You might find this useful to compare faces across images and find the best face\.
-+ The `DetectFaces` operation first detects orientation of the input image, before detecting facial features\. The `OrientationCorrection` in the response returns the degrees of rotation detected \(counter\-clockwise direction\)\. Your application can use this value to correct the image orientation when displaying the image\. 
 + The preceding response shows all facial `landmarks` the service can detect, all facial attributes and emotions\. To get all of these in the response, you must specify the `attributes` parameter with value `ALL`\. By default, the `DetectFaces` API returns only the following five facial attributes: `BoundingBox`, `Confidence`, `Pose`, `Quality` and `landmarks`\. The default landmarks returned are: `eyeLeft`, `eyeRight`, `nose`, `mouthLeft`, and `mouthRight`\. 
-+ The following illustration shows the relative location of the facial landmarks \(`Landmarks`\) on the face that are returned by the `DetectFaces` API operation\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/landmarks-10.png)
-
-The labels on the image map to the [Landmark](API_Landmark.md) data type as shown in the following table\. For clarity, the left eye and right eye landmark points aren't shown on the image\.
-
-
-| Label | Landmark | 
-| --- | --- | 
-|  b\_ll  |  leftEyeBrowLeft  | 
-|  b\_lu  |  leftEyeBrowUp  | 
-|  b\_lr  |  leftEyeBrowRight  | 
-|  e\_ll  |  leftEyeLeft  | 
-|  e\_lu  |  leftEyeUp  | 
-|  e\_lr  |  leftEyeRight  | 
-|  e\_ld  |  leftEyeDown  | 
-|  e\_lp  |  leftPupil  | 
-|  n\_l  |  noseLeft  | 
-|  n  |  nose  | 
-|  n\_r  |  noseRight  | 
-|  m\_u  |   mouthUp   | 
-|  m\_d  |  mouthDown  | 
-|  m\_l  |  mouthLeft  | 
-|  m\_r  |  mouthRight  | 
-|  b\_rl  |  rightEyeBrowLeft  | 
-|  b\_ru  |  rightEyeBrowUp  | 
-|  b\_rr  |  rightEyeBrowRight  | 
-|  e\_rl  |  rightEyeLeft  | 
-|  e\_ru  |  rightEyeUp  | 
-|  e\_rr  |  rightEyeRight   | 
-|  e\_rp  |  rightPupil  | 
-|  e\_rd  |  rightEyeDown  | 
++ The following illustration shows the relative location of the facial landmarks\(`Landmarks`\) on the face that are returned by the `DetectFaces` API operation\.  
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/landmarkface.png)

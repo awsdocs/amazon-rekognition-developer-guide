@@ -274,7 +274,6 @@ In the following example response, note the following:
 
   If multiple faces match, the `faceMatches` array includes all of the face matches\. 
 + **Source face information** – The response includes information about the face from the source image that was used for comparison, including the bounding box and confidence value\.
-+ **Image Orientation** – The response includes information about the orientation of the source and target images\. Amazon Rekognition needs this to display the images and retrieve the correct location of the matched face in the target image\. For more information, see [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)\.
 + **Unmatched face match information** – The example shows one face that Amazon Rekognition found in the target image that didn't match the face that was analyzed in the source image\. For that face, it provides a bounding box and a confidence value, which indicates the level of confidence that Amazon Rekognition has that the bounding box contains a face\. The face information also includes an array of landmark locations\.
 
   If Amazon Rekognition finds multiple faces that don't match, the `UnmatchedFaces` array includes all of the faces that didn't match\. 

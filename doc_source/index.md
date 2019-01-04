@@ -1,7 +1,7 @@
 # Amazon Rekognition Developer Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -35,10 +35,10 @@ Amazon's trademarks and trade dress may not be used in
    + [Amazon Rekognition API Permissions: Actions, Permissions, and Resources Reference](api-permissions-reference.md)
 + [Working with Images](images.md)
    + [Images](images-information.md)
-   + [Best Practices for Working With Images](image-best-practices.md)
    + [Analyzing Images Stored in an Amazon S3 Bucket](images-s3.md)
    + [Analyzing an Image Loaded from a Local File System](images-bytes.md)
       + [Using JavaScript](image-bytes-javascript.md)
+   + [Displaying Bounding Boxes](images-displaying-bounding-boxes.md)
    + [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)
 + [Working with Stored Videos](video.md)
    + [Calling Amazon Rekognition Video Operations](api-video.md)
@@ -60,14 +60,23 @@ Amazon's trademarks and trade dress may not be used in
       + [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md)
       + [DetectedFace](streaming-video-kinesis-output-reference-detectedface.md)
       + [MatchedFace](streaming-video-kinesis-output-reference-facematch.md)
++ [Best practices for Sensors, Input Images and Videos](best-practices.md)
+   + [Amazon Rekognition Image Operation Latency](operation-latency.md)
+   + [Recommendations for Facial Recognition Input Images](recommendations-facial-input-images.md)
+   + [Recommendations for Camera Set-Up (Image and Video)](recommendations-camera-image-video.md)
+   + [Recommendations for Camera Set-Up (Stored and Streaming video)](recommendations-camera-stored-streaming-video.md)
+   + [Recommendations for Camera Set-Up (Streaming Video)](recommendations-camera-streaming-video.md)
 + [Detecting Objects and Scenes](labels.md)
    + [Detecting Labels in an Image](labels-detect-labels-image.md)
    + [Detecting Labels in a Video](labels-detecting-labels-video.md)
 + [Detecting and Analyzing Faces](faces.md)
+   + [Overview of Face Detection and Face Recognition](face-feature-differences.md)
+   + [Guidelines on Face Attributes](guidance-face-attributes.md)
    + [Detecting Faces in an Image](faces-detect-images.md)
    + [Comparing Faces in Images](faces-comparefaces.md)
    + [Detecting Faces in a Stored Video](faces-sqs-video.md)
 + [Searching Faces in a Collection](collections.md)
+   + [Use Cases that Involve Public Safety](considerations-public-safety-use-cases.md)
    + [Creating a Collection](create-collection-procedure.md)
    + [Listing Collections](list-collection-procedure.md)
    + [Describing a Collection](describe-collection-procedure.md)
@@ -78,8 +87,9 @@ Amazon's trademarks and trade dress may not be used in
    + [Searching for a Face Using Its Face ID](search-face-with-id-procedure.md)
    + [Searching for a Face Using an Image](search-face-with-image-procedure.md)
    + [Searching Stored Videos for Faces](procedure-person-search-videos.md)
-+ [Tracking People](persons.md)
++ [People Pathing](persons.md)
 + [Recognizing Celebrities](celebrities.md)
+   + [Celebrity Recognition Compared to Face Search](celebrity-recognition-vs-face-search.md)
    + [Recognizing Celebrities in an Image](celebrities-procedure-image.md)
    + [Recognizing Celebrities in a Stored Video](celebrities-video-sqs.md)
    + [Getting Information About a Celebrity](get-celebrity-info-procedure.md)
@@ -152,6 +162,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Geometry](API_Geometry.md)
       + [Image](API_Image.md)
       + [ImageQuality](API_ImageQuality.md)
+      + [Instance](API_Instance.md)
       + [KinesisDataStream](API_KinesisDataStream.md)
       + [KinesisVideoStream](API_KinesisVideoStream.md)
       + [Label](API_Label.md)
@@ -161,6 +172,7 @@ Amazon's trademarks and trade dress may not be used in
       + [MouthOpen](API_MouthOpen.md)
       + [Mustache](API_Mustache.md)
       + [NotificationChannel](API_NotificationChannel.md)
+      + [Parent](API_Parent.md)
       + [PersonDetail](API_PersonDetail.md)
       + [PersonDetection](API_PersonDetection.md)
       + [PersonMatch](API_PersonMatch.md)

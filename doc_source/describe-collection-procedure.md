@@ -113,6 +113,44 @@ You can use the [DescribeCollection](API_DescribeCollection.md) operation to get
    ```
 
 ------
+#### [ \.NET ]
+
+   This example describes a collection\.
+
+   Change the value `collectionId` to the ID of the desired collection\.
+
+   ```
+   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   
+   using System;
+   using Amazon.Rekognition;
+   using Amazon.Rekognition.Model;
+   
+   public class DescribeCollection
+   {
+       public static void Example()
+       {
+           AmazonRekognitionClient rekognitionClient = new AmazonRekognitionClient();
+   
+           String collectionId = "CollectionID";
+           Console.WriteLine("Describing collection: " + collectionId);
+   
+           DescribeCollectionRequest describeCollectionRequest = new DescribeCollectionRequest()
+           {
+               CollectionId = collectionId
+           };
+   
+           DescribeCollectionResponse describeCollectionResponse = rekognitionClient.DescribeCollection(describeCollectionRequest);
+           Console.WriteLine("Collection ARN: " + describeCollectionResponse.CollectionARN);
+           Console.WriteLine("Face count: " + describeCollectionResponse.FaceCount);
+           Console.WriteLine("Face model version: " + describeCollectionResponse.FaceModelVersion);
+           Console.WriteLine("Created: " + describeCollectionResponse.CreationTimestamp);
+       }
+   }
+   ```
+
+------
 
 ## DescribeCollection Operation Request<a name="describe-collection-request"></a>
 

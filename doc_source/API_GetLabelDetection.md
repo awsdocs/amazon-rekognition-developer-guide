@@ -10,6 +10,9 @@ The labels returned include the label name, the percentage confidence in the acc
 
 Use MaxResults parameter to limit the number of labels returned\. If there are more results than specified in `MaxResults`, the value of `NextToken` in the operation response contains a pagination token for getting the next set of results\. To get the next page of results, call `GetlabelDetection` and populate the `NextToken` request parameter with the token value returned from the previous call to `GetLabelDetection`\.
 
+**Note**  
+ `GetLabelDetection` doesn't return a hierarchical taxonomy, or bounding box information, for detected labels\. `GetLabelDetection` returns `null` for the `Parents` and `Instances` attributes of the [Label](API_Label.md) object which is returned in the `Labels` array\. 
+
 ## Request Syntax<a name="API_GetLabelDetection_RequestSyntax"></a>
 
 ```
@@ -59,7 +62,23 @@ Required: No
       { 
          "[Label](API_LabelDetection.md#rekognition-Type-LabelDetection-Label)": { 
             "[Confidence](API_Label.md#rekognition-Type-Label-Confidence)": number,
-            "[Name](API_Label.md#rekognition-Type-Label-Name)": "string"
+            "[Instances](API_Label.md#rekognition-Type-Label-Instances)": [ 
+               { 
+                  "[BoundingBox](API_Instance.md#rekognition-Type-Instance-BoundingBox)": { 
+                     "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+                     "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+                     "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+                     "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+                  },
+                  "[Confidence](API_Instance.md#rekognition-Type-Instance-Confidence)": number
+               }
+            ],
+            "[Name](API_Label.md#rekognition-Type-Label-Name)": "string",
+            "[Parents](API_Label.md#rekognition-Type-Label-Parents)": [ 
+               { 
+                  "[Name](API_Parent.md#rekognition-Type-Parent-Name)": "string"
+               }
+            ]
          },
          "[Timestamp](API_LabelDetection.md#rekognition-Type-LabelDetection-Timestamp)": number
       }
