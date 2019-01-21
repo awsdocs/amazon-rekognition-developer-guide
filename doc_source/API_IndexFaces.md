@@ -35,7 +35,7 @@ Information about faces detected in an image, but not indexed, is returned in an
 In response, the `IndexFaces` operation returns an array of metadata for all detected faces, `FaceRecords`\. This includes: 
 + The bounding box, `BoundingBox`, of the detected face\. 
 + A confidence value, `Confidence`, which indicates the confidence that the bounding box contains a face\.
-+ A face ID, `faceId`, assigned by the service for each face that's detected and stored\.
++ A face ID, `FaceId`, assigned by the service for each face that's detected and stored\.
 + An image ID, `ImageId`, assigned by the service for the input image\.
 
 If you request all facial attributes \(by using the `detectionAttributes` parameter\), Amazon Rekognition returns detailed facial attributes, such as facial landmarks \(for example, location of eye and mouth\) and other facial attributes like gender\. If you provide the same image, specify the same collection, and use the same external ID in the `IndexFaces` operation, Amazon Rekognition doesn't save duplicate face metadata\.
