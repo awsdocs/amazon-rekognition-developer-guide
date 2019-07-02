@@ -45,13 +45,13 @@ Pattern: `[a-zA-Z0-9_.\-]+`
 Required: Yes
 
  ** [FaceMatchThreshold](#API_StartFaceSearch_RequestSyntax) **   <a name="rekognition-StartFaceSearch-request-FaceMatchThreshold"></a>
-The minimum confidence in the person match to return\. For example, don't return any matches where confidence in matches is less than 70%\.   
+The minimum confidence in the person match to return\. For example, don't return any matches where confidence in matches is less than 70%\. The default value is 80%\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
  ** [JobTag](#API_StartFaceSearch_RequestSyntax) **   <a name="rekognition-StartFaceSearch-request-JobTag"></a>
-Unique identifier you specify to identify the job in the completion status published to the Amazon Simple Notification Service topic\.   
+An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic\. For example, you can use `JobTag` to group related jobs and identify them in the completion notification\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 256\.  
 Pattern: `[a-zA-Z0-9_.\-:]+`   
@@ -136,6 +136,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartFaceSearch) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartFaceSearch) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartFaceSearch) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/rekognition-2016-06-27/StartFaceSearch) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartFaceSearch) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartFaceSearch) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartFaceSearch) 

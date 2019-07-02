@@ -24,7 +24,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 
 1. [Give permission to the Amazon SNS topic to send messages to the Amazon SQS queue](https://docs.aws.amazon.com/sns/latest/dg/SendMessageToSQS.html#SendMessageToSQS.sqs.permissions)\.
 
-1. Upload an \.mp4, \.mov or \.avi format video file to your S3 bucket\. While developing and testing, we suggest using short videos no longer than 30 seconds in length\.
+1. Upload an MOV or MPEG\-4 format video file to your S3 bucket\. While developing and testing, we suggest using short videos no longer than 30 seconds in length\.
 
    For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 

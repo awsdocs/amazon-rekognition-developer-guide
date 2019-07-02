@@ -98,178 +98,83 @@ The `GetLabelDetection` operation response JSON is similar to the following:
 
 ```
 {
-    "JobStatus": "SUCCEEDED",
     "Labels": [
         {
+            "Timestamp": 0,
             "Label": {
-                "Confidence": 56.49449920654297,
-                "Name": "Bowl"
-            },
-            "Timestamp": 0
+                "Instances": [],
+                "Confidence": 60.51791763305664,
+                "Parents": [],
+                "Name": "Electronics"
+            }
         },
         {
+            "Timestamp": 0,
             "Label": {
-                "Confidence": 77.5353012084961,
-                "Name": "Clothing"
-            },
-            "Timestamp": 0
+                "Instances": [],
+                "Confidence": 99.53411102294922,
+                "Parents": [],
+                "Name": "Human"
+            }
         },
         {
+            "Timestamp": 0,
             "Label": {
-                "Confidence": 53.91270065307617,
-                "Name": "Guitar"
-            },
-            "Timestamp": 0
-        },
-        {
-            "Label": {
-                "Confidence": 53.91270065307617,
-                "Name": "Musical Instrument"
-            },
-            "Timestamp": 0
-        },
-        {
-            "Label": {
-                "Confidence": 77.5353012084961,
-                "Name": "Overcoat"
-            },
-            "Timestamp": 0
-        },
-        {
-            "Label": {
-                "Confidence": 50.50969696044922,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.11109819263219833,
+                            "Top": 0.08098889887332916,
+                            "Left": 0.8881205320358276,
+                            "Height": 0.9073750972747803
+                        },
+                        "Confidence": 99.5831298828125
+                    },
+                    {
+                        "BoundingBox": {
+                            "Width": 0.1268676072359085,
+                            "Top": 0.14018426835536957,
+                            "Left": 0.0003282368124928324,
+                            "Height": 0.7993982434272766
+                        },
+                        "Confidence": 99.46029663085938
+                    }
+                ],
+                "Confidence": 99.53411102294922,
+                "Parents": [],
                 "Name": "Person"
-            },
-            "Timestamp": 0
+            }
         },
+        .
+        .   
+        .
+
         {
+            "Timestamp": 166,
             "Label": {
-                "Confidence": 67.22470092773438,
-                "Name": "Pumpkin"
-            },
-            "Timestamp": 0
-        },
-        {
-            "Label": {
-                "Confidence": 99.03849792480469,
-                "Name": "Speech"
-            },
-            "Timestamp": 0
-        },
-        {
-            "Label": {
-                "Confidence": 67.22470092773438,
-                "Name": "Squash"
-            },
-            "Timestamp": 0
-        },
-        {
-            "Label": {
-                "Confidence": 77.5353012084961,
-                "Name": "Suit"
-            },
-            "Timestamp": 0
+                "Instances": [],
+                "Confidence": 73.6471176147461,
+                "Parents": [
+                    {
+                        "Name": "Clothing"
+                    }
+                ],
+                "Name": "Sleeve"
+            }
         }
+        
     ],
-    "NextToken": "WlKfzZED1PzBLyAmTpda655kICVnPPAtQ/8V9Mci6097JKjqP08uQun6j6fwGEaJFDUQVawYsg==",
-    "VideoMetadata": {
-        "Codec": "h264",
-        "DurationMillis": 67301,
-        "FileExtension": "mp4",
-        "Format": "QuickTime / MOV",
-        "FrameHeight": 1080,
-        "FrameRate": 29.970029830932617,
-        "FrameWidth": 1920
-    }
-}
-```
-
-You can sort the results by detection time \(milliseconds from the start of the video\) or alphabetically by the detected entity \(object, face, celebrity, moderation label, or person\)\. To sort by time, set the value of the `SortBy` input parameter to `TIMESTAMP`\. If `SortBy` isn't specified, the default behavior is to sort by time\. The preceding example is sorted by time\. To sort by entity, use the `SortBy` input parameter with the value that's appropriate for the operation you're performing\. For example, to sort by detected label in a call to `GetLabelDetection`, use the value `NAME`\. The following example shows sorting by label name for the detected labels *Apparel* and *badge*\. 
-
-```
-{
+    "LabelModelVersion": "2.0",
     "JobStatus": "SUCCEEDED",
-    "Labels": [
-        {
-            "Label": {
-                "Confidence": 50.53730010986328,
-                "Name": "Apparel"
-            },
-            "Timestamp": 46813
-        },
-        {
-            "Label": {
-                "Confidence": 50.538700103759766,
-                "Name": "Apparel"
-            },
-            "Timestamp": 47013
-        },
-        {
-            "Label": {
-                "Confidence": 50.76940155029297,
-                "Name": "Apparel"
-            },
-            "Timestamp": 47213
-        },
-        {
-            "Label": {
-                "Confidence": 50.504798889160156,
-                "Name": "Apparel"
-            },
-            "Timestamp": 63229
-        },
-        {
-            "Label": {
-                "Confidence": 54.01129913330078,
-                "Name": "Badge"
-            },
-            "Timestamp": 8775
-        },
-        {
-            "Label": {
-                "Confidence": 55.24839782714844,
-                "Name": "Badge"
-            },
-            "Timestamp": 8975
-        },
-        {
-            "Label": {
-                "Confidence": 60.499000549316406,
-                "Name": "Badge"
-            },
-            "Timestamp": 9175
-        },
-        {
-            "Label": {
-                "Confidence": 60.73529815673828,
-                "Name": "Badge"
-            },
-            "Timestamp": 9376
-        },
-        {
-            "Label": {
-                "Confidence": 60.914302825927734,
-                "Name": "Badge"
-            },
-            "Timestamp": 9576
-        },
-        {
-            "Label": {
-                "Confidence": 50.74089813232422,
-                "Name": "Badge"
-            },
-            "Timestamp": 9776
-        }
-    ],
-    "NextToken": "CmUTsWamUKmnzPvN+FB0REjh+xv6+iY3H0IXrHCn3yMSW1zuOcWyLKob2JjvfPjznalo3m/MGw==",
     "VideoMetadata": {
-        "Codec": "h264",
-        "DurationMillis": 67301,
-        "FileExtension": "mp4",
         "Format": "QuickTime / MOV",
-        "FrameHeight": 1080,
-        "FrameRate": 29.970029830932617,
-        "FrameWidth": 1920
+        "FrameRate": 23.976024627685547,
+        "Codec": "h264",
+        "DurationMillis": 5005,
+        "FrameHeight": 674,
+        "FrameWidth": 1280
     }
 }
 ```
+
+You can sort the results by detection time \(milliseconds from the start of the video\) or alphabetically by the detected entity \(object, face, celebrity, moderation label, or person\)\. To sort by time, set the value of the `SortBy` input parameter to `TIMESTAMP`\. If `SortBy` isn't specified, the default behavior is to sort by time\. The preceding example is sorted by time\. To sort by entity, use the `SortBy` input parameter with the value that's appropriate for the operation you're performing\. For example, to sort by detected label in a call to `GetLabelDetection`, use the value `NAME`\.

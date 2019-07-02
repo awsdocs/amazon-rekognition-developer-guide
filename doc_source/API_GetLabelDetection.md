@@ -8,10 +8,9 @@ The label detection operation is started by a call to [StartLabelDetection](API_
 
 The labels returned include the label name, the percentage confidence in the accuracy of the detected label, and the time the label was detected in the video\.
 
-Use MaxResults parameter to limit the number of labels returned\. If there are more results than specified in `MaxResults`, the value of `NextToken` in the operation response contains a pagination token for getting the next set of results\. To get the next page of results, call `GetlabelDetection` and populate the `NextToken` request parameter with the token value returned from the previous call to `GetLabelDetection`\.
+The returned labels also include bounding box information for common objects, a hierarchical taxonomy of detected labels, and the version of the label model used for detection\.
 
-**Note**  
- `GetLabelDetection` doesn't return a hierarchical taxonomy, or bounding box information, for detected labels\. `GetLabelDetection` returns `null` for the `Parents` and `Instances` attributes of the [Label](API_Label.md) object which is returned in the `Labels` array\. 
+Use MaxResults parameter to limit the number of labels returned\. If there are more results than specified in `MaxResults`, the value of `NextToken` in the operation response contains a pagination token for getting the next set of results\. To get the next page of results, call `GetlabelDetection` and populate the `NextToken` request parameter with the token value returned from the previous call to `GetLabelDetection`\.
 
 ## Request Syntax<a name="API_GetLabelDetection_RequestSyntax"></a>
 
@@ -58,6 +57,7 @@ Required: No
 ```
 {
    "[JobStatus](#rekognition-GetLabelDetection-response-JobStatus)": "string",
+   "[LabelModelVersion](#rekognition-GetLabelDetection-response-LabelModelVersion)": "string",
    "[Labels](#rekognition-GetLabelDetection-response-Labels)": [ 
       { 
          "[Label](API_LabelDetection.md#rekognition-Type-LabelDetection-Label)": { 
@@ -106,6 +106,10 @@ The following data is returned in JSON format by the service\.
 The current status of the label detection job\.  
 Type: String  
 Valid Values:` IN_PROGRESS | SUCCEEDED | FAILED` 
+
+ ** [LabelModelVersion](#API_GetLabelDetection_ResponseSyntax) **   <a name="rekognition-GetLabelDetection-response-LabelModelVersion"></a>
+Version number of the label detection model that was used to detect labels\.  
+Type: String
 
  ** [Labels](#API_GetLabelDetection_ResponseSyntax) **   <a name="rekognition-GetLabelDetection-response-Labels"></a>
 An array of labels detected in the video\. Each element contains the detected label and the time, in milliseconds from the start of the video, that the label was detected\.   
@@ -161,6 +165,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/GetLabelDetection) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/GetLabelDetection) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/GetLabelDetection) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/rekognition-2016-06-27/GetLabelDetection) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/GetLabelDetection) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/GetLabelDetection) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/GetLabelDetection) 

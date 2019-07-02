@@ -21,7 +21,7 @@ The image must be less than 5MB in size and must be of JPEG or PNG format\.
 
 **To analyze a face in an image you provide**
 
-1. Open to the Amazon Rekognition console\.
+1. Open the Amazon Rekognition console at [https://console\.aws\.amazon\.com/rekognition/](https://console.aws.amazon.com/rekognition/)\.
 
 1. Choose **Facial analysis**\.
 

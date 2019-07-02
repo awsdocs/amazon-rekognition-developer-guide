@@ -14,6 +14,8 @@ Specifying a value for `MinConfidence` that is less than 50% is likely to return
 
 The `ModerationLabel` array contains labels in the preceding categories and an estimated confidence in the accuracy of the recognized content\. A top\-level label is returned along with any second\-level labels that were identified\. For example, Rekognition may return “Explicit Nudity” with a high confidence score as a top\-level label\. That may be enough for your filtering needs, but if necessary, you can use the confidence score of a second\-level label, such as "Partial Nudity", to obtain more granular filtering\. For an example, see [Detecting Unsafe Images \(API\)](procedure-moderate-images.md)\.
 
+Amazon Rekognition Image and Amazon Rekognition Video both return the version of the moderation detection model used to detect unsafe content \(`ModerationModelVersion`\)\. 
+
 **Note**  
 Rekognition Unsafe Image Detection API is not an authority on, or in any way purports to be an exhaustive filter of, explicit and suggestive adult content\. Furthermore, the Unsafe Image Detection API does not detect whether an image includes illegal content \(such as child pornography\) or unnatural adult content\.
 

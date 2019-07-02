@@ -22,3 +22,4 @@ This section contains information about writing an application that creates the 
 + [Starting Streaming Video Analysis](streaming-video-starting-analysis.md)
 + [Reading Streaming Video Analysis Results](streaming-video-kinesis-output.md)
 + [Reference: Kinesis Face Recognition Record](streaming-video-kinesis-output-reference.md)
++ [Troubleshooting Streaming Video](streaming-video-troubleshooting.md)

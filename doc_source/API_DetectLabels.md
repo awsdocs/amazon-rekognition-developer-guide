@@ -27,7 +27,7 @@ In the preceding example, the operation returns one label for each of the three 
 
 In this example, the detection algorithm more precisely identifies the flower as a tulip\.
 
-In response, the API returns an array of labels\. In addition, the response also includes the orientation correction\. Optionally, you can specify `MinConfidence` to control the confidence threshold for the labels returned\. The default is 50%\. You can also add the `MaxLabels` parameter to limit the number of labels returned\. 
+In response, the API returns an array of labels\. In addition, the response also includes the orientation correction\. Optionally, you can specify `MinConfidence` to control the confidence threshold for the labels returned\. The default is 55%\. You can also add the `MaxLabels` parameter to limit the number of labels returned\. 
 
 **Note**  
 If the object detected is a person, the operation doesn't provide the same facial details that the [DetectFaces](API_DetectFaces.md) operation provides\.
@@ -62,7 +62,8 @@ This operation requires permissions to perform the `rekognition:DetectLabels` ac
 The request accepts the following data in JSON format\.
 
  ** [Image](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-Image"></a>
-The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
+The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported\. Images stored in an S3 Bucket do not need to be base64\-encoded\.  
+If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Images](images-information.md)\.  
 Type: [Image](API_Image.md) object  
 Required: Yes
 
@@ -74,7 +75,7 @@ Required: No
 
  ** [MinConfidence](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-MinConfidence"></a>
 Specifies the minimum confidence level for the labels to return\. Amazon Rekognition doesn't return any labels with confidence lower than this specified value\.  
-If `MinConfidence` is not specified, the operation returns labels with a confidence values greater than or equal to 50 percent\.  
+If `MinConfidence` is not specified, the operation returns labels with a confidence values greater than or equal to 55 percent\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
@@ -172,6 +173,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectLabels) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DetectLabels) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DetectLabels) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/rekognition-2016-06-27/DetectLabels) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DetectLabels) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectLabels) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectLabels) 

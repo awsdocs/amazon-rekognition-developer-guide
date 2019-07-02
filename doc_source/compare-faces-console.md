@@ -25,7 +25,7 @@ The image must be less than 5MB in size and must be of JPEG or PNG format\.
 
 **To compare faces in your images**
 
-1. Open to the Amazon Rekognition console\.
+1. Open the Amazon Rekognition console at [https://console\.aws\.amazon\.com/rekognition/](https://console.aws.amazon.com/rekognition/)\.
 
 1. Choose **Face comparison**\.
 

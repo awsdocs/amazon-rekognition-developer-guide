@@ -96,11 +96,11 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    
    if __name__ == "__main__":
    
-       bucket='bucket'
        collectionId='MyCollection'
        threshold = 50
        maxFaces=2
        faceId='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+   
    
        client=boto3.client('rekognition')
    
@@ -112,10 +112,10 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    
                            
        faceMatches=response['FaceMatches']
-       print 'Matching faces'
+       print ('Matching faces')
        for match in faceMatches:
-               print 'FaceId:' + match['Face']['FaceId']
-               print 'Similarity: ' + "{:.2f}".format(match['Similarity']) + "%"
+               print ('FaceId:' + match['Face']['FaceId'])
+               print ('Similarity: ' + "{:.2f}".format(match['Similarity']) + "%")
                print
    ```
 

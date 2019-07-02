@@ -133,14 +133,14 @@ To run this procedure, you need an image file that contains one or more celebrit
    
        print('Detected faces for ' + photo)    
        for celebrity in response['CelebrityFaces']:
-           print 'Name: ' + celebrity['Name']
-           print 'Id: ' + celebrity['Id']
-           print 'Position:'
-           print '   Left: ' + '{:.2f}'.format(celebrity['Face']['BoundingBox']['Height'])
-           print '   Top: ' + '{:.2f}'.format(celebrity['Face']['BoundingBox']['Top'])
-           print 'Info'
+           print ('Name: ' + celebrity['Name'])
+           print ('Id: ' + celebrity['Id'])
+           print ('Position:')
+           print ('   Left: ' + '{:.2f}'.format(celebrity['Face']['BoundingBox']['Height']))
+           print ('   Top: ' + '{:.2f}'.format(celebrity['Face']['BoundingBox']['Top']))
+           print ('Info')
            for url in celebrity['Urls']:
-               print '   ' + url
+               print ('   ' + url)
            print
    ```
 
