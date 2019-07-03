@@ -33,7 +33,9 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 1. Run the following AWS CLI command to start detecting labels in a video\.
 
    ```
-   aws rekognition start-label-detection --video "S3Object={Bucket="bucketname",Name="videofile"}" \
+
+   aws rekognition start-label-detection --video "S3Object={Bucket=bucketname,Name=videofile}" \
+   --endpoint-url Endpoint \
    --notification-channel "SNSTopicArn=TopicARN,RoleArn=RoleARN" \
    --region us-east-1 \
    --profile RekognitionUser
