@@ -1,8 +1,6 @@
 # Label<a name="API_Label"></a>
 
-Structure containing details about the detected label, including the name, and level of confidence\.
-
-The Amazon Rekognition Image operation [DetectLabels](API_DetectLabels.md) operation returns a hierarchical taxonomy \(`Parents`\) for detected labels and also bounding box information \(`Instances`\) for detected labels\. Amazon Rekognition Video doesn't return this information and [GetLabelDetection](API_GetLabelDetection.md) returns `null` for the `Parents` and `Instances` attributes\. 
+Structure containing details about the detected label, including the name, detected instances, parent labels, and level of confidence\.
 
 ## Contents<a name="API_Label_Contents"></a>
 
@@ -14,7 +12,6 @@ Required: No
 
  **Instances**   <a name="rekognition-Type-Label-Instances"></a>
 If `Label` represents an object, `Instances` contains the bounding boxes for each instance of the detected object\. Bounding boxes are returned for common object labels such as people, cars, furniture, apparel or pets\.  
-Amazon Rekognition Video does not support bounding box information for detected labels\. The value of `Instances` is returned as `null` by `GetLabelDetection`\.
 Type: Array of [Instance](API_Instance.md) objects  
 Required: No
 
@@ -25,7 +22,6 @@ Required: No
 
  **Parents**   <a name="rekognition-Type-Label-Parents"></a>
 The parent labels for a label\. The response includes all ancestor labels\.  
-Amazon Rekognition Video does not support a hierarchical taxonomy of detected labels\. The value of `Parents` is returned as `null` by `GetLabelDetection`\.
 Type: Array of [Parent](API_Parent.md) objects  
 Required: No
 
@@ -34,5 +30,6 @@ Required: No
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/Label) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/Label) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/rekognition-2016-06-27/Label) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/Label) 
 +  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/Label) 

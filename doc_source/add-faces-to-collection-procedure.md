@@ -79,6 +79,7 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
    import com.amazonaws.services.rekognition.model.Image;
    import com.amazonaws.services.rekognition.model.IndexFacesRequest;
    import com.amazonaws.services.rekognition.model.IndexFacesResult;
+   import com.amazonaws.services.rekognition.model.QualityFilter;
    import com.amazonaws.services.rekognition.model.S3Object;
    import com.amazonaws.services.rekognition.model.UnindexedFace;
    import java.util.List;
@@ -139,8 +140,8 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
    aws rekognition index-faces \
          --image '{"S3Object":{"Bucket":"bucket-name","Name":"file-name"}}' \
          --collection-id "collection-id" \
-         --max-faces 1 \     
-         --quality-filter "AUTO" \   
+         --max-faces 1 \
+         --quality-filter "AUTO" \
          --detection-attributes "ALL" \
          --external-image-id "example-image.jpg"
    ```
@@ -165,8 +166,6 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
        photo='photo'
        
        client=boto3.client('rekognition')
-   
-       response=client.index_faces
    
        response=client.index_faces(CollectionId=collectionId,
                                    Image={'S3Object':{'Bucket':bucket,'Name':photo}},

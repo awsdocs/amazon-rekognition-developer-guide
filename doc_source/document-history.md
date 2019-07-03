@@ -5,6 +5,8 @@ The following table describes important changes in each release of the *Amazon R
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [GetContentModeration operation updated](#document-history) | GetContentModeration now returns the version of the moderation detection model used to detect unsafe content\.  | February 13, 2019 | 
+| [GetLabelDetection and DetectModerationLabels operations updated](#document-history) | GetLabelDetection now returns bounding box information for common objects and a hierarchical taxonomy of detected labels\. The version of the model used for label detection is now returned\. DetectModerationLabels now returns the version of the model used for detecting unsafe content\.  | January 17, 2019 | 
 | [DetectFaces and IndexFaces operation updated](#document-history) | This release updates the DetectFaces and IndexFaces operation\. When the Attributes input parameter is set to ALL, the face location landmarks includes 5 new landmarks: upperJawlineLeft, midJawlineLeft, chinBottom, midJawlineRight, upperJawlineRight\.  | November 19, 2018 | 
 | [DetectLabels operation updated](#document-history) | Bounding boxes are now returned for certain objects\. A hierarchical taxonomy is now available for labels\. You can now get the version of the detection model used for detection\. | November 1, 2018 | 
 | [IndexFaces operation updated](#document-history) | With IndexFaces you can now use the QualityFilter input parameter to filter out faces detected with low quality\. You can also use the MaxFaces input parameter to reduce the number of faces returned based on the quality of the face detection, and the size of the detected face\.  | September 18, 2018 | 

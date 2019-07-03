@@ -8,86 +8,89 @@ Amazon Rekognition Video label detection is an asynchronous operation\. To start
 
 `GetLabelDetection` returns an array \(`Labels`\) that contains information about the labels detected in the video\. The array can be sorted either by time or by the label detected by specifying the `SortBy` parameter\.
 
-**Note**  
-`GetLabelDetection` doesn't support the hierarchical taxonomy or bounding box information that the image operation `DetectLabels` supports\. GetLabelDetection returns `null` for the `Parents` and `Instances` attributes\. 
-
 The following example is the JSON response of the `GetLabelDetection`\. In the response, note the following:
 + **Sort order** – The array of labels returned is sorted by time\. To sort by label, specify `NAME` in the `SortBy` input parameter for `GetLabelDetection`\. If the label appears multiple times in the video, there will be multiples instances of the \([LabelDetection](API_LabelDetection.md)\) element\. 
-+ **Label information** – The `LabelDetection` array element contains a \([Label](API_Label.md)\) object which contains the label name and the confidence Amazon Rekognition has in the accuracy of the detected label\. `Timestamp` is the time, in milliseconds from the start of the video, that the label was detected\.
++ **Label information** – The `LabelDetection` array element contains a \([Label](API_Label.md)\) object which contains the label name and the confidence Amazon Rekognition has in the accuracy of the detected label\. A `Label` object also includes a hierarchical taxonomy of labels and bounding box information for common labels\. `Timestamp` is the time, in milliseconds from the start of the video, that the label was detected\. 
 + **Paging information** – The example shows one page of label detection information\. You can specify how many `LabelDetection` objects to return in the `MaxResults` input parameter for `GetLabelDetection`\. If more results than `MaxResults` exist, `GetLabelDetection` returns a token \(`NextToken`\) used to get the next page of results\. For more information, see [Getting Amazon Rekognition Video Analysis Results](api-video.md#api-video-get)\.
 + **Video information** – The response includes information about the video format \(`VideoMetadata`\) in each page of information returned by `GetLabelDetection`\.
 
 ```
 {
-  "Labels": [{
-    "Label": {
-      "Confidence": 99.03720092773438,
-      "Name": "Speech"
-    },
-    "Timestamp": 0
-  }, {
-    "Label": {
-      "Confidence": 71.6698989868164,
-      "Name": "Pumpkin"
-    },
-    "Timestamp": 0
-  }, {
-    "Label": {
-      "Confidence": 71.6698989868164,
-      "Name": "Squash"
-    },
-    "Timestamp": 0
-  }, {
-    "Label": {
-      "Confidence": 71.6698989868164,
-      "Name": "Vegetable"
-    },
-    "Timestamp": 0
-  }, {
-    "Label": {
-      "Confidence": 71.44749450683594,
-      "Name": "Clothing"
-    },
-    "Timestamp": 0
-  }, {
-    "Label": {
-      "Confidence": 71.44749450683594,
-      "Name": "Overcoat"
-    },
-    "Timestamp": 0
-  }, {
-    "Label": {
-      "Confidence": 71.44749450683594,
-      "Name": "Suit"
-    },
-    "Timestamp": 0
-  }, {
-    "Label": {
-      "Confidence": 58.84939956665039,
-      "Name": "Jar"
-    },
-    "Timestamp": 0
-  }, {
-    "Label": {
-      "Confidence": 58.84939956665039,
-      "Name": "Porcelain"
-    },
-    "Timestamp": 0
-  }, {
-    "Label": {
-      "Confidence": 58.84939956665039,
-      "Name": "Vase"
-    },
-    "Timestamp": 0
-  }],
-  "NextToken": "BgPXS37fNUY+Hrd7jYbBoTk1I5LevLm/MV+dhCwbXxoVOgMi0di6xYSeL6/Dztya/Pflx9xxxx==",
-  "VideoMetadata": {
-    "Codec": "h264",
-    "DurationMillis": 67301,
-    "Format": "mov,mp4,m4a,3gp,3g2,mj2",
-    "FrameHeight": 1080,
-    "FrameRate": 29.970029830932617,
-    "FrameWidth": 1920
-  }
+    "Labels": [
+        {
+            "Timestamp": 0,
+            "Label": {
+                "Instances": [],
+                "Confidence": 60.51791763305664,
+                "Parents": [],
+                "Name": "Electronics"
+            }
+        },
+        {
+            "Timestamp": 0,
+            "Label": {
+                "Instances": [],
+                "Confidence": 99.53411102294922,
+                "Parents": [],
+                "Name": "Human"
+            }
+        },
+        {
+            "Timestamp": 0,
+            "Label": {
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.11109819263219833,
+                            "Top": 0.08098889887332916,
+                            "Left": 0.8881205320358276,
+                            "Height": 0.9073750972747803
+                        },
+                        "Confidence": 99.5831298828125
+                    },
+                    {
+                        "BoundingBox": {
+                            "Width": 0.1268676072359085,
+                            "Top": 0.14018426835536957,
+                            "Left": 0.0003282368124928324,
+                            "Height": 0.7993982434272766
+                        },
+                        "Confidence": 99.46029663085938
+                    }
+                ],
+                "Confidence": 99.53411102294922,
+                "Parents": [],
+                "Name": "Person"
+            }
+        },
+        .
+        .   
+        .
+
+        {
+            "Timestamp": 166,
+            "Label": {
+                "Instances": [],
+                "Confidence": 73.6471176147461,
+                "Parents": [
+                    {
+                        "Name": "Clothing"
+                    }
+                ],
+                "Name": "Sleeve"
+            }
+        }
+        
+    ],
+    "LabelModelVersion": "2.0",
+    "JobStatus": "SUCCEEDED",
+    "VideoMetadata": {
+        "Format": "QuickTime / MOV",
+        "FrameRate": 23.976024627685547,
+        "Codec": "h264",
+        "DurationMillis": 5005,
+        "FrameHeight": 674,
+        "FrameWidth": 1280
+    }
 }
 ```

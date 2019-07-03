@@ -88,7 +88,6 @@ You can use the [DescribeCollection](API_DescribeCollection.md) operation to get
    
    import boto3
    from botocore.exceptions import ClientError
-   from os import environ
    
    if __name__ == "__main__":
    

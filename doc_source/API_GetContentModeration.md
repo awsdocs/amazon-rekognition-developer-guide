@@ -2,7 +2,7 @@
 
 Gets the content moderation analysis results for a Amazon Rekognition Video analysis started by [StartContentModeration](API_StartContentModeration.md)\.
 
-Content moderation analysis of a video is an asynchronous operation\. You start analysis by calling [StartContentModeration](API_StartContentModeration.md)\. which returns a job identifier \(`JobId`\)\. When analysis finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartContentModeration`\. To get the results of the content moderation analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetCelebrityDetection` and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityDetection`\. 
+Content moderation analysis of a video is an asynchronous operation\. You start analysis by calling [StartContentModeration](API_StartContentModeration.md) which returns a job identifier \(`JobId`\)\. When analysis finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartContentModeration`\. To get the results of the content moderation analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetContentModeration` and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. 
 
 For more information, see [Working with Stored Videos](video.md)\. 
 
@@ -69,6 +69,7 @@ Required: No
          "[Timestamp](API_ContentModerationDetection.md#rekognition-Type-ContentModerationDetection-Timestamp)": number
       }
    ],
+   "[ModerationModelVersion](#rekognition-GetContentModeration-response-ModerationModelVersion)": "string",
    "[NextToken](#rekognition-GetContentModeration-response-NextToken)": "string",
    "[StatusMessage](#rekognition-GetContentModeration-response-StatusMessage)": "string",
    "[VideoMetadata](#rekognition-GetContentModeration-response-VideoMetadata)": { 
@@ -96,6 +97,10 @@ Valid Values:` IN_PROGRESS | SUCCEEDED | FAILED`
  ** [ModerationLabels](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-ModerationLabels"></a>
 The detected moderation labels and the time\(s\) they were detected\.  
 Type: Array of [ContentModerationDetection](API_ContentModerationDetection.md) objects
+
+ ** [ModerationModelVersion](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-ModerationModelVersion"></a>
+Version number of the moderation detection model that was used to detect unsafe content\.  
+Type: String
 
  ** [NextToken](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-NextToken"></a>
 If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of moderation labels\.   
@@ -147,6 +152,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/GetContentModeration) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/GetContentModeration) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/GetContentModeration) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/rekognition-2016-06-27/GetContentModeration) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/GetContentModeration) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/GetContentModeration) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/GetContentModeration) 

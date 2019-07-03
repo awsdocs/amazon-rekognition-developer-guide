@@ -121,10 +121,10 @@ For more information, see [Searching for Faces Within a Collection](collections.
    
                                    
        faceMatches=response['FaceMatches']
-       print 'Matching faces'
+       print ('Matching faces')
        for match in faceMatches:
-               print 'FaceId:' + match['Face']['FaceId']
-               print 'Similarity: ' + "{:.2f}".format(match['Similarity']) + "%"
+               print ('FaceId:' + match['Face']['FaceId'])
+               print ('Similarity: ' + "{:.2f}".format(match['Similarity']) + "%")
                print
    ```
 

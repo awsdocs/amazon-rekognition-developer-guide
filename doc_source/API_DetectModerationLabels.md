@@ -30,6 +30,7 @@ The request accepts the following data in JSON format\.
 
  ** [Image](#API_DetectModerationLabels_RequestSyntax) **   <a name="rekognition-DetectModerationLabels-request-Image"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
+If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Images](images-information.md)\.  
 Type: [Image](API_Image.md) object  
 Required: Yes
 
@@ -50,7 +51,8 @@ Required: No
          "[Name](API_ModerationLabel.md#rekognition-Type-ModerationLabel-Name)": "string",
          "[ParentName](API_ModerationLabel.md#rekognition-Type-ModerationLabel-ParentName)": "string"
       }
-   ]
+   ],
+   "[ModerationModelVersion](#rekognition-DetectModerationLabels-response-ModerationModelVersion)": "string"
 }
 ```
 
@@ -61,8 +63,12 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [ModerationLabels](#API_DetectModerationLabels_ResponseSyntax) **   <a name="rekognition-DetectModerationLabels-response-ModerationLabels"></a>
-Array of detected Moderation labels and the time, in millseconds from the start of the video, they were detected\.  
+Array of detected Moderation labels and the time, in milliseconds from the start of the video, they were detected\.  
 Type: Array of [ModerationLabel](API_ModerationLabel.md) objects
+
+ ** [ModerationModelVersion](#API_DetectModerationLabels_ResponseSyntax) **   <a name="rekognition-DetectModerationLabels-response-ModerationModelVersion"></a>
+Version number of the moderation detection model that was used to detect unsafe content\.  
+Type: String
 
 ## Errors<a name="API_DetectModerationLabels_Errors"></a>
 
@@ -105,6 +111,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectModerationLabels) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DetectModerationLabels) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DetectModerationLabels) 
++  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/rekognition-2016-06-27/DetectModerationLabels) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DetectModerationLabels) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectModerationLabels) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectModerationLabels) 

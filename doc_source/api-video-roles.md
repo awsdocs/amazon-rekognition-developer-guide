@@ -8,7 +8,7 @@ To use the Amazon Rekognition Video API with stored videos, you have to configur
 + Give the example code read access to the Amazon S3 bucket that contains the stored video file\. 
 
 **Note**  
-The examples in this section create a new Amazon SNS topic by using the instructions that give Amazon Rekognition Video access to multiple topics\. If you want to use an existing Amazon SNS topic, use [Giving Access to an Existing Amazon SNS Topic](#api-video-roles-single-topics) for step 3\.
+The examples in this section create a new Amazon SNS topic by using the instructions that give Amazon Rekognition Video access to multiple topics\. If you want to use an existing Amazon SNS topic, use [Giving Access to an Existing Amazon SNS Topic](#api-video-roles-single-topics) for step 3\.<a name="configure-rekvid-procedure"></a>
 
 **To configure Amazon Rekognition Video**
 

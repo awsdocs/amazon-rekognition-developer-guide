@@ -35,12 +35,13 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
 
 1. [Give permission to the Amazon SNS topic to send messages to the Amazon SQS queue](https://docs.aws.amazon.com/sns/latest/dg/SendMessageToSQS.html#SendMessageToSQS.sqs.permissions)\.
 
-1. Upload an \.mp4, \.mov or \.avi format video file to your S3 Bucket\. For test purposes, upload a video that's no longer than 30 seconds in length\.
+1. Upload an MOV or MPEG\-4 format video file to your S3 Bucket\. For test purposes, upload a video that's no longer than 30 seconds in length\.
 
    For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 1. Use the following AWS SDK for Java code to detect labels in a video\. 
-   + Replace `topicArn`, `roleArn`, and `queueUrl` with the Amazon SNS topic ARN, IAM role ARN, and Amazon SQS queue URL that you previously noted\.
+   + Replace `topicArn` and `queueUrl` with the Amazon SNS topic ARN and the Amazon SQS queue URL that you previously noted\.
+   + Replace `roleArn` with the ARN of the IAM service role that you created in step 3 of [To configure Amazon Rekognition Video](api-video-roles.md#configure-rekvid-procedure)\.
    + Replace the values of `bucket` and `video` with the bucket and video file name that you specified in step 6\. 
 
 ------
@@ -74,9 +75,12 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
    import com.amazonaws.services.rekognition.model.GetLabelDetectionResult;
    import com.amazonaws.services.rekognition.model.GetPersonTrackingRequest;
    import com.amazonaws.services.rekognition.model.GetPersonTrackingResult;
+   import com.amazonaws.services.rekognition.model.Instance;
+   import com.amazonaws.services.rekognition.model.Label;
    import com.amazonaws.services.rekognition.model.LabelDetection;
    import com.amazonaws.services.rekognition.model.LabelDetectionSortBy;
    import com.amazonaws.services.rekognition.model.NotificationChannel;
+   import com.amazonaws.services.rekognition.model.Parent;
    import com.amazonaws.services.rekognition.model.PersonDetection;
    import com.amazonaws.services.rekognition.model.PersonMatch;
    import com.amazonaws.services.rekognition.model.PersonTrackingSortBy;
@@ -109,6 +113,7 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
        private static String queueUrl =  "";
        private static String topicArn="";
        private static String roleArn="";
+         
        private static AmazonSQS sqs = null;
        private static AmazonRekognition rek = null;
        
@@ -242,15 +247,36 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
    
                for (LabelDetection detectedLabel: detectedLabels) {
                    long seconds=detectedLabel.getTimestamp();
-                   System.out.print("Millisecond: " + Long.toString(seconds) + " ");
-                   System.out.println("\t" + detectedLabel.getLabel().getName() +
-                           "     \t" +
-                           detectedLabel.getLabel().getConfidence().toString());
+                   Label label=detectedLabel.getLabel();
+                   System.out.println("Millisecond: " + Long.toString(seconds) + " ");
+                   
+                   System.out.println("   Label:" + label.getName()); 
+                   System.out.println("   Confidence:" + detectedLabel.getLabel().getConfidence().toString());
+         
+                   List<Instance> instances = label.getInstances();
+                   System.out.println("   Instances of " + label.getName());
+                   if (instances.isEmpty()) {
+                       System.out.println("        " + "None");
+                   } else {
+                       for (Instance instance : instances) {
+                           System.out.println("        Confidence: " + instance.getConfidence().toString());
+                           System.out.println("        Bounding box: " + instance.getBoundingBox().toString());
+                       }
+                   }
+                   System.out.println("   Parent labels for " + label.getName() + ":");
+                   List<Parent> parents = label.getParents();
+                   if (parents.isEmpty()) {
+                       System.out.println("        None");
+                   } else {
+                       for (Parent parent : parents) {
+                           System.out.println("        " + parent.getName());
+                       }
+                   }
                    System.out.println();
                }
            } while (labelDetectionResult !=null && labelDetectionResult.getNextToken() != null);
    
-       }  
+       }    
    }
    ```
 
@@ -344,17 +370,30 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
                print(response['VideoMetadata']['FrameRate'])
    
                for labelDetection in response['Labels']:
-                   print(labelDetection['Label']['Name'])
-                   print(labelDetection['Label']['Confidence'])
-                   print(str(labelDetection['Timestamp']))
+                   label=labelDetection['Label']
    
-               if 'NextToken' in response:
-                   paginationToken = response['NextToken']
-               else:
-                   finished = True
+                   print("Timestamp: " + str(labelDetection['Timestamp']))
+                   print("   Label: " + label['Name'])
+                   print("   Confidence: " +  str(label['Confidence']))
+                   print("   Instances:")
+                   for instance in label['Instances']:
+                       print ("      Confidence: " + str(instance['Confidence']))
+                       print ("      Bounding box")
+                       print ("        Top: " + str(instance['BoundingBox']['Top']))
+                       print ("        Left: " + str(instance['BoundingBox']['Left']))
+                       print ("        Width: " +  str(instance['BoundingBox']['Width']))
+                       print ("        Height: " +  str(instance['BoundingBox']['Height']))
+                       print()
+                   print()
+                   print ("   Parents:")
+                   for parent in label['Parents']:
+                       print ("      " + parent['Name'])
+                   print ()
    
-   
-   
+                   if 'NextToken' in response:
+                       paginationToken = response['NextToken']
+                   else:
+                       finished = True
    
    
    if __name__ == "__main__":

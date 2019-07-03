@@ -95,7 +95,7 @@ You can provide the source and target images as an image byte array \(base64\-en
             BoundingBox position = face.getBoundingBox();
             System.out.println("Face at " + position.getLeft().toString()
                   + " " + position.getTop()
-                  + " matches with " + face.getConfidence().toString()
+                  + " matches with " + match.getSimilarity().toString()
                   + "% confidence.");
    
           }
@@ -103,8 +103,6 @@ You can provide the source and target images as an image byte array \(base64\-en
    
           System.out.println("There was " + uncompared.size()
                + " face(s) that did not match");
-          System.out.println("Source image rotation: " + compareFacesResult.getSourceImageOrientationCorrection());
-          System.out.println("target image rotation: " + compareFacesResult.getTargetImageOrientationCorrection());
       }
    }
    ```
@@ -150,11 +148,11 @@ You can provide the source and target images as an image byte array \(base64\-en
        
        for faceMatch in response['FaceMatches']:
            position = faceMatch['Face']['BoundingBox']
-           confidence = str(faceMatch['Face']['Confidence'])
+           similarity = str(faceMatch['Similarity'])
            print('The face at ' +
                   str(position['Left']) + ' ' +
                   str(position['Top']) +
-                  ' matches with ' + confidence + '% confidence')
+                  ' matches with ' + similarity + '% confidence')
    
        imageSource.close()
        imageTarget.close()
@@ -236,13 +234,12 @@ You can provide the source and target images as an image byte array \(base64\-en
                BoundingBox position = face.BoundingBox;
                Console.WriteLine("Face at " + position.Left
                      + " " + position.Top
-                     + " matches with " + face.Confidence
+                     + " matches with " + match.Similarity
                      + "% confidence.");
            }
    
            Console.WriteLine("There was " + compareFacesResponse.UnmatchedFaces.Count + " face(s) that did not match");
-           Console.WriteLine("Source image rotation: " + compareFacesResponse.SourceImageOrientationCorrection);
-           Console.WriteLine("Target image rotation: " + compareFacesResponse.TargetImageOrientationCorrection);
+   
        }
    }
    ```

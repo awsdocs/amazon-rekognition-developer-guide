@@ -108,24 +108,22 @@ You can provide an input image as an image byte array \(base64\-encoded image by
    if __name__ == "__main__":
    
        bucket='bucket'
-       photo='inputtext.jpg'
+       photo='text.png'
    
        client=boto3.client('rekognition')
    
      
        response=client.detect_text(Image={'S3Object':{'Bucket':bucket,'Name':photo}})
-   
                            
        textDetections=response['TextDetections']
-       print response
-       print 'Detected text'
+       print ('Detected text')
        for text in textDetections:
-               print 'Detected text:' + text['DetectedText']
-               print 'Confidence: ' + "{:.2f}".format(text['Confidence']) + "%"
-               print 'Id: {}'.format(text['Id'])
+               print ('Detected text:' + text['DetectedText'])
+               print ('Confidence: ' + "{:.2f}".format(text['Confidence']) + "%")
+               print ('Id: {}'.format(text['Id']))
                if 'ParentId' in text:
-                   print 'Parent Id: {}'.format(text['ParentId'])
-               print 'Type:' + text['Type']
+                   print ('Parent Id: {}'.format(text['ParentId']))
+               print ('Type:' + text['Type'])
                print
    ```
 
@@ -190,7 +188,7 @@ You can provide an input image as an image byte array \(base64\-encoded image by
 
 ## DetectText Operation Request<a name="detecttext-request"></a>
 
-In the `DetectText` operation, you supply an input image either as a byte64\-encoded byte array or as an image stored in an Amazon S3 bucket\. The following example JSON request shows the image loaded from an Amazon S3 bucket\.
+In the `DetectText` operation, you supply an input image either as a base64\-encoded byte array or as an image stored in an Amazon S3 bucket\. The following example JSON request shows the image loaded from an Amazon S3 bucket\.
 
 ```
 {
