@@ -19,6 +19,59 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
 1. Use the following examples to call the `DetectLabels` operation\.
 
 ------
+#### [ Ruby ]
+   ```
+    # Add to your Gemfile
+    # gem 'aws-sdk-rekognition'
+
+    require 'aws-sdk-rekognition'
+
+    credentials = Aws::Credentials.new(
+       ENV['AWS_ACCESS_KEY_ID'],
+       ENV['AWS_SECRET_ACCESS_KEY']
+    )
+
+    bucket = 'mybucket' # the bucketname without s3://
+    photo  = 'photo.png'# the name of file
+
+    client   = Aws::Rekognition::Client.new credentials: credentials
+
+    attrs = {
+      image: {
+        s3_object: {
+          bucket: bucket,
+          name: photo
+        },
+      },
+      max_labels: 10
+    }
+    response = client.detect_labels attrs
+
+    puts "Detected labels for: #{photo}"
+
+    response.labels.each do |label|
+      puts "Label:      #{label.name}"
+      puts "Confidence: #{label.confidence}"
+      puts "Instances:"
+      label['instances'].each do |instance|
+        box = instance['bounding_box']
+        puts "  Bounding box:"
+        puts "    Top:        #{box.top}"
+        puts "    Left:       #{box.left}"
+        puts "    Width:      #{box.width}"
+        puts "    Height:     #{box.height}"
+        puts "  Confidence: #{instance.confidence}"
+      end
+      puts "Parents:"
+      label.parents.each do |parent|
+        puts "  #{parent.name}"
+      end
+      puts "------------"
+      puts ""
+    end
+
+   ```
+------
 #### [ Java ]
 
    This example displays a list of labels that were detected in the input image\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in step 2\. 
