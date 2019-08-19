@@ -33,6 +33,59 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
 1. Use the following examples to call the `DetectLabels` operation\.
 
 ------
+#### [ Ruby ]
+
+   The following Ruby example shows how to load an image from the local file system and detect labels by using the [detectLabels](https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/Rekognition/Client.html#detect_labels-instance_method) AWS SDK operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
+
+
+   ```
+    # Add to your Gemfile
+    # gem 'aws-sdk-rekognition'
+
+    require 'aws-sdk-rekognition'
+
+    credentials = Aws::Credentials.new(
+       ENV['AWS_ACCESS_KEY_ID'],
+       ENV['AWS_SECRET_ACCESS_KEY']
+    )
+
+    client   = Aws::Rekognition::Client.new credentials: credentials
+
+    photo = 'photo.jpg'
+    path = File.expand_path(photo) # expand path relative to the current directory
+    file = File.read(path)
+    attrs = {
+      image: {
+        bytes: file
+      },
+      max_labels: 10
+    }
+    response = client.detect_labels attrs
+
+    puts "Detected labels for: #{photo}"
+
+    response.labels.each do |label|
+      puts "Label:      #{label.name}"
+      puts "Confidence: #{label.confidence}"
+      puts "Instances:"
+      label['instances'].each do |instance|
+        box = instance['bounding_box']
+        puts "  Bounding box:"
+        puts "    Top:        #{box.top}"
+        puts "    Left:       #{box.left}"
+        puts "    Width:      #{box.width}"
+        puts "    Height:     #{box.height}"
+        puts "  Confidence: #{instance.confidence}"
+      end
+      puts "Parents:"
+      label.parents.each do |parent|
+        puts "  #{parent.name}"
+      end
+      puts "------------"
+      puts ""
+    end
+   ```
+------
 #### [ Java ]
 
    The following Java example shows how to load an image from the local file system and detect labels by using the [detectLabels](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
@@ -232,6 +285,68 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
          .  PHP_EOL . PHP_EOL;
        }
    ?>
+   ```
+
+------
+#### [ NodeJs ]
+
+   The following NodeJs example shows how to load an image from the local file system and call the [detectLabels](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Rekognition.html#detectLabels-property) API operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\. 
+
+   ```
+    // Add to your package.json
+    // npm install aws-sdk --save-dev
+
+    const fs   = require('fs')
+    const path = require('path')
+    const AWS  = require('aws-sdk')
+
+    const photo     = 'photo.jpg' // the name of file
+    const client    = new AWS.Rekognition();
+    const file_path = path.resolve(__dirname,photo)
+    const file      = fs.readFileSync(file_path)
+    const buffer    = new Buffer(file)
+
+    const config = new AWS.Config({
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      region: process.env.AWS_REGION
+    })
+
+
+    const params = {
+      Image: {
+        Bytes: buffer
+      },
+      MaxLabels: 10
+    }
+    client.detectLabels(params, function(err, response) {
+      if (err) {
+        console.log(err, err.stack); // an error occurred
+      } else {
+        console.log(`Detected labels for: ${photo}`)
+
+        response.Labels.forEach(label => {
+          console.log(`Label:      ${label.Name}`)
+          console.log(`Confidence: ${label.Confidence}`)
+          console.log("Instances:")
+          label.Instances.forEach(instance => {
+            let box = instance.BoundingBox
+            console.log("  Bounding box:")
+            console.log(`    Top:        ${box.Top}`)
+            console.log(`    Left:       ${box.Left}`)
+            console.log(`    Width:      ${box.Width}`)
+            console.log(`    Height:     ${box.Height}`)
+            console.log(`  Confidence: ${instance.Confidence}`)
+          })
+          console.log("Parents:")
+          label.Parents.forEach(parent => {
+            console.log(`  ${parent.Name}`)
+          })
+          console.log("------------")
+          console.log("")
+        }) // for response.labels
+      } // if
+    });
    ```
 
 ------
