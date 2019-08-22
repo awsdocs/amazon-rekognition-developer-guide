@@ -1,6 +1,6 @@
 # Exercise 2: Analyze Faces in an Image \(Console\)<a name="detect-faces-console"></a>
 
-This section shows you how to use the Amazon Rekognition console to detect faces and analyze facial attributes in an image\. When you provide an image that contains a face as input, the service detects the face in the image, analyzes the facial attributes of the face, and then returns a percent confidence score for the face and the facial attributes detected in the image\. For more information, see [Amazon Rekognition: How It Works](how-it-works.md)\.
+This section shows you how to use the Amazon Rekognition console to detect faces and analyze facial attributes in an image\. When you provide an image that contains a face as input, the service detects the face in the image, analyzes the facial attributes of the face, and then returns a percent confidence score for the face and the facial attributes detected in the image\. For more information, see [How Amazon Rekognition Works](how-it-works.md)\.
 
 For example, if you choose the following sample image as input, Amazon Rekognition detects it as a face and returns confidence scores for the face and the facial attributes detected\.
 

@@ -33,7 +33,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 1. Run the following AWS CLI command to start detecting labels in a video\.
 
    ```
-   aws rekognition start-label-detection --video "S3Object={Bucket="bucketname",Name="videofile"}" \
+   aws rekognition start-label-detection --video "S3Object={Bucket=bucketname,Name=videofile}" \
    --endpoint-url Endpoint \
    --notification-channel "SNSTopicArn=TopicARN,RoleArn=RoleARN" \
    --region us-east-1 \
@@ -42,7 +42,8 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 
    Update the following values:
    + Change `bucketname` and `videofile` to the Amazon S3 bucket name and file name that you specified in step 6\.
-   + Change `Endpoint` and `us-east-1` to the AWS endpoint and region that you're using\.
+   + Change `Endpoint` to the AWS endpoint that you're using\.
+   + Change `us-east-1` to the AWS region that you're using\.
    + Change `TopicARN` to the ARN of the Amazon SNS topic you created in step 2 of the previous procedure\.
    + Change `RoleARN` to the ARN of the IAM role you created in step 1 of the previous procedure\.
    + Change `RekognitionUser` to an AWS account that has permissions to call Amazon Rekognition Video operations\.

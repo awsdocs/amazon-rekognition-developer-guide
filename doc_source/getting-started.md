@@ -1,6 +1,6 @@
 # Getting Started with Amazon Rekognition<a name="getting-started"></a>
 
-This section provides topics to get you started using Amazon Rekognition\. If you're new to Amazon Rekognition, we recommend that you first review the concepts and terminology presented in [Amazon Rekognition: How It Works](how-it-works.md)\. 
+This section provides topics to get you started using Amazon Rekognition\. If you're new to Amazon Rekognition, we recommend that you first review the concepts and terminology presented in [How Amazon Rekognition Works](how-it-works.md)\. 
 
 **Topics**
 + [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md)

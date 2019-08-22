@@ -1,6 +1,6 @@
 # ModerationLabel<a name="API_ModerationLabel"></a>
 
-Provides information about a single type of moderated content found in an image or video\. Each type of moderated content has a label within a hierarchical taxonomy\. For more information, see [Detecting Unsafe Content](moderation.md)\.
+Provides information about a single type of unsafe content found in an image or video\. Each type of moderated content has a label within a hierarchical taxonomy\. For more information, see [Detecting Unsafe Content](moderation.md)\.
 
 ## Contents<a name="API_ModerationLabel_Contents"></a>
 
@@ -12,7 +12,7 @@ Valid Range: Minimum value of 0\. Maximum value of 100\.
 Required: No
 
  **Name**   <a name="rekognition-Type-ModerationLabel-Name"></a>
-The label name for the type of content detected in the image\.  
+The label name for the type of unsafe content detected in the image\.  
 Type: String  
 Required: No
 

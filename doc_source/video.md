@@ -24,7 +24,7 @@ You can use Amazon Rekognition Video to analyze videos for the following informa
 + [Celebrities](celebrities.md)
 + [Suggestive and explicit adult content](moderation.md)
 
-For more information, see [Amazon Rekognition: How It Works](how-it-works.md)\.
+For more information, see [How Amazon Rekognition Works](how-it-works.md)\.
 
 ## Amazon Rekognition Video API Overview<a name="video-api-overview"></a>
 

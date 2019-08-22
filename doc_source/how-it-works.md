@@ -1,8 +1,8 @@
-# Amazon Rekognition: How It Works<a name="how-it-works"></a>
+# How Amazon Rekognition Works<a name="how-it-works"></a>
 
-Amazon Rekognition provides two API sets\. They are Amazon Rekognition Image, for analyzing images, and Amazon Rekognition Video, for analyzing videos\.
+Amazon Rekognition provides two API sets\. You use Amazon Rekognition Image for analyzing images, and Amazon Rekognition Video for analyzing videos\.
 
-Both API perform detection and recognition analysis of images and videos to provide insights you can use in your applications\. For example, you could use Amazon Rekognition Image to enhance the customer experience for a photo management application\. When a customer uploads a photo, your application can use Amazon Rekognition Image to detect real\-world objects or faces in the image\. After your application stores the information returned from Amazon Rekognition Image, the user could then query their photo collection for photos with a specific object or face\. Deeper querying is possible\. For example, the user could query for faces that are smiling or query for faces that are a certain age\.
+Both APIs perform detection and recognition analysis of images and videos to provide insights you can use in your applications\. For example, you could use Amazon Rekognition Image to enhance the customer experience for a photo management application\. When a customer uploads a photo, your application can use Amazon Rekognition Image to detect real\-world objects or faces in the image\. After your application stores the information returned from Amazon Rekognition Image, the user could then query their photo collection for photos with a specific object or face\. Deeper querying is possible\. For example, the user could query for faces that are smiling or query for faces that are a certain age\.
 
 You can use Amazon Rekognition Video to track the path of people in a stored video\. Alternatively, you can use Amazon Rekognition Video to search a streaming video for persons whose facial descriptions match facial descriptions already stored by Amazon Rekognition\. 
 

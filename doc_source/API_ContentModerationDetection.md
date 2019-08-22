@@ -1,16 +1,16 @@
 # ContentModerationDetection<a name="API_ContentModerationDetection"></a>
 
-Information about a moderation label detection in a stored video\.
+Information about an unsafe content label detection in a stored video\.
 
 ## Contents<a name="API_ContentModerationDetection_Contents"></a>
 
  **ModerationLabel**   <a name="rekognition-Type-ContentModerationDetection-ModerationLabel"></a>
-The moderation label detected by in the stored video\.  
+The unsafe content label detected by in the stored video\.  
 Type: [ModerationLabel](API_ModerationLabel.md) object  
 Required: No
 
  **Timestamp**   <a name="rekognition-Type-ContentModerationDetection-Timestamp"></a>
-Time, in milliseconds from the beginning of the video, that the moderation label was detected\.  
+Time, in milliseconds from the beginning of the video, that the unsafe content label was detected\.  
 Type: Long  
 Required: No
 

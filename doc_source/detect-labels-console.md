@@ -183,7 +183,7 @@ Response
 }
 ```
 
-For more information, see [Amazon Rekognition: How It Works](how-it-works.md)\.
+For more information, see [How Amazon Rekognition Works](how-it-works.md)\.
 
 ## Detect Objects and Scenes in an Image You Provide<a name="detect-label-own-image"></a>
 

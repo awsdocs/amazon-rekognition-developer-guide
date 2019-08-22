@@ -1,8 +1,8 @@
-# Detecting Unsafe Images \(API\)<a name="procedure-moderate-images"></a>
+# Detecting Unsafe Images<a name="procedure-moderate-images"></a>
 
-You can use the [DetectModerationLabels](API_DetectModerationLabels.md) operation to determine if an image contains explicit or suggestive adult content\. 
+You can use the [DetectModerationLabels](API_DetectModerationLabels.md) operation to determine if an image contains unsafe content\. 
 
-## Detecting Unsafe Content in an Image \(SDK\)<a name="moderate-images-sdk"></a>
+## Detecting Unsafe Content in an Image<a name="moderate-images-sdk"></a>
 
 The image must be in either a \.jpg or a \.png format\. You can provide the input image as an image byte array \(base64\-encoded image bytes\), or specify an Amazon S3 object\. In these procedures, you upload an image \(\.jpg or \.png\) to your S3 bucket\.
 
@@ -27,7 +27,7 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
 ------
 #### [ Java ]
 
-   This example outputs detected moderation label names, confidence levels, and the parent label for detected moderation labels\.
+   This example outputs detected unsafe content label names, confidence levels, and the parent label for detected moderation labels\.
 
    Replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
@@ -94,7 +94,7 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
 ------
 #### [ Python ]
 
-   This example outputs detected moderation label names, confidence levels, and the parent label for detected moderation labels\.
+   This example outputs detected unsafe content label names, confidence levels, and the parent label for detected unsafe content labels\.
 
    Replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
@@ -121,7 +121,7 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
 ------
 #### [ \.NET ]
 
-   This example outputs detected moderation label names, confidence levels, and the parent label for detected moderation labels\.
+   This example outputs detected unsafe content label names, confidence levels, and the parent label for detected moderation labels\.
 
    Replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
@@ -194,7 +194,7 @@ The input to `DetectModerationLabels` is an image\. In this example JSON input, 
  `DetectModerationLabels` can retrieve input images from an S3 bucket, or you can provide them as image bytes\. The following example is the response from a call to `DetectModerationLabels`\.
 
 In the following example JSON response, note the following:
-+ **Unsafe Image Detection information** – The example shows a list of moderation labels for explicit or suggestive content found in the image\. The list includes the top\-level label and each second\-level label that are detected in the image\.
++ **Unsafe Image Detection information** – The example shows a list of labels for unsafe content found in the image\. The list includes the top\-level label and each second\-level label that are detected in the image\.
 
   **Label** – Each label has a name, an estimation of the confidence that Amazon Rekognition has that the label is accurate, and the name of its parent label\. The parent name for a top\-level label is `""`\.
 

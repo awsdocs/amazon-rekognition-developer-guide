@@ -1,10 +1,12 @@
 # Document History for Amazon Rekognition<a name="document-history"></a>
 
 The following table describes important changes in each release of the *Amazon Rekognition Developer Guide*\. For notification about updates to this documentation, you can subscribe to an RSS feed\. 
-+ **Latest documentation update:** November 19th, 2018
++ **Latest documentation update:** August 16th, 2019
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Ruby and Node\.js examples added](#document-history) | Amazon Rekognition Image Ruby and Node\.js examples added for synchronous label and face detection\.  | August 19, 2019 | 
+| [Unsafe content detection updated](#document-history) | Amazon Rekognition unsafe content detection can now detect violent content\.  | August 9, 2019 | 
 | [GetContentModeration operation updated](#document-history) | GetContentModeration now returns the version of the moderation detection model used to detect unsafe content\.  | February 13, 2019 | 
 | [GetLabelDetection and DetectModerationLabels operations updated](#document-history) | GetLabelDetection now returns bounding box information for common objects and a hierarchical taxonomy of detected labels\. The version of the model used for label detection is now returned\. DetectModerationLabels now returns the version of the model used for detecting unsafe content\.  | January 17, 2019 | 
 | [DetectFaces and IndexFaces operation updated](#document-history) | This release updates the DetectFaces and IndexFaces operation\. When the Attributes input parameter is set to ALL, the face location landmarks includes 5 new landmarks: upperJawlineLeft, midJawlineLeft, chinBottom, midJawlineRight, upperJawlineRight\.  | November 19, 2018 | 

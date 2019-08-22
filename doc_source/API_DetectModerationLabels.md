@@ -1,6 +1,6 @@
 # DetectModerationLabels<a name="API_DetectModerationLabels"></a>
 
-Detects explicit or suggestive adult content in a specified JPEG or PNG format image\. Use `DetectModerationLabels` to moderate images depending on your requirements\. For example, you might want to filter images that contain nudity, but not images containing suggestive content\.
+Detects unsafe content in a specified JPEG or PNG format image\. Use `DetectModerationLabels` to moderate images depending on your requirements\. For example, you might want to filter images that contain nudity, but not images containing suggestive content\.
 
 To filter images, use the labels returned by `DetectModerationLabels` to determine which types of content are appropriate\.
 

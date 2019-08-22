@@ -35,7 +35,7 @@ Valid Range: Minimum value of 0\. Maximum value of 100\.
 Required: No
 
  **Emotions**   <a name="rekognition-Type-FaceDetail-Emotions"></a>
-The emotions detected on the face, and the confidence level in the determination\. For example, HAPPY, SAD, and ANGRY\.   
+The emotions that appear to be expressed on the face, and the confidence level in the determination\. The API is only making a determination of the physical appearance of a person's face\. It is not a determination of the person’s internal emotional state and should not be used in such a way\. For example, a person pretending to have a sad face might not be sad emotionally\.  
 Type: Array of [Emotion](API_Emotion.md) objects  
 Required: No
 

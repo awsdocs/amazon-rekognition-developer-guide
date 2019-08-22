@@ -55,7 +55,7 @@ The following examples show how to display a bounding box around faces that are 
 ------
 #### [ Java ]
 
-   The following Java example shows how to load an image from the local file system and detect labels by using the [detectLabels](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. In the function `main`, change the value of `bucket` to the S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\.
+   The following Java example shows how to load an image from an Amazon S3 bucket and detect labels by using the [detectLabels](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. In the function `main`, change the value of `bucket` to the S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\.
 
    ```
    //Loads images, detects faces and draws bounding boxes.Determines exif orientation, if necessary.
@@ -185,7 +185,7 @@ The following examples show how to display a bounding box around faces that are 
 ------
 #### [ Python ]
 
-   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_faces](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_faces) operation\. Change the value of `bucket` to the S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\. 
+   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from an Amazon S3 bucket and call the [detect\_faces](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_faces) operation\. Change the value of `bucket` to the S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\. 
 
    ```
    import boto3

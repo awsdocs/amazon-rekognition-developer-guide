@@ -14,7 +14,7 @@ For information about Transactions Per Second \(TPS\) limits, see [AWS Service L
 + The maximum matching faces the search API returns is 4096\.
 + DetectText can detect up to 50 words in an image\.
 
-For best practice information about images and facial recognition, see [Best practices for Sensors, Input Images and Videos](best-practices.md)\.
+For best practice information about images and facial recognition, see [Best Practices for Sensors, Input Images, and Videos](best-practices.md)\.
 
 ## Amazon Rekognition Video Stored Video<a name="limits-vstored-video"></a>
 + Amazon Rekognition Video can analyze stored videos up to 8GB in size\.

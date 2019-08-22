@@ -1,6 +1,6 @@
 # Model Versioning<a name="face-detection-model"></a>
 
-Amazon Rekognition uses deep learning models to perform face detection and to search for faces in collections\. It continues to improve the accuracy of its models based on customer feedback and advances in deep learning research\. These improvements are shipped as model updates\. For example, with version 1\.0 of the model, [IndexFaces](API_IndexFaces.md) can index the 15 largest faces in an image\. Later versions of the model allow `IndexFaces` to index the 100 largest faces in an image\.
+Amazon Rekognition uses deep learning models to perform face detection and to search for faces in collections\. It continues to improve the accuracy of its models based on customer feedback and advances in deep learning research\. These improvements are shipped as model updates\. For example, with version 1\.0 of the model, [IndexFaces](API_IndexFaces.md) can index the 15 largest faces in an image\. Later versions of the model enable `IndexFaces` to index the 100 largest faces in an image\.
 
 When you create a new collection, it's associated with the most recent version of the model\. To improve accuracy, the model is occasionally updated\.
 

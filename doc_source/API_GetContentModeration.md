@@ -1,12 +1,12 @@
 # GetContentModeration<a name="API_GetContentModeration"></a>
 
-Gets the content moderation analysis results for a Amazon Rekognition Video analysis started by [StartContentModeration](API_StartContentModeration.md)\.
+Gets the unsafe content analysis results for a Amazon Rekognition Video analysis started by [StartContentModeration](API_StartContentModeration.md)\.
 
-Content moderation analysis of a video is an asynchronous operation\. You start analysis by calling [StartContentModeration](API_StartContentModeration.md) which returns a job identifier \(`JobId`\)\. When analysis finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartContentModeration`\. To get the results of the content moderation analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetContentModeration` and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. 
+Unsafe content analysis of a video is an asynchronous operation\. You start analysis by calling [StartContentModeration](API_StartContentModeration.md) which returns a job identifier \(`JobId`\)\. When analysis finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartContentModeration`\. To get the results of the unsafe content analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetContentModeration` and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. 
 
 For more information, see [Working with Stored Videos](video.md)\. 
 
- `GetContentModeration` returns detected content moderation labels, and the time they are detected, in an array, `ModerationLabels`, of [ContentModerationDetection](API_ContentModerationDetection.md) objects\. 
+ `GetContentModeration` returns detected unsafe content labels, and the time they are detected, in an array, `ModerationLabels`, of [ContentModerationDetection](API_ContentModerationDetection.md) objects\. 
 
 By default, the moderated labels are returned sorted by time, in milliseconds from the start of the video\. You can also sort them by moderated label by specifying `NAME` for the `SortBy` input parameter\. 
 
@@ -30,7 +30,7 @@ For more information, see [Detecting Unsafe Content](moderation.md)\.
 The request accepts the following data in JSON format\.
 
  ** [JobId](#API_GetContentModeration_RequestSyntax) **   <a name="rekognition-GetContentModeration-request-JobId"></a>
-The identifier for the content moderation job\. Use `JobId` to identify the job in a subsequent call to `GetContentModeration`\.  
+The identifier for the unsafe content job\. Use `JobId` to identify the job in a subsequent call to `GetContentModeration`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
@@ -43,7 +43,7 @@ Valid Range: Minimum value of 1\.
 Required: No
 
  ** [NextToken](#API_GetContentModeration_RequestSyntax) **   <a name="rekognition-GetContentModeration-request-NextToken"></a>
-If the previous response was incomplete \(because there is more data to retrieve\), Amazon Rekognition returns a pagination token in the response\. You can use this pagination token to retrieve the next set of content moderation labels\.  
+If the previous response was incomplete \(because there is more data to retrieve\), Amazon Rekognition returns a pagination token in the response\. You can use this pagination token to retrieve the next set of unsafe content labels\.  
 Type: String  
 Length Constraints: Maximum length of 255\.  
 Required: No
@@ -90,12 +90,12 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [JobStatus](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-JobStatus"></a>
-The current status of the content moderation job\.  
+The current status of the unsafe content analysis job\.  
 Type: String  
 Valid Values:` IN_PROGRESS | SUCCEEDED | FAILED` 
 
  ** [ModerationLabels](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-ModerationLabels"></a>
-The detected moderation labels and the time\(s\) they were detected\.  
+The detected unsafe content labels and the time\(s\) they were detected\.  
 Type: Array of [ContentModerationDetection](API_ContentModerationDetection.md) objects
 
  ** [ModerationModelVersion](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-ModerationModelVersion"></a>
@@ -103,7 +103,7 @@ Version number of the moderation detection model that was used to detect unsafe 
 Type: String
 
  ** [NextToken](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-NextToken"></a>
-If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of moderation labels\.   
+If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of unsafe content labels\.   
 Type: String  
 Length Constraints: Maximum length of 255\.
 

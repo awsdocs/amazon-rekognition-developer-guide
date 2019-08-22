@@ -1,6 +1,6 @@
 # Detecting Unsafe Stored Videos<a name="procedure-moderate-videos"></a>
 
-Amazon Rekognition Video unsafe content detection in stored videos is an asynchronous operation\. To started detecting unsafe content, call [StartContentModeration](API_StartContentModeration.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is succesful, call [GetContentModeration](API_GetContentModeration.md) to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video Operations](api-video.md)\.
+Amazon Rekognition Video unsafe content detection in stored videos is an asynchronous operation\. To started detecting unsafe content, call [StartContentModeration](API_StartContentModeration.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is successful, call [GetContentModeration](API_GetContentModeration.md) to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video Operations](api-video.md)\.
 
  This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), which uses an Amazon Simple Queue Service queue to get the completion status of a video analysis request\.
 
@@ -165,7 +165,7 @@ If you've already run a video example other than [Analyzing a Video Stored in an
 
 ## GetContentModeration Operation Response<a name="getcontentmoderation-operationresponse"></a>
 
-The response from `GetContentModeration` is an array, `ModerationLabels`, of [ContentModerationDetection](API_ContentModerationDetection.md) objects\. The array contains an element for each time a moderation label is detected\. Within a `ContentModerationDetectionObject` object, [ModerationLabel](API_ModerationLabel.md) contains information for a detected item of suggestive or adult content\. `Timestamp` is the time, in milliseconds from the start of the video, when the label was detected\. The labels are organized hierarchically in the same manner as the moderation labels detected by image analysis\. For more information, see [Detecting Unsafe Content](moderation.md)\.
+The response from `GetContentModeration` is an array, `ModerationLabels`, of [ContentModerationDetection](API_ContentModerationDetection.md) objects\. The array contains an element for each time an unsafe content label is detected\. Within a `ContentModerationDetectionObject` object, [ModerationLabel](API_ModerationLabel.md) contains information for a detected item of unsafe content\. `Timestamp` is the time, in milliseconds from the start of the video, when the label was detected\. The labels are organized hierarchically in the same manner as the labels detected by unsafe content image analysis\. For more information, see [Detecting Unsafe Content](moderation.md)\.
 
 The following is an example response from `GetContentModeration`\.
 
