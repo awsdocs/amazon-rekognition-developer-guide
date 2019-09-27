@@ -1,10 +1,12 @@
 # Document History for Amazon Rekognition<a name="document-history"></a>
 
 The following table describes important changes in each release of the *Amazon Rekognition Developer Guide*\. For notification about updates to this documentation, you can subscribe to an RSS feed\. 
-+ **Latest documentation update:** August 16th, 2019
++ **Latest documentation update:** September 12th, 2019
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Amazon Rekognition now supports AWS PrivateLink](#document-history) | With AWS PrivateLink you can establish a private connection between your VPC and Amazon Rekognition\.  | September 12, 2019 | 
+| [Amazon Rekognition Video examples updated](#document-history) | Amazon Rekognition Video example code updated to create and configure the Amazon SNS topic and Amazon SQS queue\.  | September 5, 2019 | 
 | [Ruby and Node\.js examples added](#document-history) | Amazon Rekognition Image Ruby and Node\.js examples added for synchronous label and face detection\.  | August 19, 2019 | 
 | [Unsafe content detection updated](#document-history) | Amazon Rekognition unsafe content detection can now detect violent content\.  | August 9, 2019 | 
 | [GetContentModeration operation updated](#document-history) | GetContentModeration now returns the version of the moderation detection model used to detect unsafe content\.  | February 13, 2019 | 

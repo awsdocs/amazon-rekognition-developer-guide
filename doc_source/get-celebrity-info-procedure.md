@@ -80,20 +80,29 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
    
    import boto3
    
-   if __name__ == "__main__":
+   def get_celebrity_info(id):
    
-       id="nnnnnnnn"
-       
+    
        client=boto3.client('rekognition')
    
        #Display celebrity info
        print('Getting celebrity info for celebrity: ' + id)
+       
        response=client.get_celebrity_info(Id=id)
    
        print (response['Name'])  
        print ('Further information (if available):')
        for url in response['Urls']:
-           print (url)
+           print (url) 
+   
+   def main():
+       id="nnnnnnnn"
+       celebrity_info=get_celebrity_info(id)
+   
+   
+   
+   if __name__ == "__main__":
+       main()
    ```
 
 ------

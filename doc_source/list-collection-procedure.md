@@ -83,29 +83,39 @@ For more information, see [Managing Collections](collections.md#managing-collect
    
    import boto3
    
-   if __name__ == "__main__":
+   def list_collections():
    
-       maxResults=2
+       max_results=2
        
        client=boto3.client('rekognition')
    
        #Display all the collections
        print('Displaying collections...')
-       response=client.list_collections(MaxResults=maxResults)
-   
-       while True:
+       response=client.list_collections(MaxResults=max_results)
+       collection_count=0
+       done=False
+       
+       while done==False:
            collections=response['CollectionIds']
    
            for collection in collections:
                print (collection)
+               collection_count+=1
            if 'NextToken' in response:
                nextToken=response['NextToken']
-               response=client.list_collections(NextToken=nextToken,MaxResults=maxResults)
+               response=client.list_collections(NextToken=nextToken,MaxResults=max_results)
                
            else:
-               break
+               done=True
    
-       print('done...')
+       return collection_count   
+   
+   def main():
+   
+       collection_count=list_collections()
+       print("collections: " + str(collection_count))
+   if __name__ == "__main__":
+       main()
    ```
 
 ------

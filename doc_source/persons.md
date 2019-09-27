@@ -18,83 +18,87 @@ The following procedure shows how to track the path of people through a video st
 #### [ Java ]
 
    ```
-   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+          //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+          //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
-       //Persons========================================================================
-       private static void StartPersons(String bucket, String video) throws Exception{
-          
-          int maxResults=10;
-          String paginationToken=null;
-          
-       StartPersonTrackingRequest req = new StartPersonTrackingRequest()
-               .withVideo(new Video()
-                       .withS3Object(new S3Object()
-                           .withBucket(bucket)
-                           .withName(video)))
-               .withNotificationChannel(channel);
-                              
+           //Persons========================================================================
+           private static void StartPersonDetection(String bucket, String video) throws Exception{
+               
+               
+               NotificationChannel channel= new NotificationChannel()
+                       .withSNSTopicArn(snsTopicArn)
+                       .withRoleArn(roleArn);
+               
+            StartPersonTrackingRequest req = new StartPersonTrackingRequest()
+                    .withVideo(new Video()
+                            .withS3Object(new S3Object()
+                                .withBucket(bucket)
+                                .withName(video)))
+                    .withNotificationChannel(channel);
+                                   
+                
+               
+            StartPersonTrackingResult startPersonDetectionResult = rek.startPersonTracking(req);
+            startJobId=startPersonDetectionResult.getJobId();
+               
+           } 
            
-          
-       StartPersonTrackingResult startPersonDetectionResult = rek.startPersonTracking(req);
-       startJobId=startPersonDetectionResult.getJobId();
-          
-      } 
-      
-      private static void GetResultsPersons() throws Exception{
-          int maxResults=10;
-          String paginationToken=null;
-          GetPersonTrackingResult personTrackingResult=null;
-          
-          do{
-              if (personTrackingResult !=null){
-                  paginationToken = personTrackingResult.getNextToken();
-              }
-              
-              personTrackingResult = rek.getPersonTracking(new GetPersonTrackingRequest()
-                   .withJobId(startJobId)
-                   .withNextToken(paginationToken)
-                   .withSortBy(PersonTrackingSortBy.TIMESTAMP)
-                   .withMaxResults(maxResults));
-        
-              VideoMetadata videoMetaData=personTrackingResult.getVideoMetadata();
-                  
-              System.out.println("Format: " + videoMetaData.getFormat());
-              System.out.println("Codec: " + videoMetaData.getCodec());
-              System.out.println("Duration: " + videoMetaData.getDurationMillis());
-              System.out.println("FrameRate: " + videoMetaData.getFrameRate());
-                  
-                  
-              //Show persons, confidence and detection times
-              List<PersonDetection> detectedPersons= personTrackingResult.getPersons();
-           
-              for (PersonDetection detectedPerson: detectedPersons) { 
-                  
-                 long seconds=detectedPerson.getTimestamp()/1000;
-                 System.out.print("Sec: " + Long.toString(seconds) + " ");
-                 System.out.println("Person Identifier: "  + detectedPerson.getPerson().getIndex());
-                    System.out.println();             
-              }
-          }  while (personTrackingResult !=null && personTrackingResult.getNextToken() != null);
-          
-      }
+           private static void GetPersonDetectionResults() throws Exception{
+               int maxResults=10;
+               String paginationToken=null;
+               GetPersonTrackingResult personTrackingResult=null;
+               
+               do{
+                   if (personTrackingResult !=null){
+                       paginationToken = personTrackingResult.getNextToken();
+                   }
+                   
+                   personTrackingResult = rek.getPersonTracking(new GetPersonTrackingRequest()
+                        .withJobId(startJobId)
+                        .withNextToken(paginationToken)
+                        .withSortBy(PersonTrackingSortBy.TIMESTAMP)
+                        .withMaxResults(maxResults));
+             
+                   VideoMetadata videoMetaData=personTrackingResult.getVideoMetadata();
+                       
+                   System.out.println("Format: " + videoMetaData.getFormat());
+                   System.out.println("Codec: " + videoMetaData.getCodec());
+                   System.out.println("Duration: " + videoMetaData.getDurationMillis());
+                   System.out.println("FrameRate: " + videoMetaData.getFrameRate());
+                       
+                       
+                   //Show persons, confidence and detection times
+                   List<PersonDetection> detectedPersons= personTrackingResult.getPersons();
+                
+                   for (PersonDetection detectedPerson: detectedPersons) { 
+                       
+                      long seconds=detectedPerson.getTimestamp()/1000;
+                      System.out.print("Sec: " + Long.toString(seconds) + " ");
+                      System.out.println("Person Identifier: "  + detectedPerson.getPerson().getIndex());
+                         System.out.println();             
+                   }
+               }  while (personTrackingResult !=null && personTrackingResult.getNextToken() != null);
+               
+           }
    ```
 
-   2a\. In the function `main`, replace the line: 
+   In the function `main`, replace the lines: 
 
-    `StartLabels(bucket,video);` 
-
-   with:
-
-    `StartPersons(bucket,video);` 
-
-   2b\. Replace the line: 
-
-   `GetResultsLabels();`
+   ```
+           StartLabelDetection(bucket, video);
+   
+           if (GetSQSMessageSuccess()==true)
+           	GetLabelDetectionResults();
+   ```
 
    with:
 
-   `GetResultsPersons();`
+   ```
+           StartPersonDetection(bucket, video);
+   
+           if (GetSQSMessageSuccess()==true)
+           	GetPersonDetectionResults();
+   ```
 
 ------
 #### [ Python ]
@@ -103,20 +107,29 @@ The following procedure shows how to track the path of people through a video st
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
    #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
-       def GetResultsPersons(self, jobId):
+       # ============== People pathing ===============  
+       def StartPersonPathing(self):
+           response=self.rek.start_person_tracking(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
+               NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.snsTopicArn})
+   
+           self.startJobId=response['JobId']
+           print('Start Job Id: ' + self.startJobId)
+       
+       def GetPersonPathingResults(self):
            maxResults = 10
            paginationToken = ''
            finished = False
    
            while finished == False:
-               response = self.rek.get_person_tracking(JobId=jobId,
+               response = self.rek.get_person_tracking(JobId=self.startJobId,
                                                MaxResults=maxResults,
                                                NextToken=paginationToken)
    
-               print(response['VideoMetadata']['Codec'])
-               print(str(response['VideoMetadata']['DurationMillis']))
-               print(response['VideoMetadata']['Format'])
-               print(response['VideoMetadata']['FrameRate'])
+               print('Codec: ' + response['VideoMetadata']['Codec'])
+               print('Duration: ' + str(response['VideoMetadata']['DurationMillis']))
+               print('Format: ' + response['VideoMetadata']['Format'])
+               print('Frame rate: ' + str(response['VideoMetadata']['FrameRate']))
+               print()
    
                for personDetection in response['Persons']:
                    print('Index: ' + str(personDetection['Person']['Index']))
@@ -129,35 +142,25 @@ The following procedure shows how to track the path of people through a video st
                    finished = True
    ```
 
-   2a\. In the function `main`, replace the line:
+   In the function `main`, replace the lines:
 
    ```
-           response = self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
-                                            NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.topicArn})
-   ```
-
-   with:
-
-   ```
-           response = self.rek.start_person_tracking(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
-               NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
-   ```
-
-   2b\. Replace the line:
-
-   ```
-                           self.GetResultsLabels(rekMessage['JobId'])
+       analyzer.StartLabelDetection()
+       if analyzer.GetSQSMessageSuccess()==True:
+           analyzer.GetLabelDetectionResults()
    ```
 
    with:
 
    ```
-                           self.GetResultsPersons(rekMessage['JobId'])
+       analyzer.StartPersonPathing()
+       if analyzer.GetSQSMessageSuccess()==True:
+           analyzer.GetPersonPathingResults()
    ```
 
 ------
 **Note**  
-If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the function name to replace is different\.
+If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the code to replace might be different\.
 
 1. Run the code\. The unique identifiers for tracked people are shown along with the time, in seconds, the people's paths were tracked\.
 

@@ -123,8 +123,8 @@ To run this procedure, you need an image file that contains one or more celebrit
    import boto3
    import json
    
-   if __name__ == "__main__":
-       photo='moviestars.jpg'
+   def recognize_celebrities(photo):
+   
        
        client=boto3.client('rekognition')
    
@@ -142,6 +142,17 @@ To run this procedure, you need an image file that contains one or more celebrit
            for url in celebrity['Urls']:
                print ('   ' + url)
            print
+       return len(response['CelebrityFaces'])
+   
+   def main():
+       photo='moviestars.jpg'
+   
+       celeb_count=recognize_celebrities(photo)
+       print("Celebrities detected: " + str(celeb_count))
+   
+   
+   if __name__ == "__main__":
+       main()
    ```
 
 ------

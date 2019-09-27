@@ -23,4 +23,4 @@ The `ModerationLabel` array contains labels in the preceding categories, and an 
 Amazon Rekognition Image and Amazon Rekognition Video both return the version of the moderation detection model that is used to detect unsafe content \(`ModerationModelVersion`\)\. 
 
 **Note**  
-Amazon Rekognition isn't an authority on, and doesn't in any way claim to be an exhaustive filter of, unsafe content\. Additionally, the image and video moderation APIs don't detect whether an image includes illegal content \(such as child pornography\) or unnatural adult content\.
+Amazon Rekognition isn't an authority on, and doesn't in any way claim to be an exhaustive filter of, unsafe content\. Additionally, the image and video moderation APIs don't detect whether an image includes illegal content, such as child pornography\.

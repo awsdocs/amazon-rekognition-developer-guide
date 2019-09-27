@@ -125,7 +125,7 @@ You can provide the source and target images as an image byte array \(base64\-en
 
    This example displays information about matching faces in source and target images that are loaded from the local file system\.
 
-   Replace the values of `sourceFile` and `targetFile` with the path and file name of the source and target images\.
+   Replace the values of `source_file` and `target_file` with the path and file name of the source and target images\.
 
    ```
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -133,16 +133,14 @@ You can provide the source and target images as an image byte array \(base64\-en
    
    import boto3
    
-   if __name__ == "__main__":
+   def compare_faces(sourceFile, targetFile):
    
-       sourceFile='source.jpg'
-       targetFile='target.jpg'
        client=boto3.client('rekognition')
       
        imageSource=open(sourceFile,'rb')
        imageTarget=open(targetFile,'rb')
    
-       response=client.compare_faces(SimilarityThreshold=70,
+       response=client.compare_faces(SimilarityThreshold=80,
                                      SourceImage={'Bytes': imageSource.read()},
                                      TargetImage={'Bytes': imageTarget.read()})
        
@@ -155,7 +153,18 @@ You can provide the source and target images as an image byte array \(base64\-en
                   ' matches with ' + similarity + '% confidence')
    
        imageSource.close()
-       imageTarget.close()
+       imageTarget.close()     
+       return len(response['FaceMatches'])          
+   
+   def main():
+       source_file='source'
+       target_file='target'
+       face_matches=compare_faces(source_file, target_file)
+       print("Face matches: " + str(face_matches))
+   
+   
+   if __name__ == "__main__":
+       main()
    ```
 
 ------

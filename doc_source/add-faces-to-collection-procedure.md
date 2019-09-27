@@ -159,15 +159,13 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
    
    import boto3
    
-   if __name__ == "__main__":
+   def add_faces_to_collection(bucket,photo,collection_id):
    
-       bucket='bucket'
-       collectionId='MyCollection'
-       photo='photo'
+   
        
        client=boto3.client('rekognition')
    
-       response=client.index_faces(CollectionId=collectionId,
+       response=client.index_faces(CollectionId=collection_id,
                                    Image={'S3Object':{'Bucket':bucket,'Name':photo}},
                                    ExternalImageId=photo,
                                    MaxFaces=1,
@@ -186,6 +184,20 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
            print(' Reasons:')
            for reason in unindexedFace['Reasons']:
                print('   ' + reason)
+       return len(response['FaceRecords'])
+   
+   def main():
+       bucket='bucket'
+       collection_id='collection'
+       photo='photo'
+       
+       
+       indexed_faces_count=add_faces_to_collection(bucket, photo, collection_id)
+       print("Faces indexed count: " + str(indexed_faces_count))
+   
+   
+   if __name__ == "__main__":
+       main()
    ```
 
 ------

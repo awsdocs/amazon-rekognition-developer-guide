@@ -14,87 +14,93 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
 #### [ Java ]
 
    ```
-   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+           //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+           //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
-   // Celebrities=====================================================================
-   private static void StartCelebrities(String bucket, String video) throws Exception{
-   
-      StartCelebrityRecognitionRequest req = new StartCelebrityRecognitionRequest()
-            .withVideo(new Video()
-                  .withS3Object(new S3Object()
-                        .withBucket(bucket)
-                        .withName(video)))
-            .withNotificationChannel(channel);
-   
-   
-   
-      StartCelebrityRecognitionResult startCelebrityRecognitionResult = rek.startCelebrityRecognition(req);
-      startJobId=startCelebrityRecognitionResult.getJobId();
-   
-   } 
-   
-   private static void GetResultsCelebrities() throws Exception{
-   
-      int maxResults=10;
-      String paginationToken=null;
-      GetCelebrityRecognitionResult celebrityRecognitionResult=null;
-   
-      do{
-         if (celebrityRecognitionResult !=null){
-            paginationToken = celebrityRecognitionResult.getNextToken();
-         }
-         celebrityRecognitionResult = rek.getCelebrityRecognition(new GetCelebrityRecognitionRequest()
-               .withJobId(startJobId)
-               .withNextToken(paginationToken)
-               .withSortBy(CelebrityRecognitionSortBy.TIMESTAMP)
-               .withMaxResults(maxResults));
-   
-   
-         System.out.println("File info for page");
-         VideoMetadata videoMetaData=celebrityRecognitionResult.getVideoMetadata();
-   
-         System.out.println("Format: " + videoMetaData.getFormat());
-         System.out.println("Codec: " + videoMetaData.getCodec());
-         System.out.println("Duration: " + videoMetaData.getDurationMillis());
-         System.out.println("FrameRate: " + videoMetaData.getFrameRate());
-   
-         System.out.println("Job");
-   
-         System.out.println("Job status: " + celebrityRecognitionResult.getJobStatus());
-   
-   
-         //Show celebrities
-         List<CelebrityRecognition> celebs= celebrityRecognitionResult.getCelebrities();
-   
-         for (CelebrityRecognition celeb: celebs) { 
-            long seconds=celeb.getTimestamp()/1000;
-            System.out.print("Sec: " + Long.toString(seconds) + " ");
-            CelebrityDetail details=celeb.getCelebrity();
-            System.out.println("Name: " + details.getName());
-            System.out.println("Id: " + details.getId());
-            System.out.println(); 
-         }
-      } while (celebrityRecognitionResult !=null && celebrityRecognitionResult.getNextToken() != null);
-   
-   }
+         // Celebrities=====================================================================
+         private static void StartCelebrityDetection(String bucket, String video) throws Exception{
+       	  
+               NotificationChannel channel= new NotificationChannel()
+                       .withSNSTopicArn(snsTopicArn)
+                       .withRoleArn(roleArn);
+     
+              StartCelebrityRecognitionRequest req = new StartCelebrityRecognitionRequest()
+                    .withVideo(new Video()
+                          .withS3Object(new S3Object()
+                                .withBucket(bucket)
+                                .withName(video)))
+                    .withNotificationChannel(channel);
+     
+     
+     
+              StartCelebrityRecognitionResult startCelebrityRecognitionResult = rek.startCelebrityRecognition(req);
+              startJobId=startCelebrityRecognitionResult.getJobId();
+     
+           } 
+     
+           private static void GetCelebrityDetectionResults() throws Exception{
+     
+              int maxResults=10;
+              String paginationToken=null;
+              GetCelebrityRecognitionResult celebrityRecognitionResult=null;
+     
+              do{
+                 if (celebrityRecognitionResult !=null){
+                    paginationToken = celebrityRecognitionResult.getNextToken();
+                 }
+                 celebrityRecognitionResult = rek.getCelebrityRecognition(new GetCelebrityRecognitionRequest()
+                       .withJobId(startJobId)
+                       .withNextToken(paginationToken)
+                       .withSortBy(CelebrityRecognitionSortBy.TIMESTAMP)
+                       .withMaxResults(maxResults));
+     
+     
+                 System.out.println("File info for page");
+                 VideoMetadata videoMetaData=celebrityRecognitionResult.getVideoMetadata();
+     
+                 System.out.println("Format: " + videoMetaData.getFormat());
+                 System.out.println("Codec: " + videoMetaData.getCodec());
+                 System.out.println("Duration: " + videoMetaData.getDurationMillis());
+                 System.out.println("FrameRate: " + videoMetaData.getFrameRate());
+     
+                 System.out.println("Job");
+     
+                 System.out.println("Job status: " + celebrityRecognitionResult.getJobStatus());
+     
+     
+                 //Show celebrities
+                 List<CelebrityRecognition> celebs= celebrityRecognitionResult.getCelebrities();
+     
+                 for (CelebrityRecognition celeb: celebs) { 
+                    long seconds=celeb.getTimestamp()/1000;
+                    System.out.print("Sec: " + Long.toString(seconds) + " ");
+                    CelebrityDetail details=celeb.getCelebrity();
+                    System.out.println("Name: " + details.getName());
+                    System.out.println("Id: " + details.getId());
+                    System.out.println(); 
+                 }
+              } while (celebrityRecognitionResult !=null && celebrityRecognitionResult.getNextToken() != null);
+     
+           }
    ```
 
-   2a\. In the function `main`, replace the line: 
+   In the function `main`, replace the line: 
 
-    `StartLabels(bucket,video);` 
-
-   with:
-
-    `StartCelebrities(bucket,video);` 
-
-   2b\. Replace the line: 
-
-   `GetResultsLabels();`
+   ```
+           StartLabelDetection(bucket, video);
+   
+           if (GetSQSMessageSuccess()==true)
+           	GetLabelDetectionResults();
+   ```
 
    with:
 
-   `GetResultsCelebrities();`
+   ```
+           StartCelebrityDetection(bucket, video);
+   
+           if (GetSQSMessageSuccess()==true)
+           	GetCelebrityDetectionResults();
+   ```
 
 ------
 #### [ Python ]
@@ -103,13 +109,21 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
    #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
-       def GetResultsCelebrities(self, jobId):
+       # ============== Celebrities ===============
+       def StartCelebrityDetection(self):
+           response=self.rek.start_celebrity_recognition(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
+               NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.snsTopicArn})
+   
+           self.startJobId=response['JobId']
+           print('Start Job Id: ' + self.startJobId)
+   
+       def GetCelebrityDetectionResults(self):
            maxResults = 10
            paginationToken = ''
            finished = False
    
            while finished == False:
-               response = self.rek.get_celebrity_recognition(JobId=jobId,
+               response = self.rek.get_celebrity_recognition(JobId=self.startJobId,
                                                        MaxResults=maxResults,
                                                        NextToken=paginationToken)
    
@@ -130,35 +144,25 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
                    finished = True
    ```
 
-   2a\. In the function `main`, replace the line:
+   In the function `main`, replace the lines:
 
    ```
-           response = self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
-                                            NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.topicArn})
-   ```
-
-   with:
-
-   ```
-           response = self.rek.start_celebrity_recognition(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
-               NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
-   ```
-
-   2b\. Replace the line:
-
-   ```
-                           self.GetResultsLabels(rekMessage['JobId'])
+       analyzer.StartLabelDetection()
+       if analyzer.GetSQSMessageSuccess()==True:
+           analyzer.GetLabelDetectionResults()
    ```
 
    with:
 
    ```
-                           self.GetResultsCelebrities(rekMessage['JobId'])
+       analyzer.StartCelebrityDetection()
+       if analyzer.GetSQSMessageSuccess()==True:
+           analyzer.GetCelebrityDetectionResults()
    ```
 
 ------
 **Note**  
-If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the function name to replace is different\.
+If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the code to replace might be different\.
 
 1. Run the code\. Information about the celebrities recognized in the video is shown\.
 

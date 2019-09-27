@@ -23,76 +23,82 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
    //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    
-      private static void StartFaces(String bucket, String video) throws Exception{
-          
-          StartFaceDetectionRequest req = new StartFaceDetectionRequest()
-                  .withVideo(new Video()
-                          .withS3Object(new S3Object()
-                              .withBucket(bucket)
-                              .withName(video)))
-                  .withNotificationChannel(channel);
-                              
-                              
-          
-          StartFaceDetectionResult startLabelDetectionResult = rek.startFaceDetection(req);
-          startJobId=startLabelDetectionResult.getJobId();
-          
-      } 
-      
-      private static void GetResultsFaces() throws Exception{
-          
-          int maxResults=10;
-          String paginationToken=null;
-          GetFaceDetectionResult faceDetectionResult=null;
-          
-          do{
-              if (faceDetectionResult !=null){
-                  paginationToken = faceDetectionResult.getNextToken();
-              }
-          
-              faceDetectionResult = rek.getFaceDetection(new GetFaceDetectionRequest()
-                   .withJobId(startJobId)
-                   .withNextToken(paginationToken)
-                   .withMaxResults(maxResults));
-          
-              VideoMetadata videoMetaData=faceDetectionResult.getVideoMetadata();
-                  
-              System.out.println("Format: " + videoMetaData.getFormat());
-              System.out.println("Codec: " + videoMetaData.getCodec());
-              System.out.println("Duration: " + videoMetaData.getDurationMillis());
-              System.out.println("FrameRate: " + videoMetaData.getFrameRate());
-                  
-                  
-              //Show faces, confidence and detection times
-              List<FaceDetection> faces= faceDetectionResult.getFaces();
-           
-              for (FaceDetection face: faces) { 
-                  long seconds=face.getTimestamp()/1000;
-                  System.out.print("Sec: " + Long.toString(seconds) + " ");
-                  System.out.println(face.getFace().toString());
-                  System.out.println();           
-              }
-          } while (faceDetectionResult !=null && faceDetectionResult.getNextToken() != null);
+   private static void StartFaceDetection(String bucket, String video) throws Exception{
             
-              
-      }
+       NotificationChannel channel= new NotificationChannel()
+               .withSNSTopicArn(snsTopicArn)
+               .withRoleArn(roleArn);
+       
+       StartFaceDetectionRequest req = new StartFaceDetectionRequest()
+               .withVideo(new Video()
+                       .withS3Object(new S3Object()
+                           .withBucket(bucket)
+                           .withName(video)))
+               .withNotificationChannel(channel);
+                           
+                           
+       
+       StartFaceDetectionResult startLabelDetectionResult = rek.startFaceDetection(req);
+       startJobId=startLabelDetectionResult.getJobId();
+       
+   } 
+   
+   private static void GetFaceDetectionResults() throws Exception{
+       
+       int maxResults=10;
+       String paginationToken=null;
+       GetFaceDetectionResult faceDetectionResult=null;
+       
+       do{
+           if (faceDetectionResult !=null){
+               paginationToken = faceDetectionResult.getNextToken();
+           }
+       
+           faceDetectionResult = rek.getFaceDetection(new GetFaceDetectionRequest()
+                .withJobId(startJobId)
+                .withNextToken(paginationToken)
+                .withMaxResults(maxResults));
+       
+           VideoMetadata videoMetaData=faceDetectionResult.getVideoMetadata();
+               
+           System.out.println("Format: " + videoMetaData.getFormat());
+           System.out.println("Codec: " + videoMetaData.getCodec());
+           System.out.println("Duration: " + videoMetaData.getDurationMillis());
+           System.out.println("FrameRate: " + videoMetaData.getFrameRate());
+               
+               
+           //Show faces, confidence and detection times
+           List<FaceDetection> faces= faceDetectionResult.getFaces();
+        
+           for (FaceDetection face: faces) { 
+               long seconds=face.getTimestamp()/1000;
+               System.out.print("Sec: " + Long.toString(seconds) + " ");
+               System.out.println(face.getFace().toString());
+               System.out.println();           
+           }
+       } while (faceDetectionResult !=null && faceDetectionResult.getNextToken() != null);
+         
+           
+   }
    ```
 
-   2a\. In the function `main`, replace the line: 
+   In the function `main`, replace the lines: 
 
-    `StartLabels(bucket,video);` 
-
-   with:
-
-    `StartFaces(bucket,video);` 
-
-   2b\. Replace the line: 
-
-   `GetResultsLabels();`
+   ```
+           StartLabelDetection(bucket, video);
+   
+           if (GetSQSMessageSuccess()==true)
+           	GetLabelDetectionResults();
+   ```
 
    with:
 
-   `GetResultsFaces();`
+   ```
+           StartFaceDetection(bucket, video);
+   
+           if (GetSQSMessageSuccess()==true)
+           	GetFaceDetectionResults();
+   ```
 
 ------
 #### [ Python ]
@@ -101,20 +107,29 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
    #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
-       def GetResultsFaces(self, jobId):
+       # ============== Faces===============
+       def StartFaceDetection(self):
+           response=self.rek.start_face_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
+               NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.snsTopicArn})
+   
+           self.startJobId=response['JobId']
+           print('Start Job Id: ' + self.startJobId)
+   
+       def GetFaceDetectionResults(self):
            maxResults = 10
            paginationToken = ''
            finished = False
    
            while finished == False:
-               response = self.rek.get_face_detection(JobId=jobId,
+               response = self.rek.get_face_detection(JobId=self.startJobId,
                                                MaxResults=maxResults,
                                                NextToken=paginationToken)
    
-               print(response['VideoMetadata']['Codec'])
-               print(str(response['VideoMetadata']['DurationMillis']))
-               print(response['VideoMetadata']['Format'])
-               print(response['VideoMetadata']['FrameRate'])
+               print('Codec: ' + response['VideoMetadata']['Codec'])
+               print('Duration: ' + str(response['VideoMetadata']['DurationMillis']))
+               print('Format: ' + response['VideoMetadata']['Format'])
+               print('Frame rate: ' + str(response['VideoMetadata']['FrameRate']))
+               print()
    
                for faceDetection in response['Faces']:
                    print('Face: ' + str(faceDetection['Face']))
@@ -128,30 +143,20 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
                    finished = True
    ```
 
-   2a\. In the function `main`, replace the line: 
+   In the function `main`, replace the lines: 
 
    ```
-           response = self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
-                                            NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.topicArn})
-   ```
-
-   with:
-
-   ```
-           response = self.rek.start_face_detection(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
-               NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
-   ```
-
-   2b\. Replace the line: 
-
-   ```
-                           self.GetResultsLabels(rekMessage['JobId'])
+       analyzer.StartLabelDetection()
+       if analyzer.GetSQSMessageSuccess()==True:
+           analyzer.GetLabelDetectionResults()
    ```
 
    with:
 
    ```
-                           self.GetResultsFaces(rekMessage['JobId'])
+       analyzer.StartFaceDetection()
+       if analyzer.GetSQSMessageSuccess()==True:
+           analyzer.GetFaceDetectionResults()
    ```
 
 ------

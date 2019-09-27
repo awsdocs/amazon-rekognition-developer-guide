@@ -95,18 +95,18 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
    
    import boto3
    
-   if __name__ == "__main__":
+   def list_faces_in_collection(collection_id):
    
-       bucket='bucket'
-       collectionId='MyCollection'
+   
        maxResults=2
+       faces_count=0
        tokens=True
    
        client=boto3.client('rekognition')
-       response=client.list_faces(CollectionId=collectionId,
+       response=client.list_faces(CollectionId=collection_id,
                                   MaxResults=maxResults)
    
-       print('Faces in collection ' + collectionId)
+       print('Faces in collection ' + collection_id)
    
     
        while tokens:
@@ -115,12 +115,22 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
    
            for face in faces:
                print (face)
+               faces_count+=1
            if 'NextToken' in response:
                nextToken=response['NextToken']
-               response=client.list_faces(CollectionId=collectionId,
+               response=client.list_faces(CollectionId=collection_id,
                                           NextToken=nextToken,MaxResults=maxResults)
            else:
                tokens=False
+       return faces_count   
+   def main():
+   
+       collection_id='collection'
+   
+       faces_count=list_faces_in_collection(collection_id)
+       print("faces count: " + str(faces_count))
+   if __name__ == "__main__":
+       main()
    ```
 
 ------

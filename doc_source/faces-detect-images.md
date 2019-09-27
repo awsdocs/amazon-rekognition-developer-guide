@@ -113,9 +113,8 @@ You can provide the input image as an image byte array \(base64\-encoded image b
    import boto3
    import json
    
-   if __name__ == "__main__":
-       photo='input.jpg'
-       bucket='bucket'
+   def detect_faces(photo, bucket):
+   
        client=boto3.client('rekognition')
    
        response = client.detect_faces(Image={'S3Object':{'Bucket':bucket,'Name':photo}},Attributes=['ALL'])
@@ -126,6 +125,16 @@ You can provide the input image as an image byte array \(base64\-encoded image b
                  + ' and ' + str(faceDetail['AgeRange']['High']) + ' years old')
            print('Here are the other attributes:')
            print(json.dumps(faceDetail, indent=4, sort_keys=True))
+       return len(response['FaceDetails'])
+   def main():
+       photo='photo'
+       bucket='bucket'
+       face_count=detect_faces(photo, bucket)
+       print("Faces detected: " + str(face_count))
+   
+   
+   if __name__ == "__main__":
+       main()
    ```
 
 ------
@@ -367,7 +376,7 @@ The input to `DetectFaces` is an image\. In this example, the image is loaded fr
 + **Bounding box** – The coordinates of the bounding box that surrounds the face\.
 + **Confidence** – The level of confidence that the bounding box contains a face\. 
 + **Facial landmarks** – An array of facial landmarks\. For each landmark \(such as the left eye, right eye, and mouth\), the response provides the x and y coordinates\.
-+ **Facial attributes** – A set of facial attributes, including gender, or whether the face has a beard\. For each such attribute, the response provides a value\. The value can be of different types, such as a Boolean type \(whether a person is wearing sunglasses\) or a string \(whether the person is male or female\)\. In addition, for most attributes, the response also provides a confidence in the detected value for the attribute\. 
++ **Facial attributes** – A set of facial attributes, such as whether the face has a beard\. For each such attribute, the response provides a value\. The value can be of different types, such as a Boolean type \(whether a person is wearing sunglasses\) or a string \(whether the person is male or female\)\. In addition, for most attributes, the response also provides a confidence in the detected value for the attribute\. 
 + **Quality** – Describes the brightness and the sharpness of the face\. For information about ensuring the best possible face detection, see [Recommendations for Facial Recognition Input Images](recommendations-facial-input-images.md)\.
 + **Pose** – Describes the rotation of the face inside the image\.
 + **Emotions** – A set of emotions with confidence in the analysis\.

@@ -94,29 +94,39 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    
    import boto3
    
-   if __name__ == "__main__":
-   
-       collectionId='MyCollection'
-       threshold = 50
-       maxFaces=2
-       faceId='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-   
-   
+   def search_face_in_collection(face_id,collection_id):
+       threshold = 90
+       max_faces=2
        client=boto3.client('rekognition')
    
      
-       response=client.search_faces(CollectionId=collectionId,
-                                   FaceId=faceId,
+       response=client.search_faces(CollectionId=collection_id,
+                                   FaceId=face_id,
                                    FaceMatchThreshold=threshold,
-                                   MaxFaces=maxFaces)
+                                   MaxFaces=max_faces)
    
                            
-       faceMatches=response['FaceMatches']
+       face_matches=response['FaceMatches']
        print ('Matching faces')
-       for match in faceMatches:
+       for match in face_matches:
                print ('FaceId:' + match['Face']['FaceId'])
                print ('Similarity: ' + "{:.2f}".format(match['Similarity']) + "%")
                print
+       return len(face_matches)
+   
+   def main():
+   
+       face_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+       collection_id='MyCollection'
+       
+       faces=[]
+       faces.append(face_id)
+   
+       faces_count=search_face_in_collection(face_id, collection_id)
+       print("faces found: " + str(faces_count))
+   
+   if __name__ == "__main__":
+       main()
    ```
 
 ------

@@ -38,7 +38,7 @@ You can also specify an optional input parameter, `JobTag`, that allows you to i
 To prevent accidental duplication of analysis jobs, you can optionally provide an idempotent token, `ClientRequestToken`\. If you supply a value for `ClientRequestToken`, the `Start` operation returns the same `JobId` for multiple identical calls to the start operation, such as `StartLabelDetection`\. A `ClientRequestToken` token has a lifetime of 7 days\. After 7 days, you can reuse it\. If you reuse the token during the token lifetime, the following happens: 
 + If you reuse the token with same `Start` operation and the same input parameters, the same `JobId` is returned\. The job is not performed again and Amazon Rekognition Video does not send a completion status to the registered Amazon SNS topic\.
 + If you reuse the token with the same `Start` operation and a minor input parameter change, you get an `idempotentparametermismatchexception` \(HTTP status code: 400\) exception raised\.
-+ If you reuse the token with a different `Start` operation, the operation succeeds\.
++ You shoudn’t reuse a token with different `Start` operations as you’ll get unpredictable results from Amazon Rekognition\.
 
 The response to the `StartLabelDetection` operation is a job identifier \(`JobId`\)\. Use `JobId` to track requests and get the analysis results after Amazon Rekognition Video has published the completion status to the Amazon SNS topic\. For example:
 

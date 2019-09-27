@@ -8,4 +8,5 @@ Use the following topics to learn how to secure your Amazon Rekognition resource
 + [Authentication and Access Control for Amazon Rekognition](authentication-and-access-control.md)
 + [Monitoring Rekognition](rekognition-monitoring.md)
 + [Logging Amazon Rekognition API Calls with AWS CloudTrail](logging-using-cloudtrail.md)
++ [Using Amazon Rekognition with Amazon VPC Endpoints](vpc.md)
 + [Compliance Validation for Amazon Rekognition](rekognition-compliance.md)

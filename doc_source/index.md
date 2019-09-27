@@ -105,6 +105,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Monitoring Rekognition](rekognition-monitoring.md)
       + [CloudWatch Metrics for Rekognition](cloudwatch-metricsdim.md)
    + [Logging Amazon Rekognition API Calls with AWS CloudTrail](logging-using-cloudtrail.md)
+   + [Using Amazon Rekognition with Amazon VPC Endpoints](vpc.md)
    + [Compliance Validation for Amazon Rekognition](rekognition-compliance.md)
 + [API Reference](API_Reference.md)
    + [Actions](API_Operations.md)

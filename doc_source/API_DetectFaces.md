@@ -2,7 +2,7 @@
 
 Detects faces within an image that is provided as input\.
 
- `DetectFaces` detects the 100 largest faces in the image\. For each face detected, the operation returns face details\. These details include a bounding box of the face, a confidence value \(that the bounding box contains a face\), and a fixed set of attributes such as facial landmarks \(for example, coordinates of eye and mouth\), gender, presence of beard, sunglasses, and so on\. 
+ `DetectFaces` detects the 100 largest faces in the image\. For each face detected, the operation returns face details\. These details include a bounding box of the face, a confidence value \(that the bounding box contains a face\), and a fixed set of attributes such as facial landmarks \(for example, coordinates of eye and mouth\), presence of beard, sunglasses, and so on\. 
 
 The face\-detection algorithm is most effective on frontal faces\. For non\-frontal or obscured faces, the algorithm might not detect the faces or might detect faces with lower confidence\. 
 
@@ -181,7 +181,6 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectFaces) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DetectFaces) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DetectFaces) 
-+  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/rekognition-2016-06-27/DetectFaces) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DetectFaces) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectFaces) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectFaces) 

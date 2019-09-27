@@ -38,7 +38,7 @@ In response, the `IndexFaces` operation returns an array of metadata for all det
 + A face ID, `FaceId`, assigned by the service for each face that's detected and stored\.
 + An image ID, `ImageId`, assigned by the service for the input image\.
 
-If you request all facial attributes \(by using the `detectionAttributes` parameter\), Amazon Rekognition returns detailed facial attributes, such as facial landmarks \(for example, location of eye and mouth\) and other facial attributes like gender\. If you provide the same image, specify the same collection, and use the same external ID in the `IndexFaces` operation, Amazon Rekognition doesn't save duplicate face metadata\.
+If you request all facial attributes \(by using the `detectionAttributes` parameter\), Amazon Rekognition returns detailed facial attributes, such as facial landmarks \(for example, location of eye and mouth\) and other facial attributes\. If you provide the same image, specify the same collection, and use the same external ID in the `IndexFaces` operation, Amazon Rekognition doesn't save duplicate face metadata\.
 
 The input image is passed either as base64\-encoded image bytes, or as a reference to an image in an Amazon S3 bucket\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes isn't supported\. The image must be formatted as a PNG or JPEG file\. 
 
@@ -347,7 +347,6 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/IndexFaces) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/IndexFaces) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/IndexFaces) 
-+  [AWS SDK for Go \- Pilot](https://docs.aws.amazon.com/goto/SdkForGoPilot/rekognition-2016-06-27/IndexFaces) 
 +  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/IndexFaces) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/IndexFaces) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/IndexFaces) 

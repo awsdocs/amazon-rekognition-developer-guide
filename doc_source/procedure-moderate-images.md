@@ -87,7 +87,7 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
    Replace `bucket` and `input.jpg` with the S3 bucket name and the image file name that you used in step 2\.
 
    ```
-   aws rekognition detect-moderation-labels \ 
+   aws rekognition detect-moderation-labels \
    --image '{"S3Object":{"Bucket":"bucket","Name":"input.jpg"}}'
    ```
 
@@ -96,7 +96,7 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
 
    This example outputs detected unsafe content label names, confidence levels, and the parent label for detected unsafe content labels\.
 
-   Replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
+   In the function `main`, replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
    ```
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -104,10 +104,8 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
    
    import boto3
    
-   if __name__ == "__main__":
-       photo='moderate.png'
-       bucket='bucket'
-       
+   def moderate_image(photo, bucket):
+   
        client=boto3.client('rekognition')
    
        response = client.detect_moderation_labels(Image={'S3Object':{'Bucket':bucket,'Name':photo}})
@@ -116,6 +114,19 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
        for label in response['ModerationLabels']:
            print (label['Name'] + ' : ' + str(label['Confidence']))
            print (label['ParentName'])
+       return len(response['ModerationLabels'])
+   
+   
+   
+   def main():
+       photo='photo'
+       bucket='bucket'
+       label_count=moderate_image(photo, bucket)
+       print("Labels detected: " + str(label_count))
+   
+   
+   if __name__ == "__main__":
+       main()
    ```
 
 ------

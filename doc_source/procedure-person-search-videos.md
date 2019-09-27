@@ -22,15 +22,18 @@ The following procedure shows how to search a collection for faces that match th
 #### [ Java ]
 
    ```
-   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+      //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+      //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
-       //Face collection search in video ==================================================================
-       private static void StartFaceSearchCollection(String bucket, String video) throws Exception{
+          //Face collection search in video ==================================================================
+          private static void StartFaceSearchCollection(String bucket, String video, String collection) throws Exception{
    
+           NotificationChannel channel= new NotificationChannel()
+                   .withSNSTopicArn(snsTopicArn)
+                   .withRoleArn(roleArn);
    
            StartFaceSearchRequest req = new StartFaceSearchRequest()
-                   .withCollectionId("CollectionId")
+                   .withCollectionId(collection)
                    .withVideo(new Video()
                            .withS3Object(new S3Object()
                                    .withBucket(bucket)
@@ -45,7 +48,7 @@ The following procedure shows how to search a collection for faces that match th
        } 
    
        //Face collection search in video ==================================================================
-       private static void GetResultsFaceSearchCollection() throws Exception{
+       private static void GetFaceSearchCollectionResults() throws Exception{
    
           GetFaceSearchResult faceSearchResult=null;
           int maxResults=10;
@@ -104,21 +107,24 @@ The following procedure shows how to search a collection for faces that match th
       }
    ```
 
-   4a\. In the function `main`, replace the line: 
+   In the function `main`, replace the lines: 
 
-    `StartLabels(bucket,video);` 
-
-   with
-
-    `StartFaceSearchCollection(bucket,video);` 
-
-   4b\. Replace the line: 
-
-   `GetResultsLabels();`
+   ```
+           StartLabelDetection(bucket, video);
+   
+           if (GetSQSMessageSuccess()==true)
+           	GetLabelDetectionResults();
+   ```
 
    with:
 
-   `GetResultsFaceSearchCollection();`
+   ```
+           String collection="collection";
+           StartFaceSearchCollection(bucket, video, collection);
+   
+           if (GetSQSMessageSuccess()==true)
+           	GetFaceSearchCollectionResults();
+   ```
 
 ------
 #### [ Python ]
@@ -127,14 +133,25 @@ The following procedure shows how to search a collection for faces that match th
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
    #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
-       def GetResultsFaceSearchCollection(self, jobId):
+       # ============== Face Search ===============
+       def StartFaceSearchCollection(self,collection):
+           response = self.rek.start_face_search(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
+               CollectionId=collection,
+               NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.snsTopicArn})
+           
+           self.startJobId=response['JobId']
+           
+           print('Start Job Id: ' + self.startJobId)
+   
+   
+       def GetFaceSearchCollectionResults(self):
            maxResults = 10
            paginationToken = ''
    
            finished = False
    
            while finished == False:
-               response = self.rek.get_face_search(JobId=jobId,
+               response = self.rek.get_face_search(JobId=self.startJobId,
                                            MaxResults=maxResults,
                                            NextToken=paginationToken)
    
@@ -159,38 +176,29 @@ The following procedure shows how to search a collection for faces that match th
                print()
    ```
 
-   4a\. In the function `main`, replace the line:
+   In the function `main`, replace the lines:
 
    ```
-           response = self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
-                                            NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.topicArn})
-   ```
-
-   with:
-
-   ```
-           response = self.rek.start_face_search(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
-               CollectionId='CollectionId',
-               NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
-   ```
-
-   4b\. Replace the line:
-
-   ```
-                           self.GetResultsLabels(rekMessage['JobId'])
+       analyzer.StartLabelDetection()
+       if analyzer.GetSQSMessageSuccess()==True:
+           analyzer.GetLabelDetectionResults()
    ```
 
    with:
 
    ```
-                           self.GetResultsFaceSearchCollection(rekMessage['JobId'])
+       collection='tests'
+       analyzer.StartFaceSearchCollection(collection)
+       
+       if analyzer.GetSQSMessageSuccess()==True:
+           analyzer.GetFaceSearchCollectionResults()
    ```
 
 ------
 
-   If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the function name to replace is different\.
+   If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the code to replace might be different\.
 
-1. Change the value of `CollectionId` to the name of the collection you created in step 1\.
+1. Change the value of `collection` to the name of the collection you created in step 1\.
 
 1. Run the code\. A list of people in the video whose faces match those in the input collection is displayed\. The tracking data for each matched person is also displayed\.
 

@@ -50,12 +50,10 @@ The following examples show how to display a bounding box around faces that are 
 
    1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
-1. Use the following examples to call the `DetectFaces` operation\.
+1. Use the following examples to call the `DetectFaces` operation\. Change the value of `bucket` to the Amazon S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\.
 
 ------
 #### [ Java ]
-
-   The following Java example shows how to load an image from an Amazon S3 bucket and detect labels by using the [detectLabels](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. In the function `main`, change the value of `bucket` to the S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\.
 
    ```
    //Loads images, detects faces and draws bounding boxes.Determines exif orientation, if necessary.
@@ -185,17 +183,14 @@ The following examples show how to display a bounding box around faces that are 
 ------
 #### [ Python ]
 
-   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from an Amazon S3 bucket and call the [detect\_faces](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_faces) operation\. Change the value of `bucket` to the S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\. 
-
    ```
    import boto3
    import io
    from PIL import Image, ImageDraw, ExifTags, ImageColor
    
-   if __name__ == "__main__":
+   def show_faces(photo,bucket):
         
-       bucket="bucket"
-       photo="photo"
+   
        client=boto3.client('rekognition')
    
        # Load image from S3 bucket
@@ -219,7 +214,7 @@ The following examples show how to display a bounding box around faces that are 
        for faceDetail in response['FaceDetails']:
            print('The detected face is between ' + str(faceDetail['AgeRange']['Low']) 
                  + ' and ' + str(faceDetail['AgeRange']['High']) + ' years old')
-   
+           
            box = faceDetail['BoundingBox']
            left = imgWidth * box['Left']
            top = imgHeight * box['Top']
@@ -245,10 +240,20 @@ The following examples show how to display a bounding box around faces that are 
            # Alternatively can draw rectangle. However you can't set line width.
            #draw.rectangle([left,top, left + width, top + height], outline='#00d400') 
    
-   
-   
-   
        image.show()
+   
+       return len(response['FaceDetails'])
+   
+   def main():
+       bucket="bucket"
+       photo="photo"
+   
+       faces_count=show_faces(photo,bucket)
+       print("faces detected: " + str(faces_count))
+   
+   
+   if __name__ == "__main__":
+       main()
    ```
 
 ------
