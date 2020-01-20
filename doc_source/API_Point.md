@@ -2,7 +2,7 @@
 
 The X and Y coordinates of a point on an image\. The X and Y values returned are ratios of the overall image size\. For example, if the input image is 700x200 and the operation returns X=0\.5 and Y=0\.25, then the point is at the \(350,50\) pixel coordinate on the image\.
 
-An array of `Point` objects, `Polygon`, is returned by [DetectText](API_DetectText.md)\. `Polygon` represents a fine\-grained polygon around detected text\. For more information, see [Geometry](API_Geometry.md)\. 
+An array of `Point` objects, `Polygon`, is returned by [DetectText](API_DetectText.md) and by [DetectCustomLabels](API_DetectCustomLabels.md)\. `Polygon` represents a fine\-grained polygon around a detected item\. For more information, see [Geometry](API_Geometry.md)\. 
 
 ## Contents<a name="API_Point_Contents"></a>
 

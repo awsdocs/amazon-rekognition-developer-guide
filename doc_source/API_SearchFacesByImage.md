@@ -12,6 +12,11 @@ You pass the input image either as base64\-encoded image bytes or as a reference
 
 For an example, see [Searching for a Face Using an Image](search-face-with-image-procedure.md)\.
 
+The `QualityFilter` input parameter allows you to filter out detected faces that don’t meet a required quality bar\. The quality bar is based on a variety of common use cases\. Use `QualityFilter` to set the quality bar for filtering by specifying `LOW`, `MEDIUM`, or `HIGH`\. If you do not want to filter detected faces, specify `NONE`\. The default value is `NONE`\.
+
+**Note**  
+To use quality filtering, you need a collection associated with version 3 of the face model or higher\. To get the version of the face model associated with a collection, call [DescribeCollection](API_DescribeCollection.md)\. 
+
 This operation requires permissions to perform the `rekognition:SearchFacesByImage` action\.
 
 ## Request Syntax<a name="API_SearchFacesByImage_RequestSyntax"></a>
@@ -28,7 +33,8 @@ This operation requires permissions to perform the `rekognition:SearchFacesByIma
          "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
       }
    },
-   "[MaxFaces](#rekognition-SearchFacesByImage-request-MaxFaces)": number
+   "[MaxFaces](#rekognition-SearchFacesByImage-request-MaxFaces)": number,
+   "[QualityFilter](#rekognition-SearchFacesByImage-request-QualityFilter)": "string"
 }
 ```
 
@@ -59,6 +65,13 @@ Required: Yes
 Maximum number of faces to return\. The operation returns the maximum number of faces with the highest confidence in the match\.  
 Type: Integer  
 Valid Range: Minimum value of 1\. Maximum value of 4096\.  
+Required: No
+
+ ** [QualityFilter](#API_SearchFacesByImage_RequestSyntax) **   <a name="rekognition-SearchFacesByImage-request-QualityFilter"></a>
+A filter that specifies a quality bar for how much filtering is done to identify faces\. Filtered faces aren't searched for in the collection\. If you specify `AUTO`, Amazon Rekognition chooses the quality bar\. If you specify `LOW`, `MEDIUM`, or `HIGH`, filtering removes all faces that don’t meet the chosen quality bar\. The quality bar is based on a variety of common use cases\. Low\-quality detections can occur for a number of reasons\. Some examples are an object that's misidentified as a face, a face that's too blurry, or a face with a pose that's too extreme to use\. If you specify `NONE`, no filtering is performed\. The default value is `NONE`\.   
+To use quality filtering, the collection you are using must be associated with version 3 of the face model or higher\.  
+Type: String  
+Valid Values:` NONE | AUTO | LOW | MEDIUM | HIGH`   
 Required: No
 
 ## Response Syntax<a name="API_SearchFacesByImage_ResponseSyntax"></a>

@@ -33,14 +33,22 @@ The IndexFaces operation enables you to filter the faces that are indexed from a
 
 You can specify the maximum number of faces that are indexed by `IndexFaces` by using the `MaxFaces` input parameter\. This is useful when you want to index the largest faces in an image and don't want to index smaller faces, such as faces of people standing in the background\.
 
-By default, `IndexFaces` filters out faces that are detected with low quality\. You can explicitly choose to filter out low quality faces by specifying `AUTO` for the value of the `QualityFilter` input parameter\. If you don't want to filter faces based on quality, specify `NONE` for `QualityFilter`\. `IndexFaces` filters low\-quality faces for the following reasons:
+By default, `IndexFaces` chooses a quality bar that's used to filter out faces\. You can use the `QualityFilter` input parameter to explicitly set the quality bar\. The values are:
++ `AUTO` — Amazon Rekognition chooses the quality bar that's used to filter out faces \(default value\)\.
++ `LOW` — All except the lowest quality faces are indexed\.
++ `MEDIUM`
++ `HIGH` — Only the highest quality faces are indexed\.
++ `NONE` \- No faces are filtered out based on quality\.
+
+`IndexFaces` filters faces for the following reasons:
 + The face is too small compared to the image dimensions\.
 + The face is too blurry\.
 + The image is too dark\.
 + The face has an extreme pose\.
++ The face doesn’t have enough detail to be suitable for face search\.
 
 **Note**  
-To use quality filtering, you need a collection that's associated with version 3 of the face model\. To get the version of the face model associated with a collection, call [DescribeCollection](API_DescribeCollection.md)\. 
+To use quality filtering, you need a collection that's associated with version 3, or higher, of the face model\. To get the version of the face model associated with a collection, call [DescribeCollection](API_DescribeCollection.md)\. 
 
 Information about faces that aren't indexed by `IndexFaces` is returned in an array of [UnindexedFace](API_UnindexedFace.md) objects\. The `Reasons` array contains a list of reasons why a face isn't indexed\. For example, a value of `EXCEEDS_MAX_FACES` is a face that's not indexed because the number of faces specified by `MaxFaces` has already been detected\. 
 

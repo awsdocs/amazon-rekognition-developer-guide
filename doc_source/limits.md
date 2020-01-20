@@ -1,8 +1,10 @@
 # Limits in Amazon Rekognition<a name="limits"></a>
 
-The following is a list of limits in Amazon Rekognition\. For information about limits you can change, see [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_rekognition)\. To change a limit, see [Create Case](https://console.aws.amazon.com/support/v1#/case/create?issueType=service-limit-increase)\.
+The following is a list of limits in Amazon Rekognition\. For information about limits you can change, see [AWS Service Quotas](https://docs.aws.amazon.com/general/latest/gr/rekognition_region.html#limits_rekognition)\. To change a limit, see [Create Case](https://console.aws.amazon.com/support/v1#/case/create?issueType=service-limit-increase)\.
 
-For information about Transactions Per Second \(TPS\) limits, see [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_rekognition)\.
+For information about Transactions Per Second \(TPS\) limits, see [AWS Service Quotas](https://docs.aws.amazon.com/general/latest/gr/rekognition_region.html#limits_rekognition)\.
+
+For Amazon Rekognition Custom Labels limits, see [Limits in Amazon Rekognition Custom Labels](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/limits.html)\.
 
 ## Amazon Rekognition Image<a name="limits-image"></a>
 + Maximum image size stored as an Amazon S3 object is limited to 15 MB\. 
@@ -17,8 +19,8 @@ For information about Transactions Per Second \(TPS\) limits, see [AWS Service L
 For best practice information about images and facial recognition, see [Best Practices for Sensors, Input Images, and Videos](best-practices.md)\.
 
 ## Amazon Rekognition Video Stored Video<a name="limits-vstored-video"></a>
-+ Amazon Rekognition Video can analyze stored videos up to 8GB in size\.
-+ Amazon Rekognition Video can analyze stored videos up to 2 hours in length\.
++ Amazon Rekognition Video can analyze stored videos up to 10GB in size\.
++ Amazon Rekognition Video can analyze stored videos up to 6 hours in length\.
 + Amazon Rekognition Video supports a maximum of 20 concurrent jobs per account\.
 + Stored videos must be encoded using the H\.264 codec\. The supported file formats are MPEG\-4 and MOV\.
 + The Time To Live \(TTL\) period for pagination tokens is 24 hours\. Pagination tokens are in the `NextToken` field retured by Get operations such as `GetLabeldetection`\.

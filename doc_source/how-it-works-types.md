@@ -8,6 +8,17 @@ The following are the types of detection and recognition that the Amazon Rekogni
 
 To detect labels in images, use [DetectLabels](API_DetectLabels.md)\. To detect labels in stored videos, use [StartLabelDetection](API_StartLabelDetection.md)\.
 
+## Custom Labels<a name="how-it-works-custom-labels-intro"></a>
+
+Amazon Rekognition Custom Labels can identify the objects and scenes in images that are specific to your business needs by training a machine learning model\. For example, you can train a model to detect logos or detect engineering machine parts on an assembly line\.
+
+**Note**  
+For information about Amazon Rekognition Custom Labels, see the [Amazon Rekognition Custom Labels Developer Guide](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/what-is.html)\.
+
+Amazon Rekognition provides a console that you use to create, train, evaluate, and run a machine learning model\. For more information, see [Getting Started with Amazon Rekognition Custom Labels](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/gs-introduction.html) in the *Amazon Rekognition Custom Labels Develope Guide*\. You can also use the Amazon Rekognition Custom Labels API to train and run a model\. For more information, see [Getting Started with the Amazon Rekognition Custom Labels SDK](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/gs-cli.html) in the *Amazon Rekognition CustomLabels Developer Guide*\.
+
+To analyze images using a trained model, use [DetectCustomLabels](https://docs.aws.amazon.com/rekognition/latest/dg/API_DetectCustomLabels)\.
+
 ## Faces<a name="how-it-works-faces-intro"></a>
 
 Amazon Rekognition can detect faces in images and stored videos\. With Amazon Rekognition, you can get information about where faces are detected in an image or video, facial landmarks such as the position of eyes, and detected emotions such as happy or sad\. You can also compare a face in an image with faces detected in another image\. Information about faces can also be stored for later retrieval\. For more information, see [Detecting and Analyzing Faces](faces.md)\.

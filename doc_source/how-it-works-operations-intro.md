@@ -6,7 +6,7 @@ The Amazon Rekognition Image and Amazon Rekognition Video API can detect or reco
 
 ## Amazon Rekognition Image Operations<a name="how-it-works-operations-images"></a>
 
-Amazon Rekognition image operations are synchronous\. The input and response are in JSON format\. Amazon Rekognition Image operations analyze an input image that is in \.jpg or \.png image format\. The image passed to an Amazon Rekognition Image operation can be stored in an Amazon S3 bucket\. If you are not using the AWS CLI, you can also pass byte64 encoded images bytes directly to an Amazon Rekognition operation\. For more information, see [Working with Images](images.md)\.
+Amazon Rekognition image operations are synchronous\. The input and response are in JSON format\. Amazon Rekognition Image operations analyze an input image that is in \.jpg or \.png image format\. The image passed to an Amazon Rekognition Image operation can be stored in an Amazon S3 bucket\. If you are not using the AWS CLI, you can also pass Base64 encoded images bytes directly to an Amazon Rekognition operation\. For more information, see [Working with Images](images.md)\.
 
 ## Amazon Rekognition Video Operations<a name="how-it-works-operations-video-intro"></a>
 

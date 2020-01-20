@@ -12,6 +12,13 @@ You pass the input image either as base64\-encoded image bytes or as a reference
 
 ```
 {
+   "[HumanLoopConfig](#rekognition-DetectModerationLabels-request-HumanLoopConfig)": { 
+      "[DataAttributes](API_HumanLoopConfig.md#rekognition-Type-HumanLoopConfig-DataAttributes)": { 
+         "[ContentClassifiers](API_HumanLoopDataAttributes.md#rekognition-Type-HumanLoopDataAttributes-ContentClassifiers)": [ "string" ]
+      },
+      "[FlowDefinitionArn](API_HumanLoopConfig.md#rekognition-Type-HumanLoopConfig-FlowDefinitionArn)": "string",
+      "[HumanLoopName](API_HumanLoopConfig.md#rekognition-Type-HumanLoopConfig-HumanLoopName)": "string"
+   },
    "[Image](#rekognition-DetectModerationLabels-request-Image)": { 
       "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
       "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
@@ -27,6 +34,11 @@ You pass the input image either as base64\-encoded image bytes or as a reference
 ## Request Parameters<a name="API_DetectModerationLabels_RequestParameters"></a>
 
 The request accepts the following data in JSON format\.
+
+ ** [HumanLoopConfig](#API_DetectModerationLabels_RequestSyntax) **   <a name="rekognition-DetectModerationLabels-request-HumanLoopConfig"></a>
+Sets up the configuration for human evaluation, including the FlowDefinition the image will be sent to\.  
+Type: [HumanLoopConfig](API_HumanLoopConfig.md) object  
+Required: No
 
  ** [Image](#API_DetectModerationLabels_RequestSyntax) **   <a name="rekognition-DetectModerationLabels-request-Image"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
@@ -45,6 +57,11 @@ Required: No
 
 ```
 {
+   "[HumanLoopActivationOutput](#rekognition-DetectModerationLabels-response-HumanLoopActivationOutput)": { 
+      "[HumanLoopActivationConditionsEvaluationResults](API_HumanLoopActivationOutput.md#rekognition-Type-HumanLoopActivationOutput-HumanLoopActivationConditionsEvaluationResults)": "string",
+      "[HumanLoopActivationReasons](API_HumanLoopActivationOutput.md#rekognition-Type-HumanLoopActivationOutput-HumanLoopActivationReasons)": [ "string" ],
+      "[HumanLoopArn](API_HumanLoopActivationOutput.md#rekognition-Type-HumanLoopActivationOutput-HumanLoopArn)": "string"
+   },
    "[ModerationLabels](#rekognition-DetectModerationLabels-response-ModerationLabels)": [ 
       { 
          "[Confidence](API_ModerationLabel.md#rekognition-Type-ModerationLabel-Confidence)": number,
@@ -62,6 +79,10 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
+ ** [HumanLoopActivationOutput](#API_DetectModerationLabels_ResponseSyntax) **   <a name="rekognition-DetectModerationLabels-response-HumanLoopActivationOutput"></a>
+Shows the results of the human in the loop evaluation\.  
+Type: [HumanLoopActivationOutput](API_HumanLoopActivationOutput.md) object
+
  ** [ModerationLabels](#API_DetectModerationLabels_ResponseSyntax) **   <a name="rekognition-DetectModerationLabels-response-ModerationLabels"></a>
 Array of detected Moderation labels and the time, in milliseconds from the start of the video, they were detected\.  
 Type: Array of [ModerationLabel](API_ModerationLabel.md) objects
@@ -74,6 +95,10 @@ Type: String
 
  **AccessDeniedException**   
 You are not authorized to perform the action\.  
+HTTP Status Code: 400
+
+ **HumanLoopQuotaExceededException**   
+The number of in\-progress human reviews you have has exceeded the number allowed\.  
 HTTP Status Code: 400
 
  **ImageTooLargeException**   

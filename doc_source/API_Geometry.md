@@ -1,16 +1,16 @@
 # Geometry<a name="API_Geometry"></a>
 
-Information about where the text detected by [DetectText](API_DetectText.md) is located on an image\.
+Information about where an object \([DetectCustomLabels](API_DetectCustomLabels.md)\) or text \([DetectText](API_DetectText.md)\) is located on an image\.
 
 ## Contents<a name="API_Geometry_Contents"></a>
 
  **BoundingBox**   <a name="rekognition-Type-Geometry-BoundingBox"></a>
-An axis\-aligned coarse representation of the detected text's location on the image\.  
+An axis\-aligned coarse representation of the detected item's location on the image\.  
 Type: [BoundingBox](API_BoundingBox.md) object  
 Required: No
 
  **Polygon**   <a name="rekognition-Type-Geometry-Polygon"></a>
-Within the bounding box, a fine\-grained polygon around the detected text\.  
+Within the bounding box, a fine\-grained polygon around the detected item\.  
 Type: Array of [Point](API_Point.md) objects  
 Required: No
 

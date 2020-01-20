@@ -55,7 +55,7 @@ Amazon Rekognition operations can analyze videos that are stored in Amazon S3 bu
 
 A codec is software or hardware that compresses data for faster delivery and decompresses received data into its original form\. The H\.264 codec is commonly used for recording, compressing, and distributing video content\. A video file format can contain one or more codecs\. If your MOV or MPEG\-4 format video file doesn't work with Amazon Rekognition Video, check that the codec used to encode the video is H\.264\.
 
-The maximum file size for a stored video is 8GB\.
+The maximum file size for a stored video is 10GB\.
 
 ### Searching for People<a name="video-searching-persons-overview"></a>
 

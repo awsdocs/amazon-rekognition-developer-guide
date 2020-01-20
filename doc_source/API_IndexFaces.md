@@ -20,10 +20,10 @@ If you provide the optional `ExternalImageID` for the input image you provided, 
 
 You can specify the maximum number of faces to index with the `MaxFaces` input parameter\. This is useful when you want to index the largest faces in an image and don't want to index smaller faces, such as those belonging to people standing in the background\.
 
-The `QualityFilter` input parameter allows you to filter out detected faces that don’t meet the required quality bar chosen by Amazon Rekognition\. The quality bar is based on a variety of common use cases\. By default, `IndexFaces` filters detected faces\. You can also explicitly filter detected faces by specifying `AUTO` for the value of `QualityFilter`\. If you do not want to filter detected faces, specify `NONE`\. 
+The `QualityFilter` input parameter allows you to filter out detected faces that don’t meet a required quality bar\. The quality bar is based on a variety of common use cases\. By default, `IndexFaces` chooses the quality bar that's used to filter faces\. You can also explicitly choose the quality bar\. Use `QualityFilter`, to set the quality bar by specifying `LOW`, `MEDIUM`, or `HIGH`\. If you do not want to filter detected faces, specify `NONE`\. 
 
 **Note**  
-To use quality filtering, you need a collection associated with version 3 of the face model\. To get the version of the face model associated with a collection, call [DescribeCollection](API_DescribeCollection.md)\. 
+To use quality filtering, you need a collection associated with version 3 of the face model or higher\. To get the version of the face model associated with a collection, call [DescribeCollection](API_DescribeCollection.md)\. 
 
 Information about faces detected in an image, but not indexed, is returned in an array of [UnindexedFace](API_UnindexedFace.md) objects, `UnindexedFaces`\. Faces aren't indexed for reasons such as:
 + The number of faces detected exceeds the value of the `MaxFaces` request parameter\.
@@ -31,6 +31,7 @@ Information about faces detected in an image, but not indexed, is returned in an
 + The face is too blurry\.
 + The image is too dark\.
 + The face has an extreme pose\.
++ The face doesn’t have enough detail to be suitable for face search\.
 
 In response, the `IndexFaces` operation returns an array of metadata for all detected faces, `FaceRecords`\. This includes: 
 + The bounding box, `BoundingBox`, of the detected face\. 
@@ -105,10 +106,10 @@ Valid Range: Minimum value of 1\.
 Required: No
 
  ** [QualityFilter](#API_IndexFaces_RequestSyntax) **   <a name="rekognition-IndexFaces-request-QualityFilter"></a>
-A filter that specifies how much filtering is done to identify faces that are detected with low quality\. Filtered faces aren't indexed\. If you specify `AUTO`, filtering prioritizes the identification of faces that don’t meet the required quality bar chosen by Amazon Rekognition\. The quality bar is based on a variety of common use cases\. Low\-quality detections can occur for a number of reasons\. Some examples are an object that's misidentified as a face, a face that's too blurry, or a face with a pose that's too extreme to use\. If you specify `NONE`, no filtering is performed\. The default value is AUTO\.  
-To use quality filtering, the collection you are using must be associated with version 3 of the face model\.  
+A filter that specifies a quality bar for how much filtering is done to identify faces\. Filtered faces aren't indexed\. If you specify `AUTO`, Amazon Rekognition chooses the quality bar\. If you specify `LOW`, `MEDIUM`, or `HIGH`, filtering removes all faces that don’t meet the chosen quality bar\. The default value is `AUTO`\. The quality bar is based on a variety of common use cases\. Low\-quality detections can occur for a number of reasons\. Some examples are an object that's misidentified as a face, a face that's too blurry, or a face with a pose that's too extreme to use\. If you specify `NONE`, no filtering is performed\.   
+To use quality filtering, the collection you are using must be associated with version 3 of the face model or higher\.  
 Type: String  
-Valid Values:` NONE | AUTO`   
+Valid Values:` NONE | AUTO | LOW | MEDIUM | HIGH`   
 Required: No
 
 ## Response Syntax<a name="API_IndexFaces_ResponseSyntax"></a>

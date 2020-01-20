@@ -18,7 +18,7 @@ An array of reasons that specify why a face wasn't indexed\.
 + LOW\_CONFIDENCE \- The face was detected with a low confidence\.
 + SMALL\_BOUNDING\_BOX \- The bounding box around the face is too small\.
 Type: Array of strings  
-Valid Values:` EXCEEDS_MAX_FACES | EXTREME_POSE | LOW_BRIGHTNESS | LOW_SHARPNESS | LOW_CONFIDENCE | SMALL_BOUNDING_BOX`   
+Valid Values:` EXCEEDS_MAX_FACES | EXTREME_POSE | LOW_BRIGHTNESS | LOW_SHARPNESS | LOW_CONFIDENCE | SMALL_BOUNDING_BOX | LOW_FACE_QUALITY`   
 Required: No
 
 ## See Also<a name="API_UnindexedFace_SeeAlso"></a>

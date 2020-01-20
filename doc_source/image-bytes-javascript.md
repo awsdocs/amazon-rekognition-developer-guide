@@ -20,6 +20,9 @@ The chosen image is loaded by using the JavaScript `FileReader.readAsDataURL` fu
 
 1. Choose the **Browse\.\.\.** button, and choose an image that contains one or more faces\. A table is shown that contains the estimated ages for each face detected in the image\. 
 
+**Note**  
+The following code example uses two scripts that are no longer part of Amazon Cognito\. To get these files, follow the links for [ aws\-cognito\-sdk\.min\.js](https://raw.githubusercontent.com/aws/amazon-cognito-identity-js/master/dist/aws-cognito-sdk.js) and [ amazon\-cognito\-identity\.min\.js](https://raw.githubusercontent.com/aws/amazon-cognito-identity-js/master/dist/amazon-cognito-identity.min.js), then save the text from each as seperate `.js` files\. 
+
 ## JavaScript Example Code<a name="image-bytes-javascript-code"></a>
 
 ```

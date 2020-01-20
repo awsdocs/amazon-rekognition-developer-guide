@@ -14,6 +14,11 @@ By default, only faces with a similarity score of greater than or equal to 80% a
 
  `CompareFaces` also returns an array of faces that don't match the source image\. For each face, it returns a bounding box, confidence value, landmarks, pose details, and quality\. The response also returns information about the face in the source image, including the bounding box of the face and confidence value\.
 
+The `QualityFilter` input parameter allows you to filter out detected faces that don’t meet a required quality bar\. The quality bar is based on a variety of common use cases\. Use `QualityFilter` to set the quality bar by specifying `LOW`, `MEDIUM`, or `HIGH`\. If you do not want to filter detected faces, specify `NONE`\. The default value is `NONE`\. 
+
+**Note**  
+To use quality filtering, you need a collection associated with version 3 of the face model or higher\. To get the version of the face model associated with a collection, call [DescribeCollection](API_DescribeCollection.md)\. 
+
 If the image doesn't contain Exif metadata, `CompareFaces` returns orientation information for the source and target images\. Use these values to display the images with the correct image orientation\.
 
 If no faces are detected in the source or target images, `CompareFaces` returns an `InvalidParameterException` error\. 
@@ -29,6 +34,7 @@ This operation requires permissions to perform the `rekognition:CompareFaces` ac
 
 ```
 {
+   "[QualityFilter](#rekognition-CompareFaces-request-QualityFilter)": "string",
    "[SimilarityThreshold](#rekognition-CompareFaces-request-SimilarityThreshold)": number,
    "[SourceImage](#rekognition-CompareFaces-request-SourceImage)": { 
       "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
@@ -52,6 +58,13 @@ This operation requires permissions to perform the `rekognition:CompareFaces` ac
 ## Request Parameters<a name="API_CompareFaces_RequestParameters"></a>
 
 The request accepts the following data in JSON format\.
+
+ ** [QualityFilter](#API_CompareFaces_RequestSyntax) **   <a name="rekognition-CompareFaces-request-QualityFilter"></a>
+A filter that specifies a quality bar for how much filtering is done to identify faces\. Filtered faces aren't compared\. If you specify `AUTO`, Amazon Rekognition chooses the quality bar\. If you specify `LOW`, `MEDIUM`, or `HIGH`, filtering removes all faces that don’t meet the chosen quality bar\. The quality bar is based on a variety of common use cases\. Low\-quality detections can occur for a number of reasons\. Some examples are an object that's misidentified as a face, a face that's too blurry, or a face with a pose that's too extreme to use\. If you specify `NONE`, no filtering is performed\. The default value is `NONE`\.   
+To use quality filtering, the collection you are using must be associated with version 3 of the face model or higher\.  
+Type: String  
+Valid Values:` NONE | AUTO | LOW | MEDIUM | HIGH`   
+Required: No
 
  ** [SimilarityThreshold](#API_CompareFaces_RequestSyntax) **   <a name="rekognition-CompareFaces-request-SimilarityThreshold"></a>
 The minimum level of confidence in the face matches that a match must meet to be included in the `FaceMatches` array\.  

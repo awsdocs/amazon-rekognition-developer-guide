@@ -1,11 +1,13 @@
 # Document History for Amazon Rekognition<a name="document-history"></a>
 
 The following table describes important changes in each release of the *Amazon Rekognition Developer Guide*\. For notification about updates to this documentation, you can subscribe to an RSS feed\. 
-+ **Latest documentation update:** September 12th, 2019
++ **Latest documentation update:** December 3rd, 2019
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Amazon Rekognition now supports Augmented AI \(Preview\) and Amazon Rekognition Customs Labels](#document-history) | With Amazon Rekognition Custom Labels you can detect specialized objects, scenes, and concepts in images by creating your own machine learning model\. DetectModerationLabels now supports Amazon Augmented AI \(Preview\)\.  | December 3, 2019 | 
 | [Amazon Rekognition now supports AWS PrivateLink](#document-history) | With AWS PrivateLink you can establish a private connection between your VPC and Amazon Rekognition\.  | September 12, 2019 | 
+| [Amazon Rekognition face filtering](#document-history) | Amazon Rekognition adds enhanced face filtering support to the IndexFaces API operation, and introduces face filtering for the CompareFaces and SearchFacesByImage API operations\.  | September 12, 2019 | 
 | [Amazon Rekognition Video examples updated](#document-history) | Amazon Rekognition Video example code updated to create and configure the Amazon SNS topic and Amazon SQS queue\.  | September 5, 2019 | 
 | [Ruby and Node\.js examples added](#document-history) | Amazon Rekognition Image Ruby and Node\.js examples added for synchronous label and face detection\.  | August 19, 2019 | 
 | [Unsafe content detection updated](#document-history) | Amazon Rekognition unsafe content detection can now detect violent content\.  | August 9, 2019 | 

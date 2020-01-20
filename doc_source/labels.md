@@ -17,3 +17,4 @@ For example, in the following image, Amazon Rekognition Image is able to detect 
 **Topics**
 + [Detecting Labels in an Image](labels-detect-labels-image.md)
 + [Detecting Labels in a Video](labels-detecting-labels-video.md)
++ [Detecting Custom Labels](labels-detecting-custom-labels.md)
