@@ -377,7 +377,7 @@ The input to `DetectFaces` is an image\. In this example, the image is loaded fr
 + **Confidence** – The level of confidence that the bounding box contains a face\. 
 + **Facial landmarks** – An array of facial landmarks\. For each landmark \(such as the left eye, right eye, and mouth\), the response provides the x and y coordinates\.
 + **Facial attributes** – A set of facial attributes, such as whether the face has a beard\. For each such attribute, the response provides a value\. The value can be of different types, such as a Boolean type \(whether a person is wearing sunglasses\) or a string \(whether the person is male or female\)\. In addition, for most attributes, the response also provides a confidence in the detected value for the attribute\. 
-+ **Quality** – Describes the brightness and the sharpness of the face\. For information about ensuring the best possible face detection, see [Recommendations for Facial Recognition Input Images](recommendations-facial-input-images.md)\.
++ **Quality** – Describes the brightness and the sharpness of the face\. For information about ensuring the best possible face detection, see [Recommendations for Facial Comparison Input Images](recommendations-facial-input-images.md)\.
 + **Pose** – Describes the rotation of the face inside the image\.
 + **Emotions** – A set of emotions with confidence in the analysis\.
 

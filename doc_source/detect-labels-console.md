@@ -2,13 +2,15 @@
 
 This section shows how, at a very high level, Amazon Rekognition's objects and scenes detection capability works\. When you specify an image as input, the service detects the objects and scenes in the image and returns them along with a percent confidence score for each object and scene\.
 
-For example, Amazon Rekognition detects the following objects and scenes in the sample image: skateboard, sport, person, auto, car and vehicle\. To see all the confidence scores shown in this response, choose **Show more** in the **Labels \| Confidence** pane\.
+For example, Amazon Rekognition detects the following objects and scenes in the sample image: skateboard, sport, person, auto, car and vehicle\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/detect-scenes.png)
 
 Amazon Rekognition also returns a confidence score for each object detected in the sample image, as shown in the following sample response\. 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/labels-confidence-score.png)
+
+To see all the confidence scores shown in the response, choose **Show more** in the **Labels \| Confidence** pane\.
 
 You can also look at the request to the API and the response from the API as a reference\.
 

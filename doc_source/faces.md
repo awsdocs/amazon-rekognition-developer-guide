@@ -11,7 +11,7 @@ This section provides examples for both image and video facial analysis\. For mo
 You can use storage operations to save facial metadata for faces detected in an image\. Later you can search for stored faces in both images and videos\. For example, this enables searching for a specific person in a video\. For more information, see [Searching Faces in a Collection](collections.md)\.
 
 **Topics**
-+ [Overview of Face Detection and Face Recognition](face-feature-differences.md)
++ [Overview of Face Detection and Face Comparison](face-feature-differences.md)
 + [Guidelines on Face Attributes](guidance-face-attributes.md)
 + [Detecting Faces in an Image](faces-detect-images.md)
 + [Comparing Faces in Images](faces-comparefaces.md)

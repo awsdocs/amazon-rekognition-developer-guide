@@ -2,7 +2,7 @@
 
 You can use the AWS Command Line Interface \(AWS CLI\) to call Amazon Rekognition Video operations\. The design pattern is the same as using the Amazon Rekognition Video API with the AWS SDK for Java or other AWS SDKs\. For more information, see [Amazon Rekognition Video API Overview](video.md#video-api-overview)\. The following procedures show how to use the AWS CLI to detect labels in a video\.
 
-You start detecting labels in a video by calling `start-label-detection`\. When Amazon Rekognition finishes analyzing the video, the completion status is sent to the Amazon SNS topic that's specified in the `--notification-channel` parameter of `start-label-detection`\. You can get the completion status by subscribing an Amazon Simple Queue Service \(Amazon SQS\) queue to the Amazon SNS topic\. You then poll [receive\-message](http://docs.aws.amazon.com/cli/latest/reference/sqs/receive-message.html) to get the completion status from the Amazon SQS queue\.
+You start detecting labels in a video by calling `start-label-detection`\. When Amazon Rekognition finishes analyzing the video, the completion status is sent to the Amazon SNS topic that's specified in the `--notification-channel` parameter of `start-label-detection`\. You can get the completion status by subscribing an Amazon Simple Queue Service \(Amazon SQS\) queue to the Amazon SNS topic\. You then poll [receive\-message](http://docs.aws.amazon.comcli/latest/reference/sqs/receive-message.html) to get the completion status from the Amazon SQS queue\.
 
 The completion status notification is a JSON structure within the `receive-message` response\. You need to extract the JSON from the response\. For information about the completion status JSON, see [Reference: Video Analysis Results Notification](video-notification-payload.md)\. If the value of the `Status` field of the completed status JSON is `SUCCEEDED`, you can get the results of the video analysis request by calling `get-label-detection`\.
 
@@ -26,14 +26,12 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 
    ```
    aws rekognition start-label-detection --video "S3Object={Bucket=bucketname,Name=videofile}" \
-   --endpoint-url Endpoint \
    --notification-channel "SNSTopicArn=TopicARN,RoleArn=RoleARN" \
    --region us-east-1
    ```
 
    Update the following values:
    + Change `bucketname` and `videofile` to the Amazon S3 bucket name and file name that you specified in step 2\.
-   + Change `Endpoint` to the AWS endpoint that you're using\.
    + Change `us-east-1` to the AWS region that you're using\.
    + Change `TopicARN` to the ARN of the Amazon SNS topic you created in step 3 of [Configuring Amazon Rekognition Video](api-video-roles.md)\.
    + Change `RoleARN` to the ARN of the IAM service role you created in step 7 of [Configuring Amazon Rekognition Video](api-video-roles.md)\.
@@ -46,7 +44,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
    }
    ```
 
-1. Write code to poll the Amazon SQS queue for the completion status JSON \(by using [receive\-message](http://docs.aws.amazon.com/cli/latest/reference/sqs/receive-message.html)\)\.
+1. Write code to poll the Amazon SQS queue for the completion status JSON \(by using [receive\-message](http://docs.aws.amazon.comcli/latest/reference/sqs/receive-message.html)\)\.
 
 1. Write code to extract the `Status` field from the completion status JSON\.
 

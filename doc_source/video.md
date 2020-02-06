@@ -2,10 +2,10 @@
 
 Amazon Rekognition Video is an API that you can use to analyze videos\. With Amazon Rekognition Video, you can detect labels, faces, people, celebrities, and adult \(suggestive and explicit\) content in videos that are stored in an Amazon Simple Storage Service \(Amazon S3\) bucket\. You can use Amazon Rekognition Video in categories such as media/entertainment and public safety\. Previously, scanning videos for objects or people would have taken many hours of error\-prone viewing by a human being\. Amazon Rekognition Video automates the detection of items and when they occur throughout a video\.
 
-This section covers the types of detection and recognition that Amazon Rekognition Video can perform, an overview of the API, and examples for using Amazon Rekognition Video\.
+This section covers the types of analysis that Amazon Rekognition Video can perform, an overview of the API, and examples for using Amazon Rekognition Video\.
 
 **Topics**
-+ [Types of Detection and Recognition](#video-recognition-types)
++ [Types of Analysis](#video-recognition-types)
 + [Amazon Rekognition Video API Overview](#video-api-overview)
 + [Calling Amazon Rekognition Video Operations](api-video.md)
 + [Configuring Amazon Rekognition Video](api-video-roles.md)
@@ -15,7 +15,7 @@ This section covers the types of detection and recognition that Amazon Rekogniti
 + [Reference: Video Analysis Results Notification](video-notification-payload.md)
 + [Troubleshooting Amazon Rekognition Video](video-troubleshooting.md)
 
-## Types of Detection and Recognition<a name="video-recognition-types"></a>
+## Types of Analysis<a name="video-recognition-types"></a>
 
 You can use Amazon Rekognition Video to analyze videos for the following information:
 + [Labels](labels.md)

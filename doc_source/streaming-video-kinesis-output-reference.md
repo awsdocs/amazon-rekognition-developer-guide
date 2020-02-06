@@ -6,6 +6,9 @@ The JSON frame record contains information about the input and output stream, th
 
 The following is the JSON syntax for a Kinesis data stream record\. For more information, see [Working with Streaming Videos](streaming-video.md)\.
 
+**Note**  
+The Amazon Rekognition Video API works by comparing the faces in your input stream to a collection of faces, and returning the closest found matches, along with a similarity score\.
+
 ```
 {
     "InputInformation": {

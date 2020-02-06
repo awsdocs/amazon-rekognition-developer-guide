@@ -10,7 +10,7 @@ You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from
 
    1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
-1. Use the following examples to call the `DeleteCollection` operation\.
+1. Use the following examples to call the `DeleteFaces` operation\.
 
 ------
 #### [ Java ]
@@ -60,7 +60,7 @@ You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from
 ------
 #### [ AWS CLI ]
 
-   This AWS CLI command displays the JSON output for the `delete-collection` CLI operation\. Replace the value of `collection-id` with the name of the collection that contains the face you want to delete\. Replace the value of `face-ids` with an array of face IDs that you want to delete\.
+   This AWS CLI command displays the JSON output for the `delete-faces` CLI operation\. Replace the value of `collection-id` with the name of the collection that contains the face you want to delete\. Replace the value of `face-ids` with an array of face IDs that you want to delete\.
 
    ```
    aws rekognition delete-faces --collection-id "collectionname" --face-ids '["faceid"]'

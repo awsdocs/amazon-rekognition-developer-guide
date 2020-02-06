@@ -26,7 +26,7 @@ The following list shows some common uses for the metrics\. These are suggestion
 |  How can I monitor the latency of `Rekognition` operation calls?  |  Use the `ResponseTime` metric\.  | 
 |  How can I monitor how many times `IndexFaces` successfully added faces to Rekognition collections?  |  Monitor the `Sum` statistic with the `SuccessfulRequestCount` metric and `IndexFaces` operation\. Use the `Operation` dimension to select the operation and metric\.  | 
 
-You must have the appropriate CloudWatch permissions to monitor Rekognition with CloudWatch\. For more information, see [Authentication and Access Control for Amazon CloudWatch](https://docs.aws.amazon.com//AmazonCloudWatch/latest/monitoring/auth-and-access-control-cw.html)\.
+You must have the appropriate CloudWatch permissions to monitor Rekognition with CloudWatch\. For more information, see [Authentication and Access Control for Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/auth-and-access-control-cw.html)\.
 
 ## Access Rekognition Metrics<a name="how-to-access"></a>
 

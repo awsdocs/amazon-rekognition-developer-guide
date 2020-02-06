@@ -8,7 +8,7 @@ If the source image contains multiple faces, the service detects the largest fac
 
 For more information, see [Comparing Faces in Images](faces-comparefaces.md)\.
 
-For example, with the sample image shown on the left as a source image and the sample image on the right as a target image, Rekognition compares the face in the source image, matches it with each face in the target image, displays a similarity score for each face it detects\.
+For example, with the sample image shown on the left as a source image and the sample image on the right as a target image, Rekognition detects the face in the source image, compares it with each face detected in the target image, and displays a similarity score for each pair\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/sample-compare-faces.png)
 

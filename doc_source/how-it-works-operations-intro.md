@@ -2,7 +2,7 @@
 
 Amazon Rekognition provides two API sets\. You use Amazon Rekognition Image for analyzing images, and Amazon Rekognition Video for analyzing stored and streaming videos\. The following topic gives a brief overview of each API set\.
 
-The Amazon Rekognition Image and Amazon Rekognition Video API can detect or recognize a variety of entities such as faces or objects\. For information about the types of recognition and detection that are supported, see [Types of Detection and Recognition](how-it-works-types.md)\.
+The Amazon Rekognition Image and Amazon Rekognition Video API can detect a variety of entities such as faces or objects\. For information about the types of comparison and detection that are supported, see [Types of Analysis](how-it-works-types.md)\.
 
 ## Amazon Rekognition Image Operations<a name="how-it-works-operations-images"></a>
 

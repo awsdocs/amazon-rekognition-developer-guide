@@ -2,11 +2,13 @@
 
 This tutorial shows how to get the results of a video analysis operation for label detection by using a Java Lambda function\. 
 
-You can use Lambda functions with Amazon Rekognition Video operations\. For example, the following diagram shows a website that uses a Lambda function to automatically start analysis of a video when it's uploaded to an Amazon S3 bucket\. When the Lambda function is triggered, it calls [StartLabelDetection](API_StartLabelDetection.md) to start detecting labels in the uploaded video\. A second Lambda function is triggered when the analysis completion status is sent to the registered Amazon SNS topic\. The second Lambda function calls [GetLabelDetection](API_GetLabelDetection.md) to get the analysis results\. The results are then stored in a database in preparation for displaying on a webpage\. 
+You can use Lambda functions with Amazon Rekognition Video operations\. For example, the following diagram shows a website that uses a Lambda function to automatically start analysis of a video when it's uploaded to an Amazon S3 bucket\. When the Lambda function is triggered, it calls [StartLabelDetection](API_StartLabelDetection.md) to start detecting labels in the uploaded video\. For information about using Lambda to process event notifications from an Amazon S3 bucket, see [Using AWS Lambda with Amazon S3 Events](https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html)\.
+
+A second Lambda function is triggered when the analysis completion status is sent to the registered Amazon SNS topic\. The second Lambda function calls [GetLabelDetection](API_GetLabelDetection.md) to get the analysis results\. The results are then stored in a database in preparation for displaying on a webpage\. This second lambda function is the focus of this tutorial\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/VideoRekognitionLambda.png)
 
-In this tutorial, the Lambda function is triggered when Amazon Rekognition Video sends the completion status for the video analysis to the registered Amazon SNS topic\. It then collects video analysis results by calling [GetLabelDetection](API_GetLabelDetection.md)\. For demonstration purposes, this tutorial writes label detection results to a CloudWatch log\. In your application's Lambda function, you should store the analysis results for later use\. For example, you can use Amazon DynamoDB to save the analysis results\. For more information, see [Working with DynamoDB](url-ddb-dev;WorkingWithDynamo.html)\.
+In this tutorial, the Lambda function is triggered when Amazon Rekognition Video sends the completion status for the video analysis to the registered Amazon SNS topic\. It then collects video analysis results by calling [GetLabelDetection](API_GetLabelDetection.md)\. For demonstration purposes, this tutorial writes label detection results to a CloudWatch log\. In your application's Lambda function, you should store the analysis results for later use\. For example, you can use Amazon DynamoDB to save the analysis results\. For more information, see [Working with DynamoDB](url-ddb-dev;WorkingWithDynamo.html)\. 
 
 The following procedures show you how to:
 + Create the Amazon SNS topic and set up permissions\.
@@ -14,6 +16,9 @@ The following procedures show you how to:
 + Configure the Lambda function by using the AWS Management Console\.
 + Add sample code to an AWS Toolkit for Eclipse project and upload it to the Lambda function\.
 + Test the Lambda function by using the AWS CLI\.
+
+**Note**  
+Use the same AWS Region throughout the tutorial\.
 
 ## Prerequisites<a name="lambda-stored-video-prerequisites"></a>
 
@@ -27,7 +32,7 @@ The completion status of an Amazon Rekognition Video video analysis operation is
 
 1. If you haven't already, create an IAM service role to give Amazon Rekognition Video access to your Amazon SNS topics\. Note the Amazon Resource Name \(ARN\)\. For more information, see [Giving Access to Multiple Amazon SNS Topics](api-video-roles.md#api-video-roles-all-topics)\.
 
-1. [Create an Amazon SNS topic](https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\. Prepend the topic name with *AmazonRekognition*\. Note the topic ARN\. 
+1. [Create an Amazon SNS topic](https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\.You only need to specifiy the topic name\. Prepend the topic name with *AmazonRekognition*\. Note the topic ARN\. 
 
 ## Create the Lambda Function<a name="lambda-create-function"></a>
 
@@ -41,23 +46,15 @@ You create the Lambda function by using the AWS Management Console\. Then you us
 
 1. Choose **Author from scratch**\.
 
-1. In **Name\***, type a name for your function\. 
+1. In **Function name**, type a name for your function\. 
 
-1. In **Runtime\***, choose **Java 8**\. 
+1. In **Runtime**, choose **Java 8**\. 
 
-1. In **Role\***, choose **Create a custom role**\. A new tab is displayed for the custom role\.
+1. Choose **Choose or create an execution role**\.
 
-1. On the new tab, do the following: 
+1. In **Execution role**, choose **Create a new role with basic Lambda permissions**\. 
 
-   1. Choose **IAM Role**, and then choose **Create a new IAM Role**\.
-
-   1. In **Role Name**, type a name for the new custom role\.
-
-   1. Choose **Allow** to create the new role\. The custom role tab is closed, and you're returned to the Lambda creation page\.
-
-1. In **Role\***, choose **Choose an existing role**\.
-
-1. In **Existing role\***, choose the role that you created in step 7\.
+1. Note the name of the new role that's displayed at the bottom of the **Basic information** section\.
 
 1. Choose **Create function**\.
 
@@ -69,19 +66,25 @@ After you create the Lambda function, you configure it to be triggered by the Am
 
 1. In **Function Code**, type `com.amazonaws.lambda.demo.JobCompletionHandler` for **Handler**\.
 
-1. In **Basic settings**, choose **1024** for **Memory**\. 
+1. In **Basic settings**, choose **Edit**\. The **Edit basic settings** dialog is shown\.
 
-1. In **Basic settings**, choose **10** seconds for **Timeout**\. 
+   1. Choose **1024** for **Memory**\.
 
-1. In **Designer**, choose **SNS** from **Add Triggers**\.
+   1. Choose **10** seconds for **Timeout**\.
 
-1. In **Configure triggers**, choose the Amazon SNS topic that you created in [Create the SNS Topic](#lambda-create-sns-topic)\.
+   1. Choose **Save**\.
+
+1. In **Designer**, choose **\+ Add trigger**\. The Add trigger dialog is shown\.
+
+1. In **Trigger configuration** choose **SNS**\.
+
+   In **SNS topic**, choose the Amazon SNS topic that you created in [Create the SNS Topic](#lambda-create-sns-topic)\.
 
 1. Choose **Enable trigger**\.
 
 1. To add the trigger, choose **Add**\.
 
-1. Choose **Save**\.
+1. Choose **Save** to save the Lambda function\.
 
 ## Configure the IAM Lambda Role<a name="configure-lambda-role"></a>
 
@@ -93,19 +96,19 @@ To call Amazon Rekognition Video operations, you add the *AmazonRekognitionFullA
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. In the list, choose the name of the custom role that you created in [Create the Lambda Function](#lambda-create-function)\.
+1. In the list, choose the name of the execution role that you created in [Create the Lambda Function](#lambda-create-function)\.
 
 1. Choose the **Permissions** tab\.
 
-1. Choose **Attach policy**\.
+1. Choose **Attach policies**\.
 
 1. Choose *AmazonRekognitionFullAccess* from the list of policies\.
 
 1. Choose **Attach policy**\.
 
-1. Again, choose the custom role\. 
+1. Again, choose the execution role\. 
 
-1. Scroll to the bottom of the page, and choose **Add inline policy**\.
+1. Choose **Add inline policy**\.
 
 1. Choose the **JSON** tab\.
 
@@ -139,10 +142,11 @@ When the Lambda function is triggered, the following code gets the completion st
 
 1. [ Create an AWS Toolkit for Eclipse AWS Lambda project](https://docs.aws.amazon.com/toolkit-for-eclipse/v1/user-guide/lambda-tutorial.html#lambda-tutorial-create-handler-class)\. 
    + For **Project name:**, type a project name of your choosing\.
+   + For **Class Name:**, enter *JobCompletionHandler*\.
    + For **Input type:**, choose **SNS Event**\.
-   + Leave the other fields unchanged\.
+   + Leave the other fields unchanged\. 
 
-1. In the **Eclipse Project** explorer, open the generated Lambda handler method and replace the contents with the following:
+1. In the **Eclipse Project** explorer, open the generated Lambda handler method \(JobCompletionHandler\.java\) and replace the contents with the following:
 
    ```
    //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -266,15 +270,17 @@ When the Lambda function is triggered, the following code gets the completion st
    + Choose the latest version of the Amazon Rekognition archive\.
    + Choose **OK** to add the archive to the project\.
 
+1. Save the file\.
+
 1. Right\-click in your Eclipse code window, choose **AWS Lambda**, and then choose **Upload function to AWS Lambda**\. 
 
 1. On the **Select Target Lambda Function** page, choose the AWS Region to use\. 
 
 1. Choose **Choose an existing lambda function**, and select the Lambda function that you created in [Create the Lambda Function](#lambda-create-function)\. 
 
-1. Choose **Next**\.
+1. Choose **Next**\. The **Function Configuration** dialog box is shown\. 
 
-1. On the **Function Configuration** page, select the IAM role that you created in [Create the Lambda Function](#lambda-create-function)\.
+1. In **IAM Role** choose the IAM role that you created in [Create the Lambda Function](#lambda-create-function)\.
 
 1. Choose **Finish**, and the Lambda function is uploaded to AWS\.
 
@@ -292,18 +298,15 @@ Use the following AWS CLI command to test the Lambda function by starting the la
 
    ```
    aws rekognition start-label-detection --video "S3Object={Bucket="bucketname",Name="videofile"}" \
-   --endpoint-url Endpoint \
    --notification-channel "SNSTopicArn=TopicARN,RoleArn=RoleARN" \
-   --region us-east-1 \
-   --profile RekognitionUser
+   --region Region
    ```
 
    Update the following values:
    + Change `bucketname` and `videofile` to the Amazon S3 bucket name and file name of the video that you want to detect labels in\.
-   + Change `Endpoint` and `us-east-1` to the AWS endpoint and region that you're using\.
    + Change `TopicARN` to the ARN of the Amazon SNS topic that you created in [Create the SNS Topic](#lambda-create-sns-topic)\.
    + Change `RoleARN` to the ARN of the IAM role that you created in [Create the SNS Topic](#lambda-create-sns-topic)\.
-   + Change `RekognitionUser` to an AWS account that has permissions to call Amazon Rekognition Video operations\.
+   + Change `Region` to the AWS Region that you are using\. ``
 
 1. Note the value of `JobId` in the response\. The response looks similar to the following JSON example\.
 
@@ -322,4 +325,4 @@ Use the following AWS CLI command to test the Lambda function by starting the la
 1. Choose the latest log stream to see the log entries made by the Lambda function\. If the operation succeeded, it looks similar to the following:  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/log.png)
 
-   The value of **Jod id** should match the value of `JobId` that you noted in step 3\.
+   The value of **Job id** should match the value of `JobId` that you noted in step 3\.

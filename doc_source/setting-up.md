@@ -10,7 +10,7 @@ Before you use Amazon Rekognition for the first time, complete the following tas
 
 When you sign up for Amazon Web Services \(AWS\), your AWS account is automatically signed up for all services in AWS, including Amazon Rekognition\. You're charged only for the services that you use\.
 
-With Amazon Rekognition, you pay only for the resources you use\.  If you're a new AWS customer, you can get started with Amazon Rekognition for free\. For more information, see [AWS Free Usage Tier](https://aws.amazon.com//free/)\.
+With Amazon Rekognition, you pay only for the resources you use\.  If you're a new AWS customer, you can get started with Amazon Rekognition for free\. For more information, see [AWS Free Usage Tier](https://aws.amazon.com/free/)\.
 
 If you already have an AWS account, skip to the next task\. If you don't have an AWS account, perform the steps in the following procedure to create one\.
 
@@ -38,7 +38,7 @@ If you signed up for AWS, but you haven't created an IAM user for yourself, you 
 
 1. Create an IAM user with administrator permissions in your AWS account\. For instructions, see [Creating Your First IAM User and Administrators Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
 
-1. As the IAM user, sign in to the AWS Management Console by using a special URL\. For more information, [How Users Sign In to Your Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html) in the *IAM User Guide*\.
+1. As the IAM user, sign in to the AWS Management Console by using a special URL\. For more information, see [How Users Sign In to Your Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_how-users-sign-in.html) in the *IAM User Guide*\.
 
 **Note**  
 An IAM user with administrator permissions has unrestricted access to the AWS services in your account\. For information about restricting access to Amazon Rekognition operations, see [Using Identity\-Based Policies \(IAM Policies\) for Amazon Rekognition](using-identity-based-policies.md)\. The code examples in this guide assume that you have a user with the `AmazonRekognitionFullAccess` permissions\. `AmazonS3ReadOnlyAccess` is required for examples that access images or videos that are stored in an Amazon S3 bucket\. The Amazon Rekognition Video stored video code examples also require `AmazonSQSFullAccess` permissions\. Depending on your security requirements, you might want to use an IAM group that's limited to these permissions\. For more information, see [Creating IAM Groups](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_create.html)\.

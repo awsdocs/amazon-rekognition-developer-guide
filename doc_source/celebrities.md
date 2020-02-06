@@ -9,3 +9,6 @@ The Amazon Rekognition celebrity recognition API is tuned to detect as many cele
 + [Recognizing Celebrities in an Image](celebrities-procedure-image.md)
 + [Recognizing Celebrities in a Stored Video](celebrities-video-sqs.md)
 + [Getting Information About a Celebrity](get-celebrity-info-procedure.md)
+
+**Note**  
+The Celebrity Recognition API works by comparing the faces in your input image to our collection of celebrity faces, and returning the closest found matches, along with a similarity score

@@ -40,7 +40,7 @@ The following is guidance for using `IndexFaces` in common scenarios\.
 ### General Usage<a name="guidance-index-faces-general"></a>
 + Index multiple different images of the same person, particularly with different face attributes \(facial poses, facial hair, etc\) to improve matching quality\. 
 + Include a review process so that failed matches can be indexed with the correct face identifier to improve subsequent face matching ability\.
-+ For information about image quality, see [Recommendations for Facial Recognition Input Images](recommendations-facial-input-images.md)\. 
++ For information about image quality, see [Recommendations for Facial Comparison Input Images](recommendations-facial-input-images.md)\. 
 
 ## Searching for Faces Within a Collection<a name="collections-search-faces"></a>
 

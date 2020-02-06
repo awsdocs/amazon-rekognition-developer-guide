@@ -43,5 +43,6 @@ If you see an expand arrow \(**↗**\) in the upper\-right corner of the table, 
 |  [StartCelebrityRecognition](API_StartCelebrityRecognition.md)  |  rekognition:StartCelebrityRecognition  |  None used\.  | 
 |  [StartContentModeration](API_StartContentModeration.md)  |  rekognition:StartContentModeration  |  None used\.  | 
 |  [StartFaceDetection](API_StartFaceDetection.md)  |  rekognition:StartFaceDetection  |  None used\.  | 
+|  [StartFaceSearch](API_StartFaceSearch.md)  |  rekognition:StartFaceDetection  |  None used\.  | 
 |  [StartLabelDetection](API_StartLabelDetection.md)  |  rekognition:StartLabelDetection  |  None used\.  | 
 |  [StartPersonTracking](API_StartPersonTracking.md)  |  rekognition:StartPersonTracking  |  None used\.  | 

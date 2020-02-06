@@ -34,7 +34,7 @@ The following is an example of a successful notification that was sent to an Ama
 {
   "JobId": "6de014b0-2121-4bf0-9e31-856a18719e22",
   "Status": "SUCCEEDED",
-  "JobType": "LABEL_DETECTION",
+  "API": "LABEL_DETECTION",
   "Message": "",
   "Timestamp": 1502230160926,
   "Video": {

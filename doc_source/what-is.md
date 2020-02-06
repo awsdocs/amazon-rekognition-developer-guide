@@ -1,8 +1,8 @@
 # What Is Amazon Rekognition?<a name="what-is"></a>
 
-Amazon Rekognition makes it easy to add image and video analysis to your applications\. You just provide an image or video to the Amazon Rekognition API, and the service can identify objects, people, text, scenes, and activities\. It can detect any inappropriate content as well\. Amazon Rekognition also provides highly accurate facial analysis and facial recognition\. You can detect, analyze, and compare faces for a wide variety of use cases, including user verification, cataloging, people counting, and public safety\.
+Amazon Rekognition makes it easy to add image and video analysis to your applications\. You just provide an image or video to the Amazon Rekognition API, and the service can identify objects, people, text, scenes, and activities\. It can detect any inappropriate content as well\. Amazon Rekognition also provides highly accurate facial analysis, face comparison, and face search capabilities\. You can detect, analyze, and compare faces for a wide variety of use cases, including user verification, cataloging, people counting, and public safety\.
 
-Amazon Rekognition is based on the same proven, highly scalable, deep learning technology developed by Amazon’s computer vision scientists to analyze billions of images and videos daily\. It requires no machine learning expertise to use\. Amazon Rekognition includes a simple, easy\-to\-use API that can quickly analyze any image or video file that’s stored in Amazon S3\. Amazon Rekognition is always learning from new data, and we’re continually adding new labels and facial recognition features to the service\. For more information, see the [Amazon Rekognition FAQs](https://aws.amazon.com/rekognition/faqs/)\. 
+Amazon Rekognition is based on the same proven, highly scalable, deep learning technology developed by Amazon’s computer vision scientists to analyze billions of images and videos daily\. It requires no machine learning expertise to use\. Amazon Rekognition includes a simple, easy\-to\-use API that can quickly analyze any image or video file that’s stored in Amazon S3\. Amazon Rekognition is always learning from new data, and we’re continually adding new labels and facial comparison features to the service\. For more information, see the [Amazon Rekognition FAQs](https://aws.amazon.com/rekognition/faqs/)\. 
 
 Common use cases for using Amazon Rekognition include the following:
 + **Searchable image and video libraries** – Amazon Rekognition makes images and stored videos searchable so you can discover objects and scenes that appear within them\. 
@@ -14,7 +14,7 @@ Common use cases for using Amazon Rekognition include the following:
 + **Sentiment and demographic analysis** – Amazon Rekognition interprets emotional expressions such as happy, sad, or surprise, and demographic information such as gender from facial images\. Amazon Rekognition can analyze images, and send the emotion and demographic attributes to Amazon Redshift for periodic reporting on trends such as in store locations and similar scenarios\. Note that a prediction of an emotional expression is based on the physical appearance of a person's face only\. It is not indicative of a person’s internal emotional state, and Rekognition should not be used to make such a determination\.
 
    
-+ **Facial recognition** – With Amazon Rekognition, you can search images, stored videos, and streaming videos for faces that match those stored in a container known as a face collection\. A face collection is an index of faces that you own and manage\. Identifying people based on their faces requires two major steps in Amazon Rekognition: 
++ **Facial Search** – With Amazon Rekognition, you can search images, stored videos, and streaming videos for faces that match those stored in a container known as a face collection\. A face collection is an index of faces that you own and manage\. Searching for people based on their faces requires two major steps in Amazon Rekognition: 
 
   1. Index the faces\.
 
@@ -33,7 +33,7 @@ Common use cases for using Amazon Rekognition include the following:
 + **Custom labels**– With Amazon Rekognition Custom Labels, you can identify the objects and scenes in images that are specific to your business needs\. For example, you can find your logo in social media posts, identify your products on store shelves, classify machine parts in an assembly line, distinguish healthy and infected plants, or detect animated characters in videos\. For more information, see [What is Amazon Rekognition Custom Labels?](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/what-is.html) in the *Amazon Rekognition Custom Labels Developer Guide*\.
 
 Some of the benefits of using Amazon Rekognition include:
-+ **Integrating powerful image and video recognition into your apps** – Amazon Rekognition removes the complexity of building image recognition capabilities into your applications by making powerful and accurate analysis available with a simple API\. You don’t need computer vision or deep learning expertise to take advantage of the reliable image and video analysis in Amazon Rekognition\. With the API, you can easily and quickly build image and video analysis into any web, mobile, or connected device application\.
++ **Integrating powerful image and video analysis into your apps** – You don’t need computer vision or deep learning expertise to take advantage of the reliable image and video analysis in Amazon Rekognition\. With the API, you can easily and quickly build image and video analysis into any web, mobile, or connected device application\.
 
    
 + **Deep learning\-based image and video analysis** – Amazon Rekognition uses deep\-learning technology to accurately analyze images, find and compare faces in images, and detect objects and scenes within your images and videos\. 
@@ -57,7 +57,7 @@ If you're a first\-time user of Amazon Rekognition, we recommend that you read t
 
 1. **[How Amazon Rekognition Works](how-it-works.md)** – This section introduces various Amazon Rekognition components that you work with to create an end\-to\-end experience\. 
 
-1. **[Getting Started with Amazon Rekognition](getting-started.md)** – In this section, you set your account and test the Amazon Rekognition API\.
+1. **[Getting Started with Amazon Rekognition](getting-started.md)** – In this section, you set up your account and test the Amazon Rekognition API\.
 
 1. **[Working with Images](images.md)** – This section provides information about using Amazon Rekognition with images stored in Amazon S3 buckets and images loaded from a local file system\.
 

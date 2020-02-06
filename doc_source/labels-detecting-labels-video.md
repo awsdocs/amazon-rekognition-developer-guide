@@ -2,7 +2,7 @@
 
 Amazon Rekognition Video can detect labels, and the time a label is detected, in a video\. For an SDK code example, see [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\. For an AWS CLI example, see [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)\.
 
-Amazon Rekognition Video label detection is an asynchronous operation\. To start the detection of labels in a video, call [StartLabelDetection](API_StartLabelDetection.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is succesful, call [GetLabelDetection](API_GetLabelDetection.md) to get the detected labels\. For information about calling the video recognition API operations, see [Calling Amazon Rekognition Video Operations](api-video.md)\. 
+Amazon Rekognition Video label detection is an asynchronous operation\. To start the detection of labels in a video, call [StartLabelDetection](API_StartLabelDetection.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is succesful, call [GetLabelDetection](API_GetLabelDetection.md) to get the detected labels\. For information about calling the video analysis API operations, see [Calling Amazon Rekognition Video Operations](api-video.md)\. 
 
 ## GetLabelDetection Operation Response<a name="getlabeldetection-operation-response"></a>
 

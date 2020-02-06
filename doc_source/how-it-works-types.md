@@ -1,6 +1,6 @@
-# Types of Detection and Recognition<a name="how-it-works-types"></a>
+# Types of Analysis<a name="how-it-works-types"></a>
 
-The following are the types of detection and recognition that the Amazon Rekognition Image API and Amazon Rekognition Video API can perform\. For information about the APIs, see [Image and Video Operations](how-it-works-operations-intro.md)\.
+The following are the types of analysis that the Amazon Rekognition Image API and Amazon Rekognition Video API can perform\. For information about the APIs, see [Image and Video Operations](how-it-works-operations-intro.md)\.
 
 ## Labels<a name="how-it-works-labels-intro"></a>
 

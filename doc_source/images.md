@@ -1,6 +1,6 @@
 # Working with Images<a name="images"></a>
 
-This section covers the types of detection and recognition that Amazon Rekognition Image can perform on images\. 
+This section covers the types of analysis that Amazon Rekognition Image can perform on images\. 
 + Label detection
 + Face detection and comparison
 + Celebrity recognition
