@@ -45,7 +45,7 @@ For more information, see [Analyzing an Image Loaded from a Local File System](i
  You pass images stored in an S3 bucket to an Amazon Rekognition API operation by using the `S3Object` property\. Images stored in an S3 bucket do not need to be base64\-encoded\.  
 The region for the S3 bucket containing the S3 object must match the region you use for Amazon Rekognition operations\.  
 If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes using the Bytes property is not supported\. You must first upload the image to an Amazon S3 bucket and then call the operation using the S3Object property\.  
-For Amazon Rekognition to process an S3 object, the user must have permission to access the S3 object\. For more information, see [Resource\-Based Policies](access-control-overview.md#manage-access-resource-policies)\.   
+For Amazon Rekognition to process an S3 object, the user must have permission to access the S3 object\. For more information, see [Amazon Rekognition Resource\-Based Policies](security_iam_service-with-iam.md#security_iam_service-with-iam-resource-based-policies)\.   
 Type: [Image](API_Image.md) object  
 Required: Yes
 
@@ -162,4 +162,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectCustomLabels) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectCustomLabels) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DetectCustomLabels) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/DetectCustomLabels) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/DetectCustomLabels) 

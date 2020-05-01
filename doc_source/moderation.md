@@ -1,8 +1,14 @@
 # Detecting Unsafe Content<a name="moderation"></a>
 
-You can use Amazon Rekognition to determine if an image or stored video contains unsafe content, such as explicit adult content or violent content\.
+You can use Amazon Rekognition to determine if an image or stored video contains unsafe content, such as explicit adult content or violent content\. 
 
-You can use the image and video moderation APIs in a variety of use cases such as social media, online market places, and professional media\. By using Amazon Rekognition to detect unsafe content, you can reduce the need for human review of unsafe content\.
+You can use the image and video moderation APIs in a variety of use cases such as social media, online market places, and professional media\. By using Amazon Rekognition to detect unsafe content, you can reduce the need for human review of unsafe content\. If you do want human review of unsafe content, you can use Amazon Augmented AI\. 
+
+**Topics**
++ [Using the Image and Video Moderation APIs](#moderation-api)
++ [Detecting Unsafe Images](procedure-moderate-images.md)
++ [Detecting Unsafe Stored Videos](procedure-moderate-videos.md)
++ [Reviewing Unsafe Content with Amazon Augmented AI](a2i-rekognition.md)
 
 ## Using the Image and Video Moderation APIs<a name="moderation-api"></a>
 

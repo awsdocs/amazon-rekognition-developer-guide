@@ -6,7 +6,7 @@ You can use the [DetectModerationLabels](API_DetectModerationLabels.md) operatio
 
 The image must be in either a \.jpg or a \.png format\. You can provide the input image as an image byte array \(base64\-encoded image bytes\), or specify an Amazon S3 object\. In these procedures, you upload an image \(\.jpg or \.png\) to your S3 bucket\.
 
-To run these procedures, you need to have the AWS CLI and AWS SDK for Java installed\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\. The AWS account you use must have access permissions to the Amazon Rekognition API\. For more information, see [Amazon Rekognition API Permissions: Actions, Permissions, and Resources Reference](api-permissions-reference.md)\. 
+To run these procedures, you need to have the AWS CLI and AWS SDK for Java installed\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\. The AWS account you use must have access permissions to the Amazon Rekognition API\. For more information, see [Actions Defined by Amazon Rekognition](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonrekognition.html#amazonrekognition-actions-as-permissions)\. 
 
 ## <a name="to-detect-moderation-labels-in-an-image"></a>
 

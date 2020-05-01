@@ -16,7 +16,7 @@ The following table lists the graphs displayed in the Rekognition metrics pane a
 
 Each graph shows aggregated metric data collected over a specified period of time\. A total count of aggregated metric data for the time period is also displayed\. To see metrics for individual API calls, choose the link beneath each graph\.
 
-To allow users access to the Rekognition metrics pane, ensure that the user has appropriate CloudWatch and Rekognition permissions\. For example, a user with `AmazonRekognitionReadOnlyAccess` and `CloudWatchReadOnlyAccess` managed policy permissions can see the metrics pane\. If a user does not have the required permissions, when the user opens the metrics pane, no graphs appear\. For more information, see [Authentication and Access Control for Amazon Rekognition](authentication-and-access-control.md)\.
+To allow users access to the Rekognition metrics pane, ensure that the user has appropriate CloudWatch and Rekognition permissions\. For example, a user with `AmazonRekognitionReadOnlyAccess` and `CloudWatchReadOnlyAccess` managed policy permissions can see the metrics pane\. If a user does not have the required permissions, when the user opens the metrics pane, no graphs appear\. For more information, see [Identity and Access Management for Amazon Rekognition](security-iam.md)\.
 
 For more information about monitoring Rekognition with CloudWatch see [Monitoring Rekognition](rekognition-monitoring.md)\.
 

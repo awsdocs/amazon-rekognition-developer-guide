@@ -82,9 +82,6 @@ The following examples show how to display a bounding box around faces that are 
    // Calls DetectFaces and displays a bounding box around each detected image.
    public class DisplayFaces extends JPanel {
    
-       /**
-        * 
-        */
        private static final long serialVersionUID = 1L;
    
        BufferedImage image;

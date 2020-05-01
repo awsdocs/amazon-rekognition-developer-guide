@@ -1,11 +1,4 @@
-# Using Amazon Augmented AI \(Preview\) with Amazon Rekognition<a name="a2i-rekognition"></a>
-
-
-****  
-
-|  | 
-| --- |
-|  Amazon Augmented AI is in preview release and is subject to change\. We recommend that you use this tool only with test datasets, and not in production environments\. | 
+# Reviewing Unsafe Content with Amazon Augmented AI<a name="a2i-rekognition"></a>
 
 Amazon Augmented AI \(Amazon A2I\) enables you to build the workflows that are required for human review of machine learning predictions\.
 
@@ -13,7 +6,9 @@ Amazon Rekognition is directly integrated with Amazon A2I so that you can easily
 
 The following steps walk you through how to set up Amazon A2I with Amazon Rekognition\. First, you create a flow definition with Amazon A2I that has the conditions that trigger human review\. Then, you pass the flow definition's Amazon Resource Name \(ARN\) to the Amazon Rekognition `DetectModerationLabel` operation\. In the `DetectModerationLabel` response, you can see if human review is required\. The results of human review are available in an Amazon S3 bucket that is set by the flow definition\.
 
-**Running DetectModerationLabels with Amazon A2I \(Preview\)**
+**Running DetectModerationLabels with Amazon A2I**
+**Note**  
+Create all of your Amazon A2I resources and Amazon Rekognition resources in the same region\.
 
 1. Complete the prerequisites that are listed in [Getting Started with Amazon Augmented AI](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-getting-started.html) in the *Amazon SageMaker Documentation*\.
 
@@ -25,7 +20,11 @@ The following steps walk you through how to set up Amazon A2I with Amazon Rekogn
 
    Within your `CreateFlowDefinition` call, you need to set the `HumanLoopRequestSource` to "AWS/Rekognition/DetectModerationLabels/Image/V3"\. After that, you need to decide how you want to set up your conditions that trigger human review\.
 
-   For Amazon Rekognition, the `ConditionType` used is `ModerationLabelConfidenceCheck`, which has the `ConditionParameters` of `ModerationLabelName`, ConfidenceLessThan, GreaterThan, EqualTo, GreaterThanOrEqualTo, and LessThanOrEqualTo\. These parameters enable you to set which moderation label that you want to check for, and the thresholds that trigger human review\. In addition to these options, you can use logical operators such as "And", "Or", or "Not" to create more complex conditions\. To send all images that are analyzed to human review, you can set the label to "\*" and the ConfidenceGreaterThan parameter to 0\.
+   With Amazon Textract you have two options for `ConditionType`: `ModerationLabelConfidenceCheck`, and `Sampling`\.
+
+   `ModerationLabelConfidenceCheck` creates a human loop when confidence of a moderation label is within a range\. Finally, `Sampling` sends a random percent of the documents processed for human review\. Each `ConditionType` uses a different set of `ConditionParameters` to set what results in human review\.
+
+   `ModerationLabelCondifenceCheck` has the `ConditionParameters` `ModerationLableName` which sets the key that needs to be reviewed by humans\. Additionally, it has confidence, which set the percentage range for sending to human review with LessThan, GreaterThan, and Equals\. `Sampling` has `RandomSamplingPercentage` which sets a percent of documents that will be sent to human review\.
 
    The following code example is a partial call of `CreateFlowDefinition`\. It sends an image for human review if it's rated less than 98% on the label "Suggestive", and more than 95% on the label "Female Swimwear or Underwear"\. This means that if the image isn't considered suggestive but does have a woman in underwear or swimwear, you can double check the image by using human review\.
 

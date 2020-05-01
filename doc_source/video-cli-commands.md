@@ -10,7 +10,7 @@ The following procedures don't include code to poll the Amazon SQS queue\. Also,
 
 ## Prerequisites<a name="video-prerequisites"></a>
 
-To run this procedure, you need to have the AWS CLI installed\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\. The AWS account that you use must have access permissions to the Amazon Rekognition API\. For more information, see [Amazon Rekognition API Permissions: Actions, Permissions, and Resources Reference](api-permissions-reference.md)\. 
+To run this procedure, you need to have the AWS CLI installed\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\. The AWS account that you use must have access permissions to the Amazon Rekognition API\. For more information, [Actions Defined by Amazon Rekognition](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonrekognition.html#amazonrekognition-actions-as-permissions)\. 
 
 **To configure Amazon Rekognition Video and upload a video**
 
@@ -44,7 +44,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
    }
    ```
 
-1. Write code to poll the Amazon SQS queue for the completion status JSON \(by using [receive\-message](http://docs.aws.amazon.comcli/latest/reference/sqs/receive-message.html)\)\.
+1. Write code to poll the Amazon SQS queue for the completion status JSON \(by using [receive\-message](https://docs.aws.amazon.com/cli/latest/reference/sqs/receive-message.html)\)\.
 
 1. Write code to extract the `Status` field from the completion status JSON\.
 

@@ -1,0 +1,3 @@
+# Internetwork Traffic Privacy<a name="security-inter-network-privacy"></a>
+
+An Amazon Virtual Private Cloud \(Amazon VPC\) endpoint for Amazon Rekognition is a logical entity within a VPC that allows connectivity only to Amazon Rekognition\. Amazon VPC routes requests to Amazon Rekognition and routes responses back to the VPC\. For more information, see [VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints.html) in the *Amazon VPC User Guide*\. For information about using Amazon VPC endpoints with Amazon Rekognition see [Using Amazon Rekognition with Amazon VPC Endpoints](vpc.md)\.

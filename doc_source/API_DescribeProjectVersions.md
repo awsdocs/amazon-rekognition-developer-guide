@@ -39,7 +39,7 @@ Pattern: `(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA-Z0-9_.\-]{
 Required: Yes
 
  ** [VersionNames](#API_DescribeProjectVersions_RequestSyntax) **   <a name="rekognition-DescribeProjectVersions-request-VersionNames"></a>
-A list of model version names that you want to describe\. You can add up to 10 model version names to the list\. If you don't specify a value, all model descriptions are returned\.  
+A list of model version names that you want to describe\. You can add up to 10 model version names to the list\. If you don't specify a value, all model descriptions are returned\. A version name is part of a model \(ProjectVersion\) ARN\. For example, `my-model.2020-01-21T09.10.15` is the version name in the following ARN\. `arn:aws:rekognition:us-east-1:123456789012:project/getting-started/version/my-model.2020-01-21T09.10.15/1234567890123`\.  
 Type: Array of strings  
 Array Members: Minimum number of 1 item\. Maximum number of 10 items\.  
 Length Constraints: Minimum length of 1\. Maximum length of 255\.  
@@ -193,4 +193,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DescribeProjectVersions) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DescribeProjectVersions) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DescribeProjectVersions) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/DescribeProjectVersions) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/DescribeProjectVersions) 

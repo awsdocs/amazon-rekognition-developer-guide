@@ -8,6 +8,9 @@ To connect your VPC to Amazon Rekognition, you define an interface VPC endpoint 
 
 Interface VPC endpoints are enabled by AWS PrivateLink\. This AWS technology enables private communication between AWS services by using an elastic network interface with private IP addresses\. For more information, see [AWS PrivateLink](https://aws.amazon.com/privatelink/)\.
 
+**Note**  
+All Amazon Rekognition Federal Information Processing Standard \(FIPS\) endpoints are supported by AWS PrivateLink\.
+
 ## Creating Amazon VPC Endpoints for Amazon Rekognition<a name="vpc-create-endpoint"></a>
 
 You can create two types of Amazon VPC endpoints to use with Amazon Rekognition\. 
@@ -21,3 +24,44 @@ To start using Amazon Rekognition with your VPC, use the Amazon VPC console to c
   + *com\.amazonaws\.region\.rekognition\-fips* – Creates a VPC endpoint for Amazon Rekognition operations with endpoints that comply with the Federal Information Processing Standard \(FIPS\) Publication 140\-2 US government standard\.
 
 For more information, see [Getting Started](https://docs.aws.amazon.com/vpc/latest/userguide/GetStarted.html) in the *Amazon VPC User Guide*\.
+
+## Create a VPC Endpoint Policy for Amazon Rekognition<a name="api-private-link-policy"></a>
+
+You can create a policy for Amazon VPC endpoints for Amazon Rekognition to specify the following:
++ The principal that can perform actions\.
++ The actions that can be performed\.
++ The resources on which actions can be performed\.
+
+For more information, see [Controlling Access to Services with VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-endpoints-access.html) in the *Amazon VPC User Guide*\.
+
+The following example policy enables users connecting to Amazon Rekognition through the VPC endpoint to call the `DetectFaces` API operation\. The policy prevents users from performing other Amazon Rekognition API operations through the VPC endpoint\.
+
+Users can still call other Amazon Rekognition API operations from outside the VPC\. For information about how to deny access to Amazon Rekognition API operations that are outside the VPC, see [Amazon Rekognition Identity\-Based Policies](security_iam_service-with-iam.md#security_iam_service-with-iam-id-based-policies)\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "rekognition:DetectFaces"
+            ],
+            "Resource": "*",
+            "Effect": "Allow",
+            "Principal": "*"
+        }
+    ]
+}
+```
+
+**To modify the VPC endpoint policy for Amazon Rekognition**
+
+1. Open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc/](https://console.aws.amazon.com/vpc/)\.
+
+1. If you have not already created the endpoint for Amazon Rekognition choose **Create Endpoint**\. Then select **com\.amazonaws\.*Region*\.rekognition** and choose **Create endpoint**\.
+
+1. In the navigation pane, choose **Endpoints**\.
+
+1. Select the **com\.amazonaws\.*Region*\.rekognition** endpoint and choose the **Policy** tab in the lower half of the screen\.
+
+1. Choose **Edit Policy** and make the changes to the policy\.

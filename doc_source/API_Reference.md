@@ -36,12 +36,14 @@
 + [GetFaceSearch](API_GetFaceSearch.md)
 + [GetLabelDetection](API_GetLabelDetection.md)
 + [GetPersonTracking](API_GetPersonTracking.md)
++ [GetTextDetection](API_GetTextDetection.md)
 + [StartCelebrityRecognition](API_StartCelebrityRecognition.md)
 + [StartContentModeration](API_StartContentModeration.md)
 + [StartFaceDetection](API_StartFaceDetection.md)
 + [StartFaceSearch](API_StartFaceSearch.md)
 + [StartLabelDetection](API_StartLabelDetection.md)
 + [StartPersonTracking](API_StartPersonTracking.md)
++ [StartTextDetection](API_StartTextDetection.md)
 
 ## Amazon Rekognition Video Streaming Video<a name="rek-streaming-video-api-list"></a>
 + [CreateStreamProcessor](API_CreateStreamProcessor.md)

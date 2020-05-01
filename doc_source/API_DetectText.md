@@ -20,6 +20,23 @@ For more information, see [Detecting Text](text-detection.md)\.
 
 ```
 {
+   "[Filters](#rekognition-DetectText-request-Filters)": { 
+      "[RegionsOfInterest](API_DetectTextFilters.md#rekognition-Type-DetectTextFilters-RegionsOfInterest)": [ 
+         { 
+            "[BoundingBox](API_RegionOfInterest.md#rekognition-Type-RegionOfInterest-BoundingBox)": { 
+               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
+               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
+               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
+               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+            }
+         }
+      ],
+      "[WordFilter](API_DetectTextFilters.md#rekognition-Type-DetectTextFilters-WordFilter)": { 
+         "[MinBoundingBoxHeight](API_DetectionFilter.md#rekognition-Type-DetectionFilter-MinBoundingBoxHeight)": number,
+         "[MinBoundingBoxWidth](API_DetectionFilter.md#rekognition-Type-DetectionFilter-MinBoundingBoxWidth)": number,
+         "[MinConfidence](API_DetectionFilter.md#rekognition-Type-DetectionFilter-MinConfidence)": number
+      }
+   },
    "[Image](#rekognition-DetectText-request-Image)": { 
       "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
       "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
@@ -34,6 +51,11 @@ For more information, see [Detecting Text](text-detection.md)\.
 ## Request Parameters<a name="API_DetectText_RequestParameters"></a>
 
 The request accepts the following data in JSON format\.
+
+ ** [Filters](#API_DetectText_RequestSyntax) **   <a name="rekognition-DetectText-request-Filters"></a>
+Optional parameters that let you set the criteria that the text must meet to be included in your response\.  
+Type: [DetectTextFilters](API_DetectTextFilters.md) object  
+Required: No
 
  ** [Image](#API_DetectText_RequestSyntax) **   <a name="rekognition-DetectText-request-Image"></a>
 The input image as base64\-encoded bytes or an Amazon S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, you can't pass image bytes\.   
@@ -67,7 +89,8 @@ Required: Yes
          "[ParentId](API_TextDetection.md#rekognition-Type-TextDetection-ParentId)": number,
          "[Type](API_TextDetection.md#rekognition-Type-TextDetection-Type)": "string"
       }
-   ]
+   ],
+   "[TextModelVersion](#rekognition-DetectText-response-TextModelVersion)": "string"
 }
 ```
 
@@ -80,6 +103,10 @@ The following data is returned in JSON format by the service\.
  ** [TextDetections](#API_DetectText_ResponseSyntax) **   <a name="rekognition-DetectText-response-TextDetections"></a>
 An array of text that was detected in the input image\.  
 Type: Array of [TextDetection](API_TextDetection.md) objects
+
+ ** [TextModelVersion](#API_DetectText_ResponseSyntax) **   <a name="rekognition-DetectText-response-TextModelVersion"></a>
+The model version used to detect text\.  
+Type: String
 
 ## Errors<a name="API_DetectText_Errors"></a>
 
@@ -126,4 +153,4 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectText) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectText) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DetectText) 
-+  [AWS SDK for Ruby V2](https://docs.aws.amazon.com/goto/SdkForRubyV2/rekognition-2016-06-27/DetectText) 
++  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/DetectText) 

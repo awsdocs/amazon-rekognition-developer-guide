@@ -23,6 +23,7 @@ You can use Amazon Rekognition Video to analyze videos for the following informa
 + [People](persons.md)
 + [Celebrities](celebrities.md)
 + [Suggestive and explicit adult content](moderation.md)
++ [Text](text-detection.md)
 
 For more information, see [How Amazon Rekognition Works](how-it-works.md)\.
 

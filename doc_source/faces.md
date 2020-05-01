@@ -8,6 +8,9 @@ When you provide an image that contains a face, Amazon Rekognition detects the f
 
 This section provides examples for both image and video facial analysis\. For more information about using the Amazon Rekognition API, see [Working with Images](images.md) and [Working with Stored Videos](video.md)\.
 
+**Note**  
+The face detection models used by Amazon Rekognition Image and Amazon Rekognition Video don't support the detection of faces in cartoon/animated characters or non\-human entities\. If you want to detect cartoon characters in images or videos, we recommend using Amazon Rekognition Custom Labels\. For more information, see the [Amazon Rekognition Custom Labels Developer Guide](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/what-is.html)\.
+
 You can use storage operations to save facial metadata for faces detected in an image\. Later you can search for stored faces in both images and videos\. For example, this enables searching for a specific person in a video\. For more information, see [Searching Faces in a Collection](collections.md)\.
 
 **Topics**

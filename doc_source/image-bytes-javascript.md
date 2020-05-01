@@ -201,7 +201,7 @@ The following procedure shows how to create an identity pool that enables access
 
 1. For **Identity pool name\***, type a name for your identity pool\.
 
-1. In **Unauthenticated identites**, choose **Enable access to unauthenticated identities**\.
+1. In **Unauthenticated identities**, choose **Enable access to unauthenticated identities**\.
 
 1. Choose **Create Pool**\.
 
@@ -211,7 +211,7 @@ The following procedure shows how to create an identity pool that enables access
 
 1. In **Platform**, choose **JavaScript**\.
 
-1. In **Get AWS Credentials**, note the values of *Identity pool identifier* and *region* that are shown in the code snippet\.
+1. In **Get AWS Credentials**, note the values of `AWS.config.region` and `IdentityPooldId` that are shown in the code snippet\.
 
 1. Open the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
 
@@ -219,7 +219,7 @@ The following procedure shows how to create an identity pool that enables access
 
 1. Choose the role name that you noted in step 6\.
 
-1. In **Permissions**, choose **Attach Policy**\.
+1. In the **Permissions** tab, choose **Attach Policies**\.
 
 1. Choose **AmazonRekognitionReadOnlyAccess**\.
 

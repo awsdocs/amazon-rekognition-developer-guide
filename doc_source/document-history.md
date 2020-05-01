@@ -1,10 +1,11 @@
 # Document History for Amazon Rekognition<a name="document-history"></a>
 
 The following table describes important changes in each release of the *Amazon Rekognition Developer Guide*\. For notification about updates to this documentation, you can subscribe to an RSS feed\. 
-+ **Latest documentation update:** December 3rd, 2019
++ **Latest documentation update:** March 3rd, 2020
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Amazon Rekognition now supports Amazon VPC endpoint policies](#document-history) | By specifying a policy you can restrict access to an Amazon Rekognition Amazon VPC endpoint\.  | March 3, 2020 | 
 | [Amazon Rekognition now supports Augmented AI \(Preview\) and Amazon Rekognition Customs Labels](#document-history) | With Amazon Rekognition Custom Labels you can detect specialized objects, scenes, and concepts in images by creating your own machine learning model\. DetectModerationLabels now supports Amazon Augmented AI \(Preview\)\.  | December 3, 2019 | 
 | [Amazon Rekognition now supports AWS PrivateLink](#document-history) | With AWS PrivateLink you can establish a private connection between your VPC and Amazon Rekognition\.  | September 12, 2019 | 
 | [Amazon Rekognition face filtering](#document-history) | Amazon Rekognition adds enhanced face filtering support to the IndexFaces API operation, and introduces face filtering for the CompareFaces and SearchFacesByImage API operations\.  | September 12, 2019 | 

@@ -7,7 +7,7 @@ This topic provides troubleshooting information for using Amazon Rekognition Vid
 + [I don't know if I've configured my stream processor correctly](#ts-configured-sp)
 + [My stream processor isn't returning results](#ts-streaming-video-no-results-from-sp)
 + [The state of my stream processor is FAILED](#ts-failed-state)
-+ [My stream processor isn't returning the expected results](#w12aac18c13c33c15)
++ [My stream processor isn't returning the expected results](#w22aac18c13c33c15)
 
 ## I don't know if my stream processor was successfully created<a name="ts-streaming-video-create-sp"></a>
 
@@ -60,11 +60,11 @@ Alternatively, you can use the "kinesis\-process\-record" AWS Lambda blueprint t
 
 Your stream processor might not return results for several reasons\. 
 
-### Reason 1: Your stream processor isn't configured correctly<a name="w12aac18c13c33c11b5"></a>
+### Reason 1: Your stream processor isn't configured correctly<a name="w22aac18c13c33c11b5"></a>
 
 Your stream processor might not be configured correctly\. For more information, see [I don't know if I've configured my stream processor correctly](#ts-configured-sp)\.
 
-### Reason 2: Your stream processor isn't in the RUNNING state<a name="w12aac18c13c33c11b7"></a>
+### Reason 2: Your stream processor isn't in the RUNNING state<a name="w22aac18c13c33c11b7"></a>
 
 **To troubleshoot the status of a stream processor**
 
@@ -118,7 +118,7 @@ aws rekognition describe-stream-processor --name stream-processor-name
 
 If the value of Status is FAILED, check the troubleshooting information for the following error messages\.
 
-### Error: "Access denied to Role"<a name="w12aac18c13c33c13b9"></a>
+### Error: "Access denied to Role"<a name="w22aac18c13c33c13b9"></a>
 
 The IAM role that's used by the stream processor doesn't exist or Amazon Rekognition Video doesn't have permission to assume the role\.
 
@@ -138,7 +138,7 @@ The IAM role that's used by the stream processor doesn't exist or Amazon Rekogni
    aws rekognition start-stream-processor --name stream-processor-name
    ```
 
-### Error: "Access denied to Kinesis Video *or* Access denied to Kinesis Data"<a name="w12aac18c13c33c13c11"></a>
+### Error: "Access denied to Kinesis Video *or* Access denied to Kinesis Data"<a name="w22aac18c13c33c13c11"></a>
 
 The role doesn't have access to the Kinesis Video Streams API operations `GetMedia` and `GetDataEndpoint`\. It also might not have access to the Kinesis Data Streams API operations `PutRecord` and `PutRecords`\. 
 
@@ -174,7 +174,7 @@ The role doesn't have access to the Kinesis Video Streams API operations `GetMed
 
 1. If any of the permissions are missing, update the policy\. For more information, see [Giving Amazon Rekognition Video Access to Your Kinesis Streams](api-streaming-video-roles.md)\.
 
-### Error: "Stream *input\-video\-stream\-name* doesn't exist"<a name="w12aac18c13c33c13c13"></a>
+### Error: "Stream *input\-video\-stream\-name* doesn't exist"<a name="w22aac18c13c33c13c13"></a>
 
 The Kinesis video stream input to the stream processor doesn't exist or isn't configured correctly\. 
 
@@ -198,7 +198,7 @@ The Kinesis video stream input to the stream processor doesn't exist or isn't co
 
 1. Create a new stream processor with the intended Kinesis video stream\. For more information, see [Creating the Amazon Rekognition Video Stream Processor](streaming-video-starting-analysis.md#streaming-video-creating-stream-processor)\.
 
-### Error: "Collection not found"<a name="w12aac18c13c33c13c15"></a>
+### Error: "Collection not found"<a name="w22aac18c13c33c13c15"></a>
 
 The Amazon Rekognition collection that's used by the stream processor to match faces doesn't exist, or the wrong collection is being used\.
 
@@ -220,7 +220,7 @@ The Amazon Rekognition collection that's used by the stream processor to match f
    aws rekognition start-stream-processor --name stream-processor-name
    ```
 
-### Error: "Stream *output\-kinesis\-data\-stream\-name* under account *account\-id* not found"<a name="w12aac18c13c33c13c17"></a>
+### Error: "Stream *output\-kinesis\-data\-stream\-name* under account *account\-id* not found"<a name="w22aac18c13c33c13c17"></a>
 
 The output Kinesis data stream that's used by the stream processor doesn't exist in your AWS account or isn't in the same AWS Region as your stream processor\.
 
@@ -246,7 +246,7 @@ The output Kinesis data stream that's used by the stream processor doesn't exist
       aws rekognition start-stream-processor --name stream-processor-name
       ```
 
-## My stream processor isn't returning the expected results<a name="w12aac18c13c33c15"></a>
+## My stream processor isn't returning the expected results<a name="w22aac18c13c33c15"></a>
 
 If your stream processor isn't returning the expected face matches, use the following information\.
 + [Searching Faces in a Collection](collections.md)

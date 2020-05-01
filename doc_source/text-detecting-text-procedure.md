@@ -209,6 +209,14 @@ In the `DetectText` operation, you supply an input image either as a base64\-enc
 }
 ```
 
+### Filters<a name="text-filters"></a>
+
+Filtering by text region, size and confidence score provides you with additional flexibility to control your text detection output\. By using regions of interest, you can easily limit text detection to the regions that are relevant to you, for example, the top right of profile photo or a fixed location in relation to a reference point when reading parts numbers from an image of a machine\. Word bounding box size filter can be used to avoid small background text which may be noisy or irrelevant\. And lastly, word confidence filter enables you to remove results that may be unreliable due to being blurry or smudged\.\. You can use the following filters:
++ **MinConfidence** –Sets the confidence level of word detection\. Words with detection confidence below this level are excluded from the result\. Values should be between 0\.5 and 1\. The default MinConfidence is 0\.5\.
++ **MinBoundingBoxWidth** – Sets the minimum width of the word bounding box\. Words with bounding boxes that are smaller than this value are excluded from the result\. The value is relative to the image frame width\.
++ **MinBoundingBoxHeight** – Sets the minimum height of the word bounding box\. Words with bounding box heights less than this value are excluded from the result\. The value is relative to the image frame height\.
++ **RegionsOfInterest** – Limits detection to a specific region of the image frame\. The values are relative to the frame's dimensions\. For text only partially within a region, the response is undefined\.
+
 ## DetectText Operation Response<a name="text-response"></a>
 
 The `DetectText` operation analyzes the image and returns an array, TextDetections, where each element \(`[TextDetection](API_TextDetection.md)`\) represents a line or word detected in the image\. For each element, `DetectText` returns the following information: 
@@ -226,7 +234,7 @@ Each `TextDetection` element includes a percentage value that represents the deg
 
 ### Word and Line Relationships<a name="text-ids"></a>
 
-Each `TextDetection` element has an identifier field, `Id`\. The `Id` shows the word's position in a line\. If the element is a word, the parent identifier field, `ParentId`, identifies the line where the word was detected\. The `ParentId` for a line is null\. For example, the line "but keep" in the preceding image has the following the `Id` and `ParentId` values: 
+Each `TextDetection` element has an identifier field, `Id`\. The `Id` shows the word's position in a line\. If the element is a word, the parent identifier field, `ParentId`, identifies the line where the word was detected\. The `ParentId` for a line is null\. For example, the line "but keep" in the example image has the following the `Id` and `ParentId` values: 
 
 
 |  Text  |  ID  |  Parent ID  | 
