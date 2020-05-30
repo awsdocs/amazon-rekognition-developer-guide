@@ -9,7 +9,7 @@ For Amazon Rekognition Custom Labels limits, see [Limits in Amazon Rekognition C
 ## Amazon Rekognition Image<a name="limits-image"></a>
 + Maximum image size stored as an Amazon S3 object is limited to 15 MB\. 
 + The minimum image size is 80 pixels for both height and width\.
-+ To be detected, a face must be no smaller that 40x40 pixels in an image with 1920X1080 pixels\. Images with dimensions higher than 1920X1080 pixels will need a larger minimum face size proportionally\. 
++ To be detected, a face must be no smaller than 40x40 pixels in an image with 1920X1080 pixels\. Images with dimensions higher than 1920X1080 pixels will need a larger minimum face size proportionally\. 
 + The Maximum images size as raw bytes passed in as parameter to an API is 5 MB\.
 + Amazon Rekognition supports the PNG and JPEG image formats\. That is, the images you provide as input to various API operations, such as `DetectLabels` and `IndexFaces` must be in one of the supported formats\.
 + The Maximum number of faces you can store in a single face collection is 20 million\.
