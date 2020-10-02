@@ -319,6 +319,96 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    ```
 
 ------
+#### [ Go ]
+
+   This example displays a list of labels that were detected in the input image\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in Step 2\. 
+
+   ```
+    package main
+
+    import (
+        "fmt"
+
+        "github.com/aws/aws-sdk-go/aws"
+        "github.com/aws/aws-sdk-go/aws/session"
+        "github.com/aws/aws-sdk-go/service/rekognition"
+    )
+
+    var svc *rekognition.Rekognition
+
+    func init() {
+
+        sess, err := session.NewSession(&aws.Config{
+            Region: aws.String("us-east-1"),
+        })
+
+        if err != nil {
+            fmt.Println("Error while creating session,", err)
+            return
+        }
+
+        svc = rekognition.New(sess)
+        _ = svc
+    }
+
+    func main() {
+
+        bucket := "" //Bucket name from S3
+        photo := ""       //Image File
+
+        params := &rekognition.DetectLabelsInput{
+            Image: &rekognition.Image{ // Required
+
+                S3Object: &rekognition.S3Object{
+                    Bucket: aws.String(bucket),
+                    Name:   aws.String(photo),
+                },
+            },
+
+            MaxLabels:     aws.Int64(10),
+            MinConfidence: aws.Float64(70.000000),
+        }
+
+        resp, err := svc.DetectLabels(params)
+
+        if err != nil { //If there is an Error
+            fmt.Println(err.Error())
+            return
+        }
+
+        fmt.Printf("Detected Labels for %s\n", photo)
+
+        for _, label := range resp.Labels {
+
+            fmt.Printf("Label : %v\n", *label.Name)
+            fmt.Printf("Confidence : %v\n", *label.Confidence)
+            fmt.Print("Instances:\n")
+
+            for _, instance := range label.Instances {
+
+                fmt.Print(" Bounding Box\n")
+                fmt.Printf("	Top: %v\n", *instance.BoundingBox.Top)
+                fmt.Printf("	Left: %v\n", *instance.BoundingBox.Left)
+                fmt.Printf("	Width: %v\n", *instance.BoundingBox.Width)
+                fmt.Printf("	Height: %v\n", *instance.BoundingBox.Height)
+                fmt.Printf("	Confidence: %v\n", *instance.Confidence)
+            }
+
+            fmt.Print("Parents:\n")
+            for _, parent := range label.Parents {
+                fmt.Printf("	%v\n", *parent.Name)
+            }
+
+            fmt.Print("----------\n")
+            fmt.Print("\n")
+
+        }
+
+    }
+
+   ```
+
+------
 
 ## DetectLabels Operation Request<a name="detectlabels-request"></a>
 
