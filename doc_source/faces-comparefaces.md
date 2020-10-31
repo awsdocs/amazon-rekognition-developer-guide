@@ -346,6 +346,62 @@ You can provide the source and target images as an image byte array \(base64\-en
    ```
 
 ------
+#### [ Go ]
+
+This example displays information about matching faces in source and target images that are loaded from the local file system.
+
+Change the Bucket and File name for both SourceImage and TargetImage.
+```
+package main
+import (
+	"fmt"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/rekognition"
+)
+var svc *rekognition.Rekognition
+func init() {
+	sess, err := session.NewSession(&aws.Config{
+		Region: aws.String("us-east-1"),
+	})
+	if err != nil {
+		fmt.Println("Error while creating session,", err)
+		return
+	}
+	svc = rekognition.New(sess)
+	_ = svc
+}
+func main() {
+	input := &rekognition.CompareFacesInput{
+		SimilarityThreshold: aws.Float64(80),
+		SourceImage: &rekognition.Image{
+			S3Object: &rekognition.S3Object{
+				Bucket: aws.String(""),
+				Name:   aws.String(""),
+			},
+		},
+		TargetImage: &rekognition.Image{
+			S3Object: &rekognition.S3Object{
+				Bucket: aws.String(""),
+				Name:   aws.String(""),
+			},
+		},
+	}
+	resp, err := svc.CompareFaces(input)
+	if err != nil { //If there is an Error
+		fmt.Println(err.Error())
+		return
+	}
+	for _, faceMatch := range resp.FaceMatches {
+		position := faceMatch.Face.BoundingBox
+		similarity := faceMatch.Similarity
+		fmt.Printf(" The face at %v %v matches with %f confidence\n", *position.Left, *position.Top, *similarity )
+	}
+	fmt.Printf("Face Matches : %v\n", len(resp.FaceMatches))
+}
+```
+
+------
 
 ## CompareFaces Operation Request<a name="comparefaces-request"></a>
 
