@@ -263,6 +263,9 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
 
 ------
 
+**Note**  
+If you uploaded your image to a folder in step 2, you will need to include the folder name in the `Name` attirbute of the [S3 Object](https://docs.aws.amazon.com/rekognition/latest/dg/API_S3Object.html). So the syntax would be `<path-to-image>/<image-name>.jpg`\.
+
 ## IndexFaces Operation Request<a name="indexfaces-request"></a>
 
 The input to `IndexFaces` is the image to be indexed and the collection to add the face or faces to\. 
