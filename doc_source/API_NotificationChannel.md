@@ -1,6 +1,6 @@
 # NotificationChannel<a name="API_NotificationChannel"></a>
 
-The Amazon Simple Notification Service topic to which Amazon Rekognition publishes the completion status of a video analysis operation\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\.
+The Amazon Simple Notification Service topic to which Amazon Rekognition publishes the completion status of a video analysis operation\. For more information, see [Calling Amazon Rekognition Video operations](api-video.md)\.
 
 ## Contents<a name="API_NotificationChannel_Contents"></a>
 

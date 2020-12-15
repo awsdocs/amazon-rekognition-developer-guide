@@ -1,4 +1,4 @@
-# Displaying Bounding Boxes<a name="images-displaying-bounding-boxes"></a>
+# Displaying bounding boxes<a name="images-displaying-bounding-boxes"></a>
 
 Amazon Rekognition Image operations can return bounding boxes coordinates for items that are detected in images\. For example, the [DetectFaces](API_DetectFaces.md) operation returns a bounding box \([BoundingBox](API_BoundingBox.md)\) for each face detected in an image\. You can use the bounding box coordinates to display a box around detected items\. For example, the following image shows a bounding box surrounding a face\.
 
@@ -38,7 +38,7 @@ The location of the face bounding box in pixels is calculated as follows:
 You use these values to display a bounding box around the face\.
 
 **Note**  
-An image can be orientated in various ways\. Your application might need to rotate the image to display it with the correction orientation\. Bounding box coordinates are affected by the orientation of the image\. You might need to translate the coordinates before you can display a bounding box at the right location\. For more information, see [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)\.
+An image can be orientated in various ways\. Your application might need to rotate the image to display it with the correction orientation\. Bounding box coordinates are affected by the orientation of the image\. You might need to translate the coordinates before you can display a bounding box at the right location\. For more information, see [Getting image orientation and bounding box coordinates](images-orientation.md)\.
 
 The following examples show how to display a bounding box around faces that are detected by calling [DetectFaces](API_DetectFaces.md)\. The examples assume that the images are oriented to 0 degrees\. The examples also show how to download the image from an Amazon S3 bucket\. 
 
@@ -46,9 +46,9 @@ The following examples show how to display a bounding box around faces that are 
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `DetectFaces` operation\. Change the value of `bucket` to the Amazon S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\.
 

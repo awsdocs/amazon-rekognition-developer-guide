@@ -4,7 +4,7 @@ Detects faces in the input image and adds them to the specified collection\.
 
 Amazon Rekognition doesn't save the actual faces that are detected\. Instead, the underlying detection algorithm first detects the faces in the input image\. For each face, the algorithm extracts facial features into a feature vector, and stores it in the backend database\. Amazon Rekognition uses feature vectors when it performs face match and search operations using the [SearchFaces](API_SearchFaces.md) and [SearchFacesByImage](API_SearchFacesByImage.md) operations\.
 
-For more information, see [Adding Faces to a Collection](add-faces-to-collection-procedure.md)\.
+For more information, see [Adding faces to a collection](add-faces-to-collection-procedure.md)\.
 
 To get the number of faces in a collection, call [DescribeCollection](API_DescribeCollection.md)\. 
 
@@ -14,7 +14,7 @@ If you're using version 4 or later of the face model, image orientation informat
 
 To determine which version of the model you're using, call [DescribeCollection](API_DescribeCollection.md) and supply the collection ID\. You can also get the model version from the value of `FaceModelVersion` in the response from `IndexFaces` 
 
-For more information, see [Model Versioning](face-detection-model.md)\.
+For more information, see [Model versioning](face-detection-model.md)\.
 
 If you provide the optional `ExternalImageId` for the input image you provided, Amazon Rekognition associates this ID with all faces that it detects\. When you call the [ListFaces](API_ListFaces.md) operation, the response returns the external ID\. You can use this external image ID to create a client\-side index to associate the faces with each image\. You can then use the index to find all faces in an image\.
 
@@ -41,6 +41,8 @@ In response, the `IndexFaces` operation returns an array of metadata for all det
 
 If you request all facial attributes \(by using the `detectionAttributes` parameter\), Amazon Rekognition returns detailed facial attributes, such as facial landmarks \(for example, location of eye and mouth\) and other facial attributes\. If you provide the same image, specify the same collection, and use the same external ID in the `IndexFaces` operation, Amazon Rekognition doesn't save duplicate face metadata\.
 
+
+
 The input image is passed either as base64\-encoded image bytes, or as a reference to an image in an Amazon S3 bucket\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes isn't supported\. The image must be formatted as a PNG or JPEG file\. 
 
 This operation requires permissions to perform the `rekognition:IndexFaces` action\.
@@ -49,19 +51,19 @@ This operation requires permissions to perform the `rekognition:IndexFaces` acti
 
 ```
 {
-   "[CollectionId](#rekognition-IndexFaces-request-CollectionId)": "string",
-   "[DetectionAttributes](#rekognition-IndexFaces-request-DetectionAttributes)": [ "string" ],
-   "[ExternalImageId](#rekognition-IndexFaces-request-ExternalImageId)": "string",
-   "[Image](#rekognition-IndexFaces-request-Image)": { 
-      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
-      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "CollectionId": "string",
+   "DetectionAttributes": [ "string" ],
+   "ExternalImageId": "string",
+   "Image": { 
+      "Bytes": blob,
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    },
-   "[MaxFaces](#rekognition-IndexFaces-request-MaxFaces)": number,
-   "[QualityFilter](#rekognition-IndexFaces-request-QualityFilter)": "string"
+   "MaxFaces": number,
+   "QualityFilter": "string"
 }
 ```
 
@@ -116,161 +118,161 @@ Required: No
 
 ```
 {
-   "[FaceModelVersion](#rekognition-IndexFaces-response-FaceModelVersion)": "string",
-   "[FaceRecords](#rekognition-IndexFaces-response-FaceRecords)": [ 
+   "FaceModelVersion": "string",
+   "FaceRecords": [ 
       { 
-         "[Face](API_FaceRecord.md#rekognition-Type-FaceRecord-Face)": { 
-            "[BoundingBox](API_Face.md#rekognition-Type-Face-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "Face": { 
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Confidence](API_Face.md#rekognition-Type-Face-Confidence)": number,
-            "[ExternalImageId](API_Face.md#rekognition-Type-Face-ExternalImageId)": "string",
-            "[FaceId](API_Face.md#rekognition-Type-Face-FaceId)": "string",
-            "[ImageId](API_Face.md#rekognition-Type-Face-ImageId)": "string"
+            "Confidence": number,
+            "ExternalImageId": "string",
+            "FaceId": "string",
+            "ImageId": "string"
          },
-         "[FaceDetail](API_FaceRecord.md#rekognition-Type-FaceRecord-FaceDetail)": { 
-            "[AgeRange](API_FaceDetail.md#rekognition-Type-FaceDetail-AgeRange)": { 
-               "[High](API_AgeRange.md#rekognition-Type-AgeRange-High)": number,
-               "[Low](API_AgeRange.md#rekognition-Type-AgeRange-Low)": number
+         "FaceDetail": { 
+            "AgeRange": { 
+               "High": number,
+               "Low": number
             },
-            "[Beard](API_FaceDetail.md#rekognition-Type-FaceDetail-Beard)": { 
-               "[Confidence](API_Beard.md#rekognition-Type-Beard-Confidence)": number,
-               "[Value](API_Beard.md#rekognition-Type-Beard-Value)": boolean
+            "Beard": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[BoundingBox](API_FaceDetail.md#rekognition-Type-FaceDetail-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Confidence](API_FaceDetail.md#rekognition-Type-FaceDetail-Confidence)": number,
-            "[Emotions](API_FaceDetail.md#rekognition-Type-FaceDetail-Emotions)": [ 
+            "Confidence": number,
+            "Emotions": [ 
                { 
-                  "[Confidence](API_Emotion.md#rekognition-Type-Emotion-Confidence)": number,
-                  "[Type](API_Emotion.md#rekognition-Type-Emotion-Type)": "string"
+                  "Confidence": number,
+                  "Type": "string"
                }
             ],
-            "[Eyeglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Eyeglasses)": { 
-               "[Confidence](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Confidence)": number,
-               "[Value](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Value)": boolean
+            "Eyeglasses": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[EyesOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-EyesOpen)": { 
-               "[Confidence](API_EyeOpen.md#rekognition-Type-EyeOpen-Confidence)": number,
-               "[Value](API_EyeOpen.md#rekognition-Type-EyeOpen-Value)": boolean
+            "EyesOpen": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Gender](API_FaceDetail.md#rekognition-Type-FaceDetail-Gender)": { 
-               "[Confidence](API_Gender.md#rekognition-Type-Gender-Confidence)": number,
-               "[Value](API_Gender.md#rekognition-Type-Gender-Value)": "string"
+            "Gender": { 
+               "Confidence": number,
+               "Value": "string"
             },
-            "[Landmarks](API_FaceDetail.md#rekognition-Type-FaceDetail-Landmarks)": [ 
+            "Landmarks": [ 
                { 
-                  "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
-                  "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
-                  "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
+                  "Type": "string",
+                  "X": number,
+                  "Y": number
                }
             ],
-            "[MouthOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-MouthOpen)": { 
-               "[Confidence](API_MouthOpen.md#rekognition-Type-MouthOpen-Confidence)": number,
-               "[Value](API_MouthOpen.md#rekognition-Type-MouthOpen-Value)": boolean
+            "MouthOpen": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Mustache](API_FaceDetail.md#rekognition-Type-FaceDetail-Mustache)": { 
-               "[Confidence](API_Mustache.md#rekognition-Type-Mustache-Confidence)": number,
-               "[Value](API_Mustache.md#rekognition-Type-Mustache-Value)": boolean
+            "Mustache": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Pose](API_FaceDetail.md#rekognition-Type-FaceDetail-Pose)": { 
-               "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
-               "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
-               "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
+            "Pose": { 
+               "Pitch": number,
+               "Roll": number,
+               "Yaw": number
             },
-            "[Quality](API_FaceDetail.md#rekognition-Type-FaceDetail-Quality)": { 
-               "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
-               "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
+            "Quality": { 
+               "Brightness": number,
+               "Sharpness": number
             },
-            "[Smile](API_FaceDetail.md#rekognition-Type-FaceDetail-Smile)": { 
-               "[Confidence](API_Smile.md#rekognition-Type-Smile-Confidence)": number,
-               "[Value](API_Smile.md#rekognition-Type-Smile-Value)": boolean
+            "Smile": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Sunglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Sunglasses)": { 
-               "[Confidence](API_Sunglasses.md#rekognition-Type-Sunglasses-Confidence)": number,
-               "[Value](API_Sunglasses.md#rekognition-Type-Sunglasses-Value)": boolean
+            "Sunglasses": { 
+               "Confidence": number,
+               "Value": boolean
             }
          }
       }
    ],
-   "[OrientationCorrection](#rekognition-IndexFaces-response-OrientationCorrection)": "string",
-   "[UnindexedFaces](#rekognition-IndexFaces-response-UnindexedFaces)": [ 
+   "OrientationCorrection": "string",
+   "UnindexedFaces": [ 
       { 
-         "[FaceDetail](API_UnindexedFace.md#rekognition-Type-UnindexedFace-FaceDetail)": { 
-            "[AgeRange](API_FaceDetail.md#rekognition-Type-FaceDetail-AgeRange)": { 
-               "[High](API_AgeRange.md#rekognition-Type-AgeRange-High)": number,
-               "[Low](API_AgeRange.md#rekognition-Type-AgeRange-Low)": number
+         "FaceDetail": { 
+            "AgeRange": { 
+               "High": number,
+               "Low": number
             },
-            "[Beard](API_FaceDetail.md#rekognition-Type-FaceDetail-Beard)": { 
-               "[Confidence](API_Beard.md#rekognition-Type-Beard-Confidence)": number,
-               "[Value](API_Beard.md#rekognition-Type-Beard-Value)": boolean
+            "Beard": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[BoundingBox](API_FaceDetail.md#rekognition-Type-FaceDetail-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Confidence](API_FaceDetail.md#rekognition-Type-FaceDetail-Confidence)": number,
-            "[Emotions](API_FaceDetail.md#rekognition-Type-FaceDetail-Emotions)": [ 
+            "Confidence": number,
+            "Emotions": [ 
                { 
-                  "[Confidence](API_Emotion.md#rekognition-Type-Emotion-Confidence)": number,
-                  "[Type](API_Emotion.md#rekognition-Type-Emotion-Type)": "string"
+                  "Confidence": number,
+                  "Type": "string"
                }
             ],
-            "[Eyeglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Eyeglasses)": { 
-               "[Confidence](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Confidence)": number,
-               "[Value](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Value)": boolean
+            "Eyeglasses": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[EyesOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-EyesOpen)": { 
-               "[Confidence](API_EyeOpen.md#rekognition-Type-EyeOpen-Confidence)": number,
-               "[Value](API_EyeOpen.md#rekognition-Type-EyeOpen-Value)": boolean
+            "EyesOpen": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Gender](API_FaceDetail.md#rekognition-Type-FaceDetail-Gender)": { 
-               "[Confidence](API_Gender.md#rekognition-Type-Gender-Confidence)": number,
-               "[Value](API_Gender.md#rekognition-Type-Gender-Value)": "string"
+            "Gender": { 
+               "Confidence": number,
+               "Value": "string"
             },
-            "[Landmarks](API_FaceDetail.md#rekognition-Type-FaceDetail-Landmarks)": [ 
+            "Landmarks": [ 
                { 
-                  "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
-                  "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
-                  "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
+                  "Type": "string",
+                  "X": number,
+                  "Y": number
                }
             ],
-            "[MouthOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-MouthOpen)": { 
-               "[Confidence](API_MouthOpen.md#rekognition-Type-MouthOpen-Confidence)": number,
-               "[Value](API_MouthOpen.md#rekognition-Type-MouthOpen-Value)": boolean
+            "MouthOpen": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Mustache](API_FaceDetail.md#rekognition-Type-FaceDetail-Mustache)": { 
-               "[Confidence](API_Mustache.md#rekognition-Type-Mustache-Confidence)": number,
-               "[Value](API_Mustache.md#rekognition-Type-Mustache-Value)": boolean
+            "Mustache": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Pose](API_FaceDetail.md#rekognition-Type-FaceDetail-Pose)": { 
-               "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
-               "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
-               "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
+            "Pose": { 
+               "Pitch": number,
+               "Roll": number,
+               "Yaw": number
             },
-            "[Quality](API_FaceDetail.md#rekognition-Type-FaceDetail-Quality)": { 
-               "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
-               "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
+            "Quality": { 
+               "Brightness": number,
+               "Sharpness": number
             },
-            "[Smile](API_FaceDetail.md#rekognition-Type-FaceDetail-Smile)": { 
-               "[Confidence](API_Smile.md#rekognition-Type-Smile-Confidence)": number,
-               "[Value](API_Smile.md#rekognition-Type-Smile-Value)": boolean
+            "Smile": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Sunglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Sunglasses)": { 
-               "[Confidence](API_Sunglasses.md#rekognition-Type-Sunglasses-Confidence)": number,
-               "[Value](API_Sunglasses.md#rekognition-Type-Sunglasses-Value)": boolean
+            "Sunglasses": { 
+               "Confidence": number,
+               "Value": boolean
             }
          },
-         "[Reasons](API_UnindexedFace.md#rekognition-Type-UnindexedFace-Reasons)": [ "string" ]
+         "Reasons": [ "string" ]
       }
    ]
 }
@@ -287,7 +289,7 @@ The version number of the face detection model that's associated with the input 
 Type: String
 
  ** [FaceRecords](#API_IndexFaces_ResponseSyntax) **   <a name="rekognition-IndexFaces-response-FaceRecords"></a>
-An array of faces detected and added to the collection\. For more information, see [Managing Faces in a Collection](collections.md#collections-index-faces)\.   
+An array of faces detected and added to the collection\. For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\.   
 Type: Array of [FaceRecord](API_FaceRecord.md) objects
 
  ** [OrientationCorrection](#API_IndexFaces_ResponseSyntax) **   <a name="rekognition-IndexFaces-response-OrientationCorrection"></a>
@@ -310,7 +312,7 @@ You are not authorized to perform the action\.
 HTTP Status Code: 400
 
  **ImageTooLargeException**   
-The input image size exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
+The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **InternalServerError**   
@@ -335,6 +337,11 @@ HTTP Status Code: 400
 
  **ResourceNotFoundException**   
 The collection specified in the request cannot be found\.  
+HTTP Status Code: 400
+
+ **ServiceQuotaExceededException**   
+  
+The size of the collection exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **ThrottlingException**   

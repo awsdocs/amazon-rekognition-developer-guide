@@ -6,7 +6,7 @@ The `DetectedText` field contains the text that Amazon Rekognition detected in t
 
 Every word and line has an identifier \(`Id`\)\. Each word belongs to a line and has a parent identifier \(`ParentId`\) that identifies the line of text in which the word appears\. The word `Id` is also an index for the word within a line of words\. 
 
-For more information, see [Detecting Text](text-detection.md)\.
+For more information, see [Detecting text](text-detection.md)\.
 
 ## Contents<a name="API_TextDetection_Contents"></a>
 

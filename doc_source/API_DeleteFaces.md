@@ -8,8 +8,8 @@ This operation requires permissions to perform the `rekognition:DeleteFaces` act
 
 ```
 {
-   "[CollectionId](#rekognition-DeleteFaces-request-CollectionId)": "string",
-   "[FaceIds](#rekognition-DeleteFaces-request-FaceIds)": [ "string" ]
+   "CollectionId": "string",
+   "FaceIds": [ "string" ]
 }
 ```
 
@@ -35,7 +35,7 @@ Required: Yes
 
 ```
 {
-   "[DeletedFaces](#rekognition-DeleteFaces-response-DeletedFaces)": [ "string" ]
+   "DeletedFaces": [ "string" ]
 }
 ```
 

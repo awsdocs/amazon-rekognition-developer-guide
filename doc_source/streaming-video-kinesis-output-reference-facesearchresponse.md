@@ -1,6 +1,6 @@
 # FaceSearchResponse<a name="streaming-video-kinesis-output-reference-facesearchresponse"></a>
 
-Information about a face detected in a streaming video frame and the faces in a collection that match the detected face\. You specify the collection in a call to [CreateStreamProcessor](API_CreateStreamProcessor.md)\. For more information, see [Working with Streaming Videos](streaming-video.md)\. 
+Information about a face detected in a streaming video frame and the faces in a collection that match the detected face\. You specify the collection in a call to [CreateStreamProcessor](API_CreateStreamProcessor.md)\. For more information, see [Working with streaming videos](streaming-video.md)\. 
 
 **DetectedFace**
 

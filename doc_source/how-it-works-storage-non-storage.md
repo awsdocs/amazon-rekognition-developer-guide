@@ -1,14 +1,15 @@
-# Non\-Storage and Storage API Operations<a name="how-it-works-storage-non-storage"></a>
+# Non\-storage and storage API operations<a name="how-it-works-storage-non-storage"></a>
 
 Amazon Rekognition provides two types of API operations\. They are non\-storage operations where no information is stored by Amazon Rekognition, and storage operations where certain facial information is stored by Amazon Rekognition\. 
 
-## Non\-Storage Operations<a name="how-it-works-non-storage"></a>
+## Non\-storage operations<a name="how-it-works-non-storage"></a>
 
 Amazon Rekognition provides the following non\-storage API operations for images:
 + [DetectLabels](API_DetectLabels.md)
 + [DetectFaces](API_DetectFaces.md) 
 + [CompareFaces](API_CompareFaces.md) 
 + [DetectModerationLabels](API_DetectModerationLabels.md) 
++ [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md) 
 + [RecognizeCelebrities](API_RecognizeCelebrities.md) 
 + [DetectText](API_DetectText.md) 
 
@@ -54,7 +55,7 @@ In this index, the primary key is a combination of both the `ImageID` and `FaceI
 Then, you can use the information in the index to enhance the images when your application displays them from your local repository\. For example, you might add a bounding box around the face or highlight facial features\.  
  
 
-## Storage\-Based API Operations<a name="how-it-works-storage-based"></a>
+## Storage\-based API operations<a name="how-it-works-storage-based"></a>
 
 Amazon Rekognition Image supports the [IndexFaces](API_IndexFaces.md) operation, which you can use to detect faces in an image and persist information about facial features detected in an Amazon Rekognition collection\. This is an example of a *storage\-based* API operation because the service persists information on the server\. 
 
@@ -74,7 +75,7 @@ To store facial information, you must first create a face collection in one of t
 
 Facial information stored in collections by `IndexFaces` is accessible to Amazon Rekognition Video operations\. For example, you can search a video for persons whose faces match those in an existing collection by calling [StartFaceSearch](API_StartFaceSearch.md)\.
 
-For information about creating and managing collections, see [Searching Faces in a Collection](collections.md)\.
+For information about creating and managing collections, see [Searching faces in a collection](collections.md)\.
 
 **Note**  
 The service does not persist actual image bytes\. Instead, the underlying detection algorithm first detects the faces in the input image, extracts facial features into a feature vector for each face, and then stores it in the database\. Amazon Rekognition uses these feature vectors when performing face matches\.

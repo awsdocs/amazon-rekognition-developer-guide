@@ -14,35 +14,35 @@ To determine whether a `TextDetection` element is a line of text or a word, use 
 
 To be detected, text must be within \+/\- 90 degrees orientation of the horizontal axis\.
 
-For more information, see [Detecting Text](text-detection.md)\.
+For more information, see [Detecting text](text-detection.md)\.
 
 ## Request Syntax<a name="API_DetectText_RequestSyntax"></a>
 
 ```
 {
-   "[Filters](#rekognition-DetectText-request-Filters)": { 
-      "[RegionsOfInterest](API_DetectTextFilters.md#rekognition-Type-DetectTextFilters-RegionsOfInterest)": [ 
+   "Filters": { 
+      "RegionsOfInterest": [ 
          { 
-            "[BoundingBox](API_RegionOfInterest.md#rekognition-Type-RegionOfInterest-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             }
          }
       ],
-      "[WordFilter](API_DetectTextFilters.md#rekognition-Type-DetectTextFilters-WordFilter)": { 
-         "[MinBoundingBoxHeight](API_DetectionFilter.md#rekognition-Type-DetectionFilter-MinBoundingBoxHeight)": number,
-         "[MinBoundingBoxWidth](API_DetectionFilter.md#rekognition-Type-DetectionFilter-MinBoundingBoxWidth)": number,
-         "[MinConfidence](API_DetectionFilter.md#rekognition-Type-DetectionFilter-MinConfidence)": number
+      "WordFilter": { 
+         "MinBoundingBoxHeight": number,
+         "MinBoundingBoxWidth": number,
+         "MinConfidence": number
       }
    },
-   "[Image](#rekognition-DetectText-request-Image)": { 
-      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
-      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Image": { 
+      "Bytes": blob,
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -67,30 +67,30 @@ Required: Yes
 
 ```
 {
-   "[TextDetections](#rekognition-DetectText-response-TextDetections)": [ 
+   "TextDetections": [ 
       { 
-         "[Confidence](API_TextDetection.md#rekognition-Type-TextDetection-Confidence)": number,
-         "[DetectedText](API_TextDetection.md#rekognition-Type-TextDetection-DetectedText)": "string",
-         "[Geometry](API_TextDetection.md#rekognition-Type-TextDetection-Geometry)": { 
-            "[BoundingBox](API_Geometry.md#rekognition-Type-Geometry-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "Confidence": number,
+         "DetectedText": "string",
+         "Geometry": { 
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Polygon](API_Geometry.md#rekognition-Type-Geometry-Polygon)": [ 
+            "Polygon": [ 
                { 
-                  "[X](API_Point.md#rekognition-Type-Point-X)": number,
-                  "[Y](API_Point.md#rekognition-Type-Point-Y)": number
+                  "X": number,
+                  "Y": number
                }
             ]
          },
-         "[Id](API_TextDetection.md#rekognition-Type-TextDetection-Id)": number,
-         "[ParentId](API_TextDetection.md#rekognition-Type-TextDetection-ParentId)": number,
-         "[Type](API_TextDetection.md#rekognition-Type-TextDetection-Type)": "string"
+         "Id": number,
+         "ParentId": number,
+         "Type": "string"
       }
    ],
-   "[TextModelVersion](#rekognition-DetectText-response-TextModelVersion)": "string"
+   "TextModelVersion": "string"
 }
 ```
 
@@ -115,7 +115,7 @@ You are not authorized to perform the action\.
 HTTP Status Code: 400
 
  **ImageTooLargeException**   
-The input image size exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
+The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **InternalServerError**   

@@ -1,4 +1,4 @@
-# Detecting Text<a name="text-detection"></a>
+# Detecting text<a name="text-detection"></a>
 
 Amazon Rekognition text detection can detect text in images and videos\. It can then convert the detected text into machine\-readable text\. You can use the machine\-readable text detection in images to implement solutions such as:
 + Visual search\. An example is retrieving and displaying images that contain the same text\.
@@ -27,4 +27,4 @@ Consider the following image:
 
 The blue boxes represent information about the detected text and the location of the text that's returned by the `DetectText` operation \(on an image\) or the `GetTextDetection` operation \(on a single frame of a video\)\. In this example, Amazon Rekognition detects "IT's", "MONDAY", "but", "keep", and "Smiling" as words\. To be detected, text must be within \+/\- 90 degrees orientation of the horizontal axis\.
 
-For an example, see [Detecting Text in an Image](text-detecting-text-procedure.md)\.
+For an example, see [Detecting text in an image](text-detecting-text-procedure.md)\.

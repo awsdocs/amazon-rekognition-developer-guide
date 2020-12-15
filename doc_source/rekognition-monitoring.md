@@ -2,9 +2,11 @@
 
 With CloudWatch, you can get metrics for individual Rekognition operations or global Rekognition metrics for your account, You can use metrics to track the health of your Rekognition\-based solution and set up alarms to notify you when one or more metrics fall outside a defined threshold\. For example, you can see metrics for the number of server errors that have occurred, or metrics for the number of faces that have been detected\. You can also see metrics for the number of times a specific Rekognition operation has succeeded\. To see metrics, you can use [Amazon CloudWatch](https://console.aws.amazon.com/cloudwatch/), [Amazon AWS Command Line Interface](https://docs.aws.amazon.com/AmazonCloudWatch/latest/cli/), or the [CloudWatch API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/)\.
 
-You can also see aggregated metrics, for a chosen period of time, by using the Rekognition console\. For more information, see [Exercise 4: See Aggregated Metrics \(Console\)](aggregated-metrics.md)\.
 
-## Using CloudWatch Metrics for Rekognition<a name="using-metrics"></a>
+
+You can also see aggregated metrics, for a chosen period of time, by using the Rekognition console\. For more information, see [Exercise 4: See aggregated metrics \(console\)](aggregated-metrics.md)\.
+
+## Using CloudWatch metrics for Rekognition<a name="using-metrics"></a>
 
 To use metrics, you must specify the following information:
 + The metric dimension, or no dimension\. A *dimension* is a name\-value pair that helps you to uniquely identify a metric\. Rekognition has one dimension, named *Operation*\. It provides metrics for a specific operation\. If you do not specify a dimension, the metric is scoped to all Rekognition operations within your account\.
@@ -28,7 +30,7 @@ The following list shows some common uses for the metrics\. These are suggestion
 
 You must have the appropriate CloudWatch permissions to monitor Rekognition with CloudWatch\. For more information, see [Authentication and Access Control for Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/auth-and-access-control-cw.html)\.
 
-## Access Rekognition Metrics<a name="how-to-access"></a>
+## Access Rekognition metrics<a name="how-to-access"></a>
 
 The following examples show how to access Rekognition metrics using the CloudWatch console, the AWS CLI, and the CloudWatch API\.
 
@@ -54,7 +56,7 @@ The following examples show how to access Rekognition metrics using the CloudWat
 **To access metrics \(CloudWatch API\)**
 +  Call `[GetMetricStatistics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html)`\. For more information, see the [Amazon CloudWatch API Reference](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/)\. 
 
-## Create an Alarm<a name="alarms"></a>
+## Create an alarm<a name="alarms"></a>
 
 You can create a CloudWatch alarm that sends an Amazon Simple Notification Service \(Amazon SNS\) message when the alarm changes state\. An alarm watches a single metric over a time period you specify, and performs one or more actions based on the value of the metric relative to a given threshold over a number of time periods\. The action is a notification sent to an Amazon SNS topic or an Auto Scaling policy\.
 

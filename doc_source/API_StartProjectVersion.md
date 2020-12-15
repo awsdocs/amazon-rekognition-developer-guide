@@ -13,8 +13,8 @@ This operation requires permissions to perform the `rekognition:StartProjectVers
 
 ```
 {
-   "[MinInferenceUnits](#rekognition-StartProjectVersion-request-MinInferenceUnits)": number,
-   "[ProjectVersionArn](#rekognition-StartProjectVersion-request-ProjectVersionArn)": "string"
+   "MinInferenceUnits": number,
+   "ProjectVersionArn": "string"
 }
 ```
 
@@ -39,7 +39,7 @@ Required: Yes
 
 ```
 {
-   "[Status](#rekognition-StartProjectVersion-response-Status)": "string"
+   "Status": "string"
 }
 ```
 
@@ -77,7 +77,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceInUseException**   
-  
+The specified resource is already being used\.  
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   

@@ -17,7 +17,7 @@ Valid Range: Minimum value of 0\. Maximum value of 1\.
 Required: No
 
  **MinConfidence**   <a name="rekognition-Type-DetectionFilter-MinConfidence"></a>
-Sets confidence of word detection\. Words with detection confidence below this will be excluded from the result\. Values should be between 0\.5 and 1 as Text in Video will not return any result below 0\.5\.  
+Sets the confidence of word detection\. Words with detection confidence below this will be excluded from the result\. Values should be between 50 and 100 as Text in Video will not return any result below 50\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No

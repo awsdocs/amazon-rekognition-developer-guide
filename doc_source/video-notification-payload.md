@@ -1,6 +1,6 @@
-# Reference: Video Analysis Results Notification<a name="video-notification-payload"></a>
+# Reference: Video analysis results notification<a name="video-notification-payload"></a>
 
-Amazon Rekognition publishes the results of an Amazon Rekognition Video analysis request, including completion status, to an Amazon Simple Notification Service \(Amazon SNS\) topic\. To get the notification from an Amazon SNS topic, use an Amazon Simple Queue Service queue or an AWS Lambda function\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\. For an example, see [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\.
+Amazon Rekognition publishes the results of an Amazon Rekognition Video analysis request, including completion status, to an Amazon Simple Notification Service \(Amazon SNS\) topic\. To get the notification from an Amazon SNS topic, use an Amazon Simple Queue Service queue or an AWS Lambda function\. For more information, see [Calling Amazon Rekognition Video operations](api-video.md)\. For an example, see [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\.
 
 The payload is in the following JSON format:
 

@@ -1,8 +1,8 @@
-# Describing a Collection<a name="describe-collection-procedure"></a>
+# Describing a collection<a name="describe-collection-procedure"></a>
 
 You can use the [DescribeCollection](API_DescribeCollection.md) operation to get the following information about a collection: 
 + The number of faces that are indexed into the collection\.
-+ The version of the model that's used by the collection for face detection\. For more information, see [Model Versioning](face-detection-model.md)\.
++ The version of the model that's used by the collection for face detection\. For more information, see [Model versioning](face-detection-model.md)\.
 + The Amazon Resource Name \(ARN\) of the collection\.
 + The creation date and time of the collection\.
 
@@ -10,9 +10,9 @@ You can use the [DescribeCollection](API_DescribeCollection.md) operation to get
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `DescribeCollection` operation\.
 
@@ -158,7 +158,7 @@ You can use the [DescribeCollection](API_DescribeCollection.md) operation to get
 
 ------
 
-## DescribeCollection Operation Request<a name="describe-collection-request"></a>
+## DescribeCollection operation request<a name="describe-collection-request"></a>
 
 The input to `DescribeCollection` is the ID of the desired collection, as shown in the following JSON example\. 
 
@@ -168,7 +168,7 @@ The input to `DescribeCollection` is the ID of the desired collection, as shown 
 }
 ```
 
-## DescribeCollection Operation Response<a name="describe-collection-operation-response"></a>
+## DescribeCollection operation response<a name="describe-collection-operation-response"></a>
 
 The response includes: 
 + The number of faces that are indexed into the collection, `FaceCount`\.

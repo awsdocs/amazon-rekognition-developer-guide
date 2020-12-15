@@ -1,6 +1,6 @@
 # TrainingDataResult<a name="API_TrainingDataResult"></a>
 
-A Sagemaker Groundtruth format manifest file that represents the dataset used for training\.
+Sagemaker Groundtruth format manifest files for the input, output and validation datasets that are used and created during testing\.
 
 ## Contents<a name="API_TrainingDataResult_Contents"></a>
 
@@ -12,6 +12,11 @@ Required: No
  **Output**   <a name="rekognition-Type-TrainingDataResult-Output"></a>
 The images \(assets\) that were actually trained by Amazon Rekognition Custom Labels\.   
 Type: [TrainingData](API_TrainingData.md) object  
+Required: No
+
+ **Validation**   <a name="rekognition-Type-TrainingDataResult-Validation"></a>
+The location of the data validation manifest\. The data validation manifest is created for the training dataset during model training\.  
+Type: [ValidationData](API_ValidationData.md) object  
 Required: No
 
 ## See Also<a name="API_TrainingDataResult_SeeAlso"></a>

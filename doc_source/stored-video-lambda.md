@@ -1,4 +1,4 @@
-# Tutorial: Creating an Amazon Rekognition Lambda Function<a name="stored-video-lambda"></a>
+# Tutorial: Creating an Amazon Rekognition Lambda function<a name="stored-video-lambda"></a>
 
 This tutorial shows how to get the results of a video analysis operation for label detection by using a Java Lambda function\. 
 
@@ -24,17 +24,17 @@ Use the same AWS Region throughout the tutorial\.
 
 This tutorial assumes that you're familiar with the AWS Toolkit for Eclipse\. For more information, see [ AWS Toolkit for Eclipse](https://docs.aws.amazon.com/toolkit-for-eclipse/v1/user-guide/welcome.html)\.
 
-## Create the SNS Topic<a name="lambda-create-sns-topic"></a>
+## Create the SNS topic<a name="lambda-create-sns-topic"></a>
 
-The completion status of an Amazon Rekognition Video video analysis operation is sent to an Amazon SNS topic\. This procedure creates the Amazon SNS topic and the IAM service role that gives Amazon Rekognition Video access to your Amazon SNS topics\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\.
+The completion status of an Amazon Rekognition Video video analysis operation is sent to an Amazon SNS topic\. This procedure creates the Amazon SNS topic and the IAM service role that gives Amazon Rekognition Video access to your Amazon SNS topics\. For more information, see [Calling Amazon Rekognition Video operations](api-video.md)\.
 
 **To create an Amazon SNS topic**
 
-1. If you haven't already, create an IAM service role to give Amazon Rekognition Video access to your Amazon SNS topics\. Note the Amazon Resource Name \(ARN\)\. For more information, see [Giving Access to Multiple Amazon SNS Topics](api-video-roles.md#api-video-roles-all-topics)\.
+1. If you haven't already, create an IAM service role to give Amazon Rekognition Video access to your Amazon SNS topics\. Note the Amazon Resource Name \(ARN\)\. For more information, see [Giving access to multiple Amazon SNS topics](api-video-roles.md#api-video-roles-all-topics)\.
 
 1. [Create an Amazon SNS topic](https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html) by using the [Amazon SNS console](https://console.aws.amazon.com/sns/v2/home)\.You only need to specifiy the topic name\. Prepend the topic name with *AmazonRekognition*\. Note the topic ARN\. 
 
-## Create the Lambda Function<a name="lambda-create-function"></a>
+## Create the Lambda function<a name="lambda-create-function"></a>
 
 You create the Lambda function by using the AWS Management Console\. Then you use an AWS Toolkit for Eclipse project to upload the Lambda function package to AWS Lambda\. It's also possible to create the Lambda function with the AWS Toolkit for Eclipse\. For more information, see [ Tutorial: How to Create, Upload, and Invoke an AWS Lambda Function](https://docs.aws.amazon.com/toolkit-for-eclipse/v1/user-guide/lambda-tutorial.html)\.
 
@@ -58,9 +58,9 @@ You create the Lambda function by using the AWS Management Console\. Then you us
 
 1. Choose **Create function**\.
 
-## Configure the Lambda Function<a name="lambda-configure-function"></a>
+## Configure the Lambda function<a name="lambda-configure-function"></a>
 
-After you create the Lambda function, you configure it to be triggered by the Amazon SNS topic that you create in [Create the SNS Topic](#lambda-create-sns-topic)\. You also adjust the memory requirements and timeout period for the Lambda function\.
+After you create the Lambda function, you configure it to be triggered by the Amazon SNS topic that you create in [Create the SNS topic](#lambda-create-sns-topic)\. You also adjust the memory requirements and timeout period for the Lambda function\.
 
 **To configure the Lambda function**
 
@@ -78,7 +78,7 @@ After you create the Lambda function, you configure it to be triggered by the Am
 
 1. In **Trigger configuration** choose **SNS**\.
 
-   In **SNS topic**, choose the Amazon SNS topic that you created in [Create the SNS Topic](#lambda-create-sns-topic)\.
+   In **SNS topic**, choose the Amazon SNS topic that you created in [Create the SNS topic](#lambda-create-sns-topic)\.
 
 1. Choose **Enable trigger**\.
 
@@ -86,7 +86,7 @@ After you create the Lambda function, you configure it to be triggered by the Am
 
 1. Choose **Save** to save the Lambda function\.
 
-## Configure the IAM Lambda Role<a name="configure-lambda-role"></a>
+## Configure the IAM Lambda role<a name="configure-lambda-role"></a>
 
 To call Amazon Rekognition Video operations, you add the *AmazonRekognitionFullAccess* AWS managed policy to the IAM Lambda role\. Start operations, such as [StartLabelDetection](API_StartLabelDetection.md), also require pass role permissions for the IAM service role that Amazon Rekognition Video uses to access the Amazon SNS topic\.
 
@@ -96,7 +96,7 @@ To call Amazon Rekognition Video operations, you add the *AmazonRekognitionFullA
 
 1. In the navigation pane, choose **Roles**\. 
 
-1. In the list, choose the name of the execution role that you created in [Create the Lambda Function](#lambda-create-function)\.
+1. In the list, choose the name of the execution role that you created in [Create the Lambda function](#lambda-create-function)\.
 
 1. Choose the **Permissions** tab\.
 
@@ -112,7 +112,7 @@ To call Amazon Rekognition Video operations, you add the *AmazonRekognitionFullA
 
 1. Choose the **JSON** tab\.
 
-1. Replace the existing policy with the following policy\. Replace `servicerole` with the IAM service role that you created in [Create the SNS Topic](#lambda-create-sns-topic)\.
+1. Replace the existing policy with the following policy\. Replace `servicerole` with the IAM service role that you created in [Create the SNS topic](#lambda-create-sns-topic)\.
 
    ```
    {
@@ -134,7 +134,7 @@ To call Amazon Rekognition Video operations, you add the *AmazonRekognitionFullA
 
 1. Choose **Create policy**\.
 
-## Create the AWS Toolkit for Eclipse Lambda Project<a name="lambda-create-code"></a>
+## Create the AWS Toolkit for Eclipse Lambda project<a name="lambda-create-code"></a>
 
 When the Lambda function is triggered, the following code gets the completion status from the Amazon SNS topic, and calls [GetLabelDetection](API_GetLabelDetection.md) to get the analysis results\. A count of labels detected, and a list of labels detected is written to a CloudWatch log\. Your Lambda function should store the video analysis results for later use\.
 
@@ -276,15 +276,15 @@ When the Lambda function is triggered, the following code gets the completion st
 
 1. On the **Select Target Lambda Function** page, choose the AWS Region to use\. 
 
-1. Choose **Choose an existing lambda function**, and select the Lambda function that you created in [Create the Lambda Function](#lambda-create-function)\. 
+1. Choose **Choose an existing lambda function**, and select the Lambda function that you created in [Create the Lambda function](#lambda-create-function)\. 
 
 1. Choose **Next**\. The **Function Configuration** dialog box is shown\. 
 
-1. In **IAM Role** choose the IAM role that you created in [Create the Lambda Function](#lambda-create-function)\.
+1. In **IAM Role** choose the IAM role that you created in [Create the Lambda function](#lambda-create-function)\.
 
 1. Choose **Finish**, and the Lambda function is uploaded to AWS\.
 
-## Test the Lambda Function<a name="lambda-test-function"></a>
+## Test the Lambda function<a name="lambda-test-function"></a>
 
 Use the following AWS CLI command to test the Lambda function by starting the label detection analysis of a video\. After analysis is finished, the Lambda function is triggered\. Confirm that the analysis succeeded by checking the CloudWatch Logs logs\.
 
@@ -304,8 +304,8 @@ Use the following AWS CLI command to test the Lambda function by starting the la
 
    Update the following values:
    + Change `bucketname` and `videofile` to the Amazon S3 bucket name and file name of the video that you want to detect labels in\.
-   + Change `TopicARN` to the ARN of the Amazon SNS topic that you created in [Create the SNS Topic](#lambda-create-sns-topic)\.
-   + Change `RoleARN` to the ARN of the IAM role that you created in [Create the SNS Topic](#lambda-create-sns-topic)\.
+   + Change `TopicARN` to the ARN of the Amazon SNS topic that you created in [Create the SNS topic](#lambda-create-sns-topic)\.
+   + Change `RoleARN` to the ARN of the IAM role that you created in [Create the SNS topic](#lambda-create-sns-topic)\.
    + Change `Region` to the AWS Region that you are using\. ``
 
 1. Note the value of `JobId` in the response\. The response looks similar to the following JSON example\.

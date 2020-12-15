@@ -1,6 +1,6 @@
 # TestingDataResult<a name="API_TestingDataResult"></a>
 
-A Sagemaker Groundtruth format manifest file representing the dataset used for testing\.
+Sagemaker Groundtruth format manifest files for the input, output and validation datasets that are used and created during testing\.
 
 ## Contents<a name="API_TestingDataResult_Contents"></a>
 
@@ -12,6 +12,11 @@ Required: No
  **Output**   <a name="rekognition-Type-TestingDataResult-Output"></a>
 The subset of the dataset that was actually tested\. Some images \(assets\) might not be tested due to file formatting and other issues\.   
 Type: [TestingData](API_TestingData.md) object  
+Required: No
+
+ **Validation**   <a name="rekognition-Type-TestingDataResult-Validation"></a>
+The location of the data validation manifest\. The data validation manifest is created for the test dataset during model training\.  
+Type: [ValidationData](API_ValidationData.md) object  
 Required: No
 
 ## See Also<a name="API_TestingDataResult_SeeAlso"></a>

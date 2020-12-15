@@ -8,7 +8,7 @@ This operation requires permissions to perform the `rekognition:CreateProject` a
 
 ```
 {
-   "[ProjectName](#rekognition-CreateProject-request-ProjectName)": "string"
+   "ProjectName": "string"
 }
 ```
 
@@ -27,7 +27,7 @@ Required: Yes
 
 ```
 {
-   "[ProjectArn](#rekognition-CreateProject-response-ProjectArn)": "string"
+   "ProjectArn": "string"
 }
 ```
 
@@ -66,7 +66,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceInUseException**   
-  
+The specified resource is already being used\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   

@@ -14,39 +14,39 @@ This operation requires permissions to perform the `rekognition:CreateProjectVer
 
 ```
 {
-   "[OutputConfig](#rekognition-CreateProjectVersion-request-OutputConfig)": { 
-      "[S3Bucket](API_OutputConfig.md#rekognition-Type-OutputConfig-S3Bucket)": "string",
-      "[S3KeyPrefix](API_OutputConfig.md#rekognition-Type-OutputConfig-S3KeyPrefix)": "string"
+   "OutputConfig": { 
+      "S3Bucket": "string",
+      "S3KeyPrefix": "string"
    },
-   "[ProjectArn](#rekognition-CreateProjectVersion-request-ProjectArn)": "string",
-   "[TestingData](#rekognition-CreateProjectVersion-request-TestingData)": { 
-      "[Assets](API_TestingData.md#rekognition-Type-TestingData-Assets)": [ 
+   "ProjectArn": "string",
+   "TestingData": { 
+      "Assets": [ 
          { 
-            "[GroundTruthManifest](API_Asset.md#rekognition-Type-Asset-GroundTruthManifest)": { 
-               "[S3Object](API_GroundTruthManifest.md#rekognition-Type-GroundTruthManifest-S3Object)": { 
-                  "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-                  "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-                  "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+            "GroundTruthManifest": { 
+               "S3Object": { 
+                  "Bucket": "string",
+                  "Name": "string",
+                  "Version": "string"
                }
             }
          }
       ],
-      "[AutoCreate](API_TestingData.md#rekognition-Type-TestingData-AutoCreate)": boolean
+      "AutoCreate": boolean
    },
-   "[TrainingData](#rekognition-CreateProjectVersion-request-TrainingData)": { 
-      "[Assets](API_TrainingData.md#rekognition-Type-TrainingData-Assets)": [ 
+   "TrainingData": { 
+      "Assets": [ 
          { 
-            "[GroundTruthManifest](API_Asset.md#rekognition-Type-Asset-GroundTruthManifest)": { 
-               "[S3Object](API_GroundTruthManifest.md#rekognition-Type-GroundTruthManifest-S3Object)": { 
-                  "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-                  "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-                  "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+            "GroundTruthManifest": { 
+               "S3Object": { 
+                  "Bucket": "string",
+                  "Name": "string",
+                  "Version": "string"
                }
             }
          }
       ]
    },
-   "[VersionName](#rekognition-CreateProjectVersion-request-VersionName)": "string"
+   "VersionName": "string"
 }
 ```
 
@@ -87,7 +87,7 @@ Required: Yes
 
 ```
 {
-   "[ProjectVersionArn](#rekognition-CreateProjectVersion-response-ProjectVersionArn)": "string"
+   "ProjectVersionArn": "string"
 }
 ```
 
@@ -126,7 +126,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceInUseException**   
-  
+The specified resource is already being used\.  
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   

@@ -1,6 +1,6 @@
-# Recommendations for Camera Setup \(Stored and Streaming Video\)<a name="recommendations-camera-stored-streaming-video"></a>
+# Recommendations for camera setup \(stored and streaming video\)<a name="recommendations-camera-stored-streaming-video"></a>
 
-The following recommendations are in addition to [Recommendations for Camera Set\-Up \(Image and Video\)](recommendations-camera-image-video.md)\.
+The following recommendations are in addition to [Recommendations for camera setup \(image and video\)](recommendations-camera-image-video.md)\.
 + The codec should be h\.264 encoded\.
 + The recommended frame rate is 30 fps\. \(It should not be less than 5 fps\.\)
 + The recommended encoder bitrate is 3 Mbps\. \(It should not be less than 1\.5 Mbps\.\)

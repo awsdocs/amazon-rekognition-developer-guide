@@ -1,4 +1,4 @@
-# Exercise 1: Detect Objects and Scenes in an Image \(Console\)<a name="detect-labels-console"></a>
+# Exercise 1: Detect objects and scenes in an image \(Console\)<a name="detect-labels-console"></a>
 
 This section shows how, at a very high level, Amazon Rekognition's objects and scenes detection capability works\. When you specify an image as input, the service detects the objects and scenes in the image and returns them along with a percent confidence score for each object and scene\.
 
@@ -185,9 +185,9 @@ Response
 }
 ```
 
-For more information, see [How Amazon Rekognition Works](how-it-works.md)\.
+For more information, see [How Amazon Rekognition works](how-it-works.md)\.
 
-## Detect Objects and Scenes in an Image You Provide<a name="detect-label-own-image"></a>
+## Detect objects and scenes in an image you provide<a name="detect-label-own-image"></a>
 
 You can upload an image that you own or provide the URL to an image as input in the Amazon Rekognition console\. Amazon Rekognition returns the object and scenes, confidence scores for each object, and scene it detects in the image you provide\.
 

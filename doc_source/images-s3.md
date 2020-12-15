@@ -1,4 +1,4 @@
-# Analyzing Images Stored in an Amazon S3 Bucket<a name="images-s3"></a>
+# Analyzing images stored in an Amazon S3 bucket<a name="images-s3"></a>
 
 Amazon Rekognition Image can analyze images that are stored in an Amazon S3 bucket or images that are supplied as image bytes\.
 
@@ -21,15 +21,15 @@ In this example JSON request for `DetectLabels`, the source image \(`input.jpg`\
 }
 ```
 
-The following examples use various AWS SDKs and the AWS CLI to call `DetectLabels`\. For information about the `DetectLabels` operation response, see [DetectLabels Response](labels-detect-labels-image.md#detectlabels-response)\.
+The following examples use various AWS SDKs and the AWS CLI to call `DetectLabels`\. For information about the `DetectLabels` operation response, see [DetectLabels response](labels-detect-labels-image.md#detectlabels-response)\.
 
 **To detect labels in an image**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Upload an image that contains one or more objects—such as trees, houses, and boat—to your S3 bucket\. The image must be in *\.jpg* or *\.png* format\.
 
@@ -255,3 +255,5 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    ```
 
 ------
+
+   

@@ -6,7 +6,7 @@ Stops a running model\. The operation might take a while to complete\. To check 
 
 ```
 {
-   "[ProjectVersionArn](#rekognition-StopProjectVersion-request-ProjectVersionArn)": "string"
+   "ProjectVersionArn": "string"
 }
 ```
 
@@ -26,7 +26,7 @@ Required: Yes
 
 ```
 {
-   "[Status](#rekognition-StopProjectVersion-response-Status)": "string"
+   "Status": "string"
 }
 ```
 
@@ -60,7 +60,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceInUseException**   
-  
+The specified resource is already being used\.  
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   

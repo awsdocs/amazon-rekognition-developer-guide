@@ -1,6 +1,8 @@
-# Recommendations for Camera Set\-Up \(Streaming Video\)<a name="recommendations-camera-streaming-video"></a>
+# Recommendations for camera setup \(streaming video\)<a name="recommendations-camera-streaming-video"></a>
 
-The following recommendation is in addition to [Recommendations for Camera Setup \(Stored and Streaming Video\)](recommendations-camera-stored-streaming-video.md)\.
+
+
+The following recommendation is in addition to [Recommendations for camera setup \(stored and streaming video\)](recommendations-camera-stored-streaming-video.md)\.
 
 An additional constraint with streaming applications is internet bandwidth\. For live video, Amazon Rekognition only accepts Amazon Kinesis Video Streams as an input\. You should understand the dependency between the encoder bitrate and the available network bandwidth\. Available bandwidth should, at a minimum, support the same bitrate that the camera is using to encode the live stream\. This ensures that whatever the camera captures is relayed through Amazon Kinesis Video Streams\. If the available bandwidth is less than the encoder bitrate, Amazon Kinesis Video Streams drops bits based on the network bandwidth\. This results in low video quality\. 
 

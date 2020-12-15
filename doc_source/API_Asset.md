@@ -1,11 +1,11 @@
 # Asset<a name="API_Asset"></a>
 
-Assets are the images that you use to train and evaluate a model version\. Assets are referenced by Sagemaker GroundTruth manifest files\. 
+Assets are the images that you use to train and evaluate a model version\. Assets can also contain validation information that you use to debug a failed model training\. 
 
 ## Contents<a name="API_Asset_Contents"></a>
 
  **GroundTruthManifest**   <a name="rekognition-Type-Asset-GroundTruthManifest"></a>
-The S3 bucket that contains the Ground Truth manifest file\.  
+The S3 bucket that contains an Amazon Sagemaker Ground Truth format manifest file\.   
 Type: [GroundTruthManifest](API_GroundTruthManifest.md) object  
 Required: No
 

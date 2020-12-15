@@ -1,6 +1,6 @@
 # ListFaces<a name="API_ListFaces"></a>
 
-Returns metadata for faces in the specified collection\. This metadata includes information such as the bounding box coordinates, the confidence \(that the bounding box contains a face\), and face ID\. For an example, see [Listing Faces in a Collection](list-faces-in-collection-procedure.md)\. 
+Returns metadata for faces in the specified collection\. This metadata includes information such as the bounding box coordinates, the confidence \(that the bounding box contains a face\), and face ID\. For an example, see [Listing faces in a collection](list-faces-in-collection-procedure.md)\. 
 
 This operation requires permissions to perform the `rekognition:ListFaces` action\.
 
@@ -8,9 +8,9 @@ This operation requires permissions to perform the `rekognition:ListFaces` actio
 
 ```
 {
-   "[CollectionId](#rekognition-ListFaces-request-CollectionId)": "string",
-   "[MaxResults](#rekognition-ListFaces-request-MaxResults)": number,
-   "[NextToken](#rekognition-ListFaces-request-NextToken)": "string"
+   "CollectionId": "string",
+   "MaxResults": number,
+   "NextToken": "string"
 }
 ```
 
@@ -41,22 +41,22 @@ Required: No
 
 ```
 {
-   "[FaceModelVersion](#rekognition-ListFaces-response-FaceModelVersion)": "string",
-   "[Faces](#rekognition-ListFaces-response-Faces)": [ 
+   "FaceModelVersion": "string",
+   "Faces": [ 
       { 
-         "[BoundingBox](API_Face.md#rekognition-Type-Face-BoundingBox)": { 
-            "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-            "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-            "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-            "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "BoundingBox": { 
+            "Height": number,
+            "Left": number,
+            "Top": number,
+            "Width": number
          },
-         "[Confidence](API_Face.md#rekognition-Type-Face-Confidence)": number,
-         "[ExternalImageId](API_Face.md#rekognition-Type-Face-ExternalImageId)": "string",
-         "[FaceId](API_Face.md#rekognition-Type-Face-FaceId)": "string",
-         "[ImageId](API_Face.md#rekognition-Type-Face-ImageId)": "string"
+         "Confidence": number,
+         "ExternalImageId": "string",
+         "FaceId": "string",
+         "ImageId": "string"
       }
    ],
-   "[NextToken](#rekognition-ListFaces-response-NextToken)": "string"
+   "NextToken": "string"
 }
 ```
 

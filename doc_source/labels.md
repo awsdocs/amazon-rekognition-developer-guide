@@ -1,4 +1,4 @@
-# Detecting Objects and Scenes<a name="labels"></a>
+# Detecting objects and scenes<a name="labels"></a>
 
 This section provides information for detecting labels in images and videos with Amazon Rekognition Image and Amazon Rekognition Video\. 
 
@@ -15,6 +15,6 @@ For example, in the following image, Amazon Rekognition Image is able to detect 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/detect-scenes.jpg)
 
 **Topics**
-+ [Detecting Labels in an Image](labels-detect-labels-image.md)
-+ [Detecting Labels in a Video](labels-detecting-labels-video.md)
-+ [Detecting Custom Labels](labels-detecting-custom-labels.md)
++ [Detecting labels in an image](labels-detect-labels-image.md)
++ [Detecting labels in a video](labels-detecting-labels-video.md)
++ [Detecting custom labels](labels-detecting-custom-labels.md)

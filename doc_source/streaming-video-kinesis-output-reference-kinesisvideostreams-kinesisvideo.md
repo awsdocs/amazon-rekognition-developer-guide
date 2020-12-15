@@ -1,6 +1,6 @@
 # KinesisVideo<a name="streaming-video-kinesis-output-reference-kinesisvideostreams-kinesisvideo"></a>
 
-Information about the Kinesis video stream that streams the source video into Amazon Rekognition Video\. For more information, see [Working with Streaming Videos](streaming-video.md)\.
+Information about the Kinesis video stream that streams the source video into Amazon Rekognition Video\. For more information, see [Working with streaming videos](streaming-video.md)\.
 
 **StreamArn**
 

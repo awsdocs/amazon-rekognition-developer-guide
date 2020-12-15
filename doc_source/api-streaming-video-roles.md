@@ -1,8 +1,8 @@
-# Giving Amazon Rekognition Video Access to Your Kinesis Streams<a name="api-streaming-video-roles"></a>
+# Giving Amazon Rekognition Video access to your Kinesis streams<a name="api-streaming-video-roles"></a>
 
 You use an AWS Identity and Access Management \(IAM\) service role to give Amazon Rekognition Video read access to Kinesis video streams and write access to Kinesis data streams\. 
 
-## Giving Access to Your Kinesis Video Streams and Kinesis Data Streams<a name="api-streaming-video-roles-all-stream"></a>
+## Giving access to your Kinesis video streams and Kinesis data streams<a name="api-streaming-video-roles-all-stream"></a>
 
  IAM provides the *Rekognition* service role use case that, when used with the `AmazonRekognitionServiceRole` permissions policy, can write to multiple Kinesis data streams and read from all your Kinesis video streams\. To give Amazon Rekognition Video write access to multiple Kinesis data streams, you can prepend the names of the Kinesis data streams with *AmazonRekognition*—for example, `AmazonRekognitionMyDataStreamName`\. 
 
@@ -18,7 +18,7 @@ You use an AWS Identity and Access Management \(IAM\) service role to give Amazo
 
 1. Note the Amazon Resource Name \(ARN\) of the service role\. You need it to start video analysis operations\.
 
-## Giving Access to Individual Kinesis Streams<a name="api-streaming-video-roles-single-stream"></a>
+## Giving access to individual Kinesis streams<a name="api-streaming-video-roles-single-stream"></a>
 
 You can create a permissions policy that allows Amazon Rekognition Video access to individual Kinesis video streams and Kinesis data streams\.
 

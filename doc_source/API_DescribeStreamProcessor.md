@@ -6,7 +6,7 @@ Provides information about a stream processor created by [CreateStreamProcessor]
 
 ```
 {
-   "[Name](#rekognition-DescribeStreamProcessor-request-Name)": "string"
+   "Name": "string"
 }
 ```
 
@@ -25,29 +25,29 @@ Required: Yes
 
 ```
 {
-   "[CreationTimestamp](#rekognition-DescribeStreamProcessor-response-CreationTimestamp)": number,
-   "[Input](#rekognition-DescribeStreamProcessor-response-Input)": { 
-      "[KinesisVideoStream](API_StreamProcessorInput.md#rekognition-Type-StreamProcessorInput-KinesisVideoStream)": { 
-         "[Arn](API_KinesisVideoStream.md#rekognition-Type-KinesisVideoStream-Arn)": "string"
+   "CreationTimestamp": number,
+   "Input": { 
+      "KinesisVideoStream": { 
+         "Arn": "string"
       }
    },
-   "[LastUpdateTimestamp](#rekognition-DescribeStreamProcessor-response-LastUpdateTimestamp)": number,
-   "[Name](#rekognition-DescribeStreamProcessor-response-Name)": "string",
-   "[Output](#rekognition-DescribeStreamProcessor-response-Output)": { 
-      "[KinesisDataStream](API_StreamProcessorOutput.md#rekognition-Type-StreamProcessorOutput-KinesisDataStream)": { 
-         "[Arn](API_KinesisDataStream.md#rekognition-Type-KinesisDataStream-Arn)": "string"
+   "LastUpdateTimestamp": number,
+   "Name": "string",
+   "Output": { 
+      "KinesisDataStream": { 
+         "Arn": "string"
       }
    },
-   "[RoleArn](#rekognition-DescribeStreamProcessor-response-RoleArn)": "string",
-   "[Settings](#rekognition-DescribeStreamProcessor-response-Settings)": { 
-      "[FaceSearch](API_StreamProcessorSettings.md#rekognition-Type-StreamProcessorSettings-FaceSearch)": { 
-         "[CollectionId](API_FaceSearchSettings.md#rekognition-Type-FaceSearchSettings-CollectionId)": "string",
-         "[FaceMatchThreshold](API_FaceSearchSettings.md#rekognition-Type-FaceSearchSettings-FaceMatchThreshold)": number
+   "RoleArn": "string",
+   "Settings": { 
+      "FaceSearch": { 
+         "CollectionId": "string",
+         "FaceMatchThreshold": number
       }
    },
-   "[Status](#rekognition-DescribeStreamProcessor-response-Status)": "string",
-   "[StatusMessage](#rekognition-DescribeStreamProcessor-response-StatusMessage)": "string",
-   "[StreamProcessorArn](#rekognition-DescribeStreamProcessor-response-StreamProcessorArn)": "string"
+   "Status": "string",
+   "StatusMessage": "string",
+   "StreamProcessorArn": "string"
 }
 ```
 

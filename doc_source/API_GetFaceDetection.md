@@ -12,9 +12,9 @@ Use MaxResults parameter to limit the number of labels returned\. If there are m
 
 ```
 {
-   "[JobId](#rekognition-GetFaceDetection-request-JobId)": "string",
-   "[MaxResults](#rekognition-GetFaceDetection-request-MaxResults)": number,
-   "[NextToken](#rekognition-GetFaceDetection-request-NextToken)": "string"
+   "JobId": "string",
+   "MaxResults": number,
+   "NextToken": "string"
 }
 ```
 
@@ -45,88 +45,88 @@ Required: No
 
 ```
 {
-   "[Faces](#rekognition-GetFaceDetection-response-Faces)": [ 
+   "Faces": [ 
       { 
-         "[Face](API_FaceDetection.md#rekognition-Type-FaceDetection-Face)": { 
-            "[AgeRange](API_FaceDetail.md#rekognition-Type-FaceDetail-AgeRange)": { 
-               "[High](API_AgeRange.md#rekognition-Type-AgeRange-High)": number,
-               "[Low](API_AgeRange.md#rekognition-Type-AgeRange-Low)": number
+         "Face": { 
+            "AgeRange": { 
+               "High": number,
+               "Low": number
             },
-            "[Beard](API_FaceDetail.md#rekognition-Type-FaceDetail-Beard)": { 
-               "[Confidence](API_Beard.md#rekognition-Type-Beard-Confidence)": number,
-               "[Value](API_Beard.md#rekognition-Type-Beard-Value)": boolean
+            "Beard": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[BoundingBox](API_FaceDetail.md#rekognition-Type-FaceDetail-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Confidence](API_FaceDetail.md#rekognition-Type-FaceDetail-Confidence)": number,
-            "[Emotions](API_FaceDetail.md#rekognition-Type-FaceDetail-Emotions)": [ 
+            "Confidence": number,
+            "Emotions": [ 
                { 
-                  "[Confidence](API_Emotion.md#rekognition-Type-Emotion-Confidence)": number,
-                  "[Type](API_Emotion.md#rekognition-Type-Emotion-Type)": "string"
+                  "Confidence": number,
+                  "Type": "string"
                }
             ],
-            "[Eyeglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Eyeglasses)": { 
-               "[Confidence](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Confidence)": number,
-               "[Value](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Value)": boolean
+            "Eyeglasses": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[EyesOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-EyesOpen)": { 
-               "[Confidence](API_EyeOpen.md#rekognition-Type-EyeOpen-Confidence)": number,
-               "[Value](API_EyeOpen.md#rekognition-Type-EyeOpen-Value)": boolean
+            "EyesOpen": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Gender](API_FaceDetail.md#rekognition-Type-FaceDetail-Gender)": { 
-               "[Confidence](API_Gender.md#rekognition-Type-Gender-Confidence)": number,
-               "[Value](API_Gender.md#rekognition-Type-Gender-Value)": "string"
+            "Gender": { 
+               "Confidence": number,
+               "Value": "string"
             },
-            "[Landmarks](API_FaceDetail.md#rekognition-Type-FaceDetail-Landmarks)": [ 
+            "Landmarks": [ 
                { 
-                  "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
-                  "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
-                  "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
+                  "Type": "string",
+                  "X": number,
+                  "Y": number
                }
             ],
-            "[MouthOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-MouthOpen)": { 
-               "[Confidence](API_MouthOpen.md#rekognition-Type-MouthOpen-Confidence)": number,
-               "[Value](API_MouthOpen.md#rekognition-Type-MouthOpen-Value)": boolean
+            "MouthOpen": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Mustache](API_FaceDetail.md#rekognition-Type-FaceDetail-Mustache)": { 
-               "[Confidence](API_Mustache.md#rekognition-Type-Mustache-Confidence)": number,
-               "[Value](API_Mustache.md#rekognition-Type-Mustache-Value)": boolean
+            "Mustache": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Pose](API_FaceDetail.md#rekognition-Type-FaceDetail-Pose)": { 
-               "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
-               "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
-               "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
+            "Pose": { 
+               "Pitch": number,
+               "Roll": number,
+               "Yaw": number
             },
-            "[Quality](API_FaceDetail.md#rekognition-Type-FaceDetail-Quality)": { 
-               "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
-               "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
+            "Quality": { 
+               "Brightness": number,
+               "Sharpness": number
             },
-            "[Smile](API_FaceDetail.md#rekognition-Type-FaceDetail-Smile)": { 
-               "[Confidence](API_Smile.md#rekognition-Type-Smile-Confidence)": number,
-               "[Value](API_Smile.md#rekognition-Type-Smile-Value)": boolean
+            "Smile": { 
+               "Confidence": number,
+               "Value": boolean
             },
-            "[Sunglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Sunglasses)": { 
-               "[Confidence](API_Sunglasses.md#rekognition-Type-Sunglasses-Confidence)": number,
-               "[Value](API_Sunglasses.md#rekognition-Type-Sunglasses-Value)": boolean
+            "Sunglasses": { 
+               "Confidence": number,
+               "Value": boolean
             }
          },
-         "[Timestamp](API_FaceDetection.md#rekognition-Type-FaceDetection-Timestamp)": number
+         "Timestamp": number
       }
    ],
-   "[JobStatus](#rekognition-GetFaceDetection-response-JobStatus)": "string",
-   "[NextToken](#rekognition-GetFaceDetection-response-NextToken)": "string",
-   "[StatusMessage](#rekognition-GetFaceDetection-response-StatusMessage)": "string",
-   "[VideoMetadata](#rekognition-GetFaceDetection-response-VideoMetadata)": { 
-      "[Codec](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Codec)": "string",
-      "[DurationMillis](API_VideoMetadata.md#rekognition-Type-VideoMetadata-DurationMillis)": number,
-      "[Format](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Format)": "string",
-      "[FrameHeight](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameHeight)": number,
-      "[FrameRate](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameRate)": number,
-      "[FrameWidth](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameWidth)": number
+   "JobStatus": "string",
+   "NextToken": "string",
+   "StatusMessage": "string",
+   "VideoMetadata": { 
+      "Codec": "string",
+      "DurationMillis": number,
+      "Format": "string",
+      "FrameHeight": number,
+      "FrameRate": number,
+      "FrameWidth": number
    }
 }
 ```

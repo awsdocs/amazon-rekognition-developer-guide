@@ -6,7 +6,7 @@ Stops a running stream processor that was created by [CreateStreamProcessor](API
 
 ```
 {
-   "[Name](#rekognition-StopStreamProcessor-request-Name)": "string"
+   "Name": "string"
 }
 ```
 
@@ -44,7 +44,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceInUseException**   
-  
+The specified resource is already being used\.  
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   

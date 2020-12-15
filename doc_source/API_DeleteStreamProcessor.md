@@ -6,7 +6,7 @@ Deletes the stream processor identified by `Name`\. You assign the value for `Na
 
 ```
 {
-   "[Name](#rekognition-DeleteStreamProcessor-request-Name)": "string"
+   "Name": "string"
 }
 ```
 
@@ -44,7 +44,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceInUseException**   
-  
+The specified resource is already being used\.  
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   

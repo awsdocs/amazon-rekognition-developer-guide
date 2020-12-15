@@ -2,13 +2,13 @@
 
 Describes the specified collection\. You can use `DescribeCollection` to get information, such as the number of faces indexed into a collection and the version of the model used by the collection for face detection\.
 
-For more information, see [Describing a Collection](describe-collection-procedure.md)\.
+For more information, see [Describing a collection](describe-collection-procedure.md)\.
 
 ## Request Syntax<a name="API_DescribeCollection_RequestSyntax"></a>
 
 ```
 {
-   "[CollectionId](#rekognition-DescribeCollection-request-CollectionId)": "string"
+   "CollectionId": "string"
 }
 ```
 
@@ -27,10 +27,10 @@ Required: Yes
 
 ```
 {
-   "[CollectionARN](#rekognition-DescribeCollection-response-CollectionARN)": "string",
-   "[CreationTimestamp](#rekognition-DescribeCollection-response-CreationTimestamp)": number,
-   "[FaceCount](#rekognition-DescribeCollection-response-FaceCount)": number,
-   "[FaceModelVersion](#rekognition-DescribeCollection-response-FaceModelVersion)": "string"
+   "CollectionARN": "string",
+   "CreationTimestamp": number,
+   "FaceCount": number,
+   "FaceModelVersion": "string"
 }
 ```
 
@@ -55,7 +55,7 @@ Valid Range: Minimum value of 0\.
 
  ** [FaceModelVersion](#API_DescribeCollection_ResponseSyntax) **   <a name="rekognition-DescribeCollection-response-FaceModelVersion"></a>
 The version of the face model that's used by the collection for face detection\.  
-For more information, see [Model Versioning](face-detection-model.md)\.  
+For more information, see [Model versioning](face-detection-model.md)\.  
 Type: String
 
 ## Errors<a name="API_DescribeCollection_Errors"></a>

@@ -2,7 +2,7 @@
 
 Returns list of collection IDs in your account\. If the result is truncated, the response also provides a `NextToken` that you can use in the subsequent request to fetch the next set of collection IDs\.
 
-For an example, see [Listing Collections](list-collection-procedure.md)\.
+For an example, see [Listing collections](list-collection-procedure.md)\.
 
 This operation requires permissions to perform the `rekognition:ListCollections` action\.
 
@@ -10,8 +10,8 @@ This operation requires permissions to perform the `rekognition:ListCollections`
 
 ```
 {
-   "[MaxResults](#rekognition-ListCollections-request-MaxResults)": number,
-   "[NextToken](#rekognition-ListCollections-request-NextToken)": "string"
+   "MaxResults": number,
+   "NextToken": "string"
 }
 ```
 
@@ -35,9 +35,9 @@ Required: No
 
 ```
 {
-   "[CollectionIds](#rekognition-ListCollections-response-CollectionIds)": [ "string" ],
-   "[FaceModelVersions](#rekognition-ListCollections-response-FaceModelVersions)": [ "string" ],
-   "[NextToken](#rekognition-ListCollections-response-NextToken)": "string"
+   "CollectionIds": [ "string" ],
+   "FaceModelVersions": [ "string" ],
+   "NextToken": "string"
 }
 ```
 

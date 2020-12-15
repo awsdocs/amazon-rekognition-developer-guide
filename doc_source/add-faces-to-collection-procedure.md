@@ -1,8 +1,8 @@
-# Adding Faces to a Collection<a name="add-faces-to-collection-procedure"></a>
+# Adding faces to a collection<a name="add-faces-to-collection-procedure"></a>
 
 You can use the [IndexFaces](API_IndexFaces.md) operation to detect faces in an image and add them to a collection\. For each face detected, Amazon Rekognition extracts facial features and stores the feature information in a database\. In addition, the command stores metadata for each face that's detected in the specified face collection\. Amazon Rekognition doesn't store the actual image bytes\.
 
-For information about providing suitable faces for indexing, see [Recommendations for Facial Comparison Input Images](recommendations-facial-input-images.md)\.
+For information about providing suitable faces for indexing, see [Recommendations for facial comparison input images](recommendations-facial-input-images.md)\.
 
 For each face, the `IndexFaces` operation persists the following information:
 + **Multidimensional facial features** – `IndexFaces` uses facial analysis to extract multidimensional information about the facial features and stores the information in the face collection\. You can't access this information directly\. However, Amazon Rekognition uses this information when it searches a face collection for face matches\.
@@ -13,10 +13,10 @@ For each face, the `IndexFaces` operation persists the following information:
   The service returns this metadata in response to the following API calls:
 
    
-  +  `[ListFaces](API_ListFaces.md)` 
+  +  `ListFaces` 
   + Search faces operations – The responses for [SearchFaces](API_SearchFaces.md) and [SearchFacesByImage](API_SearchFacesByImage.md) return the confidence in the match for each matching face, along with this metadata of the matched face\.
 
-The number of faces indexed by `IndexFaces` depends on the version of the face detection model that's associated with the input collection\. For more information, see [Model Versioning](face-detection-model.md)\. 
+The number of faces indexed by `IndexFaces` depends on the version of the face detection model that's associated with the input collection\. For more information, see [Model versioning](face-detection-model.md)\. 
 
 Information about indexed faces is returned in an array of [FaceRecord](API_FaceRecord.md) objects\.
 
@@ -27,7 +27,7 @@ In addition to the preceding information that the API persists in the face colle
 **Note**  
 `DetectFaces` returns the same information, so you don't need to call both `DetectFaces` and `IndexFaces` for the same image\. 
 
-## Filtering Faces<a name="index-faces-filtering"></a>
+## Filtering faces<a name="index-faces-filtering"></a>
 
 The IndexFaces operation enables you to filter the faces that are indexed from an image\. With `IndexFaces` you can specify a maximum number of faces to index, or you can choose to only index faces detected with a high quality\. 
 
@@ -52,15 +52,17 @@ To use quality filtering, you need a collection that's associated with version 3
 
 Information about faces that aren't indexed by `IndexFaces` is returned in an array of [UnindexedFace](API_UnindexedFace.md) objects\. The `Reasons` array contains a list of reasons why a face isn't indexed\. For example, a value of `EXCEEDS_MAX_FACES` is a face that's not indexed because the number of faces specified by `MaxFaces` has already been detected\. 
 
-For more information, see [Managing Faces in a Collection](collections.md#collections-index-faces)\. 
+For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\. 
+
+
 
 **To add faces to a collection \(SDK\)**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Upload an image \(containing one or more faces\) to your Amazon S3 bucket\. 
 
@@ -263,7 +265,7 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
 
 ------
 
-## IndexFaces Operation Request<a name="indexfaces-request"></a>
+## IndexFaces operation request<a name="indexfaces-request"></a>
 
 The input to `IndexFaces` is the image to be indexed and the collection to add the face or faces to\. 
 
@@ -285,7 +287,7 @@ The input to `IndexFaces` is the image to be indexed and the collection to add t
 }
 ```
 
-## IndexFaces Operation Response<a name="indexfaces-operation-response"></a>
+## IndexFaces operation response<a name="indexfaces-operation-response"></a>
 
 `IndexFaces` returns information about the faces that were detected in the image\. For example, the following JSON response includes the default detection attributes for faces detected in the input image\. The example also shows faces not indexed because the value of the `MaxFaces` input parameter has been exceeded — the `Reasons` array contains *EXCEEDS\_MAX\_FACES*\. If a face is not indexed for quality reasons, `Reasons` contains values such as *LOW\_SHARPNESS* or *LOW\_BRIGHTNESS*\. For more information, see [UnindexedFace](API_UnindexedFace.md)\.
 
@@ -416,9 +418,11 @@ To get all facial information, specify 'ALL' for the `DetectionAttributes` reque
 
 The `face` element provides metadata that's persisted on the server\.
 
- `FaceModelVersion` is the version of the face model that's associated with the collection\. For more information, see [Model Versioning](face-detection-model.md)\.
+ `FaceModelVersion` is the version of the face model that's associated with the collection\. For more information, see [Model versioning](face-detection-model.md)\.
 
-`OrientationCorrection` is the estimated orientation of the image\. Orientation correction information is not returned if you are using a version of the face detection model that is greater than version 3\. For more information, see [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)\.
+`OrientationCorrection` is the estimated orientation of the image\. Orientation correction information is not returned if you are using a version of the face detection model that is greater than version 3\. For more information, see [Getting image orientation and bounding box coordinates](images-orientation.md)\.
+
+
 
 ```
 {

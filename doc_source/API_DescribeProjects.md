@@ -8,8 +8,8 @@ This operation requires permissions to perform the `rekognition:DescribeProjects
 
 ```
 {
-   "[MaxResults](#rekognition-DescribeProjects-request-MaxResults)": number,
-   "[NextToken](#rekognition-DescribeProjects-request-NextToken)": "string"
+   "MaxResults": number,
+   "NextToken": "string"
 }
 ```
 
@@ -33,12 +33,12 @@ Required: No
 
 ```
 {
-   "[NextToken](#rekognition-DescribeProjects-response-NextToken)": "string",
-   "[ProjectDescriptions](#rekognition-DescribeProjects-response-ProjectDescriptions)": [ 
+   "NextToken": "string",
+   "ProjectDescriptions": [ 
       { 
-         "[CreationTimestamp](API_ProjectDescription.md#rekognition-Type-ProjectDescription-CreationTimestamp)": number,
-         "[ProjectArn](API_ProjectDescription.md#rekognition-Type-ProjectDescription-ProjectArn)": "string",
-         "[Status](API_ProjectDescription.md#rekognition-Type-ProjectDescription-Status)": "string"
+         "CreationTimestamp": number,
+         "ProjectArn": "string",
+         "Status": "string"
       }
    ]
 }

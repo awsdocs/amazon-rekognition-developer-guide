@@ -2,25 +2,25 @@
 
 Starts the asynchronous search for faces in a collection that match the faces of persons detected in a stored video\.
 
-The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceSearch` returns a job identifier \(`JobId`\) which you use to get the search results once the search has completed\. When searching is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceSearch](API_GetFaceSearch.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\. For more information, see [ Searching Stored Videos for Faces](procedure-person-search-videos.md)\.
+The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceSearch` returns a job identifier \(`JobId`\) which you use to get the search results once the search has completed\. When searching is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceSearch](API_GetFaceSearch.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\. For more information, see [ Searching stored videos for faces](procedure-person-search-videos.md)\.
 
 ## Request Syntax<a name="API_StartFaceSearch_RequestSyntax"></a>
 
 ```
 {
-   "[ClientRequestToken](#rekognition-StartFaceSearch-request-ClientRequestToken)": "string",
-   "[CollectionId](#rekognition-StartFaceSearch-request-CollectionId)": "string",
-   "[FaceMatchThreshold](#rekognition-StartFaceSearch-request-FaceMatchThreshold)": number,
-   "[JobTag](#rekognition-StartFaceSearch-request-JobTag)": "string",
-   "[NotificationChannel](#rekognition-StartFaceSearch-request-NotificationChannel)": { 
-      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
-      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
+   "ClientRequestToken": "string",
+   "CollectionId": "string",
+   "FaceMatchThreshold": number,
+   "JobTag": "string",
+   "NotificationChannel": { 
+      "RoleArn": "string",
+      "SNSTopicArn": "string"
    },
-   "[Video](#rekognition-StartFaceSearch-request-Video)": { 
-      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Video": { 
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -71,7 +71,7 @@ Required: Yes
 
 ```
 {
-   "[JobId](#rekognition-StartFaceSearch-response-JobId)": "string"
+   "JobId": "string"
 }
 ```
 

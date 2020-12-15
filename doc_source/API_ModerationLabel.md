@@ -1,6 +1,6 @@
 # ModerationLabel<a name="API_ModerationLabel"></a>
 
-Provides information about a single type of unsafe content found in an image or video\. Each type of moderated content has a label within a hierarchical taxonomy\. For more information, see [Detecting Unsafe Content](moderation.md)\.
+Provides information about a single type of unsafe content found in an image or video\. Each type of moderated content has a label within a hierarchical taxonomy\. For more information, see [Content moderation](moderation.md)\.
 
 ## Contents<a name="API_ModerationLabel_Contents"></a>
 

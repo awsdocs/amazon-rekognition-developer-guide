@@ -8,7 +8,7 @@ This operation requires permissions to perform the `rekognition:DeleteProject` a
 
 ```
 {
-   "[ProjectArn](#rekognition-DeleteProject-request-ProjectArn)": "string"
+   "ProjectArn": "string"
 }
 ```
 
@@ -27,7 +27,7 @@ Required: Yes
 
 ```
 {
-   "[Status](#rekognition-DeleteProject-response-Status)": "string"
+   "Status": "string"
 }
 ```
 
@@ -61,7 +61,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceInUseException**   
-  
+The specified resource is already being used\.  
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   

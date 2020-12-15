@@ -9,7 +9,7 @@ You get the training summary S3 bucket location by calling [DescribeProjectVersi
  **S3Object**   <a name="rekognition-Type-Summary-S3Object"></a>
 Provides the S3 bucket name and object name\.  
 The region for the S3 bucket containing the S3 object must match the region you use for Amazon Rekognition operations\.  
-For Amazon Rekognition to process an S3 object, the user must have permission to access the S3 object\. For more information, see [Amazon Rekognition Resource\-Based Policies](security_iam_service-with-iam.md#security_iam_service-with-iam-resource-based-policies)\.   
+For Amazon Rekognition to process an S3 object, the user must have permission to access the S3 object\. For more information, see [Amazon Rekognition resource\-based policies](security_iam_service-with-iam.md#security_iam_service-with-iam-resource-based-policies)\.   
 Type: [S3Object](API_S3Object.md) object  
 Required: No
 

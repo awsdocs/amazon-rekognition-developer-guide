@@ -14,18 +14,18 @@ To get the results of the label detection operation, first check that the status
 
 ```
 {
-   "[ClientRequestToken](#rekognition-StartLabelDetection-request-ClientRequestToken)": "string",
-   "[JobTag](#rekognition-StartLabelDetection-request-JobTag)": "string",
-   "[MinConfidence](#rekognition-StartLabelDetection-request-MinConfidence)": number,
-   "[NotificationChannel](#rekognition-StartLabelDetection-request-NotificationChannel)": { 
-      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
-      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
+   "ClientRequestToken": "string",
+   "JobTag": "string",
+   "MinConfidence": number,
+   "NotificationChannel": { 
+      "RoleArn": "string",
+      "SNSTopicArn": "string"
    },
-   "[Video](#rekognition-StartLabelDetection-request-Video)": { 
-      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Video": { 
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -70,7 +70,7 @@ Required: Yes
 
 ```
 {
-   "[JobId](#rekognition-StartLabelDetection-response-JobId)": "string"
+   "JobId": "string"
 }
 ```
 

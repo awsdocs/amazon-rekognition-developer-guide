@@ -1,8 +1,10 @@
-# Reading Streaming Video Analysis Results<a name="streaming-video-kinesis-output"></a>
+# Reading streaming video analysis results<a name="streaming-video-kinesis-output"></a>
 
 You can use the Amazon Kinesis Data Streams Client Library to consume analysis results that are sent to the Amazon Kinesis Data Streams output stream\. For more information, see [Reading Data from a Kinesis Data Stream](https://docs.aws.amazon.com/streams/latest/dev/building-consumers.html)\. Amazon Rekognition Video places a JSON frame record for each analyzed frame into the Kinesis output stream\. Amazon Rekognition Video doesn't analyze every frame that's passed to it through the Kinesis video stream\. 
 
-A frame record that's sent to a Kinesis data stream contains information about which Kinesis video stream fragment the frame is in, where the frame is in the fragment, and faces that are recognized in the frame\. It also includes status information for the stream processor\. For more information, see [Reference: Kinesis Face Recognition Record](streaming-video-kinesis-output-reference.md)\.
+A frame record that's sent to a Kinesis data stream contains information about which Kinesis video stream fragment the frame is in, where the frame is in the fragment, and faces that are recognized in the frame\. It also includes status information for the stream processor\. For more information, see [Reference: Kinesis face recognition record](streaming-video-kinesis-output-reference.md)\.
+
+The Amazon Kinesis Video Streams Parser Library contains example tests that consume Amazon Rekognition Video results and integrates it with the original Kinesis video stream\. For more information, see [Displaying Rekognition results with Kinesis Video Streams locally](displaying-rekognition-results-locally.md)\.
 
 Amazon Rekognition Video streams Amazon Rekognition Video analysis information to the Kinesis data stream\. The following is a JSON example for a single record\. 
 
@@ -92,15 +94,15 @@ Amazon Rekognition Video streams Amazon Rekognition Video analysis information t
 In the JSON example, note the following:
 + **InputInformation** – Information about the Kinesis video stream that's used to stream video into Amazon Rekognition Video\. For more information, see [InputInformation](streaming-video-kinesis-output-reference-inputinformation.md)\.
 + **StreamProcessorInformation** – Status information for the Amazon Rekognition Video stream processor\. The only possible value for the `Status` field is RUNNING\. For more information, see [StreamProcessorInformation](streaming-video-kinesis-output-reference-streamprocessorinformation.md)\.
-+ **FaceSearchResponse** – Contains information about faces in the streaming video that match faces in the input collection\. [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md) contains a [DetectedFace](streaming-video-kinesis-output-reference-detectedface.md) object, which is a face that was detected in in the analyzed video frame\. For each detected face, the array `MatchedFaces` contains an array of matching face objects \([MatchedFace](streaming-video-kinesis-output-reference-facematch.md)\) found in the input collection, along with a similarity score\. 
++ **FaceSearchResponse** – Contains information about faces in the streaming video that match faces in the input collection\. [FaceSearchResponse](streaming-video-kinesis-output-reference-facesearchresponse.md) contains a [DetectedFace](streaming-video-kinesis-output-reference-detectedface.md) object, which is a face that was detected in the analyzed video frame\. For each detected face, the array `MatchedFaces` contains an array of matching face objects \([MatchedFace](streaming-video-kinesis-output-reference-facematch.md)\) found in the input collection, along with a similarity score\. 
 
-## Mapping the Kinesis Video Stream to the Kinesis Data Stream<a name="mapping-streams"></a>
+## Mapping the Kinesis video stream to the Kinesis data stream<a name="mapping-streams"></a>
 
 You might want to map the Kinesis video stream frames to the analyzed frames that are sent to the Kinesis data stream\. For example, during the display of a streaming video, you might want to display boxes around the faces of recognized people\. The bounding box coordinates are sent as part of the Kinesis Face Recognition Record to the Kinesis data stream\. To display the bounding box correctly, you need to map the time information that's sent with the Kinesis Face Recognition Record with the corresponding frames in the source Kinesis video stream\.
 
 The technique that you use to map the Kinesis video stream to the Kinesis data stream depends on if you're streaming live media \(such as a live streaming video\), or if you're streaming archived media \(such as a stored video\)\.
 
-### Mapping When You're Streaming Live Media<a name="mapping-streaming-video"></a>
+### Mapping when you're streaming live media<a name="mapping-streaming-video"></a>
 
 **To map a Kinesis video stream frame to a Kinesis data stream frame**
 
@@ -112,7 +114,7 @@ The technique that you use to map the Kinesis video stream to the Kinesis data s
 
 1. Calculate the time stamp that corresponds to the Kinesis video stream frame by adding the `ProducerTimestamp` and `FrameOffsetInSeconds` field values together\. 
 
-### Mapping When You're Streaming Archived Media<a name="map-stored-video"></a>
+### Mapping when you're streaming archived media<a name="map-stored-video"></a>
 
 **To map a Kinesis video stream frame to a Kinesis data stream frame**
 

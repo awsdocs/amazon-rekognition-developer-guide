@@ -1,4 +1,4 @@
-# Reviewing Unsafe Content with Amazon Augmented AI<a name="a2i-rekognition"></a>
+# Reviewing inappropriate content with Amazon Augmented AI<a name="a2i-rekognition"></a>
 
 Amazon Augmented AI \(Amazon A2I\) enables you to build the workflows that are required for human review of machine learning predictions\.
 
@@ -10,11 +10,11 @@ The following steps walk you through how to set up Amazon A2I with Amazon Rekogn
 **Note**  
 Create all of your Amazon A2I resources and Amazon Rekognition resources in the same region\.
 
-1. Complete the prerequisites that are listed in [Getting Started with Amazon Augmented AI](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-getting-started.html) in the *Amazon SageMaker Documentation*\.
+1. Complete the prerequisites that are listed in [Getting Started with Amazon Augmented AI](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-getting-started.html) in the *SageMaker Documentation*\.
 
-   Additionally, remember to set up your IAM permissions as in the page [ Permissions and Security in Amazon Augmented AI](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-permissions-security.html) in the *Amazon SageMaker Documentation*\.
+   Additionally, remember to set up your IAM permissions as in the page [ Permissions and Security in Amazon Augmented AI](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-permissions-security.html) in the *SageMaker Documentation*\.
 
-1. Follow the instructions for [Creating a Human Review Workflow](https://docs.aws.amazon.com/sagemaker/latest/dg/create-human-review-console.html) in the *Amazon SageMaker Documentation*\.
+1. Follow the instructions for [Creating a Human Review Workflow](https://docs.aws.amazon.com/sagemaker/latest/dg/create-human-review-console.html) in the *SageMaker Documentation*\.
 
    A human review workflow manages the processing of an image\. It holds the conditions that trigger a human review, the work team that the image is sent to, the UI template that the work team uses, and the Amazon S3 bucket that the work team's results are sent to\.
 
@@ -64,9 +64,9 @@ Create all of your Amazon A2I resources and Amazon Rekognition resources in the 
 
    `CreateFlowDefinition` returns a `FlowDefinitionArn`, which you use in the next step when you call `DetectModerationLabels`\.
 
-   For more information see [CreateFlowDefinition](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html) in the * Amazon SageMaker API Reference*\.
+   For more information see [CreateFlowDefinition](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html) in the * SageMaker API Reference*\.
 
-1. Set the `HumanLoopConfig` parameter when you call `DetectModerationLabels`, as in [Detecting Unsafe Images](procedure-moderate-images.md)\. 
+1. Set the `HumanLoopConfig` parameter when you call `DetectModerationLabels`, as in [Detecting inappropriate images](procedure-moderate-images.md)\. 
 
    1. Within the `HumanLoopConfig` parameter, set the `FlowDefinitionArn` to the ARN of the flow definition that you created in step 2\.
 
@@ -83,8 +83,8 @@ Create all of your Amazon A2I resources and Amazon Rekognition resources in the 
 
 1. Run `DetectModerationLabels`\.
 
-   When you run `DetectModerationLabels` with `HumanLoopConfig` enabled, Amazon Rekognition calls the Amazon SageMaker API operation `StartHumanLoop`\. This command takes the response from `DetectModerationLabels` and checks it against the flow definition's conditions in the example\. If it meets the conditions for review, it returns a `HumanLoopArn`\. This means that the members of the work team that you set in your flow definiton now can review the image\. Calling the Amazon Augmented AI runtime operation `DescribeHumanLoop` provides information about the outcome of the loop\. For more information, see [ DescribeHumanLoop](https://docs.aws.amazon.com/augmented-ai/2019-11-07/APIReference/API_DescribeHumanLoop.html) in the *Amazon Augmented AI API Reference documentation*\.
+   When you run `DetectModerationLabels` with `HumanLoopConfig` enabled, Amazon Rekognition calls the SageMaker API operation `StartHumanLoop`\. This command takes the response from `DetectModerationLabels` and checks it against the flow definition's conditions in the example\. If it meets the conditions for review, it returns a `HumanLoopArn`\. This means that the members of the work team that you set in your flow definiton now can review the image\. Calling the Amazon Augmented AI runtime operation `DescribeHumanLoop` provides information about the outcome of the loop\. For more information, see [ DescribeHumanLoop](https://docs.aws.amazon.com/augmented-ai/2019-11-07/APIReference/API_DescribeHumanLoop.html) in the *Amazon Augmented AI API Reference documentation*\.
 
-   After the image has been reviewed, you can see the results in the bucket that is specified in your flow definition's output path\. Amazon A2I will also notify you with Amazon CloudWatch Events when the review is complete\. To see what events to look for, see [CloudWatch Events](https://docs.aws.amazon.com/sagemaker/latest/dg/augmented-ai-cloudwatch-events.html) in the *Amazon SageMaker Documentation*\.
+   After the image has been reviewed, you can see the results in the bucket that is specified in your flow definition's output path\. Amazon A2I will also notify you with Amazon CloudWatch Events when the review is complete\. To see what events to look for, see [CloudWatch Events](https://docs.aws.amazon.com/sagemaker/latest/dg/augmented-ai-cloudwatch-events.html) in the *SageMaker Documentation*\.
 
-   For more information, see [Getting Started with Amazon Augmented AI](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-getting-started.html) in the *Amazon SageMaker Documentation*\.
+   For more information, see [Getting Started with Amazon Augmented AI](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-getting-started.html) in the *SageMaker Documentation*\.

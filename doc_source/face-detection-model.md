@@ -1,4 +1,4 @@
-# Model Versioning<a name="face-detection-model"></a>
+# Model versioning<a name="face-detection-model"></a>
 
 Amazon Rekognition uses deep learning models to perform face detection and to search for faces in collections\. It continues to improve the accuracy of its models based on customer feedback and advances in deep learning research\. These improvements are shipped as model updates\. For example, with version 1\.0 of the model, [IndexFaces](API_IndexFaces.md) can index the 15 largest faces in an image\. Later versions of the model enable `IndexFaces` to index the 100 largest faces in an image\.
 
@@ -11,7 +11,7 @@ When you create a new collection, it's associated with the most recent version o
 
 Different versions of the model aren't compatible with each other\. Specifically, if an image is indexed into multiples collections that use different versions of the model, the face identifiers for the same detected faces are different\. If an image is indexed into multiple collections that are associated with the same model, the face identifiers are the same\. 
 
-Your application might face compatibility issues if your collection management doesn't account for updates to the model\. You can determine the version of the model a collection uses by using the `FaceModelVersion` field that's returned in the response of a collection operation \(for example, `CreateCollection`\)\. You can get the model version of an existing collection by calling [DescribeCollection](API_DescribeCollection.md)\. For more information, see [Describing a Collection](describe-collection-procedure.md)\.
+Your application might face compatibility issues if your collection management doesn't account for updates to the model\. You can determine the version of the model a collection uses by using the `FaceModelVersion` field that's returned in the response of a collection operation \(for example, `CreateCollection`\)\. You can get the model version of an existing collection by calling [DescribeCollection](API_DescribeCollection.md)\. For more information, see [Describing a collection](describe-collection-procedure.md)\.
 
 Existing face vectors in a collection can't be updated to a later version of the model\. Because Amazon Rekognition doesn't store source image bytes, it can't automatically reindex images by using a later version of the model\.
 

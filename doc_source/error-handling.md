@@ -1,13 +1,13 @@
-# Error Handling<a name="error-handling"></a>
+# Error handling<a name="error-handling"></a>
 
  This section describes runtime errors and how to handle them\. It also describes error messages and codes that are specific to Amazon Rekognition\.
 
 **Topics**
-+ [Error Components](#error-handling.Components)
-+ [Error Messages and Codes](#error-handling.MessagesAndCodes)
-+ [Error Handling in Your Application](#error-handling.Handling)
++ [Error components](#error-handling.Components)
++ [Error messages and codes](#error-handling.MessagesAndCodes)
++ [Error handling in your application](#error-handling.Handling)
 
-## Error Components<a name="error-handling.Components"></a>
+## Error components<a name="error-handling.Components"></a>
 
 When your program sends a request, Amazon Rekognition attempts to process it\. If the request is successful, Amazon Rekognition returns an HTTP success status code \(`200 OK`\), along with the results from the requested operation\.
 
@@ -31,13 +31,13 @@ Connection: keep-alive
 {"__type":"InvalidS3ObjectException","Code":"InvalidS3ObjectException","Logref":"5022229e-7e48-11e9-9ad1-854a4567eb71","Message":"Unable to get object metadata from S3. Check object key, region and/or access permissions."}
 ```
 
-## Error Messages and Codes<a name="error-handling.MessagesAndCodes"></a>
+## Error messages and codes<a name="error-handling.MessagesAndCodes"></a>
 
 The following is a list of exceptions that Amazon Rekognition returns, grouped by HTTP status code\. If *OK to retry?* is *Yes*, you can submit the same request again\. If *OK to retry?* is *No*, you need to fix the problem on the client side before you submit a new request\.
 
-### HTTP Status Code 400<a name="error-handling.MessagesAndCodes.http400"></a>
+### HTTP status code 400<a name="error-handling.MessagesAndCodes.http400"></a>
 
-An HTTP `400` status code indicates a problem with your request\. Some examples of problems are authentication failure, required parameters that are missing, or exceeding a table's provisioned throughput\. You have to fix the issue in your application before submitting the request again\.
+An HTTP `400` status code indicates a problem with your request\. Some examples of problems are authentication failure, required parameters that are missing, or exceeding an operation's provisioned throughput\. You have to fix the issue in your application before submitting the request again\.
 
 **AccessDeniedException **  
 Message: *An error occurred \(AccessDeniedException\) when calling the <Operation> operation: User: <User ARN> is not authorized to perform: <Operation> on resource: <Resource ARN>\.*  
@@ -56,7 +56,7 @@ OK to retry? No
 
 **ImageTooLargeException **  
 Message: *Image size is too large\.*  
-The input image size exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.  
+The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.  
 OK to retry? No
 
 **InvalidImageFormatException **  
@@ -127,7 +127,7 @@ Message: *Video size in bytes: <Video Size> is more than the maximum limit of: <
 The file size or duration of the supplied media is too large\. For more information, see [Limits in Amazon Rekognition](limits.md)\.  
 OK to retry? No
 
-### HTTP Status Code 5xx<a name="error-handling.MessagesAndCodes.http5xx"></a>
+### HTTP status code 5xx<a name="error-handling.MessagesAndCodes.http5xx"></a>
 
 An HTTP `5xx` status code indicates a problem that must be resolved by AWS\. This might be a transient error\. If it is, you can retry your request until it succeeds\. Otherwise, go to the [AWS Service Health Dashboard](http://status.aws.amazon.com/) to see if there are any operational issues with the service\.
 
@@ -141,7 +141,7 @@ Message: *Service Unavailable*
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\. We recommend that you back off exponentially and retry\. By default, the AWS SDKs use automatic retry logic and exponential backoff\. For more information, see [Error Retries and Exponential Backoff in AWS](https://docs.aws.amazon.com/general/latest/gr/api-retries.html) and [Exponential Backoff and Jitter](http://www.awsarchitectureblog.com/2015/03/backoff.html)\.   
 OK to retry? Yes
 
-## Error Handling in Your Application<a name="error-handling.Handling"></a>
+## Error handling in your application<a name="error-handling.Handling"></a>
 
 For your application to run smoothly, you need to add logic to catch errors and respond to them\. Typical approaches include using `try-catch` blocks or `if-then` statements\.
 

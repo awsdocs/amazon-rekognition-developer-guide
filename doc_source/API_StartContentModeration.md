@@ -6,24 +6,24 @@ Amazon Rekognition Video can moderate content in a video stored in an Amazon S3 
 
 To get the results of the unsafe content analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetContentModeration](API_GetContentModeration.md) and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. 
 
-For more information, see [Detecting Unsafe Content](moderation.md)\.
+For more information, see [Content moderation](moderation.md)\.
 
 ## Request Syntax<a name="API_StartContentModeration_RequestSyntax"></a>
 
 ```
 {
-   "[ClientRequestToken](#rekognition-StartContentModeration-request-ClientRequestToken)": "string",
-   "[JobTag](#rekognition-StartContentModeration-request-JobTag)": "string",
-   "[MinConfidence](#rekognition-StartContentModeration-request-MinConfidence)": number,
-   "[NotificationChannel](#rekognition-StartContentModeration-request-NotificationChannel)": { 
-      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
-      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
+   "ClientRequestToken": "string",
+   "JobTag": "string",
+   "MinConfidence": number,
+   "NotificationChannel": { 
+      "RoleArn": "string",
+      "SNSTopicArn": "string"
    },
-   "[Video](#rekognition-StartContentModeration-request-Video)": { 
-      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Video": { 
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -67,7 +67,7 @@ Required: Yes
 
 ```
 {
-   "[JobId](#rekognition-StartContentModeration-response-JobId)": "string"
+   "JobId": "string"
 }
 ```
 

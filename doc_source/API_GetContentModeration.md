@@ -4,7 +4,7 @@ Gets the unsafe content analysis results for a Amazon Rekognition Video analysis
 
 Unsafe content analysis of a video is an asynchronous operation\. You start analysis by calling [StartContentModeration](API_StartContentModeration.md) which returns a job identifier \(`JobId`\)\. When analysis finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartContentModeration`\. To get the results of the unsafe content analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetContentModeration` and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. 
 
-For more information, see [Working with Stored Videos](video.md)\. 
+For more information, see [Working with stored videos](video.md)\. 
 
  `GetContentModeration` returns detected unsafe content labels, and the time they are detected, in an array, `ModerationLabels`, of [ContentModerationDetection](API_ContentModerationDetection.md) objects\. 
 
@@ -12,16 +12,16 @@ By default, the moderated labels are returned sorted by time, in milliseconds fr
 
 Since video analysis can return a large number of results, use the `MaxResults` parameter to limit the number of labels returned in a single call to `GetContentModeration`\. If there are more results than specified in `MaxResults`, the value of `NextToken` in the operation response contains a pagination token for getting the next set of results\. To get the next page of results, call `GetContentModeration` and populate the `NextToken` request parameter with the value of `NextToken` returned from the previous call to `GetContentModeration`\.
 
-For more information, see [Detecting Unsafe Content](moderation.md)\.
+For more information, see [Content moderation](moderation.md)\.
 
 ## Request Syntax<a name="API_GetContentModeration_RequestSyntax"></a>
 
 ```
 {
-   "[JobId](#rekognition-GetContentModeration-request-JobId)": "string",
-   "[MaxResults](#rekognition-GetContentModeration-request-MaxResults)": number,
-   "[NextToken](#rekognition-GetContentModeration-request-NextToken)": "string",
-   "[SortBy](#rekognition-GetContentModeration-request-SortBy)": "string"
+   "JobId": "string",
+   "MaxResults": number,
+   "NextToken": "string",
+   "SortBy": "string"
 }
 ```
 
@@ -58,27 +58,27 @@ Required: No
 
 ```
 {
-   "[JobStatus](#rekognition-GetContentModeration-response-JobStatus)": "string",
-   "[ModerationLabels](#rekognition-GetContentModeration-response-ModerationLabels)": [ 
+   "JobStatus": "string",
+   "ModerationLabels": [ 
       { 
-         "[ModerationLabel](API_ContentModerationDetection.md#rekognition-Type-ContentModerationDetection-ModerationLabel)": { 
-            "[Confidence](API_ModerationLabel.md#rekognition-Type-ModerationLabel-Confidence)": number,
-            "[Name](API_ModerationLabel.md#rekognition-Type-ModerationLabel-Name)": "string",
-            "[ParentName](API_ModerationLabel.md#rekognition-Type-ModerationLabel-ParentName)": "string"
+         "ModerationLabel": { 
+            "Confidence": number,
+            "Name": "string",
+            "ParentName": "string"
          },
-         "[Timestamp](API_ContentModerationDetection.md#rekognition-Type-ContentModerationDetection-Timestamp)": number
+         "Timestamp": number
       }
    ],
-   "[ModerationModelVersion](#rekognition-GetContentModeration-response-ModerationModelVersion)": "string",
-   "[NextToken](#rekognition-GetContentModeration-response-NextToken)": "string",
-   "[StatusMessage](#rekognition-GetContentModeration-response-StatusMessage)": "string",
-   "[VideoMetadata](#rekognition-GetContentModeration-response-VideoMetadata)": { 
-      "[Codec](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Codec)": "string",
-      "[DurationMillis](API_VideoMetadata.md#rekognition-Type-VideoMetadata-DurationMillis)": number,
-      "[Format](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Format)": "string",
-      "[FrameHeight](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameHeight)": number,
-      "[FrameRate](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameRate)": number,
-      "[FrameWidth](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameWidth)": number
+   "ModerationModelVersion": "string",
+   "NextToken": "string",
+   "StatusMessage": "string",
+   "VideoMetadata": { 
+      "Codec": "string",
+      "DurationMillis": number,
+      "Format": "string",
+      "FrameHeight": number,
+      "FrameRate": number,
+      "FrameWidth": number
    }
 }
 ```

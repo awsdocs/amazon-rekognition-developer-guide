@@ -15,7 +15,7 @@ This operation requires permissions to perform the `rekognition:CreateCollection
 
 ```
 {
-   "[CollectionId](#rekognition-CreateCollection-request-CollectionId)": "string"
+   "CollectionId": "string"
 }
 ```
 
@@ -34,9 +34,9 @@ Required: Yes
 
 ```
 {
-   "[CollectionArn](#rekognition-CreateCollection-response-CollectionArn)": "string",
-   "[FaceModelVersion](#rekognition-CreateCollection-response-FaceModelVersion)": "string",
-   "[StatusCode](#rekognition-CreateCollection-response-StatusCode)": number
+   "CollectionArn": "string",
+   "FaceModelVersion": "string",
+   "StatusCode": number
 }
 ```
 

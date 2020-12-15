@@ -4,7 +4,7 @@ Detects unsafe content in a specified JPEG or PNG format image\. Use `DetectMode
 
 To filter images, use the labels returned by `DetectModerationLabels` to determine which types of content are appropriate\.
 
-For information about moderation labels, see [Detecting Unsafe Content](moderation.md)\.
+For information about moderation labels, see [Content moderation](moderation.md)\.
 
 You pass the input image either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
 
@@ -12,22 +12,22 @@ You pass the input image either as base64\-encoded image bytes or as a reference
 
 ```
 {
-   "[HumanLoopConfig](#rekognition-DetectModerationLabels-request-HumanLoopConfig)": { 
-      "[DataAttributes](API_HumanLoopConfig.md#rekognition-Type-HumanLoopConfig-DataAttributes)": { 
-         "[ContentClassifiers](API_HumanLoopDataAttributes.md#rekognition-Type-HumanLoopDataAttributes-ContentClassifiers)": [ "string" ]
+   "HumanLoopConfig": { 
+      "DataAttributes": { 
+         "ContentClassifiers": [ "string" ]
       },
-      "[FlowDefinitionArn](API_HumanLoopConfig.md#rekognition-Type-HumanLoopConfig-FlowDefinitionArn)": "string",
-      "[HumanLoopName](API_HumanLoopConfig.md#rekognition-Type-HumanLoopConfig-HumanLoopName)": "string"
+      "FlowDefinitionArn": "string",
+      "HumanLoopName": "string"
    },
-   "[Image](#rekognition-DetectModerationLabels-request-Image)": { 
-      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
-      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Image": { 
+      "Bytes": blob,
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    },
-   "[MinConfidence](#rekognition-DetectModerationLabels-request-MinConfidence)": number
+   "MinConfidence": number
 }
 ```
 
@@ -57,19 +57,19 @@ Required: No
 
 ```
 {
-   "[HumanLoopActivationOutput](#rekognition-DetectModerationLabels-response-HumanLoopActivationOutput)": { 
-      "[HumanLoopActivationConditionsEvaluationResults](API_HumanLoopActivationOutput.md#rekognition-Type-HumanLoopActivationOutput-HumanLoopActivationConditionsEvaluationResults)": "string",
-      "[HumanLoopActivationReasons](API_HumanLoopActivationOutput.md#rekognition-Type-HumanLoopActivationOutput-HumanLoopActivationReasons)": [ "string" ],
-      "[HumanLoopArn](API_HumanLoopActivationOutput.md#rekognition-Type-HumanLoopActivationOutput-HumanLoopArn)": "string"
+   "HumanLoopActivationOutput": { 
+      "HumanLoopActivationConditionsEvaluationResults": "string",
+      "HumanLoopActivationReasons": [ "string" ],
+      "HumanLoopArn": "string"
    },
-   "[ModerationLabels](#rekognition-DetectModerationLabels-response-ModerationLabels)": [ 
+   "ModerationLabels": [ 
       { 
-         "[Confidence](API_ModerationLabel.md#rekognition-Type-ModerationLabel-Confidence)": number,
-         "[Name](API_ModerationLabel.md#rekognition-Type-ModerationLabel-Name)": "string",
-         "[ParentName](API_ModerationLabel.md#rekognition-Type-ModerationLabel-ParentName)": "string"
+         "Confidence": number,
+         "Name": "string",
+         "ParentName": "string"
       }
    ],
-   "[ModerationModelVersion](#rekognition-DetectModerationLabels-response-ModerationModelVersion)": "string"
+   "ModerationModelVersion": "string"
 }
 ```
 
@@ -102,7 +102,7 @@ The number of in\-progress human reviews you have has exceeded the number allowe
 HTTP Status Code: 400
 
  **ImageTooLargeException**   
-The input image size exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
+The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **InternalServerError**   

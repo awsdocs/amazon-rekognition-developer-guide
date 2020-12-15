@@ -1,12 +1,14 @@
-# Detecting Unsafe Images<a name="procedure-moderate-images"></a>
+# Detecting inappropriate images<a name="procedure-moderate-images"></a>
 
-You can use the [DetectModerationLabels](API_DetectModerationLabels.md) operation to determine if an image contains unsafe content\. 
+You can use the [DetectModerationLabels](API_DetectModerationLabels.md) operation to determine if an image contains inappropriate or offensive content\. 
 
-## Detecting Unsafe Content in an Image<a name="moderate-images-sdk"></a>
+
+
+## Detecting inappropriate content in an image<a name="moderate-images-sdk"></a>
 
 The image must be in either a \.jpg or a \.png format\. You can provide the input image as an image byte array \(base64\-encoded image bytes\), or specify an Amazon S3 object\. In these procedures, you upload an image \(\.jpg or \.png\) to your S3 bucket\.
 
-To run these procedures, you need to have the AWS CLI and AWS SDK for Java installed\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\. The AWS account you use must have access permissions to the Amazon Rekognition API\. For more information, see [Actions Defined by Amazon Rekognition](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonrekognition.html#amazonrekognition-actions-as-permissions)\. 
+To run these procedures, you need to have the AWS CLI or the appropriate AWS SDK installed\. For more information, see [Getting started with Amazon Rekognition](getting-started.md)\. The AWS account you use must have access permissions to the Amazon Rekognition API\. For more information, see [Actions Defined by Amazon Rekognition](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonrekognition.html#amazonrekognition-actions-as-permissions)\. 
 
 ## <a name="to-detect-moderation-labels-in-an-image"></a>
 
@@ -14,9 +16,9 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Upload an image to your S3 bucket\. 
 
@@ -27,7 +29,7 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
 ------
 #### [ Java ]
 
-   This example outputs detected unsafe content label names, confidence levels, and the parent label for detected moderation labels\.
+   This example outputs detected inappropriate content label names, confidence levels, and the parent label for detected moderation labels\.
 
    Replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
@@ -94,7 +96,7 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
 ------
 #### [ Python ]
 
-   This example outputs detected unsafe content label names, confidence levels, and the parent label for detected unsafe content labels\.
+   This example outputs detected inappropriate or offensive content label names, confidence levels, and the parent label for detected inappropriate content labels\.
 
    In the function `main`, replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
@@ -132,7 +134,7 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
 ------
 #### [ \.NET ]
 
-   This example outputs detected unsafe content label names, confidence levels, and the parent label for detected moderation labels\.
+   This example outputs detected inappropriate or offensive content label names, confidence levels, and the parent label for detected moderation labels\.
 
    Replace the values of `bucket` and `photo` with the S3 bucket name and the image file name that you used in step 2\.
 
@@ -184,7 +186,7 @@ To run these procedures, you need to have the AWS CLI and AWS SDK for Java insta
 
 ------
 
-## DetectModerationLabels Operation Request<a name="detectmoderation-labels-operation-request"></a>
+## DetectModerationLabels operation request<a name="detectmoderation-labels-operation-request"></a>
 
 The input to `DetectModerationLabels` is an image\. In this example JSON input, the source image is loaded from an Amazon S3 bucket\. `MinConfidence` is the minimum confidence that Amazon Rekognition Image must have in the accuracy of the detected label for it to be returned in the response\.
 
@@ -200,12 +202,12 @@ The input to `DetectModerationLabels` is an image\. In this example JSON input, 
 }
 ```
 
-## DetectModerationLabels Operation Response<a name="detectmoderationlabels-operation-response"></a>
+## DetectModerationLabels operation response<a name="detectmoderationlabels-operation-response"></a>
 
  `DetectModerationLabels` can retrieve input images from an S3 bucket, or you can provide them as image bytes\. The following example is the response from a call to `DetectModerationLabels`\.
 
 In the following example JSON response, note the following:
-+ **Unsafe Image Detection information** – The example shows a list of labels for unsafe content found in the image\. The list includes the top\-level label and each second\-level label that are detected in the image\.
++ **Inappropriate Image Detection information** – The example shows a list of labels for inappropriate or offensive content found in the image\. The list includes the top\-level label and each second\-level label that are detected in the image\.
 
   **Label** – Each label has a name, an estimation of the confidence that Amazon Rekognition has that the label is accurate, and the name of its parent label\. The parent name for a top\-level label is `""`\.
 

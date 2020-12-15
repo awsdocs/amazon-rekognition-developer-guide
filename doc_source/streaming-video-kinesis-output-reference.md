@@ -1,10 +1,10 @@
-# Reference: Kinesis Face Recognition Record<a name="streaming-video-kinesis-output-reference"></a>
+# Reference: Kinesis face recognition record<a name="streaming-video-kinesis-output-reference"></a>
 
 Amazon Rekognition Video can recognize faces in a streaming video\. For each analyzed frame, Amazon Rekognition Video outputs a JSON frame record to a Kinesis data stream\. Amazon Rekognition Video doesn't analyze every frame that's passed to it through the Kinesis video stream\. 
 
 The JSON frame record contains information about the input and output stream, the status of the stream processor, and information about faces that are recognized in the analyzed frame\. This section contains reference information for the JSON frame record\.
 
-The following is the JSON syntax for a Kinesis data stream record\. For more information, see [Working with Streaming Videos](streaming-video.md)\.
+The following is the JSON syntax for a Kinesis data stream record\. For more information, see [Working with streaming videos](streaming-video.md)\.
 
 **Note**  
 The Amazon Rekognition Video API works by comparing the faces in your input stream to a collection of faces, and returning the closest found matches, along with a similarity score\.
@@ -72,7 +72,7 @@ The Amazon Rekognition Video API works by comparing the faces in your input stre
 }
 ```
 
-## JSON Record<a name="streaming-video-kinesis-output-reference-processorresult"></a>
+## JSON record<a name="streaming-video-kinesis-output-reference-processorresult"></a>
 
 The JSON record includes information about a frame that's processed by Amazon Rekognition Video\. The record includes information about the streaming video, the status for the analyzed frame, and information about faces that are recognized in the frame\.
 

@@ -1,8 +1,8 @@
 # RecognizeCelebrities<a name="API_RecognizeCelebrities"></a>
 
-Returns an array of celebrities recognized in the input image\. For more information, see [Recognizing Celebrities](celebrities.md)\.
+Returns an array of celebrities recognized in the input image\. For more information, see [Recognizing celebrities](celebrities.md)\.
 
- `RecognizeCelebrities` returns the 100 largest faces in the image\. It lists recognized celebrities in the `CelebrityFaces` array and unrecognized faces in the `UnrecognizedFaces` array\. `RecognizeCelebrities` doesn't return celebrities whose faces aren't among the largest 100 faces in the image\.
+ `RecognizeCelebrities` returns the 64 largest faces in the image\. It lists recognized celebrities in the `CelebrityFaces` array and unrecognized faces in the `UnrecognizedFaces` array\. `RecognizeCelebrities` doesn't return celebrities whose faces aren't among the largest 64 faces in the image\.
 
 For each celebrity recognized, `RecognizeCelebrities` returns a `Celebrity` object\. The `Celebrity` object contains the celebrity name, ID, URL links to additional information, match confidence, and a `ComparedFace` object that you can use to locate the celebrity's face on the image\.
 
@@ -10,7 +10,7 @@ Amazon Rekognition doesn't retain information about which images a celebrity has
 
 You pass the input image either as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
 
-For an example, see [Recognizing Celebrities in an Image](celebrities-procedure-image.md)\.
+For an example, see [Recognizing celebrities in an image](celebrities-procedure-image.md)\.
 
 This operation requires permissions to perform the `rekognition:RecognizeCelebrities` operation\.
 
@@ -18,12 +18,12 @@ This operation requires permissions to perform the `rekognition:RecognizeCelebri
 
 ```
 {
-   "[Image](#rekognition-RecognizeCelebrities-request-Image)": { 
-      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
-      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Image": { 
+      "Bytes": blob,
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -43,64 +43,64 @@ Required: Yes
 
 ```
 {
-   "[CelebrityFaces](#rekognition-RecognizeCelebrities-response-CelebrityFaces)": [ 
+   "CelebrityFaces": [ 
       { 
-         "[Face](API_Celebrity.md#rekognition-Type-Celebrity-Face)": { 
-            "[BoundingBox](API_ComparedFace.md#rekognition-Type-ComparedFace-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "Face": { 
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Confidence](API_ComparedFace.md#rekognition-Type-ComparedFace-Confidence)": number,
-            "[Landmarks](API_ComparedFace.md#rekognition-Type-ComparedFace-Landmarks)": [ 
+            "Confidence": number,
+            "Landmarks": [ 
                { 
-                  "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
-                  "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
-                  "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
+                  "Type": "string",
+                  "X": number,
+                  "Y": number
                }
             ],
-            "[Pose](API_ComparedFace.md#rekognition-Type-ComparedFace-Pose)": { 
-               "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
-               "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
-               "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
+            "Pose": { 
+               "Pitch": number,
+               "Roll": number,
+               "Yaw": number
             },
-            "[Quality](API_ComparedFace.md#rekognition-Type-ComparedFace-Quality)": { 
-               "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
-               "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
+            "Quality": { 
+               "Brightness": number,
+               "Sharpness": number
             }
          },
-         "[Id](API_Celebrity.md#rekognition-Type-Celebrity-Id)": "string",
-         "[MatchConfidence](API_Celebrity.md#rekognition-Type-Celebrity-MatchConfidence)": number,
-         "[Name](API_Celebrity.md#rekognition-Type-Celebrity-Name)": "string",
-         "[Urls](API_Celebrity.md#rekognition-Type-Celebrity-Urls)": [ "string" ]
+         "Id": "string",
+         "MatchConfidence": number,
+         "Name": "string",
+         "Urls": [ "string" ]
       }
    ],
-   "[OrientationCorrection](#rekognition-RecognizeCelebrities-response-OrientationCorrection)": "string",
-   "[UnrecognizedFaces](#rekognition-RecognizeCelebrities-response-UnrecognizedFaces)": [ 
+   "OrientationCorrection": "string",
+   "UnrecognizedFaces": [ 
       { 
-         "[BoundingBox](API_ComparedFace.md#rekognition-Type-ComparedFace-BoundingBox)": { 
-            "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-            "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-            "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-            "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "BoundingBox": { 
+            "Height": number,
+            "Left": number,
+            "Top": number,
+            "Width": number
          },
-         "[Confidence](API_ComparedFace.md#rekognition-Type-ComparedFace-Confidence)": number,
-         "[Landmarks](API_ComparedFace.md#rekognition-Type-ComparedFace-Landmarks)": [ 
+         "Confidence": number,
+         "Landmarks": [ 
             { 
-               "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
-               "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
-               "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
+               "Type": "string",
+               "X": number,
+               "Y": number
             }
          ],
-         "[Pose](API_ComparedFace.md#rekognition-Type-ComparedFace-Pose)": { 
-            "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
-            "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
-            "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
+         "Pose": { 
+            "Pitch": number,
+            "Roll": number,
+            "Yaw": number
          },
-         "[Quality](API_ComparedFace.md#rekognition-Type-ComparedFace-Quality)": { 
-            "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
-            "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
+         "Quality": { 
+            "Brightness": number,
+            "Sharpness": number
          }
       }
    ]
@@ -114,7 +114,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [CelebrityFaces](#API_RecognizeCelebrities_ResponseSyntax) **   <a name="rekognition-RecognizeCelebrities-response-CelebrityFaces"></a>
-Details about each celebrity found in the image\. Amazon Rekognition can detect a maximum of 15 celebrities in an image\.  
+Details about each celebrity found in the image\. Amazon Rekognition can detect a maximum of 64 celebrities in an image\.  
 Type: Array of [Celebrity](API_Celebrity.md) objects
 
  ** [OrientationCorrection](#API_RecognizeCelebrities_ResponseSyntax) **   <a name="rekognition-RecognizeCelebrities-response-OrientationCorrection"></a>
@@ -134,7 +134,7 @@ You are not authorized to perform the action\.
 HTTP Status Code: 400
 
  **ImageTooLargeException**   
-The input image size exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
+The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **InternalServerError**   

@@ -1,4 +1,4 @@
-# Detecting Text in an Image<a name="text-detecting-text-procedure"></a>
+# Detecting text in an image<a name="text-detecting-text-procedure"></a>
 
 You can provide an input image as an image byte array \(base64\-encoded image bytes\), or as an Amazon S3 object\. In this procedure, you upload a \.jpeg or \.png image to your S3 bucket and specify the file name\. 
 
@@ -6,9 +6,9 @@ You can provide an input image as an image byte array \(base64\-encoded image by
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Upload an image that contains text to your S3 bucket\. 
 
@@ -194,7 +194,7 @@ You can provide an input image as an image byte array \(base64\-encoded image by
 
 ------
 
-## DetectText Operation Request<a name="detecttext-request"></a>
+## DetectText operation request<a name="detecttext-request"></a>
 
 In the `DetectText` operation, you supply an input image either as a base64\-encoded byte array or as an image stored in an Amazon S3 bucket\. The following example JSON request shows the image loaded from an Amazon S3 bucket\.
 
@@ -217,33 +217,35 @@ Filtering by text region, size and confidence score provides you with additional
 + **MinBoundingBoxHeight** – Sets the minimum height of the word bounding box\. Words with bounding box heights less than this value are excluded from the result\. The value is relative to the image frame height\.
 + **RegionsOfInterest** – Limits detection to a specific region of the image frame\. The values are relative to the frame's dimensions\. For text only partially within a region, the response is undefined\.
 
-## DetectText Operation Response<a name="text-response"></a>
+## DetectText operation response<a name="text-response"></a>
 
-The `DetectText` operation analyzes the image and returns an array, TextDetections, where each element \(`[TextDetection](API_TextDetection.md)`\) represents a line or word detected in the image\. For each element, `DetectText` returns the following information: 
+The `DetectText` operation analyzes the image and returns an array, TextDetections, where each element \(`TextDetection`\) represents a line or word detected in the image\. For each element, `DetectText` returns the following information: 
 + The detected text \(`DetectedText`\)
 + The relationships between words and lines \(`Id` and `ParentId`\)
 + The location of text on the image \(`Geometry`\)
 + The confidence Amazon Rekognition has in the accuracy of the detected text and bounding box \(`Confidence`\)
 + The type of the detected text \(`Type`\)
 
-### Detected Text<a name="text-detected-text"></a>
+### Detected text<a name="text-detected-text"></a>
 
 Each `TextDetection` element contains recognized text \(words or lines\) in the `DetectedText` field\. Returned text might include characters that make a word unrecognizable\. For example, *C@t* instead of *Cat*\. To determine whether a `TextDetection` element represents a line of text or a word, use the `Type` field\.
 
+ 
+
 Each `TextDetection` element includes a percentage value that represents the degree of confidence that Amazon Rekognition has in the accuracy of the detected text and of the bounding box that surrounds the text\. 
 
-### Word and Line Relationships<a name="text-ids"></a>
+### Word and line relationships<a name="text-ids"></a>
 
 Each `TextDetection` element has an identifier field, `Id`\. The `Id` shows the word's position in a line\. If the element is a word, the parent identifier field, `ParentId`, identifies the line where the word was detected\. The `ParentId` for a line is null\. For example, the line "but keep" in the example image has the following the `Id` and `ParentId` values: 
 
 
 |  Text  |  ID  |  Parent ID  | 
 | --- | --- | --- | 
-|  but keep  |  3  |   | 
+|  but keep  |  3  |     | 
 |  but  |  8  |  3  | 
 |  keep  |  9  |  3  | 
 
-### Text Location on an Image<a name="text-location"></a>
+### Text location on an image<a name="text-location"></a>
 
 To determine where the recognized text is on an image, use the bounding box \([Geometry](API_Geometry.md)\) information that's returned by `DetectText`\. The `Geometry` object contains two types of bounding box information for detected lines and words:
 + An axis\-aligned coarse rectangular outline in a [BoundingBox](API_BoundingBox.md) object

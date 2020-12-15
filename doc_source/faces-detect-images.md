@@ -1,4 +1,4 @@
-# Detecting Faces in an Image<a name="faces-detect-images"></a>
+# Detecting faces in an image<a name="faces-detect-images"></a>
 
 Amazon Rekognition Image provides the [DetectFaces](API_DetectFaces.md) operation that looks for key facial features such as eyes, nose, and mouth to detect faces in an input image\. Amazon Rekognition Image detects the 100 largest faces in an image\.
 
@@ -8,9 +8,9 @@ You can provide the input image as an image byte array \(base64\-encoded image b
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Upload an image \(that contains one or more faces\) to your S3 bucket\. 
 
@@ -352,9 +352,9 @@ You can provide the input image as an image byte array \(base64\-encoded image b
 
 ------
 
-## DetectFaces Operation Request<a name="detectfaces-request"></a>
+## DetectFaces operation request<a name="detectfaces-request"></a>
 
-The input to `DetectFaces` is an image\. In this example, the image is loaded from an Amazon S3 bucket\. The `Attributes` parameter specifies that all facial attributes should be returned\. For more information, see [Working with Images](images.md)\.
+The input to `DetectFaces` is an image\. In this example, the image is loaded from an Amazon S3 bucket\. The `Attributes` parameter specifies that all facial attributes should be returned\. For more information, see [Working with images](images.md)\.
 
 ```
 {
@@ -370,14 +370,16 @@ The input to `DetectFaces` is an image\. In this example, the image is loaded fr
 }
 ```
 
-## DetectFaces Operation Response<a name="detectfaces-response"></a>
+## DetectFaces operation response<a name="detectfaces-response"></a>
 
  `DetectFaces` returns the following information for each detected face:
+
+
 + **Bounding box** – The coordinates of the bounding box that surrounds the face\.
 + **Confidence** – The level of confidence that the bounding box contains a face\. 
 + **Facial landmarks** – An array of facial landmarks\. For each landmark \(such as the left eye, right eye, and mouth\), the response provides the x and y coordinates\.
 + **Facial attributes** – A set of facial attributes, such as whether the face has a beard\. For each such attribute, the response provides a value\. The value can be of different types, such as a Boolean type \(whether a person is wearing sunglasses\) or a string \(whether the person is male or female\)\. In addition, for most attributes, the response also provides a confidence in the detected value for the attribute\. 
-+ **Quality** – Describes the brightness and the sharpness of the face\. For information about ensuring the best possible face detection, see [Recommendations for Facial Comparison Input Images](recommendations-facial-input-images.md)\.
++ **Quality** – Describes the brightness and the sharpness of the face\. For information about ensuring the best possible face detection, see [Recommendations for facial comparison input images](recommendations-facial-input-images.md)\.
 + **Pose** – Describes the rotation of the face inside the image\.
 + **Emotions** – A set of emotions with confidence in the analysis\.
 
@@ -630,5 +632,9 @@ Note the following:
 + The `Pose` data describes the rotation of the face detected\. You can use the combination of the `BoundingBox` and `Pose` data to draw the bounding box around faces that your application displays\.
 + The `Quality` describes the brightness and the sharpness of the face\. You might find this useful to compare faces across images and find the best face\.
 + The preceding response shows all facial `landmarks` the service can detect, all facial attributes and emotions\. To get all of these in the response, you must specify the `attributes` parameter with value `ALL`\. By default, the `DetectFaces` API returns only the following five facial attributes: `BoundingBox`, `Confidence`, `Pose`, `Quality` and `landmarks`\. The default landmarks returned are: `eyeLeft`, `eyeRight`, `nose`, `mouthLeft`, and `mouthRight`\. 
+
+  
 + The following illustration shows the relative location of the facial landmarks\(`Landmarks`\) on the face that are returned by the `DetectFaces` API operation\.  
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/landmarkface.png)
+
+  

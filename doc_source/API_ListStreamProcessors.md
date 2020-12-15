@@ -6,8 +6,8 @@ Gets a list of stream processors that you have created with [CreateStreamProcess
 
 ```
 {
-   "[MaxResults](#rekognition-ListStreamProcessors-request-MaxResults)": number,
-   "[NextToken](#rekognition-ListStreamProcessors-request-NextToken)": "string"
+   "MaxResults": number,
+   "NextToken": "string"
 }
 ```
 
@@ -31,11 +31,11 @@ Required: No
 
 ```
 {
-   "[NextToken](#rekognition-ListStreamProcessors-response-NextToken)": "string",
-   "[StreamProcessors](#rekognition-ListStreamProcessors-response-StreamProcessors)": [ 
+   "NextToken": "string",
+   "StreamProcessors": [ 
       { 
-         "[Name](API_StreamProcessor.md#rekognition-Type-StreamProcessor-Name)": "string",
-         "[Status](API_StreamProcessor.md#rekognition-Type-StreamProcessor-Status)": "string"
+         "Name": "string",
+         "Status": "string"
       }
    ]
 }

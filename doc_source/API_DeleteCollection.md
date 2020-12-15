@@ -1,6 +1,6 @@
 # DeleteCollection<a name="API_DeleteCollection"></a>
 
-Deletes the specified collection\. Note that this operation removes all faces in the collection\. For an example, see [Deleting a Collection](delete-collection-procedure.md)\.
+Deletes the specified collection\. Note that this operation removes all faces in the collection\. For an example, see [Deleting a collection](delete-collection-procedure.md)\.
 
 This operation requires permissions to perform the `rekognition:DeleteCollection` action\.
 
@@ -8,7 +8,7 @@ This operation requires permissions to perform the `rekognition:DeleteCollection
 
 ```
 {
-   "[CollectionId](#rekognition-DeleteCollection-request-CollectionId)": "string"
+   "CollectionId": "string"
 }
 ```
 
@@ -27,7 +27,7 @@ Required: Yes
 
 ```
 {
-   "[StatusCode](#rekognition-DeleteCollection-response-StatusCode)": number
+   "StatusCode": number
 }
 ```
 

@@ -10,17 +10,17 @@ To get the results of the person detection operation, first check that the statu
 
 ```
 {
-   "[ClientRequestToken](#rekognition-StartPersonTracking-request-ClientRequestToken)": "string",
-   "[JobTag](#rekognition-StartPersonTracking-request-JobTag)": "string",
-   "[NotificationChannel](#rekognition-StartPersonTracking-request-NotificationChannel)": { 
-      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
-      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
+   "ClientRequestToken": "string",
+   "JobTag": "string",
+   "NotificationChannel": { 
+      "RoleArn": "string",
+      "SNSTopicArn": "string"
    },
-   "[Video](#rekognition-StartPersonTracking-request-Video)": { 
-      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Video": { 
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -58,7 +58,7 @@ Required: Yes
 
 ```
 {
-   "[JobId](#rekognition-StartPersonTracking-response-JobId)": "string"
+   "JobId": "string"
 }
 ```
 

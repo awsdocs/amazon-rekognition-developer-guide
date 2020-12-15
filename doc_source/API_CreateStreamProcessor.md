@@ -12,22 +12,22 @@ After you have finished analyzing a streaming video, use [StopStreamProcessor](A
 
 ```
 {
-   "[Input](#rekognition-CreateStreamProcessor-request-Input)": { 
-      "[KinesisVideoStream](API_StreamProcessorInput.md#rekognition-Type-StreamProcessorInput-KinesisVideoStream)": { 
-         "[Arn](API_KinesisVideoStream.md#rekognition-Type-KinesisVideoStream-Arn)": "string"
+   "Input": { 
+      "KinesisVideoStream": { 
+         "Arn": "string"
       }
    },
-   "[Name](#rekognition-CreateStreamProcessor-request-Name)": "string",
-   "[Output](#rekognition-CreateStreamProcessor-request-Output)": { 
-      "[KinesisDataStream](API_StreamProcessorOutput.md#rekognition-Type-StreamProcessorOutput-KinesisDataStream)": { 
-         "[Arn](API_KinesisDataStream.md#rekognition-Type-KinesisDataStream-Arn)": "string"
+   "Name": "string",
+   "Output": { 
+      "KinesisDataStream": { 
+         "Arn": "string"
       }
    },
-   "[RoleArn](#rekognition-CreateStreamProcessor-request-RoleArn)": "string",
-   "[Settings](#rekognition-CreateStreamProcessor-request-Settings)": { 
-      "[FaceSearch](API_StreamProcessorSettings.md#rekognition-Type-StreamProcessorSettings-FaceSearch)": { 
-         "[CollectionId](API_FaceSearchSettings.md#rekognition-Type-FaceSearchSettings-CollectionId)": "string",
-         "[FaceMatchThreshold](API_FaceSearchSettings.md#rekognition-Type-FaceSearchSettings-FaceMatchThreshold)": number
+   "RoleArn": "string",
+   "Settings": { 
+      "FaceSearch": { 
+         "CollectionId": "string",
+         "FaceMatchThreshold": number
       }
    }
 }
@@ -69,7 +69,7 @@ Required: Yes
 
 ```
 {
-   "[StreamProcessorArn](#rekognition-CreateStreamProcessor-response-StreamProcessorArn)": "string"
+   "StreamProcessorArn": "string"
 }
 ```
 
@@ -107,7 +107,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceInUseException**   
-  
+The specified resource is already being used\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   

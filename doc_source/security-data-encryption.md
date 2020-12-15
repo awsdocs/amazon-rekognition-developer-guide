@@ -1,8 +1,8 @@
-# Data Encryption<a name="security-data-encryption"></a>
+# Data encryption<a name="security-data-encryption"></a>
 
 The following information explains where Amazon Rekognition uses data encryption to protect your data\.
 
-## Encryption at Rest<a name="security-data-encryption-at-rest"></a>
+## Encryption at rest<a name="security-data-encryption-at-rest"></a>
 
 ### Images<a name="security-images"></a>
 
@@ -16,14 +16,14 @@ For face comparison operations that store information in a collection, the under
 
  To analyze a video, Amazon Rekognition copies your videos into the service for processing\. The video may be stored and used to improve the service unless you have opted out by contacting [AWS Support](http://aws.amazon.com/contact-us/) and following the process provided to you\. The videos are encrypted at rest \(Amazon S3\) using AWS Key Management Service \(SSE\-KMS\)\. 
 
-### Amazon Rekognition Custom Labels Models<a name="security-models"></a>
+### Amazon Rekognition custom labels models<a name="security-models"></a>
 
  Trained models and other customer data is encrypted using server\-side encryption with Amazon S3\-Managed Keys \(SSE\-S3\)\. For more information, see [ Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\.
 
-## Encryption in Transit<a name="security-data-encryption-in-transit"></a>
+## Encryption in transit<a name="security-data-encryption-in-transit"></a>
 
 Amazon Rekognition API endpoints only support secure connections over HTTPS\. All communication is encrypted with Transport Layer Security \(TLS\)\. 
 
-## Key Management<a name="security-data-encryption-key-management"></a>
+## Key management<a name="security-data-encryption-key-management"></a>
 
 You can use AWS Key Management Service \(KMS\) to manage keys for the input images and videos you store in Amazon S3 buckets\.

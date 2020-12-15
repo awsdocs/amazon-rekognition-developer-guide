@@ -4,23 +4,23 @@ Starts asynchronous recognition of celebrities in a stored video\.
 
 Amazon Rekognition Video can detect celebrities in a video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartCelebrityRecognition` returns a job identifier \(`JobId`\) which you use to get the results of the analysis\. When celebrity recognition analysis is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the results of the celebrity recognition analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetCelebrityRecognition](API_GetCelebrityRecognition.md) and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityRecognition`\. 
 
-For more information, see [Recognizing Celebrities](celebrities.md)\.
+For more information, see [Recognizing celebrities](celebrities.md)\.
 
 ## Request Syntax<a name="API_StartCelebrityRecognition_RequestSyntax"></a>
 
 ```
 {
-   "[ClientRequestToken](#rekognition-StartCelebrityRecognition-request-ClientRequestToken)": "string",
-   "[JobTag](#rekognition-StartCelebrityRecognition-request-JobTag)": "string",
-   "[NotificationChannel](#rekognition-StartCelebrityRecognition-request-NotificationChannel)": { 
-      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
-      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
+   "ClientRequestToken": "string",
+   "JobTag": "string",
+   "NotificationChannel": { 
+      "RoleArn": "string",
+      "SNSTopicArn": "string"
    },
-   "[Video](#rekognition-StartCelebrityRecognition-request-Video)": { 
-      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Video": { 
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -58,7 +58,7 @@ Required: Yes
 
 ```
 {
-   "[JobId](#rekognition-StartCelebrityRecognition-response-JobId)": "string"
+   "JobId": "string"
 }
 ```
 

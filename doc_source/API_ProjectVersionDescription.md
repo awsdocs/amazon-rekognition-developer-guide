@@ -20,6 +20,11 @@ The training results\. `EvaluationResult` is only returned if training is succes
 Type: [EvaluationResult](API_EvaluationResult.md) object  
 Required: No
 
+ **ManifestSummary**   <a name="rekognition-Type-ProjectVersionDescription-ManifestSummary"></a>
+The location of the summary manifest\. The summary manifest provides aggregate data validation results for the training and test datasets\.  
+Type: [GroundTruthManifest](API_GroundTruthManifest.md) object  
+Required: No
+
  **MinInferenceUnits**   <a name="rekognition-Type-ProjectVersionDescription-MinInferenceUnits"></a>
 The minimum number of inference units used by the model\. For more information, see [StartProjectVersion](API_StartProjectVersion.md)\.  
 Type: Integer  
@@ -50,12 +55,12 @@ Type: String
 Required: No
 
  **TestingDataResult**   <a name="rekognition-Type-ProjectVersionDescription-TestingDataResult"></a>
-The manifest file that represents the testing results\.  
+Contains information about the testing results\.  
 Type: [TestingDataResult](API_TestingDataResult.md) object  
 Required: No
 
  **TrainingDataResult**   <a name="rekognition-Type-ProjectVersionDescription-TrainingDataResult"></a>
-The manifest file that represents the training results\.  
+Contains information about the training results\.  
 Type: [TrainingDataResult](API_TrainingDataResult.md) object  
 Required: No
 

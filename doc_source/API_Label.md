@@ -2,6 +2,8 @@
 
 Structure containing details about the detected label, including the name, detected instances, parent labels, and level of confidence\.
 
+ 
+
 ## Contents<a name="API_Label_Contents"></a>
 
  **Confidence**   <a name="rekognition-Type-Label-Confidence"></a>

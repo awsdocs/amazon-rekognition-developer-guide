@@ -1,4 +1,4 @@
-# Getting Image Orientation and Bounding Box Coordinates<a name="images-orientation"></a>
+# Getting image orientation and bounding box coordinates<a name="images-orientation"></a>
 
 Applications that use Amazon Rekognition Image commonly need to display the images that are detected by Amazon Rekognition Image operations and the boxes around detected faces\. To display an image correctly in your application, you need to know the image's orientation and possibly correct it\. For some \.jpg files, the image's orientation is contained in the image's Exchangeable image file format \(Exif\) metadata\. For other \.jpg files and all \.png files, Amazon Rekognition Image operations return the estimated orientation\.
 
@@ -17,7 +17,9 @@ Use the information in this example to ensure that your images are oriented corr
 
 Because the code used to rotate and display images and bounding boxes depends on the language and environment that you use, we don't explain how to display images and bounding boxes in your code, or how to get orientation information from Exif metadata\.
 
-## Finding an Image's Orientation<a name="images-discovering-image-orientation"></a>
+
+
+## Finding an image's orientation<a name="images-discovering-image-orientation"></a>
 
 To display an image correctly in your application, you might need to rotate it\. The following image is oriented to 0 degrees and is displayed correctly\.
 
@@ -31,17 +33,27 @@ Some images in \.jpg format contain orientation information in Exif metadata\. I
 
 Images in \.png format do not have Exif metadata\. For \.jpg images that don't have Exif metadata and for all \.png images, Amazon Rekognition Image operations return an estimated orientation for the image in the `OrientationCorrection` field\. Estimated orientation is measured counterclockwise and in increments of 90 degrees\. For example, Amazon Rekognition Image returns ROTATE\_0 for an image that is oriented to 0 degrees and ROTATE\_90 for an image that is rotated 90 degrees counterclockwise\.
 
+ 
+
+
+
 When you know an image's orientation, you can write code to rotate and correctly display it\.
 
-## Displaying Bounding Boxes<a name="images-bounding-boxes"></a>
+## Displaying bounding boxes<a name="images-bounding-boxes"></a>
 
 The Amazon Rekognition Image operations that analyze faces in an image also return the coordinates of the bounding boxes that surround the faces\. For more information, see [BoundingBox](API_BoundingBox.md)\. 
 
 To display a bounding box around a face similar to the box shown in the following image in your application, use the bounding box coordinates in your code\. The bounding box coordinates returned by an operation reflect the image's orientation\. If you have to rotate the image to display it correctly, you might need to translate the bounding box coordinates\.
 
+
+
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/00facebounding.png)
 
-### Displaying Bounding Boxes When Orientation Information Is Not Present in Exif Metadata<a name="images-no-exif-metadata"></a>
+ 
+
+
+
+### Displaying bounding boxes when orientation information is not present in Exif metadata<a name="images-no-exif-metadata"></a>
 
 If an image doesn't have Exif metadata, or if the `orientation` field in the Exif metadata is not populated, Amazon Rekognition Image operations return the following:
 + An estimated orientation for the image
@@ -57,9 +69,11 @@ When you rotate the image to 0 degrees orientation, you also need to rotate the 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/notranslate.png)
 
+
+
 **To rotate and display bounding boxes when orientation isn't present in Exif metadata**
 
-1. Call an Amazon Rekognition Image operation providing an input image with at least one face and with no Exif metadata orientation\. For an example, see [Detecting Faces in an Image](faces-detect-images.md)\.
+1. Call an Amazon Rekognition Image operation providing an input image with at least one face and with no Exif metadata orientation\. For an example, see [Detecting faces in an image](faces-detect-images.md)\.
 
 1. Note the estimated orientation returned in the response's `OrientationCorrection` field\.
 
@@ -94,13 +108,13 @@ When you rotate the image to 0 degrees orientation, you also need to rotate the 
 
 1.  Display the bounding box on the rotated image by using the values calculated in steps 4 and 5\.
 
-### Displaying Bounding Boxes When Orientation Information is Present in Exif Metadata<a name="images-exif-metadata"></a>
+### Displaying bounding boxes when orientation information is present in Exif metadata<a name="images-exif-metadata"></a>
 
 If an image's orientation is included in Exif metadata, Amazon Rekognition Image operations do the following:
 + Return null in the orientation correction field in the operation's response\. To rotate the image, use the orientation provided in the Exif metadata in your code\.
 + Return bounding box coordinates already oriented to 0 degrees\. To show the bounding box in the correct position, use the coordinates that were returned\. You do not need to translate them\.
 
-## Example: Getting Image Orientation and Bounding Box Coordinates For an Image<a name="images-correcting-image-orientation-java"></a>
+## Example: Getting image orientation and bounding box coordinates for an image<a name="images-correcting-image-orientation-java"></a>
 
 The following example shows how to use the AWS SDK to get the estimated orientation of an image and to translate bounding box coordinates for celebrities detected by the `RecognizeCelebrities` operation\.
 

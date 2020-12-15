@@ -1,4 +1,4 @@
-# Analyzing an Image Loaded from a Local File System<a name="images-bytes"></a>
+# Analyzing an image loaded from a local file system<a name="images-bytes"></a>
 
 Amazon Rekognition Image operations can analyze images that are supplied as image bytes or images stored in an Amazon S3 bucket\.
 
@@ -18,7 +18,7 @@ In this example JSON request for `DetectLabels`, the source image bytes are pass
 }
 ```
 
-The following examples use various AWS SDKs and the AWS CLI to call `DetectLabels`\. For information about the `DetectLabels` operation response, see [DetectLabels Response](labels-detect-labels-image.md#detectlabels-response)\.
+The following examples use various AWS SDKs and the AWS CLI to call `DetectLabels`\. For information about the `DetectLabels` operation response, see [DetectLabels response](labels-detect-labels-image.md#detectlabels-response)\.
 
 For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javascript.md)\.
 
@@ -26,9 +26,9 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `DetectLabels` operation\.
 

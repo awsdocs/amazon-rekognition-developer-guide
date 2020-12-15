@@ -1,16 +1,18 @@
-# Listing Faces in a Collection<a name="list-faces-in-collection-procedure"></a>
+# Listing faces in a collection<a name="list-faces-in-collection-procedure"></a>
 
 You can use the [ListFaces](API_ListFaces.md) operation to list the faces in a collection\.
 
-For more information, see [Managing Faces in a Collection](collections.md#collections-index-faces)\. 
+For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\. 
+
+
 
 **To list faces in a collection \(SDK\)**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `ListFaces` operation\.
 
@@ -182,7 +184,7 @@ For more information, see [Managing Faces in a Collection](collections.md#collec
 
 ------
 
-## ListFaces Operation Request<a name="listfaces-request"></a>
+## ListFaces operation request<a name="listfaces-request"></a>
 
 The input to `ListFaces` is the ID of the collection that you want to list faces for\. `MaxResults` is the maximum number of faces to return\. 
 
@@ -203,10 +205,10 @@ If the response has more faces than are requested by `MaxResults`, a token is re
 }
 ```
 
-## ListFaces Operation Response<a name="listfaces-response"></a>
+## ListFaces operation response<a name="listfaces-response"></a>
 
 The response from `ListFaces` is information about the face metadata that's stored in the specified collection\.
-+ **FaceModelVersion** – The version of the face model that's associated with the collection\. For more information, see [Model Versioning](face-detection-model.md)\.
++ **FaceModelVersion** – The version of the face model that's associated with the collection\. For more information, see [Model versioning](face-detection-model.md)\.
 +  **Faces** – Information about the faces in the collection\. This includes information about [BoundingBox](API_BoundingBox.md), confidence, image identifiers, and the face ID\. For more information, see [Face](API_Face.md)\. 
 +  **NextToken** – The token that's used to get the next set of results\. 
 
