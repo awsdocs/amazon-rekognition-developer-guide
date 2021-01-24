@@ -294,3 +294,92 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
    ```
 
 ------
+
+#### [ Go ]
+
+ This example displays a list of labels that were detected in the input image\. Change the value of `imageFile` to the path and file name of an image file \(\.jpg or \.png format\)\.
+
+```
+package main
+
+import (
+	"fmt"
+	"os"
+	"bufio"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/rekognition"
+)
+
+var svc *rekognition.Rekognition
+
+func init() {
+
+  	sess, err := session.NewSession(&aws.Config{
+  		Region: aws.String("us-east-1"),
+  	})
+
+  	if err != nil {
+  		fmt.Println("Error while creating session,", err)
+  		return
+  	}
+
+  	svc = rekognition.New(sess)
+  	_ = svc
+}
+
+func main() {
+
+  	//local image file
+  	imageFile := "/your/path/to/image.jpg"
+
+  	file, err := os.Open(imageFile)
+  	if err != nil {
+  		fmt.Println(err)
+  		return
+  	}
+
+  	defer file.Close()
+
+  	fileInfo, _ := file.Stat()
+  	var size int64 = fileInfo.Size()
+  	bytes := make([]byte, size)
+
+  	// read file into bytes
+  	buffer := bufio.NewReader(file)
+
+  	//write into bytes
+  	_, err = buffer.Read(bytes)   
+
+  	//Prepare image data for Rekognition
+  	input := &rekognition.DetectLabelsInput{
+  		Image: &rekognition.Image{
+  			Bytes: bytes,
+  		},
+  	}
+
+  	//Detect Lables
+  	resp, err := svc.DetectLabels(input)
+
+  	if err != nil { //If there is an Error
+  		fmt.Println(err.Error())
+  		return
+  	}
+
+  	fmt.Printf("\nDetected Labels for %s\n", imageFile)
+
+  	for _, label := range resp.Labels {
+
+  		fmt.Printf("\nLabel : %v\n", *label.Name)
+  		fmt.Printf("Confidence : %v\n", *label.Confidence)
+
+
+  	}
+
+  	fmt.Printf("\nLabels Detected : %d\n", len(resp.Labels))
+
+}
+
+```
+
+------
