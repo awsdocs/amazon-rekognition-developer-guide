@@ -356,24 +356,36 @@ You can provide the input image as an image byte array \(base64\-encoded image b
    This example displays the estimated age range , position , emotion and Gender for each detected faces\. Change the value of `photo` to the image file name\. Change the value of `bucket` to the Amazon S3 bucket where the image is stored\.
 
    ```
-   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-   //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX - License - Identifier: Apache - 2.0
+https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
 
    package main
 
     import (
         "fmt"
-
+        "flag"
         "github.com/aws/aws-sdk-go/aws"
         "github.com/aws/aws-sdk-go/aws/session"
         "github.com/aws/aws-sdk-go/service/rekognition"
     )
 
     var svc *rekognition.Rekognition
+    var bucket = flag.String("bucket", "", "The name of the bucket")
+    var photo = flag.String("photo", "", "The path to the photo file (JPEG, GIF, or ???")
 
     func init() {
 
         //https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/sessions.html
+
+        flag.StringVar(bucket, "b", "", "The name of the bucket")
+        flag.StringVar(photo, "p", "", "The path to the photo file (JPEG, GIF, or ???")
+        flag.Parse()
+
+        if *bucket == "" || *photo == "" {
+            fmt.Println("You must supply a bucket name (-b BUCKET) and photo file (-p PHOTO")
+            return
+        }
 
         //Access keys are read from ~/.aws/credentials
         sess, err := session.NewSession(&aws.Config{
@@ -391,9 +403,6 @@ You can provide the input image as an image byte array \(base64\-encoded image b
 
     func main() {
 
-        bucket := "" //Bucket name from S3
-        photo := ""  //Image File
-
         params := &rekognition.DetectFacesInput{
             Image: &rekognition.Image{ // Required
 
@@ -408,8 +417,7 @@ You can provide the input image as an image byte array \(base64\-encoded image b
         }
 
         resp, err := svc.DetectFaces(params)
-
-        if err != nil { //If there is an Error
+        if err != nil {
             fmt.Println(err.Error())
             return
         }
