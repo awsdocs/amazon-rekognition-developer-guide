@@ -357,8 +357,7 @@ You can provide the input image as an image byte array \(base64\-encoded image b
 
    ```
    // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-// SPDX - License - Identifier: Apache - 2.0
-https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+   // SPDX - License - Identifier: Apache - 2.0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
 
    package main
 
