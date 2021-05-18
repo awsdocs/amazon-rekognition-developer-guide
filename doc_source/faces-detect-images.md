@@ -78,7 +78,7 @@ You can provide the input image as an image byte array \(base64\-encoded image b
                }
    
                ObjectMapper objectMapper = new ObjectMapper();
-               System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(face));
+               System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(face.toBuilder()));
             }
    
          } catch (AmazonRekognitionException e) {
