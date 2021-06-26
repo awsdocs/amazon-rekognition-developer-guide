@@ -176,7 +176,7 @@ The input to `ListCollections` is the maximum number of collections to be return
 }
 ```
 
-If the response has more faces than requested by `MaxResults`, a token is returned that you can use to get the next set of results, in a subsequent call to `ListCollections`\. For example:
+If the response has more collections than are requested by `MaxResults`, a token is returned that you can use to get the next set of results, in a subsequent call to `ListCollections`\. For example:
 
 ```
 {
