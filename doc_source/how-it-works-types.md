@@ -4,7 +4,7 @@ The following are the types of analysis that the Amazon Rekognition Image API an
 
 ## Labels<a name="how-it-works-labels-intro"></a>
 
- A *label* refers to any of the following: objects \(for example, flower, tree, or table\), events \(for example, a wedding, graduation, or birthday party\), concepts \(for example, a landscape, evening, and nature\) or activities \(for example, getting out of a car\)\. Amazon Rekognition can detect labels in images and videos\. However activities are not detected in images\. For more information, see [Detecting objects and scenes](labels.md)\.
+ A *label* refers to any of the following: objects \(for example, flower, tree, or table\), events \(for example, a wedding, graduation, or birthday party\), concepts \(for example, a landscape, evening, and nature\) or activities \(for example, getting out of a car\)\. Amazon Rekognition can detect labels in images and videos\. However activities are not detected in images\. For more information, see [Detecting labels](labels.md)\.
 
 To detect labels in images, use [DetectLabels](API_DetectLabels.md)\. To detect labels in stored videos, use [StartLabelDetection](API_StartLabelDetection.md)\.
 

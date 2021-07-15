@@ -151,6 +151,125 @@ You can provide the input image as an image byte array \(base64\-encoded image b
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DetectPPE.java)\.
+
+   ```
+       public static void displayGear(S3Client s3,
+                                      RekognitionClient rekClient,
+                                      String sourceImage,
+                                      String bucketName) {
+   
+           byte[] data = getObjectBytes (s3, bucketName, sourceImage);
+           InputStream is = new ByteArrayInputStream(data);
+   
+           try {
+               ProtectiveEquipmentSummarizationAttributes summarizationAttributes = ProtectiveEquipmentSummarizationAttributes.builder()
+                       .minConfidence(80F)
+                       .requiredEquipmentTypesWithStrings("FACE_COVER", "HAND_COVER", "HEAD_COVER")
+                       .build();
+   
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(is);
+               software.amazon.awssdk.services.rekognition.model.Image souImage = Image.builder()
+                       .bytes(sourceBytes)
+                       .build();
+   
+               DetectProtectiveEquipmentRequest request = DetectProtectiveEquipmentRequest.builder()
+                       .image(souImage)
+                       .summarizationAttributes(summarizationAttributes)
+                       .build();
+   
+               DetectProtectiveEquipmentResponse result = rekClient.detectProtectiveEquipment(request);
+               List<ProtectiveEquipmentPerson> persons = result.persons();
+   
+               for (ProtectiveEquipmentPerson person: persons) {
+                   System.out.println("ID: " + person.id());
+                   List<ProtectiveEquipmentBodyPart> bodyParts=person.bodyParts();
+                   if (bodyParts.isEmpty()){
+                       System.out.println("\tNo body parts detected");
+                   } else
+                       for (ProtectiveEquipmentBodyPart bodyPart: bodyParts) {
+                           System.out.println("\t" + bodyPart.name() + ". Confidence: " + bodyPart.confidence().toString());
+                           List<EquipmentDetection> equipmentDetections=bodyPart.equipmentDetections();
+   
+                           if (equipmentDetections.isEmpty()){
+                               System.out.println("\t\tNo PPE Detected on " + bodyPart.name());
+                           } else {
+                               for (EquipmentDetection item: equipmentDetections) {
+                                   System.out.println("\t\tItem: " + item.type() + ". Confidence: " + item.confidence().toString());
+                                   System.out.println("\t\tCovers body part: "
+                                           + item.coversBodyPart().value().toString() + ". Confidence: " + item.coversBodyPart().confidence().toString());
+   
+                                   System.out.println("\t\tBounding Box");
+                                   BoundingBox box =item.boundingBox();
+   
+                                   System.out.println("\t\tLeft: " +box.left().toString());
+                                   System.out.println("\t\tTop: " + box.top().toString());
+                                   System.out.println("\t\tWidth: " + box.width().toString());
+                                   System.out.println("\t\tHeight: " + box.height().toString());
+                                   System.out.println("\t\tConfidence: " + item.confidence().toString());
+                                   System.out.println();
+                               }
+                           }
+                       }
+               }
+               System.out.println("Person ID Summary\n-----------------");
+   
+               DisplaySummary("With required equipment", result.summary().personsWithRequiredEquipment());
+               DisplaySummary("Without required equipment", result.summary().personsWithoutRequiredEquipment());
+               DisplaySummary("Indeterminate", result.summary().personsIndeterminate());
+   
+           } catch (RekognitionException e) {
+               e.printStackTrace();
+               System.exit(1);
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+       }
+   
+       public static byte[] getObjectBytes (S3Client s3, String bucketName, String keyName) {
+   
+           try {
+               GetObjectRequest objectRequest = GetObjectRequest
+                       .builder()
+                       .key(keyName)
+                       .bucket(bucketName)
+                       .build();
+   
+               ResponseBytes<GetObjectResponse> objectBytes = s3.getObjectAsBytes(objectRequest);
+               byte[] data = objectBytes.asByteArray();
+               return data;
+   
+           } catch (S3Exception e) {
+               System.err.println(e.awsErrorDetails().errorMessage());
+               System.exit(1);
+           }
+           return null;
+       }
+   
+       static void DisplaySummary(String summaryType,List<Integer> idList)
+       {
+           System.out.print(summaryType + "\n\tIDs  ");
+           if (idList.size()==0) {
+               System.out.println("None");
+           }
+           else {
+               int count=0;
+               for (Integer id: idList ) {
+                   if (count++ == idList.size()-1) {
+                       System.out.println(id.toString());
+                   }
+                   else {
+                       System.out.print(id.toString() + ", ");
+                   }
+               }
+           }
+           System.out.println();
+       }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This AWS CLI command requests a PPE summary and displays the JSON output for the `detect-protective-equipment` CLI operation\. 

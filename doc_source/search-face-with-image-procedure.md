@@ -82,6 +82,44 @@ For more information, see [Searching for faces within a collection](collections.
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/SearchFaceMatchingImageCollection.java)\.
+
+   ```
+       public static void searchFaceInCollection(RekognitionClient rekClient,String collectionId, String sourceImage) {
+   
+           try {
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+   
+               Image souImage = Image.builder()
+                       .bytes(sourceBytes)
+                       .build();
+   
+               SearchFacesByImageRequest facesByImageRequest = SearchFacesByImageRequest.builder()
+                       .image(souImage)
+                       .maxFaces(10)
+                       .faceMatchThreshold(70F)
+                       .collectionId(collectionId)
+                       .build();
+   
+               SearchFacesByImageResponse imageResponse = rekClient.searchFacesByImage(facesByImageRequest) ;
+   
+               // Display the results
+               System.out.println("Faces matching in the collection");
+               List<FaceMatch> faceImageMatches = imageResponse.faceMatches();
+               for (FaceMatch face: faceImageMatches) {
+                   System.out.println("The similarity level is  "+face.similarity());
+                   System.out.println();
+               }
+           } catch (RekognitionException | FileNotFoundException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This AWS CLI command displays the JSON output for the `search-faces-by-image` CLI operation\. Replace the value of `Bucket` with the S3 bucket that you used in step 2\. Replace the value of `Name` with the image file name that you used in step 2\. Replace the value of `collection-id` with the collection you want to search in\.

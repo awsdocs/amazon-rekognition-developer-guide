@@ -6,9 +6,15 @@ Amazon Rekognition is directly integrated with Amazon A2I so that you can easily
 
 The following steps walk you through how to set up Amazon A2I with Amazon Rekognition\. First, you create a flow definition with Amazon A2I that has the conditions that trigger human review\. Then, you pass the flow definition's Amazon Resource Name \(ARN\) to the Amazon Rekognition `DetectModerationLabel` operation\. In the `DetectModerationLabel` response, you can see if human review is required\. The results of human review are available in an Amazon S3 bucket that is set by the flow definition\.
 
+To view an end\-to\-end demonstration of how to use Amazon A2I with Amazon Rekognition, see one of the following tutorials in the *Amazon SageMaker Developer Guide*\.
++ [Demo: Get Started in the Amazon A2I Console](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-get-started-console.html)
++ [Demo: Get Started Using the Amazon A2I API](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-get-started-api.html)
+
+  To get started using the API, you can also run an example Jupyter notebook\. See [Use a SageMaker Notebook Instance with Amazon A2I Jupyter Notebook](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-task-types-general.html#a2i-task-types-notebook-demo) to use the notebook [Amazon Augmented AI \(Amazon A2I\) integration with Amazon Rekognition \[Example\]](https://github.com/aws-samples/amazon-a2i-sample-jupyter-notebooks/blob/master/Amazon%20Augmented%20AI%20(A2I)%20and%20Rekognition%20DetectModerationLabels.ipynb) in a SageMaker notebook instance\.
+
 **Running DetectModerationLabels with Amazon A2I**
 **Note**  
-Create all of your Amazon A2I resources and Amazon Rekognition resources in the same region\.
+Create all of your Amazon A2I resources and Amazon Rekognition resources in the same AWS Region\.
 
 1. Complete the prerequisites that are listed in [Getting Started with Amazon Augmented AI](https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-getting-started.html) in the *SageMaker Documentation*\.
 
@@ -20,7 +26,7 @@ Create all of your Amazon A2I resources and Amazon Rekognition resources in the 
 
    Within your `CreateFlowDefinition` call, you need to set the `HumanLoopRequestSource` to "AWS/Rekognition/DetectModerationLabels/Image/V3"\. After that, you need to decide how you want to set up your conditions that trigger human review\.
 
-   With Amazon Textract you have two options for `ConditionType`: `ModerationLabelConfidenceCheck`, and `Sampling`\.
+   With Amazon Rekognition you have two options for `ConditionType`: `ModerationLabelConfidenceCheck`, and `Sampling`\.
 
    `ModerationLabelConfidenceCheck` creates a human loop when confidence of a moderation label is within a range\. Finally, `Sampling` sends a random percent of the documents processed for human review\. Each `ConditionType` uses a different set of `ConditionParameters` to set what results in human review\.
 
@@ -66,7 +72,7 @@ Create all of your Amazon A2I resources and Amazon Rekognition resources in the 
 
    For more information see [CreateFlowDefinition](https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html) in the * SageMaker API Reference*\.
 
-1. Set the `HumanLoopConfig` parameter when you call `DetectModerationLabels`, as in [Detecting inappropriate images](procedure-moderate-images.md)\. 
+1. Set the `HumanLoopConfig` parameter when you call `DetectModerationLabels`, as in [Detecting inappropriate images](procedure-moderate-images.md)\. See step 4 for examples of a `DetectModerationLabels` call with `HumanLoopConfig` set\.
 
    1. Within the `HumanLoopConfig` parameter, set the `FlowDefinitionArn` to the ARN of the flow definition that you created in step 2\.
 
@@ -74,16 +80,50 @@ Create all of your Amazon A2I resources and Amazon Rekognition resources in the 
 
    1. \(Optional\) You can use `DataAttributes` to set whether or not the image you passed to Amazon Rekognition is free of personally identifiable information\. You must set this parameter in order to send information to Amazon Mechanical Turk\.
 
-   The following is an example of what a call to `DetectModerationLabels` looks like with the `HumanLoopConfig` set in Python\.
-
-   ```
-            client.detect_moderation_labels(Image={'S3Object':{'Bucket':Bucket,'Name':photo}},
-            HumanLoopConfig={'FlowDefinitionArn':string,'HumanLoopName':string})
-   ```
-
 1. Run `DetectModerationLabels`\.
 
-   When you run `DetectModerationLabels` with `HumanLoopConfig` enabled, Amazon Rekognition calls the SageMaker API operation `StartHumanLoop`\. This command takes the response from `DetectModerationLabels` and checks it against the flow definition's conditions in the example\. If it meets the conditions for review, it returns a `HumanLoopArn`\. This means that the members of the work team that you set in your flow definiton now can review the image\. Calling the Amazon Augmented AI runtime operation `DescribeHumanLoop` provides information about the outcome of the loop\. For more information, see [ DescribeHumanLoop](https://docs.aws.amazon.com/augmented-ai/2019-11-07/APIReference/API_DescribeHumanLoop.html) in the *Amazon Augmented AI API Reference documentation*\.
+   The following examples show how to use the AWS CLI and AWS SDK for Python \(Boto3\) to run `DetectModerationLabels` with `HumanLoopConfig` set\.
+
+------
+#### [ AWS SDK for Python \(Boto3\) ]
+
+   The following request example uses the SDK for Python \(Boto3\)\. For more information, see [detect\_moderation\_labels](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_moderation_labels) in the *AWS SDK for Python \(Boto\) API Reference*\.
+
+   ```
+   import boto3
+   
+   rekognition = boto3.client("rekognition", aws-region)
+   
+   response = rekognition.detect_moderation_labels( \
+           Image={'S3Object': {'Bucket': bucket_name, 'Name': image_name}}, \
+           HumanLoopConfig={ \
+               'HumanLoopName': 'human_loop_name', \
+               'FlowDefinitionArn': , "arn:aws:sagemaker:aws-region:aws_account_number:flow-definition/flow_def_name" \
+               'DataAttributes': {'ContentClassifiers': ['FreeOfPersonallyIdentifiableInformation','FreeOfAdultContent']}
+            })
+   ```
+
+------
+#### [ AWS CLI ]
+
+   The following request example uses the AWS CLI\. For more information, see [detect\-moderation\-labels](https://docs.aws.amazon.com/cli/latest/reference/rekognition/detect-moderation-labels.html) in the *[AWS CLI Command Reference](https://docs.aws.amazon.com/cli/latest/reference/)*\.
+
+   ```
+   $ aws rekognition detect-moderation-labels \
+       --image "S3Object={Bucket='bucket_name',Name='image_name'}" \
+       --human-loop-config HumanLoopName="human_loop_name",FlowDefinitionArn="arn:aws:sagemaker:aws-region:aws_account_number:flow-definition/flow_def_name",DataAttributes='{ContentClassifiers=["FreeOfPersonallyIdentifiableInformation", "FreeOfAdultContent"]}'
+   ```
+
+   ```
+   $ aws rekognition detect-moderation-labels \
+       --image "S3Object={Bucket='bucket_name',Name='image_name'}" \
+       --human-loop-config \
+           '{"HumanLoopName": "human_loop_name", "FlowDefinitionArn": "arn:aws:sagemaker:aws-region:aws_account_number:flow-definition/flow_def_name", "DataAttributes": {"ContentClassifiers": ["FreeOfPersonallyIdentifiableInformation", "FreeOfAdultContent"]}}'
+   ```
+
+------
+
+   When you run `DetectModerationLabels` with `HumanLoopConfig` enabled, Amazon Rekognition calls the SageMaker API operation `StartHumanLoop`\. This command takes the response from `DetectModerationLabels` and checks it against the flow definition's conditions in the example\. If it meets the conditions for review, it returns a `HumanLoopArn`\. This means that the members of the work team that you set in your flow definition now can review the image\. Calling the Amazon Augmented AI runtime operation `DescribeHumanLoop` provides information about the outcome of the loop\. For more information, see [ DescribeHumanLoop](https://docs.aws.amazon.com/augmented-ai/2019-11-07/APIReference/API_DescribeHumanLoop.html) in the *Amazon Augmented AI API Reference documentation*\.
 
    After the image has been reviewed, you can see the results in the bucket that is specified in your flow definition's output path\. Amazon A2I will also notify you with Amazon CloudWatch Events when the review is complete\. To see what events to look for, see [CloudWatch Events](https://docs.aws.amazon.com/sagemaker/latest/dg/augmented-ai-cloudwatch-events.html) in the *SageMaker Documentation*\.
 

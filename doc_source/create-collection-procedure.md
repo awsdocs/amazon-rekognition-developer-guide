@@ -60,6 +60,31 @@ For more information, see [Managing collections](collections.md#managing-collect
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/CreateCollection.java)\.
+
+   ```
+       public static void createMyCollection(RekognitionClient rekClient,String collectionId ) {
+   
+           try {
+               CreateCollectionRequest collectionRequest = CreateCollectionRequest.builder()
+                       .collectionId(collectionId)
+                       .build();
+   
+               CreateCollectionResponse collectionResponse = rekClient.createCollection(collectionRequest);
+               System.out.println("CollectionArn : " +
+                       collectionResponse.collectionArn());
+               System.out.println("Status code : " +
+                       collectionResponse.statusCode().toString());
+   
+           } catch(RekognitionException e) {
+                   System.out.println(e.getMessage());
+                   System.exit(1);
+           }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This AWS CLI command displays the JSON output for the `create-collection` CLI operation\. 

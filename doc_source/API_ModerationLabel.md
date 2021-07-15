@@ -1,6 +1,6 @@
 # ModerationLabel<a name="API_ModerationLabel"></a>
 
-Provides information about a single type of unsafe content found in an image or video\. Each type of moderated content has a label within a hierarchical taxonomy\. For more information, see [Content moderation](moderation.md)\.
+Provides information about a single type of inappropriate, unwanted, or offensive content found in an image or video\. Each type of moderated content has a label within a hierarchical taxonomy\. For a list of moderation labels in Amazon Rekognition, see [Using the image and video moderation APIs](https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html#moderation-api)\. For more information, see [Content moderation](moderation.md)\.
 
 ## Contents<a name="API_ModerationLabel_Contents"></a>
 
@@ -26,5 +26,5 @@ Required: No
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/ModerationLabel) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/ModerationLabel) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/ModerationLabel) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/ModerationLabel) 
 +  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/ModerationLabel) 

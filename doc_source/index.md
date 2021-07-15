@@ -1,7 +1,7 @@
 # Amazon Rekognition Developer Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -37,12 +37,14 @@ Amazon's trademarks and trade dress may not be used in
          + [Using JavaScript](image-bytes-javascript.md)
       + [Displaying bounding boxes](images-displaying-bounding-boxes.md)
       + [Getting image orientation and bounding box coordinates](images-orientation.md)
+      + [Tutorial: Using Amazon Rekognition and Lambda to tag assets in an Amazon S3 bucket](images-lambda-s3-tutorial.md)
    + [Working with stored videos](video.md)
       + [Calling Amazon Rekognition Video operations](api-video.md)
       + [Configuring Amazon Rekognition Video](api-video-roles.md)
       + [Analyzing a video stored in an Amazon S3 bucket with Java or Python (SDK)](video-analyzing-with-sqs.md)
       + [Analyzing a video with the AWS Command Line Interface](video-cli-commands.md)
-      + [Tutorial: Creating an Amazon Rekognition Lambda function](stored-video-lambda.md)
+      + [Tutorial: Creating AWS video analyzer applications](stored-video-tutorial-v2.md)
+      + [Java V1 Tutorial: Creating an Amazon Rekognition Lambda function](stored-video-lambda.md)
       + [Reference: Video analysis results notification](video-notification-payload.md)
       + [Troubleshooting Amazon Rekognition Video](video-troubleshooting.md)
    + [Working with streaming videos](streaming-video.md)
@@ -68,7 +70,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Recommendations for camera setup (image and video)](recommendations-camera-image-video.md)
    + [Recommendations for camera setup (stored and streaming video)](recommendations-camera-stored-streaming-video.md)
    + [Recommendations for camera setup (streaming video)](recommendations-camera-streaming-video.md)
-+ [Detecting objects and scenes](labels.md)
++ [Detecting labels](labels.md)
    + [Detecting labels in an image](labels-detect-labels-image.md)
    + [Detecting labels in a video](labels-detecting-labels-video.md)
    + [Detecting custom labels](labels-detecting-custom-labels.md)
@@ -81,6 +83,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Searching faces in a collection](collections.md)
    + [Use cases that involve public safety](considerations-public-safety-use-cases.md)
    + [Creating a collection](create-collection-procedure.md)
+   + [Tagging collections](tag-collections.md)
    + [Listing collections](list-collection-procedure.md)
    + [Describing a collection](describe-collection-procedure.md)
    + [Deleting a collection](delete-collection-procedure.md)
@@ -162,6 +165,7 @@ Amazon's trademarks and trade dress may not be used in
       + [ListCollections](API_ListCollections.md)
       + [ListFaces](API_ListFaces.md)
       + [ListStreamProcessors](API_ListStreamProcessors.md)
+      + [ListTagsForResource](API_ListTagsForResource.md)
       + [RecognizeCelebrities](API_RecognizeCelebrities.md)
       + [SearchFaces](API_SearchFaces.md)
       + [SearchFacesByImage](API_SearchFacesByImage.md)
@@ -177,6 +181,8 @@ Amazon's trademarks and trade dress may not be used in
       + [StartTextDetection](API_StartTextDetection.md)
       + [StopProjectVersion](API_StopProjectVersion.md)
       + [StopStreamProcessor](API_StopStreamProcessor.md)
+      + [TagResource](API_TagResource.md)
+      + [UntagResource](API_UntagResource.md)
    + [Data Types](API_Types.md)
       + [AgeRange](API_AgeRange.md)
       + [Asset](API_Asset.md)
@@ -263,6 +269,6 @@ Amazon's trademarks and trade dress may not be used in
       + [ValidationData](API_ValidationData.md)
       + [Video](API_Video.md)
       + [VideoMetadata](API_VideoMetadata.md)
-+ [Limits in Amazon Rekognition](limits.md)
++ [Guidelines and quotas in Amazon Rekognition](limits.md)
 + [Document history for Amazon Rekognition](document-history.md)
 + [AWS glossary](glossary.md)

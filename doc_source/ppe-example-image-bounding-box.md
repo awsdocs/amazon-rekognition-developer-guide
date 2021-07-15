@@ -1,8 +1,8 @@
 # Example: Drawing bounding boxes around face covers<a name="ppe-example-image-bounding-box"></a>
 
-The following examples shows you how to draw bounding boxes around face covers detected on persons\. To detect face covers you use the [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md) non\-storage API operation\. 
+The following examples shows you how to draw bounding boxes around face covers detected on persons\. For an example that uses AWS Lambda and Amazon DynamoDB, see the [AWS Documentation SDK examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/javav2/usecases/creating_lambda_ppe)\. 
 
-The image is loaded from the local file system\. You provide the input image to `DetectProtectiveEquipment` as an image byte array \(base64\-encoded image bytes\)\. For more information, see [Working with images](images.md)\.
+To detect face covers you use the [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md) non\-storage API operation\. The image is loaded from the local file system\. You provide the input image to `DetectProtectiveEquipment` as an image byte array \(base64\-encoded image bytes\)\. For more information, see [Working with images](images.md)\.
 
 The example displays a bounding box around detected face covers\. The bounding box is green if the face cover fully covers the body part\. Otherwise a red bounding box is displayed\. As a warning, a yellow bounding box is displayed within the face cover bounding box, if the detection confidence is lower than the specified confidence value\. If a face cover is not detected, a red bounding box is drawn around the person\. 
 
@@ -20,12 +20,12 @@ The image output is similar to the following\.
 
 1. Use the following examples to call the `DetectProtectiveEquipment` operation\. For information about displaying bounding boxes in an image, see [Displaying bounding boxes](images-displaying-bounding-boxes.md)\.
 
-   In the function `main`, change the following\. 
-   + The value of `photo` to path and file name of a local image file \(PNG or JPEG\)\.
-   + The value of `confidence` to the desired confidence level \(50\-100\)\.
-
 ------
 #### [ Java ]
+
+   In the function `main`, change the following: 
+   + The value of `photo` to path and file name of a local image file \(PNG or JPEG\)\.
+   + The value of `confidence` to the desired confidence level \(50\-100\)\.
 
    ```
    //Loads images, detects faces and draws bounding boxes.Determines exif orientation, if necessary.
@@ -215,7 +215,166 @@ The image output is similar to the following\.
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/PPEBoundingBoxFrame.java)\.
+
+   ```
+      public static void displayGear(S3Client s3,
+                                          RekognitionClient rekClient,
+                                          String sourceImage,
+                                          String bucketName) {
+          float confidence =80;
+   
+           byte[] data = getObjectBytes (s3, bucketName, sourceImage);
+           InputStream is = new ByteArrayInputStream(data);
+   
+           try {
+   
+               ProtectiveEquipmentSummarizationAttributes summarizationAttributes = ProtectiveEquipmentSummarizationAttributes.builder()
+                       .minConfidence(70F)
+                       .requiredEquipmentTypesWithStrings("FACE_COVER")
+                       .build();
+   
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(is);
+               image = ImageIO.read(sourceBytes.asInputStream());
+   
+               // Create an Image object for the source image
+               software.amazon.awssdk.services.rekognition.model.Image souImage = Image.builder()
+                       .bytes(sourceBytes)
+                       .build();
+   
+               DetectProtectiveEquipmentRequest request = DetectProtectiveEquipmentRequest.builder()
+                       .image(souImage)
+                       .summarizationAttributes(summarizationAttributes)
+                       .build();
+   
+               DetectProtectiveEquipmentResponse result = rekClient.detectProtectiveEquipment(request);
+   
+               // Create frame and panel.
+               JFrame frame = new JFrame("Detect PPE");
+               frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+               PPEBoundingBoxFrame panel = new PPEBoundingBoxFrame(result, image, confidence);
+               panel.setPreferredSize(new Dimension(image.getWidth() / scale, image.getHeight() / scale));
+               frame.setContentPane(panel);
+               frame.pack();
+               frame.setVisible(true);
+   
+           } catch (RekognitionException e) {
+               e.printStackTrace();
+               System.exit(1);
+           } catch (IOException e) {
+               e.printStackTrace();
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+       }
+       public static byte[] getObjectBytes (S3Client s3, String bucketName, String keyName) {
+   
+           try {
+               GetObjectRequest objectRequest = GetObjectRequest
+                       .builder()
+                       .key(keyName)
+                       .bucket(bucketName)
+                       .build();
+   
+               ResponseBytes<GetObjectResponse> objectBytes = s3.getObjectAsBytes(objectRequest);
+               byte[] data = objectBytes.asByteArray();
+               return data;
+   
+           } catch (S3Exception e) {
+               System.err.println(e.awsErrorDetails().errorMessage());
+               System.exit(1);
+           }
+           return null;
+        }
+   
+       public PPEBoundingBoxFrame(DetectProtectiveEquipmentResponse ppeResult, BufferedImage bufImage, float requiredConfidence) throws Exception {
+           super();
+           scale = 1; // increase to shrink image size.
+   
+           result = ppeResult;
+           image = bufImage;
+   
+           confidence=requiredConfidence;
+       }
+   
+       // Draws the bounding box around the detected masks.
+       public void paintComponent(Graphics g) {
+           float left = 0;
+           float top = 0;
+           int height = image.getHeight(this);
+           int width = image.getWidth(this);
+           int offset=20;
+   
+           Graphics2D g2d = (Graphics2D) g; // Create a Java2D version of g.
+   
+           // Draw the image.
+           g2d.drawImage(image, 0, 0, width / scale, height / scale, this);
+           g2d.setColor(new Color(0, 212, 0));
+   
+           // Iterate through detected persons and display bounding boxes.
+           List<ProtectiveEquipmentPerson> persons = result.persons();
+   
+           for (ProtectiveEquipmentPerson person: persons) {
+               BoundingBox boxPerson = person.boundingBox();
+               left = width * boxPerson.left();
+               top = height * boxPerson.top();
+               Boolean foundMask=false;
+   
+               List<ProtectiveEquipmentBodyPart> bodyParts=person.bodyParts();
+   
+               if (!bodyParts.isEmpty())
+               {
+                   for (ProtectiveEquipmentBodyPart bodyPart: bodyParts) {
+   
+                       List<EquipmentDetection> equipmentDetections=bodyPart.equipmentDetections();
+   
+                       for (EquipmentDetection item: equipmentDetections) {
+   
+                           String myType = item.type().toString();
+                           if (myType.compareTo("FACE_COVER") ==0)
+                           {
+                               // Draw green bounding box depending on mask coverage.
+                               foundMask=true;
+                               BoundingBox box =item.boundingBox();
+                               left = width * box.left();
+                               top = height * box.top();
+                               Color maskColor=new Color( 0, 212, 0);
+   
+                               if (item.coversBodyPart().equals(false)) {
+                                   // red bounding box
+                                   maskColor=new Color( 255, 0, 0);
+                               }
+                               g2d.setColor(maskColor);
+                               g2d.drawRect(Math.round(left / scale), Math.round(top / scale),
+                                       Math.round((width * box.width()) / scale), Math.round((height * box.height())) / scale);
+   
+                               // Check confidence is > supplied confidence.
+                               if (item.coversBodyPart().confidence() < confidence)
+                               {
+                                   // Draw a yellow bounding box inside face mask bounding box
+                                   maskColor=new Color( 255, 255, 0);
+                                   g2d.setColor(maskColor);
+                                   g2d.drawRect(Math.round((left + offset) / scale),
+                                           Math.round((top + offset) / scale),
+                                           Math.round((width * box.width())- (offset * 2 ))/ scale,
+                                           Math.round((height * box.height()) -( offset* 2)) / scale);
+                               }
+                           }
+                       }
+                   }
+               }
+          }
+       }
+   ```
+
+------
 #### [ Python ]
+
+   In the function `main`, change the following: 
+   + The value of `photo` to path and file name of a local image file \(PNG or JPEG\)\.
+   + The value of `confidence` to the desired confidence level \(50\-100\)\.
 
    ```
    #Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.

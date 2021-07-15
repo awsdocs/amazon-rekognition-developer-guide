@@ -100,6 +100,44 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DetectLabelsS3.java)\.
+
+   ```
+       public static void getLabelsfromImage(RekognitionClient rekClient, String bucket, String image) {
+   
+           try {
+           S3Object s3Object = S3Object.builder()
+                   .bucket(bucket)
+                   .name(image)
+                   .build() ;
+   
+           Image myImage = Image.builder()
+                   .s3Object(s3Object)
+                   .build();
+   
+           DetectLabelsRequest detectLabelsRequest = DetectLabelsRequest.builder()
+                   .image(myImage)
+                   .maxLabels(10)
+                   .build();
+   
+           DetectLabelsResponse labelsResponse = rekClient.detectLabels(detectLabelsRequest);
+           List<Label> labels = labelsResponse.labels();
+   
+           System.out.println("Detected labels for the given photo");
+           for (Label label: labels) {
+               System.out.println(label.name() + ": " + label.confidence().toString());
+           }
+   
+       } catch (RekognitionException e) {
+           System.out.println(e.getMessage());
+           System.exit(1);
+       }
+     }
+   ```
+
+------
 #### [ Python ]
 
    This example displays the labels that were detected in the input image\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in Step 2\. 

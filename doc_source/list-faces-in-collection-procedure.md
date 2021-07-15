@@ -75,6 +75,35 @@ For more information, see [Managing faces in a collection](collections.md#collec
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/ListFacesInCollection.java)\.
+
+   ```
+       public static void listFacesCollection(RekognitionClient rekClient, String collectionId ) {
+   
+           try {
+               ListFacesRequest facesRequest = ListFacesRequest.builder()
+                   .collectionId(collectionId)
+                   .maxResults(10)
+                   .build();
+   
+               ListFacesResponse facesResponse = rekClient.listFaces(facesRequest);
+   
+               // For each face in the collection, print out the confidence level and face id value
+               List<Face> faces = facesResponse.faces();
+               for (Face face: faces) {
+                   System.out.println("Confidence level there is a face: "+face.confidence());
+                   System.out.println("The face Id value is "+face.faceId());
+               }
+   
+           } catch (RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+            }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This AWS CLI command displays the JSON output for the `list-faces` CLI operation\. Replace the value of `collection-id` with the name of the collection you want to list\.

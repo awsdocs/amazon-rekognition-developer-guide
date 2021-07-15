@@ -54,3 +54,7 @@ The ID is randomly generated on a per\-image analysis basis and is not consisten
 You can summarize face covers, head covers, hand covers, or a combination of your choice\. To specify the required types of PPE, see [Specifying summarization requirements](ppe-request-response.md#ppe-summarization-input-parameters)\. You can also specify a minimum confidence level \(50\-100\) that must be met for detections to be included in the summary\. 
 
  For more information about the summarization response from `DetectProtectiveEquipment`, see [Understanding the DetectProtectiveEquipment response](ppe-request-response.md#detect-protective-equipment-response)\.
+
+## Tutorial: Creating a AWS Lambda function that detects images with PPE<a name="ppe-tutorial-lambda"></a>
+
+You can create an AWS Lambda function that detects personal protective equipment \(PPE\) in images located in an Amazon S3 bucket\. See the [AWS Documentation SDK examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/javav2/usecases/creating_lambda_ppe) for this Java V2 tutorial\.

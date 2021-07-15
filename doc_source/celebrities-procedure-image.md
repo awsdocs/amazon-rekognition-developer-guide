@@ -98,6 +98,50 @@ To run this procedure, you need an image file that contains one or more celebrit
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/RecognizeCelebrities.java)\.
+
+   ```
+       public static void recognizeAllCelebrities(RekognitionClient rekClient, String sourceImage) {
+   
+           try {
+   
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+   
+               Image souImage = Image.builder()
+                   .bytes(sourceBytes)
+                   .build();
+   
+               RecognizeCelebritiesRequest request = RecognizeCelebritiesRequest.builder()
+                       .image(souImage)
+                       .build();
+   
+               RecognizeCelebritiesResponse result = rekClient.recognizeCelebrities(request) ;
+   
+               List<Celebrity> celebs=result.celebrityFaces();
+               System.out.println(celebs.size() + " celebrity(s) were recognized.\n");
+   
+               for (Celebrity celebrity: celebs) {
+                   System.out.println("Celebrity recognized: " + celebrity.name());
+                   System.out.println("Celebrity ID: " + celebrity.id());
+   
+                   System.out.println("Further information (if available):");
+                   for (String url: celebrity.urls()){
+                       System.out.println(url);
+                   }
+                   System.out.println();
+               }
+               System.out.println(result.unrecognizedFaces().size() + " face(s) were unrecognized.");
+   
+           } catch (RekognitionException | FileNotFoundException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This AWS CLI command displays the JSON output for the `recognize-celebrities` CLI operation\. 

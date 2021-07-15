@@ -127,6 +127,110 @@ The following procedure shows how to search a collection for faces that match th
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/VideoDetectFaces.java)\.
+
+   ```
+       public static void StartFaceDetection(RekognitionClient rekClient,
+                                             NotificationChannel channel,
+                                             String bucket,
+                                             String video) {
+   
+           try {
+               S3Object s3Obj = S3Object.builder()
+                       .bucket(bucket)
+                       .name(video)
+                       .build();
+   
+               Video vidOb = Video.builder()
+                       .s3Object(s3Obj)
+                       .build();
+   
+               StartFaceDetectionRequest  faceDetectionRequest = StartFaceDetectionRequest.builder()
+                       .jobTag("Faces")
+                       .faceAttributes(FaceAttributes.ALL)
+                       .notificationChannel(channel)
+                       .video(vidOb)
+                       .build();
+   
+               StartFaceDetectionResponse startLabelDetectionResult = rekClient.startFaceDetection(faceDetectionRequest);
+               startJobId=startLabelDetectionResult.jobId();
+   
+           } catch(RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+       }
+   
+       public static void GetFaceResults(RekognitionClient rekClient) {
+   
+           try {
+               String paginationToken=null;
+               GetFaceDetectionResponse faceDetectionResponse=null;
+               Boolean finished = false;
+               String status="";
+               int yy=0 ;
+   
+               do{
+                   if (faceDetectionResponse !=null)
+                       paginationToken = faceDetectionResponse.nextToken();
+   
+                   GetFaceDetectionRequest recognitionRequest = GetFaceDetectionRequest.builder()
+                           .jobId(startJobId)
+                           .nextToken(paginationToken)
+                          .maxResults(10)
+                           .build();
+   
+                   // Wait until the job succeeds
+                   while (!finished) {
+   
+                       faceDetectionResponse = rekClient.getFaceDetection(recognitionRequest);
+                       status = faceDetectionResponse.jobStatusAsString();
+   
+                       if (status.compareTo("SUCCEEDED") == 0)
+                           finished = true;
+                       else {
+                           System.out.println(yy + " status is: " + status);
+                           Thread.sleep(1000);
+                       }
+                       yy++;
+                   }
+   
+                   finished = false;
+   
+                   // Proceed when the job is done - otherwise VideoMetadata is null
+                   VideoMetadata videoMetaData=faceDetectionResponse.videoMetadata();
+   
+                   System.out.println("Format: " + videoMetaData.format());
+                   System.out.println("Codec: " + videoMetaData.codec());
+                   System.out.println("Duration: " + videoMetaData.durationMillis());
+                   System.out.println("FrameRate: " + videoMetaData.frameRate());
+                   System.out.println("Job");
+   
+                   // Show face information
+                   List<FaceDetection> faces= faceDetectionResponse.faces();
+   
+                   for (FaceDetection face: faces) {
+   
+                       String age = face.face().ageRange().toString();
+                       String beard = face.face().beard().toString();
+                       String eyeglasses = face.face().eyeglasses().toString();
+                       String eyesOpen = face.face().eyesOpen().toString();
+                       String mustache = face.face().mustache().toString();
+                       String smile = face.face().smile().toString();
+                   }
+   
+               } while (faceDetectionResponse !=null && faceDetectionResponse.nextToken() != null);
+   
+           } catch(RekognitionException | InterruptedException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+       }
+   ```
+
+------
 #### [ Python ]
 
    ```

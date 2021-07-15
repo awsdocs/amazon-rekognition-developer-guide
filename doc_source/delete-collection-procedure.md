@@ -57,6 +57,30 @@ For more information, see [Managing collections](collections.md#managing-collect
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DeleteCollection.java)\.
+
+   ```
+       public static void deleteMyCollection(RekognitionClient rekClient,String collectionId ) {
+   
+       try {
+   
+           DeleteCollectionRequest deleteCollectionRequest = DeleteCollectionRequest.builder()
+                   .collectionId(collectionId)
+                   .build();
+   
+           DeleteCollectionResponse deleteCollectionResponse = rekClient.deleteCollection(deleteCollectionRequest);
+           System.out.println(collectionId + ": " + deleteCollectionResponse.statusCode().toString());
+   
+       } catch(RekognitionException e) {
+           System.out.println(e.getMessage());
+           System.exit(1);
+       }
+     }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This AWS CLI command displays the JSON output for the `delete-collection` CLI operation\. Replace the value of `collection-id` with the name of the collection that you want to delete\.

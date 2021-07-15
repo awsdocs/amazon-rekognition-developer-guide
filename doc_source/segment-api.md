@@ -47,7 +47,7 @@ Use the `SegmentTypes` array input parameter to detect technical cue and/or shot
 + TECHNICAL\_CUE — identifies frame\-accurate timestamps for the start, end, and duration of technical cues \(end credits, color bars, and black bars\) detected in a video\. For example, you can use technical cues to find the start of the end credits\. For more information, see [Technical cues](segments.md#segment-technical-cue)\.
 + SHOT — Identifies the start, end, and duration of a shot\. For example, you can use shot detection to identify candidate shots for a final edit of a video\. For more information, see [Shot detection](segments.md#segment-shot-detection)\.
 
-### Filtering the analysis results<a name="w77aac45c27b7c11"></a>
+### Filtering the analysis results<a name="w68aac44c27b7c11"></a>
 
 You can use the `Filters` \([StartSegmentDetectionFilters](API_StartSegmentDetectionFilters.md)\) input parameter to specify the minimum detection confidence returned in the response\. Within `Filters`, use `ShotFilter` \([StartShotDetectionFilter](API_StartShotDetectionFilter.md)\) to filter detected shots\. Use `TechnicalCueFilter` \([StartTechnicalCueDetectionFilter](API_StartTechnicalCueDetectionFilter.md)\) to filter technical cues\. 
 

@@ -101,6 +101,104 @@ The following procedure shows how to track the path of people through a video st
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/VideoPersonDetection.java)\.
+
+   ```
+       public static void startPersonLabels(RekognitionClient rekClient,
+                                          NotificationChannel channel,
+                                          String bucket,
+                                          String video) {
+           try {
+               S3Object s3Obj = S3Object.builder()
+                       .bucket(bucket)
+                       .name(video)
+                       .build();
+   
+               Video vidOb = Video.builder()
+                       .s3Object(s3Obj)
+                       .build();
+   
+               StartPersonTrackingRequest personTrackingRequest = StartPersonTrackingRequest.builder()
+                       .jobTag("DetectingLabels")
+                       .video(vidOb)
+                       .notificationChannel(channel)
+                       .build();
+   
+               StartPersonTrackingResponse labelDetectionResponse = rekClient.startPersonTracking(personTrackingRequest);
+               startJobId = labelDetectionResponse.jobId();
+   
+           } catch(RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+       }
+   
+       public static void GetPersonDetectionResults(RekognitionClient rekClient) {
+   
+           try {
+               String paginationToken=null;
+               GetPersonTrackingResponse personTrackingResult=null;
+               Boolean finished = false;
+               String status="";
+               int yy=0 ;
+   
+               do{
+                   if (personTrackingResult !=null)
+                       paginationToken = personTrackingResult.nextToken();
+   
+                   GetPersonTrackingRequest recognitionRequest = GetPersonTrackingRequest.builder()
+                           .jobId(startJobId)
+                           .nextToken(paginationToken)
+                           .maxResults(10)
+                           .build();
+   
+                   // Wait until the job succeeds
+                   while (!finished) {
+   
+                       personTrackingResult = rekClient.getPersonTracking(recognitionRequest);
+                       status = personTrackingResult.jobStatusAsString();
+   
+                       if (status.compareTo("SUCCEEDED") == 0)
+                           finished = true;
+                       else {
+                           System.out.println(yy + " status is: " + status);
+                           Thread.sleep(1000);
+                       }
+                       yy++;
+                   }
+   
+                   finished = false;
+   
+                   // Proceed when the job is done - otherwise VideoMetadata is null
+                   VideoMetadata videoMetaData=personTrackingResult.videoMetadata();
+   
+                   System.out.println("Format: " + videoMetaData.format());
+                   System.out.println("Codec: " + videoMetaData.codec());
+                   System.out.println("Duration: " + videoMetaData.durationMillis());
+                   System.out.println("FrameRate: " + videoMetaData.frameRate());
+                   System.out.println("Job");
+   
+                   List<PersonDetection> detectedPersons= personTrackingResult.persons();
+                   for (PersonDetection detectedPerson: detectedPersons) {
+   
+                       long seconds=detectedPerson.timestamp()/1000;
+                       System.out.print("Sec: " + seconds + " ");
+                       System.out.println("Person Identifier: "  + detectedPerson.person().index());
+                       System.out.println();
+                   }
+   
+               } while (personTrackingResult !=null && personTrackingResult.nextToken() != null);
+   
+           } catch(RekognitionException | InterruptedException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+       }
+   ```
+
+------
 #### [ Python ]
 
    ```

@@ -12,6 +12,7 @@ Amazon Rekognition provides the following non\-storage API operations for images
 + [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md) 
 + [RecognizeCelebrities](API_RecognizeCelebrities.md) 
 + [DetectText](API_DetectText.md) 
++ [GetCelebrityInfo](API_GetCelebrityInfo.md) 
 
 Amazon Rekognition provides the following non\-storage API operations for videos:
 + [StartLabelDetection](API_StartLabelDetection.md) 
@@ -53,7 +54,7 @@ image-1     face-3     <boundingbox>, etc.
 ```
 In this index, the primary key is a combination of both the `ImageID` and `FaceID`\.  
 Then, you can use the information in the index to enhance the images when your application displays them from your local repository\. For example, you might add a bounding box around the face or highlight facial features\.  
- 
+ 
 
 ## Storage\-based API operations<a name="how-it-works-storage-based"></a>
 
@@ -66,6 +67,9 @@ Amazon Rekognition Image provides the following storage API operations:
 + [SearchFaces](API_SearchFaces.md) 
 + [DeleteFaces](API_DeleteFaces.md) 
 + [DescribeCollection](API_DescribeCollection.md) 
++ [DeleteCollection](API_DeleteCollection.md)
++ [ListCollections](API_ListCollections.md)
++ [CreateCollection](API_CreateCollection.md) 
 
 Amazon Rekognition Video provides the following storage API operations:
 + [StartFaceSearch](API_StartFaceSearch.md) 

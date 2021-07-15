@@ -22,7 +22,7 @@ Follow the steps to download and configure the AWS SDKs\.
 
    1. Choose **Create access key**\. Then choose **Download \.csv file** to save the access key ID and secret access key to a CSV file on your computer\. Store the file in a secure location\. You will not have access to the secret access key again after this dialog box closes\. After you have downloaded the CSV file, choose **Close**\. 
 
-1. If you have installed the AWS CLI, you can configure the credentials and region for most AWS SDKs by entering `aws configure` at the command prompt\. Otherwise, use the following instructions\.
+1. If you have installed the AWS CLI, you can [configure the credentials and region for most AWS SDKs by entering `aws configure` at the command prompt](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html)\. Otherwise, use the following instructions\.
 
 1. On your computer, navigate to your home directory, and create an `.aws` directory\. On Unix\-based systems, such as Linux or macOS, this is in the following location: 
 

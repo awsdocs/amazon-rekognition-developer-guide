@@ -60,6 +60,32 @@ You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DeleteFacesFromCollection.java)\.
+
+   ```
+       public static void deleteFacesCollection(RekognitionClient rekClient,
+                                                String collectionId,
+                                                String faceId) {
+   
+           try {
+               DeleteFacesRequest deleteFacesRequest = DeleteFacesRequest.builder()
+                   .collectionId(collectionId)
+                   .faceIds(faceId)
+                   .build();
+   
+               rekClient.deleteFaces(deleteFacesRequest);
+               System.out.println("The face was deleted from the collection");
+   
+           } catch(RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+       }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This AWS CLI command displays the JSON output for the `delete-faces` CLI operation\. Replace the value of `collection-id` with the name of the collection that contains the face you want to delete\. Replace the value of `face-ids` with an array of face IDs that you want to delete\.

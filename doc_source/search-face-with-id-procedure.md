@@ -73,6 +73,37 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    Run the example code\. Information about matching faces is displayed\.
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/SearchFaceMatchingIdCollection.java)\.
+
+   ```
+       public static void searchFacebyId(RekognitionClient rekClient,String collectionId, String faceId) {
+   
+           try {
+               SearchFacesRequest searchFacesRequest = SearchFacesRequest.builder()
+                       .collectionId(collectionId)
+                       .faceId(faceId)
+                       .faceMatchThreshold(70F)
+                       .maxFaces(2)
+                       .build();
+   
+               SearchFacesResponse imageResponse = rekClient.searchFaces(searchFacesRequest) ;
+   
+               // Display the results
+               System.out.println("Faces matching in the collection");
+               List<FaceMatch> faceImageMatches = imageResponse.faceMatches();
+               for (FaceMatch face: faceImageMatches) {
+                   System.out.println("The similarity level is  "+face.similarity());
+                   System.out.println();
+               }
+           } catch (RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This AWS CLI command displays the JSON output for the `search-faces` CLI operation\. Replace the value of `face-id` with the face identifier that you want to search for, and replace the value of `collection-id` with the collection you want to search in\.

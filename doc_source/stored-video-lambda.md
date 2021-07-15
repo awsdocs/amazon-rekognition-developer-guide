@@ -1,6 +1,9 @@
-# Tutorial: Creating an Amazon Rekognition Lambda function<a name="stored-video-lambda"></a>
+# Java V1 Tutorial: Creating an Amazon Rekognition Lambda function<a name="stored-video-lambda"></a>
 
 This tutorial shows how to get the results of a video analysis operation for label detection by using a Java Lambda function\. 
+
+**Note**  
+This tutorial uses the AWS SDK for Java 1\.x\. For a tutorial using Rekognition and the AWS SDK for Java version 2, see the [AWS Documentation SDK examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/javav2/usecases/video_analyzer_application)\.
 
 You can use Lambda functions with Amazon Rekognition Video operations\. For example, the following diagram shows a website that uses a Lambda function to automatically start analysis of a video when it's uploaded to an Amazon S3 bucket\. When the Lambda function is triggered, it calls [StartLabelDetection](API_StartLabelDetection.md) to start detecting labels in the uploaded video\. For information about using Lambda to process event notifications from an Amazon S3 bucket, see [Using AWS Lambda with Amazon S3 Events](https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html)\.
 

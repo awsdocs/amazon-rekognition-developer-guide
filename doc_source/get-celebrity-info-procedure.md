@@ -61,6 +61,34 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/CelebrityInfo.java)\.
+
+   ```
+       public static void getCelebrityInfo(RekognitionClient rekClient, String id ) {
+   
+          try {
+           GetCelebrityInfoRequest info = GetCelebrityInfoRequest.builder()
+                   .id(id)
+                   .build();
+   
+           GetCelebrityInfoResponse response = rekClient.getCelebrityInfo(info);
+   
+           // Display celebrity information
+           System.out.println("celebrity name: " + response.name());
+           System.out.println("Further information (if available):");
+           for (String url: response.urls()){
+               System.out.println(url);
+           }
+   
+          } catch (RekognitionException e) {
+              System.out.println(e.getMessage());
+              System.exit(1);
+          }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This AWS CLI command displays the JSON output for the `get-celebrity-info` CLI operation\. Replace `ID` with one of the celebrity IDs displayed in [Recognizing celebrities in an image](celebrities-procedure-image.md)\.

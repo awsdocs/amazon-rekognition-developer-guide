@@ -7,12 +7,12 @@ For information about providing suitable faces for indexing, see [Recommendation
 For each face, the `IndexFaces` operation persists the following information:
 + **Multidimensional facial features** – `IndexFaces` uses facial analysis to extract multidimensional information about the facial features and stores the information in the face collection\. You can't access this information directly\. However, Amazon Rekognition uses this information when it searches a face collection for face matches\.
 
-   
+   
 + **Metadata** – The metadata for each face includes a bounding box, confidence level \(that the bounding box contains a face\), IDs assigned by Amazon Rekognition \(face ID and image ID\), and an external image ID \(if you provided it\) in the request\. This information is returned to you in response to the `IndexFaces` API call\. For an example, see the `face` element in the following example response\.
 
   The service returns this metadata in response to the following API calls:
 
-   
+   
   +  `ListFaces` 
   + Search faces operations – The responses for [SearchFaces](API_SearchFaces.md) and [SearchFacesByImage](API_SearchFacesByImage.md) return the confidence in the match for each matching face, along with this metadata of the matched face\.
 
@@ -137,6 +137,58 @@ For more information, see [Managing faces in a collection](collections.md#collec
            }
        }
    }
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/AddFacesToCollection.java)\.
+
+   ```
+       public static void addToCollection(RekognitionClient rekClient, String collectionId, String sourceImage) {
+   
+           try {
+   
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+   
+               Image souImage = Image.builder()
+                       .bytes(sourceBytes)
+                       .build();
+   
+               IndexFacesRequest facesRequest = IndexFacesRequest.builder()
+                       .collectionId(collectionId)
+                       .image(souImage)
+                       .maxFaces(1)
+                       .qualityFilter(QualityFilter.AUTO)
+                       .detectionAttributes(Attribute.DEFAULT)
+                       .build();
+   
+               IndexFacesResponse facesResponse = rekClient.indexFaces(facesRequest);
+   
+               // Display the results
+               System.out.println("Results for the image");
+               System.out.println("\n Faces indexed:");
+               List<FaceRecord> faceRecords = facesResponse.faceRecords();
+               for (FaceRecord faceRecord : faceRecords) {
+                   System.out.println("  Face ID: " + faceRecord.face().faceId());
+                   System.out.println("  Location:" + faceRecord.faceDetail().boundingBox().toString());
+               }
+   
+               List<UnindexedFace> unindexedFaces = facesResponse.unindexedFaces();
+               System.out.println("Faces not indexed:");
+               for (UnindexedFace unindexedFace : unindexedFaces) {
+                   System.out.println("  Location:" + unindexedFace.faceDetail().boundingBox().toString());
+                   System.out.println("  Reasons:");
+                   for (Reason reason : unindexedFace.reasons()) {
+                       System.out.println("Reason:  " + reason);
+                   }
+               }
+   
+           } catch (RekognitionException | FileNotFoundException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
    ```
 
 ------

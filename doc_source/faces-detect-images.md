@@ -91,6 +91,46 @@ You can provide the input image as an image byte array \(base64\-encoded image b
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DetectFaces.java)\.
+
+   ```
+       public static void detectFacesinImage(RekognitionClient rekClient,String sourceImage ) {
+   
+           try {
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+   
+               // Create an Image object for the source image
+               Image souImage = Image.builder()
+                       .bytes(sourceBytes)
+                       .build();
+   
+               DetectFacesRequest facesRequest = DetectFacesRequest.builder()
+                       .attributes(Attribute.ALL)
+                       .image(souImage)
+                       .build();
+   
+               DetectFacesResponse facesResponse = rekClient.detectFaces(facesRequest);
+               List<FaceDetail> faceDetails = facesResponse.faceDetails();
+   
+               for (FaceDetail face : faceDetails) {
+                       AgeRange ageRange = face.ageRange();
+                       System.out.println("The detected face is estimated to be between "
+                               + ageRange.low().toString() + " and " + ageRange.high().toString()
+                               + " years old.");
+   
+                   System.out.println("There is a smile : "+face.smile().value().toString());
+               }
+   
+           } catch (RekognitionException | FileNotFoundException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This example displays the JSON output from the `detect-faces` AWS CLI operation\. Replace `file` with the name of an image file\. Replace `bucket` with the name of the Amazon S3 bucket that contains the image file\.
@@ -104,7 +144,7 @@ You can provide the input image as an image byte array \(base64\-encoded image b
 ------
 #### [ Python ]
 
-   This example displays the estimated age range for detected faces, and lists the JSON for all detected facial attributes\. Change the value of `photo` to the image file name\. Change the value of `bucket` to the Amazon S3 bucket where the image is stored\.
+   This example displays the estimated age range and other attributes for detected faces, and lists the JSON for all detected facial attributes\. Change the value of `photo` to the image file name\. Change the value of `bucket` to the Amazon S3 bucket where the image is stored\.
 
    ```
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -123,8 +163,16 @@ You can provide the input image as an image byte array \(base64\-encoded image b
        for faceDetail in response['FaceDetails']:
            print('The detected face is between ' + str(faceDetail['AgeRange']['Low']) 
                  + ' and ' + str(faceDetail['AgeRange']['High']) + ' years old')
+   
            print('Here are the other attributes:')
            print(json.dumps(faceDetail, indent=4, sort_keys=True))
+   
+   		# Access predictions for individual face details and print them
+           print("Gender: " + str(faceDetail['Gender']))
+           print("Smile: " + str(faceDetail['Smile']))
+           print("Eyeglasses: " + str(faceDetail['Eyeglasses']))
+           print("Emotions: " + str(faceDetail['Emotions'][0]))
+   
        return len(response['FaceDetails'])
    def main():
        photo='photo'
@@ -632,9 +680,5 @@ Note the following:
 + The `Pose` data describes the rotation of the face detected\. You can use the combination of the `BoundingBox` and `Pose` data to draw the bounding box around faces that your application displays\.
 + The `Quality` describes the brightness and the sharpness of the face\. You might find this useful to compare faces across images and find the best face\.
 + The preceding response shows all facial `landmarks` the service can detect, all facial attributes and emotions\. To get all of these in the response, you must specify the `attributes` parameter with value `ALL`\. By default, the `DetectFaces` API returns only the following five facial attributes: `BoundingBox`, `Confidence`, `Pose`, `Quality` and `landmarks`\. The default landmarks returned are: `eyeLeft`, `eyeRight`, `nose`, `mouthLeft`, and `mouthRight`\. 
-
-  
-+ The following illustration shows the relative location of the facial landmarks\(`Landmarks`\) on the face that are returned by the `DetectFaces` API operation\.  
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/landmarkface.png)
 
   

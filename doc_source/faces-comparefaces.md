@@ -111,6 +111,61 @@ CompareFaces uses machine learning algorithms, which are probabilistic\. A false
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/CompareFaces.java)\.
+
+   ```
+       public static void compareTwoFaces(RekognitionClient rekClient, Float similarityThreshold, String sourceImage, String targetImage) {
+   
+           try {
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               InputStream tarStream = new FileInputStream(new File(targetImage));
+   
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+               SdkBytes targetBytes = SdkBytes.fromInputStream(tarStream);
+   
+               // Create an Image object for the source image
+               Image souImage = Image.builder()
+                  .bytes(sourceBytes)
+                  .build();
+   
+               Image tarImage = Image.builder()
+                       .bytes(targetBytes)
+                       .build();
+   
+               CompareFacesRequest facesRequest = CompareFacesRequest.builder()
+                       .sourceImage(souImage)
+                       .targetImage(tarImage)
+                       .similarityThreshold(similarityThreshold)
+                       .build();
+   
+               // Compare the two images
+               CompareFacesResponse compareFacesResult = rekClient.compareFaces(facesRequest);
+               List<CompareFacesMatch> faceDetails = compareFacesResult.faceMatches();
+               for (CompareFacesMatch match: faceDetails){
+                   ComparedFace face= match.face();
+                   BoundingBox position = face.boundingBox();
+                   System.out.println("Face at " + position.left().toString()
+                           + " " + position.top()
+                           + " matches with " + face.confidence().toString()
+                           + "% confidence.");
+   
+               }
+               List<ComparedFace> uncompared = compareFacesResult.unmatchedFaces();
+   
+               System.out.println("There was " + uncompared.size()
+                       + " face(s) that did not match");
+               System.out.println("Source image rotation: " + compareFacesResult.sourceImageOrientationCorrection());
+               System.out.println("target image rotation: " + compareFacesResult.targetImageOrientationCorrection());
+   
+           } catch(RekognitionException | FileNotFoundException e) {
+               System.out.println("Failed to load source image " + sourceImage);
+               System.exit(1);
+           }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This example displays the JSON output from the `compare-faces` AWS CLI operation\. 

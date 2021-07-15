@@ -116,14 +116,14 @@ If an image's orientation is included in Exif metadata, Amazon Rekognition Image
 
 ## Example: Getting image orientation and bounding box coordinates for an image<a name="images-correcting-image-orientation-java"></a>
 
-The following example shows how to use the AWS SDK to get the estimated orientation of an image and to translate bounding box coordinates for celebrities detected by the `RecognizeCelebrities` operation\.
+The following examples show how to use the AWS SDK to get the estimated orientation of an image and to translate bounding box coordinates for celebrities detected by the `RecognizeCelebrities` operation\.
+
+------
+#### [ Java ]
 
 The example loads an image from the local file system, calls the `RecognizeCelebrities` operation, determines the height and width of the image, and calculates the bounding box coordinates of the face for the rotated image\. The example does not show how to process orientation information that is stored in Exif metadata\.
 
 In the function `main`, replace the value of `photo` with the name and path of an image that is stored locally in either \.png or \.jpg format\.
-
-------
-#### [ Java ]
 
 ```
 //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -266,7 +266,9 @@ public static void ShowBoundingBoxPositions(int imageHeight, int imageWidth, Bou
 ------
 #### [ Python ]
 
-This example uses the PIL/Pillow image library to get the image width and height\. For more information, see [Pillow](http://pillow.readthedocs.io/en/3.0.x/index.html#)\. This example preserves exif metadata which you might need elsewhere in your application\. If you choose to not save the exif metadata, the estimated orientation is returned from the call to `RecognizeCelebrities`\. 
+This example uses the PIL/Pillow image library to get the image width and height\. For more information, see [Pillow](https://pillow.readthedocs.io/en/stable/)\. This example preserves exif metadata which you might need elsewhere in your application\. If you choose to not save the exif metadata, the estimated orientation is returned from the call to `RecognizeCelebrities`\. 
+
+In the function `main`, replace the value of `photo` with the name and path of an image that is stored locally in either \.png or \.jpg format\.
 
 ```
 #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -359,6 +361,93 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
+
+------
+#### [ Java V2 ]
+
+This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/RotateImage.java)\.
+
+```
+    public static void recognizeAllCelebrities(RekognitionClient rekClient, String sourceImage) {
+
+        try {
+            BufferedImage image = null;
+            InputStream sourceStream = new FileInputStream(new File(sourceImage));
+            SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+
+            image = ImageIO.read(sourceBytes.asInputStream());
+            int height = image.getHeight();
+            int width = image.getWidth();
+
+            Image souImage = Image.builder()
+                    .bytes(sourceBytes)
+                    .build();
+
+            RecognizeCelebritiesRequest request = RecognizeCelebritiesRequest.builder()
+                    .image(souImage)
+                    .build();
+
+            RecognizeCelebritiesResponse result = rekClient.recognizeCelebrities(request) ;
+
+            List<Celebrity> celebs=result.celebrityFaces();
+            System.out.println(celebs.size() + " celebrity(s) were recognized.\n");
+
+            for (Celebrity celebrity: celebs) {
+                System.out.println("Celebrity recognized: " + celebrity.name());
+                System.out.println("Celebrity ID: " + celebrity.id());
+                ComparedFace  face = celebrity.face();
+                ShowBoundingBoxPositions(height,
+                        width,
+                        face.boundingBox(),
+                        result.orientationCorrectionAsString());
+            }
+
+        } catch (RekognitionException | FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void ShowBoundingBoxPositions(int imageHeight, int imageWidth, BoundingBox box, String rotation) {
+
+        float left = 0;
+        float top = 0;
+
+        if(rotation==null){
+            System.out.println("No estimated estimated orientation.");
+            return;
+        }
+        // Calculate face position based on the image orientation
+        switch (rotation) {
+            case "ROTATE_0":
+                left = imageWidth * box.left();
+                top = imageHeight * box.top();
+                break;
+            case "ROTATE_90":
+                left = imageHeight * (1 - (box.top() + box.height()));
+                top = imageWidth * box.left();
+                break;
+            case "ROTATE_180":
+                left = imageWidth - (imageWidth * (box.left() + box.width()));
+                top = imageHeight * (1 - (box.top() + box.height()));
+                break;
+            case "ROTATE_270":
+                left = imageHeight * box.top();
+                top = imageWidth * (1 - box.left() - box.width());
+                break;
+            default:
+                System.out.println("No estimated orientation information. Check Exif data.");
+                return;
+        }
+
+        System.out.println("Left: " + String.valueOf((int) left));
+        System.out.println("Top: " + String.valueOf((int) top));
+        System.out.println("Face Width: " + String.valueOf((int)(imageWidth * box.width())));
+        System.out.println("Face Height: " + String.valueOf((int)(imageHeight * box.height())));
+    }
 ```
 
 ------

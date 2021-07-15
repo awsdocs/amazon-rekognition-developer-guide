@@ -11,7 +11,8 @@ This section covers the types of analysis that Amazon Rekognition Video can perf
 + [Configuring Amazon Rekognition Video](api-video-roles.md)
 + [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)
 + [Analyzing a video with the AWS Command Line Interface](video-cli-commands.md)
-+ [Tutorial: Creating an Amazon Rekognition Lambda function](stored-video-lambda.md)
++ [Tutorial: Creating AWS video analyzer applications](stored-video-tutorial-v2.md)
++ [Java V1 Tutorial: Creating an Amazon Rekognition Lambda function](stored-video-lambda.md)
 + [Reference: Video analysis results notification](video-notification-payload.md)
 + [Troubleshooting Amazon Rekognition Video](video-troubleshooting.md)
 

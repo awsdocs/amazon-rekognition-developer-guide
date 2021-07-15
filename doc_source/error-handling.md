@@ -56,12 +56,12 @@ OK to retry? No
 
 **ImageTooLargeException **  
 Message: *Image size is too large\.*  
-The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.  
+The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.  
 OK to retry? No
 
 **InvalidImageFormatException **  
 Message: *Request has invalid image format\.*  
-The provided image format isn't supported\. Use a supported image format \(\.JPEG and \.PNG\)\. For more information, see [Limits in Amazon Rekognition](limits.md)\.  
+The provided image format isn't supported\. Use a supported image format \(\.JPEG and \.PNG\)\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.  
 OK to retry? No
 
 **InvalidPaginationTokenException **  
@@ -95,7 +95,7 @@ Messages:
 + *Provisioned Rate exceeded\.*
 + *S3 download limit exceeded\.*
 The number of requests exceeded your throughput limit\. For more information, see [Amazon Rekognition Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_rekognition)\.  
-To request a limit increase, contact [AWS Support](https://aws.amazon.com/support)\.  
+To request a limit increase, follow the instructions at [Create a case to change TPS quotas](limits.md#quotas-create-case)\.  
 OK to retry? Yes
 
 **ResourceAlreadyExistsException **  
@@ -124,7 +124,7 @@ OK to retry? Yes
 
 **VideoTooLargeException **  
 Message: *Video size in bytes: <Video Size> is more than the maximum limit of: <Max Size> bytes\.*  
-The file size or duration of the supplied media is too large\. For more information, see [Limits in Amazon Rekognition](limits.md)\.  
+The file size or duration of the supplied media is too large\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.  
 OK to retry? No
 
 ### HTTP status code 5xx<a name="error-handling.MessagesAndCodes.http5xx"></a>

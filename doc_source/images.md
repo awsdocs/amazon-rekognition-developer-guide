@@ -20,3 +20,4 @@ In this section, you use the Amazon Rekognition Image API operations to analyze 
 + [Analyzing an image loaded from a local file system](images-bytes.md)
 + [Displaying bounding boxes](images-displaying-bounding-boxes.md)
 + [Getting image orientation and bounding box coordinates](images-orientation.md)
++ [Tutorial: Using Amazon Rekognition and Lambda to tag assets in an Amazon S3 bucket](images-lambda-s3-tutorial.md)

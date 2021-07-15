@@ -67,6 +67,34 @@ You can use the [DescribeCollection](API_DescribeCollection.md) operation to get
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DescribeCollection.java)\.
+
+   ```
+       public static void describeColl(RekognitionClient rekClient, String collectionName) {
+   
+       try {
+   
+           DescribeCollectionRequest describeCollectionRequest = DescribeCollectionRequest.builder()
+                .collectionId(collectionName)
+                .build();
+   
+           DescribeCollectionResponse describeCollectionResponse = rekClient.describeCollection(describeCollectionRequest);
+   
+            System.out.println("Collection Arn : " +
+                describeCollectionResponse.collectionARN());
+            System.out.println("Created : " +
+                describeCollectionResponse.creationTimestamp().toString());
+   
+       } catch(RekognitionException e) {
+           System.out.println(e.getMessage());
+           System.exit(1);
+       }
+      }
+   ```
+
+------
 #### [ AWS CLI ]
 
    This AWS CLI command displays the JSON output for the `describe-collection` CLI operation\. Change the value of `collection-id` to the ID of the desired collection\.

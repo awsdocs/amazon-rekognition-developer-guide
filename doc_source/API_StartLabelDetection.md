@@ -57,7 +57,7 @@ Valid Range: Minimum value of 0\. Maximum value of 100\.
 Required: No
 
  ** [NotificationChannel](#API_StartLabelDetection_RequestSyntax) **   <a name="rekognition-StartLabelDetection-request-NotificationChannel"></a>
-The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the completion status of the label detection operation to\.   
+The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the completion status of the label detection operation to\. The Amazon SNS topic must have a topic name that begins with *AmazonRekognition* if you are using the AmazonRekognitionServiceRole permissions policy\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
@@ -131,7 +131,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartLabelDetection) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartLabelDetection) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartLabelDetection) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartLabelDetection) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartLabelDetection) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartLabelDetection) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartLabelDetection) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartLabelDetection) 

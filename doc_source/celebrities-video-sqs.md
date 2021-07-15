@@ -103,6 +103,107 @@ This procedure expands on the code in [Analyzing a video stored in an Amazon S3 
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/VideoCelebrityDetection.java)\.
+
+   ```
+       public static  void StartCelebrityDetection(RekognitionClient rekClient,
+                                                   NotificationChannel channel,
+                                                   String bucket,
+                                                   String video) {
+           try {
+               S3Object s3Obj = S3Object.builder()
+                       .bucket(bucket)
+                       .name(video)
+                       .build();
+   
+               Video vidOb = Video.builder()
+                       .s3Object(s3Obj)
+                       .build();
+   
+               StartCelebrityRecognitionRequest recognitionRequest = StartCelebrityRecognitionRequest.builder()
+                       .jobTag("Celebrities")
+                       .notificationChannel(channel)
+                       .video(vidOb)
+                       .build();
+   
+               StartCelebrityRecognitionResponse startCelebrityRecognitionResult = rekClient.startCelebrityRecognition(recognitionRequest);
+               startJobId = startCelebrityRecognitionResult.jobId();
+   
+   
+           } catch(RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+       }
+   
+       public static void GetCelebrityDetectionResults(RekognitionClient rekClient) {
+   
+           try {
+               String paginationToken=null;
+               GetCelebrityRecognitionResponse recognitionResponse = null;
+               Boolean finished = false;
+               String status="";
+               int yy=0 ;
+   
+               do{
+                   if (recognitionResponse !=null)
+                       paginationToken = recognitionResponse.nextToken();
+   
+                   GetCelebrityRecognitionRequest recognitionRequest = GetCelebrityRecognitionRequest.builder()
+                               .jobId(startJobId)
+                               .nextToken(paginationToken)
+                               .sortBy(CelebrityRecognitionSortBy.TIMESTAMP)
+                               .maxResults(10)
+                               .build();
+   
+                   // Wait until the job succeeds
+                   while (!finished) {
+   
+                       recognitionResponse = rekClient.getCelebrityRecognition(recognitionRequest);
+                       status = recognitionResponse.jobStatusAsString();
+   
+                       if (status.compareTo("SUCCEEDED") == 0)
+                           finished = true;
+                       else {
+                           System.out.println(yy + " status is: " + status);
+                           Thread.sleep(1000);
+                       }
+                       yy++;
+                   }
+   
+                   finished = false;
+   
+                   // Proceed when the job is done - otherwise VideoMetadata is null
+                   VideoMetadata videoMetaData=recognitionResponse.videoMetadata();
+   
+                   System.out.println("Format: " + videoMetaData.format());
+                   System.out.println("Codec: " + videoMetaData.codec());
+                   System.out.println("Duration: " + videoMetaData.durationMillis());
+                   System.out.println("FrameRate: " + videoMetaData.frameRate());
+                   System.out.println("Job");
+   
+                   List<CelebrityRecognition> celebs= recognitionResponse.celebrities();
+                   for (CelebrityRecognition celeb: celebs) {
+                       long seconds=celeb.timestamp()/1000;
+                       System.out.print("Sec: " + Long.toString(seconds) + " ");
+                       CelebrityDetail details=celeb.celebrity();
+                       System.out.println("Name: " + details.name());
+                       System.out.println("Id: " + details.id());
+                       System.out.println();
+                   }
+   
+               } while (recognitionResponse !=null && recognitionResponse.nextToken() != null);
+   
+           } catch(RekognitionException | InterruptedException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+       }
+     }
+   ```
+
+------
 #### [ Python ]
 
    ```

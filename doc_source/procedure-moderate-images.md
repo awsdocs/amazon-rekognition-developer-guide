@@ -1,6 +1,6 @@
 # Detecting inappropriate images<a name="procedure-moderate-images"></a>
 
-You can use the [DetectModerationLabels](API_DetectModerationLabels.md) operation to determine if an image contains inappropriate or offensive content\. 
+You can use the [DetectModerationLabels](API_DetectModerationLabels.md) operation to determine if an image contains inappropriate or offensive content\. For a list of moderation labels in Amazon Rekognition, see [Using the image and video moderation APIs](https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html#moderation-api)\.
 
 
 
@@ -79,6 +79,45 @@ To run these procedures, you need to have the AWS CLI or the appropriate AWS SDK
           }
        }
    }
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DetectModerationLabels.java)\.
+
+   ```
+       public static void detectModLabels(RekognitionClient rekClient, String sourceImage) {
+   
+       try {
+           InputStream sourceStream = new FileInputStream(new File(sourceImage));
+           SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+   
+           Image souImage = Image.builder()
+                   .bytes(sourceBytes)
+                   .build();
+   
+           DetectModerationLabelsRequest moderationLabelsRequest = DetectModerationLabelsRequest.builder()
+                   .image(souImage)
+                   .minConfidence(60F)
+                   .build();
+   
+           DetectModerationLabelsResponse moderationLabelsResponse = rekClient.detectModerationLabels(moderationLabelsRequest);
+   
+           // Display the results
+           List<ModerationLabel> labels = moderationLabelsResponse.moderationLabels();
+           System.out.println("Detected labels for image");
+   
+           for (ModerationLabel label : labels) {
+               System.out.println("Label: " + label.name()
+                       + "\n Confidence: " + label.confidence().toString() + "%"
+                       + "\n Parent:" + label.parentName());
+           }
+   
+       } catch (RekognitionException | FileNotFoundException e) {
+           e.printStackTrace();
+           System.exit(1);
+       }
    ```
 
 ------

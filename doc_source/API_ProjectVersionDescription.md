@@ -20,6 +20,13 @@ The training results\. `EvaluationResult` is only returned if training is succes
 Type: [EvaluationResult](API_EvaluationResult.md) object  
 Required: No
 
+ **KmsKeyId**   <a name="rekognition-Type-ProjectVersionDescription-KmsKeyId"></a>
+The identifer for the AWS Key Management Service \(AWS KMS\) customer master key that was used to encrypt the model during training\.   
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 2048\.  
+Pattern: `^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$`   
+Required: No
+
  **ManifestSummary**   <a name="rekognition-Type-ProjectVersionDescription-ManifestSummary"></a>
 The location of the summary manifest\. The summary manifest provides aggregate data validation results for the training and test datasets\.  
 Type: [GroundTruthManifest](API_GroundTruthManifest.md) object  
@@ -74,5 +81,5 @@ Required: No
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/ProjectVersionDescription) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/ProjectVersionDescription) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/ProjectVersionDescription) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/ProjectVersionDescription) 
 +  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/ProjectVersionDescription) 

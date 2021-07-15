@@ -97,7 +97,7 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
 ------
 #### [ Python ]
 
-   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_labels](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) operation\. Change the value of `imageFile` to the path and file name of an image file \(\.jpg or \.png format\)\. 
+   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_labels](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\. 
 
    ```
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -291,6 +291,42 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
          puts "------------"
          puts ""
        end
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DetectLabels.java)\.
+
+   ```
+       public static void detectImageLabels(RekognitionClient rekClient, String sourceImage) {
+   
+           try {
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+   
+               // Create an Image object for the source image
+               Image souImage = Image.builder()
+                       .bytes(sourceBytes)
+                       .build();
+   
+               DetectLabelsRequest detectLabelsRequest = DetectLabelsRequest.builder()
+                       .image(souImage)
+                       .maxLabels(10)
+                       .build();
+   
+               DetectLabelsResponse labelsResponse = rekClient.detectLabels(detectLabelsRequest);
+               List<Label> labels = labelsResponse.labels();
+   
+               System.out.println("Detected labels for the given photo");
+               for (Label label: labels) {
+                   System.out.println(label.name() + ": " + label.confidence().toString());
+               }
+   
+           } catch (RekognitionException | FileNotFoundException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
    ```
 
 ------

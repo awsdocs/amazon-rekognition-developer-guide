@@ -34,6 +34,7 @@ The following actions are supported:
 +  [ListCollections](API_ListCollections.md) 
 +  [ListFaces](API_ListFaces.md) 
 +  [ListStreamProcessors](API_ListStreamProcessors.md) 
++  [ListTagsForResource](API_ListTagsForResource.md) 
 +  [RecognizeCelebrities](API_RecognizeCelebrities.md) 
 +  [SearchFaces](API_SearchFaces.md) 
 +  [SearchFacesByImage](API_SearchFacesByImage.md) 
@@ -49,3 +50,5 @@ The following actions are supported:
 +  [StartTextDetection](API_StartTextDetection.md) 
 +  [StopProjectVersion](API_StopProjectVersion.md) 
 +  [StopStreamProcessor](API_StopStreamProcessor.md) 
++  [TagResource](API_TagResource.md) 
++  [UntagResource](API_UntagResource.md) 

@@ -1,11 +1,14 @@
 # Document history for Amazon Rekognition<a name="document-history"></a>
 
 The following table describes important changes in each release of the *Amazon Rekognition Developer Guide*\. For notification about updates to this documentation, you can subscribe to an RSS feed\. 
-+ **Latest documentation update:** July 20th, 2020
++ **Latest documentation update:** May 21st, 2021
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Amazon Rekognition DetectText can detect up to 100 words in an image](#document-history) | You can use the Amazon Rekognition `DetectText` operation to detect up to 100 words in an image\. | May 21, 2021 | 
+| [Amazon Rekognition now supports tagging](#document-history) | You can now use tags to identify, organize, search for, and filter Amazon Rekognition collections, stream processors, and Custom Labels models\. | March 25, 2021 | 
 | [Amazon Rekognition can now detect personal protect equipment](#document-history) | Amazon Rekognition can now detect hand covers, face covers, and head covers on persons in an image\. | October 15, 2020 | 
+| [Amazon Rekognition has new content moderation categories](#document-history) | Amazon Rekognition content moderation categories now include 6 new categories: Drugs, Tobacco, Alcohol, Gambling, Rude Gestures, and Hate Symbols\. | October 12, 2020 | 
 | [New tutorial for displaying Amazon Rekognition Video results from Kinesis Video Streams locally](#document-history) | You can display the output of Amazon Rekognition Video from a streaming video in Kinesis Video Streams in a local video feed\.  | July 20, 2020 | 
 | [New Amazon Rekognition tutorial for using Gstreamer](#document-history) | Using Gstreamer, you can ingest a livestream video from a device camera source to Amazon Rekognition Video through Kinesis Video Streams\.  | July 17, 2020 | 
 | [Amazon Rekognition now supports segmentation of stored videos](#document-history) | With the asynchronous Amazon Rekognition Video segmentation API you can detect black frames, color bars, end credits, and shots in stored videos\.  | June 22, 2020 | 

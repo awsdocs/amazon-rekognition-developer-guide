@@ -1,10 +1,10 @@
 # StartContentModeration<a name="API_StartContentModeration"></a>
 
- Starts asynchronous detection of unsafe content in a stored video\.
+ Starts asynchronous detection of inappropriate, unwanted, or offensive content in a stored video\. For a list of moderation labels in Amazon Rekognition, see [Using the image and video moderation APIs](https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html#moderation-api)\.
 
-Amazon Rekognition Video can moderate content in a video stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartContentModeration` returns a job identifier \(`JobId`\) which you use to get the results of the analysis\. When unsafe content analysis is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\.
+Amazon Rekognition Video can moderate content in a video stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartContentModeration` returns a job identifier \(`JobId`\) which you use to get the results of the analysis\. When content analysis is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\.
 
-To get the results of the unsafe content analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetContentModeration](API_GetContentModeration.md) and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. 
+To get the results of the content analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetContentModeration](API_GetContentModeration.md) and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. 
 
 For more information, see [Content moderation](moderation.md)\.
 
@@ -54,12 +54,12 @@ Valid Range: Minimum value of 0\. Maximum value of 100\.
 Required: No
 
  ** [NotificationChannel](#API_StartContentModeration_RequestSyntax) **   <a name="rekognition-StartContentModeration-request-NotificationChannel"></a>
-The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish the completion status of the unsafe content analysis to\.  
+The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish the completion status of the content analysis to\. The Amazon SNS topic must have a topic name that begins with *AmazonRekognition* if you are using the AmazonRekognitionServiceRole permissions policy to access the topic\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
  ** [Video](#API_StartContentModeration_RequestSyntax) **   <a name="rekognition-StartContentModeration-request-Video"></a>
-The video in which you want to detect unsafe content\. The video must be stored in an Amazon S3 bucket\.  
+The video in which you want to detect inappropriate, unwanted, or offensive content\. The video must be stored in an Amazon S3 bucket\.  
 Type: [Video](API_Video.md) object  
 Required: Yes
 
@@ -78,7 +78,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [JobId](#API_StartContentModeration_ResponseSyntax) **   <a name="rekognition-StartContentModeration-response-JobId"></a>
-The identifier for the unsafe content analysis job\. Use `JobId` to identify the job in a subsequent call to `GetContentModeration`\.  
+The identifier for the content analysis job\. Use `JobId` to identify the job in a subsequent call to `GetContentModeration`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$` 
@@ -128,7 +128,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartContentModeration) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartContentModeration) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartContentModeration) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartContentModeration) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartContentModeration) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartContentModeration) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartContentModeration) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartContentModeration) 

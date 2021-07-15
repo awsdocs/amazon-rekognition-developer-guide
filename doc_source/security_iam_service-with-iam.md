@@ -101,7 +101,7 @@ To access images stored in an Amazon S3 bucket, you must have permission to acce
             "Effect": "Allow",
             "Action": "s3:GetObject",
             "Resource": [
-                "arn:aws:s3:::Tests3bucket"
+                "arn:aws:s3:::Tests3bucket/*"
             ]
         }
     ]
@@ -121,7 +121,7 @@ To use an S3 bucket with versioning enabled, add the `s3:GetObjectVersion` actio
                 "s3:GetObjectVersion"
             ],
             "Resource": [
-                "arn:aws:s3:::Tests3bucket"
+                "arn:aws:s3:::Tests3bucket/*"
             ]
         }
     ]
