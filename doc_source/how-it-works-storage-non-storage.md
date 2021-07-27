@@ -54,7 +54,7 @@ image-1     face-3     <boundingbox>, etc.
 ```
 In this index, the primary key is a combination of both the `ImageID` and `FaceID`\.  
 Then, you can use the information in the index to enhance the images when your application displays them from your local repository\. For example, you might add a bounding box around the face or highlight facial features\.  
- 
+ 
 
 ## Storage\-based API operations<a name="how-it-works-storage-based"></a>
 

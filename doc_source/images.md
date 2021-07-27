@@ -15,7 +15,7 @@ Amazon Rekognition Image can also store facial metadata in collections for later
 In this section, you use the Amazon Rekognition Image API operations to analyze images stored in an Amazon S3 bucket and image bytes loaded from the local file system\. This section also covers getting image orientation information from a \.jpg image\. 
 
 **Topics**
-+ [Images](images-information.md)
++ [Image specifications](images-information.md)
 + [Analyzing images stored in an Amazon S3 bucket](images-s3.md)
 + [Analyzing an image loaded from a local file system](images-bytes.md)
 + [Displaying bounding boxes](images-displaying-bounding-boxes.md)

@@ -4,7 +4,7 @@ Amazon Rekognition Image operations can analyze images that are supplied as imag
 
 These topics provide examples of supplying image bytes to Amazon Rekognition Image API operations by using a file loaded from a local file system\. You pass image bytes to an Amazon Rekognition API operation by using the [Image](API_Image.md) input parameter\. Within `Image`, you specify the `Bytes` property to pass base64\-encoded image bytes\.
 
-Image bytes passed to an Amazon Rekognition API operation by using the `Bytes` input parameter must be base64 encoded\. The AWS SDKs that these examples use automatically base64\-encode images\. You don't need to encode image bytes before calling an Amazon Rekognition API operation\. For more information, see [Images](images-information.md)\. 
+Image bytes passed to an Amazon Rekognition API operation by using the `Bytes` input parameter must be base64 encoded\. The AWS SDKs that these examples use automatically base64\-encode images\. You don't need to encode image bytes before calling an Amazon Rekognition API operation\. For more information, see [Image specifications](images-information.md)\. 
 
 In this example JSON request for `DetectLabels`, the source image bytes are passed in the `Bytes` input parameter\. 
 
@@ -35,7 +35,7 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
 ------
 #### [ Java ]
 
-   The following Java example shows how to load an image from the local file system and detect labels by using the [detectLabels](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
+   The following Java example shows how to load an image from the local file system and detect labels by using the [detectLabels](https://docs.aws.amazon.com/sdk-for-java/latest/reference/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
 
    ```
    //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.

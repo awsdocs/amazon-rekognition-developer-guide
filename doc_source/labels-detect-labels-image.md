@@ -14,7 +14,7 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
 
 1. Upload an image that contains one or more objects—such as trees, houses, and boat—to your S3 bucket\. The image must be in *\.jpg* or *\.png* format\.
 
-   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
+   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 1. Use the following examples to call the `DetectLabels` operation\.
 
@@ -261,15 +261,15 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
 
    This example displays a list of labels that were detected in the input image\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in Step 2\. 
 
+   If you are using TypeScript definitions, you may need to use `import AWS from 'aws-sdk'` instead of `const AWS = require('aws-sdk')`, in order to run the program with Node\.js\. You can consult the [AWS SDK for Javascript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/) for more details\. Depending on how you have your configurations set up, you also may need to specify your region with `AWS.config.update({region:region});`\.
+
    ```
    //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
    //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    
-   // Load the SDK and UUID
+   // Load the SDK
    var AWS = require('aws-sdk');
-   var uuid = require('node-uuid');
-   
    
    const bucket = 'bucket' // the bucketname without s3://
    const photo  = 'photo' // the name of file
@@ -291,7 +291,7 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    }
    client.detectLabels(params, function(err, response) {
      if (err) {
-       console.log(err, err.stack); // an error occurred
+       console.log(err, err.stack); // if an error occurred
      } else {
        console.log(`Detected labels for: ${photo}`)
        response.Labels.forEach(label => {

@@ -7,12 +7,12 @@ For information about providing suitable faces for indexing, see [Recommendation
 For each face, the `IndexFaces` operation persists the following information:
 + **Multidimensional facial features** – `IndexFaces` uses facial analysis to extract multidimensional information about the facial features and stores the information in the face collection\. You can't access this information directly\. However, Amazon Rekognition uses this information when it searches a face collection for face matches\.
 
-   
+   
 + **Metadata** – The metadata for each face includes a bounding box, confidence level \(that the bounding box contains a face\), IDs assigned by Amazon Rekognition \(face ID and image ID\), and an external image ID \(if you provided it\) in the request\. This information is returned to you in response to the `IndexFaces` API call\. For an example, see the `face` element in the following example response\.
 
   The service returns this metadata in response to the following API calls:
 
-   
+   
   +  `ListFaces` 
   + Search faces operations – The responses for [SearchFaces](API_SearchFaces.md) and [SearchFacesByImage](API_SearchFacesByImage.md) return the confidence in the match for each matching face, along with this metadata of the matched face\.
 

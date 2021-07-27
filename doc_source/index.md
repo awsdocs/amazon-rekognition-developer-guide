@@ -31,7 +31,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Exercise 4: See aggregated metrics (console)](aggregated-metrics.md)
 + [Programming the Amazon Rekognition API](programming.md)
    + [Working with images](images.md)
-      + [Images](images-information.md)
+      + [Image specifications](images-information.md)
       + [Analyzing images stored in an Amazon S3 bucket](images-s3.md)
       + [Analyzing an image loaded from a local file system](images-bytes.md)
          + [Using JavaScript](image-bytes-javascript.md)
