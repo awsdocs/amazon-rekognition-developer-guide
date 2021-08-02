@@ -17,7 +17,7 @@ Valid Range: Minimum value of 0\. Maximum value of 1\.
 Required: No
 
  **MinConfidence**   <a name="rekognition-Type-DetectionFilter-MinConfidence"></a>
-Sets confidence of word detection\. Words with detection confidence below this will be excluded from the result\. Values should be between 0\.5 and 1 as Text in Video will not return any result below 0\.5\.  
+Sets the confidence of word detection\. Words with detection confidence below this will be excluded from the result\. Values should be between 50 and 100 as Text in Video will not return any result below 50\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
@@ -27,5 +27,5 @@ Required: No
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DetectionFilter) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DetectionFilter) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DetectionFilter) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DetectionFilter) 
 +  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/DetectionFilter) 

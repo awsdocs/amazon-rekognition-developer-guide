@@ -1,16 +1,18 @@
-# Listing Collections<a name="list-collection-procedure"></a>
+# Listing collections<a name="list-collection-procedure"></a>
 
 You can use the [ListCollections](API_ListCollections.md) operation to list the collections in the region that you are using\.
 
-For more information, see [Managing Collections](collections.md#managing-collections)\. 
+For more information, see [Managing collections](collections.md#managing-collections)\. 
+
+
 
 **To list collections \(SDK\)**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `ListCollections` operation\.
 
@@ -61,6 +63,32 @@ For more information, see [Managing Collections](collections.md#managing-collect
         
       } 
    }
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/ListCollections.java)\.
+
+   ```
+       public static void listAllCollections(RekognitionClient rekClient) {
+   
+           try {
+   
+               ListCollectionsRequest listCollectionsRequest = ListCollectionsRequest.builder()
+                       .maxResults(10)
+                       .build();
+   
+               ListCollectionsResponse response = rekClient.listCollections(listCollectionsRequest);
+               List<String> collectionIds = response.collectionIds();
+               for (String resultId : collectionIds) {
+                   System.out.println(resultId);
+               }
+   
+           } catch (RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
    ```
 
 ------
@@ -164,7 +192,7 @@ For more information, see [Managing Collections](collections.md#managing-collect
 
 ------
 
-## ListCollections Operation Request<a name="listcollections-request"></a>
+## ListCollections operation request<a name="listcollections-request"></a>
 
 The input to `ListCollections` is the maximum number of collections to be returned\. 
 
@@ -183,9 +211,9 @@ If the response has more faces than requested by `MaxResults`, a token is return
 }
 ```
 
-## ListCollections Operation Response<a name="listcollections-operation-response"></a>
+## ListCollections operation response<a name="listcollections-operation-response"></a>
 
-Amazon Rekognition returns an array of collections \(`CollectionIds`\)\. A separate array \(`FaceModelversions`\) provides the version of the face model used to analyze faces in each collection\. For example, in the following JSON response, the collection `MyCollection` analyzes faces by using version 2\.0 of the face model\. The collection `AnotherCollection` uses version 3\.0 of the face model\. For more information, see [Model Versioning](face-detection-model.md)\.
+Amazon Rekognition returns an array of collections \(`CollectionIds`\)\. A separate array \(`FaceModelversions`\) provides the version of the face model used to analyze faces in each collection\. For example, in the following JSON response, the collection `MyCollection` analyzes faces by using version 2\.0 of the face model\. The collection `AnotherCollection` uses version 3\.0 of the face model\. For more information, see [Model versioning](face-detection-model.md)\.
 
 `NextToken` is the token that's used to get the next set of results, in a subsequent call to `ListCollections`\. 
 

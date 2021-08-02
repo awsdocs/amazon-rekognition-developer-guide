@@ -1,4 +1,4 @@
-# What Is Amazon Rekognition?<a name="what-is"></a>
+# What is Amazon Rekognition?<a name="what-is"></a>
 
 Amazon Rekognition makes it easy to add image and video analysis to your applications\. You just provide an image or video to the Amazon Rekognition API, and the service can identify objects, people, text, scenes, and activities\. It can detect any inappropriate content as well\. Amazon Rekognition also provides highly accurate facial analysis, face comparison, and face search capabilities\. You can detect, analyze, and compare faces for a wide variety of use cases, including user verification, cataloging, people counting, and public safety\.
 
@@ -9,6 +9,11 @@ Common use cases for using Amazon Rekognition include the following:
 
    
 + **Face\-based user verification** – Amazon Rekognition enables your applications to confirm user identities by comparing their live image with a reference image\.
+
+   
++ **Detection of Personal Protective Equipment**
+
+  Amazon Rekognition detects Personal Protective Equipment \(PPE\) such as face covers, head covers, and hand covers on persons in images\. You can use PPE detection where safety is the highest priority\. For example, industries such as construction, manufacturing, healthcare, food processing, logistics, and retail\. With PPE detection, you can automatically detect if a person is wearing a specific type of PPE\. You can use the detection results to send a notification or to identify places where safety warnings or training practices can be improved\. 
 
    
 + **Sentiment and demographic analysis** – Amazon Rekognition interprets emotional expressions such as happy, sad, or surprise, and demographic information such as gender from facial images\. Amazon Rekognition can analyze images, and send the emotion and demographic attributes to Amazon Redshift for periodic reporting on trends such as in store locations and similar scenarios\. Note that a prediction of an emotional expression is based on the physical appearance of a person's face only\. It is not indicative of a person’s internal emotional state, and Rekognition should not be used to make such a determination\.
@@ -47,20 +52,20 @@ Some of the benefits of using Amazon Rekognition include:
    
 + **Low cost** – With Amazon Rekognition, you pay for the images and videos that you analyze, and the face metadata that you store\. There are no minimum fees or upfront commitments\. You can get started for free, and save more as you grow with the Amazon Rekognition tiered pricing model\. 
 
-## Amazon Rekognition and HIPAA Eligibility<a name="hipaa"></a>
+## Amazon Rekognition and HIPAA eligibility<a name="hipaa"></a>
 
 This is a HIPAA Eligible Service\. For more information about AWS, U\.S\. Health Insurance Portability and Accountability Act of 1996 \(HIPAA\), and using AWS services to process, store, and transmit protected health information \(PHI\), see [HIPAA Overview](https://aws.amazon.com/compliance/hipaa-compliance/)\.
 
-## Are You a First\-Time Amazon Rekognition User?<a name="first-time-user"></a>
+## Are you a first\-time Amazon Rekognition user?<a name="first-time-user"></a>
 
 If you're a first\-time user of Amazon Rekognition, we recommend that you read the following sections in order:
 
-1. **[How Amazon Rekognition Works](how-it-works.md)** – This section introduces various Amazon Rekognition components that you work with to create an end\-to\-end experience\. 
+1. **[How Amazon Rekognition works](how-it-works.md)** – This section introduces various Amazon Rekognition components that you work with to create an end\-to\-end experience\. 
 
-1. **[Getting Started with Amazon Rekognition](getting-started.md)** – In this section, you set up your account and test the Amazon Rekognition API\.
+1. **[Getting started with Amazon Rekognition](getting-started.md)** – In this section, you set up your account and test the Amazon Rekognition API\.
 
-1. **[Working with Images](images.md)** – This section provides information about using Amazon Rekognition with images stored in Amazon S3 buckets and images loaded from a local file system\.
+1. **[Working with images](images.md)** – This section provides information about using Amazon Rekognition with images stored in Amazon S3 buckets and images loaded from a local file system\.
 
-1. **[Working with Stored Videos](video.md)** – This section provides information about using Amazon Rekognition with videos stored in an Amazon S3 bucket\.
+1. **[Working with stored videos](video.md)** – This section provides information about using Amazon Rekognition with videos stored in an Amazon S3 bucket\.
 
-1. **[Working with Streaming Videos](streaming-video.md)** – This section provides information about using Amazon Rekognition with streaming videos\.
+1. **[Working with streaming videos](streaming-video.md)** – This section provides information about using Amazon Rekognition with streaming videos\.

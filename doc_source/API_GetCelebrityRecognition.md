@@ -4,7 +4,7 @@ Gets the celebrity recognition results for a Amazon Rekognition Video analysis s
 
 Celebrity recognition in a video is an asynchronous operation\. Analysis is started by a call to [StartCelebrityRecognition](API_StartCelebrityRecognition.md) which returns a job identifier \(`JobId`\)\. When the celebrity recognition operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartCelebrityRecognition`\. To get the results of the celebrity recognition analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetCelebrityDetection` and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityDetection`\. 
 
-For more information, see [Working with Stored Videos](video.md)\.
+For more information, see [Working with stored videos](video.md)\.
 
  `GetCelebrityRecognition` returns detected celebrities and the time\(s\) they are detected in an array \(`Celebrities`\) of [CelebrityRecognition](API_CelebrityRecognition.md) objects\. Each `CelebrityRecognition` contains information about the celebrity in a [CelebrityDetail](API_CelebrityDetail.md) object and the time, `Timestamp`, the celebrity was detected\. 
 
@@ -23,10 +23,10 @@ Use MaxResults parameter to limit the number of labels returned\. If there are m
 
 ```
 {
-   "[JobId](#rekognition-GetCelebrityRecognition-request-JobId)": "string",
-   "[MaxResults](#rekognition-GetCelebrityRecognition-request-MaxResults)": number,
-   "[NextToken](#rekognition-GetCelebrityRecognition-request-NextToken)": "string",
-   "[SortBy](#rekognition-GetCelebrityRecognition-request-SortBy)": "string"
+   "JobId": "string",
+   "MaxResults": number,
+   "NextToken": "string",
+   "SortBy": "string"
 }
 ```
 
@@ -63,100 +63,100 @@ Required: No
 
 ```
 {
-   "[Celebrities](#rekognition-GetCelebrityRecognition-response-Celebrities)": [ 
+   "Celebrities": [ 
       { 
-         "[Celebrity](API_CelebrityRecognition.md#rekognition-Type-CelebrityRecognition-Celebrity)": { 
-            "[BoundingBox](API_CelebrityDetail.md#rekognition-Type-CelebrityDetail-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "Celebrity": { 
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Confidence](API_CelebrityDetail.md#rekognition-Type-CelebrityDetail-Confidence)": number,
-            "[Face](API_CelebrityDetail.md#rekognition-Type-CelebrityDetail-Face)": { 
-               "[AgeRange](API_FaceDetail.md#rekognition-Type-FaceDetail-AgeRange)": { 
-                  "[High](API_AgeRange.md#rekognition-Type-AgeRange-High)": number,
-                  "[Low](API_AgeRange.md#rekognition-Type-AgeRange-Low)": number
+            "Confidence": number,
+            "Face": { 
+               "AgeRange": { 
+                  "High": number,
+                  "Low": number
                },
-               "[Beard](API_FaceDetail.md#rekognition-Type-FaceDetail-Beard)": { 
-                  "[Confidence](API_Beard.md#rekognition-Type-Beard-Confidence)": number,
-                  "[Value](API_Beard.md#rekognition-Type-Beard-Value)": boolean
+               "Beard": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[BoundingBox](API_FaceDetail.md#rekognition-Type-FaceDetail-BoundingBox)": { 
-                  "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-                  "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-                  "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-                  "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+               "BoundingBox": { 
+                  "Height": number,
+                  "Left": number,
+                  "Top": number,
+                  "Width": number
                },
-               "[Confidence](API_FaceDetail.md#rekognition-Type-FaceDetail-Confidence)": number,
-               "[Emotions](API_FaceDetail.md#rekognition-Type-FaceDetail-Emotions)": [ 
+               "Confidence": number,
+               "Emotions": [ 
                   { 
-                     "[Confidence](API_Emotion.md#rekognition-Type-Emotion-Confidence)": number,
-                     "[Type](API_Emotion.md#rekognition-Type-Emotion-Type)": "string"
+                     "Confidence": number,
+                     "Type": "string"
                   }
                ],
-               "[Eyeglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Eyeglasses)": { 
-                  "[Confidence](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Confidence)": number,
-                  "[Value](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Value)": boolean
+               "Eyeglasses": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[EyesOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-EyesOpen)": { 
-                  "[Confidence](API_EyeOpen.md#rekognition-Type-EyeOpen-Confidence)": number,
-                  "[Value](API_EyeOpen.md#rekognition-Type-EyeOpen-Value)": boolean
+               "EyesOpen": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[Gender](API_FaceDetail.md#rekognition-Type-FaceDetail-Gender)": { 
-                  "[Confidence](API_Gender.md#rekognition-Type-Gender-Confidence)": number,
-                  "[Value](API_Gender.md#rekognition-Type-Gender-Value)": "string"
+               "Gender": { 
+                  "Confidence": number,
+                  "Value": "string"
                },
-               "[Landmarks](API_FaceDetail.md#rekognition-Type-FaceDetail-Landmarks)": [ 
+               "Landmarks": [ 
                   { 
-                     "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
-                     "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
-                     "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
+                     "Type": "string",
+                     "X": number,
+                     "Y": number
                   }
                ],
-               "[MouthOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-MouthOpen)": { 
-                  "[Confidence](API_MouthOpen.md#rekognition-Type-MouthOpen-Confidence)": number,
-                  "[Value](API_MouthOpen.md#rekognition-Type-MouthOpen-Value)": boolean
+               "MouthOpen": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[Mustache](API_FaceDetail.md#rekognition-Type-FaceDetail-Mustache)": { 
-                  "[Confidence](API_Mustache.md#rekognition-Type-Mustache-Confidence)": number,
-                  "[Value](API_Mustache.md#rekognition-Type-Mustache-Value)": boolean
+               "Mustache": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[Pose](API_FaceDetail.md#rekognition-Type-FaceDetail-Pose)": { 
-                  "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
-                  "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
-                  "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
+               "Pose": { 
+                  "Pitch": number,
+                  "Roll": number,
+                  "Yaw": number
                },
-               "[Quality](API_FaceDetail.md#rekognition-Type-FaceDetail-Quality)": { 
-                  "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
-                  "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
+               "Quality": { 
+                  "Brightness": number,
+                  "Sharpness": number
                },
-               "[Smile](API_FaceDetail.md#rekognition-Type-FaceDetail-Smile)": { 
-                  "[Confidence](API_Smile.md#rekognition-Type-Smile-Confidence)": number,
-                  "[Value](API_Smile.md#rekognition-Type-Smile-Value)": boolean
+               "Smile": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[Sunglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Sunglasses)": { 
-                  "[Confidence](API_Sunglasses.md#rekognition-Type-Sunglasses-Confidence)": number,
-                  "[Value](API_Sunglasses.md#rekognition-Type-Sunglasses-Value)": boolean
+               "Sunglasses": { 
+                  "Confidence": number,
+                  "Value": boolean
                }
             },
-            "[Id](API_CelebrityDetail.md#rekognition-Type-CelebrityDetail-Id)": "string",
-            "[Name](API_CelebrityDetail.md#rekognition-Type-CelebrityDetail-Name)": "string",
-            "[Urls](API_CelebrityDetail.md#rekognition-Type-CelebrityDetail-Urls)": [ "string" ]
+            "Id": "string",
+            "Name": "string",
+            "Urls": [ "string" ]
          },
-         "[Timestamp](API_CelebrityRecognition.md#rekognition-Type-CelebrityRecognition-Timestamp)": number
+         "Timestamp": number
       }
    ],
-   "[JobStatus](#rekognition-GetCelebrityRecognition-response-JobStatus)": "string",
-   "[NextToken](#rekognition-GetCelebrityRecognition-response-NextToken)": "string",
-   "[StatusMessage](#rekognition-GetCelebrityRecognition-response-StatusMessage)": "string",
-   "[VideoMetadata](#rekognition-GetCelebrityRecognition-response-VideoMetadata)": { 
-      "[Codec](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Codec)": "string",
-      "[DurationMillis](API_VideoMetadata.md#rekognition-Type-VideoMetadata-DurationMillis)": number,
-      "[Format](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Format)": "string",
-      "[FrameHeight](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameHeight)": number,
-      "[FrameRate](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameRate)": number,
-      "[FrameWidth](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameWidth)": number
+   "JobStatus": "string",
+   "NextToken": "string",
+   "StatusMessage": "string",
+   "VideoMetadata": { 
+      "Codec": "string",
+      "DurationMillis": number,
+      "Format": "string",
+      "FrameHeight": number,
+      "FrameRate": number,
+      "FrameWidth": number
    }
 }
 ```
@@ -212,7 +212,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -226,7 +226,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/GetCelebrityRecognition) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/GetCelebrityRecognition) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/GetCelebrityRecognition) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/GetCelebrityRecognition) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetCelebrityRecognition) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/GetCelebrityRecognition) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/GetCelebrityRecognition) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/GetCelebrityRecognition) 

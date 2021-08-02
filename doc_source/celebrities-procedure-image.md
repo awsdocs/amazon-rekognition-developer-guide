@@ -1,6 +1,6 @@
-# Recognizing Celebrities in an Image<a name="celebrities-procedure-image"></a>
+# Recognizing celebrities in an image<a name="celebrities-procedure-image"></a>
 
-To recognize celebrities within images and get additional information about recognized celebrities, use the [RecognizeCelebrities](API_RecognizeCelebrities.md) non\-storage API operation\. For example, in social media or news and entertainment industries where information gathering can be time critical, you can use the `RecognizeCelebrities` operation to identify as many as 100 celebrities in an image, and return links to celebrity webpages, if they're available\. Amazon Rekognition doesn't remember which image it detected a celebrity in\. Your application must store this information\. 
+To recognize celebrities within images and get additional information about recognized celebrities, use the [RecognizeCelebrities](API_RecognizeCelebrities.md) non\-storage API operation\. For example, in social media or news and entertainment industries where information gathering can be time critical, you can use the `RecognizeCelebrities` operation to identify as many as 64 celebrities in an image, and return links to celebrity webpages, if they're available\. Amazon Rekognition doesn't remember which image it detected a celebrity in\. Your application must store this information\. 
 
 If you haven't stored the additional information for a celebrity that's returned by `RecognizeCelebrities` and you want to avoid reanalyzing an image to get it, use [GetCelebrityInfo](API_GetCelebrityInfo.md)\. To call `GetCelebrityInfo`, you need the unique identifier that Amazon Rekognition assigns to each celebrity\. The identifier is returned as part of the `RecognizeCelebrities` response for each celebrity recognized in an image\. 
 
@@ -8,7 +8,7 @@ If you have a large collection of images to process for celebrity recognition, c
 
 ## Calling RecognizeCelebrities<a name="recognize-image-example"></a>
 
-You can provide the input image as an image byte array \(base64\-encoded image bytes\) or as an Amazon S3 object, by using either the AWS Command Line Interface \(AWS CLI\) or the AWS SDK\. In the AWS CLI procedure, you upload an image in \.jpg or \.png format to an S3 bucket\. In the AWS SDK for Java procedure, you use an image that's loaded from your local file system\. For information about input image recommendations, see [Working with Images](images.md)\. 
+You can provide the input image as an image byte array \(base64\-encoded image bytes\) or as an Amazon S3 object, by using either the AWS Command Line Interface \(AWS CLI\) or the AWS SDK\. In the AWS CLI procedure, you upload an image in \.jpg or \.png format to an S3 bucket\. In the AWS SDK procedures, you use an image that's loaded from your local file system\. For information about input image recommendations, see [Working with images](images.md)\. 
 
 To run this procedure, you need an image file that contains one or more celebrity faces\.
 
@@ -16,9 +16,9 @@ To run this procedure, you need an image file that contains one or more celebrit
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `RecognizeCelebrities` operation\.
 
@@ -95,6 +95,50 @@ To run this procedure, you need an image file that contains one or more celebrit
           System.out.println(result.getUnrecognizedFaces().size() + " face(s) were unrecognized.");
       }
    }
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/RecognizeCelebrities.java)\.
+
+   ```
+       public static void recognizeAllCelebrities(RekognitionClient rekClient, String sourceImage) {
+   
+           try {
+   
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+   
+               Image souImage = Image.builder()
+                   .bytes(sourceBytes)
+                   .build();
+   
+               RecognizeCelebritiesRequest request = RecognizeCelebritiesRequest.builder()
+                       .image(souImage)
+                       .build();
+   
+               RecognizeCelebritiesResponse result = rekClient.recognizeCelebrities(request) ;
+   
+               List<Celebrity> celebs=result.celebrityFaces();
+               System.out.println(celebs.size() + " celebrity(s) were recognized.\n");
+   
+               for (Celebrity celebrity: celebs) {
+                   System.out.println("Celebrity recognized: " + celebrity.name());
+                   System.out.println("Celebrity ID: " + celebrity.id());
+   
+                   System.out.println("Further information (if available):");
+                   for (String url: celebrity.urls()){
+                       System.out.println(url);
+                   }
+                   System.out.println();
+               }
+               System.out.println(result.unrecognizedFaces().size() + " face(s) were unrecognized.");
+   
+           } catch (RekognitionException | FileNotFoundException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
    ```
 
 ------
@@ -223,11 +267,11 @@ To run this procedure, you need an image file that contains one or more celebrit
 
 ------
 
-1. Record the value of one of the celebrity IDs that are displayed\. You'll need it in [Getting Information About a Celebrity](get-celebrity-info-procedure.md)\.
+1. Record the value of one of the celebrity IDs that are displayed\. You'll need it in [Getting information about a celebrity](get-celebrity-info-procedure.md)\.
 
-## RecognizeCelebrities Operation Request<a name="recognizecelebrities-request"></a>
+## RecognizeCelebrities operation request<a name="recognizecelebrities-request"></a>
 
-The input to `RecognizeCelebrities` is an image\. In this example, the image is passed as image bytes\. For more information, see [Working with Images](images.md)\.
+The input to `RecognizeCelebrities` is an image\. In this example, the image is passed as image bytes\. For more information, see [Working with images](images.md)\.
 
 ```
 {
@@ -237,14 +281,14 @@ The input to `RecognizeCelebrities` is an image\. In this example, the image is 
 }
 ```
 
-## RecognizeCelebrities Operation Response<a name="recognizecelebrities-response"></a>
+## RecognizeCelebrities operation response<a name="recognizecelebrities-response"></a>
 
 The following is example JSON input and output for `RecognizeCelebrities`\. 
 
 `RecognizeCelebrities` returns an array of recognized celebrities and an array of unrecognized faces\. In the example, note the following:
 + **Recognized celebrities** – `Celebrities` is an array of recognized celebrities\. Each [Celebrity](API_Celebrity.md) object in the array contains the celebrity name and a list of URLs pointing to related content—for example, the celebrity's IMDB link\. Amazon Rekognition returns an [ComparedFace](API_ComparedFace.md) object that your application can use to determine where the celebrity's face is on the image and a unique identifier for the celebrity\. Use the unique identifier to retrieve celebrity information later with the [GetCelebrityInfo](API_GetCelebrityInfo.md) API operation\. 
 + **Unrecognized faces** – `UnrecognizedFaces` is an array of faces that didn't match any known celebrities\. Each [ComparedFace](API_ComparedFace.md) object in the array contains a bounding box \(as well as other information\) that you can use to locate the face in the image\.
-+ **Image orientation** – `OrientationCorrection` is image orientation information that you can use to correctly display the image\. For more information, see [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)\.
++ **Image orientation** – `OrientationCorrection` is image orientation information that you can use to correctly display the image\. For more information, see [Getting image orientation and bounding box coordinates](images-orientation.md)\.
 
 ```
 {

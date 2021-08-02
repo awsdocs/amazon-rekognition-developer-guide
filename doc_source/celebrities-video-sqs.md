@@ -1,12 +1,12 @@
-# Recognizing Celebrities in a Stored Video<a name="celebrities-video-sqs"></a>
+# Recognizing celebrities in a stored video<a name="celebrities-video-sqs"></a>
 
-Amazon Rekognition Video celebrity recognition in stored videos is an asynchronous operation\. To recognize celebrities in a stored video, use [StartCelebrityRecognition](API_StartCelebrityRecognition.md) to start video analysis\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is succesful, call [GetCelebrityRecognition](API_GetCelebrityRecognition.md)\. to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video Operations](api-video.md)\. 
+Amazon Rekognition Video celebrity recognition in stored videos is an asynchronous operation\. To recognize celebrities in a stored video, use [StartCelebrityRecognition](API_StartCelebrityRecognition.md) to start video analysis\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is succesful, call [GetCelebrityRecognition](API_GetCelebrityRecognition.md)\. to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video operations](api-video.md)\. 
 
-This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), which uses an Amazon SQS queue to get the completion status of a video analysis request\. To run this procedure, you need a video file that contains one or more celebrity faces\.
+This procedure expands on the code in [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), which uses an Amazon SQS queue to get the completion status of a video analysis request\. To run this procedure, you need a video file that contains one or more celebrity faces\.
 
 **To detect celebrities in a video stored in an Amazon S3 bucket \(SDK\)**
 
-1. Perform [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\.
+1. Perform [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\.
 
 1. Add the following code to the class `VideoDetect` that you created in step 1\.
 
@@ -103,6 +103,107 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/VideoCelebrityDetection.java)\.
+
+   ```
+       public static  void StartCelebrityDetection(RekognitionClient rekClient,
+                                                   NotificationChannel channel,
+                                                   String bucket,
+                                                   String video) {
+           try {
+               S3Object s3Obj = S3Object.builder()
+                       .bucket(bucket)
+                       .name(video)
+                       .build();
+   
+               Video vidOb = Video.builder()
+                       .s3Object(s3Obj)
+                       .build();
+   
+               StartCelebrityRecognitionRequest recognitionRequest = StartCelebrityRecognitionRequest.builder()
+                       .jobTag("Celebrities")
+                       .notificationChannel(channel)
+                       .video(vidOb)
+                       .build();
+   
+               StartCelebrityRecognitionResponse startCelebrityRecognitionResult = rekClient.startCelebrityRecognition(recognitionRequest);
+               startJobId = startCelebrityRecognitionResult.jobId();
+   
+   
+           } catch(RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+       }
+   
+       public static void GetCelebrityDetectionResults(RekognitionClient rekClient) {
+   
+           try {
+               String paginationToken=null;
+               GetCelebrityRecognitionResponse recognitionResponse = null;
+               Boolean finished = false;
+               String status="";
+               int yy=0 ;
+   
+               do{
+                   if (recognitionResponse !=null)
+                       paginationToken = recognitionResponse.nextToken();
+   
+                   GetCelebrityRecognitionRequest recognitionRequest = GetCelebrityRecognitionRequest.builder()
+                               .jobId(startJobId)
+                               .nextToken(paginationToken)
+                               .sortBy(CelebrityRecognitionSortBy.TIMESTAMP)
+                               .maxResults(10)
+                               .build();
+   
+                   // Wait until the job succeeds
+                   while (!finished) {
+   
+                       recognitionResponse = rekClient.getCelebrityRecognition(recognitionRequest);
+                       status = recognitionResponse.jobStatusAsString();
+   
+                       if (status.compareTo("SUCCEEDED") == 0)
+                           finished = true;
+                       else {
+                           System.out.println(yy + " status is: " + status);
+                           Thread.sleep(1000);
+                       }
+                       yy++;
+                   }
+   
+                   finished = false;
+   
+                   // Proceed when the job is done - otherwise VideoMetadata is null
+                   VideoMetadata videoMetaData=recognitionResponse.videoMetadata();
+   
+                   System.out.println("Format: " + videoMetaData.format());
+                   System.out.println("Codec: " + videoMetaData.codec());
+                   System.out.println("Duration: " + videoMetaData.durationMillis());
+                   System.out.println("FrameRate: " + videoMetaData.frameRate());
+                   System.out.println("Job");
+   
+                   List<CelebrityRecognition> celebs= recognitionResponse.celebrities();
+                   for (CelebrityRecognition celeb: celebs) {
+                       long seconds=celeb.timestamp()/1000;
+                       System.out.print("Sec: " + Long.toString(seconds) + " ");
+                       CelebrityDetail details=celeb.celebrity();
+                       System.out.println("Name: " + details.name());
+                       System.out.println("Id: " + details.id());
+                       System.out.println();
+                   }
+   
+               } while (recognitionResponse !=null && recognitionResponse.nextToken() != null);
+   
+           } catch(RekognitionException | InterruptedException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+       }
+     }
+   ```
+
+------
 #### [ Python ]
 
    ```
@@ -162,11 +263,11 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
 
 ------
 **Note**  
-If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the code to replace might be different\.
+If you've already run a video example other than [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the code to replace might be different\.
 
 1. Run the code\. Information about the celebrities recognized in the video is shown\.
 
-## GetCelebrityRecognition Operation Response<a name="getcelebrityrecognition-operation-output"></a>
+## GetCelebrityRecognition operation response<a name="getcelebrityrecognition-operation-output"></a>
 
 The following is an example JSON response\. The response includes the following:
 + **Recognized celebrities** – `Celebrities` is an array of celebrities and the times that they are recognized in a video\. A [CelebrityRecognition](API_CelebrityRecognition.md) object exists for each time the celebrity is recognized in the video\. Each `CelebrityRecognition` contains information about a recognized celebrity \([CelebrityDetail](API_CelebrityDetail.md)\) and the time \(`Timestamp`\) the celebrity was recognized in the video\. `Timestamp` is measured in milliseconds from the start of the video\. 

@@ -14,9 +14,9 @@ Use MaxResults parameter to limit the number of text detections returned\. If th
 
 ```
 {
-   "[JobId](#rekognition-GetTextDetection-request-JobId)": "string",
-   "[MaxResults](#rekognition-GetTextDetection-request-MaxResults)": number,
-   "[NextToken](#rekognition-GetTextDetection-request-NextToken)": "string"
+   "JobId": "string",
+   "MaxResults": number,
+   "NextToken": "string"
 }
 ```
 
@@ -25,7 +25,7 @@ Use MaxResults parameter to limit the number of text detections returned\. If th
 The request accepts the following data in JSON format\.
 
  ** [JobId](#API_GetTextDetection_RequestSyntax) **   <a name="rekognition-GetTextDetection-request-JobId"></a>
-Job identifier for the label detection operation for which you want results returned\. You get the job identifer from an initial call to `StartTextDetection`\.  
+Job identifier for the text detection operation for which you want results returned\. You get the job identifer from an initial call to `StartTextDetection`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
@@ -47,43 +47,43 @@ Required: No
 
 ```
 {
-   "[JobStatus](#rekognition-GetTextDetection-response-JobStatus)": "string",
-   "[NextToken](#rekognition-GetTextDetection-response-NextToken)": "string",
-   "[StatusMessage](#rekognition-GetTextDetection-response-StatusMessage)": "string",
-   "[TextDetections](#rekognition-GetTextDetection-response-TextDetections)": [ 
+   "JobStatus": "string",
+   "NextToken": "string",
+   "StatusMessage": "string",
+   "TextDetections": [ 
       { 
-         "[TextDetection](API_TextDetectionResult.md#rekognition-Type-TextDetectionResult-TextDetection)": { 
-            "[Confidence](API_TextDetection.md#rekognition-Type-TextDetection-Confidence)": number,
-            "[DetectedText](API_TextDetection.md#rekognition-Type-TextDetection-DetectedText)": "string",
-            "[Geometry](API_TextDetection.md#rekognition-Type-TextDetection-Geometry)": { 
-               "[BoundingBox](API_Geometry.md#rekognition-Type-Geometry-BoundingBox)": { 
-                  "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-                  "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-                  "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-                  "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "TextDetection": { 
+            "Confidence": number,
+            "DetectedText": "string",
+            "Geometry": { 
+               "BoundingBox": { 
+                  "Height": number,
+                  "Left": number,
+                  "Top": number,
+                  "Width": number
                },
-               "[Polygon](API_Geometry.md#rekognition-Type-Geometry-Polygon)": [ 
+               "Polygon": [ 
                   { 
-                     "[X](API_Point.md#rekognition-Type-Point-X)": number,
-                     "[Y](API_Point.md#rekognition-Type-Point-Y)": number
+                     "X": number,
+                     "Y": number
                   }
                ]
             },
-            "[Id](API_TextDetection.md#rekognition-Type-TextDetection-Id)": number,
-            "[ParentId](API_TextDetection.md#rekognition-Type-TextDetection-ParentId)": number,
-            "[Type](API_TextDetection.md#rekognition-Type-TextDetection-Type)": "string"
+            "Id": number,
+            "ParentId": number,
+            "Type": "string"
          },
-         "[Timestamp](API_TextDetectionResult.md#rekognition-Type-TextDetectionResult-Timestamp)": number
+         "Timestamp": number
       }
    ],
-   "[TextModelVersion](#rekognition-GetTextDetection-response-TextModelVersion)": "string",
-   "[VideoMetadata](#rekognition-GetTextDetection-response-VideoMetadata)": { 
-      "[Codec](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Codec)": "string",
-      "[DurationMillis](API_VideoMetadata.md#rekognition-Type-VideoMetadata-DurationMillis)": number,
-      "[Format](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Format)": "string",
-      "[FrameHeight](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameHeight)": number,
-      "[FrameRate](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameRate)": number,
-      "[FrameWidth](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameWidth)": number
+   "TextModelVersion": "string",
+   "VideoMetadata": { 
+      "Codec": "string",
+      "DurationMillis": number,
+      "Format": "string",
+      "FrameHeight": number,
+      "FrameRate": number,
+      "FrameWidth": number
    }
 }
 ```
@@ -143,7 +143,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -157,7 +157,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/GetTextDetection) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/GetTextDetection) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/GetTextDetection) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/GetTextDetection) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetTextDetection) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/GetTextDetection) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/GetTextDetection) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/GetTextDetection) 

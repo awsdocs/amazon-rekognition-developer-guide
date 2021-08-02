@@ -2,8 +2,10 @@
 
 Compares a face in the *source* input image with each of the 100 largest faces detected in the *target* input image\. 
 
-**Note**  
  If the source image contains multiple faces, the service detects the largest face and compares it with each face detected in the target image\. 
+
+**Note**  
+CompareFaces uses machine learning algorithms, which are probabilistic\. A false negative is an incorrect prediction that a face in the target image has a low similarity confidence score when compared to the face in the source image\. To reduce the probability of false negatives, we recommend that you compare the target image against multiple source images\. If you plan to use `CompareFaces` to make a decision that impacts an individual's rights, privacy, or access to services, we recommend that you pass the result to a human for review and further validation before taking action\.
 
 You pass the input and target images either as base64\-encoded image bytes or as references to images in an Amazon S3 bucket\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes isn't supported\. The image must be formatted as a PNG or JPEG file\. 
 
@@ -16,9 +18,6 @@ By default, only faces with a similarity score of greater than or equal to 80% a
 
 The `QualityFilter` input parameter allows you to filter out detected faces that don’t meet a required quality bar\. The quality bar is based on a variety of common use cases\. Use `QualityFilter` to set the quality bar by specifying `LOW`, `MEDIUM`, or `HIGH`\. If you do not want to filter detected faces, specify `NONE`\. The default value is `NONE`\. 
 
-**Note**  
-To use quality filtering, you need a collection associated with version 3 of the face model or higher\. To get the version of the face model associated with a collection, call [DescribeCollection](API_DescribeCollection.md)\. 
-
 If the image doesn't contain Exif metadata, `CompareFaces` returns orientation information for the source and target images\. Use these values to display the images with the correct image orientation\.
 
 If no faces are detected in the source or target images, `CompareFaces` returns an `InvalidParameterException` error\. 
@@ -26,7 +25,7 @@ If no faces are detected in the source or target images, `CompareFaces` returns 
 **Note**  
  This is a stateless API operation\. That is, data returned by this operation doesn't persist\.
 
-For an example, see [Comparing Faces in Images](faces-comparefaces.md)\.
+For an example, see [Comparing faces in images](faces-comparefaces.md)\.
 
 This operation requires permissions to perform the `rekognition:CompareFaces` action\.
 
@@ -34,22 +33,22 @@ This operation requires permissions to perform the `rekognition:CompareFaces` ac
 
 ```
 {
-   "[QualityFilter](#rekognition-CompareFaces-request-QualityFilter)": "string",
-   "[SimilarityThreshold](#rekognition-CompareFaces-request-SimilarityThreshold)": number,
-   "[SourceImage](#rekognition-CompareFaces-request-SourceImage)": { 
-      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
-      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "QualityFilter": "string",
+   "SimilarityThreshold": number,
+   "SourceImage": { 
+      "Bytes": blob,
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    },
-   "[TargetImage](#rekognition-CompareFaces-request-TargetImage)": { 
-      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
-      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "TargetImage": { 
+      "Bytes": blob,
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -74,13 +73,13 @@ Required: No
 
  ** [SourceImage](#API_CompareFaces_RequestSyntax) **   <a name="rekognition-CompareFaces-request-SourceImage"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
-If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Images](images-information.md)\.  
+If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Image specifications](images-information.md)\.  
 Type: [Image](API_Image.md) object  
 Required: Yes
 
  ** [TargetImage](#API_CompareFaces_RequestSyntax) **   <a name="rekognition-CompareFaces-request-TargetImage"></a>
 The target image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
-If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Images](images-information.md)\.  
+If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Image specifications](images-information.md)\.  
 Type: [Image](API_Image.md) object  
 Required: Yes
 
@@ -88,71 +87,71 @@ Required: Yes
 
 ```
 {
-   "[FaceMatches](#rekognition-CompareFaces-response-FaceMatches)": [ 
+   "FaceMatches": [ 
       { 
-         "[Face](API_CompareFacesMatch.md#rekognition-Type-CompareFacesMatch-Face)": { 
-            "[BoundingBox](API_ComparedFace.md#rekognition-Type-ComparedFace-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "Face": { 
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Confidence](API_ComparedFace.md#rekognition-Type-ComparedFace-Confidence)": number,
-            "[Landmarks](API_ComparedFace.md#rekognition-Type-ComparedFace-Landmarks)": [ 
+            "Confidence": number,
+            "Landmarks": [ 
                { 
-                  "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
-                  "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
-                  "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
+                  "Type": "string",
+                  "X": number,
+                  "Y": number
                }
             ],
-            "[Pose](API_ComparedFace.md#rekognition-Type-ComparedFace-Pose)": { 
-               "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
-               "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
-               "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
+            "Pose": { 
+               "Pitch": number,
+               "Roll": number,
+               "Yaw": number
             },
-            "[Quality](API_ComparedFace.md#rekognition-Type-ComparedFace-Quality)": { 
-               "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
-               "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
+            "Quality": { 
+               "Brightness": number,
+               "Sharpness": number
             }
          },
-         "[Similarity](API_CompareFacesMatch.md#rekognition-Type-CompareFacesMatch-Similarity)": number
+         "Similarity": number
       }
    ],
-   "[SourceImageFace](#rekognition-CompareFaces-response-SourceImageFace)": { 
-      "[BoundingBox](API_ComparedSourceImageFace.md#rekognition-Type-ComparedSourceImageFace-BoundingBox)": { 
-         "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-         "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-         "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-         "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+   "SourceImageFace": { 
+      "BoundingBox": { 
+         "Height": number,
+         "Left": number,
+         "Top": number,
+         "Width": number
       },
-      "[Confidence](API_ComparedSourceImageFace.md#rekognition-Type-ComparedSourceImageFace-Confidence)": number
+      "Confidence": number
    },
-   "[SourceImageOrientationCorrection](#rekognition-CompareFaces-response-SourceImageOrientationCorrection)": "string",
-   "[TargetImageOrientationCorrection](#rekognition-CompareFaces-response-TargetImageOrientationCorrection)": "string",
-   "[UnmatchedFaces](#rekognition-CompareFaces-response-UnmatchedFaces)": [ 
+   "SourceImageOrientationCorrection": "string",
+   "TargetImageOrientationCorrection": "string",
+   "UnmatchedFaces": [ 
       { 
-         "[BoundingBox](API_ComparedFace.md#rekognition-Type-ComparedFace-BoundingBox)": { 
-            "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-            "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-            "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-            "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "BoundingBox": { 
+            "Height": number,
+            "Left": number,
+            "Top": number,
+            "Width": number
          },
-         "[Confidence](API_ComparedFace.md#rekognition-Type-ComparedFace-Confidence)": number,
-         "[Landmarks](API_ComparedFace.md#rekognition-Type-ComparedFace-Landmarks)": [ 
+         "Confidence": number,
+         "Landmarks": [ 
             { 
-               "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
-               "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
-               "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
+               "Type": "string",
+               "X": number,
+               "Y": number
             }
          ],
-         "[Pose](API_ComparedFace.md#rekognition-Type-ComparedFace-Pose)": { 
-            "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
-            "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
-            "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
+         "Pose": { 
+            "Pitch": number,
+            "Roll": number,
+            "Yaw": number
          },
-         "[Quality](API_ComparedFace.md#rekognition-Type-ComparedFace-Quality)": { 
-            "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
-            "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
+         "Quality": { 
+            "Brightness": number,
+            "Sharpness": number
          }
       }
    ]
@@ -198,7 +197,7 @@ You are not authorized to perform the action\.
 HTTP Status Code: 400
 
  **ImageTooLargeException**   
-The input image size exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
+The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **InternalServerError**   
@@ -232,7 +231,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/CompareFaces) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/CompareFaces) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/CompareFaces) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/CompareFaces) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/CompareFaces) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/CompareFaces) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/CompareFaces) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/CompareFaces) 

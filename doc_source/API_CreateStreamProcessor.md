@@ -8,27 +8,32 @@ You provide as input a Kinesis video stream \(`Input`\) and a Kinesis data strea
 
 After you have finished analyzing a streaming video, use [StopStreamProcessor](API_StopStreamProcessor.md) to stop processing\. You can delete the stream processor by calling [DeleteStreamProcessor](API_DeleteStreamProcessor.md)\.
 
+This operation requires permissions to perform the `rekognition:CreateStreamProcessor` action\. If you want to tag your stream processor, you also require permission to perform the `rekognition:TagResource` operation\.
+
 ## Request Syntax<a name="API_CreateStreamProcessor_RequestSyntax"></a>
 
 ```
 {
-   "[Input](#rekognition-CreateStreamProcessor-request-Input)": { 
-      "[KinesisVideoStream](API_StreamProcessorInput.md#rekognition-Type-StreamProcessorInput-KinesisVideoStream)": { 
-         "[Arn](API_KinesisVideoStream.md#rekognition-Type-KinesisVideoStream-Arn)": "string"
+   "Input": { 
+      "KinesisVideoStream": { 
+         "Arn": "string"
       }
    },
-   "[Name](#rekognition-CreateStreamProcessor-request-Name)": "string",
-   "[Output](#rekognition-CreateStreamProcessor-request-Output)": { 
-      "[KinesisDataStream](API_StreamProcessorOutput.md#rekognition-Type-StreamProcessorOutput-KinesisDataStream)": { 
-         "[Arn](API_KinesisDataStream.md#rekognition-Type-KinesisDataStream-Arn)": "string"
+   "Name": "string",
+   "Output": { 
+      "KinesisDataStream": { 
+         "Arn": "string"
       }
    },
-   "[RoleArn](#rekognition-CreateStreamProcessor-request-RoleArn)": "string",
-   "[Settings](#rekognition-CreateStreamProcessor-request-Settings)": { 
-      "[FaceSearch](API_StreamProcessorSettings.md#rekognition-Type-StreamProcessorSettings-FaceSearch)": { 
-         "[CollectionId](API_FaceSearchSettings.md#rekognition-Type-FaceSearchSettings-CollectionId)": "string",
-         "[FaceMatchThreshold](API_FaceSearchSettings.md#rekognition-Type-FaceSearchSettings-FaceMatchThreshold)": number
+   "RoleArn": "string",
+   "Settings": { 
+      "FaceSearch": { 
+         "CollectionId": "string",
+         "FaceMatchThreshold": number
       }
+   },
+   "Tags": { 
+      "string" : "string" 
    }
 }
 ```
@@ -65,11 +70,21 @@ Face recognition input parameters to be used by the stream processor\. Includes 
 Type: [StreamProcessorSettings](API_StreamProcessorSettings.md) object  
 Required: Yes
 
+ ** [Tags](#API_CreateStreamProcessor_RequestSyntax) **   <a name="rekognition-CreateStreamProcessor-request-Tags"></a>
+ A set of tags \(key\-value pairs\) that you want to attach to the stream processor\.   
+Type: String to string map  
+Map Entries: Minimum number of 0 items\. Maximum number of 200 items\.  
+Key Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Key Pattern: `^(?!aws:)[\p{L}\p{Z}\p{N}_.:/=+\-@]*$`   
+Value Length Constraints: Minimum length of 0\. Maximum length of 256\.  
+Value Pattern: `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`   
+Required: No
+
 ## Response Syntax<a name="API_CreateStreamProcessor_ResponseSyntax"></a>
 
 ```
 {
-   "[StreamProcessorArn](#rekognition-CreateStreamProcessor-response-StreamProcessorArn)": "string"
+   "StreamProcessorArn": "string"
 }
 ```
 
@@ -107,7 +122,12 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceInUseException**   
+The specified resource is already being used\.  
+HTTP Status Code: 400
+
+ **ServiceQuotaExceededException**   
   
+The size of the resource exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -121,7 +141,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/CreateStreamProcessor) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/CreateStreamProcessor) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/CreateStreamProcessor) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/CreateStreamProcessor) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/CreateStreamProcessor) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/CreateStreamProcessor) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/CreateStreamProcessor) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/CreateStreamProcessor) 

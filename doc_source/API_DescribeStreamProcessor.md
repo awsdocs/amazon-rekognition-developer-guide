@@ -6,7 +6,7 @@ Provides information about a stream processor created by [CreateStreamProcessor]
 
 ```
 {
-   "[Name](#rekognition-DescribeStreamProcessor-request-Name)": "string"
+   "Name": "string"
 }
 ```
 
@@ -25,29 +25,29 @@ Required: Yes
 
 ```
 {
-   "[CreationTimestamp](#rekognition-DescribeStreamProcessor-response-CreationTimestamp)": number,
-   "[Input](#rekognition-DescribeStreamProcessor-response-Input)": { 
-      "[KinesisVideoStream](API_StreamProcessorInput.md#rekognition-Type-StreamProcessorInput-KinesisVideoStream)": { 
-         "[Arn](API_KinesisVideoStream.md#rekognition-Type-KinesisVideoStream-Arn)": "string"
+   "CreationTimestamp": number,
+   "Input": { 
+      "KinesisVideoStream": { 
+         "Arn": "string"
       }
    },
-   "[LastUpdateTimestamp](#rekognition-DescribeStreamProcessor-response-LastUpdateTimestamp)": number,
-   "[Name](#rekognition-DescribeStreamProcessor-response-Name)": "string",
-   "[Output](#rekognition-DescribeStreamProcessor-response-Output)": { 
-      "[KinesisDataStream](API_StreamProcessorOutput.md#rekognition-Type-StreamProcessorOutput-KinesisDataStream)": { 
-         "[Arn](API_KinesisDataStream.md#rekognition-Type-KinesisDataStream-Arn)": "string"
+   "LastUpdateTimestamp": number,
+   "Name": "string",
+   "Output": { 
+      "KinesisDataStream": { 
+         "Arn": "string"
       }
    },
-   "[RoleArn](#rekognition-DescribeStreamProcessor-response-RoleArn)": "string",
-   "[Settings](#rekognition-DescribeStreamProcessor-response-Settings)": { 
-      "[FaceSearch](API_StreamProcessorSettings.md#rekognition-Type-StreamProcessorSettings-FaceSearch)": { 
-         "[CollectionId](API_FaceSearchSettings.md#rekognition-Type-FaceSearchSettings-CollectionId)": "string",
-         "[FaceMatchThreshold](API_FaceSearchSettings.md#rekognition-Type-FaceSearchSettings-FaceMatchThreshold)": number
+   "RoleArn": "string",
+   "Settings": { 
+      "FaceSearch": { 
+         "CollectionId": "string",
+         "FaceMatchThreshold": number
       }
    },
-   "[Status](#rekognition-DescribeStreamProcessor-response-Status)": "string",
-   "[StatusMessage](#rekognition-DescribeStreamProcessor-response-StatusMessage)": "string",
-   "[StreamProcessorArn](#rekognition-DescribeStreamProcessor-response-StreamProcessorArn)": "string"
+   "Status": "string",
+   "StatusMessage": "string",
+   "StreamProcessorArn": "string"
 }
 ```
 
@@ -121,7 +121,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -135,7 +135,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DescribeStreamProcessor) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DescribeStreamProcessor) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DescribeStreamProcessor) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DescribeStreamProcessor) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DescribeStreamProcessor) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DescribeStreamProcessor) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DescribeStreamProcessor) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DescribeStreamProcessor) 

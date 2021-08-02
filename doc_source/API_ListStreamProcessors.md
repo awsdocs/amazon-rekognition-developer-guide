@@ -6,8 +6,8 @@ Gets a list of stream processors that you have created with [CreateStreamProcess
 
 ```
 {
-   "[MaxResults](#rekognition-ListStreamProcessors-request-MaxResults)": number,
-   "[NextToken](#rekognition-ListStreamProcessors-request-NextToken)": "string"
+   "MaxResults": number,
+   "NextToken": "string"
 }
 ```
 
@@ -31,11 +31,11 @@ Required: No
 
 ```
 {
-   "[NextToken](#rekognition-ListStreamProcessors-response-NextToken)": "string",
-   "[StreamProcessors](#rekognition-ListStreamProcessors-response-StreamProcessors)": [ 
+   "NextToken": "string",
+   "StreamProcessors": [ 
       { 
-         "[Name](API_StreamProcessor.md#rekognition-Type-StreamProcessor-Name)": "string",
-         "[Status](API_StreamProcessor.md#rekognition-Type-StreamProcessor-Status)": "string"
+         "Name": "string",
+         "Status": "string"
       }
    ]
 }
@@ -89,7 +89,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/ListStreamProcessors) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/ListStreamProcessors) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/ListStreamProcessors) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/ListStreamProcessors) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/ListStreamProcessors) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/ListStreamProcessors) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/ListStreamProcessors) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/ListStreamProcessors) 

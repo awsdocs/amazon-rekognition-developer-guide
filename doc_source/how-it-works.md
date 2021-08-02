@@ -1,4 +1,4 @@
-# How Amazon Rekognition Works<a name="how-it-works"></a>
+# How Amazon Rekognition works<a name="how-it-works"></a>
 
 Amazon Rekognition provides two API sets\. You use Amazon Rekognition Image for analyzing images, and Amazon Rekognition Video for analyzing videos\.
 
@@ -11,7 +11,7 @@ The Amazon Rekognition API makes deep learning image analysis easy to use\. For 
 The following information covers the types of analysis that Amazon Rekognition provides and an overview of Amazon Rekognition Image and Amazon Rekognition Video operations\. Also covered is the difference between non\-storage and storage operations\.
 
 **Topics**
-+ [Types of Analysis](how-it-works-types.md)
-+ [Image and Video Operations](how-it-works-operations-intro.md)
-+ [Non\-Storage and Storage API Operations](how-it-works-storage-non-storage.md)
-+ [Model Versioning](face-detection-model.md)
++ [Types of analysis](how-it-works-types.md)
++ [Image and video operations](how-it-works-operations-intro.md)
++ [Non\-storage and storage API operations](how-it-works-storage-non-storage.md)
++ [Model versioning](face-detection-model.md)

@@ -1,4 +1,4 @@
-# Comparing Faces in Images<a name="faces-comparefaces"></a>
+# Comparing faces in images<a name="faces-comparefaces"></a>
 
 To compare a face in the *source* image with each face in the *target* image, use the [CompareFaces](API_CompareFaces.md) operation\. 
 
@@ -8,13 +8,16 @@ If you provide a source image that contains multiple faces, the service detects 
 
 You can provide the source and target images as an image byte array \(base64\-encoded image bytes\), or specify Amazon S3 objects\. In the AWS CLI example, you upload two JPEG images to your Amazon S3 bucket and specify the object key name\. In the other examples, you load two files from the local file system and input them as image byte arrays\.
 
+**Note**  
+CompareFaces uses machine learning algorithms, which are probabilistic\. A false negative is an incorrect prediction that a face in the target image has a low similarity confidence score when compared to the face in the source image\. To reduce the probability of false negatives, we recommend that you compare the target image against multiple source images\. If you plan to use `CompareFaces` to make a decision that impacts an individual's rights, privacy, or access to services, we recommend that you pass the result to a human for review and further validation before taking action\.
+
 **To compare faces**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` \(AWS CLI example only\) permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` \(AWS CLI example only\) permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following example code to call the `CompareFaces` operation\.
 
@@ -105,6 +108,61 @@ You can provide the source and target images as an image byte array \(base64\-en
                + " face(s) that did not match");
       }
    }
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/CompareFaces.java)\.
+
+   ```
+       public static void compareTwoFaces(RekognitionClient rekClient, Float similarityThreshold, String sourceImage, String targetImage) {
+   
+           try {
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               InputStream tarStream = new FileInputStream(new File(targetImage));
+   
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+               SdkBytes targetBytes = SdkBytes.fromInputStream(tarStream);
+   
+               // Create an Image object for the source image
+               Image souImage = Image.builder()
+                  .bytes(sourceBytes)
+                  .build();
+   
+               Image tarImage = Image.builder()
+                       .bytes(targetBytes)
+                       .build();
+   
+               CompareFacesRequest facesRequest = CompareFacesRequest.builder()
+                       .sourceImage(souImage)
+                       .targetImage(tarImage)
+                       .similarityThreshold(similarityThreshold)
+                       .build();
+   
+               // Compare the two images
+               CompareFacesResponse compareFacesResult = rekClient.compareFaces(facesRequest);
+               List<CompareFacesMatch> faceDetails = compareFacesResult.faceMatches();
+               for (CompareFacesMatch match: faceDetails){
+                   ComparedFace face= match.face();
+                   BoundingBox position = face.boundingBox();
+                   System.out.println("Face at " + position.left().toString()
+                           + " " + position.top()
+                           + " matches with " + face.confidence().toString()
+                           + "% confidence.");
+   
+               }
+               List<ComparedFace> uncompared = compareFacesResult.unmatchedFaces();
+   
+               System.out.println("There was " + uncompared.size()
+                       + " face(s) that did not match");
+               System.out.println("Source image rotation: " + compareFacesResult.sourceImageOrientationCorrection());
+               System.out.println("target image rotation: " + compareFacesResult.targetImageOrientationCorrection());
+   
+           } catch(RekognitionException | FileNotFoundException e) {
+               System.out.println("Failed to load source image " + sourceImage);
+               System.exit(1);
+           }
    ```
 
 ------
@@ -347,9 +405,9 @@ You can provide the source and target images as an image byte array \(base64\-en
 
 ------
 
-## CompareFaces Operation Request<a name="comparefaces-request"></a>
+## CompareFaces operation request<a name="comparefaces-request"></a>
 
-The input to `CompareFaces` is an image\. In this example, the source and target images are loaded from the local file system\. The `SimilarityThreshold` input parameter specifies the minimum confidence that compared faces must match to be included in the response\. For more information, see [Working with Images](images.md)\.
+The input to `CompareFaces` is an image\. In this example, the source and target images are loaded from the local file system\. The `SimilarityThreshold` input parameter specifies the minimum confidence that compared faces must match to be included in the response\. For more information, see [Working with images](images.md)\.
 
 ```
 {
@@ -363,7 +421,7 @@ The input to `CompareFaces` is an image\. In this example, the source and target
 }
 ```
 
-## CompareFaces Operation Response<a name="comparefaces-response"></a>
+## CompareFaces operation response<a name="comparefaces-response"></a>
 
 In the response, you get an array of face matches, source face information, source and target image orientation, and an array of unmatched faces\. For each matching face in the target image, the response provides a similarity score \(how similar the face is to the source face\) and face metadata\. Face metadata includes information such as the bounding box of the matching face and an array of facial landmarks\. The array of unmatched faces includes face metadata\. 
 

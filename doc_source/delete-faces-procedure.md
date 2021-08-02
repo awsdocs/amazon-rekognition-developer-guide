@@ -1,14 +1,16 @@
-# Deleting Faces from a Collection<a name="delete-faces-procedure"></a>
+# Deleting faces from a collection<a name="delete-faces-procedure"></a>
 
-You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from a collection\. For more information, see [Managing Faces in a Collection](collections.md#collections-index-faces)\. 
+You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from a collection\. For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\. 
+
+
 
 **To delete faces from a collection**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `DeleteFaces` operation\.
 
@@ -55,6 +57,32 @@ You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from
          }
       }
    }
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DeleteFacesFromCollection.java)\.
+
+   ```
+       public static void deleteFacesCollection(RekognitionClient rekClient,
+                                                String collectionId,
+                                                String faceId) {
+   
+           try {
+               DeleteFacesRequest deleteFacesRequest = DeleteFacesRequest.builder()
+                   .collectionId(collectionId)
+                   .faceIds(faceId)
+                   .build();
+   
+               rekClient.deleteFaces(deleteFacesRequest);
+               System.out.println("The face was deleted from the collection");
+   
+           } catch(RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+       }
    ```
 
 ------
@@ -144,7 +172,7 @@ You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from
 
 ------
 
-## DeleteFaces Operation Request<a name="deletefaces-request"></a>
+## DeleteFaces operation request<a name="deletefaces-request"></a>
 
 The input to `DeleteFaces` is the ID of the collection that contains the faces, and an array of face IDs for the faces to be deleted\. 
 
@@ -157,7 +185,7 @@ The input to `DeleteFaces` is the ID of the collection that contains the faces, 
 }
 ```
 
-## DeleteFaces Operation Response<a name="deletefaces-operation-response"></a>
+## DeleteFaces operation response<a name="deletefaces-operation-response"></a>
 
 The `DeleteFaces` response contains an array of face IDs for the faces that were deleted\.
 

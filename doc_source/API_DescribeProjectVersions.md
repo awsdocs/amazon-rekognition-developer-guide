@@ -8,10 +8,10 @@ This operation requires permissions to perform the `rekognition:DescribeProjectV
 
 ```
 {
-   "[MaxResults](#rekognition-DescribeProjectVersions-request-MaxResults)": number,
-   "[NextToken](#rekognition-DescribeProjectVersions-request-NextToken)": "string",
-   "[ProjectArn](#rekognition-DescribeProjectVersions-request-ProjectArn)": "string",
-   "[VersionNames](#rekognition-DescribeProjectVersions-request-VersionNames)": [ "string" ]
+   "MaxResults": number,
+   "NextToken": "string",
+   "ProjectArn": "string",
+   "VersionNames": [ "string" ]
 }
 ```
 
@@ -50,88 +50,122 @@ Required: No
 
 ```
 {
-   "[NextToken](#rekognition-DescribeProjectVersions-response-NextToken)": "string",
-   "[ProjectVersionDescriptions](#rekognition-DescribeProjectVersions-response-ProjectVersionDescriptions)": [ 
+   "NextToken": "string",
+   "ProjectVersionDescriptions": [ 
       { 
-         "[BillableTrainingTimeInSeconds](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-BillableTrainingTimeInSeconds)": number,
-         "[CreationTimestamp](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-CreationTimestamp)": number,
-         "[EvaluationResult](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-EvaluationResult)": { 
-            "[F1Score](API_EvaluationResult.md#rekognition-Type-EvaluationResult-F1Score)": number,
-            "[Summary](API_EvaluationResult.md#rekognition-Type-EvaluationResult-Summary)": { 
-               "[S3Object](API_Summary.md#rekognition-Type-Summary-S3Object)": { 
-                  "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-                  "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-                  "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+         "BillableTrainingTimeInSeconds": number,
+         "CreationTimestamp": number,
+         "EvaluationResult": { 
+            "F1Score": number,
+            "Summary": { 
+               "S3Object": { 
+                  "Bucket": "string",
+                  "Name": "string",
+                  "Version": "string"
                }
             }
          },
-         "[MinInferenceUnits](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-MinInferenceUnits)": number,
-         "[OutputConfig](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-OutputConfig)": { 
-            "[S3Bucket](API_OutputConfig.md#rekognition-Type-OutputConfig-S3Bucket)": "string",
-            "[S3KeyPrefix](API_OutputConfig.md#rekognition-Type-OutputConfig-S3KeyPrefix)": "string"
-         },
-         "[ProjectVersionArn](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-ProjectVersionArn)": "string",
-         "[Status](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-Status)": "string",
-         "[StatusMessage](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-StatusMessage)": "string",
-         "[TestingDataResult](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-TestingDataResult)": { 
-            "[Input](API_TestingDataResult.md#rekognition-Type-TestingDataResult-Input)": { 
-               "[Assets](API_TestingData.md#rekognition-Type-TestingData-Assets)": [ 
-                  { 
-                     "[GroundTruthManifest](API_Asset.md#rekognition-Type-Asset-GroundTruthManifest)": { 
-                        "[S3Object](API_GroundTruthManifest.md#rekognition-Type-GroundTruthManifest-S3Object)": { 
-                           "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-                           "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-                           "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
-                        }
-                     }
-                  }
-               ],
-               "[AutoCreate](API_TestingData.md#rekognition-Type-TestingData-AutoCreate)": boolean
-            },
-            "[Output](API_TestingDataResult.md#rekognition-Type-TestingDataResult-Output)": { 
-               "[Assets](API_TestingData.md#rekognition-Type-TestingData-Assets)": [ 
-                  { 
-                     "[GroundTruthManifest](API_Asset.md#rekognition-Type-Asset-GroundTruthManifest)": { 
-                        "[S3Object](API_GroundTruthManifest.md#rekognition-Type-GroundTruthManifest-S3Object)": { 
-                           "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-                           "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-                           "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
-                        }
-                     }
-                  }
-               ],
-               "[AutoCreate](API_TestingData.md#rekognition-Type-TestingData-AutoCreate)": boolean
+         "KmsKeyId": "string",
+         "ManifestSummary": { 
+            "S3Object": { 
+               "Bucket": "string",
+               "Name": "string",
+               "Version": "string"
             }
          },
-         "[TrainingDataResult](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-TrainingDataResult)": { 
-            "[Input](API_TrainingDataResult.md#rekognition-Type-TrainingDataResult-Input)": { 
-               "[Assets](API_TrainingData.md#rekognition-Type-TrainingData-Assets)": [ 
+         "MinInferenceUnits": number,
+         "OutputConfig": { 
+            "S3Bucket": "string",
+            "S3KeyPrefix": "string"
+         },
+         "ProjectVersionArn": "string",
+         "Status": "string",
+         "StatusMessage": "string",
+         "TestingDataResult": { 
+            "Input": { 
+               "Assets": [ 
                   { 
-                     "[GroundTruthManifest](API_Asset.md#rekognition-Type-Asset-GroundTruthManifest)": { 
-                        "[S3Object](API_GroundTruthManifest.md#rekognition-Type-GroundTruthManifest-S3Object)": { 
-                           "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-                           "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-                           "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+                     "GroundTruthManifest": { 
+                        "S3Object": { 
+                           "Bucket": "string",
+                           "Name": "string",
+                           "Version": "string"
                         }
                      }
                   }
-               ]
+               ],
+               "AutoCreate": boolean
             },
-            "[Output](API_TrainingDataResult.md#rekognition-Type-TrainingDataResult-Output)": { 
-               "[Assets](API_TrainingData.md#rekognition-Type-TrainingData-Assets)": [ 
+            "Output": { 
+               "Assets": [ 
                   { 
-                     "[GroundTruthManifest](API_Asset.md#rekognition-Type-Asset-GroundTruthManifest)": { 
-                        "[S3Object](API_GroundTruthManifest.md#rekognition-Type-GroundTruthManifest-S3Object)": { 
-                           "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-                           "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-                           "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+                     "GroundTruthManifest": { 
+                        "S3Object": { 
+                           "Bucket": "string",
+                           "Name": "string",
+                           "Version": "string"
+                        }
+                     }
+                  }
+               ],
+               "AutoCreate": boolean
+            },
+            "Validation": { 
+               "Assets": [ 
+                  { 
+                     "GroundTruthManifest": { 
+                        "S3Object": { 
+                           "Bucket": "string",
+                           "Name": "string",
+                           "Version": "string"
                         }
                      }
                   }
                ]
             }
          },
-         "[TrainingEndTimestamp](API_ProjectVersionDescription.md#rekognition-Type-ProjectVersionDescription-TrainingEndTimestamp)": number
+         "TrainingDataResult": { 
+            "Input": { 
+               "Assets": [ 
+                  { 
+                     "GroundTruthManifest": { 
+                        "S3Object": { 
+                           "Bucket": "string",
+                           "Name": "string",
+                           "Version": "string"
+                        }
+                     }
+                  }
+               ]
+            },
+            "Output": { 
+               "Assets": [ 
+                  { 
+                     "GroundTruthManifest": { 
+                        "S3Object": { 
+                           "Bucket": "string",
+                           "Name": "string",
+                           "Version": "string"
+                        }
+                     }
+                  }
+               ]
+            },
+            "Validation": { 
+               "Assets": [ 
+                  { 
+                     "GroundTruthManifest": { 
+                        "S3Object": { 
+                           "Bucket": "string",
+                           "Name": "string",
+                           "Version": "string"
+                        }
+                     }
+                  }
+               ]
+            }
+         },
+         "TrainingEndTimestamp": number
       }
    ]
 }
@@ -175,7 +209,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -189,7 +223,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DescribeProjectVersions) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DescribeProjectVersions) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DescribeProjectVersions) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DescribeProjectVersions) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DescribeProjectVersions) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DescribeProjectVersions) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DescribeProjectVersions) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DescribeProjectVersions) 

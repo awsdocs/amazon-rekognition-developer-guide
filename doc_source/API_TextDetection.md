@@ -6,7 +6,7 @@ The `DetectedText` field contains the text that Amazon Rekognition detected in t
 
 Every word and line has an identifier \(`Id`\)\. Each word belongs to a line and has a parent identifier \(`ParentId`\) that identifies the line of text in which the word appears\. The word `Id` is also an index for the word within a line of words\. 
 
-For more information, see [Detecting Text](text-detection.md)\.
+For more information, see [Detecting text](text-detection.md)\.
 
 ## Contents<a name="API_TextDetection_Contents"></a>
 
@@ -49,5 +49,5 @@ Required: No
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/TextDetection) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/TextDetection) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/TextDetection) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/TextDetection) 
 +  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/TextDetection) 

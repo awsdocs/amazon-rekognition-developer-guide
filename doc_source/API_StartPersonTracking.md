@@ -10,17 +10,17 @@ To get the results of the person detection operation, first check that the statu
 
 ```
 {
-   "[ClientRequestToken](#rekognition-StartPersonTracking-request-ClientRequestToken)": "string",
-   "[JobTag](#rekognition-StartPersonTracking-request-JobTag)": "string",
-   "[NotificationChannel](#rekognition-StartPersonTracking-request-NotificationChannel)": { 
-      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
-      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
+   "ClientRequestToken": "string",
+   "JobTag": "string",
+   "NotificationChannel": { 
+      "RoleArn": "string",
+      "SNSTopicArn": "string"
    },
-   "[Video](#rekognition-StartPersonTracking-request-Video)": { 
-      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Video": { 
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -45,7 +45,7 @@ Pattern: `[a-zA-Z0-9_.\-:]+`
 Required: No
 
  ** [NotificationChannel](#API_StartPersonTracking_RequestSyntax) **   <a name="rekognition-StartPersonTracking-request-NotificationChannel"></a>
-The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the completion status of the people detection operation to\.  
+The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the completion status of the people detection operation to\. The Amazon SNS topic must have a topic name that begins with *AmazonRekognition* if you are using the AmazonRekognitionServiceRole permissions policy\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
@@ -58,7 +58,7 @@ Required: Yes
 
 ```
 {
-   "[JobId](#rekognition-StartPersonTracking-response-JobId)": "string"
+   "JobId": "string"
 }
 ```
 
@@ -119,7 +119,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartPersonTracking) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartPersonTracking) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartPersonTracking) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartPersonTracking) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartPersonTracking) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartPersonTracking) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartPersonTracking) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartPersonTracking) 

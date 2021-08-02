@@ -1,4 +1,4 @@
-# Amazon Rekognition Image Operation Latency<a name="operation-latency"></a>
+# Amazon Rekognition Image operation latency<a name="operation-latency"></a>
 
 To ensure the lowest possible latency for Amazon Rekognition Image operations, consider the following:
 + The Region for the Amazon S3 bucket that contains your images must match the Region you use for Amazon Rekognition Image API operations\. 

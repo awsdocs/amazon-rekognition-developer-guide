@@ -11,6 +11,7 @@
 + [DetectFaces](API_DetectFaces.md)
 + [DetectLabels](API_DetectLabels.md)
 + [DetectModerationLabels](API_DetectModerationLabels.md)
++ [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md)
 + [DetectText](API_DetectText.md)
 + [GetCelebrityInfo](API_GetCelebrityInfo.md)
 + [IndexFaces](API_IndexFaces.md)
@@ -23,6 +24,8 @@
 ## Amazon Rekognition Custom Labels<a name="rek-custom-labels-api-list"></a>
 + [CreateProject](API_CreateProject.md)
 + [CreateProjectVersion](API_CreateProjectVersion.md)
++ [DeleteProject](API_DeleteProject.md)
++ [DeleteProjectVersion](API_DeleteProjectVersion.md)
 + [DescribeProjects](API_DescribeProjects.md)
 + [DescribeProjectVersions](API_DescribeProjectVersions.md)
 + [DetectCustomLabels](API_DetectCustomLabels.md)
@@ -36,6 +39,7 @@
 + [GetFaceSearch](API_GetFaceSearch.md)
 + [GetLabelDetection](API_GetLabelDetection.md)
 + [GetPersonTracking](API_GetPersonTracking.md)
++ [GetSegmentDetection](API_GetSegmentDetection.md)
 + [GetTextDetection](API_GetTextDetection.md)
 + [StartCelebrityRecognition](API_StartCelebrityRecognition.md)
 + [StartContentModeration](API_StartContentModeration.md)
@@ -43,6 +47,7 @@
 + [StartFaceSearch](API_StartFaceSearch.md)
 + [StartLabelDetection](API_StartLabelDetection.md)
 + [StartPersonTracking](API_StartPersonTracking.md)
++ [StartSegmentDetection](API_StartSegmentDetection.md)
 + [StartTextDetection](API_StartTextDetection.md)
 
 ## Amazon Rekognition Video Streaming Video<a name="rek-streaming-video-api-list"></a>

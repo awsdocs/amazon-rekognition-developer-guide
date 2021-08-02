@@ -14,39 +14,43 @@ This operation requires permissions to perform the `rekognition:CreateProjectVer
 
 ```
 {
-   "[OutputConfig](#rekognition-CreateProjectVersion-request-OutputConfig)": { 
-      "[S3Bucket](API_OutputConfig.md#rekognition-Type-OutputConfig-S3Bucket)": "string",
-      "[S3KeyPrefix](API_OutputConfig.md#rekognition-Type-OutputConfig-S3KeyPrefix)": "string"
+   "KmsKeyId": "string",
+   "OutputConfig": { 
+      "S3Bucket": "string",
+      "S3KeyPrefix": "string"
    },
-   "[ProjectArn](#rekognition-CreateProjectVersion-request-ProjectArn)": "string",
-   "[TestingData](#rekognition-CreateProjectVersion-request-TestingData)": { 
-      "[Assets](API_TestingData.md#rekognition-Type-TestingData-Assets)": [ 
+   "ProjectArn": "string",
+   "Tags": { 
+      "string" : "string" 
+   },
+   "TestingData": { 
+      "Assets": [ 
          { 
-            "[GroundTruthManifest](API_Asset.md#rekognition-Type-Asset-GroundTruthManifest)": { 
-               "[S3Object](API_GroundTruthManifest.md#rekognition-Type-GroundTruthManifest-S3Object)": { 
-                  "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-                  "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-                  "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+            "GroundTruthManifest": { 
+               "S3Object": { 
+                  "Bucket": "string",
+                  "Name": "string",
+                  "Version": "string"
                }
             }
          }
       ],
-      "[AutoCreate](API_TestingData.md#rekognition-Type-TestingData-AutoCreate)": boolean
+      "AutoCreate": boolean
    },
-   "[TrainingData](#rekognition-CreateProjectVersion-request-TrainingData)": { 
-      "[Assets](API_TrainingData.md#rekognition-Type-TrainingData-Assets)": [ 
+   "TrainingData": { 
+      "Assets": [ 
          { 
-            "[GroundTruthManifest](API_Asset.md#rekognition-Type-Asset-GroundTruthManifest)": { 
-               "[S3Object](API_GroundTruthManifest.md#rekognition-Type-GroundTruthManifest-S3Object)": { 
-                  "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-                  "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-                  "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+            "GroundTruthManifest": { 
+               "S3Object": { 
+                  "Bucket": "string",
+                  "Name": "string",
+                  "Version": "string"
                }
             }
          }
       ]
    },
-   "[VersionName](#rekognition-CreateProjectVersion-request-VersionName)": "string"
+   "VersionName": "string"
 }
 ```
 
@@ -54,8 +58,21 @@ This operation requires permissions to perform the `rekognition:CreateProjectVer
 
 The request accepts the following data in JSON format\.
 
+ ** [KmsKeyId](#API_CreateProjectVersion_RequestSyntax) **   <a name="rekognition-CreateProjectVersion-request-KmsKeyId"></a>
+The identifier for your AWS Key Management Service \(AWS KMS\) customer master key \(CMK\)\. You can supply the Amazon Resource Name \(ARN\) of your CMK, the ID of your CMK, an alias for your CMK, or an alias ARN\. The key is used to encrypt training and test images copied into the service for model training\. Your source images are unaffected\. The key is also used to encrypt training results and manifest files written to the output Amazon S3 bucket \(`OutputConfig`\)\.  
+If you choose to use your own CMK, you need the following permissions on the CMK\.  
++ kms:CreateGrant
++ kms:DescribeKey
++ kms:GenerateDataKey
++ kms:Decrypt
+If you don't specify a value for `KmsKeyId`, images copied into the service are encrypted using a key that AWS owns and manages\.  
+Type: String  
+Length Constraints: Minimum length of 1\. Maximum length of 2048\.  
+Pattern: `^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$`   
+Required: No
+
  ** [OutputConfig](#API_CreateProjectVersion_RequestSyntax) **   <a name="rekognition-CreateProjectVersion-request-OutputConfig"></a>
-The Amazon S3 location to store the results of training\.  
+The Amazon S3 bucket location to store the results of training\. The S3 bucket can be in any AWS account as long as the caller has `s3:PutObject` permissions on the S3 bucket\.  
 Type: [OutputConfig](API_OutputConfig.md) object  
 Required: Yes
 
@@ -65,6 +82,16 @@ Type: String
 Length Constraints: Minimum length of 20\. Maximum length of 2048\.  
 Pattern: `(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)`   
 Required: Yes
+
+ ** [Tags](#API_CreateProjectVersion_RequestSyntax) **   <a name="rekognition-CreateProjectVersion-request-Tags"></a>
+ A set of tags \(key\-value pairs\) that you want to attach to the model\.   
+Type: String to string map  
+Map Entries: Minimum number of 0 items\. Maximum number of 200 items\.  
+Key Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Key Pattern: `^(?!aws:)[\p{L}\p{Z}\p{N}_.:/=+\-@]*$`   
+Value Length Constraints: Minimum length of 0\. Maximum length of 256\.  
+Value Pattern: `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`   
+Required: No
 
  ** [TestingData](#API_CreateProjectVersion_RequestSyntax) **   <a name="rekognition-CreateProjectVersion-request-TestingData"></a>
 The dataset to use for testing\.  
@@ -87,7 +114,7 @@ Required: Yes
 
 ```
 {
-   "[ProjectVersionArn](#rekognition-CreateProjectVersion-response-ProjectVersionArn)": "string"
+   "ProjectVersionArn": "string"
 }
 ```
 
@@ -126,11 +153,16 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceInUseException**   
-  
+The specified resource is already being used\.  
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
+HTTP Status Code: 400
+
+ **ServiceQuotaExceededException**   
+  
+The size of the resource exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -144,7 +176,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/CreateProjectVersion) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/CreateProjectVersion) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/CreateProjectVersion) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/CreateProjectVersion) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/CreateProjectVersion) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/CreateProjectVersion) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/CreateProjectVersion) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/CreateProjectVersion) 

@@ -1,6 +1,6 @@
-# Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)<a name="video-analyzing-with-sqs"></a>
+# Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)<a name="video-analyzing-with-sqs"></a>
 
-This procedure shows you how to detect labels in a video by using Amazon Rekognition Video label detection operations, a video stored in an Amazon S3 bucket, and an Amazon SNS topic\. The procedure also shows how to use an Amazon SQS queue to get the completion status from the Amazon SNS topic\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\. You aren't restricted to using an Amazon SQS queue\. For example, you can use an AWS Lambda function to get the completion status\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-lambda.html)\.
+This procedure shows you how to detect labels in a video by using Amazon Rekognition Video label detection operations, a video stored in an Amazon S3 bucket, and an Amazon SNS topic\. The procedure also shows how to use an Amazon SQS queue to get the completion status from the Amazon SNS topic\. For more information, see [Calling Amazon Rekognition Video operations](api-video.md)\. You aren't restricted to using an Amazon SQS queue\. For example, you can use an AWS Lambda function to get the completion status\. For more information, see [Invoking Lambda functions using Amazon SNS notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-lambda.html)\.
 
 The example code in this procedure shows you how to do the following:
 
@@ -20,9 +20,9 @@ The example code in this procedure shows you how to do the following:
 
 ## Prerequisites<a name="video-prerequisites"></a>
 
-The example code for this procedure is provided in Java and Python\. You need to have the appropriate AWS SDK installed\. For more information, see [Getting Started with Amazon Rekognition](getting-started.md)\. The AWS account that you use must have access permissions to the Amazon Rekognition API\. For more information, see [Actions Defined by Amazon Rekognition](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonrekognition.html#amazonrekognition-actions-as-permissions)\. 
+The example code for this procedure is provided in Java and Python\. You need to have the appropriate AWS SDK installed\. For more information, see [Getting started with Amazon Rekognition](getting-started.md)\. The AWS account that you use must have access permissions to the Amazon Rekognition API\. For more information, see [Actions Defined by Amazon Rekognition](https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonrekognition.html#amazonrekognition-actions-as-permissions)\. 
 
-**To Detect Labels in a Video**
+**To detect labels in a video**
 
 1. Configure user access to Amazon Rekognition Video and configure Amazon Rekognition Video access to Amazon SNS\. For more information, see [Configuring Amazon Rekognition Video](api-video-roles.md)\. You don't need to do steps 3, 4, 5, and 6 because the example code creates and configures the Amazon SNS topic and Amazon SQS queue\. 
 
@@ -30,14 +30,14 @@ The example code for this procedure is provided in Java and Python\. You need to
 
    For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
-1. Use the following code to detect labels in a video\. 
+1. Use the following code examples to detect labels in a video\. 
+
+------
+#### [ Java ]
 
    In the function `main`:
    + Replace `roleArn` with the ARN of the IAM service role that you created in step 7 of [To configure Amazon Rekognition Video](api-video-roles.md#configure-rekvid-procedure)\.
    + Replace the values of `bucket` and `video` with the bucket and video file name that you specified in step 2\. 
-
-------
-#### [ Java ]
 
    ```
    //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -369,6 +369,10 @@ The example code for this procedure is provided in Java and Python\. You need to
 ------
 #### [ Python ]
 
+   In the function `main`:
+   + Replace `roleArn` with the ARN of the IAM service role that you created in step 7 of [To configure Amazon Rekognition Video](api-video-roles.md#configure-rekvid-procedure)\.
+   + Replace the values of `bucket` and `video` with the bucket and video file name that you specified in step 2\. 
+
    ```
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
    #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
@@ -575,5 +579,196 @@ The example code for this procedure is provided in Java and Python\. You need to
    ```
 
 ------
+#### [ Java V2 ]
 
-1. Build and run the code\. The operation might take a while to finish\. After it's finished, a list of the labels detected in the video is displayed\. For more information, see [Detecting Labels in a Video](labels-detecting-labels-video.md)\.
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/VideoDetect.java)\.
+
+   ```
+       public static void startLabels(RekognitionClient rekClient,
+                                      NotificationChannel channel,
+                                      String bucket,
+                                      String video) {
+           try {
+               S3Object s3Obj = S3Object.builder()
+                       .bucket(bucket)
+                       .name(video)
+                       .build();
+   
+               Video vidOb = Video.builder()
+                       .s3Object(s3Obj)
+                       .build();
+   
+               StartLabelDetectionRequest labelDetectionRequest = StartLabelDetectionRequest.builder()
+                       .jobTag("DetectingLabels")
+                       .notificationChannel(channel)
+                       .video(vidOb)
+                       .minConfidence(50F)
+                       .build();
+   
+               StartLabelDetectionResponse labelDetectionResponse = rekClient.startLabelDetection(labelDetectionRequest);
+               startJobId = labelDetectionResponse.jobId();
+   
+               boolean ans = true;
+               String status = "";
+               int yy = 0;
+               while (ans) {
+   
+                   GetLabelDetectionRequest detectionRequest = GetLabelDetectionRequest.builder()
+                           .jobId(startJobId)
+                           .maxResults(10)
+                           .build();
+   
+                   GetLabelDetectionResponse result = rekClient.getLabelDetection(detectionRequest);
+                   status = result.jobStatusAsString();
+   
+                   if (status.compareTo("SUCCEEDED") == 0)
+                       ans = false;
+                   else
+                       System.out.println(yy +" status is: "+status);
+   
+                   Thread.sleep(1000);
+                   yy++;
+               }
+   
+               System.out.println(startJobId +" status is: "+status);
+           } catch(RekognitionException | InterruptedException e) {
+               e.getMessage();
+               System.exit(1);
+           }
+       }
+   
+       public static void getLabelJob(RekognitionClient rekClient,
+                                      SqsClient sqs,
+                                      String queueUrl) {
+   
+           List<Message> messages=null;
+           ReceiveMessageRequest messageRequest = ReceiveMessageRequest.builder()
+                   .queueUrl(queueUrl)
+                   .build();
+   
+           try {
+               messages = sqs.receiveMessage(messageRequest).messages();
+   
+               if (!messages.isEmpty()) {
+                   for (Message message: messages) {
+                       String notification = message.body();
+   
+                       // Get the status and job id from the notification
+                       ObjectMapper mapper = new ObjectMapper();
+                       JsonNode jsonMessageTree = mapper.readTree(notification);
+                       JsonNode messageBodyText = jsonMessageTree.get("Message");
+                       ObjectMapper operationResultMapper = new ObjectMapper();
+                       JsonNode jsonResultTree = operationResultMapper.readTree(messageBodyText.textValue());
+                       JsonNode operationJobId = jsonResultTree.get("JobId");
+                       JsonNode operationStatus = jsonResultTree.get("Status");
+                       System.out.println("Job found in JSON is " + operationJobId);
+   
+                       DeleteMessageRequest deleteMessageRequest = DeleteMessageRequest.builder()
+                               .queueUrl(queueUrl)
+                               .build();
+   
+                       String jobId = operationJobId.textValue();
+                       if (startJobId.compareTo(jobId)==0) {
+   
+                           System.out.println("Job id: " + operationJobId );
+                           System.out.println("Status : " + operationStatus.toString());
+   
+                           if (operationStatus.asText().equals("SUCCEEDED"))
+                               GetResultsLabels(rekClient);
+                           else
+                               System.out.println("Video analysis failed");
+   
+                           sqs.deleteMessage(deleteMessageRequest);
+                       }
+   
+                       else{
+                           System.out.println("Job received was not job " +  startJobId);
+                           sqs.deleteMessage(deleteMessageRequest);
+                       }
+                   }
+               }
+   
+           } catch(RekognitionException e) {
+               e.getMessage();
+               System.exit(1);
+           } catch (JsonMappingException e) {
+               e.printStackTrace();
+           } catch (JsonProcessingException e) {
+               e.printStackTrace();
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+       }
+   
+       // Gets the job results by calling GetLabelDetection
+       private static void GetResultsLabels(RekognitionClient rekClient) {
+   
+           int maxResults=10;
+           String paginationToken=null;
+           GetLabelDetectionResponse labelDetectionResult=null;
+   
+           try {
+               do {
+                   if (labelDetectionResult !=null)
+                       paginationToken = labelDetectionResult.nextToken();
+   
+   
+                   GetLabelDetectionRequest labelDetectionRequest= GetLabelDetectionRequest.builder()
+                           .jobId(startJobId)
+                           .sortBy(LabelDetectionSortBy.TIMESTAMP)
+                           .maxResults(maxResults)
+                           .nextToken(paginationToken)
+                           .build();
+   
+                   labelDetectionResult = rekClient.getLabelDetection(labelDetectionRequest);
+                   VideoMetadata videoMetaData=labelDetectionResult.videoMetadata();
+   
+                   System.out.println("Format: " + videoMetaData.format());
+                   System.out.println("Codec: " + videoMetaData.codec());
+                   System.out.println("Duration: " + videoMetaData.durationMillis());
+                   System.out.println("FrameRate: " + videoMetaData.frameRate());
+   
+                   List<LabelDetection> detectedLabels= labelDetectionResult.labels();
+                   for (LabelDetection detectedLabel: detectedLabels) {
+                       long seconds=detectedLabel.timestamp();
+                       Label label=detectedLabel.label();
+                       System.out.println("Millisecond: " + Long.toString(seconds) + " ");
+   
+                       System.out.println("   Label:" + label.name());
+                       System.out.println("   Confidence:" + detectedLabel.label().confidence().toString());
+   
+                       List<Instance> instances = label.instances();
+                       System.out.println("   Instances of " + label.name());
+   
+                       if (instances.isEmpty()) {
+                           System.out.println("        " + "None");
+                       }  else {
+                           for (Instance instance : instances) {
+                               System.out.println("        Confidence: " + instance.confidence().toString());
+                               System.out.println("        Bounding box: " + instance.boundingBox().toString());
+                           }
+                       }
+                       System.out.println("   Parent labels for " + label.name() + ":");
+                       List<Parent> parents = label.parents();
+   
+                       if (parents.isEmpty()) {
+                           System.out.println("        None");
+                       } else {
+                           for (Parent parent : parents) {
+                               System.out.println("        " + parent.name());
+                           }
+                       }
+                       System.out.println();
+                   }
+               } while (labelDetectionResult !=null && labelDetectionResult.nextToken() != null);
+   
+           } catch(RekognitionException e) {
+               e.getMessage();
+               System.exit(1);
+           }
+       }
+   ```
+
+------
+
+1. Build and run the code\. The operation might take a while to finish\. After it's finished, a list of the labels detected in the video is displayed\. For more information, see [Detecting labels in a video](labels-detecting-labels-video.md)\.

@@ -1,12 +1,12 @@
-# Detecting Text in a Stored Video<a name="text-detecting-video-procedure"></a>
+# Detecting text in a stored video<a name="text-detecting-video-procedure"></a>
 
-Amazon Rekognition Video text detection in stored videos is an asynchronous operation\. To start detecting text, call [StartTextDetection](API_StartTextDetection.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon SNS topic\. If the video analysis is successful, call [GetTextDetection](API_GetTextDetection.md) to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video Operations](api-video.md)\.
+Amazon Rekognition Video text detection in stored videos is an asynchronous operation\. To start detecting text, call [StartTextDetection](API_StartTextDetection.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon SNS topic\. If the video analysis is successful, call [GetTextDetection](API_GetTextDetection.md) to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video operations](api-video.md)\.
 
-This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\. It uses an Amazon SQS queue to get the completion status of a video analysis request\.
+This procedure expands on the code in [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\. It uses an Amazon SQS queue to get the completion status of a video analysis request\.
 
 **To detect text in a video stored in an Amazon S3 bucket \(SDK\)**
 
-1. Perform the steps in [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\.
+1. Perform the steps in [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\.
 
 1. Add the following code to the class `VideoDetect` in step 1\.
 
@@ -105,6 +105,105 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/VideoDetectText.java)\.
+
+   ```
+       public static void startTextLabels(RekognitionClient rekClient,
+                                      NotificationChannel channel,
+                                      String bucket,
+                                      String video) {
+           try {
+               S3Object s3Obj = S3Object.builder()
+                       .bucket(bucket)
+                       .name(video)
+                       .build();
+   
+               Video vidOb = Video.builder()
+                       .s3Object(s3Obj)
+                       .build();
+   
+               StartTextDetectionRequest labelDetectionRequest = StartTextDetectionRequest.builder()
+                       .jobTag("DetectingLabels")
+                       .notificationChannel(channel)
+                       .video(vidOb)
+                       .build();
+   
+               StartTextDetectionResponse labelDetectionResponse = rekClient.startTextDetection(labelDetectionRequest);
+               startJobId = labelDetectionResponse.jobId();
+   
+           } catch(RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+         }
+   
+       public static void GetTextResults(RekognitionClient rekClient) {
+   
+           try {
+               String paginationToken=null;
+               GetTextDetectionResponse textDetectionResponse=null;
+               Boolean finished = false;
+               String status="";
+               int yy=0 ;
+   
+               do{
+                   if (textDetectionResponse !=null)
+                       paginationToken = textDetectionResponse.nextToken();
+   
+                   GetTextDetectionRequest recognitionRequest = GetTextDetectionRequest.builder()
+                           .jobId(startJobId)
+                           .nextToken(paginationToken)
+                           .maxResults(10)
+                           .build();
+   
+                   // Wait until the job succeeds
+                   while (!finished) {
+   
+                       textDetectionResponse = rekClient.getTextDetection(recognitionRequest);
+                       status = textDetectionResponse.jobStatusAsString();
+   
+                       if (status.compareTo("SUCCEEDED") == 0)
+                           finished = true;
+                       else {
+                           System.out.println(yy + " status is: " + status);
+                           Thread.sleep(1000);
+                       }
+                       yy++;
+                   }
+   
+                   finished = false;
+   
+                   // Proceed when the job is done - otherwise VideoMetadata is null
+                   VideoMetadata videoMetaData=textDetectionResponse.videoMetadata();
+   
+                   System.out.println("Format: " + videoMetaData.format());
+                   System.out.println("Codec: " + videoMetaData.codec());
+                   System.out.println("Duration: " + videoMetaData.durationMillis());
+                   System.out.println("FrameRate: " + videoMetaData.frameRate());
+                   System.out.println("Job");
+   
+                   List<TextDetectionResult> labels= textDetectionResponse.textDetections();
+                   for (TextDetectionResult detectedText: labels) {
+                       System.out.println("Confidence: " + detectedText.textDetection().confidence().toString());
+                       System.out.println("Id : " + detectedText.textDetection().id());
+                       System.out.println("Parent Id: " + detectedText.textDetection().parentId());
+                       System.out.println("Type: " + detectedText.textDetection().type());
+                       System.out.println("Text: " + detectedText.textDetection().detectedText());
+                       System.out.println();
+                   }
+   
+               } while (textDetectionResponse !=null && textDetectionResponse.nextToken() != null);
+   
+           } catch(RekognitionException | InterruptedException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+       }
+   ```
+
+------
 #### [ Python ]
 
    ```
@@ -173,7 +272,7 @@ This procedure expands on the code in [Analyzing a Video Stored in an Amazon S3 
 
 ------
 **Note**  
-If you've already run a video example other than [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the code to replace might be different\.
+If you've already run a video example other than [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), the code to replace might be different\.
 
 1. Run the code\. Text that was detected in the video is shown in a list\.
 
@@ -185,13 +284,13 @@ Filters are optional request parameters that can be used when you call `StartTex
 + **MinBoundingBoxHeight** – Sets the minimum height of the word bounding box\. Words with bounding box heights less than this value are excluded from the result\. The value is relative to the video frame height\.
 + **RegionsOfInterest** – Limits detection to a specific region of the frame\. The values are relative to the frame dimensions\. For objects only partially within the regions, the response is undefined\.
 
-## GetTextDetection Response<a name="text-detecting-video-response"></a>
+## GetTextDetection response<a name="text-detecting-video-response"></a>
 
 `GetTextDetection` returns an array \(`TextDetectionResults`\) that contains information about the text detected in the video\. An array element, [TextDetection](API_TextDetection.md), exists for each time a word or line is detected in the video\. The array elements are sorted by time \(in milliseconds\) since the start of the video\.
 
 The following is a partial JSON response from `GetTextDetection`\. In the response, note the following:
 + **Text information** – The `TextDetectionResult` array element contains information about the detected text \([TextDetection](API_TextDetection.md)\) and the time that the text was detected in the video \(`Timestamp`\)\.
-+ **Paging information** – The example shows one page of text detection information\. You can specify how many text elements to return in the `MaxResults` input parameter for `GetTextDetection`\. If more results than `MaxResults` exist, or there are more results than the default maximum, `GetTextDetection` returns a token \(`NextToken`\) that's used to get the next page of results\. For more information, see [Getting Amazon Rekognition Video Analysis Results](api-video.md#api-video-get)\.
++ **Paging information** – The example shows one page of text detection information\. You can specify how many text elements to return in the `MaxResults` input parameter for `GetTextDetection`\. If more results than `MaxResults` exist, or there are more results than the default maximum, `GetTextDetection` returns a token \(`NextToken`\) that's used to get the next page of results\. For more information, see [Getting Amazon Rekognition Video analysis results](api-video.md#api-video-get)\.
 + **Video information** – The response includes information about the video format \(`VideoMetadata`\) in each page of information that's returned by `GetTextDetection`\.
 
 ```

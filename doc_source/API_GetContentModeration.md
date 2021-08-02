@@ -1,27 +1,27 @@
 # GetContentModeration<a name="API_GetContentModeration"></a>
 
-Gets the unsafe content analysis results for a Amazon Rekognition Video analysis started by [StartContentModeration](API_StartContentModeration.md)\.
+Gets the inappropriate, unwanted, or offensive content analysis results for a Amazon Rekognition Video analysis started by [StartContentModeration](API_StartContentModeration.md)\. For a list of moderation labels in Amazon Rekognition, see [Using the image and video moderation APIs](https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html#moderation-api)\.
 
-Unsafe content analysis of a video is an asynchronous operation\. You start analysis by calling [StartContentModeration](API_StartContentModeration.md) which returns a job identifier \(`JobId`\)\. When analysis finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartContentModeration`\. To get the results of the unsafe content analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetContentModeration` and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. 
+Amazon Rekognition Video inappropriate or offensive content detection in a stored video is an asynchronous operation\. You start analysis by calling [StartContentModeration](API_StartContentModeration.md) which returns a job identifier \(`JobId`\)\. When analysis finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartContentModeration`\. To get the results of the content analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetContentModeration` and pass the job identifier \(`JobId`\) from the initial call to `StartContentModeration`\. 
 
-For more information, see [Working with Stored Videos](video.md)\. 
+For more information, see [Working with stored videos](video.md)\. 
 
- `GetContentModeration` returns detected unsafe content labels, and the time they are detected, in an array, `ModerationLabels`, of [ContentModerationDetection](API_ContentModerationDetection.md) objects\. 
+ `GetContentModeration` returns detected inappropriate, unwanted, or offensive content moderation labels, and the time they are detected, in an array, `ModerationLabels`, of [ContentModerationDetection](API_ContentModerationDetection.md) objects\. 
 
 By default, the moderated labels are returned sorted by time, in milliseconds from the start of the video\. You can also sort them by moderated label by specifying `NAME` for the `SortBy` input parameter\. 
 
 Since video analysis can return a large number of results, use the `MaxResults` parameter to limit the number of labels returned in a single call to `GetContentModeration`\. If there are more results than specified in `MaxResults`, the value of `NextToken` in the operation response contains a pagination token for getting the next set of results\. To get the next page of results, call `GetContentModeration` and populate the `NextToken` request parameter with the value of `NextToken` returned from the previous call to `GetContentModeration`\.
 
-For more information, see [Detecting Unsafe Content](moderation.md)\.
+For more information, see [Content moderation](moderation.md)\.
 
 ## Request Syntax<a name="API_GetContentModeration_RequestSyntax"></a>
 
 ```
 {
-   "[JobId](#rekognition-GetContentModeration-request-JobId)": "string",
-   "[MaxResults](#rekognition-GetContentModeration-request-MaxResults)": number,
-   "[NextToken](#rekognition-GetContentModeration-request-NextToken)": "string",
-   "[SortBy](#rekognition-GetContentModeration-request-SortBy)": "string"
+   "JobId": "string",
+   "MaxResults": number,
+   "NextToken": "string",
+   "SortBy": "string"
 }
 ```
 
@@ -30,7 +30,7 @@ For more information, see [Detecting Unsafe Content](moderation.md)\.
 The request accepts the following data in JSON format\.
 
  ** [JobId](#API_GetContentModeration_RequestSyntax) **   <a name="rekognition-GetContentModeration-request-JobId"></a>
-The identifier for the unsafe content job\. Use `JobId` to identify the job in a subsequent call to `GetContentModeration`\.  
+The identifier for the inappropriate, unwanted, or offensive content moderation job\. Use `JobId` to identify the job in a subsequent call to `GetContentModeration`\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 64\.  
 Pattern: `^[a-zA-Z0-9-_]+$`   
@@ -43,7 +43,7 @@ Valid Range: Minimum value of 1\.
 Required: No
 
  ** [NextToken](#API_GetContentModeration_RequestSyntax) **   <a name="rekognition-GetContentModeration-request-NextToken"></a>
-If the previous response was incomplete \(because there is more data to retrieve\), Amazon Rekognition returns a pagination token in the response\. You can use this pagination token to retrieve the next set of unsafe content labels\.  
+If the previous response was incomplete \(because there is more data to retrieve\), Amazon Rekognition returns a pagination token in the response\. You can use this pagination token to retrieve the next set of content moderation labels\.  
 Type: String  
 Length Constraints: Maximum length of 255\.  
 Required: No
@@ -58,27 +58,27 @@ Required: No
 
 ```
 {
-   "[JobStatus](#rekognition-GetContentModeration-response-JobStatus)": "string",
-   "[ModerationLabels](#rekognition-GetContentModeration-response-ModerationLabels)": [ 
+   "JobStatus": "string",
+   "ModerationLabels": [ 
       { 
-         "[ModerationLabel](API_ContentModerationDetection.md#rekognition-Type-ContentModerationDetection-ModerationLabel)": { 
-            "[Confidence](API_ModerationLabel.md#rekognition-Type-ModerationLabel-Confidence)": number,
-            "[Name](API_ModerationLabel.md#rekognition-Type-ModerationLabel-Name)": "string",
-            "[ParentName](API_ModerationLabel.md#rekognition-Type-ModerationLabel-ParentName)": "string"
+         "ModerationLabel": { 
+            "Confidence": number,
+            "Name": "string",
+            "ParentName": "string"
          },
-         "[Timestamp](API_ContentModerationDetection.md#rekognition-Type-ContentModerationDetection-Timestamp)": number
+         "Timestamp": number
       }
    ],
-   "[ModerationModelVersion](#rekognition-GetContentModeration-response-ModerationModelVersion)": "string",
-   "[NextToken](#rekognition-GetContentModeration-response-NextToken)": "string",
-   "[StatusMessage](#rekognition-GetContentModeration-response-StatusMessage)": "string",
-   "[VideoMetadata](#rekognition-GetContentModeration-response-VideoMetadata)": { 
-      "[Codec](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Codec)": "string",
-      "[DurationMillis](API_VideoMetadata.md#rekognition-Type-VideoMetadata-DurationMillis)": number,
-      "[Format](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Format)": "string",
-      "[FrameHeight](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameHeight)": number,
-      "[FrameRate](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameRate)": number,
-      "[FrameWidth](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameWidth)": number
+   "ModerationModelVersion": "string",
+   "NextToken": "string",
+   "StatusMessage": "string",
+   "VideoMetadata": { 
+      "Codec": "string",
+      "DurationMillis": number,
+      "Format": "string",
+      "FrameHeight": number,
+      "FrameRate": number,
+      "FrameWidth": number
    }
 }
 ```
@@ -90,20 +90,20 @@ If the action is successful, the service sends back an HTTP 200 response\.
 The following data is returned in JSON format by the service\.
 
  ** [JobStatus](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-JobStatus"></a>
-The current status of the unsafe content analysis job\.  
+The current status of the content moderation analysis job\.  
 Type: String  
 Valid Values:` IN_PROGRESS | SUCCEEDED | FAILED` 
 
  ** [ModerationLabels](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-ModerationLabels"></a>
-The detected unsafe content labels and the time\(s\) they were detected\.  
+The detected inappropriate, unwanted, or offensive content moderation labels and the time\(s\) they were detected\.  
 Type: Array of [ContentModerationDetection](API_ContentModerationDetection.md) objects
 
  ** [ModerationModelVersion](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-ModerationModelVersion"></a>
-Version number of the moderation detection model that was used to detect unsafe content\.  
+Version number of the moderation detection model that was used to detect inappropriate, unwanted, or offensive content\.  
 Type: String
 
  ** [NextToken](#API_GetContentModeration_ResponseSyntax) **   <a name="rekognition-GetContentModeration-response-NextToken"></a>
-If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of unsafe content labels\.   
+If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of content moderation labels\.   
 Type: String  
 Length Constraints: Maximum length of 255\.
 
@@ -138,7 +138,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -152,7 +152,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/GetContentModeration) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/GetContentModeration) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/GetContentModeration) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/GetContentModeration) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetContentModeration) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/GetContentModeration) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/GetContentModeration) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/GetContentModeration) 

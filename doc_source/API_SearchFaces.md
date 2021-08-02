@@ -7,7 +7,7 @@ You can also search faces without indexing faces by using the `SearchFacesByImag
 
  The operation response returns an array of faces that match, ordered by similarity score with the highest similarity first\. More specifically, it is an array of metadata for each face match that is found\. Along with the metadata, the response also includes a `confidence` value for each face match, indicating the confidence that the specific face matches the input face\. 
 
-For an example, see [Searching for a Face Using Its Face ID](search-face-with-id-procedure.md)\.
+For an example, see [Searching for a face using its face ID](search-face-with-id-procedure.md)\.
 
 This operation requires permissions to perform the `rekognition:SearchFaces` action\.
 
@@ -15,10 +15,10 @@ This operation requires permissions to perform the `rekognition:SearchFaces` act
 
 ```
 {
-   "[CollectionId](#rekognition-SearchFaces-request-CollectionId)": "string",
-   "[FaceId](#rekognition-SearchFaces-request-FaceId)": "string",
-   "[FaceMatchThreshold](#rekognition-SearchFaces-request-FaceMatchThreshold)": number,
-   "[MaxFaces](#rekognition-SearchFaces-request-MaxFaces)": number
+   "CollectionId": "string",
+   "FaceId": "string",
+   "FaceMatchThreshold": number,
+   "MaxFaces": number
 }
 ```
 
@@ -55,25 +55,25 @@ Required: No
 
 ```
 {
-   "[FaceMatches](#rekognition-SearchFaces-response-FaceMatches)": [ 
+   "FaceMatches": [ 
       { 
-         "[Face](API_FaceMatch.md#rekognition-Type-FaceMatch-Face)": { 
-            "[BoundingBox](API_Face.md#rekognition-Type-Face-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "Face": { 
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Confidence](API_Face.md#rekognition-Type-Face-Confidence)": number,
-            "[ExternalImageId](API_Face.md#rekognition-Type-Face-ExternalImageId)": "string",
-            "[FaceId](API_Face.md#rekognition-Type-Face-FaceId)": "string",
-            "[ImageId](API_Face.md#rekognition-Type-Face-ImageId)": "string"
+            "Confidence": number,
+            "ExternalImageId": "string",
+            "FaceId": "string",
+            "ImageId": "string"
          },
-         "[Similarity](API_FaceMatch.md#rekognition-Type-FaceMatch-Similarity)": number
+         "Similarity": number
       }
    ],
-   "[FaceModelVersion](#rekognition-SearchFaces-response-FaceModelVersion)": "string",
-   "[SearchedFaceId](#rekognition-SearchFaces-response-SearchedFaceId)": "string"
+   "FaceModelVersion": "string",
+   "SearchedFaceId": "string"
 }
 ```
 
@@ -115,7 +115,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -129,7 +129,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/SearchFaces) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/SearchFaces) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/SearchFaces) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/SearchFaces) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/SearchFaces) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/SearchFaces) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/SearchFaces) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/SearchFaces) 

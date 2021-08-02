@@ -4,7 +4,7 @@ Gets the face search results for Amazon Rekognition Video face search started by
 
 Face search in a video is an asynchronous operation\. You start face search by calling to [StartFaceSearch](API_StartFaceSearch.md) which returns a job identifier \(`JobId`\)\. When the search operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartFaceSearch`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetFaceSearch` and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\.
 
-For more information, see [Searching Faces in a Collection](collections.md)\.
+For more information, see [Searching faces in a collection](collections.md)\.
 
 The search results are retured in an array, `Persons`, of [PersonMatch](API_PersonMatch.md) objects\. Each`PersonMatch` element contains details about the matching faces in the input collection, person information \(facial attributes, bounding boxes, and person identifer\) for the matched person, and the time the person was matched in the video\.
 
@@ -17,10 +17,10 @@ By default, the `Persons` array is sorted by the time, in milliseconds from the 
 
 ```
 {
-   "[JobId](#rekognition-GetFaceSearch-request-JobId)": "string",
-   "[MaxResults](#rekognition-GetFaceSearch-request-MaxResults)": number,
-   "[NextToken](#rekognition-GetFaceSearch-request-NextToken)": "string",
-   "[SortBy](#rekognition-GetFaceSearch-request-SortBy)": "string"
+   "JobId": "string",
+   "MaxResults": number,
+   "NextToken": "string",
+   "SortBy": "string"
 }
 ```
 
@@ -57,114 +57,114 @@ Required: No
 
 ```
 {
-   "[JobStatus](#rekognition-GetFaceSearch-response-JobStatus)": "string",
-   "[NextToken](#rekognition-GetFaceSearch-response-NextToken)": "string",
-   "[Persons](#rekognition-GetFaceSearch-response-Persons)": [ 
+   "JobStatus": "string",
+   "NextToken": "string",
+   "Persons": [ 
       { 
-         "[FaceMatches](API_PersonMatch.md#rekognition-Type-PersonMatch-FaceMatches)": [ 
+         "FaceMatches": [ 
             { 
-               "[Face](API_FaceMatch.md#rekognition-Type-FaceMatch-Face)": { 
-                  "[BoundingBox](API_Face.md#rekognition-Type-Face-BoundingBox)": { 
-                     "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-                     "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-                     "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-                     "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+               "Face": { 
+                  "BoundingBox": { 
+                     "Height": number,
+                     "Left": number,
+                     "Top": number,
+                     "Width": number
                   },
-                  "[Confidence](API_Face.md#rekognition-Type-Face-Confidence)": number,
-                  "[ExternalImageId](API_Face.md#rekognition-Type-Face-ExternalImageId)": "string",
-                  "[FaceId](API_Face.md#rekognition-Type-Face-FaceId)": "string",
-                  "[ImageId](API_Face.md#rekognition-Type-Face-ImageId)": "string"
+                  "Confidence": number,
+                  "ExternalImageId": "string",
+                  "FaceId": "string",
+                  "ImageId": "string"
                },
-               "[Similarity](API_FaceMatch.md#rekognition-Type-FaceMatch-Similarity)": number
+               "Similarity": number
             }
          ],
-         "[Person](API_PersonMatch.md#rekognition-Type-PersonMatch-Person)": { 
-            "[BoundingBox](API_PersonDetail.md#rekognition-Type-PersonDetail-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "Person": { 
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Face](API_PersonDetail.md#rekognition-Type-PersonDetail-Face)": { 
-               "[AgeRange](API_FaceDetail.md#rekognition-Type-FaceDetail-AgeRange)": { 
-                  "[High](API_AgeRange.md#rekognition-Type-AgeRange-High)": number,
-                  "[Low](API_AgeRange.md#rekognition-Type-AgeRange-Low)": number
+            "Face": { 
+               "AgeRange": { 
+                  "High": number,
+                  "Low": number
                },
-               "[Beard](API_FaceDetail.md#rekognition-Type-FaceDetail-Beard)": { 
-                  "[Confidence](API_Beard.md#rekognition-Type-Beard-Confidence)": number,
-                  "[Value](API_Beard.md#rekognition-Type-Beard-Value)": boolean
+               "Beard": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[BoundingBox](API_FaceDetail.md#rekognition-Type-FaceDetail-BoundingBox)": { 
-                  "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-                  "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-                  "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-                  "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+               "BoundingBox": { 
+                  "Height": number,
+                  "Left": number,
+                  "Top": number,
+                  "Width": number
                },
-               "[Confidence](API_FaceDetail.md#rekognition-Type-FaceDetail-Confidence)": number,
-               "[Emotions](API_FaceDetail.md#rekognition-Type-FaceDetail-Emotions)": [ 
+               "Confidence": number,
+               "Emotions": [ 
                   { 
-                     "[Confidence](API_Emotion.md#rekognition-Type-Emotion-Confidence)": number,
-                     "[Type](API_Emotion.md#rekognition-Type-Emotion-Type)": "string"
+                     "Confidence": number,
+                     "Type": "string"
                   }
                ],
-               "[Eyeglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Eyeglasses)": { 
-                  "[Confidence](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Confidence)": number,
-                  "[Value](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Value)": boolean
+               "Eyeglasses": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[EyesOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-EyesOpen)": { 
-                  "[Confidence](API_EyeOpen.md#rekognition-Type-EyeOpen-Confidence)": number,
-                  "[Value](API_EyeOpen.md#rekognition-Type-EyeOpen-Value)": boolean
+               "EyesOpen": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[Gender](API_FaceDetail.md#rekognition-Type-FaceDetail-Gender)": { 
-                  "[Confidence](API_Gender.md#rekognition-Type-Gender-Confidence)": number,
-                  "[Value](API_Gender.md#rekognition-Type-Gender-Value)": "string"
+               "Gender": { 
+                  "Confidence": number,
+                  "Value": "string"
                },
-               "[Landmarks](API_FaceDetail.md#rekognition-Type-FaceDetail-Landmarks)": [ 
+               "Landmarks": [ 
                   { 
-                     "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
-                     "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
-                     "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
+                     "Type": "string",
+                     "X": number,
+                     "Y": number
                   }
                ],
-               "[MouthOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-MouthOpen)": { 
-                  "[Confidence](API_MouthOpen.md#rekognition-Type-MouthOpen-Confidence)": number,
-                  "[Value](API_MouthOpen.md#rekognition-Type-MouthOpen-Value)": boolean
+               "MouthOpen": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[Mustache](API_FaceDetail.md#rekognition-Type-FaceDetail-Mustache)": { 
-                  "[Confidence](API_Mustache.md#rekognition-Type-Mustache-Confidence)": number,
-                  "[Value](API_Mustache.md#rekognition-Type-Mustache-Value)": boolean
+               "Mustache": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[Pose](API_FaceDetail.md#rekognition-Type-FaceDetail-Pose)": { 
-                  "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
-                  "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
-                  "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
+               "Pose": { 
+                  "Pitch": number,
+                  "Roll": number,
+                  "Yaw": number
                },
-               "[Quality](API_FaceDetail.md#rekognition-Type-FaceDetail-Quality)": { 
-                  "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
-                  "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
+               "Quality": { 
+                  "Brightness": number,
+                  "Sharpness": number
                },
-               "[Smile](API_FaceDetail.md#rekognition-Type-FaceDetail-Smile)": { 
-                  "[Confidence](API_Smile.md#rekognition-Type-Smile-Confidence)": number,
-                  "[Value](API_Smile.md#rekognition-Type-Smile-Value)": boolean
+               "Smile": { 
+                  "Confidence": number,
+                  "Value": boolean
                },
-               "[Sunglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Sunglasses)": { 
-                  "[Confidence](API_Sunglasses.md#rekognition-Type-Sunglasses-Confidence)": number,
-                  "[Value](API_Sunglasses.md#rekognition-Type-Sunglasses-Value)": boolean
+               "Sunglasses": { 
+                  "Confidence": number,
+                  "Value": boolean
                }
             },
-            "[Index](API_PersonDetail.md#rekognition-Type-PersonDetail-Index)": number
+            "Index": number
          },
-         "[Timestamp](API_PersonMatch.md#rekognition-Type-PersonMatch-Timestamp)": number
+         "Timestamp": number
       }
    ],
-   "[StatusMessage](#rekognition-GetFaceSearch-response-StatusMessage)": "string",
-   "[VideoMetadata](#rekognition-GetFaceSearch-response-VideoMetadata)": { 
-      "[Codec](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Codec)": "string",
-      "[DurationMillis](API_VideoMetadata.md#rekognition-Type-VideoMetadata-DurationMillis)": number,
-      "[Format](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Format)": "string",
-      "[FrameHeight](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameHeight)": number,
-      "[FrameRate](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameRate)": number,
-      "[FrameWidth](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameWidth)": number
+   "StatusMessage": "string",
+   "VideoMetadata": { 
+      "Codec": "string",
+      "DurationMillis": number,
+      "Format": "string",
+      "FrameHeight": number,
+      "FrameRate": number,
+      "FrameWidth": number
    }
 }
 ```
@@ -220,7 +220,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -234,7 +234,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/GetFaceSearch) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/GetFaceSearch) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/GetFaceSearch) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/GetFaceSearch) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetFaceSearch) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/GetFaceSearch) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/GetFaceSearch) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/GetFaceSearch) 

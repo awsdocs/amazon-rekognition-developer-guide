@@ -1,15 +1,15 @@
-# Calling Amazon Rekognition Video Operations<a name="api-video"></a>
+# Calling Amazon Rekognition Video operations<a name="api-video"></a>
 
 Amazon Rekognition Video is an asynchronous API that you can use to analyze videos that are stored in an Amazon Simple Storage Service \(Amazon S3\) bucket\. You start the analysis of a video by calling an Amazon Rekognition Video `Start` operation, such as [StartPersonTracking](API_StartPersonTracking.md)\. Amazon Rekognition Video publishes the result of the analysis request to an Amazon Simple Notification Service \(Amazon SNS\) topic\. You can use an Amazon Simple Queue Service \(Amazon SQS\) queue or an AWS Lambda function to get the completion status of the video analysis request from the Amazon SNS topic\. Finally, you get the video analysis request results by calling an Amazon Rekognition `Get` operation, such as [GetPersonTracking](API_GetPersonTracking.md)\. 
 
-The information in the following sections uses label detection operations to show how Amazon Rekognition Video detects labels \(objects, events, concepts, and activities\) in a video that's stored in an Amazon S3 bucket\. The same approach works for the other Amazon Rekognition Video operations—for example, [StartFaceDetection](API_StartFaceDetection.md) and [StartPersonTracking](API_StartPersonTracking.md)\. The example [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md) shows how to analyze a video by using an Amazon SQS queue to get the completion status from the Amazon SNS topic\. It's also used as a basis for other Amazon Rekognition Video examples, such as [People Pathing](persons.md)\. For AWS CLI examples, see [Analyzing a Video with the AWS Command Line Interface](video-cli-commands.md)\.
+The information in the following sections uses label detection operations to show how Amazon Rekognition Video detects labels \(objects, events, concepts, and activities\) in a video that's stored in an Amazon S3 bucket\. The same approach works for the other Amazon Rekognition Video operations—for example, [StartFaceDetection](API_StartFaceDetection.md) and [StartPersonTracking](API_StartPersonTracking.md)\. The example [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md) shows how to analyze a video by using an Amazon SQS queue to get the completion status from the Amazon SNS topic\. It's also used as a basis for other Amazon Rekognition Video examples, such as [People pathing](persons.md)\. For AWS CLI examples, see [Analyzing a video with the AWS Command Line Interface](video-cli-commands.md)\.
 
 **Topics**
-+ [Starting Video Analysis](#api-video-start)
-+ [Getting the Completion Status of an Amazon Rekognition Video Analysis Request](#api-video-get-status)
-+ [Getting Amazon Rekognition Video Analysis Results](#api-video-get)
++ [Starting video analysis](#api-video-start)
++ [Getting the completion status of an Amazon Rekognition Video analysis request](#api-video-get-status)
++ [Getting Amazon Rekognition Video analysis results](#api-video-get)
 
-## Starting Video Analysis<a name="api-video-start"></a>
+## Starting video analysis<a name="api-video-start"></a>
 
 You start an Amazon Rekognition Video label detection request by calling [StartLabelDetection](API_StartLabelDetection.md)\. The following is an example of a JSON request that's passed by `StartLabelDetection`\.
 
@@ -50,7 +50,7 @@ If you start too many jobs concurrently, calls to `StartLabelDetection` raise a 
 
 If you find that `LimitExceededException` exceptions are raised with bursts of activity, consider using an Amazon SQS queue to manage incoming requests\. Contact AWS support if you find that your average number of concurrent requests cannot be managed by an Amazon SQS queue and you are still receiving `LimitExceededException` exceptions\. 
 
-## Getting the Completion Status of an Amazon Rekognition Video Analysis Request<a name="api-video-get-status"></a>
+## Getting the completion status of an Amazon Rekognition Video analysis request<a name="api-video-get-status"></a>
 
 Amazon Rekognition Video sends an analysis completion notification to the registered Amazon SNS topic\. The notification includes the job identifier and the completion status of the operation in a JSON string\. A successful video analysis request has a `SUCCEEDED` status\. For example, the following result shows the successful processing of a label detection job\.
 
@@ -68,16 +68,16 @@ Amazon Rekognition Video sends an analysis completion notification to the regist
 }
 ```
 
-For more information, see [Reference: Video Analysis Results Notification](video-notification-payload.md)\.
+For more information, see [Reference: Video analysis results notification](video-notification-payload.md)\.
 
 To get the status information that's published to the Amazon SNS topic by Amazon Rekognition Video, use one of the following options:
 + **AWS Lambda** – You can subscribe an AWS Lambda function that you write to an Amazon SNS topic\. The function is called when Amazon Rekognition notifies the Amazon SNS topic that the request has completed\. Use a Lambda function if you want server\-side code to process the results of a video analysis request\. For example, you might want to use server\-side code to annotate the video or create a report on the video contents before returning the information to a client application\. We also recommend server\-side processing for large videos because the Amazon Rekognition API might return large volumes of data\. 
-+ **Amazon Simple Queue Service** – You can subscribe an Amazon SQS queue to an Amazon SNS topic\. You then poll the Amazon SQS queue to retrieve the completion status that's published by Amazon Rekognition when a video analysis request completes\. For more information, see [Analyzing a Video Stored in an Amazon S3 Bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\. Use an Amazon SQS queue if you want to call Amazon Rekognition Video operations only from a client application\. 
++ **Amazon Simple Queue Service** – You can subscribe an Amazon SQS queue to an Amazon SNS topic\. You then poll the Amazon SQS queue to retrieve the completion status that's published by Amazon Rekognition when a video analysis request completes\. For more information, see [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\. Use an Amazon SQS queue if you want to call Amazon Rekognition Video operations only from a client application\. 
 
 **Important**  
 We don't recommend getting the request completion status by repeatedly calling the Amazon Rekognition Video `Get` operation\. This is because Amazon Rekognition Video throttles the `Get` operation if too many requests are made\. If you're processing multiple videos concurrently, it's simpler and more efficient to monitor one SQS queue for the completion notification than to poll Amazon Rekognition Video for the status of each video individually\.
 
-## Getting Amazon Rekognition Video Analysis Results<a name="api-video-get"></a>
+## Getting Amazon Rekognition Video analysis results<a name="api-video-get"></a>
 
  To get the results of a video analysis request, first ensure that the completion status that's retrieved from the Amazon SNS topic is `SUCCEEDED`\. Then call `GetLabelDetection`, which passes the `JobId` value that's returned from `StartLabelDetection`\. The request JSON is similar to the following example:
 

@@ -1,4 +1,4 @@
-# Displaying Bounding Boxes<a name="images-displaying-bounding-boxes"></a>
+# Displaying bounding boxes<a name="images-displaying-bounding-boxes"></a>
 
 Amazon Rekognition Image operations can return bounding boxes coordinates for items that are detected in images\. For example, the [DetectFaces](API_DetectFaces.md) operation returns a bounding box \([BoundingBox](API_BoundingBox.md)\) for each face detected in an image\. You can use the bounding box coordinates to display a box around detected items\. For example, the following image shows a bounding box surrounding a face\.
 
@@ -38,7 +38,7 @@ The location of the face bounding box in pixels is calculated as follows:
 You use these values to display a bounding box around the face\.
 
 **Note**  
-An image can be orientated in various ways\. Your application might need to rotate the image to display it with the correction orientation\. Bounding box coordinates are affected by the orientation of the image\. You might need to translate the coordinates before you can display a bounding box at the right location\. For more information, see [Getting Image Orientation and Bounding Box Coordinates](images-orientation.md)\.
+An image can be orientated in various ways\. Your application might need to rotate the image to display it with the correction orientation\. Bounding box coordinates are affected by the orientation of the image\. You might need to translate the coordinates before you can display a bounding box at the right location\. For more information, see [Getting image orientation and bounding box coordinates](images-orientation.md)\.
 
 The following examples show how to display a bounding box around faces that are detected by calling [DetectFaces](API_DetectFaces.md)\. The examples assume that the images are oriented to 0 degrees\. The examples also show how to download the image from an Amazon S3 bucket\. 
 
@@ -46,16 +46,19 @@ The following examples show how to display a bounding box around faces that are 
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
-1. Use the following examples to call the `DetectFaces` operation\. Change the value of `bucket` to the Amazon S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\.
+1. Use the following examples to call the `DetectFaces` operation\.
 
 ------
 #### [ Java ]
 
+   Change the value of `bucket` to the Amazon S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\.
+
    ```
+    
    //Loads images, detects faces and draws bounding boxes.Determines exif orientation, if necessary.
    package com.amazonaws.samples;
    
@@ -180,6 +183,8 @@ The following examples show how to display a bounding box around faces that are 
 ------
 #### [ Python ]
 
+   Change the value of `bucket` to the Amazon S3 bucket that contains the image file\. Change the value of `photo` to the file name of an image file \(\.jpg or \.png format\)\.
+
    ```
    import boto3
    import io
@@ -251,6 +256,130 @@ The following examples show how to display a bounding box around faces that are 
    
    if __name__ == "__main__":
        main()
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DisplayFacesFrame.java)\.
+
+   Note that `s3` refers to the AWS SDK Amazon Amazon S3 client and `rekClient` refers to the AWS SDK Amazon Rekognition client\. 
+
+   ```
+       public static void displayAllFaces(S3Client s3,
+                                          RekognitionClient rekClient,
+                                          String sourceImage,
+                                          String bucketName) {
+           int height = 0;
+           int width = 0;
+   
+           byte[] data = getObjectBytes (s3, bucketName, sourceImage);
+           InputStream is = new ByteArrayInputStream(data);
+   
+          try {
+              SdkBytes sourceBytes = SdkBytes.fromInputStream(is);
+              image = ImageIO.read(sourceBytes.asInputStream());
+   
+              width = image.getWidth();
+              height = image.getHeight();
+   
+           // Create an Image object for the source image
+           software.amazon.awssdk.services.rekognition.model.Image souImage = Image.builder()
+                   .bytes(sourceBytes)
+                   .build();
+   
+           DetectFacesRequest facesRequest = DetectFacesRequest.builder()
+                   .attributes(Attribute.ALL)
+                   .image(souImage)
+                   .build();
+   
+            result= rekClient.detectFaces(facesRequest);
+   
+           // Show the bounding box info for each face
+           List<FaceDetail> faceDetails = result.faceDetails();
+           for (FaceDetail face : faceDetails) {
+   
+               BoundingBox box = face.boundingBox();
+               float left = width * box.left();
+               float top = height * box.top();
+               System.out.println("Face:");
+   
+               System.out.println("Left: " + (int) left);
+               System.out.println("Top: " + (int) top);
+               System.out.println("Face Width: " + (int) (width * box.width()));
+               System.out.println("Face Height: " + (int) (height * box.height()));
+               System.out.println();
+           }
+   
+           // Create the frame and panel
+           JFrame frame = new JFrame("RotateImage");
+           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+           DisplayFacesFrame panel = new DisplayFacesFrame(image);
+           panel.setPreferredSize(new Dimension(image.getWidth() / scale, image.getHeight() / scale));
+           frame.setContentPane(panel);
+           frame.pack();
+           frame.setVisible(true);
+   
+        } catch (RekognitionException | FileNotFoundException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+          } catch (IOException e) {
+              e.printStackTrace();
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+       }
+   
+       public static byte[] getObjectBytes (S3Client s3, String bucketName, String keyName) {
+   
+           try {
+               GetObjectRequest objectRequest = GetObjectRequest
+                       .builder()
+                       .key(keyName)
+                       .bucket(bucketName)
+                       .build();
+   
+               ResponseBytes<GetObjectResponse> objectBytes = s3.getObjectAsBytes(objectRequest);
+               byte[] data = objectBytes.asByteArray();
+               return data;
+   
+           } catch (S3Exception e) {
+               System.err.println(e.awsErrorDetails().errorMessage());
+               System.exit(1);
+           }
+           return null;
+       }
+   
+       public DisplayFacesFrame(BufferedImage bufImage) throws Exception {
+           super();
+           scale = 1; // increase to shrink image size.
+           image = bufImage;
+       }
+   
+       // Draws the bounding box around the detected faces
+       public void paintComponent(Graphics g) {
+           float left = 0;
+           float top = 0;
+           int height = image.getHeight(this);
+           int width = image.getWidth(this);
+   
+           Graphics2D g2d = (Graphics2D) g; // Create a Java2D version of g
+   
+           // Draw the image
+           g2d.drawImage(image, 0, 0, width / scale, height / scale, this);
+           g2d.setColor(new Color(0, 212, 0));
+   
+           // Iterate through the faces and display bounding boxes
+           List<FaceDetail> faceDetails = result.faceDetails();
+           for (FaceDetail face : faceDetails) {
+   
+               BoundingBox box = face.boundingBox();
+               left = width * box.left();
+               top = height * box.top();
+               g2d.drawRect(Math.round(left / scale), Math.round(top / scale),
+                       Math.round((width * box.width()) / scale), Math.round((height * box.height())) / scale);
+           }
+       }
    ```
 
 ------

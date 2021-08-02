@@ -1,20 +1,20 @@
-# Detecting Labels in an Image<a name="labels-detect-labels-image"></a>
+# Detecting labels in an image<a name="labels-detect-labels-image"></a>
 
-You can use the [DetectLabels](API_DetectLabels.md) operation to detect labels in an image\. For an example, see [Analyzing Images Stored in an Amazon S3 Bucket](images-s3.md)\.
+You can use the [DetectLabels](API_DetectLabels.md) operation to detect labels in an image\. For an example, see [Analyzing images stored in an Amazon S3 bucket](images-s3.md)\.
 
-The following examples use various AWS SDKs and the AWS CLI to call `DetectLabels`\. For information about the `DetectLabels` operation response, see [DetectLabels Response](#detectlabels-response)\.
+The following examples use various AWS SDKs and the AWS CLI to call `DetectLabels`\. For information about the `DetectLabels` operation response, see [DetectLabels response](#detectlabels-response)\.
 
 **To detect labels in an image**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Upload an image that contains one or more objects—such as trees, houses, and boat—to your S3 bucket\. The image must be in *\.jpg* or *\.png* format\.
 
-   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
+   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) in the *Amazon Simple Storage Service Console User Guide*\.
 
 1. Use the following examples to call the `DetectLabels` operation\.
 
@@ -261,15 +261,15 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
 
    This example displays a list of labels that were detected in the input image\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in Step 2\. 
 
+   If you are using TypeScript definitions, you may need to use `import AWS from 'aws-sdk'` instead of `const AWS = require('aws-sdk')`, in order to run the program with Node\.js\. You can consult the [AWS SDK for Javascript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/) for more details\. Depending on how you have your configurations set up, you also may need to specify your region with `AWS.config.update({region:region});`\.
+
    ```
    //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
    //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    
-   // Load the SDK and UUID
+   // Load the SDK
    var AWS = require('aws-sdk');
-   var uuid = require('node-uuid');
-   
    
    const bucket = 'bucket' // the bucketname without s3://
    const photo  = 'photo' // the name of file
@@ -291,7 +291,7 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    }
    client.detectLabels(params, function(err, response) {
      if (err) {
-       console.log(err, err.stack); // an error occurred
+       console.log(err, err.stack); // if an error occurred
      } else {
        console.log(`Detected labels for: ${photo}`)
        response.Labels.forEach(label => {
@@ -319,8 +319,46 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    ```
 
 ------
+#### [ Java V2 ]
 
-## DetectLabels Operation Request<a name="detectlabels-request"></a>
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DetectLabels.java)\.
+
+   ```
+       public static void detectImageLabels(RekognitionClient rekClient, String sourceImage) {
+   
+           try {
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+   
+               // Create an Image object for the source image
+               Image souImage = Image.builder()
+                       .bytes(sourceBytes)
+                       .build();
+   
+               DetectLabelsRequest detectLabelsRequest = DetectLabelsRequest.builder()
+                       .image(souImage)
+                       .maxLabels(10)
+                       .build();
+   
+               DetectLabelsResponse labelsResponse = rekClient.detectLabels(detectLabelsRequest);
+               List<Label> labels = labelsResponse.labels();
+   
+               System.out.println("Detected labels for the given photo");
+               for (Label label: labels) {
+                   System.out.println(label.name() + ": " + label.confidence().toString());
+               }
+   
+           } catch (RekognitionException | FileNotFoundException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+   ```
+
+------
+
+   
+
+## DetectLabels operation request<a name="detectlabels-request"></a>
 
 The input to `DetectLabel` is an image\. In this example JSON input, the source image is loaded from an Amazon S3 Bucket\. `MaxLabels` is the maximum number of labels to return in the response\. `MinConfidence` is the minimum confidence that Amazon Rekognition Image must have in the accuracy of the detected label for it to be returned in the response\.
 
@@ -337,7 +375,7 @@ The input to `DetectLabel` is an image\. In this example JSON input, the source 
 }
 ```
 
-## DetectLabels Response<a name="detectlabels-response"></a>
+## DetectLabels response<a name="detectlabels-response"></a>
 
 The response from `DetectLabels` is an array of labels detected in the image and the level of confidence by which they were detected\. 
 

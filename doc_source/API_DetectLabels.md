@@ -2,7 +2,7 @@
 
 Detects instances of real\-world entities within an image \(JPEG or PNG\) provided as input\. This includes objects like flower, tree, and table; events like wedding, graduation, and birthday party; and concepts like landscape, evening, and nature\. 
 
-For an example, see [Analyzing Images Stored in an Amazon S3 Bucket](images-s3.md)\.
+For an example, see [Analyzing images stored in an Amazon S3 bucket](images-s3.md)\.
 
 **Note**  
  `DetectLabels` does not support the detection of activities\. However, activity detection is supported for label detection in videos\. For more information, see [StartLabelDetection](API_StartLabelDetection.md)\.
@@ -44,16 +44,16 @@ This operation requires permissions to perform the `rekognition:DetectLabels` ac
 
 ```
 {
-   "[Image](#rekognition-DetectLabels-request-Image)": { 
-      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
-      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Image": { 
+      "Bytes": blob,
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    },
-   "[MaxLabels](#rekognition-DetectLabels-request-MaxLabels)": number,
-   "[MinConfidence](#rekognition-DetectLabels-request-MinConfidence)": number
+   "MaxLabels": number,
+   "MinConfidence": number
 }
 ```
 
@@ -63,7 +63,7 @@ The request accepts the following data in JSON format\.
 
  ** [Image](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-Image"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported\. Images stored in an S3 Bucket do not need to be base64\-encoded\.  
-If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Images](images-information.md)\.  
+If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Image specifications](images-information.md)\.  
 Type: [Image](API_Image.md) object  
 Required: Yes
 
@@ -84,30 +84,30 @@ Required: No
 
 ```
 {
-   "[LabelModelVersion](#rekognition-DetectLabels-response-LabelModelVersion)": "string",
-   "[Labels](#rekognition-DetectLabels-response-Labels)": [ 
+   "LabelModelVersion": "string",
+   "Labels": [ 
       { 
-         "[Confidence](API_Label.md#rekognition-Type-Label-Confidence)": number,
-         "[Instances](API_Label.md#rekognition-Type-Label-Instances)": [ 
+         "Confidence": number,
+         "Instances": [ 
             { 
-               "[BoundingBox](API_Instance.md#rekognition-Type-Instance-BoundingBox)": { 
-                  "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-                  "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-                  "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-                  "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+               "BoundingBox": { 
+                  "Height": number,
+                  "Left": number,
+                  "Top": number,
+                  "Width": number
                },
-               "[Confidence](API_Instance.md#rekognition-Type-Instance-Confidence)": number
+               "Confidence": number
             }
          ],
-         "[Name](API_Label.md#rekognition-Type-Label-Name)": "string",
-         "[Parents](API_Label.md#rekognition-Type-Label-Parents)": [ 
+         "Name": "string",
+         "Parents": [ 
             { 
-               "[Name](API_Parent.md#rekognition-Type-Parent-Name)": "string"
+               "Name": "string"
             }
          ]
       }
    ],
-   "[OrientationCorrection](#rekognition-DetectLabels-response-OrientationCorrection)": "string"
+   "OrientationCorrection": "string"
 }
 ```
 
@@ -139,7 +139,7 @@ You are not authorized to perform the action\.
 HTTP Status Code: 400
 
  **ImageTooLargeException**   
-The input image size exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
+The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **InternalServerError**   
@@ -173,7 +173,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectLabels) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DetectLabels) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DetectLabels) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DetectLabels) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DetectLabels) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectLabels) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectLabels) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DetectLabels) 

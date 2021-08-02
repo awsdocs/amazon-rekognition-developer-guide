@@ -16,10 +16,10 @@ Use MaxResults parameter to limit the number of labels returned\. If there are m
 
 ```
 {
-   "[JobId](#rekognition-GetLabelDetection-request-JobId)": "string",
-   "[MaxResults](#rekognition-GetLabelDetection-request-MaxResults)": number,
-   "[NextToken](#rekognition-GetLabelDetection-request-NextToken)": "string",
-   "[SortBy](#rekognition-GetLabelDetection-request-SortBy)": "string"
+   "JobId": "string",
+   "MaxResults": number,
+   "NextToken": "string",
+   "SortBy": "string"
 }
 ```
 
@@ -56,42 +56,42 @@ Required: No
 
 ```
 {
-   "[JobStatus](#rekognition-GetLabelDetection-response-JobStatus)": "string",
-   "[LabelModelVersion](#rekognition-GetLabelDetection-response-LabelModelVersion)": "string",
-   "[Labels](#rekognition-GetLabelDetection-response-Labels)": [ 
+   "JobStatus": "string",
+   "LabelModelVersion": "string",
+   "Labels": [ 
       { 
-         "[Label](API_LabelDetection.md#rekognition-Type-LabelDetection-Label)": { 
-            "[Confidence](API_Label.md#rekognition-Type-Label-Confidence)": number,
-            "[Instances](API_Label.md#rekognition-Type-Label-Instances)": [ 
+         "Label": { 
+            "Confidence": number,
+            "Instances": [ 
                { 
-                  "[BoundingBox](API_Instance.md#rekognition-Type-Instance-BoundingBox)": { 
-                     "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-                     "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-                     "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-                     "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+                  "BoundingBox": { 
+                     "Height": number,
+                     "Left": number,
+                     "Top": number,
+                     "Width": number
                   },
-                  "[Confidence](API_Instance.md#rekognition-Type-Instance-Confidence)": number
+                  "Confidence": number
                }
             ],
-            "[Name](API_Label.md#rekognition-Type-Label-Name)": "string",
-            "[Parents](API_Label.md#rekognition-Type-Label-Parents)": [ 
+            "Name": "string",
+            "Parents": [ 
                { 
-                  "[Name](API_Parent.md#rekognition-Type-Parent-Name)": "string"
+                  "Name": "string"
                }
             ]
          },
-         "[Timestamp](API_LabelDetection.md#rekognition-Type-LabelDetection-Timestamp)": number
+         "Timestamp": number
       }
    ],
-   "[NextToken](#rekognition-GetLabelDetection-response-NextToken)": "string",
-   "[StatusMessage](#rekognition-GetLabelDetection-response-StatusMessage)": "string",
-   "[VideoMetadata](#rekognition-GetLabelDetection-response-VideoMetadata)": { 
-      "[Codec](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Codec)": "string",
-      "[DurationMillis](API_VideoMetadata.md#rekognition-Type-VideoMetadata-DurationMillis)": number,
-      "[Format](API_VideoMetadata.md#rekognition-Type-VideoMetadata-Format)": "string",
-      "[FrameHeight](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameHeight)": number,
-      "[FrameRate](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameRate)": number,
-      "[FrameWidth](API_VideoMetadata.md#rekognition-Type-VideoMetadata-FrameWidth)": number
+   "NextToken": "string",
+   "StatusMessage": "string",
+   "VideoMetadata": { 
+      "Codec": "string",
+      "DurationMillis": number,
+      "Format": "string",
+      "FrameHeight": number,
+      "FrameRate": number,
+      "FrameWidth": number
    }
 }
 ```
@@ -151,7 +151,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -165,7 +165,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/GetLabelDetection) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/GetLabelDetection) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/GetLabelDetection) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/GetLabelDetection) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetLabelDetection) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/GetLabelDetection) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/GetLabelDetection) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/GetLabelDetection) 

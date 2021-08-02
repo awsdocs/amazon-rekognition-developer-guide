@@ -1,16 +1,18 @@
-# Searching for a Face Using Its Face ID<a name="search-face-with-id-procedure"></a>
+# Searching for a face using its face ID<a name="search-face-with-id-procedure"></a>
 
 You can use the [SearchFaces](API_SearchFaces.md) operation to search for faces in a collection that match a supplied face ID\.
 
-The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation response when the face is detected and added to a collection\. For more information, see [Managing Faces in a Collection](collections.md#collections-index-faces)\.
+The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation response when the face is detected and added to a collection\. For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\.
+
+
 
 **To search for a face in a collection using its face ID \(SDK\)**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `SearchFaces` operation\.
 
@@ -69,6 +71,37 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    ```
 
    Run the example code\. Information about matching faces is displayed\.
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/SearchFaceMatchingIdCollection.java)\.
+
+   ```
+       public static void searchFacebyId(RekognitionClient rekClient,String collectionId, String faceId) {
+   
+           try {
+               SearchFacesRequest searchFacesRequest = SearchFacesRequest.builder()
+                       .collectionId(collectionId)
+                       .faceId(faceId)
+                       .faceMatchThreshold(70F)
+                       .maxFaces(2)
+                       .build();
+   
+               SearchFacesResponse imageResponse = rekClient.searchFaces(searchFacesRequest) ;
+   
+               // Display the results
+               System.out.println("Faces matching in the collection");
+               List<FaceMatch> faceImageMatches = imageResponse.faceMatches();
+               for (FaceMatch face: faceImageMatches) {
+                   System.out.println("The similarity level is  "+face.similarity());
+                   System.out.println();
+               }
+           } catch (RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
+   ```
 
 ------
 #### [ AWS CLI ]
@@ -178,7 +211,7 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
 
 ------
 
-## SearchFaces Operation Request<a name="searchfaces-operation-request"></a>
+## SearchFaces operation request<a name="searchfaces-operation-request"></a>
 
 Given a face ID \(each face stored in the face collection has a face ID\), `SearchFaces` searches the specified face collection for similar faces\. The response doesn't include the face you are searching for\. It includes only similar faces\. By default, `SearchFaces` returns faces for which the algorithm detects similarity of greater than 80%\. The similarity indicates how closely the face matches with the input face\. Optionally, you can use `FaceMatchThreshold` to specify a different value\. 
 
@@ -191,7 +224,7 @@ Given a face ID \(each face stored in the face collection has a face ID\), `Sear
 }
 ```
 
-## SearchFaces Operation Response<a name="searchfaces-operation-response"></a>
+## SearchFaces operation response<a name="searchfaces-operation-response"></a>
 
 The operation returns an array of face matches that were found and the face ID you provided as input\.
 

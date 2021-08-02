@@ -1,16 +1,16 @@
-# Creating a Collection<a name="create-collection-procedure"></a>
+# Creating a collection<a name="create-collection-procedure"></a>
 
 You can use the [CreateCollection](API_CreateCollection.md) operation to create a collection\.
 
-For more information, see [Managing Collections](collections.md#managing-collections)\. 
+For more information, see [Managing collections](collections.md#managing-collections)\. 
 
 **To create a collection \(SDK\)**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `CreateCollection` operation\.
 
@@ -57,6 +57,31 @@ For more information, see [Managing Collections](collections.md#managing-collect
       } 
    
    }
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/CreateCollection.java)\.
+
+   ```
+       public static void createMyCollection(RekognitionClient rekClient,String collectionId ) {
+   
+           try {
+               CreateCollectionRequest collectionRequest = CreateCollectionRequest.builder()
+                       .collectionId(collectionId)
+                       .build();
+   
+               CreateCollectionResponse collectionResponse = rekClient.createCollection(collectionRequest);
+               System.out.println("CollectionArn : " +
+                       collectionResponse.collectionArn());
+               System.out.println("Status code : " +
+                       collectionResponse.statusCode().toString());
+   
+           } catch(RekognitionException e) {
+                   System.out.println(e.getMessage());
+                   System.exit(1);
+           }
    ```
 
 ------
@@ -142,7 +167,7 @@ For more information, see [Managing Collections](collections.md#managing-collect
 
 ------
 
-## CreateCollection Operation Request<a name="createcollection-request"></a>
+## CreateCollection operation request<a name="createcollection-request"></a>
 
 The input to `CreationCollection` is the name of the collection that you want to create\.
 
@@ -152,7 +177,7 @@ The input to `CreationCollection` is the name of the collection that you want to
 }
 ```
 
-## CreateCollection Operation Response<a name="createcollection-operation-response"></a>
+## CreateCollection operation response<a name="createcollection-operation-response"></a>
 
 Amazon Rekognition creates the collection and returns the Amazon Resource Name \(ARN\) of the newly created collection\.
 

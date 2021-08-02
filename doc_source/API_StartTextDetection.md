@@ -10,34 +10,34 @@ To get the results of the text detection operation, first check that the status 
 
 ```
 {
-   "[ClientRequestToken](#rekognition-StartTextDetection-request-ClientRequestToken)": "string",
-   "[Filters](#rekognition-StartTextDetection-request-Filters)": { 
-      "[RegionsOfInterest](API_StartTextDetectionFilters.md#rekognition-Type-StartTextDetectionFilters-RegionsOfInterest)": [ 
+   "ClientRequestToken": "string",
+   "Filters": { 
+      "RegionsOfInterest": [ 
          { 
-            "[BoundingBox](API_RegionOfInterest.md#rekognition-Type-RegionOfInterest-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             }
          }
       ],
-      "[WordFilter](API_StartTextDetectionFilters.md#rekognition-Type-StartTextDetectionFilters-WordFilter)": { 
-         "[MinBoundingBoxHeight](API_DetectionFilter.md#rekognition-Type-DetectionFilter-MinBoundingBoxHeight)": number,
-         "[MinBoundingBoxWidth](API_DetectionFilter.md#rekognition-Type-DetectionFilter-MinBoundingBoxWidth)": number,
-         "[MinConfidence](API_DetectionFilter.md#rekognition-Type-DetectionFilter-MinConfidence)": number
+      "WordFilter": { 
+         "MinBoundingBoxHeight": number,
+         "MinBoundingBoxWidth": number,
+         "MinConfidence": number
       }
    },
-   "[JobTag](#rekognition-StartTextDetection-request-JobTag)": "string",
-   "[NotificationChannel](#rekognition-StartTextDetection-request-NotificationChannel)": { 
-      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
-      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
+   "JobTag": "string",
+   "NotificationChannel": { 
+      "RoleArn": "string",
+      "SNSTopicArn": "string"
    },
-   "[Video](#rekognition-StartTextDetection-request-Video)": { 
-      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Video": { 
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -67,7 +67,7 @@ Pattern: `[a-zA-Z0-9_.\-:]+`
 Required: No
 
  ** [NotificationChannel](#API_StartTextDetection_RequestSyntax) **   <a name="rekognition-StartTextDetection-request-NotificationChannel"></a>
-The Amazon Simple Notification Service topic to which Amazon Rekognition publishes the completion status of a video analysis operation\. For more information, see [Calling Amazon Rekognition Video Operations](api-video.md)\.  
+The Amazon Simple Notification Service topic to which Amazon Rekognition publishes the completion status of a video analysis operation\. For more information, see [Calling Amazon Rekognition Video operations](api-video.md)\. Note that the Amazon SNS topic must have a topic name that begins with *AmazonRekognition* if you are using the AmazonRekognitionServiceRole permissions policy to access the topic\. For more information, see [Giving access to multiple Amazon SNS topics](https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics)\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
@@ -80,7 +80,7 @@ Required: Yes
 
 ```
 {
-   "[JobId](#rekognition-StartTextDetection-response-JobId)": "string"
+   "JobId": "string"
 }
 ```
 
@@ -141,7 +141,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartTextDetection) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartTextDetection) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartTextDetection) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartTextDetection) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartTextDetection) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartTextDetection) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartTextDetection) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartTextDetection) 

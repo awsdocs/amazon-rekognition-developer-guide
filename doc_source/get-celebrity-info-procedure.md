@@ -1,18 +1,20 @@
-# Getting Information About a Celebrity<a name="get-celebrity-info-procedure"></a>
+# Getting information about a celebrity<a name="get-celebrity-info-procedure"></a>
 
 In these procedures, you get celebrity information by using the [GetCelebrityInfo](API_GetCelebrityInfo.md) API operation\. The celebrity is identified by using the celebrity ID that's returned from a previous call to [RecognizeCelebrities](API_RecognizeCelebrities.md)\. 
 
 ## Calling GetCelebrityInfo<a name="get-celebrity-info-examples"></a>
 
-These procedures require the celebrity ID for a celebrity that Amazon Rekognition knows\. Use the celebrity ID that you note in [Recognizing Celebrities in an Image](celebrities-procedure-image.md)\. 
+
+
+These procedures require the celebrity ID for a celebrity that Amazon Rekognition knows\. Use the celebrity ID that you note in [Recognizing celebrities in an image](celebrities-procedure-image.md)\. 
 
 **To get celebrity information \(SDK\)**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `GetCelebrityInfo` operation\.
 
@@ -21,7 +23,7 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
 
    This example displays the name and information about a celebrity\.
 
-   Replace `id` with one of the celebrity IDs displayed in [Recognizing Celebrities in an Image](celebrities-procedure-image.md)\.
+   Replace `id` with one of the celebrity IDs displayed in [Recognizing celebrities in an image](celebrities-procedure-image.md)\.
 
    ```
    //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -59,9 +61,37 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
    ```
 
 ------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/CelebrityInfo.java)\.
+
+   ```
+       public static void getCelebrityInfo(RekognitionClient rekClient, String id ) {
+   
+          try {
+           GetCelebrityInfoRequest info = GetCelebrityInfoRequest.builder()
+                   .id(id)
+                   .build();
+   
+           GetCelebrityInfoResponse response = rekClient.getCelebrityInfo(info);
+   
+           // Display celebrity information
+           System.out.println("celebrity name: " + response.name());
+           System.out.println("Further information (if available):");
+           for (String url: response.urls()){
+               System.out.println(url);
+           }
+   
+          } catch (RekognitionException e) {
+              System.out.println(e.getMessage());
+              System.exit(1);
+          }
+   ```
+
+------
 #### [ AWS CLI ]
 
-   This AWS CLI command displays the JSON output for the `get-celebrity-info` CLI operation\. Replace `ID` with one of the celebrity IDs displayed in [Recognizing Celebrities in an Image](celebrities-procedure-image.md)\.
+   This AWS CLI command displays the JSON output for the `get-celebrity-info` CLI operation\. Replace `ID` with one of the celebrity IDs displayed in [Recognizing celebrities in an image](celebrities-procedure-image.md)\.
 
    ```
    aws rekognition get-celebrity-info --id ID
@@ -72,7 +102,7 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
 
    This example displays the name and information about a celebrity\.
 
-   Replace `id` with one of the celebrity IDs displayed in [Recognizing Celebrities in an Image](celebrities-procedure-image.md)\.
+   Replace `id` with one of the celebrity IDs displayed in [Recognizing celebrities in an image](celebrities-procedure-image.md)\.
 
    ```
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -110,7 +140,7 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
 
    This example displays the name and information about a celebrity\.
 
-   Replace `id` with one of the celebrity IDs displayed in [Recognizing Celebrities in an Image](celebrities-procedure-image.md)\.
+   Replace `id` with one of the celebrity IDs displayed in [Recognizing celebrities in an image](celebrities-procedure-image.md)\.
 
    ```
    //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -149,7 +179,7 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
 
 ------
 
-## GetCelebrityInfo Operation Request<a name="getcelebrityinfo-operation-request"></a>
+## GetCelebrityInfo operation request<a name="getcelebrityinfo-operation-request"></a>
 
 The following is example JSON input and output for `GetCelebrityInfo`\. 
 
@@ -161,7 +191,7 @@ The input to `GetCelebrityInfo` is the ID for the required celebrity\.
 }
 ```
 
-## <a name="getcelebrityinfo-operation-response"></a>
+## GetCelebrityInfo operation response<a name="getcelebrityinfo-operation-response"></a>
 
 `GetCelebrityInfo` returns an array \(`Urls`\) of links to information about the requested celebrity\.
 

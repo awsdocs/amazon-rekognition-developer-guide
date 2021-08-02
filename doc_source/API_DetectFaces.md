@@ -17,13 +17,13 @@ This operation requires permissions to perform the `rekognition:DetectFaces` act
 
 ```
 {
-   "[Attributes](#rekognition-DetectFaces-request-Attributes)": [ "string" ],
-   "[Image](#rekognition-DetectFaces-request-Image)": { 
-      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
-      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Attributes": [ "string" ],
+   "Image": { 
+      "Bytes": blob,
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -42,7 +42,7 @@ Required: No
 
  ** [Image](#API_DetectFaces_RequestSyntax) **   <a name="rekognition-DetectFaces-request-Image"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
-If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Images](images-information.md)\.  
+If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Image specifications](images-information.md)\.  
 Type: [Image](API_Image.md) object  
 Required: Yes
 
@@ -50,76 +50,76 @@ Required: Yes
 
 ```
 {
-   "[FaceDetails](#rekognition-DetectFaces-response-FaceDetails)": [ 
+   "FaceDetails": [ 
       { 
-         "[AgeRange](API_FaceDetail.md#rekognition-Type-FaceDetail-AgeRange)": { 
-            "[High](API_AgeRange.md#rekognition-Type-AgeRange-High)": number,
-            "[Low](API_AgeRange.md#rekognition-Type-AgeRange-Low)": number
+         "AgeRange": { 
+            "High": number,
+            "Low": number
          },
-         "[Beard](API_FaceDetail.md#rekognition-Type-FaceDetail-Beard)": { 
-            "[Confidence](API_Beard.md#rekognition-Type-Beard-Confidence)": number,
-            "[Value](API_Beard.md#rekognition-Type-Beard-Value)": boolean
+         "Beard": { 
+            "Confidence": number,
+            "Value": boolean
          },
-         "[BoundingBox](API_FaceDetail.md#rekognition-Type-FaceDetail-BoundingBox)": { 
-            "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-            "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-            "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-            "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "BoundingBox": { 
+            "Height": number,
+            "Left": number,
+            "Top": number,
+            "Width": number
          },
-         "[Confidence](API_FaceDetail.md#rekognition-Type-FaceDetail-Confidence)": number,
-         "[Emotions](API_FaceDetail.md#rekognition-Type-FaceDetail-Emotions)": [ 
+         "Confidence": number,
+         "Emotions": [ 
             { 
-               "[Confidence](API_Emotion.md#rekognition-Type-Emotion-Confidence)": number,
-               "[Type](API_Emotion.md#rekognition-Type-Emotion-Type)": "string"
+               "Confidence": number,
+               "Type": "string"
             }
          ],
-         "[Eyeglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Eyeglasses)": { 
-            "[Confidence](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Confidence)": number,
-            "[Value](API_Eyeglasses.md#rekognition-Type-Eyeglasses-Value)": boolean
+         "Eyeglasses": { 
+            "Confidence": number,
+            "Value": boolean
          },
-         "[EyesOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-EyesOpen)": { 
-            "[Confidence](API_EyeOpen.md#rekognition-Type-EyeOpen-Confidence)": number,
-            "[Value](API_EyeOpen.md#rekognition-Type-EyeOpen-Value)": boolean
+         "EyesOpen": { 
+            "Confidence": number,
+            "Value": boolean
          },
-         "[Gender](API_FaceDetail.md#rekognition-Type-FaceDetail-Gender)": { 
-            "[Confidence](API_Gender.md#rekognition-Type-Gender-Confidence)": number,
-            "[Value](API_Gender.md#rekognition-Type-Gender-Value)": "string"
+         "Gender": { 
+            "Confidence": number,
+            "Value": "string"
          },
-         "[Landmarks](API_FaceDetail.md#rekognition-Type-FaceDetail-Landmarks)": [ 
+         "Landmarks": [ 
             { 
-               "[Type](API_Landmark.md#rekognition-Type-Landmark-Type)": "string",
-               "[X](API_Landmark.md#rekognition-Type-Landmark-X)": number,
-               "[Y](API_Landmark.md#rekognition-Type-Landmark-Y)": number
+               "Type": "string",
+               "X": number,
+               "Y": number
             }
          ],
-         "[MouthOpen](API_FaceDetail.md#rekognition-Type-FaceDetail-MouthOpen)": { 
-            "[Confidence](API_MouthOpen.md#rekognition-Type-MouthOpen-Confidence)": number,
-            "[Value](API_MouthOpen.md#rekognition-Type-MouthOpen-Value)": boolean
+         "MouthOpen": { 
+            "Confidence": number,
+            "Value": boolean
          },
-         "[Mustache](API_FaceDetail.md#rekognition-Type-FaceDetail-Mustache)": { 
-            "[Confidence](API_Mustache.md#rekognition-Type-Mustache-Confidence)": number,
-            "[Value](API_Mustache.md#rekognition-Type-Mustache-Value)": boolean
+         "Mustache": { 
+            "Confidence": number,
+            "Value": boolean
          },
-         "[Pose](API_FaceDetail.md#rekognition-Type-FaceDetail-Pose)": { 
-            "[Pitch](API_Pose.md#rekognition-Type-Pose-Pitch)": number,
-            "[Roll](API_Pose.md#rekognition-Type-Pose-Roll)": number,
-            "[Yaw](API_Pose.md#rekognition-Type-Pose-Yaw)": number
+         "Pose": { 
+            "Pitch": number,
+            "Roll": number,
+            "Yaw": number
          },
-         "[Quality](API_FaceDetail.md#rekognition-Type-FaceDetail-Quality)": { 
-            "[Brightness](API_ImageQuality.md#rekognition-Type-ImageQuality-Brightness)": number,
-            "[Sharpness](API_ImageQuality.md#rekognition-Type-ImageQuality-Sharpness)": number
+         "Quality": { 
+            "Brightness": number,
+            "Sharpness": number
          },
-         "[Smile](API_FaceDetail.md#rekognition-Type-FaceDetail-Smile)": { 
-            "[Confidence](API_Smile.md#rekognition-Type-Smile-Confidence)": number,
-            "[Value](API_Smile.md#rekognition-Type-Smile-Value)": boolean
+         "Smile": { 
+            "Confidence": number,
+            "Value": boolean
          },
-         "[Sunglasses](API_FaceDetail.md#rekognition-Type-FaceDetail-Sunglasses)": { 
-            "[Confidence](API_Sunglasses.md#rekognition-Type-Sunglasses-Confidence)": number,
-            "[Value](API_Sunglasses.md#rekognition-Type-Sunglasses-Value)": boolean
+         "Sunglasses": { 
+            "Confidence": number,
+            "Value": boolean
          }
       }
    ],
-   "[OrientationCorrection](#rekognition-DetectFaces-response-OrientationCorrection)": "string"
+   "OrientationCorrection": "string"
 }
 ```
 
@@ -147,7 +147,7 @@ You are not authorized to perform the action\.
 HTTP Status Code: 400
 
  **ImageTooLargeException**   
-The input image size exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
+The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **InternalServerError**   
@@ -181,7 +181,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectFaces) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DetectFaces) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DetectFaces) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DetectFaces) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DetectFaces) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectFaces) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectFaces) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DetectFaces) 

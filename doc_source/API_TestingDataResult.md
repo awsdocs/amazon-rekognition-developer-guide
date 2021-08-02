@@ -1,6 +1,6 @@
 # TestingDataResult<a name="API_TestingDataResult"></a>
 
-A Sagemaker Groundtruth format manifest file representing the dataset used for testing\.
+Sagemaker Groundtruth format manifest files for the input, output and validation datasets that are used and created during testing\.
 
 ## Contents<a name="API_TestingDataResult_Contents"></a>
 
@@ -14,10 +14,15 @@ The subset of the dataset that was actually tested\. Some images \(assets\) migh
 Type: [TestingData](API_TestingData.md) object  
 Required: No
 
+ **Validation**   <a name="rekognition-Type-TestingDataResult-Validation"></a>
+The location of the data validation manifest\. The data validation manifest is created for the test dataset during model training\.  
+Type: [ValidationData](API_ValidationData.md) object  
+Required: No
+
 ## See Also<a name="API_TestingDataResult_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/TestingDataResult) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/TestingDataResult) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/TestingDataResult) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/TestingDataResult) 
 +  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/TestingDataResult) 

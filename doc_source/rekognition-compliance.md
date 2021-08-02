@@ -1,4 +1,4 @@
-# Compliance Validation for Amazon Rekognition<a name="rekognition-compliance"></a>
+# Compliance validation for Amazon Rekognition<a name="rekognition-compliance"></a>
 
 Third\-party auditors assess the security and compliance of Amazon Rekognition as part of multiple AWS compliance programs\. These include SOC, PCI, FedRAMP, HIPAA, and others\.
 

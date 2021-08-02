@@ -1,10 +1,10 @@
-# Analyzing an Image Loaded from a Local File System<a name="images-bytes"></a>
+# Analyzing an image loaded from a local file system<a name="images-bytes"></a>
 
 Amazon Rekognition Image operations can analyze images that are supplied as image bytes or images stored in an Amazon S3 bucket\.
 
 These topics provide examples of supplying image bytes to Amazon Rekognition Image API operations by using a file loaded from a local file system\. You pass image bytes to an Amazon Rekognition API operation by using the [Image](API_Image.md) input parameter\. Within `Image`, you specify the `Bytes` property to pass base64\-encoded image bytes\.
 
-Image bytes passed to an Amazon Rekognition API operation by using the `Bytes` input parameter must be base64 encoded\. The AWS SDKs that these examples use automatically base64\-encode images\. You don't need to encode image bytes before calling an Amazon Rekognition API operation\. For more information, see [Images](images-information.md)\. 
+Image bytes passed to an Amazon Rekognition API operation by using the `Bytes` input parameter must be base64 encoded\. The AWS SDKs that these examples use automatically base64\-encode images\. You don't need to encode image bytes before calling an Amazon Rekognition API operation\. For more information, see [Image specifications](images-information.md)\. 
 
 In this example JSON request for `DetectLabels`, the source image bytes are passed in the `Bytes` input parameter\. 
 
@@ -18,7 +18,7 @@ In this example JSON request for `DetectLabels`, the source image bytes are pass
 }
 ```
 
-The following examples use various AWS SDKs and the AWS CLI to call `DetectLabels`\. For information about the `DetectLabels` operation response, see [DetectLabels Response](labels-detect-labels-image.md#detectlabels-response)\.
+The following examples use various AWS SDKs and the AWS CLI to call `DetectLabels`\. For information about the `DetectLabels` operation response, see [DetectLabels response](labels-detect-labels-image.md#detectlabels-response)\.
 
 For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javascript.md)\.
 
@@ -26,16 +26,16 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Use the following examples to call the `DetectLabels` operation\.
 
 ------
 #### [ Java ]
 
-   The following Java example shows how to load an image from the local file system and detect labels by using the [detectLabels](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
+   The following Java example shows how to load an image from the local file system and detect labels by using the [detectLabels](https://docs.aws.amazon.com/sdk-for-java/latest/reference/com/amazonaws/services/rekognition/AmazonRekognition.html#detectLabels-com.amazonaws.services.rekognition.model.DetectLabelsRequest-) AWS SDK operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\.
 
    ```
    //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -97,7 +97,7 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
 ------
 #### [ Python ]
 
-   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_labels](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) operation\. Change the value of `imageFile` to the path and file name of an image file \(\.jpg or \.png format\)\. 
+   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_labels](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\. 
 
    ```
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -291,6 +291,42 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
          puts "------------"
          puts ""
        end
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/DetectLabels.java)\.
+
+   ```
+       public static void detectImageLabels(RekognitionClient rekClient, String sourceImage) {
+   
+           try {
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+   
+               // Create an Image object for the source image
+               Image souImage = Image.builder()
+                       .bytes(sourceBytes)
+                       .build();
+   
+               DetectLabelsRequest detectLabelsRequest = DetectLabelsRequest.builder()
+                       .image(souImage)
+                       .maxLabels(10)
+                       .build();
+   
+               DetectLabelsResponse labelsResponse = rekClient.detectLabels(detectLabelsRequest);
+               List<Label> labels = labelsResponse.labels();
+   
+               System.out.println("Detected labels for the given photo");
+               for (Label label: labels) {
+                   System.out.println(label.name() + ": " + label.confidence().toString());
+               }
+   
+           } catch (RekognitionException | FileNotFoundException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
    ```
 
 ------

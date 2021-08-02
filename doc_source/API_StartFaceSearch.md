@@ -2,25 +2,25 @@
 
 Starts the asynchronous search for faces in a collection that match the faces of persons detected in a stored video\.
 
-The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceSearch` returns a job identifier \(`JobId`\) which you use to get the search results once the search has completed\. When searching is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceSearch](API_GetFaceSearch.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\. For more information, see [ Searching Stored Videos for Faces](procedure-person-search-videos.md)\.
+The video must be stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceSearch` returns a job identifier \(`JobId`\) which you use to get the search results once the search has completed\. When searching is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the search results, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceSearch](API_GetFaceSearch.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceSearch`\. For more information, see [ Searching stored videos for faces](procedure-person-search-videos.md)\.
 
 ## Request Syntax<a name="API_StartFaceSearch_RequestSyntax"></a>
 
 ```
 {
-   "[ClientRequestToken](#rekognition-StartFaceSearch-request-ClientRequestToken)": "string",
-   "[CollectionId](#rekognition-StartFaceSearch-request-CollectionId)": "string",
-   "[FaceMatchThreshold](#rekognition-StartFaceSearch-request-FaceMatchThreshold)": number,
-   "[JobTag](#rekognition-StartFaceSearch-request-JobTag)": "string",
-   "[NotificationChannel](#rekognition-StartFaceSearch-request-NotificationChannel)": { 
-      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
-      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
+   "ClientRequestToken": "string",
+   "CollectionId": "string",
+   "FaceMatchThreshold": number,
+   "JobTag": "string",
+   "NotificationChannel": { 
+      "RoleArn": "string",
+      "SNSTopicArn": "string"
    },
-   "[Video](#rekognition-StartFaceSearch-request-Video)": { 
-      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Video": { 
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -58,7 +58,7 @@ Pattern: `[a-zA-Z0-9_.\-:]+`
 Required: No
 
  ** [NotificationChannel](#API_StartFaceSearch_RequestSyntax) **   <a name="rekognition-StartFaceSearch-request-NotificationChannel"></a>
-The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the search\.   
+The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the search\. The Amazon SNS topic must have a topic name that begins with *AmazonRekognition* if you are using the AmazonRekognitionServiceRole permissions policy to access the topic\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
@@ -71,7 +71,7 @@ Required: Yes
 
 ```
 {
-   "[JobId](#rekognition-StartFaceSearch-response-JobId)": "string"
+   "JobId": "string"
 }
 ```
 
@@ -118,7 +118,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -136,7 +136,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartFaceSearch) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartFaceSearch) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartFaceSearch) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartFaceSearch) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartFaceSearch) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartFaceSearch) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartFaceSearch) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartFaceSearch) 

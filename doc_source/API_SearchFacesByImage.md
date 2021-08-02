@@ -10,7 +10,9 @@ You pass the input image either as base64\-encoded image bytes or as a reference
 
  The response returns an array of faces that match, ordered by similarity score with the highest similarity first\. More specifically, it is an array of metadata for each face match found\. Along with the metadata, the response also includes a `similarity` indicating how similar the face is to the input face\. In the response, the operation also returns the bounding box \(and a confidence level that the bounding box contains a face\) of the face that Amazon Rekognition used for the input image\. 
 
-For an example, see [Searching for a Face Using an Image](search-face-with-image-procedure.md)\.
+If no faces are detected in the input image, `SearchFacesByImage` returns an `InvalidParameterException` error\. 
+
+For an example, see [Searching for a face using an image](search-face-with-image-procedure.md)\.
 
 The `QualityFilter` input parameter allows you to filter out detected faces that don’t meet a required quality bar\. The quality bar is based on a variety of common use cases\. Use `QualityFilter` to set the quality bar for filtering by specifying `LOW`, `MEDIUM`, or `HIGH`\. If you do not want to filter detected faces, specify `NONE`\. The default value is `NONE`\.
 
@@ -23,18 +25,18 @@ This operation requires permissions to perform the `rekognition:SearchFacesByIma
 
 ```
 {
-   "[CollectionId](#rekognition-SearchFacesByImage-request-CollectionId)": "string",
-   "[FaceMatchThreshold](#rekognition-SearchFacesByImage-request-FaceMatchThreshold)": number,
-   "[Image](#rekognition-SearchFacesByImage-request-Image)": { 
-      "[Bytes](API_Image.md#rekognition-Type-Image-Bytes)": blob,
-      "[S3Object](API_Image.md#rekognition-Type-Image-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "CollectionId": "string",
+   "FaceMatchThreshold": number,
+   "Image": { 
+      "Bytes": blob,
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    },
-   "[MaxFaces](#rekognition-SearchFacesByImage-request-MaxFaces)": number,
-   "[QualityFilter](#rekognition-SearchFacesByImage-request-QualityFilter)": "string"
+   "MaxFaces": number,
+   "QualityFilter": "string"
 }
 ```
 
@@ -57,7 +59,7 @@ Required: No
 
  ** [Image](#API_SearchFacesByImage_RequestSyntax) **   <a name="rekognition-SearchFacesByImage-request-Image"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
-If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Images](images-information.md)\.  
+If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Image specifications](images-information.md)\.  
 Type: [Image](API_Image.md) object  
 Required: Yes
 
@@ -78,31 +80,31 @@ Required: No
 
 ```
 {
-   "[FaceMatches](#rekognition-SearchFacesByImage-response-FaceMatches)": [ 
+   "FaceMatches": [ 
       { 
-         "[Face](API_FaceMatch.md#rekognition-Type-FaceMatch-Face)": { 
-            "[BoundingBox](API_Face.md#rekognition-Type-Face-BoundingBox)": { 
-               "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-               "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-               "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-               "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "Face": { 
+            "BoundingBox": { 
+               "Height": number,
+               "Left": number,
+               "Top": number,
+               "Width": number
             },
-            "[Confidence](API_Face.md#rekognition-Type-Face-Confidence)": number,
-            "[ExternalImageId](API_Face.md#rekognition-Type-Face-ExternalImageId)": "string",
-            "[FaceId](API_Face.md#rekognition-Type-Face-FaceId)": "string",
-            "[ImageId](API_Face.md#rekognition-Type-Face-ImageId)": "string"
+            "Confidence": number,
+            "ExternalImageId": "string",
+            "FaceId": "string",
+            "ImageId": "string"
          },
-         "[Similarity](API_FaceMatch.md#rekognition-Type-FaceMatch-Similarity)": number
+         "Similarity": number
       }
    ],
-   "[FaceModelVersion](#rekognition-SearchFacesByImage-response-FaceModelVersion)": "string",
-   "[SearchedFaceBoundingBox](#rekognition-SearchFacesByImage-response-SearchedFaceBoundingBox)": { 
-      "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-      "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-      "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-      "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+   "FaceModelVersion": "string",
+   "SearchedFaceBoundingBox": { 
+      "Height": number,
+      "Left": number,
+      "Top": number,
+      "Width": number
    },
-   "[SearchedFaceConfidence](#rekognition-SearchFacesByImage-response-SearchedFaceConfidence)": number
+   "SearchedFaceConfidence": number
 }
 ```
 
@@ -136,7 +138,7 @@ You are not authorized to perform the action\.
 HTTP Status Code: 400
 
  **ImageTooLargeException**   
-The input image size exceeds the allowed limit\. For more information, see [Limits in Amazon Rekognition](limits.md)\.   
+The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **InternalServerError**   
@@ -160,7 +162,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -174,7 +176,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/SearchFacesByImage) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/SearchFacesByImage) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/SearchFacesByImage) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/SearchFacesByImage) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/SearchFacesByImage) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/SearchFacesByImage) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/SearchFacesByImage) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/SearchFacesByImage) 

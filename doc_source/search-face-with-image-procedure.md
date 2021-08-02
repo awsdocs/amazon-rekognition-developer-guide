@@ -1,16 +1,18 @@
-# Searching for a Face Using an Image<a name="search-face-with-image-procedure"></a>
+# Searching for a face using an image<a name="search-face-with-image-procedure"></a>
 
 You can use the [SearchFacesByImage](API_SearchFacesByImage.md) operation to search for faces in a collection that match the largest face in a supplied image\.
 
-For more information, see [Searching for Faces Within a Collection](collections.md#collections-search-faces)\. 
+For more information, see [Searching for faces within a collection](collections.md#collections-search-faces)\. 
+
+
 
 **To search for a face in a collection using an image \(SDK\)**
 
 1. If you haven't already:
 
-   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set Up an AWS Account and Create an IAM User](setting-up.md#setting-up-iam)\.
+   1. Create or update an IAM user with `AmazonRekognitionFullAccess` and `AmazonS3ReadOnlyAccess` permissions\. For more information, see [Step 1: Set up an AWS account and create an IAM user](setting-up.md#setting-up-iam)\.
 
-   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set Up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
+   1. Install and configure the AWS CLI and the AWS SDKs\. For more information, see [Step 2: Set up the AWS CLI and AWS SDKs](setup-awscli-sdk.md)\.
 
 1. Upload an image \(that contains one or more faces\) to your S3 bucket\. 
 
@@ -77,6 +79,44 @@ For more information, see [Searching for Faces Within a Collection](collections.
          }
       }
    }
+   ```
+
+------
+#### [ Java V2 ]
+
+   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/SearchFaceMatchingImageCollection.java)\.
+
+   ```
+       public static void searchFaceInCollection(RekognitionClient rekClient,String collectionId, String sourceImage) {
+   
+           try {
+               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
+   
+               Image souImage = Image.builder()
+                       .bytes(sourceBytes)
+                       .build();
+   
+               SearchFacesByImageRequest facesByImageRequest = SearchFacesByImageRequest.builder()
+                       .image(souImage)
+                       .maxFaces(10)
+                       .faceMatchThreshold(70F)
+                       .collectionId(collectionId)
+                       .build();
+   
+               SearchFacesByImageResponse imageResponse = rekClient.searchFacesByImage(facesByImageRequest) ;
+   
+               // Display the results
+               System.out.println("Faces matching in the collection");
+               List<FaceMatch> faceImageMatches = imageResponse.faceMatches();
+               for (FaceMatch face: faceImageMatches) {
+                   System.out.println("The similarity level is  "+face.similarity());
+                   System.out.println();
+               }
+           } catch (RekognitionException | FileNotFoundException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
    ```
 
 ------
@@ -182,7 +222,7 @@ For more information, see [Searching for Faces Within a Collection](collections.
 
 ------
 
-## SearchFacesByImage Operation Request<a name="searchfacesbyimage-operation-request"></a>
+## SearchFacesByImage operation request<a name="searchfacesbyimage-operation-request"></a>
 
 The input parameters to `SearchFacesImageByImage` are the collection to search in and the source image location\. In this example, the source image is stored in an Amazon S3 bucket \(`S3Object`\)\. Also specified are the maximum number of faces to return \(`Maxfaces`\) and the minimum confidence that must be matched for a face to be returned \(`FaceMatchThreshold`\)\.
 
@@ -200,7 +240,7 @@ The input parameters to `SearchFacesImageByImage` are the collection to search i
 }
 ```
 
-## SearchFacesByImage Operation Response<a name="searchfacesbyimage-operation-response"></a>
+## SearchFacesByImage operation response<a name="searchfacesbyimage-operation-response"></a>
 
 Given an input image \(\.jpeg or \.png\), the operation first detects the face in the input image, and then searches the specified face collection for similar faces\. 
 

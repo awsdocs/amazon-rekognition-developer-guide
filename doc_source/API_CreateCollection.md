@@ -9,13 +9,16 @@ When you create a collection, it is associated with the latest version of the fa
 **Note**  
 Collection names are case\-sensitive\.
 
-This operation requires permissions to perform the `rekognition:CreateCollection` action\.
+This operation requires permissions to perform the `rekognition:CreateCollection` action\. If you want to tag your collection, you also require permission to perform the `rekognition:TagResource` operation\.
 
 ## Request Syntax<a name="API_CreateCollection_RequestSyntax"></a>
 
 ```
 {
-   "[CollectionId](#rekognition-CreateCollection-request-CollectionId)": "string"
+   "CollectionId": "string",
+   "Tags": { 
+      "string" : "string" 
+   }
 }
 ```
 
@@ -30,13 +33,23 @@ Length Constraints: Minimum length of 1\. Maximum length of 255\.
 Pattern: `[a-zA-Z0-9_.\-]+`   
 Required: Yes
 
+ ** [Tags](#API_CreateCollection_RequestSyntax) **   <a name="rekognition-CreateCollection-request-Tags"></a>
+ A set of tags \(key\-value pairs\) that you want to attach to the collection\.   
+Type: String to string map  
+Map Entries: Minimum number of 0 items\. Maximum number of 200 items\.  
+Key Length Constraints: Minimum length of 1\. Maximum length of 128\.  
+Key Pattern: `^(?!aws:)[\p{L}\p{Z}\p{N}_.:/=+\-@]*$`   
+Value Length Constraints: Minimum length of 0\. Maximum length of 256\.  
+Value Pattern: `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`   
+Required: No
+
 ## Response Syntax<a name="API_CreateCollection_ResponseSyntax"></a>
 
 ```
 {
-   "[CollectionArn](#rekognition-CreateCollection-response-CollectionArn)": "string",
-   "[FaceModelVersion](#rekognition-CreateCollection-response-FaceModelVersion)": "string",
-   "[StatusCode](#rekognition-CreateCollection-response-StatusCode)": number
+   "CollectionArn": "string",
+   "FaceModelVersion": "string",
+   "StatusCode": number
 }
 ```
 
@@ -78,7 +91,12 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceAlreadyExistsException**   
-A collection with the specified ID already exists\.  
+A resource with the specified ID already exists\.  
+HTTP Status Code: 400
+
+ **ServiceQuotaExceededException**   
+  
+The size of the resource exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -92,7 +110,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/CreateCollection) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/CreateCollection) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/CreateCollection) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/CreateCollection) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/CreateCollection) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/CreateCollection) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/CreateCollection) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/CreateCollection) 

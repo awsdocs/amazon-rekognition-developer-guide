@@ -1,6 +1,6 @@
 # BoundingBox<a name="API_BoundingBox"></a>
 
-Identifies the bounding box around the label, face, or text\. The `left` \(x\-coordinate\) and `top` \(y\-coordinate\) are coordinates representing the top and left sides of the bounding box\. Note that the upper\-left corner of the image is the origin \(0,0\)\. 
+Identifies the bounding box around the label, face, text or personal protective equipment\. The `left` \(x\-coordinate\) and `top` \(y\-coordinate\) are coordinates representing the top and left sides of the bounding box\. Note that the upper\-left corner of the image is the origin \(0,0\)\. 
 
 The `top` and `left` values returned are ratios of the overall image size\. For example, if the input image is 700x200 pixels, and the top\-left coordinate of the bounding box is 350x50 pixels, the API returns a `left` value of 0\.5 \(350/700\) and a `top` value of 0\.25 \(50/200\)\.
 
@@ -36,5 +36,5 @@ Required: No
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/BoundingBox) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/BoundingBox) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/BoundingBox) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/BoundingBox) 
 +  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/BoundingBox) 

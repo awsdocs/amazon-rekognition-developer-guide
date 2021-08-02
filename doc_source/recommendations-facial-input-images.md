@@ -1,4 +1,4 @@
-# Recommendations for Facial Comparison Input Images<a name="recommendations-facial-input-images"></a>
+# Recommendations for facial comparison input images<a name="recommendations-facial-input-images"></a>
 
  The models used for face comparison operations are designed to work for a wide variety of poses, facial expressions, age ranges, rotations, lighting conditions, and sizes\. We recommend that you use the following guidelines when choosing reference photos for [CompareFaces](API_CompareFaces.md) or for adding faces to a collection using [IndexFaces](API_IndexFaces.md)\.
 + Use an image with a face that is within the recommended range of angles\. The pitch should be less than 30 degrees face down and less than 45 degrees face up\. The yaw should be less than 45 degrees in either direction\. There is no restriction on the roll\.

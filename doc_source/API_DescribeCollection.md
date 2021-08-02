@@ -2,13 +2,13 @@
 
 Describes the specified collection\. You can use `DescribeCollection` to get information, such as the number of faces indexed into a collection and the version of the model used by the collection for face detection\.
 
-For more information, see [Describing a Collection](describe-collection-procedure.md)\.
+For more information, see [Describing a collection](describe-collection-procedure.md)\.
 
 ## Request Syntax<a name="API_DescribeCollection_RequestSyntax"></a>
 
 ```
 {
-   "[CollectionId](#rekognition-DescribeCollection-request-CollectionId)": "string"
+   "CollectionId": "string"
 }
 ```
 
@@ -27,10 +27,10 @@ Required: Yes
 
 ```
 {
-   "[CollectionARN](#rekognition-DescribeCollection-response-CollectionARN)": "string",
-   "[CreationTimestamp](#rekognition-DescribeCollection-response-CreationTimestamp)": number,
-   "[FaceCount](#rekognition-DescribeCollection-response-FaceCount)": number,
-   "[FaceModelVersion](#rekognition-DescribeCollection-response-FaceModelVersion)": "string"
+   "CollectionARN": "string",
+   "CreationTimestamp": number,
+   "FaceCount": number,
+   "FaceModelVersion": "string"
 }
 ```
 
@@ -55,7 +55,7 @@ Valid Range: Minimum value of 0\.
 
  ** [FaceModelVersion](#API_DescribeCollection_ResponseSyntax) **   <a name="rekognition-DescribeCollection-response-FaceModelVersion"></a>
 The version of the face model that's used by the collection for face detection\.  
-For more information, see [Model Versioning](face-detection-model.md)\.  
+For more information, see [Model versioning](face-detection-model.md)\.  
 Type: String
 
 ## Errors<a name="API_DescribeCollection_Errors"></a>
@@ -77,7 +77,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -91,7 +91,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DescribeCollection) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DescribeCollection) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DescribeCollection) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/DescribeCollection) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DescribeCollection) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DescribeCollection) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DescribeCollection) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DescribeCollection) 

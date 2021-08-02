@@ -4,24 +4,24 @@ Starts asynchronous detection of faces in a stored video\.
 
 Amazon Rekognition Video can detect faces in a video stored in an Amazon S3 bucket\. Use [Video](API_Video.md) to specify the bucket name and the filename of the video\. `StartFaceDetection` returns a job identifier \(`JobId`\) that you use to get the results of the operation\. When face detection is finished, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic that you specify in `NotificationChannel`\. To get the results of the face detection operation, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call [GetFaceDetection](API_GetFaceDetection.md) and pass the job identifier \(`JobId`\) from the initial call to `StartFaceDetection`\.
 
-For more information, see [Detecting Faces in a Stored Video](faces-sqs-video.md)\.
+For more information, see [Detecting faces in a stored video](faces-sqs-video.md)\.
 
 ## Request Syntax<a name="API_StartFaceDetection_RequestSyntax"></a>
 
 ```
 {
-   "[ClientRequestToken](#rekognition-StartFaceDetection-request-ClientRequestToken)": "string",
-   "[FaceAttributes](#rekognition-StartFaceDetection-request-FaceAttributes)": "string",
-   "[JobTag](#rekognition-StartFaceDetection-request-JobTag)": "string",
-   "[NotificationChannel](#rekognition-StartFaceDetection-request-NotificationChannel)": { 
-      "[RoleArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-RoleArn)": "string",
-      "[SNSTopicArn](API_NotificationChannel.md#rekognition-Type-NotificationChannel-SNSTopicArn)": "string"
+   "ClientRequestToken": "string",
+   "FaceAttributes": "string",
+   "JobTag": "string",
+   "NotificationChannel": { 
+      "RoleArn": "string",
+      "SNSTopicArn": "string"
    },
-   "[Video](#rekognition-StartFaceDetection-request-Video)": { 
-      "[S3Object](API_Video.md#rekognition-Type-Video-S3Object)": { 
-         "[Bucket](API_S3Object.md#rekognition-Type-S3Object-Bucket)": "string",
-         "[Name](API_S3Object.md#rekognition-Type-S3Object-Name)": "string",
-         "[Version](API_S3Object.md#rekognition-Type-S3Object-Version)": "string"
+   "Video": { 
+      "S3Object": { 
+         "Bucket": "string",
+         "Name": "string",
+         "Version": "string"
       }
    }
 }
@@ -54,7 +54,7 @@ Pattern: `[a-zA-Z0-9_.\-:]+`
 Required: No
 
  ** [NotificationChannel](#API_StartFaceDetection_RequestSyntax) **   <a name="rekognition-StartFaceDetection-request-NotificationChannel"></a>
-The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the face detection operation\.  
+The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the face detection operation\. The Amazon SNS topic must have a topic name that begins with *AmazonRekognition* if you are using the AmazonRekognitionServiceRole permissions policy\.  
 Type: [NotificationChannel](API_NotificationChannel.md) object  
 Required: No
 
@@ -67,7 +67,7 @@ Required: Yes
 
 ```
 {
-   "[JobId](#rekognition-StartFaceDetection-response-JobId)": "string"
+   "JobId": "string"
 }
 ```
 
@@ -128,7 +128,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartFaceDetection) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartFaceDetection) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartFaceDetection) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/StartFaceDetection) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartFaceDetection) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartFaceDetection) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartFaceDetection) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartFaceDetection) 

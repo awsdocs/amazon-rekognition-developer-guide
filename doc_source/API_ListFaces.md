@@ -1,6 +1,6 @@
 # ListFaces<a name="API_ListFaces"></a>
 
-Returns metadata for faces in the specified collection\. This metadata includes information such as the bounding box coordinates, the confidence \(that the bounding box contains a face\), and face ID\. For an example, see [Listing Faces in a Collection](list-faces-in-collection-procedure.md)\. 
+Returns metadata for faces in the specified collection\. This metadata includes information such as the bounding box coordinates, the confidence \(that the bounding box contains a face\), and face ID\. For an example, see [Listing faces in a collection](list-faces-in-collection-procedure.md)\. 
 
 This operation requires permissions to perform the `rekognition:ListFaces` action\.
 
@@ -8,9 +8,9 @@ This operation requires permissions to perform the `rekognition:ListFaces` actio
 
 ```
 {
-   "[CollectionId](#rekognition-ListFaces-request-CollectionId)": "string",
-   "[MaxResults](#rekognition-ListFaces-request-MaxResults)": number,
-   "[NextToken](#rekognition-ListFaces-request-NextToken)": "string"
+   "CollectionId": "string",
+   "MaxResults": number,
+   "NextToken": "string"
 }
 ```
 
@@ -41,22 +41,22 @@ Required: No
 
 ```
 {
-   "[FaceModelVersion](#rekognition-ListFaces-response-FaceModelVersion)": "string",
-   "[Faces](#rekognition-ListFaces-response-Faces)": [ 
+   "FaceModelVersion": "string",
+   "Faces": [ 
       { 
-         "[BoundingBox](API_Face.md#rekognition-Type-Face-BoundingBox)": { 
-            "[Height](API_BoundingBox.md#rekognition-Type-BoundingBox-Height)": number,
-            "[Left](API_BoundingBox.md#rekognition-Type-BoundingBox-Left)": number,
-            "[Top](API_BoundingBox.md#rekognition-Type-BoundingBox-Top)": number,
-            "[Width](API_BoundingBox.md#rekognition-Type-BoundingBox-Width)": number
+         "BoundingBox": { 
+            "Height": number,
+            "Left": number,
+            "Top": number,
+            "Width": number
          },
-         "[Confidence](API_Face.md#rekognition-Type-Face-Confidence)": number,
-         "[ExternalImageId](API_Face.md#rekognition-Type-Face-ExternalImageId)": "string",
-         "[FaceId](API_Face.md#rekognition-Type-Face-FaceId)": "string",
-         "[ImageId](API_Face.md#rekognition-Type-Face-ImageId)": "string"
+         "Confidence": number,
+         "ExternalImageId": "string",
+         "FaceId": "string",
+         "ImageId": "string"
       }
    ],
-   "[NextToken](#rekognition-ListFaces-response-NextToken)": "string"
+   "NextToken": "string"
 }
 ```
 
@@ -101,7 +101,7 @@ The number of requests exceeded your throughput limit\. If you want to increase 
 HTTP Status Code: 400
 
  **ResourceNotFoundException**   
-The collection specified in the request cannot be found\.  
+The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
  **ThrottlingException**   
@@ -115,7 +115,7 @@ For more information about using this API in one of the language\-specific AWS S
 +  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/ListFaces) 
 +  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/ListFaces) 
 +  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/ListFaces) 
-+  [AWS SDK for Java](https://docs.aws.amazon.com/goto/SdkForJava/rekognition-2016-06-27/ListFaces) 
++  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/ListFaces) 
 +  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/ListFaces) 
 +  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/ListFaces) 
 +  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/ListFaces) 

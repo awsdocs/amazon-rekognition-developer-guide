@@ -1,4 +1,4 @@
-# Celebrity Recognition Compared to Face Search<a name="celebrity-recognition-vs-face-search"></a>
+# Celebrity recognition compared to face search<a name="celebrity-recognition-vs-face-search"></a>
 
 Amazon Rekognition offers both celebrity recognition and face recognition functionality\. These functionalities have some key differences in their use cases and best practices\. 
 
@@ -6,4 +6,4 @@ Celebrity recognition comes pre\-trained with the ability to recognize hundreds 
 
 On the other hand, face recognition is a more general functionality that allows you to create your own face collections with your own face vectors to verify identities or search for any person, not just celebrities\. Face recognition can be used for applications such as authenticating building access, public safety, and social media\. In all these cases, it’s recommended that you use best practices, appropriate confidence thresholds \(including 99% for public safety use cases\), and human review in situations where the accuracy of the match is important\.
 
-For more information, see [Searching Faces in a Collection](collections.md)\.
+For more information, see [Searching faces in a collection](collections.md)\.

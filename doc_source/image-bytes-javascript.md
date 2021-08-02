@@ -8,9 +8,9 @@ The chosen image is loaded by using the JavaScript `FileReader.readAsDataURL` fu
 
 1. Load the example source code into an editor\.
 
-1. Get the Amazon Cognito identity pool identifier\. For more information, see [Getting the Amazon Cognito Identity Pool Identifier](#image-bytes-javascript-auth)\.
+1. Get the Amazon Cognito identity pool identifier\. For more information, see [Getting the Amazon Cognito identity pool identifier](#image-bytes-javascript-auth)\.
 
-1. In the `AnonLog` function of the example code, change `IdentityPoolIdToUse` and `RegionToUse` to the values that you noted in step 9 of [Getting the Amazon Cognito Identity Pool Identifier](#image-bytes-javascript-auth)\. 
+1. In the `AnonLog` function of the example code, change `IdentityPoolIdToUse` and `RegionToUse` to the values that you noted in step 9 of [Getting the Amazon Cognito identity pool identifier](#image-bytes-javascript-auth)\. 
 
 1. In the `DetectFaces` function, change `RegionToUse` to the value you used in the previous step\.
 
@@ -23,7 +23,9 @@ The chosen image is loaded by using the JavaScript `FileReader.readAsDataURL` fu
 **Note**  
 The following code example uses two scripts that are no longer part of Amazon Cognito\. To get these files, follow the links for [ aws\-cognito\-sdk\.min\.js](https://raw.githubusercontent.com/aws/amazon-cognito-identity-js/master/dist/aws-cognito-sdk.js) and [ amazon\-cognito\-identity\.min\.js](https://raw.githubusercontent.com/aws/amazon-cognito-identity-js/master/dist/amazon-cognito-identity.min.js), then save the text from each as seperate `.js` files\. 
 
-## JavaScript Example Code<a name="image-bytes-javascript-code"></a>
+## JavaScript example code<a name="image-bytes-javascript-code"></a>
+
+The following code example uses JavaScript V2\. For an example in JavaScript V3, see [the example in the AWS Documentation SDK examples GitHub repository\.](https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/javascriptv3/example_code/rekognition/estimate-age-example/src)
 
 ```
 <!--
@@ -141,7 +143,7 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
 
 ### Using readAsArrayBuffer<a name="image-bytes-javascript-unencoded"></a>
 
-The following code snippet is an alternative implementation of the `ProcessImage` function in the sample code\. It uses `readAsArrayBuffer` to load an image and call `DetectFaces`\. Because `readAsArrayBuffer` doesn't base64\-encode the loaded file, it's not necessary to unencode the image bytes before calling an Amazon Rekognition Image operation\.
+The following code snippet is an alternative implementation of the `ProcessImage` function in the sample code, using JavaScript V2\. It uses `readAsArrayBuffer` to load an image and call `DetectFaces`\. Because `readAsArrayBuffer` doesn't base64\-encode the loaded file, it's not necessary to unencode the image bytes before calling an Amazon Rekognition Image operation\.
 
 ```
 //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -187,7 +189,7 @@ function ProcessImage() {
   }
 ```
 
-## Getting the Amazon Cognito Identity Pool Identifier<a name="image-bytes-javascript-auth"></a>
+## Getting the Amazon Cognito identity pool identifier<a name="image-bytes-javascript-auth"></a>
 
 For simplicity, the example uses an anonymous Amazon Cognito identity pool to provide unauthenticated access to the Amazon Rekognition Image API\. This might be suitable for your needs\. For example, you can use unauthenticated access to provide free, or trial, access to your website before users sign up\. To provide authenticated access, use an Amazon Cognito user pool\. For more information, see [Amazon Cognito User Pool](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)\. 
 
