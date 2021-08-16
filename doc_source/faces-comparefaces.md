@@ -243,7 +243,7 @@ CompareFaces uses machine learning algorithms, which are probabilistic\. A false
    
    public class CompareFaces
    {
-       public static void Example()
+       public static async Task Example()
        {
            float similarityThreshold = 70F;
            String sourceImage = "source.jpg";
@@ -292,7 +292,7 @@ CompareFaces uses machine learning algorithms, which are probabilistic\. A false
            };
    
            // Call operation
-           CompareFacesResponse compareFacesResponse = rekognitionClient.CompareFaces(compareFacesRequest);
+           CompareFacesResponse compareFacesResponse = await rekognitionClient.CompareFacesAsync(compareFacesRequest);
    
            // Display results
            foreach(CompareFacesMatch match in compareFacesResponse.FaceMatches)
