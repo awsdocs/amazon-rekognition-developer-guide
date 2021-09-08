@@ -1,6 +1,6 @@
 # Guidelines on face attributes<a name="guidance-face-attributes"></a>
 
-Amazon Rekognition returns a bounding box, attributes, emotions, landmarks, quality, and the pose for each face it detects\. Each attribute or emotion has a value and a confidence score\. For example, a certain face might be predicted as having the gender ‘Female’ with a confidence score of 85% and the emotion ‘Happy’ with a confidence score of 90%\.
+Amazon Rekognition returns a bounding box, landmarks, quality, and the pose for each face it detects\. Amazon Rekognition also returns predictions for emotion, gender, age, and other attributes for each face if the parameter for attributes is set to `ALL` in the API request\. Each attribute or emotion has a value and a confidence score\. For example, a certain face might be predicted as having the gender ‘Female’ with a confidence score of 85% and the emotion ‘Happy’ with a confidence score of 90%\.
 
 A gender binary \(male/female\) prediction is based on the physical appearance of a face in a particular image\. It doesn't indicate a person’s gender identity, and you shouldn't use Amazon Rekognition to make such a determination\. We don't recommend using gender binary predictions to make decisions that impact  an individual's rights, privacy, or access to services\. 
 
@@ -11,3 +11,5 @@ We recommend using a threshold of 99% or more for use cases where the accuracy o
 
 
 One of the best uses of these attributes is generating aggregate statistics\. For example, attributes, such as Smile, Pose, and Sharpness, may be used to select the ‘best profile picture’ automatically in a social media application\. Another common use case is estimating demographics anonymously of a broad sample using the predicted gender and age attributes \(for example, at events or retail stores\)\. 
+
+For more information about attributes, see [ FaceDetail ](API_FaceDetail.md)\.

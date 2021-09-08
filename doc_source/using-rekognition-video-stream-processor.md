@@ -1,8 +1,8 @@
 # Analyze streaming videos with Amazon Rekognition Video stream processors<a name="using-rekognition-video-stream-processor"></a>
 
-You start analyzing a streaming video by starting an Amazon Rekognition Video stream processor and streaming video into Amazon Rekognition Video\. An Amazon Rekognition Video stream processor allows you to start, stop, and manage stream processors\. You create a stream processor by calling [CreateStreamProcessor](API_CreateStreamProcessor.md)\. The request parameters include the Amazon Resource Names \(ARNs\) for the Kinesis video stream, the Kinesis data stream, and the identifier for the collection that's used to recognize faces in the streaming video\. It also includes the name that you specify for the stream processor\.
+You start analyzing a streaming video by starting an Amazon Rekognition Video stream processor and streaming video into Amazon Rekognition Video\. An Amazon Rekognition Video stream processor allows you to start, stop, and manage stream processors\. You create a stream processor by calling [ CreateStreamProcessor ](API_CreateStreamProcessor.md)\. The request parameters include the Amazon Resource Names \(ARNs\) for the Kinesis video stream, the Kinesis data stream, and the identifier for the collection that's used to recognize faces in the streaming video\. It also includes the name that you specify for the stream processor\.
 
-You start processing a video by calling the [ StartStreamProcessor APIrequestsStartStreamProcessor  Starts processing a stream processor\. You create a stream processor by calling [CreateStreamProcessor](API_CreateStreamProcessor.md)\. To tell `StartStreamProcessor` which stream processor to start, use the value of the `Name` field specified in the call to `CreateStreamProcessor`\.  Request Syntax  
+You start processing a video by calling the [  StartStreamProcessor  APIrequestsStartStreamProcessor  Starts processing a stream processor\. You create a stream processor by calling [ CreateStreamProcessor ](API_CreateStreamProcessor.md)\. To tell `StartStreamProcessor` which stream processor to start, use the value of the `Name` field specified in the call to `CreateStreamProcessor`\.  Request Syntax  
 
 ```
 {
@@ -10,40 +10,40 @@ You start processing a video by calling the [ StartStreamProcessor APIrequestsSt
 }
 ```   Request Parameters  The request accepts the following data in JSON format\.  
 
- ** [Name](#API_StartStreamProcessor_RequestSyntax) **   <a name="rekognition-StartStreamProcessor-request-Name"></a>
+ ** [ Name ](#API_StartStreamProcessor_RequestSyntax) **   <a name="rekognition-StartStreamProcessor-request-Name"></a>
 The name of the stream processor to start processing\.  
 Type: String  
 Length Constraints: Minimum length of 1\. Maximum length of 128\.  
 Pattern: `[a-zA-Z0-9_.\-]+`   
 Required: Yes    Response Elements  If the action is successful, the service sends back an HTTP 200 response with an empty HTTP body\.   Errors   
 
- **AccessDeniedException**   
+ ** AccessDeniedException **   
 You are not authorized to perform the action\.  
 HTTP Status Code: 400 
 
- **InternalServerError**   
+ ** InternalServerError **   
 Amazon Rekognition experienced a service issue\. Try your call again\.  
 HTTP Status Code: 500 
 
- **InvalidParameterException**   
+ ** InvalidParameterException **   
 Input parameter violated a constraint\. Validate your parameter before calling the API operation again\.  
 HTTP Status Code: 400 
 
- **ProvisionedThroughputExceededException**   
+ ** ProvisionedThroughputExceededException **   
 The number of requests exceeded your throughput limit\. If you want to increase this limit, contact Amazon Rekognition\.  
 HTTP Status Code: 400 
 
- **ResourceInUseException**   
+ ** ResourceInUseException **   
 The specified resource is already being used\.  
 HTTP Status Code: 400 
 
- **ResourceNotFoundException**   
+ ** ResourceNotFoundException **   
 The resource specified in the request cannot be found\.  
 HTTP Status Code: 400 
 
- **ThrottlingException**   
+ ** ThrottlingException **   
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
-HTTP Status Code: 500    See Also  For more information about using this API in one of the language\-specific AWS SDKs, see the following:    [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartStreamProcessor)     [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/StartStreamProcessor)     ](API_StartStreamProcessor.md) operation\. To get status information for a stream processor, call [DescribeStreamProcessor](API_DescribeStreamProcessor.md)\. Other operations you can call are [StopStreamProcessor](API_StopStreamProcessor.md) to stop a stream processor, and [DeleteStreamProcessor](API_DeleteStreamProcessor.md) to delete a stream processor\. To get a list of stream processors in your account, call [ListStreamProcessors](API_ListStreamProcessors.md)\. 
+HTTP Status Code: 500    See Also  For more information about using this API in one of the language\-specific AWS SDKs, see the following:    [ AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/StartStreamProcessor)     [ AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/StartStreamProcessor)     [ AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/StartStreamProcessor)     [ AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/StartStreamProcessor)     [ AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartStreamProcessor)     [ AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/StartStreamProcessor)     [ AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/StartStreamProcessor)     [ AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/StartStreamProcessor)     [ AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/StartStreamProcessor)     ](API_StartStreamProcessor.md) operation\. To get status information for a stream processor, call [ DescribeStreamProcessor ](API_DescribeStreamProcessor.md)\. Other operations you can call are [ StopStreamProcessor ](API_StopStreamProcessor.md) to stop a stream processor, and [ DeleteStreamProcessor ](API_DeleteStreamProcessor.md) to delete a stream processor\. To get a list of stream processors in your account, call [ ListStreamProcessors ](API_ListStreamProcessors.md)\. 
 
 After the stream processor starts running, you stream the video into Amazon Rekognition Video through the Kinesis video stream that you specified in `CreateStreamProcessor`\. Use the Kinesis Video Streams SDK [PutMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) operation to deliver video into the Kinesis video stream\. For an example, see [PutMedia API Example](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-putmedia.html)\.
 
@@ -51,7 +51,7 @@ For information about how your application can consume Amazon Rekognition Video 
 
 ## Creating the Amazon Rekognition Video stream processor<a name="streaming-video-creating-stream-processor"></a>
 
-Before you can analyze a streaming video, you create an Amazon Rekognition Video stream processor \([CreateStreamProcessor](API_CreateStreamProcessor.md)\)\. The stream processor contains information about the Kinesis data stream and the Kinesis video stream\. It also contains the identifier for the collection that contains the faces you want to recognize in the input streaming video\. You also specify a name for the stream processor\. The following is a JSON example for the `CreateStreamProcessor` request\.
+Before you can analyze a streaming video, you create an Amazon Rekognition Video stream processor \([ CreateStreamProcessor ](API_CreateStreamProcessor.md)\)\. The stream processor contains information about the Kinesis data stream and the Kinesis video stream\. It also contains the identifier for the collection that contains the faces you want to recognize in the input streaming video\. You also specify a name for the stream processor\. The following is a JSON example for the `CreateStreamProcessor` request\.
 
 ```
 {
@@ -176,7 +176,7 @@ Alternatively, you can specify tag\-keys in this format:
 
 ## Starting the Amazon Rekognition Video stream processor<a name="streaming-video-starting-stream-processor"></a>
 
-You start analyzing streaming video by calling [StartStreamProcessor](API_StartStreamProcessor.md) with the stream processor name that you specified in `CreateStreamProcessor`\. The following is a JSON example for the `StartStreamProcessor` request\.
+You start analyzing streaming video by calling [ StartStreamProcessor ](API_StartStreamProcessor.md) with the stream processor name that you specified in `CreateStreamProcessor`\. The following is a JSON example for the `StartStreamProcessor` request\.
 
 ```
 {
@@ -188,7 +188,7 @@ If the stream processor successfully starts, an HTTP 200 response is returned, a
 
 ## Using stream processors \(Java V2 example\)<a name="using-stream-processors-v2"></a>
 
-The following example code shows how to call various stream processor operations, such as [CreateStreamProcessor](API_CreateStreamProcessor.md) and [StartStreamProcessor](API_StartStreamProcessor.md), using the AWS SDK for Java version 2\.
+The following example code shows how to call various stream processor operations, such as [ CreateStreamProcessor ](API_CreateStreamProcessor.md) and [ StartStreamProcessor ](API_StartStreamProcessor.md), using the AWS SDK for Java version 2\.
 
 This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/CreateStreamProcessor.java)\.
 
@@ -201,7 +201,7 @@ This code is taken from the AWS Documentation SDK examples GitHub repository\. S
 
         ListStreamProcessorsResponse listStreamProcessorsResult = rekClient.listStreamProcessors(request);
 
-        //List all stream processors (and state) returned from Rekognition
+        //List all stream processors (and state) returned from Rekognition.
         for (StreamProcessor streamProcessor : listStreamProcessorsResult.streamProcessors()) {
             System.out.println("StreamProcessor name - " + streamProcessor.name());
             System.out.println("Status - " + streamProcessor.status());
@@ -305,7 +305,7 @@ This code is taken from the AWS Documentation SDK examples GitHub repository\. S
 
 ## Using stream processors \(Java V1 example\)<a name="using-stream-processors"></a>
 
-The following example code shows how to call various stream processor operations, such as [CreateStreamProcessor](API_CreateStreamProcessor.md) and [StartStreamProcessor](API_StartStreamProcessor.md), using Java V1\. The example includes a stream processor manager class \(StreamManager\) that provides methods to call stream processor operations\. The starter class \(Starter\) creates a StreamManager object and calls various operations\. 
+The following example code shows how to call various stream processor operations, such as [ CreateStreamProcessor ](API_CreateStreamProcessor.md) and [ StartStreamProcessor ](API_StartStreamProcessor.md), using Java V1\. The example includes a stream processor manager class \(StreamManager\) that provides methods to call stream processor operations\. The starter class \(Starter\) creates a StreamManager object and calls various operations\. 
 
 **To configure the example:**
 

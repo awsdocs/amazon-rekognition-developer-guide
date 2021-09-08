@@ -1,6 +1,6 @@
 # Displaying bounding boxes<a name="images-displaying-bounding-boxes"></a>
 
-Amazon Rekognition Image operations can return bounding boxes coordinates for items that are detected in images\. For example, the [DetectFaces](API_DetectFaces.md) operation returns a bounding box \([BoundingBox](API_BoundingBox.md)\) for each face detected in an image\. You can use the bounding box coordinates to display a box around detected items\. For example, the following image shows a bounding box surrounding a face\.
+Amazon Rekognition Image operations can return bounding boxes coordinates for items that are detected in images\. For example, the [ DetectFaces ](API_DetectFaces.md) operation returns a bounding box \([ BoundingBox ](API_BoundingBox.md)\) for each face detected in an image\. You can use the bounding box coordinates to display a box around detected items\. For example, the following image shows a bounding box surrounding a face\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/face.png)
 
@@ -40,7 +40,7 @@ You use these values to display a bounding box around the face\.
 **Note**  
 An image can be orientated in various ways\. Your application might need to rotate the image to display it with the correction orientation\. Bounding box coordinates are affected by the orientation of the image\. You might need to translate the coordinates before you can display a bounding box at the right location\. For more information, see [Getting image orientation and bounding box coordinates](images-orientation.md)\.
 
-The following examples show how to display a bounding box around faces that are detected by calling [DetectFaces](API_DetectFaces.md)\. The examples assume that the images are oriented to 0 degrees\. The examples also show how to download the image from an Amazon S3 bucket\. 
+The following examples show how to display a bounding box around faces that are detected by calling [ DetectFaces ](API_DetectFaces.md)\. The examples assume that the images are oriented to 0 degrees\. The examples also show how to download the image from an Amazon S3 bucket\. 
 
 **To display a bounding box**
 
@@ -295,7 +295,7 @@ The following examples show how to display a bounding box around faces that are 
    
             result= rekClient.detectFaces(facesRequest);
    
-           // Show the bounding box info for each face
+           // Show the bounding box info for each face.
            List<FaceDetail> faceDetails = result.faceDetails();
            for (FaceDetail face : faceDetails) {
    
@@ -311,7 +311,7 @@ The following examples show how to display a bounding box around faces that are 
                System.out.println();
            }
    
-           // Create the frame and panel
+           // Create the frame and panel.
            JFrame frame = new JFrame("RotateImage");
            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
            DisplayFacesFrame panel = new DisplayFacesFrame(image);
@@ -356,20 +356,20 @@ The following examples show how to display a bounding box around faces that are 
            image = bufImage;
        }
    
-       // Draws the bounding box around the detected faces
+       // Draws the bounding box around the detected faces.
        public void paintComponent(Graphics g) {
            float left = 0;
            float top = 0;
            int height = image.getHeight(this);
            int width = image.getWidth(this);
    
-           Graphics2D g2d = (Graphics2D) g; // Create a Java2D version of g
+           Graphics2D g2d = (Graphics2D) g; // Create a Java2D version of g.
    
            // Draw the image
            g2d.drawImage(image, 0, 0, width / scale, height / scale, this);
            g2d.setColor(new Color(0, 212, 0));
    
-           // Iterate through the faces and display bounding boxes
+           // Iterate through the faces and display bounding boxes.
            List<FaceDetail> faceDetails = result.faceDetails();
            for (FaceDetail face : faceDetails) {
    

@@ -2,7 +2,7 @@
 
 Amazon Rekognition Image operations can analyze images that are supplied as image bytes or images stored in an Amazon S3 bucket\.
 
-These topics provide examples of supplying image bytes to Amazon Rekognition Image API operations by using a file loaded from a local file system\. You pass image bytes to an Amazon Rekognition API operation by using the [Image](API_Image.md) input parameter\. Within `Image`, you specify the `Bytes` property to pass base64\-encoded image bytes\.
+These topics provide examples of supplying image bytes to Amazon Rekognition Image API operations by using a file loaded from a local file system\. You pass image bytes to an Amazon Rekognition API operation by using the [ Image ](API_Image.md) input parameter\. Within `Image`, you specify the `Bytes` property to pass base64\-encoded image bytes\.
 
 Image bytes passed to an Amazon Rekognition API operation by using the `Bytes` input parameter must be base64 encoded\. The AWS SDKs that these examples use automatically base64\-encode images\. You don't need to encode image bytes before calling an Amazon Rekognition API operation\. For more information, see [Image specifications](images-information.md)\. 
 
@@ -97,7 +97,7 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
 ------
 #### [ Python ]
 
-   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_labels](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\. 
+   The following [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) example shows how to load an image from the local file system and call the [detect\_labels](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/rekognition.html#Rekognition.Client.detect_labels) operation\. Change the value of `photo` to the path and file name of an image file \(\.jpg or \.png format\)\. 
 
    ```
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -302,10 +302,10 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
        public static void detectImageLabels(RekognitionClient rekClient, String sourceImage) {
    
            try {
-               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               InputStream sourceStream = new FileInputStream(sourceImage);
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
    
-               // Create an Image object for the source image
+               // Create an Image object for the source image.
                Image souImage = Image.builder()
                        .bytes(sourceBytes)
                        .build();
@@ -327,6 +327,7 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
                System.out.println(e.getMessage());
                System.exit(1);
            }
+       }
    ```
 
 ------

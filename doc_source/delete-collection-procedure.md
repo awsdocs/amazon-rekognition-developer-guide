@@ -1,6 +1,6 @@
 # Deleting a collection<a name="delete-collection-procedure"></a>
 
-You can use the [DeleteCollection](API_DeleteCollection.md) operation to delete a collection\.
+You can use the [ DeleteCollection ](API_DeleteCollection.md) operation to delete a collection\.
 
 For more information, see [Managing collections](collections.md#managing-collections)\. 
 

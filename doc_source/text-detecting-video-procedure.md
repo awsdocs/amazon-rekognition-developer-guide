@@ -1,6 +1,6 @@
 # Detecting text in a stored video<a name="text-detecting-video-procedure"></a>
 
-Amazon Rekognition Video text detection in stored videos is an asynchronous operation\. To start detecting text, call [StartTextDetection](API_StartTextDetection.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon SNS topic\. If the video analysis is successful, call [GetTextDetection](API_GetTextDetection.md) to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video operations](api-video.md)\.
+Amazon Rekognition Video text detection in stored videos is an asynchronous operation\. To start detecting text, call [ StartTextDetection ](API_StartTextDetection.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon SNS topic\. If the video analysis is successful, call [ GetTextDetection ](API_GetTextDetection.md) to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video operations](api-video.md)\.
 
 This procedure expands on the code in [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)\. It uses an Amazon SQS queue to get the completion status of a video analysis request\.
 
@@ -248,10 +248,10 @@ This procedure expands on the code in [Analyzing a video stored in an Amazon S3 
                    print ("   Type: " + str(text['Type']) )
                    print()
    
-                   if 'NextToken' in response:
-                       paginationToken = response['NextToken']
-                   else:
-                       finished = True
+               if 'NextToken' in response:
+                   paginationToken = response['NextToken']
+               else:
+                   finished = True
    ```
 
    In the function `main`, replace the lines:
@@ -286,10 +286,10 @@ Filters are optional request parameters that can be used when you call `StartTex
 
 ## GetTextDetection response<a name="text-detecting-video-response"></a>
 
-`GetTextDetection` returns an array \(`TextDetectionResults`\) that contains information about the text detected in the video\. An array element, [TextDetection](API_TextDetection.md), exists for each time a word or line is detected in the video\. The array elements are sorted by time \(in milliseconds\) since the start of the video\.
+`GetTextDetection` returns an array \(`TextDetectionResults`\) that contains information about the text detected in the video\. An array element, [ TextDetection ](API_TextDetection.md), exists for each time a word or line is detected in the video\. The array elements are sorted by time \(in milliseconds\) since the start of the video\.
 
 The following is a partial JSON response from `GetTextDetection`\. In the response, note the following:
-+ **Text information** – The `TextDetectionResult` array element contains information about the detected text \([TextDetection](API_TextDetection.md)\) and the time that the text was detected in the video \(`Timestamp`\)\.
++ **Text information** – The `TextDetectionResult` array element contains information about the detected text \([ TextDetection ](API_TextDetection.md)\) and the time that the text was detected in the video \(`Timestamp`\)\.
 + **Paging information** – The example shows one page of text detection information\. You can specify how many text elements to return in the `MaxResults` input parameter for `GetTextDetection`\. If more results than `MaxResults` exist, or there are more results than the default maximum, `GetTextDetection` returns a token \(`NextToken`\) that's used to get the next page of results\. For more information, see [Getting Amazon Rekognition Video analysis results](api-video.md#api-video-get)\.
 + **Video information** – The response includes information about the video format \(`VideoMetadata`\) in each page of information that's returned by `GetTextDetection`\.
 

@@ -16,7 +16,7 @@ This operation requires permissions to perform the `rekognition:ListTagsForResou
 
 The request accepts the following data in JSON format\.
 
- ** [ResourceArn](#API_ListTagsForResource_RequestSyntax) **   <a name="rekognition-ListTagsForResource-request-ResourceArn"></a>
+ ** [ ResourceArn ](#API_ListTagsForResource_RequestSyntax) **   <a name="rekognition-ListTagsForResource-request-ResourceArn"></a>
  Amazon Resource Name \(ARN\) of the model, collection, or stream processor that contains the tags that you want a list of\.   
 Type: String  
 Length Constraints: Minimum length of 20\. Maximum length of 2048\.  
@@ -38,7 +38,7 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** [Tags](#API_ListTagsForResource_ResponseSyntax) **   <a name="rekognition-ListTagsForResource-response-Tags"></a>
+ ** [ Tags ](#API_ListTagsForResource_ResponseSyntax) **   <a name="rekognition-ListTagsForResource-response-Tags"></a>
  A list of key\-value tags assigned to the resource\.   
 Type: String to string map  
 Map Entries: Minimum number of 0 items\. Maximum number of 200 items\.  
@@ -49,39 +49,39 @@ Value Pattern: `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`
 
 ## Errors<a name="API_ListTagsForResource_Errors"></a>
 
- **AccessDeniedException**   
+ ** AccessDeniedException **   
 You are not authorized to perform the action\.  
 HTTP Status Code: 400
 
- **InternalServerError**   
+ ** InternalServerError **   
 Amazon Rekognition experienced a service issue\. Try your call again\.  
 HTTP Status Code: 500
 
- **InvalidParameterException**   
+ ** InvalidParameterException **   
 Input parameter violated a constraint\. Validate your parameter before calling the API operation again\.  
 HTTP Status Code: 400
 
- **ProvisionedThroughputExceededException**   
+ ** ProvisionedThroughputExceededException **   
 The number of requests exceeded your throughput limit\. If you want to increase this limit, contact Amazon Rekognition\.  
 HTTP Status Code: 400
 
- **ResourceNotFoundException**   
+ ** ResourceNotFoundException **   
 The resource specified in the request cannot be found\.  
 HTTP Status Code: 400
 
- **ThrottlingException**   
+ ** ThrottlingException **   
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500
 
 ## See Also<a name="API_ListTagsForResource_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-+  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/ListTagsForResource) 
-+  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/ListTagsForResource) 
-+  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/ListTagsForResource) 
-+  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/ListTagsForResource) 
-+  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/ListTagsForResource) 
-+  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/ListTagsForResource) 
-+  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/ListTagsForResource) 
-+  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/ListTagsForResource) 
-+  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/ListTagsForResource) 
++  [ AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/ListTagsForResource) 
++  [ AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/ListTagsForResource) 
++  [ AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/ListTagsForResource) 
++  [ AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/ListTagsForResource) 
++  [ AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/ListTagsForResource) 
++  [ AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/ListTagsForResource) 
++  [ AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/ListTagsForResource) 
++  [ AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/ListTagsForResource) 
++  [ AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/ListTagsForResource) 

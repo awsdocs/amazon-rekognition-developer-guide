@@ -1,8 +1,8 @@
 # Searching for a face using its face ID<a name="search-face-with-id-procedure"></a>
 
-You can use the [SearchFaces](API_SearchFaces.md) operation to search for faces in a collection that match a supplied face ID\.
+You can use the [ SearchFaces ](API_SearchFaces.md) operation to search for faces in a collection that match a supplied face ID\.
 
-The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation response when the face is detected and added to a collection\. For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\.
+The face ID is returned in the [ IndexFaces ](API_IndexFaces.md) operation response when the face is detected and added to a collection\. For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\.
 
 
 
@@ -90,7 +90,7 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
    
                SearchFacesResponse imageResponse = rekClient.searchFaces(searchFacesRequest) ;
    
-               // Display the results
+               // Display the results.
                System.out.println("Faces matching in the collection");
                List<FaceMatch> faceImageMatches = imageResponse.faceMatches();
                for (FaceMatch face: faceImageMatches) {
@@ -101,6 +101,7 @@ The face ID is returned in the [IndexFaces](API_IndexFaces.md) operation respons
                System.out.println(e.getMessage());
                System.exit(1);
            }
+       }
    ```
 
 ------

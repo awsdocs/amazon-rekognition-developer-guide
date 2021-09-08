@@ -11,8 +11,6 @@ This section covers the types of analysis that Amazon Rekognition Video can perf
 + [Configuring Amazon Rekognition Video](api-video-roles.md)
 + [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md)
 + [Analyzing a video with the AWS Command Line Interface](video-cli-commands.md)
-+ [Tutorial: Creating AWS video analyzer applications](stored-video-tutorial-v2.md)
-+ [Java V1 Tutorial: Creating an Amazon Rekognition Lambda function](stored-video-lambda.md)
 + [Reference: Video analysis results notification](video-notification-payload.md)
 + [Troubleshooting Amazon Rekognition Video](video-troubleshooting.md)
 
@@ -31,7 +29,7 @@ For more information, see [How Amazon Rekognition works](how-it-works.md)\.
 
 ## Amazon Rekognition Video API overview<a name="video-api-overview"></a>
 
-Amazon Rekognition Video processes a video that's stored in an Amazon S3 bucket\. The design pattern is an asynchronous set of operations\. You start video analysis by calling a `Start` operation such as [StartLabelDetection](API_StartLabelDetection.md)\. The completion status of the request is published to an Amazon Simple Notification Service \(Amazon SNS\) topic\. To get the completion status from the Amazon SNS topic, you can use an Amazon Simple Queue Service \(Amazon SQS\) queue or an AWS Lambda function\. After you have the completion status, you call a `Get` operation, such as [GetLabelDetection](API_GetLabelDetection.md), to get the results of the request\. 
+Amazon Rekognition Video processes a video that's stored in an Amazon S3 bucket\. The design pattern is an asynchronous set of operations\. You start video analysis by calling a `Start` operation such as [ StartLabelDetection ](API_StartLabelDetection.md)\. The completion status of the request is published to an Amazon Simple Notification Service \(Amazon SNS\) topic\. To get the completion status from the Amazon SNS topic, you can use an Amazon Simple Queue Service \(Amazon SQS\) queue or an AWS Lambda function\. After you have the completion status, you call a `Get` operation, such as [ GetLabelDetection ](API_GetLabelDetection.md), to get the results of the request\. 
 
 The following diagram shows the process for detecting labels in a video that's stored in an Amazon S3 bucket\. In the diagram, an Amazon SQS queue gets the completion status from the Amazon SNS topic\. Alternatively, you can use an AWS Lambda function\. 
 
@@ -42,13 +40,13 @@ The process is the same for other Amazon Rekognition Video operations\. The foll
 
 | Detection | Start Operation | Get Operation | 
 | --- | --- | --- | 
-|  Video Segments  |  [StartSegmentDetection](API_StartSegmentDetection.md)  |  [GetSegmentDetection](API_GetSegmentDetection.md)  | 
-|  Labels  |  [StartLabelDetection](API_StartLabelDetection.md)  |  [GetLabelDetection](API_GetLabelDetection.md)  | 
-|  Explicit or suggestive adult content  |  [StartContentModeration](API_StartContentModeration.md)  |  [GetContentModeration](API_GetContentModeration.md)  | 
-|  Text  |  [StartTextDetection](API_StartTextDetection.md)  |  [GetTextDetection](API_GetTextDetection.md)  | 
-|  Celebrities  |  [StartCelebrityRecognition](API_StartCelebrityRecognition.md)  |  [GetCelebrityRecognition](API_GetCelebrityRecognition.md)  | 
-|  Faces  |  [StartFaceDetection](API_StartFaceDetection.md)  |  [GetFaceDetection](API_GetFaceDetection.md)  | 
-|  People  |  [StartPersonTracking](API_StartPersonTracking.md)  |  [GetPersonTracking](API_GetPersonTracking.md)  | 
+|  Video Segments  |  [ StartSegmentDetection ](API_StartSegmentDetection.md)  |  [ GetSegmentDetection ](API_GetSegmentDetection.md)  | 
+|  Labels  |  [ StartLabelDetection ](API_StartLabelDetection.md)  |  [ GetLabelDetection ](API_GetLabelDetection.md)  | 
+|  Explicit or suggestive adult content  |  [ StartContentModeration ](API_StartContentModeration.md)  |  [ GetContentModeration ](API_GetContentModeration.md)  | 
+|  Text  |  [ StartTextDetection ](API_StartTextDetection.md)  |  [ GetTextDetection ](API_GetTextDetection.md)  | 
+|  Celebrities  |  [ StartCelebrityRecognition ](API_StartCelebrityRecognition.md)  |  [ GetCelebrityRecognition ](API_GetCelebrityRecognition.md)  | 
+|  Faces  |  [ StartFaceDetection ](API_StartFaceDetection.md)  |  [ GetFaceDetection ](API_GetFaceDetection.md)  | 
+|  People  |  [ StartPersonTracking ](API_StartPersonTracking.md)  |  [ GetPersonTracking ](API_GetPersonTracking.md)  | 
 
 For `Get` operations other than `GetCelebrityRecognition`, Amazon Rekognition Video returns tracking information for when entities are detected throughout the input video\. 
 
@@ -64,6 +62,6 @@ The maximum file size for a stored video is 10GB\.
 
 ### Searching for people<a name="video-searching-persons-overview"></a>
 
-You can use facial metadata that's stored in a collection to search for people in a video\. For example, you can search an archived video for a specific person or for multiple people\. You store facial metadata from source images in a collection by using the [IndexFaces](API_IndexFaces.md) operation\. You can then use [StartFaceSearch](API_StartFaceSearch.md) to start asynchronously searching for faces in the collection\. You use [GetFaceSearch](API_GetFaceSearch.md) to get the search results\. For more information, see [ Searching stored videos for faces](procedure-person-search-videos.md)\. Searching for people is an example of a storage\-based Amazon Rekognition operation\. For more information, see [Storage\-based API operations](how-it-works-storage-non-storage.md#how-it-works-storage-based)\.
+You can use facial metadata that's stored in a collection to search for people in a video\. For example, you can search an archived video for a specific person or for multiple people\. You store facial metadata from source images in a collection by using the [ IndexFaces ](API_IndexFaces.md) operation\. You can then use [ StartFaceSearch ](API_StartFaceSearch.md) to start asynchronously searching for faces in the collection\. You use [ GetFaceSearch ](API_GetFaceSearch.md) to get the search results\. For more information, see [ Searching stored videos for faces](procedure-person-search-videos.md)\. Searching for people is an example of a storage\-based Amazon Rekognition operation\. For more information, see [Storage\-based API operations](how-it-works-storage-non-storage.md#how-it-works-storage-based)\.
 
 You can also search for people in a streaming video\. For more information, see [Working with streaming videos](streaming-video.md)\.

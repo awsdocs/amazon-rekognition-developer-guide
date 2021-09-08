@@ -33,17 +33,17 @@ This operation requires permissions to perform the `rekognition:DetectFaces` act
 
 The request accepts the following data in JSON format\.
 
- ** [Attributes](#API_DetectFaces_RequestSyntax) **   <a name="rekognition-DetectFaces-request-Attributes"></a>
+ ** [ Attributes ](#API_DetectFaces_RequestSyntax) **   <a name="rekognition-DetectFaces-request-Attributes"></a>
 An array of facial attributes you want to be returned\. This can be the default list of attributes or all attributes\. If you don't specify a value for `Attributes` or if you specify `["DEFAULT"]`, the API returns the following subset of facial attributes: `BoundingBox`, `Confidence`, `Pose`, `Quality`, and `Landmarks`\. If you provide `["ALL"]`, all facial attributes are returned, but the operation takes longer to complete\.  
 If you provide both, `["ALL", "DEFAULT"]`, the service uses a logical AND operator to determine which attributes to return \(in this case, all attributes\)\.   
 Type: Array of strings  
 Valid Values:` DEFAULT | ALL`   
 Required: No
 
- ** [Image](#API_DetectFaces_RequestSyntax) **   <a name="rekognition-DetectFaces-request-Image"></a>
+ ** [ Image ](#API_DetectFaces_RequestSyntax) **   <a name="rekognition-DetectFaces-request-Image"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing base64\-encoded image bytes is not supported\.   
 If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Image specifications](images-information.md)\.  
-Type: [Image](API_Image.md) object  
+Type: [ Image ](API_Image.md) object  
 Required: Yes
 
 ## Response Syntax<a name="API_DetectFaces_ResponseSyntax"></a>
@@ -129,11 +129,11 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** [FaceDetails](#API_DetectFaces_ResponseSyntax) **   <a name="rekognition-DetectFaces-response-FaceDetails"></a>
+ ** [ FaceDetails ](#API_DetectFaces_ResponseSyntax) **   <a name="rekognition-DetectFaces-response-FaceDetails"></a>
 Details of each face found in the image\.   
-Type: Array of [FaceDetail](API_FaceDetail.md) objects
+Type: Array of [ FaceDetail ](API_FaceDetail.md) objects
 
- ** [OrientationCorrection](#API_DetectFaces_ResponseSyntax) **   <a name="rekognition-DetectFaces-response-OrientationCorrection"></a>
+ ** [ OrientationCorrection ](#API_DetectFaces_ResponseSyntax) **   <a name="rekognition-DetectFaces-response-OrientationCorrection"></a>
 The value of `OrientationCorrection` is always null\.  
 If the input image is in \.jpeg format, it might contain exchangeable image file format \(Exif\) metadata that includes the image's orientation\. Amazon Rekognition uses this orientation information to perform image correction\. The bounding box coordinates are translated to represent object locations after the orientation information in the Exif metadata is used to correct the image orientation\. Images in \.png format don't contain Exif metadata\.  
 Amazon Rekognition doesn’t perform image correction for images in \.png format and \.jpeg images without orientation information in the image Exif metadata\. The bounding box coordinates aren't translated and represent the object locations before the image is rotated\.   
@@ -142,47 +142,47 @@ Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270`
 
 ## Errors<a name="API_DetectFaces_Errors"></a>
 
- **AccessDeniedException**   
+ ** AccessDeniedException **   
 You are not authorized to perform the action\.  
 HTTP Status Code: 400
 
- **ImageTooLargeException**   
-The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
+ ** ImageTooLargeException **   
+The input image size exceeds the allowed limit\. If you are calling [ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
- **InternalServerError**   
+ ** InternalServerError **   
 Amazon Rekognition experienced a service issue\. Try your call again\.  
 HTTP Status Code: 500
 
- **InvalidImageFormatException**   
+ ** InvalidImageFormatException **   
 The provided image format is not supported\.   
 HTTP Status Code: 400
 
- **InvalidParameterException**   
+ ** InvalidParameterException **   
 Input parameter violated a constraint\. Validate your parameter before calling the API operation again\.  
 HTTP Status Code: 400
 
- **InvalidS3ObjectException**   
+ ** InvalidS3ObjectException **   
 Amazon Rekognition is unable to access the S3 object specified in the request\.  
 HTTP Status Code: 400
 
- **ProvisionedThroughputExceededException**   
+ ** ProvisionedThroughputExceededException **   
 The number of requests exceeded your throughput limit\. If you want to increase this limit, contact Amazon Rekognition\.  
 HTTP Status Code: 400
 
- **ThrottlingException**   
+ ** ThrottlingException **   
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500
 
 ## See Also<a name="API_DetectFaces_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-+  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/DetectFaces) 
-+  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectFaces) 
-+  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DetectFaces) 
-+  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DetectFaces) 
-+  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DetectFaces) 
-+  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectFaces) 
-+  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectFaces) 
-+  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DetectFaces) 
-+  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/DetectFaces) 
++  [ AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/DetectFaces) 
++  [ AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectFaces) 
++  [ AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DetectFaces) 
++  [ AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DetectFaces) 
++  [ AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DetectFaces) 
++  [ AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectFaces) 
++  [ AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectFaces) 
++  [ AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DetectFaces) 
++  [ AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/DetectFaces) 

@@ -1,6 +1,6 @@
 # Understanding the personal protective equipment detection API<a name="ppe-request-response"></a>
 
-The following information describes the [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md) API\. For example code, see [Detecting personal protective equipment in an image](ppe-procedure-image.md)\.
+The following information describes the [ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md) API\. For example code, see [Detecting personal protective equipment in an image](ppe-procedure-image.md)\.
 
 ## Supplying an image<a name="detect-protective-equipment-request"></a>
 
@@ -37,7 +37,7 @@ If you have a large collection of images to process, consider using [AWS Batch](
 
 ### Specifying summarization requirements<a name="ppe-summarization-input-parameters"></a>
 
-You can optionally use the `SummarizationAttributes` \([ProtectiveEquipmentSummarizationAttributes](API_ProtectiveEquipmentSummarizationAttributes.md)\) input parameter to request summary information for the types of PPE detected in an image\.
+You can optionally use the `SummarizationAttributes` \([ ProtectiveEquipmentSummarizationAttributes ](API_ProtectiveEquipmentSummarizationAttributes.md)\) input parameter to request summary information for the types of PPE detected in an image\.
 
 To specify the types of PPE to summarize, use the `RequiredEquipmentTypes` array field\. In the array, include one or more of `FACE_COVER`, `HAND_COVER` or `HEAD_COVER`\. 
 
@@ -54,20 +54,20 @@ For information about the summary response from `DetectProtectiveEquipment`, see
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/worker-with-bb.png)
 
 In the JSON, note the following\.
-+ **Detected Persons** – `Persons` is an array of persons detected on the image \(including persons not wearing PPE\)\. `DetectProtectiveEquipment` can detect PPE on up to 15 persons detected in an image\. Each [ProtectiveEquipmentPerson](API_ProtectiveEquipmentPerson.md) object in the array contains a person ID, a bounding box for the person, detected body parts, and detected items of PPE\. The value of `Confidence` in `ProtectiveEquipmentPerson` indicates the percentage confidence that Amazon Rekognition has that the bounding box contains a person\.
-+ **Body Parts** – `BodyParts` is an array of body parts \([ProtectiveEquipmentBodyPart](API_ProtectiveEquipmentBodyPart.md)\) detected on a person \(including body parts not covered by PPE\)\. Each `ProtectiveEquipmentBodyPart` includes the name \(`Name`\) of the detected body part\. `DetectProtectEquipment` can detect face, head, left\-hand, and right\-hand body parts\. The `Confidence` field in `ProtectiveEquipmentBodyPart` indicates the percentage confidence that Amazon Rekognition has in the detection accuracy of the body part\. 
-+ **PPE Items** – The array `EquipmentDetections` in an `ProtectiveEquipmentBodyPart` object contains an array of detected PPE items\. Each [EquipmentDetection](API_EquipmentDetection.md) object contains the following fields\. 
++ **Detected Persons** – `Persons` is an array of persons detected on the image \(including persons not wearing PPE\)\. `DetectProtectiveEquipment` can detect PPE on up to 15 persons detected in an image\. Each [ ProtectiveEquipmentPerson ](API_ProtectiveEquipmentPerson.md) object in the array contains a person ID, a bounding box for the person, detected body parts, and detected items of PPE\. The value of `Confidence` in `ProtectiveEquipmentPerson` indicates the percentage confidence that Amazon Rekognition has that the bounding box contains a person\.
++ **Body Parts** – `BodyParts` is an array of body parts \([ ProtectiveEquipmentBodyPart ](API_ProtectiveEquipmentBodyPart.md)\) detected on a person \(including body parts not covered by PPE\)\. Each `ProtectiveEquipmentBodyPart` includes the name \(`Name`\) of the detected body part\. `DetectProtectEquipment` can detect face, head, left\-hand, and right\-hand body parts\. The `Confidence` field in `ProtectiveEquipmentBodyPart` indicates the percentage confidence that Amazon Rekognition has in the detection accuracy of the body part\. 
++ **PPE Items** – The array `EquipmentDetections` in an `ProtectiveEquipmentBodyPart` object contains an array of detected PPE items\. Each [ EquipmentDetection ](API_EquipmentDetection.md) object contains the following fields\. 
   +  `Type` – The type of the detected PPE\.
   + `BoundingBox` – a bounding box around the detected PPE\.
   + `Confidence` – The confidence Amazon Rekognition has that the bounding box contains the detected PPE\.
   + `CoversBodyPart` – Indicates if the detected PPE is on the corresponding body part\.
 
-  The [CoversBodyPart](API_CoversBodyPart.md) field `Value` is a boolean value that indicates if the detected PPE is on the corresponding body part\. The field `Confidence` indicates the confidence in the prediction\. You can use `CoversBodyPart` to filter out cases where the detected PPE is in the image, but not actually on the person\. 
+  The [ CoversBodyPart ](API_CoversBodyPart.md) field `Value` is a boolean value that indicates if the detected PPE is on the corresponding body part\. The field `Confidence` indicates the confidence in the prediction\. You can use `CoversBodyPart` to filter out cases where the detected PPE is in the image, but not actually on the person\. 
 **Note**  
 `CoversBodyPart` doesn't indicate, or imply, that the person is adequately protected by the protective equipment or that the protective equipment itself is properly worn\. 
 + **Summary Information** – `Summary` contains the summary information specified in the `SummarizationAttributes` input parameter\. For more information, see [Specifying summarization requirements](#ppe-summarization-input-parameters)\.
 
-  `Summary` is an object of type [ProtectiveEquipmentSummary](API_ProtectiveEquipmentSummary.md) which contains the following information\.
+  `Summary` is an object of type [ ProtectiveEquipmentSummary ](API_ProtectiveEquipmentSummary.md) which contains the following information\.
   + `PersonsWithRequiredEquipment` – An array of the IDs of persons where each person meets the following criteria\.
     + The person is wearing all of the PPE specified in the `SummarizationAttributes` input parameter\. 
     + The `Confidence` for the person \(`ProtectiveEquipmentPerson`\), body part \(`ProtectiveEquipmentBodyPart`\), protective equipment \(`EquipmentDetection`\) is equal to or greater than the specified minimum confidence threshold \(`MinConfidence`\)\.

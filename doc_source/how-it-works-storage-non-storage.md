@@ -5,21 +5,21 @@ Amazon Rekognition provides two types of API operations\. They are non\-storage 
 ## Non\-storage operations<a name="how-it-works-non-storage"></a>
 
 Amazon Rekognition provides the following non\-storage API operations for images:
-+ [DetectLabels](API_DetectLabels.md)
-+ [DetectFaces](API_DetectFaces.md) 
-+ [CompareFaces](API_CompareFaces.md) 
-+ [DetectModerationLabels](API_DetectModerationLabels.md) 
-+ [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md) 
-+ [RecognizeCelebrities](API_RecognizeCelebrities.md) 
-+ [DetectText](API_DetectText.md) 
-+ [GetCelebrityInfo](API_GetCelebrityInfo.md) 
++ [ DetectLabels ](API_DetectLabels.md)
++ [ DetectFaces ](API_DetectFaces.md) 
++ [ CompareFaces ](API_CompareFaces.md) 
++ [ DetectModerationLabels ](API_DetectModerationLabels.md) 
++ [ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md) 
++ [ RecognizeCelebrities ](API_RecognizeCelebrities.md) 
++ [ DetectText ](API_DetectText.md) 
++ [ GetCelebrityInfo ](API_GetCelebrityInfo.md) 
 
 Amazon Rekognition provides the following non\-storage API operations for videos:
-+ [StartLabelDetection](API_StartLabelDetection.md) 
-+ [StartFaceDetection](API_StartFaceDetection.md) 
-+ [StartPersonTracking](API_StartPersonTracking.md)
-+ [StartCelebrityRecognition](API_StartCelebrityRecognition.md)
-+ [StartContentModeration](API_StartContentModeration.md)
++ [ StartLabelDetection ](API_StartLabelDetection.md) 
++ [ StartFaceDetection ](API_StartFaceDetection.md) 
++ [ StartPersonTracking ](API_StartPersonTracking.md)
++ [ StartCelebrityRecognition ](API_StartCelebrityRecognition.md)
++ [ StartContentModeration ](API_StartContentModeration.md)
 
 These are referred to as *non\-storage* API operations because when you make the operation call, Amazon Rekognition does not persist any information discovered about the input image\. Like all other Amazon Rekognition API operations, no input image bytes are persisted by non\-storage API operations\. 
 
@@ -58,26 +58,26 @@ Then, you can use the information in the index to enhance the images when your a
 
 ## Storage\-based API operations<a name="how-it-works-storage-based"></a>
 
-Amazon Rekognition Image supports the [IndexFaces](API_IndexFaces.md) operation, which you can use to detect faces in an image and persist information about facial features detected in an Amazon Rekognition collection\. This is an example of a *storage\-based* API operation because the service persists information on the server\. 
+Amazon Rekognition Image supports the [ IndexFaces ](API_IndexFaces.md) operation, which you can use to detect faces in an image and persist information about facial features detected in an Amazon Rekognition collection\. This is an example of a *storage\-based* API operation because the service persists information on the server\. 
 
 Amazon Rekognition Image provides the following storage API operations:
-+ [IndexFaces](API_IndexFaces.md)
-+ [ListFaces](API_ListFaces.md) 
-+ [SearchFacesByImage](API_SearchFacesByImage.md) 
-+ [SearchFaces](API_SearchFaces.md) 
-+ [DeleteFaces](API_DeleteFaces.md) 
-+ [DescribeCollection](API_DescribeCollection.md) 
-+ [DeleteCollection](API_DeleteCollection.md)
-+ [ListCollections](API_ListCollections.md)
-+ [CreateCollection](API_CreateCollection.md) 
++ [ IndexFaces ](API_IndexFaces.md)
++ [ ListFaces ](API_ListFaces.md) 
++ [ SearchFacesByImage ](API_SearchFacesByImage.md) 
++ [ SearchFaces ](API_SearchFaces.md) 
++ [ DeleteFaces ](API_DeleteFaces.md) 
++ [ DescribeCollection ](API_DescribeCollection.md) 
++ [ DeleteCollection ](API_DeleteCollection.md)
++ [ ListCollections ](API_ListCollections.md)
++ [ CreateCollection ](API_CreateCollection.md) 
 
 Amazon Rekognition Video provides the following storage API operations:
-+ [StartFaceSearch](API_StartFaceSearch.md) 
-+ [CreateStreamProcessor](API_CreateStreamProcessor.md)
++ [ StartFaceSearch ](API_StartFaceSearch.md) 
++ [ CreateStreamProcessor ](API_CreateStreamProcessor.md)
 
 To store facial information, you must first create a face collection in one of the AWS Regions in your account\. You specify this face collection when you call the `IndexFaces` operation\. After you create a face collection and store facial feature information for all faces, you can search the collection for face matches\. For example, you can detect the largest face in an image and search for matching faces in a collection by calling `searchFacesByImage.`
 
-Facial information stored in collections by `IndexFaces` is accessible to Amazon Rekognition Video operations\. For example, you can search a video for persons whose faces match those in an existing collection by calling [StartFaceSearch](API_StartFaceSearch.md)\.
+Facial information stored in collections by `IndexFaces` is accessible to Amazon Rekognition Video operations\. For example, you can search a video for persons whose faces match those in an existing collection by calling [ StartFaceSearch ](API_StartFaceSearch.md)\.
 
 For information about creating and managing collections, see [Searching faces in a collection](collections.md)\.
 

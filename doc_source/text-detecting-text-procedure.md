@@ -90,7 +90,7 @@ You can provide an input image as an image byte array \(base64\-encoded image by
    
            try {
    
-               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               InputStream sourceStream = new FileInputStream(sourceImage);
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
    
                // Create an Image object for the source image
@@ -261,7 +261,7 @@ Filtering by text region, size and confidence score provides you with additional
 
 ## DetectText operation response<a name="text-response"></a>
 
-The `DetectText` operation analyzes the image and returns an array, TextDetections, where each element \(`TextDetection`\) represents a line or word detected in the image\. For each element, `DetectText` returns the following information: 
+The `DetectText` operation analyzes the image and returns an array, TextDetections, where each element \(` TextDetection `\) represents a line or word detected in the image\. For each element, `DetectText` returns the following information: 
 + The detected text \(`DetectedText`\)
 + The relationships between words and lines \(`Id` and `ParentId`\)
 + The location of text on the image \(`Geometry`\)
@@ -289,11 +289,11 @@ Each `TextDetection` element has an identifier field, `Id`\. The `Id` shows the 
 
 ### Text location on an image<a name="text-location"></a>
 
-To determine where the recognized text is on an image, use the bounding box \([Geometry](API_Geometry.md)\) information that's returned by `DetectText`\. The `Geometry` object contains two types of bounding box information for detected lines and words:
-+ An axis\-aligned coarse rectangular outline in a [BoundingBox](API_BoundingBox.md) object
-+ A finer\-grained polygon that's made up of multiple X and Y coordinates in a [Point](API_Point.md) array
+To determine where the recognized text is on an image, use the bounding box \([ Geometry ](API_Geometry.md)\) information that's returned by `DetectText`\. The `Geometry` object contains two types of bounding box information for detected lines and words:
++ An axis\-aligned coarse rectangular outline in a [ BoundingBox ](API_BoundingBox.md) object
++ A finer\-grained polygon that's made up of multiple X and Y coordinates in a [ Point ](API_Point.md) array
 
-The bounding box and polygon coordinates show where the text is located on the source image\. The coordinate values are a ratio of the overall image size\. For more information, see [BoundingBox](API_BoundingBox.md)\. 
+The bounding box and polygon coordinates show where the text is located on the source image\. The coordinate values are a ratio of the overall image size\. For more information, see [ BoundingBox ](API_BoundingBox.md)\. 
 
 The following JSON response from the `DetectText` operation shows the words and lines that were detected in the following image\.
 

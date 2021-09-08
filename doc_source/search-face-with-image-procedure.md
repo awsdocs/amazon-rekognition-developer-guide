@@ -1,6 +1,6 @@
 # Searching for a face using an image<a name="search-face-with-image-procedure"></a>
 
-You can use the [SearchFacesByImage](API_SearchFacesByImage.md) operation to search for faces in a collection that match the largest face in a supplied image\.
+You can use the [ SearchFacesByImage ](API_SearchFacesByImage.md) operation to search for faces in a collection that match the largest face in a supplied image\.
 
 For more information, see [Searching for faces within a collection](collections.md#collections-search-faces)\. 
 
@@ -106,7 +106,7 @@ For more information, see [Searching for faces within a collection](collections.
    
                SearchFacesByImageResponse imageResponse = rekClient.searchFacesByImage(facesByImageRequest) ;
    
-               // Display the results
+               // Display the results.
                System.out.println("Faces matching in the collection");
                List<FaceMatch> faceImageMatches = imageResponse.faceMatches();
                for (FaceMatch face: faceImageMatches) {
@@ -117,6 +117,7 @@ For more information, see [Searching for faces within a collection](collections.
                System.out.println(e.getMessage());
                System.exit(1);
            }
+       }
    ```
 
 ------

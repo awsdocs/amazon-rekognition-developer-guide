@@ -56,7 +56,7 @@ OK to retry? No
 
 **ImageTooLargeException **  
 Message: *Image size is too large\.*  
-The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.  
+The input image size exceeds the allowed limit\. If you are calling [ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.  
 OK to retry? No
 
 **InvalidImageFormatException **  

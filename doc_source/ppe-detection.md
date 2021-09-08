@@ -4,7 +4,7 @@ Amazon Rekognition can detect Personal Protective Equipment \(PPE\) worn by pers
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/worker-with-bb.png)
 
-To detect PPE in an image you call the [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md) API and pass an input image\. The response is a JSON structure that includes the following\.
+To detect PPE in an image you call the [ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md) API and pass an input image\. The response is a JSON structure that includes the following\.
 + The persons detected in the image\.
 + The parts of a body where where PPE is worn \(face, head, left\-hand, and right\-hand\)\.
 + The types of PPE detected on body parts \(face cover, hand cover, and head cover\)\. 
@@ -19,7 +19,7 @@ Amazon Rekognition PPE detection doesn't perform facial recognition or facial co
 
 ## Types of PPE<a name="ppe-types"></a>
 
-[DetectProtectiveEquipment](API_DetectProtectiveEquipment.md) detects the following types of PPE\. If you want to detect other types of PPE in images, consider using Amazon Rekognition Custom Labels to train a custom model\. For more information, see [Amazon Rekognition Custom Labels](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/what-is.html)\.
+[ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md) detects the following types of PPE\. If you want to detect other types of PPE in images, consider using Amazon Rekognition Custom Labels to train a custom model\. For more information, see [Amazon Rekognition Custom Labels](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/what-is.html)\.
 
 ### Face cover<a name="ppe-face-cover"></a>
 

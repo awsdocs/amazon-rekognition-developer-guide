@@ -1,6 +1,6 @@
 # Deleting faces from a collection<a name="delete-faces-procedure"></a>
 
-You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from a collection\. For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\. 
+You can use the [ DeleteFaces ](API_DeleteFaces.md) operation to delete faces from a collection\. For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\. 
 
 
 
@@ -76,7 +76,7 @@ You can use the [DeleteFaces](API_DeleteFaces.md) operation to delete faces from
                    .build();
    
                rekClient.deleteFaces(deleteFacesRequest);
-               System.out.println("The face was deleted from the collection");
+               System.out.println("The face was deleted from the collection.");
    
            } catch(RekognitionException e) {
                System.out.println(e.getMessage());

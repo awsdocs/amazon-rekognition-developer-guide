@@ -50,7 +50,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 
 1. Write code to extract the `Status` field from the completion status JSON\.
 
-1. If the value of `Status` is `SUCCESS`, run the following AWS CLI command to show the label detection results\.
+1. If the value of `Status` is `SUCCEEDED`, run the following AWS CLI command to show the label detection results\.
 
    ```
    aws rekognition get-label-detection  --job-id JobId \

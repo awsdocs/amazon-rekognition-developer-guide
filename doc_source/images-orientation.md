@@ -1,17 +1,10 @@
 # Getting image orientation and bounding box coordinates<a name="images-orientation"></a>
 
-Applications that use Amazon Rekognition Image commonly need to display the images that are detected by Amazon Rekognition Image operations and the boxes around detected faces\. To display an image correctly in your application, you need to know the image's orientation and possibly correct it\. For some \.jpg files, the image's orientation is contained in the image's Exchangeable image file format \(Exif\) metadata\. For other \.jpg files and all \.png files, Amazon Rekognition Image operations return the estimated orientation\.
+Applications that use Amazon Rekognition Image commonly need to display the images that are detected by Amazon Rekognition Image operations and the boxes around detected faces\. To display an image correctly in your application, you need to know the image's orientation\. You might need to correct this orientation\. For some \.jpg files, the image's orientation is contained in the image's Exchangeable image file format \(Exif\) metadata\. 
 
-To display a box around a face, you need the coordinates for the face's bounding box\. If the box isn't oriented correctly, you might need to adjust those coordinates\. Amazon Rekognition Image face detection operations return bounding box coordinates for each detected face\. 
+To display a box around a face, you need the coordinates for the face's bounding box\. If the box isn't oriented correctly, you might need to adjust those coordinates\. Amazon Rekognition Image face detection operations return bounding box coordinates for each detected face, but it doesn't estimate coordinates for \.jpg files without Exif metadata\.
 
-The following Amazon Rekognition Image operations return information for correcting an image's orientation and bounding box coordinates: 
-+ [IndexFaces](API_IndexFaces.md) \(Face model associated the collection must be version 3 or earlier\)
-+ [RecognizeCelebrities](API_RecognizeCelebrities.md)
-
-This example shows how to get the following information for your code:
-+ The estimated orientation of an image \(if there is no orientation information in Exif metadata\)
-+ The bounding box coordinates for the faces detected in an image 
-+ Translated bounding box coordinates for bounding boxes that are affected by estimated image orientation
+The following examples show how to get the bounding box coordinates for the faces detected in an image\.
 
 Use the information in this example to ensure that your images are oriented correctly and that bounding boxes are displayed in the correct location in your application\. 
 
@@ -29,9 +22,7 @@ However, the following image is rotated 90 degrees counterclockwise\. To display
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/90face.png)
 
-Some images in \.jpg format contain orientation information in Exif metadata\. If the value of the `OrientationCorrection` field is `null` in the operation's response, the Exif metadata for the image contains the orientation\. In the Exif metadata, you can find the image's orientation in the `orientation` field\. Although Amazon Rekognition Image identifies the presence of image orientation information in Exif metadata, it does not provide access to it\. To access the Exif metadata in an image, use a third\-party library or write your own code\. For more information, see [Exif Version 2\.32](http://cipa.jp/std/documents/download_e.html?DC-008-Translation-2019-E)\.
-
-Images in \.png format do not have Exif metadata\. For \.jpg images that don't have Exif metadata and for all \.png images, Amazon Rekognition Image operations return an estimated orientation for the image in the `OrientationCorrection` field\. Estimated orientation is measured counterclockwise and in increments of 90 degrees\. For example, Amazon Rekognition Image returns ROTATE\_0 for an image that is oriented to 0 degrees and ROTATE\_90 for an image that is rotated 90 degrees counterclockwise\.
+Some images in \.jpg format contain orientation information in Exif metadata\. If available, the Exif metadata for the image contains the orientation\. In the Exif metadata, you can find the image's orientation in the `orientation` field\. Although Amazon Rekognition Image identifies the presence of image orientation information in Exif metadata, it does not provide access to it\. To access the Exif metadata in an image, use a third\-party library or write your own code\. For more information, see [Exif Version 2\.32](http://cipa.jp/std/documents/download_e.html?DC-008-Translation-2019-E)\.
 
  
 
@@ -41,72 +32,15 @@ When you know an image's orientation, you can write code to rotate and correctly
 
 ## Displaying bounding boxes<a name="images-bounding-boxes"></a>
 
-The Amazon Rekognition Image operations that analyze faces in an image also return the coordinates of the bounding boxes that surround the faces\. For more information, see [BoundingBox](API_BoundingBox.md)\. 
+The Amazon Rekognition Image operations that analyze faces in an image also return the coordinates of the bounding boxes that surround the faces\. For more information, see [ BoundingBox ](API_BoundingBox.md)\. 
 
-To display a bounding box around a face similar to the box shown in the following image in your application, use the bounding box coordinates in your code\. The bounding box coordinates returned by an operation reflect the image's orientation\. If you have to rotate the image to display it correctly, you might need to translate the bounding box coordinates\.
+To display a bounding box around a face, similar to the box shown in the following image, in your application, use the bounding box coordinates in your code\. The bounding box coordinates returned by an operation reflect the image's orientation\. If you have to rotate the image to display it correctly, you might need to translate the bounding box coordinates\.
 
 
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/00facebounding.png)
 
- 
 
-
-
-### Displaying bounding boxes when orientation information is not present in Exif metadata<a name="images-no-exif-metadata"></a>
-
-If an image doesn't have Exif metadata, or if the `orientation` field in the Exif metadata is not populated, Amazon Rekognition Image operations return the following:
-+ An estimated orientation for the image
-+ The bounding box coordinates oriented to the estimated orientation
-
-If you need to rotate the image to display it correctly, you also need to rotate the bounding box\.
-
-For example, the following image is oriented at 90 degrees counterclockwise and shows a bounding box around the face\. The bounding box is displayed using the coordinates for the estimated orientation returned from an Amazon Rekognition Image operation\. 
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/90faceboundingbox.png)
-
-When you rotate the image to 0 degrees orientation, you also need to rotate the bounding box by translating the bounding box coordinates\. For example, the following image has been rotated to 0 degrees from 90 degrees counterclockwise\. The bounding box coordinates have not yet been translated, so the bounding box is displayed in the wrong position\.
-
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/notranslate.png)
-
-
-
-**To rotate and display bounding boxes when orientation isn't present in Exif metadata**
-
-1. Call an Amazon Rekognition Image operation providing an input image with at least one face and with no Exif metadata orientation\. For an example, see [Detecting faces in an image](faces-detect-images.md)\.
-
-1. Note the estimated orientation returned in the response's `OrientationCorrection` field\.
-
-1. Rotate the image to 0 degrees orientation by using the estimated orientation you noted in step 2 in your code\.
-
-1. Translate the top and left bounding box coordinates to 0 degrees orientation and convert them to pixel points on the image in your code\. Use the formula in the following list that matches the estimated orientation you noted in step 2\.
-
-   Note the following definitions: 
-   + `ROTATE_(n)` is the estimated image orientation returned by an Amazon Rekognition Image operation\.
-   + `<face>` represents information about the face that is returned by an Amazon Rekognition Image operation\. For example, the [ComparedFace](API_ComparedFace.md) data type that the [RecognizeCelebrities](API_RecognizeCelebrities.md) operation returns contains bounding box information for faces detected in the source image\.
-   + `image.width` and `image.height` are pixel values for the width and height of the source image\. 
-   + The bounding box coordinates are a value between 0 and 1 relative to the image size\. For example, for an image with 0\-degree orientation, a `BoundingBox.left` value of 0\.9 puts the left coordinate close to the right side of the image\. To display the box, translate the bounding box coordinate values to pixel points on the image and rotate them to 0 degrees, as shown in each of the following formulas\. For more information, see [BoundingBox](API_BoundingBox.md)\.  
-**ROTATE\_0**  
-`left = image.width*BoundingBox.Left`  
-`top = image.height*BoundingBox.Top`  
-**ROTATE\_90**  
-`left = image.height * (1 - (<face>.BoundingBox.Top + <face>.BoundingBox.Height))`  
-`top = image.width * <face>.BoundingBox.Left`  
-**ROTATE\_180**  
-`left = image.width - (image.width*(<face>.BoundingBox.Left+<face>.BoundingBox.Width))`  
-`top = image.height * (1 - (<face>.BoundingBox.Top + <face>.BoundingBox.Height))`  
-**ROTATE\_270**  
-`left = image.height * BoundingBox.top`  
-`top = image.width * (1 - BoundingBox.Left - BoundingBox.Width)`
-
-1. Using the following formulas, calculate the bounding box's width and height as pixel ranges on the image in your code\.
-
-   The width and height of a bounding box is returned in the `BoundingBox.Width` and `BoundingBox.Height` fields\. The width and height values range between 0 and 1 relative to the image size\. `image.width` and `image.height` are pixel values for the width and height of the source image\.  
-****  
-`box width = image.width * (<face>.BoundingBox.Width)`  
-`box height = image.height * (<face>.BoundingBox.Height)`
-
-1.  Display the bounding box on the rotated image by using the values calculated in steps 4 and 5\.
 
 ### Displaying bounding boxes when orientation information is present in Exif metadata<a name="images-exif-metadata"></a>
 
@@ -116,12 +50,15 @@ If an image's orientation is included in Exif metadata, Amazon Rekognition Image
 
 ## Example: Getting image orientation and bounding box coordinates for an image<a name="images-correcting-image-orientation-java"></a>
 
-The following examples show how to use the AWS SDK to get the estimated orientation of an image and to translate bounding box coordinates for celebrities detected by the `RecognizeCelebrities` operation\.
+The following examples show how to use the AWS SDK to get the Exif image orientation data and the bounding box coordinates for celebrities detected by the `RecognizeCelebrities` operation\.
+
+**Note**  
+Support for estimating image orientation using the the `OrientationCorrection` field has ceased as of August 2021\. Any returned values for this field included in an API response will always be NULL\.
 
 ------
 #### [ Java ]
 
-The example loads an image from the local file system, calls the `RecognizeCelebrities` operation, determines the height and width of the image, and calculates the bounding box coordinates of the face for the rotated image\. The example does not show how to process orientation information that is stored in Exif metadata\.
+This example loads an image from the local file system, calls the `RecognizeCelebrities` operation, determines the height and width of the image, and calculates the bounding box coordinates of the face for the rotated image\. The example does not show how to process orientation information that is stored in Exif metadata\.
 
 In the function `main`, replace the value of `photo` with the name and path of an image that is stored locally in either \.png or \.jpg format\.
 
@@ -199,6 +136,7 @@ public static void main(String[] args) throws Exception {
 
 
       RecognizeCelebritiesResult result = amazonRekognition.recognizeCelebrities(request);
+      // The returned value of OrientationCorrection will always be null
       System.out.println("Orientation: " + result.getOrientationCorrection() + "\n");
       List <Celebrity> celebs = result.getCelebrityFaces();
 
@@ -225,7 +163,7 @@ public static void ShowBoundingBoxPositions(int imageHeight, int imageWidth, Bou
 
   float left = 0;
   float top = 0;
-
+   
   if(rotation==null){
       System.out.println("No estimated estimated orientation. Check Exif data.");
       return;
@@ -266,7 +204,7 @@ public static void ShowBoundingBoxPositions(int imageHeight, int imageWidth, Bou
 ------
 #### [ Python ]
 
-This example uses the PIL/Pillow image library to get the image width and height\. For more information, see [Pillow](https://pillow.readthedocs.io/en/stable/)\. This example preserves exif metadata which you might need elsewhere in your application\. If you choose to not save the exif metadata, the estimated orientation is returned from the call to `RecognizeCelebrities`\. 
+This example uses the PIL/Pillow image library to get the image width and height\. For more information, see [Pillow](https://pillow.readthedocs.io/en/stable/)\. This example preserves exif metadata which you might need elsewhere in your application\.
 
 In the function `main`, replace the value of `photo` with the name and path of an image that is stored locally in either \.png or \.jpg format\.
 
@@ -278,26 +216,11 @@ import boto3
 import io
 from PIL import Image
 
-# Calculate positions from from estimated rotation 
-def show_bounding_box_positions(imageHeight, imageWidth, box, rotation): 
+
+# Calculate positions from from estimated rotation
+def show_bounding_box_positions(imageHeight, imageWidth, box):
     left = 0
     top = 0
-      
-    if rotation == 'ROTATE_0':
-        left = imageWidth * box['Left']
-        top = imageHeight * box['Top']
-    
-    if rotation == 'ROTATE_90':
-        left = imageHeight * (1 - (box['Top'] + box['Height']))
-        top = imageWidth * box['Left']
-
-    if rotation == 'ROTATE_180':
-        left = imageWidth - (imageWidth * (box['Left'] + box['Width']))
-        top = imageHeight * (1 - (box['Top'] + box['Height']))
-
-    if rotation == 'ROTATE_270':
-        left = imageHeight * box['Top']
-        top = imageWidth * (1- box['Left'] - box['Width'] )
 
     print('Left: ' + '{0:.0f}'.format(left))
     print('Top: ' + '{0:.0f}'.format(top))
@@ -306,56 +229,48 @@ def show_bounding_box_positions(imageHeight, imageWidth, box, rotation):
 
 
 def celebrity_image_information(photo):
+    client = boto3.client('rekognition')
 
-
-    client=boto3.client('rekognition')
- 
-
-    #Get image width and height
-    image = Image.open(open(photo,'rb'))
+    # Get image width and height
+    image = Image.open(open(photo, 'rb'))
     width, height = image.size
 
-    print ('Image information: ')
-    print (photo)
-    print ('Image Height: ' + str(height)) 
-    print('Image Width: ' + str(width))    
-
+    print('Image information: ')
+    print(photo)
+    print('Image Height: ' + str(height))
+    print('Image Width: ' + str(width))
 
     # call detect faces and show face age and placement
     # if found, preserve exif info
     stream = io.BytesIO()
     if 'exif' in image.info:
-        exif=image.info['exif']
-        image.save(stream,format=image.format, exif=exif)
+        exif = image.info['exif']
+        image.save(stream, format=image.format, exif=exif)
     else:
-        image.save(stream, format=image.format)    
+        image.save(stream, format=image.format)
     image_binary = stream.getvalue()
-   
+
     response = client.recognize_celebrities(Image={'Bytes': image_binary})
 
-    if 'OrientationCorrection'  in response:
-        print('Orientation: ' + response['OrientationCorrection'])
-    else: 
-        print('No estimated orientation. Check Exif')    
-    
     print()
-    print('Detected celebrities for ' + photo) 
+    print('Detected celebrities for ' + photo)
 
     for celebrity in response['CelebrityFaces']:
-        print ('Name: ' + celebrity['Name'])
-        print ('Id: ' + celebrity['Id'])
-        
-        if 'OrientationCorrection'  in response:            
-            show_bounding_box_positions(height, width, celebrity['Face']['BoundingBox'], response['OrientationCorrection'])
+        print('Name: ' + celebrity['Name'])
+        print('Id: ' + celebrity['Id'])
+
+        # Value of "orientation correction" will always be null
+        if 'OrientationCorrection' in response:
+            show_bounding_box_positions(height, width, celebrity['Face']['BoundingBox'])
 
         print()
-    return len(response['CelebrityFaces'])  
+    return len(response['CelebrityFaces'])
 
 
 def main():
-    photo='photo.png'
+    photo = 'photo'
 
-    celebrity_count=celebrity_image_information(photo)
+    celebrity_count = celebrity_image_information(photo)
     print("celebrities detected: " + str(celebrity_count))
 
 
@@ -373,7 +288,7 @@ This code is taken from the AWS Documentation SDK examples GitHub repository\. S
 
         try {
             BufferedImage image = null;
-            InputStream sourceStream = new FileInputStream(new File(sourceImage));
+            InputStream sourceStream = new FileInputStream(sourceImage);
             SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
 
             image = ImageIO.read(sourceBytes.asInputStream());
@@ -443,10 +358,10 @@ This code is taken from the AWS Documentation SDK examples GitHub repository\. S
                 return;
         }
 
-        System.out.println("Left: " + String.valueOf((int) left));
-        System.out.println("Top: " + String.valueOf((int) top));
-        System.out.println("Face Width: " + String.valueOf((int)(imageWidth * box.width())));
-        System.out.println("Face Height: " + String.valueOf((int)(imageHeight * box.height())));
+        System.out.println("Left: " + (int) left);
+        System.out.println("Top: " + (int) top);
+        System.out.println("Face Width: " + (int) (imageWidth * box.width()));
+        System.out.println("Face Height: " + (int) (imageHeight * box.height()));
     }
 ```
 

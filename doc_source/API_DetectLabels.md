@@ -5,7 +5,7 @@ Detects instances of real\-world entities within an image \(JPEG or PNG\) provid
 For an example, see [Analyzing images stored in an Amazon S3 bucket](images-s3.md)\.
 
 **Note**  
- `DetectLabels` does not support the detection of activities\. However, activity detection is supported for label detection in videos\. For more information, see [StartLabelDetection](API_StartLabelDetection.md)\.
+ `DetectLabels` does not support the detection of activities\. However, activity detection is supported for label detection in videos\. For more information, see [ StartLabelDetection ](API_StartLabelDetection.md)\.
 
 You pass the input image as base64\-encoded image bytes or as a reference to an image in an Amazon S3 bucket\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported\. The image must be either a PNG or JPEG formatted file\. 
 
@@ -30,9 +30,9 @@ In this example, the detection algorithm more precisely identifies the flower as
 In response, the API returns an array of labels\. In addition, the response also includes the orientation correction\. Optionally, you can specify `MinConfidence` to control the confidence threshold for the labels returned\. The default is 55%\. You can also add the `MaxLabels` parameter to limit the number of labels returned\. 
 
 **Note**  
-If the object detected is a person, the operation doesn't provide the same facial details that the [DetectFaces](API_DetectFaces.md) operation provides\.
+If the object detected is a person, the operation doesn't provide the same facial details that the [ DetectFaces ](API_DetectFaces.md) operation provides\.
 
- `DetectLabels` returns bounding boxes for instances of common object labels in an array of [Instance](API_Instance.md) objects\. An `Instance` object contains a [BoundingBox](API_BoundingBox.md) object, for the location of the label on the image\. It also includes the confidence by which the bounding box was detected\.
+ `DetectLabels` returns bounding boxes for instances of common object labels in an array of [ Instance ](API_Instance.md) objects\. An `Instance` object contains a [ BoundingBox ](API_BoundingBox.md) object, for the location of the label on the image\. It also includes the confidence by which the bounding box was detected\.
 
  `DetectLabels` also returns a hierarchical taxonomy of detected labels\. For example, a detected car might be assigned the label *car*\. The label *car* has two parent labels: *Vehicle* \(its parent\) and *Transportation* \(its grandparent\)\. The response returns the entire list of ancestors for a label\. Each ancestor is a unique label in the response\. In the previous example, *Car*, *Vehicle*, and *Transportation* are returned as unique labels in the response\. 
 
@@ -61,19 +61,19 @@ This operation requires permissions to perform the `rekognition:DetectLabels` ac
 
 The request accepts the following data in JSON format\.
 
- ** [Image](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-Image"></a>
+ ** [ Image ](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-Image"></a>
 The input image as base64\-encoded bytes or an S3 object\. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported\. Images stored in an S3 Bucket do not need to be base64\-encoded\.  
 If you are using an AWS SDK to call Amazon Rekognition, you might not need to base64\-encode image bytes passed using the `Bytes` field\. For more information, see [Image specifications](images-information.md)\.  
-Type: [Image](API_Image.md) object  
+Type: [ Image ](API_Image.md) object  
 Required: Yes
 
- ** [MaxLabels](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-MaxLabels"></a>
+ ** [ MaxLabels ](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-MaxLabels"></a>
 Maximum number of labels you want the service to return in the response\. The service returns the specified number of highest confidence labels\.   
 Type: Integer  
 Valid Range: Minimum value of 0\.  
 Required: No
 
- ** [MinConfidence](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-MinConfidence"></a>
+ ** [ MinConfidence ](#API_DetectLabels_RequestSyntax) **   <a name="rekognition-DetectLabels-request-MinConfidence"></a>
 Specifies the minimum confidence level for the labels to return\. Amazon Rekognition doesn't return any labels with confidence lower than this specified value\.  
 If `MinConfidence` is not specified, the operation returns labels with a confidence values greater than or equal to 55 percent\.  
 Type: Float  
@@ -117,15 +117,15 @@ If the action is successful, the service sends back an HTTP 200 response\.
 
 The following data is returned in JSON format by the service\.
 
- ** [LabelModelVersion](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-LabelModelVersion"></a>
+ ** [ LabelModelVersion ](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-LabelModelVersion"></a>
 Version number of the label detection model that was used to detect labels\.  
 Type: String
 
- ** [Labels](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-Labels"></a>
+ ** [ Labels ](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-Labels"></a>
 An array of labels for the real\-world objects detected\.   
-Type: Array of [Label](API_Label.md) objects
+Type: Array of [ Label ](API_Label.md) objects
 
- ** [OrientationCorrection](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-OrientationCorrection"></a>
+ ** [ OrientationCorrection ](#API_DetectLabels_ResponseSyntax) **   <a name="rekognition-DetectLabels-response-OrientationCorrection"></a>
 The value of `OrientationCorrection` is always null\.  
 If the input image is in \.jpeg format, it might contain exchangeable image file format \(Exif\) metadata that includes the image's orientation\. Amazon Rekognition uses this orientation information to perform image correction\. The bounding box coordinates are translated to represent object locations after the orientation information in the Exif metadata is used to correct the image orientation\. Images in \.png format don't contain Exif metadata\.  
 Amazon Rekognition doesn’t perform image correction for images in \.png format and \.jpeg images without orientation information in the image Exif metadata\. The bounding box coordinates aren't translated and represent the object locations before the image is rotated\.   
@@ -134,47 +134,47 @@ Valid Values:` ROTATE_0 | ROTATE_90 | ROTATE_180 | ROTATE_270`
 
 ## Errors<a name="API_DetectLabels_Errors"></a>
 
- **AccessDeniedException**   
+ ** AccessDeniedException **   
 You are not authorized to perform the action\.  
 HTTP Status Code: 400
 
- **ImageTooLargeException**   
-The input image size exceeds the allowed limit\. If you are calling [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
+ ** ImageTooLargeException **   
+The input image size exceeds the allowed limit\. If you are calling [ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md), the image size or resolution exceeds the allowed limit\. For more information, see [Guidelines and quotas in Amazon Rekognition](limits.md)\.   
 HTTP Status Code: 400
 
- **InternalServerError**   
+ ** InternalServerError **   
 Amazon Rekognition experienced a service issue\. Try your call again\.  
 HTTP Status Code: 500
 
- **InvalidImageFormatException**   
+ ** InvalidImageFormatException **   
 The provided image format is not supported\.   
 HTTP Status Code: 400
 
- **InvalidParameterException**   
+ ** InvalidParameterException **   
 Input parameter violated a constraint\. Validate your parameter before calling the API operation again\.  
 HTTP Status Code: 400
 
- **InvalidS3ObjectException**   
+ ** InvalidS3ObjectException **   
 Amazon Rekognition is unable to access the S3 object specified in the request\.  
 HTTP Status Code: 400
 
- **ProvisionedThroughputExceededException**   
+ ** ProvisionedThroughputExceededException **   
 The number of requests exceeded your throughput limit\. If you want to increase this limit, contact Amazon Rekognition\.  
 HTTP Status Code: 400
 
- **ThrottlingException**   
+ ** ThrottlingException **   
 Amazon Rekognition is temporarily unable to process the request\. Try your call again\.  
 HTTP Status Code: 500
 
 ## See Also<a name="API_DetectLabels_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-+  [AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/DetectLabels) 
-+  [AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectLabels) 
-+  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DetectLabels) 
-+  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DetectLabels) 
-+  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DetectLabels) 
-+  [AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectLabels) 
-+  [AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectLabels) 
-+  [AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DetectLabels) 
-+  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/DetectLabels) 
++  [ AWS Command Line Interface](https://docs.aws.amazon.com/goto/aws-cli/rekognition-2016-06-27/DetectLabels) 
++  [ AWS SDK for \.NET](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectLabels) 
++  [ AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/DetectLabels) 
++  [ AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/DetectLabels) 
++  [ AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DetectLabels) 
++  [ AWS SDK for JavaScript](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/rekognition-2016-06-27/DetectLabels) 
++  [ AWS SDK for PHP V3](https://docs.aws.amazon.com/goto/SdkForPHPV3/rekognition-2016-06-27/DetectLabels) 
++  [ AWS SDK for Python](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DetectLabels) 
++  [ AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/DetectLabels) 

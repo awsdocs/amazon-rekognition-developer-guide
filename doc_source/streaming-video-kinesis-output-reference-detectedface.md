@@ -6,7 +6,7 @@ Information about a face that's detected in a streaming video frame\. Matching f
 
 The bounding box coordinates for a face that's detected within an analyzed video frame\. The BoundingBox object has the same properties as the BoundingBox object that's used for image analysis\.
 
-Type: [BoundingBox](API_BoundingBox.md) object 
+Type: [ BoundingBox ](API_BoundingBox.md) object 
 
 **Confidence**
 
@@ -18,16 +18,16 @@ Type: Number
 
 An array of facial landmarks\.
 
-Type: [Landmark](API_Landmark.md) object array
+Type: [ Landmark ](API_Landmark.md) object array
 
 **Pose**
 
 Indicates the pose of the face as determined by its pitch, roll, and yaw\.
 
-Type: [Pose](API_Pose.md) object
+Type: [ Pose ](API_Pose.md) object
 
 **Quality**
 
 Identifies face image brightness and sharpness\. 
 
-Type: [ImageQuality](API_ImageQuality.md) object
+Type: [ ImageQuality ](API_ImageQuality.md) object

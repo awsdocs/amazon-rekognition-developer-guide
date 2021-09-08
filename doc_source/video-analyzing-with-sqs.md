@@ -12,11 +12,11 @@ The example code in this procedure shows you how to do the following:
 
 1. Subscribe the Amazon SQS queue to the Amazon SNS topic\.
 
-1. Start the video analysis request by calling [StartLabelDetection](API_StartLabelDetection.md)\. 
+1. Start the video analysis request by calling [ StartLabelDetection ](API_StartLabelDetection.md)\. 
 
 1. Get the completion status from the Amazon SQS queue\. The example tracks the job identifier \(`JobId`\) that's returned in `StartLabelDetection` and only gets the results for matching job identifiers that are read from the completion status\. This is an important consideration if other applications are using the same queue and topic\. For simplicity, the example deletes jobs that don't match\. Consider adding them to an Amazon SQS dead\-letter queue for further investigation\.
 
-1. Get and display the video analysis results by calling [GetLabelDetection](API_GetLabelDetection.md)\.
+1. Get and display the video analysis results by calling [ GetLabelDetection ](API_GetLabelDetection.md)\.
 
 ## Prerequisites<a name="video-prerequisites"></a>
 
@@ -755,7 +755,7 @@ The example code for this procedure is provided in Java and Python\. You need to
                            System.out.println("        None");
                        } else {
                            for (Parent parent : parents) {
-                               System.out.println("        " + parent.name());
+                               System.out.println("   " + parent.name());
                            }
                        }
                        System.out.println();

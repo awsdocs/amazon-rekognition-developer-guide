@@ -175,13 +175,11 @@ The example expands on the code in [Analyzing a video stored in an Amazon S3 buc
 ------
 #### [ Java V2 ]
 
-   This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/VideoDetectSegment.java)\.
-
    ```
-       public static void StartSegmentDetection (RekognitionClient rekClient,
-                                      NotificationChannel channel,
-                                      String bucket,
-                                      String video) {
+                               public static void StartSegmentDetection (RekognitionClient rekClient,
+                                                 NotificationChannel channel,
+                                                String bucket,
+                                                 String video) {
            try {
                S3Object s3Obj = S3Object.builder()
                        .bucket(bucket)
@@ -192,12 +190,18 @@ The example expands on the code in [Analyzing a video stored in an Amazon S3 buc
                        .s3Object(s3Obj)
                        .build();
    
+               BlackFrame blackFrame = BlackFrame.builder()
+                       .maxPixelThreshold(0.2F)
+                       .minCoveragePercentage(60F)
+                       .build();
+   
                StartShotDetectionFilter cueDetectionFilter = StartShotDetectionFilter.builder()
                        .minSegmentConfidence(60F)
-                       .build();
+                        .build();
    
                StartTechnicalCueDetectionFilter technicalCueDetectionFilter = StartTechnicalCueDetectionFilter.builder()
                        .minSegmentConfidence(60F)
+                       .blackFrame(blackFrame)
                        .build();
    
                StartSegmentDetectionFilters filters = StartSegmentDetectionFilters.builder()
@@ -265,6 +269,7 @@ The example expands on the code in [Analyzing a video stored in an Amazon S3 buc
                        System.out.println("Format: " + metaData.format());
                        System.out.println("Codec: " + metaData.codec());
                        System.out.println("Duration: " + metaData.durationMillis());
+                       System.out.println("Color range: " + metaData.colorRange().toString());
                        System.out.println("FrameRate: " + metaData.frameRate());
                        System.out.println("Job");
                    }
@@ -284,6 +289,8 @@ The example expands on the code in [Analyzing a video stored in an Amazon S3 buc
                        System.out.println("\tIndex " + segmentShot.index());
                        System.out.println("\tConfidence: " + segmentShot.confidence().toString());
                    }
+   
+   
                    long seconds = detectedSegment.get(0).durationMillis();
                    System.out.println("\tDuration : " + Long.toString(seconds) + " milliseconds");
                    System.out.println("\tStart time code: " + detectedSegment.get(0).startTimecodeSMPTE());
@@ -291,7 +298,7 @@ The example expands on the code in [Analyzing a video stored in an Amazon S3 buc
                    System.out.println("\tDuration time code: " + detectedSegment.get(0).durationSMPTE());
                    System.out.println();
    
-           } while (segDetectionResponse !=null && segDetectionResponse.nextToken() != null);
+               } while (segDetectionResponse !=null && segDetectionResponse.nextToken() != null);
    
            } catch(RekognitionException | InterruptedException e) {
                System.out.println(e.getMessage());
@@ -306,87 +313,103 @@ The example expands on the code in [Analyzing a video stored in an Amazon S3 buc
    1. Add the following code to the class `VideoDetect` that you created in step 1\.
 
       ```
-      #Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-      #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
+      # Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+      # PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
       
           def StartSegmentDetection(self):
       
               min_Technical_Cue_Confidence = 80.0
               min_Shot_Confidence = 80.0
+              max_pixel_threshold = 0.1
+              min_coverage_percentage = 60
       
-              response=self.rek.start_segment_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
-                  NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.snsTopicArn},
-                  SegmentTypes=['TECHNICAL_CUE' , 'SHOT'],
-                  Filters={'TechnicalCueFilter': {'MinSegmentConfidence':min_Technical_Cue_Confidence},
-                      'ShotFilter': {'MinSegmentConfidence': min_Shot_Confidence}})
-                 
+              response = self.rek.start_segment_detection(
+                  Video={"S3Object": {"Bucket": self.bucket, "Name": self.video}},
+                  NotificationChannel={
+                      "RoleArn": self.roleArn,
+                      "SNSTopicArn": self.snsTopicArn,
+                  },
+                  SegmentTypes=["TECHNICAL_CUE", "SHOT"],
+                  Filters={
+                      "TechnicalCueFilter": {
+                          "BlackFrame": {
+                              "MaxPixelThreshold": max_pixel_threshold,
+                              "MinCoveragePercentage": min_coverage_percentage,
+                          },
+                          "MinSegmentConfidence": min_Technical_Cue_Confidence,
+                      },
+                      "ShotFilter": {"MinSegmentConfidence": min_Shot_Confidence},
+                  }
+              )
       
-              self.startJobId=response['JobId']
-              print('Start Job Id: ' + self.startJobId)
+              self.startJobId = response["JobId"]
+              print(f"Start Job Id: {self.startJobId}")
       
           def GetSegmentDetectionResults(self):
               maxResults = 10
-              paginationToken = ''
+              paginationToken = ""
               finished = False
               firstTime = True
       
               while finished == False:
-                  response = self.rek.get_segment_detection(JobId=self.startJobId,
-                                                      MaxResults=maxResults,
-                                                      NextToken=paginationToken)
+                  response = self.rek.get_segment_detection(
+                      JobId=self.startJobId, MaxResults=maxResults, NextToken=paginationToken
+                  )
       
                   if firstTime == True:
-                      print('Status\n------\n' + response['JobStatus'])
-                      print ('\nRequested Types\n---------------')
+                      print(f"Status\n------\n{response['JobStatus']}")
+                      print("\nRequested Types\n---------------")
                       for selectedSegmentType in response['SelectedSegmentTypes']:
-                          print("\tType: " + selectedSegmentType['Type'])
-                          print("\t\tModel Version: " + selectedSegmentType['ModelVersion'])
+                          print(f"\tType: {selectedSegmentType['Type']}")
+                          print(f"\t\tModel Version: {selectedSegmentType['ModelVersion']}")
       
                       print()
-                      print('\nAudio metadata\n--------------')
+                      print("\nAudio metadata\n--------------")
                       for audioMetadata in response['AudioMetadata']:
-                          print('\tCodec: ' + audioMetadata['Codec'])            
-                          print('\tDuration: ' + str(audioMetadata['DurationMillis']))
-                          print('\tNumber of Channels: ' + str(audioMetadata['NumberOfChannels']))
-                          print('\tSample rate: ' + str(audioMetadata['SampleRate']))
+                          print(f"\tCodec: {audioMetadata['Codec']}")
+                          print(f"\tDuration: {audioMetadata['DurationMillis']}")
+                          print(f"\tNumber of Channels: {audioMetadata['NumberOfChannels']}")
+                          print(f"\tSample rate: {audioMetadata['SampleRate']}")
                       print()
-                      print ('\nVideo metadata\n--------------')
-                      for videoMetadata in response['VideoMetadata']:
-                          print('\tCodec: ' + videoMetadata['Codec'])
-                          print('\tDuration: ' + str(videoMetadata['DurationMillis']))
-                          print('\tFormat: ' + videoMetadata['Format'])
-                          print('\tFrame rate: ' + str(videoMetadata['FrameRate'])) 
-                          print('\nSegments\n--------')
-                      
-                      firstTime = False    
+                      print("\nVideo metadata\n--------------")
+                      for videoMetadata in response["VideoMetadata"]:
+                          print(f"\tCodec: {videoMetadata['Codec']}")
+                          print(f"\tColor Range: {videoMetadata['ColorRange']}")
+                          print(f"\tDuration: {videoMetadata['DurationMillis']}")
+                          print(f"\tFormat: {videoMetadata['Format']}")
+                          print(f"\tFrame rate: {videoMetadata['FrameRate']}")
+                          print("\nSegments\n--------")
       
+                      firstTime = False
       
                   for segment in response['Segments']:
       
-                      if segment ['Type'] == 'TECHNICAL_CUE':
-                          print('Technical Cue')
-                          print('\tConfidence: ' + 
-                              str(segment['TechnicalCueSegment']['Confidence']))
-                          print('\tType: ' + 
-                              segment['TechnicalCueSegment']['Type'])  
+                      if segment["Type"] == "TECHNICAL_CUE":
+                          print("Technical Cue")
+                          print(f"\tConfidence: {segment['TechnicalCueSegment']['Confidence']}")
+                          print(f"\tType: {segment['TechnicalCueSegment']['Type']}")
       
-                      if segment ['Type'] == 'SHOT':
-                          print ('Shot')
-                          print('\tConfidence: ' + 
-                              str(segment['ShotSegment']['Confidence']))  
-                          print('\tIndex: ' + 
-                              str(segment['ShotSegment']['Index']))  
+                      if segment["Type"] == "SHOT":
+                          print("Shot")
+                          print(f"\tConfidence: {segment['ShotSegment']['Confidence']}")
+                          print(f"\tIndex: " + str(segment["ShotSegment"]["Index"]))
       
-                      print('\tDuration (milliseconds): ' + str(segment['DurationMillis']))
-                      print('\tStart Timestamp (milliseconds): ' + str(segment['StartTimestampMillis']))
-                      print('\tEnd Timestamp (milliseconds): ' + str(segment['EndTimestampMillis']))
-                      print('\tStart timecode: ' + segment['StartTimecodeSMPTE'])
-                      print('\tEnd timecode: ' + segment['EndTimecodeSMPTE'])
-                      print('\tDuration timecode: ' + segment['DurationSMPTE'])
-                      print()
+                      print(f"\tDuration (milliseconds): {segment['DurationMillis']}")
+                      print(f"\tStart Timestamp (milliseconds): {segment['StartTimestampMillis']}")
+                      print(f"\tEnd Timestamp (milliseconds): {segment['EndTimestampMillis']}")
                       
-                  if 'NextToken' in response:
-                      paginationToken = response['NextToken']
+                      print(f"\tStart timecode: {segment['StartTimecodeSMPTE']}")
+                      print(f"\tEnd timecode: {segment['EndTimecodeSMPTE']}")
+                      print(f"\tDuration timecode: {segment['DurationSMPTE']}")
+      
+                      print(f"\tStart frame number {segment['StartFrameNumber']}")
+                      print(f"\tEnd frame number: {segment['EndFrameNumber']}")
+                      print(f"\tDuration frames: {segment['DurationFrames']}")
+      
+                      print()
+      
+                  if "NextToken" in response:
+                      paginationToken = response["NextToken"]
                   else:
                       finished = True
       ```

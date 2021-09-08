@@ -1,6 +1,6 @@
 # Detecting faces in an image<a name="faces-detect-images"></a>
 
-Amazon Rekognition Image provides the [DetectFaces](API_DetectFaces.md) operation that looks for key facial features such as eyes, nose, and mouth to detect faces in an input image\. Amazon Rekognition Image detects the 100 largest faces in an image\.
+Amazon Rekognition Image provides the [ DetectFaces ](API_DetectFaces.md) operation that looks for key facial features such as eyes, nose, and mouth to detect faces in an input image\. Amazon Rekognition Image detects the 100 largest faces in an image\.
 
 You can provide the input image as an image byte array \(base64\-encoded image bytes\), or specify an Amazon S3 object\. In this procedure, you upload an image \(JPEG or PNG\) to your S3 bucket and specify the object key name\.
 
@@ -102,7 +102,7 @@ You can provide the input image as an image byte array \(base64\-encoded image b
                InputStream sourceStream = new FileInputStream(new File(sourceImage));
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
    
-               // Create an Image object for the source image
+               // Create an Image object for the source image.
                Image souImage = Image.builder()
                        .bytes(sourceBytes)
                        .build();
@@ -128,6 +128,7 @@ You can provide the input image as an image byte array \(base64\-encoded image b
                System.out.println(e.getMessage());
                System.exit(1);
            }
+       }
    ```
 
 ------

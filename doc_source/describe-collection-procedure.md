@@ -1,6 +1,6 @@
 # Describing a collection<a name="describe-collection-procedure"></a>
 
-You can use the [DescribeCollection](API_DescribeCollection.md) operation to get the following information about a collection: 
+You can use the [ DescribeCollection ](API_DescribeCollection.md) operation to get the following information about a collection: 
 + The number of faces that are indexed into the collection\.
 + The version of the model that's used by the collection for face detection\. For more information, see [Model versioning](face-detection-model.md)\.
 + The Amazon Resource Name \(ARN\) of the collection\.

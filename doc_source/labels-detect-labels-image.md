@@ -1,6 +1,6 @@
 # Detecting labels in an image<a name="labels-detect-labels-image"></a>
 
-You can use the [DetectLabels](API_DetectLabels.md) operation to detect labels in an image\. For an example, see [Analyzing images stored in an Amazon S3 bucket](images-s3.md)\.
+You can use the [ DetectLabels ](API_DetectLabels.md) operation to detect labels in an image\. For an example, see [Analyzing images stored in an Amazon S3 bucket](images-s3.md)\.
 
 The following examples use various AWS SDKs and the AWS CLI to call `DetectLabels`\. For information about the `DetectLabels` operation response, see [DetectLabels response](#detectlabels-response)\.
 
@@ -327,10 +327,10 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
        public static void detectImageLabels(RekognitionClient rekClient, String sourceImage) {
    
            try {
-               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               InputStream sourceStream = new FileInputStream(sourceImage);
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
    
-               // Create an Image object for the source image
+               // Create an Image object for the source image.
                Image souImage = Image.builder()
                        .bytes(sourceBytes)
                        .build();
@@ -352,6 +352,7 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
                System.out.println(e.getMessage());
                System.exit(1);
            }
+       }
    ```
 
 ------

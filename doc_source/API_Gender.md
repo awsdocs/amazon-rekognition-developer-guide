@@ -10,13 +10,13 @@ We don't recommend using gender binary predictions to make decisions that impact
 
 ## Contents<a name="API_Gender_Contents"></a>
 
- **Confidence**   <a name="rekognition-Type-Gender-Confidence"></a>
+ ** Confidence **   <a name="rekognition-Type-Gender-Confidence"></a>
 Level of confidence in the prediction\.  
 Type: Float  
 Valid Range: Minimum value of 0\. Maximum value of 100\.  
 Required: No
 
- **Value**   <a name="rekognition-Type-Gender-Value"></a>
+ ** Value **   <a name="rekognition-Type-Gender-Value"></a>
 The predicted gender of the face\.  
 Type: String  
 Valid Values:` Male | Female`   
@@ -25,7 +25,7 @@ Required: No
 ## See Also<a name="API_Gender_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-+  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/Gender) 
-+  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/Gender) 
-+  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/Gender) 
-+  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/Gender) 
++  [ AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/Gender) 
++  [ AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/Gender) 
++  [ AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/Gender) 
++  [ AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/Gender) 

@@ -16,21 +16,21 @@ For Amazon Rekognition to process an S3 object, the user must have permission to
 
 ## Contents<a name="API_Image_Contents"></a>
 
- **Bytes**   <a name="rekognition-Type-Image-Bytes"></a>
+ ** Bytes **   <a name="rekognition-Type-Image-Bytes"></a>
 Blob of image bytes up to 5 MBs\.  
 Type: Base64\-encoded binary data object  
 Length Constraints: Minimum length of 1\. Maximum length of 5242880\.  
 Required: No
 
- **S3Object**   <a name="rekognition-Type-Image-S3Object"></a>
+ ** S3Object **   <a name="rekognition-Type-Image-S3Object"></a>
 Identifies an S3 object as the image source\.  
-Type: [S3Object](API_S3Object.md) object  
+Type: [ S3Object ](API_S3Object.md) object  
 Required: No
 
 ## See Also<a name="API_Image_SeeAlso"></a>
 
 For more information about using this API in one of the language\-specific AWS SDKs, see the following:
-+  [AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/Image) 
-+  [AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/Image) 
-+  [AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/Image) 
-+  [AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/Image) 
++  [ AWS SDK for C\+\+](https://docs.aws.amazon.com/goto/SdkForCpp/rekognition-2016-06-27/Image) 
++  [ AWS SDK for Go](https://docs.aws.amazon.com/goto/SdkForGoV1/rekognition-2016-06-27/Image) 
++  [ AWS SDK for Java V2](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/Image) 
++  [ AWS SDK for Ruby V3](https://docs.aws.amazon.com/goto/SdkForRubyV3/rekognition-2016-06-27/Image) 

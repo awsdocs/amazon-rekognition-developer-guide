@@ -1,4 +1,4 @@
-# Tutorial: Using Amazon Rekognition and Lambda to tag assets in an Amazon S3 bucket<a name="images-lambda-s3-tutorial"></a>
+# Using Amazon Rekognition and Lambda to tag assets in an Amazon S3 bucket<a name="images-lambda-s3-tutorial"></a>
 
 In this tutorial, you create an AWS Lambda function that automatically tags digital assets located in an Amazon S3 bucket\. The Lambda function reads all objects in a given Amazon S3 bucket\. For each object in the bucket, it passes the image to the Amazon Rekognition service to geneate a series of labels\. Each label is used to create a tag that is applied to the image\. After you execute the Lambda function, it automatically creates tags based on all images in a given Amazon S3 bucket and applies them to the images\.
 
@@ -199,7 +199,7 @@ Create the following Java classes for the code:
 + **BucketItem** defines a model that stores Amazon S3 bucket information\.
 + **WorkItem** defines a model that stores Amazon Rekognition data\.
 
-### Handler class<a name="w68aac17b7c25c25c11"></a>
+### Handler class<a name="w93aac47b9c25c11"></a>
 
 This Java code represents the **Handler** class\. The class reads a flag that is passed to the Lambda function\. The **s3Service\.ListBucketObjects** method returns a **List** object where each element is a string value that represents the object key\. If the flag value is true, then tags are applied by iterating through the list and applying tags to each object by calling the **s3Service\.tagAssets** method\. If the flag value is false, then the **s3Service\.deleteTagFromObject** method is invoked that deletes the tags\. Also, notice that you can log messages to Amazon CloudWatch logs by using a **LambdaLogger** object\.
 
@@ -259,7 +259,7 @@ public String handleRequest(Map<String, String> event, Context context) {
  }
 ```
 
-### S3Service class<a name="w68aac17b7c25c25c13"></a>
+### S3Service class<a name="w93aac47b9c25c13"></a>
 
 The following class uses the Amazon S3 API to perform S3 operations\. For example, the **getObjectBytes** method returns a byte array that represents the image\. Likewise, the **listBucketObjects** method returns a **List** object where each element is a string value that specifies the key name\.
 
@@ -445,7 +445,7 @@ The following class uses the Amazon S3 API to perform S3 operations\. For exampl
 }
 ```
 
-### AnalyzePhotos class<a name="w68aac17b7c25c25c15"></a>
+### AnalyzePhotos class<a name="w93aac47b9c25c15"></a>
 
 The following Java code represents the **AnalyzePhotos** class\. This class uses the Amazon Rekognition API to analyze the images\.
 
@@ -513,7 +513,7 @@ public class AnalyzePhotos {
 }
 ```
 
-### BucketItem class<a name="w68aac17b7c25c25c17"></a>
+### BucketItem class<a name="w93aac47b9c25c17"></a>
 
 The following Java code represents the **BucketItem** class that stores Amazon S3 object data\.
 
@@ -562,7 +562,7 @@ public class BucketItem {
 }
 ```
 
-### WorkItem class<a name="w68aac17b7c25c25c19"></a>
+### WorkItem class<a name="w93aac47b9c25c19"></a>
 
 The following Java code represents the **WorkItem** class\.
 

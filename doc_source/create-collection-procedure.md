@@ -1,6 +1,6 @@
 # Creating a collection<a name="create-collection-procedure"></a>
 
-You can use the [CreateCollection](API_CreateCollection.md) operation to create a collection\.
+You can use the [ CreateCollection ](API_CreateCollection.md) operation to create a collection\.
 
 For more information, see [Managing collections](collections.md#managing-collections)\. 
 
@@ -82,6 +82,7 @@ For more information, see [Managing collections](collections.md#managing-collect
                    System.out.println(e.getMessage());
                    System.exit(1);
            }
+       }
    ```
 
 ------

@@ -1,6 +1,6 @@
 # Listing collections<a name="list-collection-procedure"></a>
 
-You can use the [ListCollections](API_ListCollections.md) operation to list the collections in the region that you are using\.
+You can use the [ ListCollections ](API_ListCollections.md) operation to list the collections in the region that you are using\.
 
 For more information, see [Managing collections](collections.md#managing-collections)\. 
 
@@ -89,6 +89,7 @@ For more information, see [Managing collections](collections.md#managing-collect
                System.out.println(e.getMessage());
                System.exit(1);
            }
+       }
    ```
 
 ------

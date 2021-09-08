@@ -1,17 +1,17 @@
-# Java V1 Tutorial: Creating an Amazon Rekognition Lambda function<a name="stored-video-lambda"></a>
+# Creating an Amazon Rekognition Lambda function<a name="stored-video-lambda"></a>
 
 This tutorial shows how to get the results of a video analysis operation for label detection by using a Java Lambda function\. 
 
 **Note**  
 This tutorial uses the AWS SDK for Java 1\.x\. For a tutorial using Rekognition and the AWS SDK for Java version 2, see the [AWS Documentation SDK examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/javav2/usecases/video_analyzer_application)\.
 
-You can use Lambda functions with Amazon Rekognition Video operations\. For example, the following diagram shows a website that uses a Lambda function to automatically start analysis of a video when it's uploaded to an Amazon S3 bucket\. When the Lambda function is triggered, it calls [StartLabelDetection](API_StartLabelDetection.md) to start detecting labels in the uploaded video\. For information about using Lambda to process event notifications from an Amazon S3 bucket, see [Using AWS Lambda with Amazon S3 Events](https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html)\.
+You can use Lambda functions with Amazon Rekognition Video operations\. For example, the following diagram shows a website that uses a Lambda function to automatically start analysis of a video when it's uploaded to an Amazon S3 bucket\. When the Lambda function is triggered, it calls [ StartLabelDetection ](API_StartLabelDetection.md) to start detecting labels in the uploaded video\. For information about using Lambda to process event notifications from an Amazon S3 bucket, see [Using AWS Lambda with Amazon S3 Events](https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html)\.
 
-A second Lambda function is triggered when the analysis completion status is sent to the registered Amazon SNS topic\. The second Lambda function calls [GetLabelDetection](API_GetLabelDetection.md) to get the analysis results\. The results are then stored in a database in preparation for displaying on a webpage\. This second lambda function is the focus of this tutorial\.
+A second Lambda function is triggered when the analysis completion status is sent to the registered Amazon SNS topic\. The second Lambda function calls [ GetLabelDetection ](API_GetLabelDetection.md) to get the analysis results\. The results are then stored in a database in preparation for displaying on a webpage\. This second lambda function is the focus of this tutorial\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/VideoRekognitionLambda.png)
 
-In this tutorial, the Lambda function is triggered when Amazon Rekognition Video sends the completion status for the video analysis to the registered Amazon SNS topic\. It then collects video analysis results by calling [GetLabelDetection](API_GetLabelDetection.md)\. For demonstration purposes, this tutorial writes label detection results to a CloudWatch log\. In your application's Lambda function, you should store the analysis results for later use\. For example, you can use Amazon DynamoDB to save the analysis results\. For more information, see [Working with DynamoDB](url-ddb-dev;WorkingWithDynamo.html)\. 
+In this tutorial, the Lambda function is triggered when Amazon Rekognition Video sends the completion status for the video analysis to the registered Amazon SNS topic\. It then collects video analysis results by calling [ GetLabelDetection ](API_GetLabelDetection.md)\. For demonstration purposes, this tutorial writes label detection results to a CloudWatch log\. In your application's Lambda function, you should store the analysis results for later use\. For example, you can use Amazon DynamoDB to save the analysis results\. For more information, see [Working with DynamoDB](url-ddb-dev;WorkingWithDynamo.html)\. 
 
 The following procedures show you how to:
 + Create the Amazon SNS topic and set up permissions\.
@@ -91,7 +91,7 @@ After you create the Lambda function, you configure it to be triggered by the Am
 
 ## Configure the IAM Lambda role<a name="configure-lambda-role"></a>
 
-To call Amazon Rekognition Video operations, you add the *AmazonRekognitionFullAccess* AWS managed policy to the IAM Lambda role\. Start operations, such as [StartLabelDetection](API_StartLabelDetection.md), also require pass role permissions for the IAM service role that Amazon Rekognition Video uses to access the Amazon SNS topic\.
+To call Amazon Rekognition Video operations, you add the *AmazonRekognitionFullAccess* AWS managed policy to the IAM Lambda role\. Start operations, such as [ StartLabelDetection ](API_StartLabelDetection.md), also require pass role permissions for the IAM service role that Amazon Rekognition Video uses to access the Amazon SNS topic\.
 
 **To configure the role**
 
@@ -139,7 +139,7 @@ To call Amazon Rekognition Video operations, you add the *AmazonRekognitionFullA
 
 ## Create the AWS Toolkit for Eclipse Lambda project<a name="lambda-create-code"></a>
 
-When the Lambda function is triggered, the following code gets the completion status from the Amazon SNS topic, and calls [GetLabelDetection](API_GetLabelDetection.md) to get the analysis results\. A count of labels detected, and a list of labels detected is written to a CloudWatch log\. Your Lambda function should store the video analysis results for later use\.
+When the Lambda function is triggered, the following code gets the completion status from the Amazon SNS topic, and calls [ GetLabelDetection ](API_GetLabelDetection.md) to get the analysis results\. A count of labels detected, and a list of labels detected is written to a CloudWatch log\. Your Lambda function should store the video analysis results for later use\.
 
 **To create the AWS Toolkit for Eclipse Lambda project**
 

@@ -1,6 +1,6 @@
 # Detecting personal protective equipment in an image<a name="ppe-procedure-image"></a>
 
-To detect Personal Protective Equipment \(PPE\) on persons in an image, use the [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md) non\-storage API operation\. 
+To detect Personal Protective Equipment \(PPE\) on persons in an image, use the [ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md) non\-storage API operation\. 
 
 You can provide the input image as an image byte array \(base64\-encoded image bytes\) or as an Amazon S3 object, by using the AWS SDK or the AWS Command Line Interface \(AWS CLI\)\. These examples use an image stored in an Amazon S3 bucket\. For more information, see [Working with images](images.md)\. 
 

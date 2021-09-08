@@ -1,4 +1,4 @@
-# Tutorial: Creating AWS video analyzer applications<a name="stored-video-tutorial-v2"></a>
+# Creating AWS video analyzer applications<a name="stored-video-tutorial-v2"></a>
 
 You can create a Java web application that analyzes videos for label detection by using the AWS SDK for Java version 2\. The application created in this AWS tutorial lets you upload a video \(MP4 file\) to an Amazon S3 bucket\. Then the appliction uses the Amazon Rekognition service to analyze the video\. The results are used to populate a data model and then a report is generated and emailed to a specific user by using the Amazon Simple Email Service\.
 

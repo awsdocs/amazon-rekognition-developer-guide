@@ -26,11 +26,11 @@ Amazon Rekognition Custom Labels encrypts your data at rest\.
 
 #### Images<a name="security-ear-cl-images"></a>
 
- To train your model, Amazon Rekognition Custom Labels makes a copy of your source training and test images\. The copied images are encrypted at rest in Amazon Simple Storage Service \(S3\) using server\-side encryption with an AWS owned Customer Master Key \(CMK\) or a CMK that you provide\. Amazon Rekognition Custom Labels supports symmetric CMKs only\. Your source images are unaffected\. For more information, see [Training an Amazon Rekognition Custom Labels Model](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/tm-train-model.html)\. 
+ To train your model, Amazon Rekognition Custom Labels makes a copy of your source training and test images\. The copied images are encrypted at rest in Amazon Simple Storage Service \(S3\) using server\-side encryption with an AWS KMS key that you provide or an AWS owned KMS key\. Amazon Rekognition Custom Labels only supports symmetric KMS keys\. Your source images are unaffected\. For more information, see [Training an Amazon Rekognition Custom Labels Model](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/tm-train-model.html)\. 
 
 #### Models<a name="security-ear-cl-models"></a>
 
-By default, Amazon Rekognition Custom Labels encrypts trained models and manifest files stored in Amazon S3 buckets using server\-side encryption with an AWS owned CMK\. Amazon Rekognition Custom Labels uses an AWS owned CMK\. For more information, see [ Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\. Training results are written to the bucket specified in the `OutputConfig` input parameter to [CreateProjectVersion](API_CreateProjectVersion.md)\. The training results are encrypted using the configured encryption settings for the bucket \(`OutputConfig`\)\. 
+By default, Amazon Rekognition Custom Labels encrypts trained models and manifest files stored in Amazon S3 buckets using server\-side encryption with an AWS owned key\. For more information, see [ Protecting Data Using Server\-Side Encryption](https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)\. Training results are written to the bucket specified in the `OutputConfig` input parameter to [ CreateProjectVersion ](API_CreateProjectVersion.md)\. The training results are encrypted using the configured encryption settings for the bucket \(`OutputConfig`\)\. 
 
 #### Console bucket<a name="security-ear-cl-console"></a>
 

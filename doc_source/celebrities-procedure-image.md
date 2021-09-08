@@ -1,8 +1,8 @@
 # Recognizing celebrities in an image<a name="celebrities-procedure-image"></a>
 
-To recognize celebrities within images and get additional information about recognized celebrities, use the [RecognizeCelebrities](API_RecognizeCelebrities.md) non\-storage API operation\. For example, in social media or news and entertainment industries where information gathering can be time critical, you can use the `RecognizeCelebrities` operation to identify as many as 64 celebrities in an image, and return links to celebrity webpages, if they're available\. Amazon Rekognition doesn't remember which image it detected a celebrity in\. Your application must store this information\. 
+To recognize celebrities within images and get additional information about recognized celebrities, use the [ RecognizeCelebrities ](API_RecognizeCelebrities.md) non\-storage API operation\. For example, in social media or news and entertainment industries where information gathering can be time critical, you can use the `RecognizeCelebrities` operation to identify as many as 64 celebrities in an image, and return links to celebrity webpages, if they're available\. Amazon Rekognition doesn't remember which image it detected a celebrity in\. Your application must store this information\. 
 
-If you haven't stored the additional information for a celebrity that's returned by `RecognizeCelebrities` and you want to avoid reanalyzing an image to get it, use [GetCelebrityInfo](API_GetCelebrityInfo.md)\. To call `GetCelebrityInfo`, you need the unique identifier that Amazon Rekognition assigns to each celebrity\. The identifier is returned as part of the `RecognizeCelebrities` response for each celebrity recognized in an image\. 
+If you haven't stored the additional information for a celebrity that's returned by `RecognizeCelebrities` and you want to avoid reanalyzing an image to get it, use [ GetCelebrityInfo ](API_GetCelebrityInfo.md)\. To call `GetCelebrityInfo`, you need the unique identifier that Amazon Rekognition assigns to each celebrity\. The identifier is returned as part of the `RecognizeCelebrities` response for each celebrity recognized in an image\. 
 
 If you have a large collection of images to process for celebrity recognition, consider using [AWS Batch](https://docs.aws.amazon.com/batch/latest/userguide/) to process calls to `RecognizeCelebrities` in batches in the background\. When you add a new image to your collection, you can use an AWS Lambda function to recognize celebrities by calling `RecognizeCelebrities` as the image is uploaded into an S3 bucket\.
 
@@ -107,7 +107,7 @@ To run this procedure, you need an image file that contains one or more celebrit
    
            try {
    
-               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               InputStream sourceStream = new FileInputStream(sourceImage);
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
    
                Image souImage = Image.builder()
@@ -139,6 +139,7 @@ To run this procedure, you need an image file that contains one or more celebrit
                System.out.println(e.getMessage());
                System.exit(1);
            }
+        }
    ```
 
 ------
@@ -179,6 +180,8 @@ To run this procedure, you need an image file that contains one or more celebrit
        for celebrity in response['CelebrityFaces']:
            print ('Name: ' + celebrity['Name'])
            print ('Id: ' + celebrity['Id'])
+           print ('KnownGender: ' + celebrity['KnownGender'])
+           print ('Smile: ' + celebrity['Smile'])
            print ('Position:')
            print ('   Left: ' + '{:.2f}'.format(celebrity['Face']['BoundingBox']['Height']))
            print ('   Top: ' + '{:.2f}'.format(celebrity['Face']['BoundingBox']['Top']))
@@ -286,9 +289,8 @@ The input to `RecognizeCelebrities` is an image\. In this example, the image is 
 The following is example JSON input and output for `RecognizeCelebrities`\. 
 
 `RecognizeCelebrities` returns an array of recognized celebrities and an array of unrecognized faces\. In the example, note the following:
-+ **Recognized celebrities** – `Celebrities` is an array of recognized celebrities\. Each [Celebrity](API_Celebrity.md) object in the array contains the celebrity name and a list of URLs pointing to related content—for example, the celebrity's IMDB link\. Amazon Rekognition returns an [ComparedFace](API_ComparedFace.md) object that your application can use to determine where the celebrity's face is on the image and a unique identifier for the celebrity\. Use the unique identifier to retrieve celebrity information later with the [GetCelebrityInfo](API_GetCelebrityInfo.md) API operation\. 
-+ **Unrecognized faces** – `UnrecognizedFaces` is an array of faces that didn't match any known celebrities\. Each [ComparedFace](API_ComparedFace.md) object in the array contains a bounding box \(as well as other information\) that you can use to locate the face in the image\.
-+ **Image orientation** – `OrientationCorrection` is image orientation information that you can use to correctly display the image\. For more information, see [Getting image orientation and bounding box coordinates](images-orientation.md)\.
++ **Recognized celebrities** – `Celebrities` is an array of recognized celebrities\. Each [ Celebrity ](API_Celebrity.md) object in the array contains the celebrity name and a list of URLs pointing to related content—for example, the celebrity's IMDB or Wikidata link\. Amazon Rekognition returns an [ ComparedFace ](API_ComparedFace.md) object that your application can use to determine where the celebrity's face is on the image and a unique identifier for the celebrity\. Use the unique identifier to retrieve celebrity information later with the [ GetCelebrityInfo ](API_GetCelebrityInfo.md) API operation\. 
++ **Unrecognized faces** – `UnrecognizedFaces` is an array of faces that didn't match any known celebrities\. Each [ ComparedFace ](API_ComparedFace.md) object in the array contains a bounding box \(as well as other information\) that you can use to locate the face in the image\.
 
 ```
 {
@@ -301,6 +303,11 @@ The following is example JSON input and output for `RecognizeCelebrities`\.
                 "Width": 0.3641025722026825
             },
             "Confidence": 99.99589538574219,
+            "Emotions": [{
+                "Confidence": 96.3981749057023,
+                "Type": "Happy"
+                }
+            ],
             "Landmarks": [{
                 "Type": "eyeLeft",
                 "X": 0.2837241291999817,
@@ -330,14 +337,21 @@ The following is example JSON input and output for `RecognizeCelebrities`\.
             "Quality": {
                 "Brightness": 32.69192123413086,
                 "Sharpness": 99.9305191040039
-            }
+            },
+            "Smile": {
+            "Confidence": 95.45394855702342,
+            "Value": True
+            }    
         },
         "Id": "3Ir0du6",
+        "KnownGender": {
+            "Type": "Male"
+        },
         "MatchConfidence": 98.0,
         "Name": "Jeff Bezos",
         "Urls": ["www.imdb.com/name/nm1757263"]
     }],
-    "OrientationCorrection": "ROTATE_0",
+    "OrientationCorrection": "NULL",
     "UnrecognizedFaces": [{
         "BoundingBox": {
             "Height": 0.5345501899719238,
@@ -375,6 +389,10 @@ The following is example JSON input and output for `RecognizeCelebrities`\.
         "Quality": {
             "Brightness": 37.16635513305664,
             "Sharpness": 99.9305191040039
+        },
+        "Smile": {
+            "Confidence": 95.45394855702342,
+            "Value": True
         }
     }]
 }

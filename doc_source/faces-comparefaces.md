@@ -1,8 +1,8 @@
 # Comparing faces in images<a name="faces-comparefaces"></a>
 
-To compare a face in the *source* image with each face in the *target* image, use the [CompareFaces](API_CompareFaces.md) operation\. 
+To compare a face in the *source* image with each face in the *target* image, use the [ CompareFaces ](API_CompareFaces.md) operation\. 
 
-To specify the minimum level of confidence in the match that you want returned in the response, use `similarityThreshold` in the request\. For more information, see [CompareFaces](API_CompareFaces.md)\.
+To specify the minimum level of confidence in the match that you want returned in the response, use `similarityThreshold` in the request\. For more information, see [ CompareFaces ](API_CompareFaces.md)\.
 
 If you provide a source image that contains multiple faces, the service detects the largest face and uses it to compare with each face that's detected in the target image\. 
 
@@ -119,13 +119,13 @@ CompareFaces uses machine learning algorithms, which are probabilistic\. A false
        public static void compareTwoFaces(RekognitionClient rekClient, Float similarityThreshold, String sourceImage, String targetImage) {
    
            try {
-               InputStream sourceStream = new FileInputStream(new File(sourceImage));
-               InputStream tarStream = new FileInputStream(new File(targetImage));
+               InputStream sourceStream = new FileInputStream(sourceImage);
+               InputStream tarStream = new FileInputStream(targetImage);
    
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
                SdkBytes targetBytes = SdkBytes.fromInputStream(tarStream);
    
-               // Create an Image object for the source image
+               // Create an Image object for the source image.
                Image souImage = Image.builder()
                   .bytes(sourceBytes)
                   .build();
@@ -140,7 +140,7 @@ CompareFaces uses machine learning algorithms, which are probabilistic\. A false
                        .similarityThreshold(similarityThreshold)
                        .build();
    
-               // Compare the two images
+               // Compare the two images.
                CompareFacesResponse compareFacesResult = rekClient.compareFaces(facesRequest);
                List<CompareFacesMatch> faceDetails = compareFacesResult.faceMatches();
                for (CompareFacesMatch match: faceDetails){
@@ -153,9 +153,7 @@ CompareFaces uses machine learning algorithms, which are probabilistic\. A false
    
                }
                List<ComparedFace> uncompared = compareFacesResult.unmatchedFaces();
-   
-               System.out.println("There was " + uncompared.size()
-                       + " face(s) that did not match");
+               System.out.println("There was " + uncompared.size() + " face(s) that did not match");
                System.out.println("Source image rotation: " + compareFacesResult.sourceImageOrientationCorrection());
                System.out.println("target image rotation: " + compareFacesResult.targetImageOrientationCorrection());
    
@@ -163,6 +161,7 @@ CompareFaces uses machine learning algorithms, which are probabilistic\. A false
                System.out.println("Failed to load source image " + sourceImage);
                System.exit(1);
            }
+       }
    ```
 
 ------

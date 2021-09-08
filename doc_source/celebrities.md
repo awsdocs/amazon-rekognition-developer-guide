@@ -1,8 +1,10 @@
 # Recognizing celebrities<a name="celebrities"></a>
 
-Amazon Rekognition can recognize thousands of celebrities in a wide range of categories, such as entertainment and media, sports, business, and politics\. With Amazon Rekognition, you can recognize celebrities in images and in stored videos\. You can also get additional information for recognized celebrities\.
+Amazon Rekognition Amazon Rekognition makes it easy for customers to automatically recognize tens of thousands of well\-known personalities in images and videos using machine learning\. The metadata provided by the celebrity recognition API significantly reduces the repetitive manual effort required to tag content and make it readily searchable\. 
 
-The Amazon Rekognition celebrity recognition API is tuned to detect celebrities in different settings, cosmetic makeup, and other conditions\. Social, media, and entertainment customers can build apps that use celebrity recognition\. For example, an entertainment app that identifies celebrity lookalikes or an app that identifies celebrities as part of automated footage tagging\. Amazon Rekognition celebrity recognition is designed to be exclusively used in cases where you expect there may be a known celebrity in an image or a video\. The celebrity recognition API returns the closest found matches, along with a similarity score\. For information about recognizing faces that are not celebrities, see [Searching faces in a collection](collections.md)\.
+The rapid proliferation of image and video content means that media companies often struggle to organize, search, and utilize their media catalogs at scale\. News channels and sports broadcasters often need to find images and videos quickly, in order to respond to current events and create relevant programming\. Insufficient metadata makes these tasks difficult, but with Amazon Rekognition you can automatically tag large volumes of new or archival content to make it easily searchable for a comprehensive set of international, widely known celebrities like actors, sportspeople, and online content creators\.
+
+Amazon Rekognition celebrity recognition is designed to be used exclusively in cases where you expect there may be a known celebrity in an image or a video\. For information about recognizing faces that are not celebrities, see [Searching faces in a collection](collections.md)\.
 
 **Note**  
 If you are a celebrity and don’t want to be included in this feature, contact [AWS Support](https://aws.amazon.com/contact-us/) or email rekognition\-celebrity\-opt\-out@amazon\.com\.

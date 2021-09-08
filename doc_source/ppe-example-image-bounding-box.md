@@ -2,7 +2,7 @@
 
 The following examples shows you how to draw bounding boxes around face covers detected on persons\. For an example that uses AWS Lambda and Amazon DynamoDB, see the [AWS Documentation SDK examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/javav2/usecases/creating_lambda_ppe)\. 
 
-To detect face covers you use the [DetectProtectiveEquipment](API_DetectProtectiveEquipment.md) non\-storage API operation\. The image is loaded from the local file system\. You provide the input image to `DetectProtectiveEquipment` as an image byte array \(base64\-encoded image bytes\)\. For more information, see [Working with images](images.md)\.
+To detect face covers you use the [ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md) non\-storage API operation\. The image is loaded from the local file system\. You provide the input image to `DetectProtectiveEquipment` as an image byte array \(base64\-encoded image bytes\)\. For more information, see [Working with images](images.md)\.
 
 The example displays a bounding box around detected face covers\. The bounding box is green if the face cover fully covers the body part\. Otherwise a red bounding box is displayed\. As a warning, a yellow bounding box is displayed within the face cover bounding box, if the detection confidence is lower than the specified confidence value\. If a face cover is not detected, a red bounding box is drawn around the person\. 
 
@@ -239,7 +239,7 @@ The image output is similar to the following\.
                SdkBytes sourceBytes = SdkBytes.fromInputStream(is);
                image = ImageIO.read(sourceBytes.asInputStream());
    
-               // Create an Image object for the source image
+               // Create an Image object for the source image.
                software.amazon.awssdk.services.rekognition.model.Image souImage = Image.builder()
                        .bytes(sourceBytes)
                        .build();
