@@ -185,6 +185,43 @@ You can use the [ DescribeCollection ](API_DescribeCollection.md) operation to g
    ```
 
 ------
+#### [ Node\.js ]
+
+   ```
+   import { DescribeCollectionCommand } from  "@aws-sdk/client-rekognition";
+   import  { RekognitionClient } from "@aws-sdk/client-rekognition";
+   import { stringify } from "querystring";
+   
+   // Set the AWS Region.
+   const REGION = "region"; //e.g. "us-east-1"
+   const rekogClient = new RekognitionClient({ region: REGION });
+   
+   // Name the collection
+   const collection_name = "collectionName"
+   const resourceArn = "resourceArn"
+   
+   const describeCollection = async (collectionName) => {
+       try {
+          console.log(`Attempting to describe collection named - ${collectionName}`)
+          var response = await rekogClient.send(new DescribeCollectionCommand({CollectionId: collectionName}))
+          console.log('Collection Arn:')
+          console.log(response.CollectionARN)
+          console.log('Face Count:')
+          console.log(response.FaceCount)
+          console.log('Face Model Version:')
+          console.log(response.FaceModelVersion)
+          console.log('Timestamp:')
+          console.log(response.CreationTimestamp)
+          return response; // For unit tests.
+       } catch (err) {
+         console.log("Error", err.stack);
+       }
+     };
+   
+   describeCollection(collection_name)
+   ```
+
+------
 
 ## DescribeCollection operation request<a name="describe-collection-request"></a>
 

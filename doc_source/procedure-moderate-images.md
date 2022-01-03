@@ -22,7 +22,7 @@ To run these procedures, you need to have the AWS CLI or the appropriate AWS SDK
 
 1. Upload an image to your S3 bucket\. 
 
-   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
+   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service User Guide*\.
 
 1. Use the following examples to call the `DetectModerationLabels` operation\.
 
@@ -118,7 +118,7 @@ To run these procedures, you need to have the AWS CLI or the appropriate AWS SDK
            e.printStackTrace();
            System.exit(1);
        }
-    }
+     }
    ```
 
 ------

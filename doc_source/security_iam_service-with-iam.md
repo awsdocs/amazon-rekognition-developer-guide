@@ -79,12 +79,6 @@ To see a list of Amazon Rekognition resource types and their ARNs, see [Resource
 
 Amazon Rekognition does not provide any service\-specific condition keys, but it does support using some global condition keys\. To see all AWS global condition keys, see [AWS Global Condition Context Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html) in the *IAM User Guide*\.
 
-### Examples<a name="security_iam_service-with-iam-id-based-policies-examples"></a>
-
-
-
-To view examples of Amazon Rekognition identity\-based policies, see [Amazon Rekognition identity\-based policy examples](security_iam_id-based-policy-examples.md)\.
-
 ## Amazon Rekognition resource\-based policies<a name="security_iam_service-with-iam-resource-based-policies"></a>
 
 Amazon Rekognition doesn't support resource\-based policies\.

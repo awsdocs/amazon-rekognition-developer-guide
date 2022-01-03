@@ -14,7 +14,7 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
 
 1. Upload an image that contains one or more objects—such as trees, houses, and boat—to your S3 bucket\. The image must be in *\.jpg* or *\.png* format\.
 
-   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) in the *Amazon Simple Storage Service Console User Guide*\.
+   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) in the *Amazon Simple Storage Service User Guide*\.
 
 1. Use the following examples to call the `DetectLabels` operation\.
 
@@ -327,7 +327,9 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
        public static void detectImageLabels(RekognitionClient rekClient, String sourceImage) {
    
            try {
-               InputStream sourceStream = new FileInputStream(sourceImage);
+   
+               InputStream sourceStream = new URL("https://images.unsplash.com/photo-1557456170-0cf4f4d0d362?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGFrZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80").openStream();
+              // InputStream sourceStream = new FileInputStream(sourceImage);
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
    
                // Create an Image object for the source image.
@@ -348,9 +350,11 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
                    System.out.println(label.name() + ": " + label.confidence().toString());
                }
    
-           } catch (RekognitionException | FileNotFoundException e) {
+           } catch (RekognitionException | FileNotFoundException | MalformedURLException e) {
                System.out.println(e.getMessage());
                System.exit(1);
+           } catch (IOException e) {
+               e.printStackTrace();
            }
        }
    ```

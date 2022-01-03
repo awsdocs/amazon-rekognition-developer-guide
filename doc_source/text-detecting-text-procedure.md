@@ -12,7 +12,7 @@ You can provide an input image as an image byte array \(base64\-encoded image by
 
 1. Upload the image that contains text to your S3 bucket\. 
 
-   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
+   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service User Guide*\.
 
 1. Use the following examples to call the `DetectText` operation\.
 
@@ -235,6 +235,53 @@ You can provide an input image as an image byte array \(base64\-encoded image by
    ```
 
 ------
+#### [ Node\.JS ]
+
+   The following example code displays lines and words detected in an image\. 
+
+   Replace the values of `bucket` and `photo` with the names of the S3bucket and image that you used in step 2\. Repalce the value of `region` with the region found in your \.aws credentials\.
+
+   ```
+   var AWS = require('aws-sdk');
+   
+   const bucket = 'bucket' // the bucketname without s3://
+   const photo  = 'photo' // the name of file
+   
+   const config = new AWS.Config({
+     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+   }) 
+   AWS.config.update({region:'region'});
+   const client = new AWS.Rekognition();
+   const params = {
+     Image: {
+       S3Object: {
+         Bucket: bucket,
+         Name: photo
+       },
+     },
+   }
+   client.detectText(params, function(err, response) {
+     if (err) {
+       console.log(err, err.stack); // handle error if an error occurred
+     } else {
+       console.log(`Detected Text for: ${photo}`)
+       console.log(response)
+       response.TextDetections.forEach(label => {
+         console.log(`Detected Text: ${label.DetectedText}`),
+         console.log(`Type: ${label.Type}`),
+         console.log(`ID: ${label.Id}`),
+         console.log(`Parent ID: ${label.ParentId}`),
+         console.log(`Confidence: ${label.Confidence}`),
+         console.log(`Polygon: `)
+         console.log(label.Geometry.Polygon)
+       } 
+       )
+     } 
+   });
+   ```
+
+------
 
 ## DetectText operation request<a name="detecttext-request"></a>
 
@@ -270,7 +317,7 @@ The `DetectText` operation analyzes the image and returns an array, TextDetectio
 
 ### Detected text<a name="text-detected-text"></a>
 
-Each `TextDetection` element contains recognized text \(words or lines\) in the `DetectedText` field\. Returned text might include characters that make a word unrecognizable\. For example, *C@t* instead of *Cat*\. To determine whether a `TextDetection` element represents a line of text or a word, use the `Type` field\.
+Each `TextDetection` element contains recognized text \(words or lines\) in the `DetectedText` field\. A word is one or more script characters not separated by spaces\. `DetectText` can detect up to 100 words in an image\. Returned text might include characters that make a word unrecognizable\. For example, *C@t* instead of *Cat*\. To determine whether a `TextDetection` element represents a line of text or a word, use the `Type` field\.
 
  
 

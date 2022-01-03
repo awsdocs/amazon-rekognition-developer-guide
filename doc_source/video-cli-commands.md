@@ -18,7 +18,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
 
 1. Upload an MOV or MPEG\-4 format video file to your S3 bucket\. While developing and testing, we suggest using short videos no longer than 30 seconds in length\.
 
-   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
+   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service User Guide*\.
 
 **To detect labels in a video**
 

@@ -302,7 +302,9 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
        public static void detectImageLabels(RekognitionClient rekClient, String sourceImage) {
    
            try {
-               InputStream sourceStream = new FileInputStream(sourceImage);
+   
+               InputStream sourceStream = new URL("https://images.unsplash.com/photo-1557456170-0cf4f4d0d362?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGFrZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80").openStream();
+              // InputStream sourceStream = new FileInputStream(sourceImage);
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
    
                // Create an Image object for the source image.
@@ -323,9 +325,11 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
                    System.out.println(label.name() + ": " + label.confidence().toString());
                }
    
-           } catch (RekognitionException | FileNotFoundException e) {
+           } catch (RekognitionException | FileNotFoundException | MalformedURLException e) {
                System.out.println(e.getMessage());
                System.exit(1);
+           } catch (IOException e) {
+               e.printStackTrace();
            }
        }
    ```

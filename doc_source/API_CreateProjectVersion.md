@@ -1,10 +1,19 @@
 # CreateProjectVersion<a name="API_CreateProjectVersion"></a>
 
-Creates a new version of a model and begins training\. Models are managed as part of an Amazon Rekognition Custom Labels project\. You can specify one training dataset and one testing dataset\. The response from `CreateProjectVersion` is an Amazon Resource Name \(ARN\) for the version of the model\. 
+Creates a new version of a model and begins training\. Models are managed as part of an Amazon Rekognition Custom Labels project\. The response from `CreateProjectVersion` is an Amazon Resource Name \(ARN\) for the version of the model\. 
 
-Training takes a while to complete\. You can get the current status by calling [ DescribeProjectVersions ](API_DescribeProjectVersions.md)\.
+Training uses the training and test datasets associated with the project\. For more information, see [Creating training and test datasets](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/creating-datasets.html)\. 
 
-Once training has successfully completed, call [ DescribeProjectVersions ](API_DescribeProjectVersions.md) to get the training results and evaluate the model\. 
+**Note**  
+You can train a modelin a project that doesn't have associated datasets by specifying manifest files in the `TrainingData` and `TestingData` fields\.   
+If you open the console after training a model with manifest files, Amazon Rekognition Custom Labels creates the datasets for you using the most recent manifest files\. You can no longer train a model version for the project by specifying manifest files\.   
+Instead of training with a project without associated datasets, we recommend that you use the manifest files to create training and test datasets for the project\.
+
+Training takes a while to complete\. You can get the current status by calling [ DescribeProjectVersions ](API_DescribeProjectVersions.md)\. Training completed successfully if the value of the `Status` field is `TRAINING_COMPLETED`\.
+
+If training fails, see [ Debugging a failed model training](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/tm-debugging.html)\. 
+
+Once training has successfully completed, call [ DescribeProjectVersions ](API_DescribeProjectVersions.md) to get the training results and evaluate the model\. For more information, see [Improving a trained Amazon Rekognition Custom Labels model](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/improving-model.html)\. 
 
 After evaluating the model, you start the model by calling [ StartProjectVersion ](API_StartProjectVersion.md)\.
 
@@ -94,14 +103,14 @@ Value Pattern: `^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$`
 Required: No
 
  ** [ TestingData ](#API_CreateProjectVersion_RequestSyntax) **   <a name="rekognition-CreateProjectVersion-request-TestingData"></a>
-The dataset to use for testing\.  
+Specifies an external manifest that the service uses to test the model\. If you specify `TestingData` you must also specify `TrainingData`\. The project must not have any associated datasets\.  
 Type: [ TestingData ](API_TestingData.md) object  
-Required: Yes
+Required: No
 
  ** [ TrainingData ](#API_CreateProjectVersion_RequestSyntax) **   <a name="rekognition-CreateProjectVersion-request-TrainingData"></a>
-The dataset to use for training\.   
+Specifies an external manifest that the services uses to train the model\. If you specify `TrainingData` you must also specify `TestingData`\. The project must not have any associated datasets\.   
 Type: [ TrainingData ](API_TrainingData.md) object  
-Required: Yes
+Required: No
 
  ** [ VersionName ](#API_CreateProjectVersion_RequestSyntax) **   <a name="rekognition-CreateProjectVersion-request-VersionName"></a>
 A name for the version of the model\. This value must be unique\.  

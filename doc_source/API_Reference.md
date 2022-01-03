@@ -22,15 +22,22 @@
 + [ SearchFacesByImage ](API_SearchFacesByImage.md)
 
 ## Amazon Rekognition Custom Labels<a name="rek-custom-labels-api-list"></a>
++ [ CreateDataset ](API_CreateDataset.md)
 + [ CreateProject ](API_CreateProject.md)
 + [ CreateProjectVersion ](API_CreateProjectVersion.md)
++ [ DeleteDataset ](API_DeleteDataset.md)
 + [ DeleteProject ](API_DeleteProject.md)
 + [ DeleteProjectVersion ](API_DeleteProjectVersion.md)
++ [ DescribeDataset ](API_DescribeDataset.md)
 + [ DescribeProjects ](API_DescribeProjects.md)
 + [ DescribeProjectVersions ](API_DescribeProjectVersions.md)
 + [ DetectCustomLabels ](API_DetectCustomLabels.md)
++ [ DistributeDatasetEntries ](API_DistributeDatasetEntries.md)
++ [ ListDatasetEntries ](API_ListDatasetEntries.md)
++ [ ListDatasetLabels ](API_ListDatasetLabels.md)
 + [ StartProjectVersion ](API_StartProjectVersion.md)
 + [ StopProjectVersion ](API_StopProjectVersion.md)
++ [ UpdateDatasetEntries ](API_UpdateDatasetEntries.md)
 
 ## Amazon Rekognition Video Stored Video<a name="rek-stored-video-api-list"></a>
 + [ GetCelebrityRecognition ](API_GetCelebrityRecognition.md)

@@ -1,6 +1,6 @@
 # TestingData<a name="API_TestingData"></a>
 
-The dataset used for testing\. Optionally, if `AutoCreate` is set, Amazon Rekognition Custom Labels creates a testing dataset using an 80/20 split of the training dataset\.
+The dataset used for testing\. Optionally, if `AutoCreate` is set, Amazon Rekognition Custom Labels uses the training dataset to create a test dataset with a temporary split of the training dataset\. 
 
 ## Contents<a name="API_TestingData_Contents"></a>
 
@@ -10,7 +10,7 @@ Type: Array of [ Asset ](API_Asset.md) objects
 Required: No
 
  ** AutoCreate **   <a name="rekognition-Type-TestingData-AutoCreate"></a>
-If specified, Amazon Rekognition Custom Labels creates a testing dataset with an 80/20 split of the training dataset\.  
+If specified, Amazon Rekognition Custom Labels temporarily splits the training dataset \(80%\) to create a test dataset \(20%\) for the training job\. After training completes, the test dataset is not stored and the training dataset reverts to its previous size\.  
 Type: Boolean  
 Required: No
 

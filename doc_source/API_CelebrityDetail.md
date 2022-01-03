@@ -26,6 +26,11 @@ Type: String
 Pattern: `[0-9A-Za-z]*`   
 Required: No
 
+ ** KnownGender **   <a name="rekognition-Type-CelebrityDetail-KnownGender"></a>
+Retrieves the known gender for the celebrity\.  
+Type: [ KnownGender ](API_KnownGender.md) object  
+Required: No
+
  ** Name **   <a name="rekognition-Type-CelebrityDetail-Name"></a>
 The name of the celebrity\.  
 Type: String  

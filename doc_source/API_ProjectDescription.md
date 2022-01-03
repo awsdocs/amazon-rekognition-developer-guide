@@ -1,12 +1,17 @@
 # ProjectDescription<a name="API_ProjectDescription"></a>
 
-A description of a Amazon Rekognition Custom Labels project\.
+A description of an Amazon Rekognition Custom Labels project\. For more information, see [ DescribeProjects ](API_DescribeProjects.md)\.
 
 ## Contents<a name="API_ProjectDescription_Contents"></a>
 
  ** CreationTimestamp **   <a name="rekognition-Type-ProjectDescription-CreationTimestamp"></a>
 The Unix timestamp for the date and time that the project was created\.  
 Type: Timestamp  
+Required: No
+
+ ** Datasets **   <a name="rekognition-Type-ProjectDescription-Datasets"></a>
+ Information about the training and test datasets in the project\.   
+Type: Array of [ DatasetMetadata ](API_DatasetMetadata.md) objects  
 Required: No
 
  ** ProjectArn **   <a name="rekognition-Type-ProjectDescription-ProjectArn"></a>

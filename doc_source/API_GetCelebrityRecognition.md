@@ -2,14 +2,16 @@
 
 Gets the celebrity recognition results for a Amazon Rekognition Video analysis started by [ StartCelebrityRecognition ](API_StartCelebrityRecognition.md)\.
 
-Celebrity recognition in a video is an asynchronous operation\. Analysis is started by a call to [ StartCelebrityRecognition ](API_StartCelebrityRecognition.md) which returns a job identifier \(`JobId`\)\. When the celebrity recognition operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartCelebrityRecognition`\. To get the results of the celebrity recognition analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetCelebrityDetection` and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityDetection`\. 
+Celebrity recognition in a video is an asynchronous operation\. Analysis is started by a call to [ StartCelebrityRecognition ](API_StartCelebrityRecognition.md) which returns a job identifier \(`JobId`\)\. 
+
+When the celebrity recognition operation finishes, Amazon Rekognition Video publishes a completion status to the Amazon Simple Notification Service topic registered in the initial call to `StartCelebrityRecognition`\. To get the results of the celebrity recognition analysis, first check that the status value published to the Amazon SNS topic is `SUCCEEDED`\. If so, call `GetCelebrityDetection` and pass the job identifier \(`JobId`\) from the initial call to `StartCelebrityDetection`\. 
 
 For more information, see [Working with stored videos](video.md)\.
 
- `GetCelebrityRecognition` returns detected celebrities and the time\(s\) they are detected in an array \(`Celebrities`\) of [ CelebrityRecognition ](API_CelebrityRecognition.md) objects\. Each `CelebrityRecognition` contains information about the celebrity in a [ CelebrityDetail ](API_CelebrityDetail.md) object and the time, `Timestamp`, the celebrity was detected\. 
+ `GetCelebrityRecognition` returns detected celebrities and the time\(s\) they are detected in an array \(`Celebrities`\) of [ CelebrityRecognition ](API_CelebrityRecognition.md) objects\. Each `CelebrityRecognition` contains information about the celebrity in a [ CelebrityDetail ](API_CelebrityDetail.md) object and the time, `Timestamp`, the celebrity was detected\. This [ CelebrityDetail ](API_CelebrityDetail.md) object stores information about the detected celebrity's face attributes, a face bounding box, known gender, the celebrity's name, and a confidence estimate\.
 
 **Note**  
- `GetCelebrityRecognition` only returns the default facial attributes \(`BoundingBox`, `Confidence`, `Landmarks`, `Pose`, and `Quality`\)\. The other facial attributes listed in the `Face` object of the following response syntax are not returned\. For more information, see [ FaceDetail ](API_FaceDetail.md)\. 
+ `GetCelebrityRecognition` only returns the default facial attributes \(`BoundingBox`, `Confidence`, `Landmarks`, `Pose`, and `Quality`\)\. The `BoundingBox` field only applies to the detected face instance\. The other facial attributes listed in the `Face` object of the following response syntax are not returned\. For more information, see [ FaceDetail ](API_FaceDetail.md)\. 
 
 By default, the `Celebrities` array is sorted by time \(milliseconds from the start of the video\)\. You can also sort the array by celebrity by specifying the value `ID` in the `SortBy` input parameter\.
 
@@ -141,6 +143,9 @@ Required: No
                }
             },
             "Id": "string",
+            "KnownGender": { 
+               "Type": "string"
+            },
             "Name": "string",
             "Urls": [ "string" ]
          },

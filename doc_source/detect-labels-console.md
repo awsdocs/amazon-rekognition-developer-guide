@@ -1,4 +1,4 @@
-# Exercise 1: Detect objects and scenes in an image \(Console\)<a name="detect-labels-console"></a>
+# Exercise 1: Detect objects and scenes \(Console\)<a name="detect-labels-console"></a>
 
 This section shows how, at a very high level, Amazon Rekognition's objects and scenes detection capability works\. When you specify an image as input, the service detects the objects and scenes in the image and returns them along with a percent confidence score for each object and scene\.
 
@@ -198,10 +198,31 @@ The image must be less than 5MB in size and must be of JPEG or PNG format\.
 
 1. Open the Amazon Rekognition console at [https://console\.aws\.amazon\.com/rekognition/](https://console.aws.amazon.com/rekognition/)\.
 
-1. Choose **Object and scene detection**\.
+1. Choose **Label detection**\.
 
 1. Do one of the following: 
    + Upload an image – Choose **Upload**, go to the location where you stored your image, and then select the image\. 
    + Use a URL – Type the URL in the text box, and then choose **Go**\.
 
 1. View the confidence score of each label detected in the **Labels \| Confidence** pane\.
+
+For more image analysis options, see [Working with images](images.md)\.
+
+## Detect objects and people in a video you provide<a name="detect-label-video-console"></a>
+
+You can upload a video that you provide as input in the Amazon Rekognition console\. Amazon Rekognition returns the people, objects, and labels detected in the video\.
+
+**Note**  
+The demo video must not be more than a minute long or larger than 30 MB\. It must be in MP4 file format and encoded using the H\.264 codec\.
+
+**To detect objects and people in a video you provide**
+
+1. Open the Amazon Rekognition console at [https://console\.aws\.amazon\.com/rekognition/](https://console.aws.amazon.com/rekognition/)\.
+
+1. Choose **Video analysis**\.
+
+1. Under **Choose a sample or upload your own**, select **Your own video**\.
+
+1. Drag and drop your video or select your video from the location where you've stored it\.
+
+ For more video analysis options, see [Working with stored videos](video.md) or [Working with streaming videos](streaming-video.md)\.

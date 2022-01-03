@@ -16,7 +16,7 @@ Pattern: `[0-9A-Za-z]*`
 Required: No
 
  ** KnownGender **   <a name="rekognition-Type-Celebrity-KnownGender"></a>
-The known gender identity for the celebrity that matches the provided ID\.  
+The known gender identity for the celebrity that matches the provided ID\. The known gender identity can be Male, Female, Nonbinary, or Unlisted\.  
 Type: [ KnownGender ](API_KnownGender.md) object  
 Required: No
 

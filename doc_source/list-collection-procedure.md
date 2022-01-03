@@ -192,6 +192,45 @@ For more information, see [Managing collections](collections.md#managing-collect
    ```
 
 ------
+#### [ Node\.js ]
+
+   ```
+   import { ListCollectionsCommand } from  "@aws-sdk/client-rekognition";
+   import  { RekognitionClient } from "@aws-sdk/client-rekognition";
+   
+   // Set the AWS Region.
+   const REGION = "region"; //e.g. "us-east-1"
+   const rekogClient = new RekognitionClient({ region: REGION });
+   
+   
+   const listCollection = async () => {
+       var max_results = 3
+       console.log("Displaying collections:")
+       var response = await rekogClient.send(new ListCollectionsCommand({MaxResults: max_results}))
+       var collection_count = 0
+       var done = false
+       while (done == false){
+           var collections = response.CollectionIds
+           collections.forEach(collection => {
+               console.log(collection)
+               collection_count += 1
+           });
+           if (JSON.stringify(response).includes("NextToken")){
+               nextToken = response.NextToken
+               response = new ListCollectionsCommand({NextToken:nextToken, MaxResults: max_results})
+           }
+           else{
+               done=true
+           }
+           return collection_count
+       }
+   }
+   
+   var collect_list = await listCollection()
+   console.log(collect_list)
+   ```
+
+------
 
 ## ListCollections operation request<a name="listcollections-request"></a>
 

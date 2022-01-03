@@ -37,12 +37,14 @@ For best practice information about images and facial comparison, see [Best prac
 + Amazon Rekognition Video can analyze stored videos up to 6 hours in length\.
 + Amazon Rekognition Video supports a maximum of 20 concurrent jobs per account\.
 + Stored videos must be encoded using the H\.264 codec\. The supported file formats are MPEG\-4 and MOV\.
++ Any Amazon Rekognition Video API that analyzes audio data only supports ACC audio codecs\.
 + The Time To Live \(TTL\) period for pagination tokens is 24 hours\. Pagination tokens are in the `NextToken` field retured by Get operations such as `GetLabeldetection`\.
 
 ### Amazon Rekognition Video streaming video<a name="limits-streaming-video"></a>
 + A Kinesis Video input stream can be associated with at most 1 Amazon Rekognition Video stream processor\.
 + A Kinesis Data output stream can be associated with at most 1 Amazon Rekognition Video stream processor\. 
 + The Kinesis Video input stream and Kinesis Data output stream associated with an Amazon Rekognition Video stream processor cannot be shared by multiple processors\.
++ Any Amazon Rekognition Video API that analyzes audio data only supports ACC audio codecs\.
 
 ## Default quotas<a name="changeable-quotas"></a>
 

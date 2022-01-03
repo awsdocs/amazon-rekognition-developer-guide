@@ -271,7 +271,7 @@ If you've already run a video example other than [Analyzing a video stored in an
 
 The following is an example JSON response\. The response includes the following:
 + **Recognized celebrities** – `Celebrities` is an array of celebrities and the times that they are recognized in a video\. A [ CelebrityRecognition ](API_CelebrityRecognition.md) object exists for each time the celebrity is recognized in the video\. Each `CelebrityRecognition` contains information about a recognized celebrity \([ CelebrityDetail ](API_CelebrityDetail.md)\) and the time \(`Timestamp`\) the celebrity was recognized in the video\. `Timestamp` is measured in milliseconds from the start of the video\. 
-+ **CelebrityDetail** – Contains information about a recognized celebrity\. It includes the celebrity name \(`Name`\), identifier \(`ID`\), and a list of URLs pointing to related content \(`Urls`\)\. It also includes the bounding box for the celebrity's body, the confidence level that Amazon Rekognition Video has in the accuracy of the recognition, and details about the celebrity's face, [ FaceDetail ](API_FaceDetail.md)\. If you need to get the related content later, you can use `ID` with [ GetCelebrityInfo ](API_GetCelebrityInfo.md)\. 
++ **CelebrityDetail** – Contains information about a recognized celebrity\. It includes the celebrity name \(`Name`\), identifier \(`ID`\), the celebrity's known gender\(`KnownGender`\), and a list of URLs pointing to related content \(`Urls`\)\. It also includes the confidence level that Amazon Rekognition Video has in the accuracy of the recognition, and details about the celebrity's face, [ FaceDetail ](API_FaceDetail.md)\. If you need to get the related content later, you can use `ID` with [ GetCelebrityInfo ](API_GetCelebrityInfo.md)\. 
 + **VideoMetadata** – Information about the video that was analyzed\.
 
 ```
@@ -279,12 +279,6 @@ The following is an example JSON response\. The response includes the following:
     "Celebrities": [
         {
             "Celebrity": {
-                "BoundingBox": {
-                    "Height": 0.8842592835426331,
-                    "Left": 0,
-                    "Top": 0.11574073880910873,
-                    "Width": 0.24427083134651184
-                },
                 "Confidence": 0.699999988079071,
                 "Face": {
                     "BoundingBox": {
@@ -332,6 +326,9 @@ The following is an example JSON response\. The response includes the following:
                     }
                 },
                 "Id": "XXXXXX",
+                "KnownGender": {
+                    "Type": "Female"
+                },
                 "Name": "Celeb A",
                 "Urls": []
             },

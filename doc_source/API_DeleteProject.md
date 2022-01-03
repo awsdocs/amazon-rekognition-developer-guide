@@ -2,6 +2,8 @@
 
 Deletes an Amazon Rekognition Custom Labels project\. To delete a project you must first delete all models associated with the project\. To delete a model, see [ DeleteProjectVersion ](API_DeleteProjectVersion.md)\.
 
+ `DeleteProject` is an asynchronous operation\. To check if the project is deleted, call [ DescribeProjects ](API_DescribeProjects.md)\. The project is deleted when the project no longer appears in the response\.
+
 This operation requires permissions to perform the `rekognition:DeleteProject` action\. 
 
 ## Request Syntax<a name="API_DeleteProject_RequestSyntax"></a>

@@ -1,13 +1,13 @@
 # KnownGender<a name="API_KnownGender"></a>
 
-The known gender identity for the celebrity that matches the provided ID\.
+The known gender identity for the celebrity that matches the provided ID\. The known gender identity can be Male, Female, Nonbinary, or Unlisted\.
 
 ## Contents<a name="API_KnownGender_Contents"></a>
 
  ** Type **   <a name="rekognition-Type-KnownGender-Type"></a>
 A string value of the KnownGender info about the Celebrity\.  
 Type: String  
-Valid Values:` Male | Female`   
+Valid Values:` Male | Female | Nonbinary | Unlisted`   
 Required: No
 
 ## See Also<a name="API_KnownGender_SeeAlso"></a>

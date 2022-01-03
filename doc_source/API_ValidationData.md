@@ -2,7 +2,7 @@
 
 Contains the Amazon S3 bucket location of the validation data for a model training job\. 
 
-The validation data includes error information for individual JSON Lines\. For more information, see *Debugging a Failed Model Training* in the Amazon Rekognition Custom Labels Developer Guide\. 
+The validation data includes error information for individual JSON lines in the dataset\. For more information, see [Debugging a Failed Model Training](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/tm-debugging.html)\. 
 
 You get the `ValidationData` object for the training dataset \([ TrainingDataResult ](API_TrainingDataResult.md)\) and the test dataset \([ TestingDataResult ](API_TestingDataResult.md)\) by calling [ DescribeProjectVersions ](API_DescribeProjectVersions.md)\. 
 

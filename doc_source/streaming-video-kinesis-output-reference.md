@@ -32,7 +32,7 @@ The Amazon Rekognition Video API works by comparing the faces in your input stre
                     "Height": number,
                     "Left": number
                 },
-                "Confidence": 23,
+                "Confidence": number,
                 "Landmarks": [
                     {
                         "Type": "string",

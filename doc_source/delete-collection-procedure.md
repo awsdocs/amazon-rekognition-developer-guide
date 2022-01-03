@@ -169,6 +169,37 @@ For more information, see [Managing collections](collections.md#managing-collect
    ```
 
 ------
+#### [ Node\.js ]
+
+   ```
+   import { DeleteCollectionCommand } from  "@aws-sdk/client-rekognition";
+   import  { RekognitionClient } from "@aws-sdk/client-rekognition";
+   
+   // Set the AWS Region.
+   const REGION = "region"; //e.g. "us-east-1"
+   const rekogClient = new RekognitionClient({ region: REGION });
+   
+   // Name the collection
+   const collection_name = "collectionName"
+   
+   const deleteCollection = async (collectionName) => {
+       try {
+          console.log(`Attempting to delete collection named - ${collectionName}`)
+          var response = await rekogClient.send(new DeleteCollectionCommand({CollectionId: collectionName}))
+          var status_code = response.StatusCode
+          if (status_code = 200){
+              console.log("Collection successfully deleted.")
+          }
+          return response; // For unit tests.
+       } catch (err) {
+         console.log("Error", err.stack);
+       }
+     };
+   
+   deleteCollection(collection_name)
+   ```
+
+------
 
 ## DeleteCollection operation request<a name="deletecollection-request"></a>
 

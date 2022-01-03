@@ -7,12 +7,10 @@ To learn how to create an IAM identity\-based policy using these example JSON po
 **Topics**
 + [Policy best practices](#security_iam_service-with-iam-policy-best-practices)
 + [Using the Amazon Rekognition console](#security_iam_id-based-policy-examples-console)
-+ [AWS managed \(predefined\) policies for Amazon Rekognition](#access-policy-aws-managed-policies)
-+ [Example Amazon Rekognition custom labels policies](#security_iam_id-based-policy-examples-custom-labels)
++ [Example Amazon Rekognition Custom Labels policies](#security_iam_id-based-policy-examples-custom-labels)
 + [Example 1: Allow a user read\-only access to resources](#security_iam_id-based-policy-examples-read-only)
 + [Example 2: Allow a user full access to resources](#security_iam_id-based-policy-examples-full-acess)
 + [Allow users to view their own permissions](#security_iam_id-based-policy-examples-view-own-permissions)
-+ [Amazon Rekognition updates to AWS managed policies](#security-iam-awsmanpol-updates)
 
 ## Policy best practices<a name="security_iam_service-with-iam-policy-best-practices"></a>
 
@@ -28,22 +26,7 @@ With the exception of the Amazon Rekognition Custom Labels feature, Amazon Rekog
 
 You don't need to allow minimum console permissions for users that are making calls only to the AWS CLI or the AWS API\. Instead, allow access to only the actions that match the API operation that you're trying to perform\.
 
-## AWS managed \(predefined\) policies for Amazon Rekognition<a name="access-policy-aws-managed-policies"></a>
-
-AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. These AWS managed policies grant necessary permissions for common use cases so that you can avoid having to investigate what permissions are needed\. For more information, see [AWS Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\. 
-
-The following AWS managed policies, which you can attach to users in your account, are specific to Amazon Rekognition:
-+ **AmazonRekognitionFullAccess** – Grants full access to Amazon Rekognition resources including creating and deleting collections\.
-+ **AmazonRekognitionReadOnlyAccess** – Grants read\-only access to Amazon Rekognition resources\.
-+ **AmazonRekognitionServiceRole** – Allows Amazon Rekognition to call Amazon Kinesis Data Streams and Amazon SNS services on your behalf\.
-
-**Note**  
-You can review these permissions policies by signing in to the IAM console and searching for specific policies there\.  
-These policies work when you are using AWS SDKs or the AWS CLI\.
-
-You can also create your own custom IAM policies to allow permissions for Amazon Rekognition actions and resources\. You can attach these custom policies to the IAM users or groups that require those permissions\. 
-
-## Example Amazon Rekognition custom labels policies<a name="security_iam_id-based-policy-examples-custom-labels"></a>
+## Example Amazon Rekognition Custom Labels policies<a name="security_iam_id-based-policy-examples-custom-labels"></a>
 
 You can create identity\-based policies for Amazon Rekognition Custom Labels\. For more information, see [Security](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/sc-introduction.html)\. 
 
@@ -83,7 +66,11 @@ The following example grants read\-only access to Amazon Rekognition resources\.
                 "rekognition:DescribeProjectVersions",
                 "rekognition:DetectCustomLabels",
                 "rekognition:DetectProtectiveEquipment",
-                "rekognition:ListTagsForResource"
+                "rekognition:ListTagsForResource",
+               "rekognition:ListDatasetEntries",
+                "rekognition:ListDatasetLabels",
+                "rekognition:DescribeDataset"
+
             ],
             "Resource": "*"
         }
@@ -148,17 +135,3 @@ This example shows how you might create a policy that allows IAM users to view t
     ]
 }
 ```
-
-## Amazon Rekognition updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
-
-
-
-View details about updates to AWS managed policies for Amazon Rekognition since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the Amazon Rekognition Document history page\.
-
-
-
-
-| Change | Description | Date |  |  |  | 
-| --- | --- | --- | --- | --- | --- | 
-|  Tagging update for [AmazonRekognitionFullAccess](https://docs.aws.amazon.com/rekognition/latest/dg/security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-full-acess) and [AmazonRekognitionReadOnlyAccess](https://docs.aws.amazon.com/rekognition/latest/dg/security_iam_id-based-policy-examples.html#security_iam_id-based-policy-examples-read-only)  |  Amazon Rekognition added new tagging actions to the AmazonRekognitionFullAccess and AmazonRekognitionReadOnlyAccess policies\.  | April 2, 2021 | 
-|  Amazon Rekognition started tracking changes  |  Amazon Rekognition started tracking changes for its AWS managed policies\.  | April 2, 2021 | 

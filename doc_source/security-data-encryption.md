@@ -8,7 +8,7 @@ The following information explains where Amazon Rekognition uses data encryption
 
 #### Images<a name="security-image-ear-images"></a>
 
-Images passed to Amazon Rekognition API operations may be stored and used to improve the service unless you have opted out by contacting [AWS Support](http://aws.amazon.com/contact-us/) and following the process provided to you\. The stored images are encrypted at rest \(Amazon S3\) using AWS Key Management Service \(SSE\-KMS\)\. 
+Images passed to Amazon Rekognition API operations may be stored and used to improve the service unless you unless you have opted out by visiting the [AI services opt\-out policy page](http://aws.amazon.com/https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html) and following the process explained there\. The stored images are encrypted at rest \(Amazon S3\) using AWS Key Management Service \(SSE\-KMS\)\. 
 
 #### Collections<a name="security-ear-face-comparison-collections"></a>
 
@@ -18,7 +18,7 @@ For face comparison operations that store information in a collection, the under
 
 #### Videos<a name="security-video-ear-videos"></a>
 
- To analyze a video, Amazon Rekognition copies your videos into the service for processing\. The video may be stored and used to improve the service unless you have opted out by contacting [AWS Support](http://aws.amazon.com/contact-us/) and following the process provided to you\. The videos are encrypted at rest \(Amazon S3\) using AWS Key Management Service \(SSE\-KMS\)\. 
+ To analyze a video, Amazon Rekognition copies your videos into the service for processing\. The video may be stored and used to improve the service unless you have opted out by visiting the [AI services opt\-out policy page](http://aws.amazon.com/https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html) and following the process explained there\. The videos are encrypted at rest \(Amazon S3\) using AWS Key Management Service \(SSE\-KMS\)\. 
 
 ### Amazon Rekognition Custom Labels<a name="security-ear-custom-labels"></a>
 

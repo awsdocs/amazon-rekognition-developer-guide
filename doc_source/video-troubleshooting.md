@@ -44,3 +44,9 @@ If you don't receive the message in your application, consider the following:
   + If you use an IAM service role to give Amazon Rekognition Video access to multiple SNS topics, verify that you're using the correct topic and that the topic name is prepended with *AmazonRekognition*\. For more information, see [Giving access to multiple Amazon SNS topics](api-video-roles.md#api-video-roles-all-topics)\. 
   + If you use an AWS Lambda function, confirm that your Lambda function is subscribed to the correct Amazon SNS topic\. For more information, see [ Invoking Lambda Functions Using Amazon SNS Notifications](https://docs.aws.amazon.com/sns/latest/dg/sns-lambda.html)\.
 + If you subscribe an Amazon SQS queue to your Amazon SNS topic, confirm that your Amazon SNS topic has permissions to send messages to the Amazon SQS queue\. For more information, see [Give permission to the Amazon SNS topic to send messages to the Amazon SQS queue](https://docs.aws.amazon.com/sns/latest/dg/SendMessageToSQS.html#SendMessageToSQS.sqs.permissions)\.
+
+## I need additional help troubleshooting the Amazon SNS topic<a name="video-troubleshoot-sns"></a>
+
+You can use AWS X\-Ray with Amazon SNS to trace and analyze the messages that travel through your application\. For more information, see [Amazon SNS and AWS X\-Ray](https://docs.aws.amazon.com/xray/latest/devguide/xray-services-sns.html)\.
+
+For additional help, you can post your question to the [Amazon Rekognition forum](http://forums.aws.amazon.com/forum.jspa?forumID=234) or consider signing up for [AWS technical support](https://aws.amazon.com/premiumsupport/)\.

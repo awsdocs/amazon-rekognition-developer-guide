@@ -15,17 +15,9 @@ For text detection in videos, you can implement solutions such as:
 
 To detect text in images in JPEG or PNG format, use the [ DetectText ](API_DetectText.md) operation\. To asynchronously detect text in video, use the [ StartTextDetection ](API_StartTextDetection.md) and [ GetTextDetection ](API_GetTextDetection.md) operations\. Both image and video text detection operations support most fonts, including highly stylized ones\. After detecting text, Amazon Rekognition creates a representation of detected words and lines of text, shows the relationship between them, and tells you where the text is on an image or video frame\.
 
-The `DetectText` and `GetTextDetection` operations detect words and lines\. A *word* is one or more ISO\-standard Latin\-script characters from the standard English alphabet and ASCII symbols that aren't separated by spaces\. `DetectText` can detect up to 100 words in an image\. `GetTextDetection` can detect up to 50 words per frame of video\. The following table list the characters that Amazon Rekognition can detect\.
+The `DetectText` and `GetTextDetection` operations detect words and lines\. A *word* is one or more script characters that aren't separated by spaces\. `DetectText` can detect up to 100 words in an image\. `GetTextDetection` can detect up to 50 words per frame of video\. 
 
-
-|  Category  |  Supported characters  | 
-| --- | --- | 
-| Uppercase letters |  ABCDEFGHIJKLMNOPQRSTUVWXYZ  | 
-|  Lowercase letters  |  abcdefghijklmnopqrstuvwxyz  | 
-|  Numbers  |  0123456789  | 
-| Symbols | \! " \# $ % & \\ ' \( \) \* \+ , \- \. / : ; < = > ? @ \[ \\ \] ^ \_ ` \{ \| \} \~ | 
-
-Amazon Rekognition is designed to detect words in English\. It might also detect words in other languages that use these characters, but it doesn't detect diacritics and other characters\. For example, it might detect "un" in French, but it might not detect "garçon" or might not detect it correctly\.
+A word is one or more script characters that are not separated by spaces\. Amazon Rekognition is designed to detect words in English, Arabic, Russian, German, French, Italian, Portuguese and Spanish\.
 
 A *line* is a string of equally spaced words\. A line isn't necessarily a complete sentence \(periods don't indicate the end of a line\)\. For example, Amazon Rekognition detects a driver's license number as a line\. A line ends when there is no aligned text after it or when there's a large gap between words, relative to the length of the words\. Depending on the gap between words, Amazon Rekognition might detect multiple lines in text that are aligned in the same direction\. If a sentence spans multiple lines, the operation returns multiple lines\.
 

@@ -1,6 +1,6 @@
 # DescribeProjects<a name="API_DescribeProjects"></a>
 
-Lists and gets information about your Amazon Rekognition Custom Labels projects\.
+Gets information about your Amazon Rekognition Custom Labels projects\. 
 
 This operation requires permissions to perform the `rekognition:DescribeProjects` action\.
 
@@ -9,7 +9,8 @@ This operation requires permissions to perform the `rekognition:DescribeProjects
 ```
 {
    "MaxResults": number,
-   "NextToken": "string"
+   "NextToken": "string",
+   "ProjectNames": [ "string" ]
 }
 ```
 
@@ -29,6 +30,14 @@ Type: String
 Length Constraints: Maximum length of 1024\.  
 Required: No
 
+ ** [ ProjectNames ](#API_DescribeProjects_RequestSyntax) **   <a name="rekognition-DescribeProjects-request-ProjectNames"></a>
+A list of the projects that you want Amazon Rekognition Custom Labels to describe\. If you don't specify a value, the response includes descriptions for all the projects in your AWS account\.  
+Type: Array of strings  
+Array Members: Minimum number of 1 item\. Maximum number of 10 items\.  
+Length Constraints: Minimum length of 1\. Maximum length of 255\.  
+Pattern: `[a-zA-Z0-9_.\-]+`   
+Required: No
+
 ## Response Syntax<a name="API_DescribeProjects_ResponseSyntax"></a>
 
 ```
@@ -37,6 +46,16 @@ Required: No
    "ProjectDescriptions": [ 
       { 
          "CreationTimestamp": number,
+         "Datasets": [ 
+            { 
+               "CreationTimestamp": number,
+               "DatasetArn": "string",
+               "DatasetType": "string",
+               "Status": "string",
+               "StatusMessage": "string",
+               "StatusMessageCode": "string"
+            }
+         ],
          "ProjectArn": "string",
          "Status": "string"
       }

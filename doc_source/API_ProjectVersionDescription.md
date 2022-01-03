@@ -1,11 +1,11 @@
 # ProjectVersionDescription<a name="API_ProjectVersionDescription"></a>
 
-The description of a version of a model\.
+A description of a version of an Amazon Rekognition Custom Labels model\.
 
 ## Contents<a name="API_ProjectVersionDescription_Contents"></a>
 
  ** BillableTrainingTimeInSeconds **   <a name="rekognition-Type-ProjectVersionDescription-BillableTrainingTimeInSeconds"></a>
-The duration, in seconds, that the model version has been billed for training\. This value is only returned if the model version has been successfully trained\.  
+The duration, in seconds, that you were billed for a successful training of the model version\. This value is only returned if the model version has been successfully trained\.  
 Type: Long  
 Valid Range: Minimum value of 0\.  
 Required: No

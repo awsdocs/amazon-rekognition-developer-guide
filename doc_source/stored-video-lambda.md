@@ -295,7 +295,7 @@ Use the following AWS CLI command to test the Lambda function by starting the la
 
 1. Upload an MOV or MPEG\-4 format video file to your S3 bucket\. For test purposes, upload a video that's no longer than 30 seconds in length\.
 
-   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service Console User Guide*\.
+   For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service User Guide*\.
 
 1. Run the following AWS CLI command to start detecting labels in a video\.
 

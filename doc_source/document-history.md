@@ -5,6 +5,8 @@ The following table describes important changes in each release of the *Amazon R
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [A new node in the table of contents shows Amazon Rekognition examples hosted on GitHub](#document-history) | Updated code examples from the AWS Code Examples Repository now show up in a separate node in the Amazon Rekognition developer guide for easier access\. | October 22, 2021 | 
+| [Amazon Rekognition can detect black frames and primary program content in video segments](#document-history) | Amazon Rekognition can identify black frames, color bars, opening credits, end credits, studio logos, and primary program content as technical cues in a video using the `StartSegmentDetection` and `GetSegmentDetection` operations\. | June 7, 2021 | 
 | [Amazon Rekognition DetectText can detect up to 100 words in an image](#document-history) | You can use the Amazon Rekognition `DetectText` operation to detect up to 100 words in an image\. | May 21, 2021 | 
 | [Amazon Rekognition now supports tagging](#document-history) | You can now use tags to identify, organize, search for, and filter Amazon Rekognition collections, stream processors, and Custom Labels models\. | March 25, 2021 | 
 | [Amazon Rekognition can now detect personal protect equipment](#document-history) | Amazon Rekognition can now detect hand covers, face covers, and head covers on persons in an image\. | October 15, 2020 | 

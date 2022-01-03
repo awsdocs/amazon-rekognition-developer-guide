@@ -167,6 +167,40 @@ For more information, see [Managing collections](collections.md#managing-collect
    ```
 
 ------
+#### [ Node\.JS ]
+
+   In the following example, replace the value of `region` with the name of the region associated with your account and replace the value of `collectionName` with the desired name of your collection\.
+
+   ```
+   import { CreateCollectionCommand} from  "@aws-sdk/client-rekognition";
+   import  { RekognitionClient } from "@aws-sdk/client-rekognition";
+   
+   // Set the AWS Region.
+   const REGION = "region"; //e.g. "us-east-1"
+   const rekogClient = new RekognitionClient({ region: REGION });
+   
+   // Name the collecction
+   const collection_name = "collectionName"
+   
+   const createCollection = async (collectionName) => {
+       try {
+          console.log(`Creating collection: ${collectionName}`)
+          const data = await rekogClient.send(new CreateCollectionCommand({CollectionId: collectionName}));
+          console.log("Collection ARN:")
+          console.log(data.CollectionARN)
+          console.log("Status Code:")
+          console.log(String(data.StatusCode))
+          console.log("Success.",  data);
+          return data;
+       } catch (err) {
+         console.log("Error", err.stack);
+       }
+     };
+   
+     createCollection(collection_name)
+   ```
+
+------
 
 ## CreateCollection operation request<a name="createcollection-request"></a>
 
