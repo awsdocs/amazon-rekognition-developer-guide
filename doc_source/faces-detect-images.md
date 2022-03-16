@@ -341,7 +341,7 @@ You can provide the input image as an image byte array \(base64\-encoded image b
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
         region: process.env.AWS_REGION
       })
-      const client = new AWS.Rekognition();
+      const client = new AWS.Rekognition(config);
       const params = {
         Image: {
           S3Object: {
