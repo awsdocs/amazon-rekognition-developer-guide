@@ -221,14 +221,14 @@ public class Handler implements RequestHandler<Map<String,String>, String> {
 @Override
 public String handleRequest(Map<String, String> event, Context context) {
     LambdaLogger logger = context.getLogger();
-    String delFag = event.get("flag");
-    logger.log("FLAG IS: " + delFag);
+    String delFlag = event.get("flag");
+    logger.log("FLAG IS: " + delFlag);
     S3Service s3Service = new S3Service();
     AnalyzePhotos photos = new AnalyzePhotos();
 
     String bucketName = "<Enter your bucket name>";
     List<String> myKeys = s3Service.listBucketObjects(bucketName);
-    if (delFag.compareTo("true") == 0) {
+    if (delFlag.compareTo("true") == 0) {
 
         // Create a List to store the data.
         List<ArrayList<WorkItem>> myList = new ArrayList<>();
@@ -254,7 +254,7 @@ public String handleRequest(Map<String, String> event, Context context) {
             logger.log("All Assets in the bucket are deleted!");
         }
      }
-    return delFag;
+    return delFlag;
   }
  }
 ```
