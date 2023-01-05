@@ -2,7 +2,7 @@
 
 Amazon Rekognition Image can analyze images that are stored in an Amazon S3 bucket or images that are supplied as image bytes\.
 
-In this topic, you use the [ DetectLabels ](API_DetectLabels.md) API operation to detect objects, concepts, and scenes in an image \(JPEG or PNG\) that's stored in an Amazon S3 bucket\. You pass an image to an Amazon Rekognition Image API operation by using the [ Image ](API_Image.md) input parameter\. Within `Image`, you specify the [ S3Object ](API_S3Object.md) object property to reference an image stored in an S3 bucket\. Image bytes for images stored in Amazon S3 buckets don't need to be base64 encoded\. For more information, see [Image specifications](images-information.md)\. 
+In this topic, you use the [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html) API operation to detect objects, concepts, and scenes in an image \(JPEG or PNG\) that's stored in an Amazon S3 bucket\. You pass an image to an Amazon Rekognition Image API operation by using the [Image](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_Image.html) input parameter\. Within `Image`, you specify the [S3Object](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_3Object.html) object property to reference an image stored in an S3 bucket\. Image bytes for images stored in Amazon S3 buckets don't need to be base64 encoded\. For more information, see [Image specifications](images-information.md)\. 
 
 ## Example request<a name="images-s3-request"></a>
 
@@ -108,33 +108,32 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
        public static void getLabelsfromImage(RekognitionClient rekClient, String bucket, String image) {
    
            try {
-           S3Object s3Object = S3Object.builder()
+               S3Object s3Object = S3Object.builder()
                    .bucket(bucket)
                    .name(image)
                    .build() ;
    
-           Image myImage = Image.builder()
+               Image myImage = Image.builder()
                    .s3Object(s3Object)
                    .build();
    
-           DetectLabelsRequest detectLabelsRequest = DetectLabelsRequest.builder()
+               DetectLabelsRequest detectLabelsRequest = DetectLabelsRequest.builder()
                    .image(myImage)
                    .maxLabels(10)
                    .build();
    
-           DetectLabelsResponse labelsResponse = rekClient.detectLabels(detectLabelsRequest);
-           List<Label> labels = labelsResponse.labels();
+               DetectLabelsResponse labelsResponse = rekClient.detectLabels(detectLabelsRequest);
+               List<Label> labels = labelsResponse.labels();
+               System.out.println("Detected labels for the given photo");
+               for (Label label: labels) {
+                   System.out.println(label.name() + ": " + label.confidence().toString());
+               }
    
-           System.out.println("Detected labels for the given photo");
-           for (Label label: labels) {
-               System.out.println(label.name() + ": " + label.confidence().toString());
+           } catch (RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
            }
-   
-       } catch (RekognitionException e) {
-           System.out.println(e.getMessage());
-           System.exit(1);
        }
-     }
    ```
 
 ------
@@ -187,6 +186,62 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    
    if __name__ == "__main__":
        main()
+   ```
+
+------
+#### [ Node\.Js ]
+
+   This example displays information about labels detected in an image\. 
+
+   Change the value of `photo` to the path and file name of an image file that contains one or more celebrity faces\. Change the value of `bucket` to the name of the S3 bucket containing the provided image file\. Change the value of `REGION` to the name of the region associated with your account\. 
+
+   ```
+   // Import required AWS SDK clients and commands for Node.js
+   import { DetectLabelsCommand } from  "@aws-sdk/client-rekognition";
+   import  { RekognitionClient } from "@aws-sdk/client-rekognition";
+   
+   // Set the AWS Region.
+   const REGION = "region-name"; //e.g. "us-east-1"
+   // Create SNS service object.
+   const rekogClient = new RekognitionClient({ region: REGION });
+   
+   const bucket = 'bucket-name'
+   const photo = 'photo-name'
+   
+   // Set params
+   const params = {
+       Image: {
+         S3Object: {
+           Bucket: bucket,
+           Name: photo
+         },
+       },
+     }
+   
+   const detect_labels = async () => {
+       try {
+           const response = await rekogClient.send(new DetectLabelsCommand(params));
+           console.log(response.Labels)
+           response.Labels.forEach(label =>{
+               console.log(`Confidence: ${label.Confidence}`)
+               console.log(`Name: ${label.Name}`)
+               console.log('Instances:')
+               label.Instances.forEach(instance => {
+                   console.log(instance)
+               })
+               console.log('Parents:')
+               label.Parents.forEach(name => {
+                   console.log(name)
+               })
+               console.log("-------")
+           })
+           return response; // For unit tests.
+         } catch (err) {
+           console.log("Error", err);
+         }
+   };
+   
+   detect_labels();
    ```
 
 ------

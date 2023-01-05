@@ -7,3 +7,4 @@ These cross\-service tutorials demonstrate how to use Rekognition's API operatio
 + [Using Amazon Rekognition and Lambda to tag assets in an Amazon S3 bucket](images-lambda-s3-tutorial.md)
 + [Creating AWS video analyzer applications](stored-video-tutorial-v2.md)
 + [Creating an Amazon Rekognition Lambda function](stored-video-lambda.md)
++ [Using Amazon Rekognition for Identity Verification](identity-verification-tutorial.md)

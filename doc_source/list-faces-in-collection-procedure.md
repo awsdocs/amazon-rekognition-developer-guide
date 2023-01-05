@@ -1,6 +1,6 @@
 # Listing faces in a collection<a name="list-faces-in-collection-procedure"></a>
 
-You can use the [ ListFaces ](API_ListFaces.md) operation to list the faces in a collection\.
+You can use the [ListFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListFaces.html) operation to list the faces in a collection\.
 
 For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\. 
 
@@ -81,7 +81,6 @@ For more information, see [Managing faces in a collection](collections.md#collec
 
    ```
        public static void listFacesCollection(RekognitionClient rekClient, String collectionId ) {
-   
            try {
                ListFacesRequest facesRequest = ListFacesRequest.builder()
                    .collectionId(collectionId)
@@ -89,8 +88,6 @@ For more information, see [Managing faces in a collection](collections.md#collec
                    .build();
    
                ListFacesResponse facesResponse = rekClient.listFaces(facesRequest);
-   
-               // For each face in the collection, print out the confidence level and face id value.
                List<Face> faces = facesResponse.faces();
                for (Face face: faces) {
                    System.out.println("Confidence level there is a face: "+face.confidence());
@@ -239,7 +236,7 @@ If the response has more faces than are requested by `MaxResults`, a token is re
 
 The response from `ListFaces` is information about the face metadata that's stored in the specified collection\.
 + **FaceModelVersion** – The version of the face model that's associated with the collection\. For more information, see [Model versioning](face-detection-model.md)\.
-+  **Faces** – Information about the faces in the collection\. This includes information about [ BoundingBox ](API_BoundingBox.md), confidence, image identifiers, and the face ID\. For more information, see [ Face ](API_Face.md)\. 
++  **Faces** – Information about the faces in the collection\. This includes information about [BoundingBox](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_BoundingBox.html), confidence, image identifiers, and the face ID\. For more information, see [Face](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_Face.html)\. 
 +  **NextToken** – The token that's used to get the next set of results\. 
 
 ```
@@ -256,7 +253,8 @@ The response from `ListFaces` is information about the face metadata that's stor
             "Confidence": 100,
             "ExternalImageId": "input.jpg",
             "FaceId": "0b683aed-a0f1-48b2-9b5e-139e9cc2a757",
-            "ImageId": "9ba38e68-35b6-5509-9d2e-fcffa75d1653"
+            "ImageId": "9ba38e68-35b6-5509-9d2e-fcffa75d1653",
+            "IndexFacesModelVersion": "5.0"
         }
     ],
     "NextToken": "sm+5ythT3aeEVIR4WA...."

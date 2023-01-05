@@ -74,4 +74,4 @@ $ gst-launch-1.0 autovideosrc device=/dev/video0 ! videoconvert ! video/x-raw,fo
 **Note**  
  If your launch command terminates with a non\-negotiation error, check the output from the Device Monitor and make sure that the `videoconvert` parameter values are valid capabilities of your device\. 
 
- You will see a video feed from your device camera on your Kinesis video stream after a few seconds\. To begin detecting and matching faces with Amazon Rekognition, start your Amazon Rekognition Video stream processor\. For more information, see [Analyze streaming videos with Amazon Rekognition Video stream processors](using-rekognition-video-stream-processor.md)\. 
+ You will see a video feed from your device camera on your Kinesis video stream after a few seconds\. To begin detecting and matching faces with Amazon Rekognition, start your Amazon Rekognition Video stream processor\. For more information, see [Overview of Amazon Rekognition Video stream processor operations](streaming-video.md#using-rekognition-video-stream-processor)\. 

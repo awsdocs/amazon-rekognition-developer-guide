@@ -1,6 +1,6 @@
 # Detecting labels in an image<a name="labels-detect-labels-image"></a>
 
-You can use the [ DetectLabels ](API_DetectLabels.md) operation to detect labels in an image\. For an example, see [Analyzing images stored in an Amazon S3 bucket](images-s3.md)\.
+You can use the [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html) operation to detect labels in an image and retrieve information about an image’s properties\. Image properties include attributes like the color of the foreground and background and the image's sharpness, brightness, and contrast\. You can retrive just the labels in an image, just the properties of the image, or both\. For an example, see [Analyzing images stored in an Amazon S3 bucket](images-s3.md)\.
 
 The following examples use various AWS SDKs and the AWS CLI to call `DetectLabels`\. For information about the `DetectLabels` operation response, see [DetectLabels response](#detectlabels-response)\.
 
@@ -97,8 +97,10 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    This example displays the JSON output from the `detect-labels` CLI operation\. Replace the values of `bucket` and `photo` with the names of the Amazon S3 bucket and image that you used in Step 2\. 
 
    ```
-   aws rekognition detect-labels \
-   --image '{"S3Object":{"Bucket":"bucket","Name":"file"}}'
+   aws rekognition detect-labels --image '{ "S3Object": { "Bucket": "bucket", "Name": "file" } }' \
+   --features GENERAL_LABELS IMAGE_PROPERTIES \
+   --settings '{"ImageProperties": {"MaxDominantColors":1}, "GeneralLabels":{"LabelInclusionFilters":["Cat"]}}' \
+   --region us-east-1
    ```
 
 ------
@@ -264,7 +266,7 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
    If you are using TypeScript definitions, you may need to use `import AWS from 'aws-sdk'` instead of `const AWS = require('aws-sdk')`, in order to run the program with Node\.js\. You can consult the [AWS SDK for Javascript](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/) for more details\. Depending on how you have your configurations set up, you also may need to specify your region with `AWS.config.update({region:region});`\.
 
    ```
-   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+                                   //Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
    //PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
    
@@ -327,34 +329,29 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
        public static void detectImageLabels(RekognitionClient rekClient, String sourceImage) {
    
            try {
-   
-               InputStream sourceStream = new URL("https://images.unsplash.com/photo-1557456170-0cf4f4d0d362?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGFrZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80").openStream();
-              // InputStream sourceStream = new FileInputStream(sourceImage);
+               InputStream sourceStream = new FileInputStream(sourceImage);
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
    
                // Create an Image object for the source image.
                Image souImage = Image.builder()
-                       .bytes(sourceBytes)
-                       .build();
+                   .bytes(sourceBytes)
+                   .build();
    
                DetectLabelsRequest detectLabelsRequest = DetectLabelsRequest.builder()
-                       .image(souImage)
-                       .maxLabels(10)
-                       .build();
+                   .image(souImage)
+                   .maxLabels(10)
+                   .build();
    
                DetectLabelsResponse labelsResponse = rekClient.detectLabels(detectLabelsRequest);
                List<Label> labels = labelsResponse.labels();
-   
                System.out.println("Detected labels for the given photo");
                for (Label label: labels) {
                    System.out.println(label.name() + ": " + label.confidence().toString());
                }
    
-           } catch (RekognitionException | FileNotFoundException | MalformedURLException e) {
+           } catch (RekognitionException | FileNotFoundException e) {
                System.out.println(e.getMessage());
                System.exit(1);
-           } catch (IOException e) {
-               e.printStackTrace();
            }
        }
    ```
@@ -365,7 +362,19 @@ The following examples use various AWS SDKs and the AWS CLI to call `DetectLabel
 
 ## DetectLabels operation request<a name="detectlabels-request"></a>
 
-The input to `DetectLabel` is an image\. In this example JSON input, the source image is loaded from an Amazon S3 Bucket\. `MaxLabels` is the maximum number of labels to return in the response\. `MinConfidence` is the minimum confidence that Amazon Rekognition Image must have in the accuracy of the detected label for it to be returned in the response\.
+The input to `DetectLabel` is an image\. In this example JSON input, the source image is loaded from an Amazon S3 Bucket\. `MaxLabels` is the maximum number of labels to return in the response\. `MinConfidence` is the minimum confidence that Amazon Rekognition Video must have in the accuracy of the detected label for it to be returned in the response\.
+
+Features lets you specify one or more features of the image that you want returned, allowing you to select `GENERAL_LABELS` and `IMAGE_PROPERTIES`\. Including `GENERAL_LABELS` will return the labels detected in the input image, while including `IMAGE_PROPERTIES` will allow you to access image color and quality\. 
+
+Settings lets you filter the returned items for both the `GENERAL_LABELS` and `IMAGE_PROPERTIES` features\. For labels you can use inclusive and exclusive filters\. You can also filter by label specific, individual labels or by label category: 
++ LabelInclusionFilters \- Allows you to specify which labels you want included in the response\.
++ LabelExclusionFilters \- Allows you to specify which labels you want excluded from the response\.
++ LabelCategoryInclusionFilters \- Allows you to specify which label categories you want included in the response\.
++ LabelCategoryExclusionFilters \- Allows you to specify which label categories you want excluded from the response\.
+
+ You can also combine inclusive and exclusive filters according to your needs, excluding some labels or categories and including others\. 
+
+`IMAGE_PROPERTIES` refer to an image’s dominant colors and quality attributes such as sharpness, brightness, and contrast\. When detecting `IMAGE_PROPERTIES` you can specify the maximum number of dominant colors to return \(default is 10\) by using the `MaxDominantColors` parameter\.
 
 ```
 {
@@ -376,7 +385,19 @@ The input to `DetectLabel` is an image\. In this example JSON input, the source 
         }
     },
     "MaxLabels": 10,
-    "MinConfidence": 75
+    "MinConfidence": 75,
+    "Features": [ "GENERAL_LABELS", "IMAGE_PROPERTIES" ],
+    "Settings": {
+        "GeneralLabels": {
+            "LabelInclusionFilters": [<Label(s)>],
+            "LabelExclusionFilters": [<Label(s)>],
+            "LabelCategoryInclusionFilters": [<Category Name(s)>],
+            "LabelCategoryExclusionFilters": [<Category Name(s)>] 
+        },
+        "ImageProperties": {
+            "MaxDominantColors":10
+        }
+    }
 }
 ```
 
@@ -384,225 +405,308 @@ The input to `DetectLabel` is an image\. In this example JSON input, the source 
 
 The response from `DetectLabels` is an array of labels detected in the image and the level of confidence by which they were detected\. 
 
-The following is an example response from `DetectLabels`\.
-
-The response shows that the operation detected multiple labels including Person, Vehicle, and Car\. Each label has an associated level of confidence\. For example, the detection algorithm is 98\.991432% confident that the image contains a person\.
-
-The response also includes the ancestor labels for a label in the `Parents` array\. For example, the label Automobile has two parent labels named Vehicle and Transportation\. 
+The following is an example response from `DetectLabels`\. The sample response below contains a variety of attributes returned for GENERAL\_LABELS, including:
++ Name \- The name of the detected label\. In this example, the operation detected an object with the label Mobile Phone\.
++ Confidence \- Each label has an associated level of confidence\. In this example, the confidence for the label was 99\.36%\.
++ Parents \- The ancestor labels for a detected label\. In this example, the label Mobile Phone has one parent label named Phone\.
++ Aliases \- Information about possible Aliases for the label\. In this example, the Mobile Phone label has a possible alias of Cell Phone\.
++ Categories \- The label category that the detected label belongs to\. In this example, it is Technology and Computing\.
 
 The response for common object labels includes bounding box information for the location of the label on the input image\. For example, the Person label has an instances array containing two bounding boxes\. These are the locations of two people detected in the image\.
+
+The response also includes attributes regarding IMAGE\_PROPERTIES\. The attributes presented by the IMAGE\_PROPERTIES feature are:
++ Quality \- Information about the Sharpness, Brightness, and Contrast of the input image, scored between 0 to 100\. Quality is reported for the entire image and for the background and foreground of the image, if available\. However, Contrast is only reported for the entire image while Sharpness and Brightness are also reported for Background and Foreground\. 
++  Dominant Color \- An array of the dominant colors in the image\. Each dominant color is described with a simplified color name, a CSS color palette, RGB values, and a hex code\. 
++  Foreground \- Information about the dominant Colors, Sharpness and Brightness of the input image’s foreground\. 
++  Background \- Information about the dominant Colors, Sharpness and Brightness of the input image’s background\. 
+
+ When GENERAL\_LABELS and IMAGE\_PROPERTIES are used together as input parameters, Amazon Rekognition Image will also return the dominant colors of objects with bounding boxes\. 
 
 The field `LabelModelVersion` contains the version number of the detection model used by `DetectLabels`\. 
 
 ```
 {
-            
-    {
-    "Labels": [
+   
+   "Labels": [
         {
-            "Name": "Vehicle",
-            "Confidence": 99.15271759033203,
-            "Instances": [],
+            "Name": "Mobile Phone",
             "Parents": [
-                {
-                    "Name": "Transportation"
-                }
-            ]
-        },
-        {
-            "Name": "Transportation",
-            "Confidence": 99.15271759033203,
-            "Instances": [],
-            "Parents": []
-        },
-        {
-            "Name": "Automobile",
-            "Confidence": 99.15271759033203,
-            "Instances": [],
-            "Parents": [
-                {
-                    "Name": "Vehicle"
-                },
-                {
-                    "Name": "Transportation"
-                }
-            ]
-        },
-        {
-            "Name": "Car",
-            "Confidence": 99.15271759033203,
+              { 
+                "Name": "Phone" 
+              }
+            ],
+            "Aliases": [
+              {
+                "Name": "Cell Phone" 
+              }
+            ], 
+            "Categories": [
+              {
+                "Name": "Technology and Computing"
+              }
+            ],
+            "Confidence": 99.9364013671875,
             "Instances": [
                 {
                     "BoundingBox": {
-                        "Width": 0.10616336017847061,
-                        "Height": 0.18528179824352264,
-                        "Left": 0.0037978808395564556,
-                        "Top": 0.5039216876029968
-                    },
-                    "Confidence": 99.15271759033203
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.2429988533258438,
-                        "Height": 0.21577216684818268,
-                        "Left": 0.7309805154800415,
-                        "Top": 0.5251884460449219
-                    },
-                    "Confidence": 99.1286392211914
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.14233611524105072,
-                        "Height": 0.15528248250484467,
-                        "Left": 0.6494812965393066,
-                        "Top": 0.5333095788955688
-                    },
-                    "Confidence": 98.48368072509766
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.11086395382881165,
-                        "Height": 0.10271988064050674,
-                        "Left": 0.10355594009160995,
-                        "Top": 0.5354844927787781
-                    },
-                    "Confidence": 96.45606231689453
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.06254628300666809,
-                        "Height": 0.053911514580249786,
-                        "Left": 0.46083059906959534,
-                        "Top": 0.5573825240135193
-                    },
-                    "Confidence": 93.65448760986328
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.10105438530445099,
-                        "Height": 0.12226245552301407,
-                        "Left": 0.5743985772132874,
-                        "Top": 0.534368634223938
-                    },
-                    "Confidence": 93.06217193603516
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.056389667093753815,
-                        "Height": 0.17163699865341187,
-                        "Left": 0.9427769780158997,
-                        "Top": 0.5235804319381714
-                    },
-                    "Confidence": 92.6864013671875
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.06003860384225845,
-                        "Height": 0.06737709045410156,
-                        "Left": 0.22409997880458832,
-                        "Top": 0.5441341400146484
-                    },
-                    "Confidence": 90.4227066040039
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.02848697081208229,
-                        "Height": 0.19150497019290924,
-                        "Left": 0.0,
-                        "Top": 0.5107086896896362
-                    },
-                    "Confidence": 86.65286254882812
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.04067881405353546,
-                        "Height": 0.03428703173995018,
-                        "Left": 0.316415935754776,
-                        "Top": 0.5566273927688599
-                    },
-                    "Confidence": 85.36471557617188
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.043411049991846085,
-                        "Height": 0.0893595889210701,
-                        "Left": 0.18293385207653046,
-                        "Top": 0.5394920110702515
-                    },
-                    "Confidence": 82.21705627441406
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.031183116137981415,
-                        "Height": 0.03989990055561066,
-                        "Left": 0.2853088080883026,
-                        "Top": 0.5579366683959961
-                    },
-                    "Confidence": 81.0157470703125
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.031113790348172188,
-                        "Height": 0.056484755128622055,
-                        "Left": 0.2580395042896271,
-                        "Top": 0.5504819750785828
-                    },
-                    "Confidence": 56.13441467285156
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.08586374670267105,
-                        "Height": 0.08550430089235306,
-                        "Left": 0.5128012895584106,
-                        "Top": 0.5438792705535889
-                    },
-                    "Confidence": 52.37760925292969
-                }
-            ],
-            "Parents": [
-                {
-                    "Name": "Vehicle"
-                },
-                {
-                    "Name": "Transportation"
+                        "Width": 0.26779675483703613,
+                        "Height": 0.8562285900115967,
+                        "Left": 0.3604024350643158,
+                        "Top": 0.09245597571134567,
+                    }
+                    "Confidence": 99.9364013671875,
+                    "DominantColors": [
+                    {
+                "Red": 120,
+                "Green": 137,
+                "Blue": 132,
+                "HexCode": "3A7432",
+                "SimplifiedColor": "red", 
+                "CssColor": "fuscia",    
+                "PixelPercentage": 40.10 
+                    }       
+                        ],
                 }
             ]
-        },
-        {
-            "Name": "Human",
-            "Confidence": 98.9914321899414,
-            "Instances": [],
-            "Parents": []
-        },
-        {
-            "Name": "Person",
-            "Confidence": 98.9914321899414,
-            "Instances": [
-                {
-                    "BoundingBox": {
-                        "Width": 0.19360728561878204,
-                        "Height": 0.2742200493812561,
-                        "Left": 0.43734854459762573,
-                        "Top": 0.35072067379951477
-                    },
-                    "Confidence": 98.9914321899414
-                },
-                {
-                    "BoundingBox": {
-                        "Width": 0.03801717236638069,
-                        "Height": 0.06597328186035156,
-                        "Left": 0.9155802130699158,
-                        "Top": 0.5010883808135986
-                    },
-                    "Confidence": 85.02790832519531
-                }
-            ],
-            "Parents": []
         }
     ],
-    "LabelModelVersion": "2.0"
-}
-
-    
+    "ImageProperties": {
+        "Quality": {
+            "Brightness": 40,
+            "Sharpness": 40,
+            "Contrast": 24,
+        },
+        "DominantColors": [
+            {
+                "Red": 120,
+                "Green": 137,
+                "Blue": 132,
+                "HexCode": "3A7432",
+                "SimplifiedColor": "red", 
+                "CssColor": "fuscia",    
+                "PixelPercentage": 40.10 
+            }       
+        ],
+        "Foreground": {
+            "Quality": {
+                "Brightness": 40,
+                "Sharpness": 40,
+            },
+            "DominantColors": [                
+                {                    
+                    "Red": 200,
+                    "Green": 137,
+                    "Blue": 132,
+                    "HexCode": "3A7432",
+                    "CSSColor": "",
+                    "SimplifiedColor": "red", 
+                    "PixelPercentage": 30.70             
+                }          
+            ],   
+        }
+        "Background": {
+            "Quality": {
+                "Brightness": 40,
+                "Sharpness": 40,
+            },
+            "DominantColors": [                
+                {                    
+                    "Red": 200,
+                    "Green": 137,
+                    "Blue": 132,
+                    "HexCode": "3A7432",
+                    "CSSColor": "",
+                    "SimplifiedColor": "Red", 
+                    "PixelPercentage": 10.20              
+                }          
+            ],   
+        }, 
+    },
+    "LabelModelVersion": "3.0"
 }
 ```
+
+## Transforming the DetectLabels response<a name="detectlabels-transform-response"></a>
+
+When using the DetectLabels API, you might need the response structure to mimic the older API response structure, where both primary labels and aliases were contained in the same list\. 
+
+The following is an example of the current API response from [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html):
+
+```
+"Labels": [
+        {
+            "Name": "Mobile Phone",
+            "Confidence": 99.99717712402344,
+            "Instances": [],
+            "Parents": [
+                { 
+                "Name": "Phone" 
+                }
+             ],
+            "Aliases": [
+                {
+                "Name": "Cell Phone" 
+                }
+             ]
+        }
+ ]
+```
+
+The following example shows the previous response from the [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html) API:
+
+```
+"Labels": [
+        {
+            "Name": "Mobile Phone",
+            "Confidence": 99.99717712402344,
+            "Instances": [],
+            "Parents": [
+                {
+                "Name": "Phone" 
+                }
+             ]
+         },
+         {
+            "Name": "Cell Phone",
+            "Confidence": 99.99717712402344,
+            "Instances": [],
+            "Parents": [
+                { 
+                "Name": "Phone" 
+                }
+             ]
+         },
+]
+```
+
+If needed, you can transform the current response to follow the format of the older response\. You can use the following sample code to transform the latest API response to the previous API response structure:
+
+------
+#### [ Python ]
+
+The following code sample demonstrates how to transform the current response from the DetectLabels API\. In the code sample below, you can replace the value of *EXAMPLE\_INFERENCE\_OUTPUT* with the output of a DetectLabels operation you have run\.
+
+```
+from copy import deepcopy
+
+LABEL_KEY = "Labels"
+ALIASES_KEY = "Aliases"
+INSTANCE_KEY = "Instances"
+NAME_KEY = "Name"
+
+#Latest API response sample
+EXAMPLE_INFERENCE_OUTPUT = {
+    "Labels": [
+        {
+            "Name": "Mobile Phone",
+            "Confidence": 97.530106,
+            "Categories": [
+                {
+                    "Name": "Technology and Computing"
+                }
+            ],
+            "Aliases": [
+                {
+                    "Name": "Cell Phone"
+                }
+            ],
+            "Instances":[
+                {
+                    "BoundingBox":{
+                        "Height":0.1549897,
+                        "Width":0.07747964,
+                        "Top":0.50858885,
+                        "Left":0.00018205095
+                    },
+                    "Confidence":98.401276
+                }
+            ]
+        },
+        {
+            "Name": "Urban",
+            "Confidence": 99.99982,
+            "Categories": [
+                "Colors and Visual Composition"
+            ]
+        }
+    ]
+}
+
+def expand_aliases(inferenceOutputsWithAliases):
+
+    if LABEL_KEY in inferenceOutputsWithAliases:
+        expandInferenceOutputs = []
+        for primaryLabelDict in inferenceOutputsWithAliases[LABEL_KEY]:
+            if ALIASES_KEY in primaryLabelDict:
+                for alias in primaryLabelDict[ALIASES_KEY]:
+                    aliasLabelDict = deepcopy(primaryLabelDict)
+                    aliasLabelDict[NAME_KEY] = alias[NAME_KEY]
+                    del aliasLabelDict[ALIASES_KEY]
+                    if INSTANCE_KEY in aliasLabelDict:
+                        del aliasLabelDict[INSTANCE_KEY]
+                    expandInferenceOutputs.append(aliasLabelDict)
+
+        inferenceOutputsWithAliases[LABEL_KEY].extend(expandInferenceOutputs)
+
+    return inferenceOutputsWithAliases
+
+
+if __name__ == "__main__":
+
+    outputWithExpandAliases = expand_aliases(EXAMPLE_INFERENCE_OUTPUT)
+    print(outputWithExpandAliases)
+```
+
+Below is an example of the transformed response:
+
+```
+#Output example after the transformation
+{
+    "Labels": [
+        {
+            "Name": "Mobile Phone",
+            "Confidence": 97.530106,
+            "Categories": [
+                {
+                    "Name": "Technology and Computing"
+                }
+            ],
+            "Aliases": [
+                {
+                    "Name": "Cell Phone"
+                }
+            ],
+            "Instances":[
+                {
+                    "BoundingBox":{
+                        "Height":0.1549897,
+                        "Width":0.07747964,
+                        "Top":0.50858885,
+                        "Left":0.00018205095
+                    },
+                    "Confidence":98.401276
+                }
+            ]
+        },
+        {
+            "Name": "Cell Phone",
+            "Confidence": 97.530106,
+            "Categories": [
+                {
+                    "Name": "Technology and Computing"
+                }
+            ],
+            "Instances":[]
+        },
+        {
+            "Name": "Urban",
+            "Confidence": 99.99982,
+            "Categories": [
+                "Colors and Visual Composition"
+            ]
+        }
+    ]
+}
+```
+
+------

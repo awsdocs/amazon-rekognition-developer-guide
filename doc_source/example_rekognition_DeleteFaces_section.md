@@ -2,15 +2,32 @@
 
 The following code examples show how to delete faces from an Amazon Rekognition collection\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
 For more information, see [Deleting faces from a collection](https://docs.aws.amazon.com/rekognition/latest/dg/delete-faces-procedure.html)\.
 
 ------
 #### [ \.NET ]
 
 **AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
   
 
 ```
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Amazon.Rekognition;
+    using Amazon.Rekognition.Model;
+
+    /// <summary>
+    /// Uses the Amazon Rekognition Service to delete one or more faces from
+    /// a Rekognition collection. This example was created using the AWS SDK
+    /// for .NET version 3.7 and .NET Core 5.0.
+    /// </summary>
+    public class DeleteFaces
+    {
         public static async Task Main()
         {
             string collectionId = "MyCollection";
@@ -30,14 +47,16 @@ For more information, see [Deleting faces from a collection](https://docs.aws.am
                 Console.WriteLine($"FaceID: {face}");
             });
         }
+
+    }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
 +  For API details, see [DeleteFaces](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DeleteFaces) in *AWS SDK for \.NET API Reference*\. 
 
 ------
 #### [ Java ]
 
 **SDK for Java 2\.x**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
   
 
 ```
@@ -60,7 +79,6 @@ For more information, see [Deleting faces from a collection](https://docs.aws.am
         }
     }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
 +  For API details, see [DeleteFaces](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DeleteFaces) in *AWS SDK for Java 2\.x API Reference*\. 
 
 ------
@@ -68,29 +86,30 @@ For more information, see [Deleting faces from a collection](https://docs.aws.am
 
 **SDK for Kotlin**  
 This is prerelease documentation for a feature in preview release\. It is subject to change\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
   
 
 ```
-suspend fun deleteFacesCollection(collectionIdVal: String?, faceIdVal: String ) {
+suspend fun deleteFacesCollection(collectionIdVal: String?, faceIdVal: String) {
 
-       val deleteFacesRequest = DeleteFacesRequest {
-            collectionId = collectionIdVal
-            faceIds = listOf(faceIdVal)
-        }
+    val deleteFacesRequest = DeleteFacesRequest {
+        collectionId = collectionIdVal
+        faceIds = listOf(faceIdVal)
+    }
 
-      RekognitionClient { region = "us-east-1" }.use { rekClient ->
+    RekognitionClient { region = "us-east-1" }.use { rekClient ->
         rekClient.deleteFaces(deleteFacesRequest)
         println("$faceIdVal was deleted from the collection")
-      }
+    }
 }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
 +  For API details, see [DeleteFaces](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 
 
 ------
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
   
 
 ```
@@ -145,9 +164,8 @@ class RekognitionCollection:
         else:
             return deleted_ids
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
 +  For API details, see [DeleteFaces](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DeleteFaces) in *AWS SDK for Python \(Boto3\) API Reference*\. 
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

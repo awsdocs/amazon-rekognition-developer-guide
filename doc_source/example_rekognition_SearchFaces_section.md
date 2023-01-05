@@ -2,15 +2,31 @@
 
 The following code examples show how to search for faces in an Amazon Rekognition collection that match another face from the collection\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
 For more information, see [Searching for a face \(face ID\)](https://docs.aws.amazon.com/rekognition/latest/dg/search-face-with-id-procedure.html)\.
 
 ------
 #### [ \.NET ]
 
 **AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
   
 
 ```
+    using System;
+    using System.Threading.Tasks;
+    using Amazon.Rekognition;
+    using Amazon.Rekognition.Model;
+
+    /// <summary>
+    /// Uses the Amazon Rekognition Service to find faces in an image that
+    /// match the face Id provided in the method request. This example was
+    /// created using the AWS SDK for .NET version 3.7 and .NET Core 5.0.
+    /// </summary>
+    public class SearchFacesMatchingId
+    {
         public static async Task Main()
         {
             string collectionId = "MyCollection";
@@ -37,14 +53,15 @@ For more information, see [Searching for a face \(face ID\)](https://docs.aws.am
                 Console.WriteLine($"FaceId: {face.Face.FaceId} Similarity: {face.Similarity}");
             });
         }
+    }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
 +  For API details, see [SearchFaces](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/SearchFaces) in *AWS SDK for \.NET API Reference*\. 
 
 ------
 #### [ Java ]
 
 **SDK for Java 2\.x**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
   
 
 ```
@@ -53,40 +70,38 @@ For more information, see [Searching for a face \(face ID\)](https://docs.aws.am
         try {
             InputStream sourceStream = new FileInputStream(new File(sourceImage));
             SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
-
             Image souImage = Image.builder()
-                    .bytes(sourceBytes)
-                    .build();
+                .bytes(sourceBytes)
+                .build();
 
             SearchFacesByImageRequest facesByImageRequest = SearchFacesByImageRequest.builder()
-                    .image(souImage)
-                    .maxFaces(10)
-                    .faceMatchThreshold(70F)
-                    .collectionId(collectionId)
-                    .build();
+                .image(souImage)
+                .maxFaces(10)
+                .faceMatchThreshold(70F)
+                .collectionId(collectionId)
+                .build();
 
             SearchFacesByImageResponse imageResponse = rekClient.searchFacesByImage(facesByImageRequest) ;
-
-            // Display the results.
             System.out.println("Faces matching in the collection");
             List<FaceMatch> faceImageMatches = imageResponse.faceMatches();
             for (FaceMatch face: faceImageMatches) {
                 System.out.println("The similarity level is  "+face.similarity());
                 System.out.println();
             }
+
         } catch (RekognitionException | FileNotFoundException e) {
             System.out.println(e.getMessage());
             System.exit(1);
         }
     }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
 +  For API details, see [SearchFaces](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/SearchFaces) in *AWS SDK for Java 2\.x API Reference*\. 
 
 ------
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
   
 
 ```
@@ -150,9 +165,8 @@ class RekognitionCollection:
         else:
             return faces
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
 +  For API details, see [SearchFaces](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/SearchFaces) in *AWS SDK for Python \(Boto3\) API Reference*\. 
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

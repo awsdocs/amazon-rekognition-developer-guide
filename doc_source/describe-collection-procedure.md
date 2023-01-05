@@ -1,8 +1,8 @@
 # Describing a collection<a name="describe-collection-procedure"></a>
 
-You can use the [ DescribeCollection ](API_DescribeCollection.md) operation to get the following information about a collection: 
+You can use the [DescribeCollection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DescribeCollection.html) operation to get the following information about a collection: 
 + The number of faces that are indexed into the collection\.
-+ The version of the model that's used by the collection for face detection\. For more information, see [Model versioning](face-detection-model.md)\.
++ The version of the model being used with the collection\. For more information, see [Model versioning](face-detection-model.md)\.
 + The Amazon Resource Name \(ARN\) of the collection\.
 + The creation date and time of the collection\.
 
@@ -74,24 +74,20 @@ You can use the [ DescribeCollection ](API_DescribeCollection.md) operation to g
    ```
        public static void describeColl(RekognitionClient rekClient, String collectionName) {
    
-       try {
+           try {
+               DescribeCollectionRequest describeCollectionRequest = DescribeCollectionRequest.builder()
+                   .collectionId(collectionName)
+                   .build();
    
-           DescribeCollectionRequest describeCollectionRequest = DescribeCollectionRequest.builder()
-                .collectionId(collectionName)
-                .build();
+               DescribeCollectionResponse describeCollectionResponse = rekClient.describeCollection(describeCollectionRequest);
+               System.out.println("Collection Arn : " + describeCollectionResponse.collectionARN());
+               System.out.println("Created : " + describeCollectionResponse.creationTimestamp().toString());
    
-           DescribeCollectionResponse describeCollectionResponse = rekClient.describeCollection(describeCollectionRequest);
-   
-            System.out.println("Collection Arn : " +
-                describeCollectionResponse.collectionARN());
-            System.out.println("Created : " +
-                describeCollectionResponse.creationTimestamp().toString());
-   
-       } catch(RekognitionException e) {
-           System.out.println(e.getMessage());
-           System.exit(1);
+           } catch(RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
        }
-      }
    ```
 
 ------
@@ -237,7 +233,7 @@ The input to `DescribeCollection` is the ID of the desired collection, as shown 
 
 The response includes: 
 + The number of faces that are indexed into the collection, `FaceCount`\.
-+ The version of the face model that's used to detect faces, `FaceModelVersion`\.
++ The version of the face model being used with the collection, `FaceModelVersion`\. For more information, see [Model versioning](face-detection-model.md)\.
 + The collection Amazon Resource Name, `CollectionARN`\. 
 + The creation time and date of the collection, `CreationTimestamp`\. The value of `CreationTimestamp` is the number of milliseconds since the Unix epoch time until the creation of the collection\. The Unix epoch time is 00:00:00 Coordinated Universal Time \(UTC\), Thursday, 1 January 1970\. For more information, see [Unix Time](https://en.wikipedia.org/wiki/Unix_time)\.
 

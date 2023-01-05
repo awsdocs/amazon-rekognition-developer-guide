@@ -1,10 +1,10 @@
 # Searching stored videos for faces<a name="procedure-person-search-videos"></a>
 
-You can search a collection for faces that match faces of people who are detected in a stored video or a streaming video\. This section covers searching for faces in a stored video\. For information about searching for faces in a streaming video, see [Working with streaming videos](streaming-video.md)\.
+You can search a collection for faces that match faces of people who are detected in a stored video or a streaming video\. This section covers searching for faces in a stored video\. For information about searching for faces in a streaming video, see [Working with streaming video events](streaming-video.md)\.
 
-The faces that you search for must first be indexed into a collection by using [ IndexFaces ](API_IndexFaces.md)\. For more information, see [Adding faces to a collection](add-faces-to-collection-procedure.md)\. 
+The faces that you search for must first be indexed into a collection by using [IndexFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_IndexFaces.html)\. For more information, see [Adding faces to a collection](add-faces-to-collection-procedure.md)\. 
 
-Amazon Rekognition Video face searching follows the same asynchronous workflow as other Amazon Rekognition Video operations that analyze videos stored in an Amazon S3 bucket\. To start searching for faces in a stored video, call [ StartFaceSearch ](API_StartFaceSearch.md) and provide the ID of the collection that you want to search\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service \(Amazon SNS\) topic\. If the video analysis is successful, call [ GetFaceSearch ](API_GetFaceSearch.md) to get the search results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video operations](api-video.md)\. 
+Amazon Rekognition Video face searching follows the same asynchronous workflow as other Amazon Rekognition Video operations that analyze videos stored in an Amazon S3 bucket\. To start searching for faces in a stored video, call [StartFaceSearch](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartFaceSearch.html) and provide the ID of the collection that you want to search\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service \(Amazon SNS\) topic\. If the video analysis is successful, call [GetFaceSearch](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GeFaceSearch.html) to get the search results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video operations](api-video.md)\. 
 
 The following procedure shows how to search a collection for faces that match the faces of people who are detected in a video\. The procedure also shows how to get the tracking data for people who are matched in the video\. The procedure expands on the code in [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), which uses an Amazon Simple Queue Service \(Amazon SQS\) queue to get the completion status of a video analysis request\. 
 
@@ -139,20 +139,20 @@ The following procedure shows how to search a collection for faces that match th
    
            try {
                S3Object s3Obj = S3Object.builder()
-                       .bucket(bucket)
-                       .name(video)
-                       .build();
+                   .bucket(bucket)
+                   .name(video)
+                   .build();
    
                Video vidOb = Video.builder()
-                       .s3Object(s3Obj)
-                       .build();
+                   .s3Object(s3Obj)
+                   .build();
    
                StartFaceDetectionRequest  faceDetectionRequest = StartFaceDetectionRequest.builder()
-                       .jobTag("Faces")
-                       .faceAttributes(FaceAttributes.ALL)
-                       .notificationChannel(channel)
-                       .video(vidOb)
-                       .build();
+                   .jobTag("Faces")
+                   .faceAttributes(FaceAttributes.ALL)
+                   .notificationChannel(channel)
+                   .video(vidOb)
+                   .build();
    
                StartFaceDetectionResponse startLabelDetectionResult = rekClient.startFaceDetection(faceDetectionRequest);
                startJobId=startLabelDetectionResult.jobId();
@@ -168,8 +168,8 @@ The following procedure shows how to search a collection for faces that match th
            try {
                String paginationToken=null;
                GetFaceDetectionResponse faceDetectionResponse=null;
-               Boolean finished = false;
-               String status="";
+               boolean finished = false;
+               String status;
                int yy=0 ;
    
                do{
@@ -177,10 +177,10 @@ The following procedure shows how to search a collection for faces that match th
                        paginationToken = faceDetectionResponse.nextToken();
    
                    GetFaceDetectionRequest recognitionRequest = GetFaceDetectionRequest.builder()
-                           .jobId(startJobId)
-                           .nextToken(paginationToken)
-                          .maxResults(10)
-                           .build();
+                       .jobId(startJobId)
+                       .nextToken(paginationToken)
+                       .maxResults(10)
+                       .build();
    
                    // Wait until the job succeeds
                    while (!finished) {
@@ -201,7 +201,6 @@ The following procedure shows how to search a collection for faces that match th
    
                    // Proceed when the job is done - otherwise VideoMetadata is null
                    VideoMetadata videoMetaData=faceDetectionResponse.videoMetadata();
-   
                    System.out.println("Format: " + videoMetaData.format());
                    System.out.println("Codec: " + videoMetaData.codec());
                    System.out.println("Duration: " + videoMetaData.durationMillis());
@@ -212,13 +211,11 @@ The following procedure shows how to search a collection for faces that match th
                    List<FaceDetection> faces= faceDetectionResponse.faces();
    
                    for (FaceDetection face: faces) {
-   
                        String age = face.face().ageRange().toString();
-                       String beard = face.face().beard().toString();
-                       String eyeglasses = face.face().eyeglasses().toString();
-                       String eyesOpen = face.face().eyesOpen().toString();
-                       String mustache = face.face().mustache().toString();
                        String smile = face.face().smile().toString();
+                       System.out.println("The detected face is estimated to be"
+                                   + age + " years old.");
+                       System.out.println("There is a smile : "+smile);
                    }
    
                } while (faceDetectionResponse !=null && faceDetectionResponse.nextToken() != null);
@@ -310,7 +307,7 @@ The following procedure shows how to search a collection for faces that match th
 
 The following is an example JSON response from `GetFaceSearch`\.
 
-The response includes an array of people \(`Persons`\) detected in the video whose faces match a face in the input collection\. An array element, [ PersonMatch ](API_PersonMatch.md), exists for each time the person is matched in the video\. Each `PersonMatch` includes an array of face matches from the input collection, [ FaceMatch ](API_FaceMatch.md), information about the matched person, [ PersonDetail ](API_PersonDetail.md), and the time the person was matched in the video\. 
+The response includes an array of people \(`Persons`\) detected in the video whose faces match a face in the input collection\. An array element, [PersonMatch](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_PersonMatch.html), exists for each time the person is matched in the video\. Each `PersonMatch` includes an array of face matches from the input collection, [FaceMatch](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_FaceMatch.html), information about the matched person, [PersonDetail](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_PersonDetail.html), and the time the person was matched in the video\. 
 
 ```
 {

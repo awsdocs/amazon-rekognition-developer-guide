@@ -90,7 +90,8 @@ This policy includes the following permissions\.
                 "rekognition:ListTagsForResource",
                 "rekognition:ListDatasetEntries",
                 "rekognition:ListDatasetLabels",
-                "rekognition:DescribeDataset"
+                "rekognition:DescribeDataset",
+                "rekognition:ListProjectPolicies"
             ],
             "Resource": "*"
         }
@@ -103,6 +104,8 @@ This policy includes the following permissions\.
 `AmazonRekognitionServiceRole` allows Amazon Rekognition to call Amazon Kinesis Data Streams and Amazon SNS services on your behalf\.
 
 You can attach the `AmazonRekognitionServiceRole` policy to your IAM identities\. 
+
+If using this service role, you should keep your account secure by limiting the scope of Amazon Rekognition's access to just the resources you are using\. This can be done by attaching a trust policy to your IAM service role\. For information on how to do this, see [Cross\-service confused deputy prevention](cross-service-confused-deputy-prevention.md)\.
 
 **Permissions details**
 
@@ -169,6 +172,7 @@ This policy includes the following permissions\.
         {
             "Effect": "Allow",
             "Action": [
+                "rekognition:CopyProjectVersion",
                 "rekognition:CreateProject",
                 "rekognition:CreateProjectVersion",
                 "rekognition:StartProjectVersion",
@@ -187,7 +191,10 @@ This policy includes the following permissions\.
                 "rekognition:DescribeDataset",
                 "rekognition:UpdateDatasetEntries",
                 "rekognition:DistributeDatasetEntries",
-                "rekognition:DeleteDataset"
+                "rekognition:DeleteDataset",
+                "rekognition:PutProjectPolicy",
+                "rekognition:ListProjectPolicies",
+                "rekognition:DeleteProjectPolicy"
 
             ],
             "Resource": "*"
@@ -207,6 +214,8 @@ View details about updates to AWS managed policies for Amazon Rekognition since 
 
 | Change | Description | Date |  |  |  | 
 | --- | --- | --- | --- | --- | --- | 
-|  Dataset management update for the following managed policies: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/rekognition/latest/dg/security-iam-awsmanpol.html)  |  Amazon Rekognition added the following actions to the AmazonRekognitionReadOnlyAccess, AmazonRekognitionFullOnlyAccess, and AmazonRekognitionCustomLabelsFullAccess managed policies [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/rekognition/latest/dg/security-iam-awsmanpol.html)  | November 1, 2021 | 
+| Actions for ProjectPolicy and Custom Labels Model Copy have been added to the following managed policies:[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/rekognition/latest/dg/security-iam-awsmanpol.html) |  Amazon Rekognition added the following actions to the AmazonRekognitionCustomLabelsFullAccess and AmazonRekognitionFullAccess managed policies: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/rekognition/latest/dg/security-iam-awsmanpol.html) |  July 21st, 2022  | 
+| Actions for ProjectPolicy and Custom Labels Model Copy have been added to the following managed policies:[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/rekognition/latest/dg/security-iam-awsmanpol.html) |  Amazon Rekognition added the following actions to the AmazonRekognitionReadOnlyAccess managed policy: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/rekognition/latest/dg/security-iam-awsmanpol.html) | July 21st, 2022 | 
+|  Dataset management update for the following managed policies: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/rekognition/latest/dg/security-iam-awsmanpol.html)  |  Amazon Rekognition added the following actions to the AmazonRekognitionReadOnlyAccess, AmazonRekognitionFullOnlyAccess, and AmazonRekognitionCustomLabelsFullAccess managed policies [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/rekognition/latest/dg/security-iam-awsmanpol.html)  |  November 1, 2021  | 
 |  Tagging update for [AWS managed policy: AmazonRekognitionReadOnlyAccess](#security-iam-awsmanpol-AmazonRekognitionReadOnlyAccess) and [AWS managed policy: AmazonRekognitionFullAccess](#security-iam-awsmanpol-AmazonRekognitionFullAccess)  |  Amazon Rekognition added new tagging actions to the AmazonRekognitionFullAccess and AmazonRekognitionReadOnlyAccess policies\.  | April 2, 2021 | 
 |  Amazon Rekognition started tracking changes  |  Amazon Rekognition started tracking changes for its AWS managed policies\.  | April 2, 2021 | 

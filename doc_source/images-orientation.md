@@ -32,7 +32,7 @@ When you know an image's orientation, you can write code to rotate and correctly
 
 ## Displaying bounding boxes<a name="images-bounding-boxes"></a>
 
-The Amazon Rekognition Image operations that analyze faces in an image also return the coordinates of the bounding boxes that surround the faces\. For more information, see [ BoundingBox ](API_BoundingBox.md)\. 
+The Amazon Rekognition Image operations that analyze faces in an image also return the coordinates of the bounding boxes that surround the faces\. For more information, see [BoundingBox](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_BoundingBox.html)\. 
 
 To display a bounding box around a face, similar to the box shown in the following image, in your application, use the bounding box coordinates in your code\. The bounding box coordinates returned by an operation reflect the image's orientation\. If you have to rotate the image to display it correctly, you might need to translate the bounding box coordinates\.
 
@@ -287,7 +287,7 @@ This code is taken from the AWS Documentation SDK examples GitHub repository\. S
     public static void recognizeAllCelebrities(RekognitionClient rekClient, String sourceImage) {
 
         try {
-            BufferedImage image = null;
+            BufferedImage image;
             InputStream sourceStream = new FileInputStream(sourceImage);
             SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
 
@@ -296,18 +296,16 @@ This code is taken from the AWS Documentation SDK examples GitHub repository\. S
             int width = image.getWidth();
 
             Image souImage = Image.builder()
-                    .bytes(sourceBytes)
-                    .build();
+                .bytes(sourceBytes)
+                .build();
 
             RecognizeCelebritiesRequest request = RecognizeCelebritiesRequest.builder()
-                    .image(souImage)
-                    .build();
+                .image(souImage)
+                .build();
 
             RecognizeCelebritiesResponse result = rekClient.recognizeCelebrities(request) ;
-
             List<Celebrity> celebs=result.celebrityFaces();
             System.out.println(celebs.size() + " celebrity(s) were recognized.\n");
-
             for (Celebrity celebrity: celebs) {
                 System.out.println("Celebrity recognized: " + celebrity.name());
                 System.out.println("Celebrity ID: " + celebrity.id());
@@ -328,13 +326,13 @@ This code is taken from the AWS Documentation SDK examples GitHub repository\. S
 
     public static void ShowBoundingBoxPositions(int imageHeight, int imageWidth, BoundingBox box, String rotation) {
 
-        float left = 0;
-        float top = 0;
-
-        if(rotation==null){
+        float left;
+        float top;
+        if (rotation==null){
             System.out.println("No estimated estimated orientation.");
             return;
         }
+
         // Calculate face position based on the image orientation
         switch (rotation) {
             case "ROTATE_0":

@@ -2,7 +2,7 @@
 
 The following examples shows you how to draw bounding boxes around face covers detected on persons\. For an example that uses AWS Lambda and Amazon DynamoDB, see the [AWS Documentation SDK examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/master/javav2/usecases/creating_lambda_ppe)\. 
 
-To detect face covers you use the [ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md) non\-storage API operation\. The image is loaded from the local file system\. You provide the input image to `DetectProtectiveEquipment` as an image byte array \(base64\-encoded image bytes\)\. For more information, see [Working with images](images.md)\.
+To detect face covers you use the [DetectProtectiveEquipment](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectProtectiveEquipment.html) non\-storage API operation\. The image is loaded from the local file system\. You provide the input image to `DetectProtectiveEquipment` as an image byte array \(base64\-encoded image bytes\)\. For more information, see [Working with images](images.md)\.
 
 The example displays a bounding box around detected face covers\. The bounding box is green if the face cover fully covers the body part\. Otherwise a red bounding box is displayed\. As a warning, a yellow bounding box is displayed within the face cover bounding box, if the detection confidence is lower than the specified confidence value\. If a face cover is not detected, a red bounding box is drawn around the person\. 
 
@@ -224,63 +224,57 @@ The image output is similar to the following\.
                                           RekognitionClient rekClient,
                                           String sourceImage,
                                           String bucketName) {
-          float confidence =80;
+          float confidence = 80;
+          byte[] data = getObjectBytes(s3, bucketName, sourceImage);
+          InputStream is = new ByteArrayInputStream(data);
    
-           byte[] data = getObjectBytes (s3, bucketName, sourceImage);
-           InputStream is = new ByteArrayInputStream(data);
+          try {
+              ProtectiveEquipmentSummarizationAttributes summarizationAttributes = ProtectiveEquipmentSummarizationAttributes.builder()
+                  .minConfidence(70F)
+                  .requiredEquipmentTypesWithStrings("FACE_COVER")
+                  .build();
    
-           try {
+              SdkBytes sourceBytes = SdkBytes.fromInputStream(is);
+              image = ImageIO.read(sourceBytes.asInputStream());
    
-               ProtectiveEquipmentSummarizationAttributes summarizationAttributes = ProtectiveEquipmentSummarizationAttributes.builder()
-                       .minConfidence(70F)
-                       .requiredEquipmentTypesWithStrings("FACE_COVER")
-                       .build();
+              // Create an Image object for the source image.
+              software.amazon.awssdk.services.rekognition.model.Image souImage = Image.builder()
+                  .bytes(sourceBytes)
+                  .build();
    
-               SdkBytes sourceBytes = SdkBytes.fromInputStream(is);
-               image = ImageIO.read(sourceBytes.asInputStream());
+              DetectProtectiveEquipmentRequest request = DetectProtectiveEquipmentRequest.builder()
+                  .image(souImage)
+                  .summarizationAttributes(summarizationAttributes)
+                  .build();
    
-               // Create an Image object for the source image.
-               software.amazon.awssdk.services.rekognition.model.Image souImage = Image.builder()
-                       .bytes(sourceBytes)
-                       .build();
+              DetectProtectiveEquipmentResponse result = rekClient.detectProtectiveEquipment(request);
+              JFrame frame = new JFrame("Detect PPE");
+              frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+              PPEBoundingBoxFrame panel = new PPEBoundingBoxFrame(result, image, confidence);
+              panel.setPreferredSize(new Dimension(image.getWidth() / scale, image.getHeight() / scale));
+              frame.setContentPane(panel);
+              frame.pack();
+              frame.setVisible(true);
    
-               DetectProtectiveEquipmentRequest request = DetectProtectiveEquipmentRequest.builder()
-                       .image(souImage)
-                       .summarizationAttributes(summarizationAttributes)
-                       .build();
+          } catch (RekognitionException e) {
+              e.printStackTrace();
+              System.exit(1);
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+      }
    
-               DetectProtectiveEquipmentResponse result = rekClient.detectProtectiveEquipment(request);
-   
-               // Create frame and panel.
-               JFrame frame = new JFrame("Detect PPE");
-               frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-               PPEBoundingBoxFrame panel = new PPEBoundingBoxFrame(result, image, confidence);
-               panel.setPreferredSize(new Dimension(image.getWidth() / scale, image.getHeight() / scale));
-               frame.setContentPane(panel);
-               frame.pack();
-               frame.setVisible(true);
-   
-           } catch (RekognitionException e) {
-               e.printStackTrace();
-               System.exit(1);
-           } catch (IOException e) {
-               e.printStackTrace();
-           } catch (Exception e) {
-               e.printStackTrace();
-           }
-       }
        public static byte[] getObjectBytes (S3Client s3, String bucketName, String keyName) {
    
            try {
                GetObjectRequest objectRequest = GetObjectRequest
-                       .builder()
-                       .key(keyName)
-                       .bucket(bucketName)
-                       .build();
+                   .builder()
+                   .key(keyName)
+                   .bucket(bucketName)
+                   .build();
    
                ResponseBytes<GetObjectResponse> objectBytes = s3.getObjectAsBytes(objectRequest);
-               byte[] data = objectBytes.asByteArray();
-               return data;
+               return objectBytes.asByteArray();
    
            } catch (S3Exception e) {
                System.err.println(e.awsErrorDetails().errorMessage());
@@ -289,13 +283,11 @@ The image output is similar to the following\.
            return null;
         }
    
-       public PPEBoundingBoxFrame(DetectProtectiveEquipmentResponse ppeResult, BufferedImage bufImage, float requiredConfidence) throws Exception {
+       public PPEBoundingBoxFrame(DetectProtectiveEquipmentResponse ppeResult, BufferedImage bufImage, float requiredConfidence) {
            super();
            scale = 1; // increase to shrink image size.
-   
            result = ppeResult;
            image = bufImage;
-   
            confidence=requiredConfidence;
        }
    
@@ -315,35 +307,25 @@ The image output is similar to the following\.
    
            // Iterate through detected persons and display bounding boxes.
            List<ProtectiveEquipmentPerson> persons = result.persons();
-   
            for (ProtectiveEquipmentPerson person: persons) {
-               BoundingBox boxPerson = person.boundingBox();
-               left = width * boxPerson.left();
-               top = height * boxPerson.top();
-               Boolean foundMask=false;
    
                List<ProtectiveEquipmentBodyPart> bodyParts=person.bodyParts();
-   
-               if (!bodyParts.isEmpty())
-               {
+               if (!bodyParts.isEmpty()){
                    for (ProtectiveEquipmentBodyPart bodyPart: bodyParts) {
-   
                        List<EquipmentDetection> equipmentDetections=bodyPart.equipmentDetections();
-   
                        for (EquipmentDetection item: equipmentDetections) {
    
                            String myType = item.type().toString();
-                           if (myType.compareTo("FACE_COVER") ==0)
-                           {
+                           if (myType.compareTo("FACE_COVER") ==0) {
+   
                                // Draw green bounding box depending on mask coverage.
-                               foundMask=true;
                                BoundingBox box =item.boundingBox();
                                left = width * box.left();
                                top = height * box.top();
                                Color maskColor=new Color( 0, 212, 0);
    
                                if (item.coversBodyPart().equals(false)) {
-                                   // red bounding box
+                                   // red bounding box.
                                    maskColor=new Color( 255, 0, 0);
                                }
                                g2d.setColor(maskColor);
@@ -351,9 +333,8 @@ The image output is similar to the following\.
                                        Math.round((width * box.width()) / scale), Math.round((height * box.height())) / scale);
    
                                // Check confidence is > supplied confidence.
-                               if (item.coversBodyPart().confidence() < confidence)
-                               {
-                                   // Draw a yellow bounding box inside face mask bounding box
+                               if (item.coversBodyPart().confidence() < confidence) {
+                                   // Draw a yellow bounding box inside face mask bounding box.
                                    maskColor=new Color( 255, 255, 0);
                                    g2d.setColor(maskColor);
                                    g2d.drawRect(Math.round((left + offset) / scale),

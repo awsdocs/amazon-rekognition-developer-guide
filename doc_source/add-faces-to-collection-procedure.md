@@ -1,6 +1,6 @@
 # Adding faces to a collection<a name="add-faces-to-collection-procedure"></a>
 
-You can use the [ IndexFaces ](API_IndexFaces.md) operation to detect faces in an image and add them to a collection\. For each face detected, Amazon Rekognition extracts facial features and stores the feature information in a database\. In addition, the command stores metadata for each face that's detected in the specified face collection\. Amazon Rekognition doesn't store the actual image bytes\.
+You can use the [IndexFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_IndexFaces.html) operation to detect faces in an image and add them to a collection\. For each face detected, Amazon Rekognition extracts facial features and stores the feature information in a database\. In addition, the command stores metadata for each face that's detected in the specified face collection\. Amazon Rekognition doesn't store the actual image bytes\.
 
 For information about providing suitable faces for indexing, see [Recommendations for facial comparison input images](recommendations-facial-input-images.md)\.
 
@@ -13,12 +13,12 @@ For each face, the `IndexFaces` operation persists the following information:
   The service returns this metadata in response to the following API calls:
 
    
-  +  ` ListFaces ` 
-  + Search faces operations – The responses for [ SearchFaces ](API_SearchFaces.md) and [ SearchFacesByImage ](API_SearchFacesByImage.md) return the confidence in the match for each matching face, along with this metadata of the matched face\.
+  +  `[ListFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListFaces.html)` 
+  + Search faces operations – The responses for [SearchFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFaces.html) and [SearchFacesByImage](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFacesByImage.html) return the confidence in the match for each matching face, along with this metadata of the matched face\.
 
 The number of faces indexed by `IndexFaces` depends on the version of the face detection model that's associated with the input collection\. For more information, see [Model versioning](face-detection-model.md)\. 
 
-Information about indexed faces is returned in an array of [ FaceRecord ](API_FaceRecord.md) objects\.
+Information about indexed faces is returned in an array of [FaceRecord](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_FaceRecord.html) objects\.
 
 You might want to associate indexed faces with the image they were detected in\. For example, you might want to maintain a client\-side index of images and faces in the images\. To associate faces with an image, specify an image ID in the `ExternalImageId` request parameter\. The image ID can be the file name or another ID that you create\.
 
@@ -48,9 +48,9 @@ By default, `IndexFaces` chooses a quality bar that's used to filter out faces\.
 + The face doesn’t have enough detail to be suitable for face search\.
 
 **Note**  
-To use quality filtering, you need a collection that's associated with version 3, or higher, of the face model\. To get the version of the face model associated with a collection, call [ DescribeCollection ](API_DescribeCollection.md)\. 
+To use quality filtering, you need a collection that's associated with version 3, or higher, of the face model\. To get the version of the face model associated with a collection, call [DescribeCollection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DescribeCollection.html)\. 
 
-Information about faces that aren't indexed by `IndexFaces` is returned in an array of [ UnindexedFace ](API_UnindexedFace.md) objects\. The `Reasons` array contains a list of reasons why a face isn't indexed\. For example, a value of `EXCEEDS_MAX_FACES` is a face that's not indexed because the number of faces specified by `MaxFaces` has already been detected\. 
+Information about faces that aren't indexed by `IndexFaces` is returned in an array of [UnindexedFace](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_UnindexedFace.html) objects\. The `Reasons` array contains a list of reasons why a face isn't indexed\. For example, a value of `EXCEEDS_MAX_FACES` is a face that's not indexed because the number of faces specified by `MaxFaces` has already been detected\. 
 
 For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\. 
 
@@ -148,25 +148,21 @@ For more information, see [Managing faces in a collection](collections.md#collec
        public static void addToCollection(RekognitionClient rekClient, String collectionId, String sourceImage) {
    
            try {
-   
                InputStream sourceStream = new FileInputStream(sourceImage);
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
-   
                Image souImage = Image.builder()
-                       .bytes(sourceBytes)
-                       .build();
+                   .bytes(sourceBytes)
+                   .build();
    
                IndexFacesRequest facesRequest = IndexFacesRequest.builder()
-                       .collectionId(collectionId)
-                       .image(souImage)
-                       .maxFaces(1)
-                       .qualityFilter(QualityFilter.AUTO)
-                       .detectionAttributes(Attribute.DEFAULT)
-                       .build();
+                   .collectionId(collectionId)
+                   .image(souImage)
+                   .maxFaces(1)
+                   .qualityFilter(QualityFilter.AUTO)
+                   .detectionAttributes(Attribute.DEFAULT)
+                   .build();
    
                IndexFacesResponse facesResponse = rekClient.indexFaces(facesRequest);
-   
-               // Display the results.
                System.out.println("Results for the image");
                System.out.println("\n Faces indexed:");
                List<FaceRecord> faceRecords = facesResponse.faceRecords();
@@ -342,7 +338,7 @@ The input to `IndexFaces` is the image to be indexed and the collection to add t
 
 ## IndexFaces operation response<a name="indexfaces-operation-response"></a>
 
-`IndexFaces` returns information about the faces that were detected in the image\. For example, the following JSON response includes the default detection attributes for faces detected in the input image\. The example also shows faces not indexed because the value of the `MaxFaces` input parameter has been exceeded — the `Reasons` array contains *EXCEEDS\_MAX\_FACES*\. If a face is not indexed for quality reasons, `Reasons` contains values such as *LOW\_SHARPNESS* or *LOW\_BRIGHTNESS*\. For more information, see [ UnindexedFace ](API_UnindexedFace.md)\.
+`IndexFaces` returns information about the faces that were detected in the image\. For example, the following JSON response includes the default detection attributes for faces detected in the input image\. The example also shows faces not indexed because the value of the `MaxFaces` input parameter has been exceeded — the `Reasons` array contains *EXCEEDS\_MAX\_FACES*\. If a face is not indexed for quality reasons, `Reasons` contains values such as *LOW\_SHARPNESS* or *LOW\_BRIGHTNESS*\. For more information, see [UnindexedFace](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_UnindexedFace.html)\.
 
 ```
 {

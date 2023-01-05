@@ -1,37 +1,43 @@
 # Detect information in videos using Amazon Rekognition and the AWS SDK<a name="example_rekognition_VideoDetection_section"></a>
 
-The following code examples show how to detect information in videos\.
+The following code examples show how to:
++ Start Amazon Rekognition jobs to detect elements like people, objects, and text in videos\.
++ Check job status until jobs finish\.
++ Output the list of elements detected by each job\.
+
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 ------
 #### [ Java ]
 
 **SDK for Java 2\.x**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
 Get celebrity results from a video located in an Amazon S3 bucket\.  
 
 ```
-    public static  void StartCelebrityDetection(RekognitionClient rekClient,
+    public static void StartCelebrityDetection(RekognitionClient rekClient,
                                                 NotificationChannel channel,
                                                 String bucket,
-                                                String video) {
+                                                String video){
         try {
             S3Object s3Obj = S3Object.builder()
-                    .bucket(bucket)
-                    .name(video)
-                    .build();
+                .bucket(bucket)
+                .name(video)
+                .build();
 
             Video vidOb = Video.builder()
-                    .s3Object(s3Obj)
-                    .build();
+                .s3Object(s3Obj)
+                .build();
 
             StartCelebrityRecognitionRequest recognitionRequest = StartCelebrityRecognitionRequest.builder()
-                    .jobTag("Celebrities")
-                    .notificationChannel(channel)
-                    .video(vidOb)
-                    .build();
+                .jobTag("Celebrities")
+                .notificationChannel(channel)
+                .video(vidOb)
+                .build();
 
             StartCelebrityRecognitionResponse startCelebrityRecognitionResult = rekClient.startCelebrityRecognition(recognitionRequest);
             startJobId = startCelebrityRecognitionResult.jobId();
-
 
         } catch(RekognitionException e) {
             System.out.println(e.getMessage());
@@ -44,8 +50,8 @@ Get celebrity results from a video located in an Amazon S3 bucket\.
         try {
             String paginationToken=null;
             GetCelebrityRecognitionResponse recognitionResponse = null;
-            Boolean finished = false;
-            String status="";
+            boolean finished = false;
+            String status;
             int yy=0 ;
 
             do{
@@ -53,15 +59,14 @@ Get celebrity results from a video located in an Amazon S3 bucket\.
                     paginationToken = recognitionResponse.nextToken();
 
                 GetCelebrityRecognitionRequest recognitionRequest = GetCelebrityRecognitionRequest.builder()
-                            .jobId(startJobId)
-                            .nextToken(paginationToken)
-                            .sortBy(CelebrityRecognitionSortBy.TIMESTAMP)
-                            .maxResults(10)
-                            .build();
+                    .jobId(startJobId)
+                    .nextToken(paginationToken)
+                    .sortBy(CelebrityRecognitionSortBy.TIMESTAMP)
+                    .maxResults(10)
+                    .build();
 
                 // Wait until the job succeeds
                 while (!finished) {
-
                     recognitionResponse = rekClient.getCelebrityRecognition(recognitionRequest);
                     status = recognitionResponse.jobStatusAsString();
 
@@ -76,9 +81,8 @@ Get celebrity results from a video located in an Amazon S3 bucket\.
 
                 finished = false;
 
-                // Proceed when the job is done - otherwise VideoMetadata is null
+                // Proceed when the job is done - otherwise VideoMetadata is null.
                 VideoMetadata videoMetaData=recognitionResponse.videoMetadata();
-
                 System.out.println("Format: " + videoMetaData.format());
                 System.out.println("Codec: " + videoMetaData.codec());
                 System.out.println("Duration: " + videoMetaData.durationMillis());
@@ -88,20 +92,20 @@ Get celebrity results from a video located in an Amazon S3 bucket\.
                 List<CelebrityRecognition> celebs= recognitionResponse.celebrities();
                 for (CelebrityRecognition celeb: celebs) {
                     long seconds=celeb.timestamp()/1000;
-                    System.out.print("Sec: " + Long.toString(seconds) + " ");
+                    System.out.print("Sec: " + seconds + " ");
                     CelebrityDetail details=celeb.celebrity();
                     System.out.println("Name: " + details.name());
                     System.out.println("Id: " + details.id());
                     System.out.println();
                 }
 
-            } while (recognitionResponse !=null && recognitionResponse.nextToken() != null);
+            } while (recognitionResponse.nextToken() != null);
 
         } catch(RekognitionException | InterruptedException e) {
             System.out.println(e.getMessage());
             System.exit(1);
+        }
     }
-  }
 ```
 Detect labels in a video by a label detection operation\.  
 
@@ -112,20 +116,20 @@ Detect labels in a video by a label detection operation\.
                                    String video) {
         try {
             S3Object s3Obj = S3Object.builder()
-                    .bucket(bucket)
-                    .name(video)
-                    .build();
+                .bucket(bucket)
+                .name(video)
+                .build();
 
             Video vidOb = Video.builder()
-                    .s3Object(s3Obj)
-                    .build();
+                .s3Object(s3Obj)
+                .build();
 
             StartLabelDetectionRequest labelDetectionRequest = StartLabelDetectionRequest.builder()
-                    .jobTag("DetectingLabels")
-                    .notificationChannel(channel)
-                    .video(vidOb)
-                    .minConfidence(50F)
-                    .build();
+                .jobTag("DetectingLabels")
+                .notificationChannel(channel)
+                .video(vidOb)
+                .minConfidence(50F)
+                .build();
 
             StartLabelDetectionResponse labelDetectionResponse = rekClient.startLabelDetection(labelDetectionRequest);
             startJobId = labelDetectionResponse.jobId();
@@ -136,9 +140,9 @@ Detect labels in a video by a label detection operation\.
             while (ans) {
 
                 GetLabelDetectionRequest detectionRequest = GetLabelDetectionRequest.builder()
-                        .jobId(startJobId)
-                        .maxResults(10)
-                        .build();
+                    .jobId(startJobId)
+                    .maxResults(10)
+                    .build();
 
                 GetLabelDetectionResponse result = rekClient.getLabelDetection(detectionRequest);
                 status = result.jobStatusAsString();
@@ -153,20 +157,19 @@ Detect labels in a video by a label detection operation\.
             }
 
             System.out.println(startJobId +" status is: "+status);
+
         } catch(RekognitionException | InterruptedException e) {
             e.getMessage();
             System.exit(1);
         }
     }
 
-    public static void getLabelJob(RekognitionClient rekClient,
-                                   SqsClient sqs,
-                                   String queueUrl) {
+    public static void getLabelJob(RekognitionClient rekClient, SqsClient sqs, String queueUrl) {
 
-        List<Message> messages=null;
+        List<Message> messages;
         ReceiveMessageRequest messageRequest = ReceiveMessageRequest.builder()
-                .queueUrl(queueUrl)
-                .build();
+            .queueUrl(queueUrl)
+            .build();
 
         try {
             messages = sqs.receiveMessage(messageRequest).messages();
@@ -186,12 +189,11 @@ Detect labels in a video by a label detection operation\.
                     System.out.println("Job found in JSON is " + operationJobId);
 
                     DeleteMessageRequest deleteMessageRequest = DeleteMessageRequest.builder()
-                            .queueUrl(queueUrl)
-                            .build();
+                        .queueUrl(queueUrl)
+                        .build();
 
                     String jobId = operationJobId.textValue();
                     if (startJobId.compareTo(jobId)==0) {
-
                         System.out.println("Job id: " + operationJobId );
                         System.out.println("Status : " + operationStatus.toString());
 
@@ -217,8 +219,6 @@ Detect labels in a video by a label detection operation\.
             e.printStackTrace();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -236,15 +236,14 @@ Detect labels in a video by a label detection operation\.
 
 
                 GetLabelDetectionRequest labelDetectionRequest= GetLabelDetectionRequest.builder()
-                        .jobId(startJobId)
-                        .sortBy(LabelDetectionSortBy.TIMESTAMP)
-                        .maxResults(maxResults)
-                        .nextToken(paginationToken)
-                        .build();
+                    .jobId(startJobId)
+                    .sortBy(LabelDetectionSortBy.TIMESTAMP)
+                    .maxResults(maxResults)
+                    .nextToken(paginationToken)
+                    .build();
 
                 labelDetectionResult = rekClient.getLabelDetection(labelDetectionRequest);
                 VideoMetadata videoMetaData=labelDetectionResult.videoMetadata();
-
                 System.out.println("Format: " + videoMetaData.format());
                 System.out.println("Codec: " + videoMetaData.codec());
                 System.out.println("Duration: " + videoMetaData.durationMillis());
@@ -254,7 +253,7 @@ Detect labels in a video by a label detection operation\.
                 for (LabelDetection detectedLabel: detectedLabels) {
                     long seconds=detectedLabel.timestamp();
                     Label label=detectedLabel.label();
-                    System.out.println("Millisecond: " + Long.toString(seconds) + " ");
+                    System.out.println("Millisecond: " + seconds + " ");
 
                     System.out.println("   Label:" + label.name());
                     System.out.println("   Confidence:" + detectedLabel.label().confidence().toString());
@@ -264,7 +263,7 @@ Detect labels in a video by a label detection operation\.
 
                     if (instances.isEmpty()) {
                         System.out.println("        " + "None");
-                    }  else {
+                    } else {
                         for (Instance instance : instances) {
                             System.out.println("        Confidence: " + instance.confidence().toString());
                             System.out.println("        Bounding box: " + instance.boundingBox().toString());
@@ -299,20 +298,20 @@ Detect faces in a video stored in an Amazon S3 bucket\.
                                    String video) {
         try {
             S3Object s3Obj = S3Object.builder()
-                    .bucket(bucket)
-                    .name(video)
-                    .build();
+                .bucket(bucket)
+                .name(video)
+                .build();
 
             Video vidOb = Video.builder()
-                    .s3Object(s3Obj)
-                    .build();
+                .s3Object(s3Obj)
+                .build();
 
             StartLabelDetectionRequest labelDetectionRequest = StartLabelDetectionRequest.builder()
-                    .jobTag("DetectingLabels")
-                    .notificationChannel(channel)
-                    .video(vidOb)
-                    .minConfidence(50F)
-                    .build();
+                .jobTag("DetectingLabels")
+                .notificationChannel(channel)
+                .video(vidOb)
+                .minConfidence(50F)
+                .build();
 
             StartLabelDetectionResponse labelDetectionResponse = rekClient.startLabelDetection(labelDetectionRequest);
             startJobId = labelDetectionResponse.jobId();
@@ -323,9 +322,9 @@ Detect faces in a video stored in an Amazon S3 bucket\.
             while (ans) {
 
                 GetLabelDetectionRequest detectionRequest = GetLabelDetectionRequest.builder()
-                        .jobId(startJobId)
-                        .maxResults(10)
-                        .build();
+                    .jobId(startJobId)
+                    .maxResults(10)
+                    .build();
 
                 GetLabelDetectionResponse result = rekClient.getLabelDetection(detectionRequest);
                 status = result.jobStatusAsString();
@@ -340,20 +339,19 @@ Detect faces in a video stored in an Amazon S3 bucket\.
             }
 
             System.out.println(startJobId +" status is: "+status);
+
         } catch(RekognitionException | InterruptedException e) {
             e.getMessage();
             System.exit(1);
         }
     }
 
-    public static void getLabelJob(RekognitionClient rekClient,
-                                   SqsClient sqs,
-                                   String queueUrl) {
+    public static void getLabelJob(RekognitionClient rekClient, SqsClient sqs, String queueUrl) {
 
-        List<Message> messages=null;
+        List<Message> messages;
         ReceiveMessageRequest messageRequest = ReceiveMessageRequest.builder()
-                .queueUrl(queueUrl)
-                .build();
+            .queueUrl(queueUrl)
+            .build();
 
         try {
             messages = sqs.receiveMessage(messageRequest).messages();
@@ -373,12 +371,11 @@ Detect faces in a video stored in an Amazon S3 bucket\.
                     System.out.println("Job found in JSON is " + operationJobId);
 
                     DeleteMessageRequest deleteMessageRequest = DeleteMessageRequest.builder()
-                            .queueUrl(queueUrl)
-                            .build();
+                        .queueUrl(queueUrl)
+                        .build();
 
                     String jobId = operationJobId.textValue();
                     if (startJobId.compareTo(jobId)==0) {
-
                         System.out.println("Job id: " + operationJobId );
                         System.out.println("Status : " + operationStatus.toString());
 
@@ -404,8 +401,6 @@ Detect faces in a video stored in an Amazon S3 bucket\.
             e.printStackTrace();
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -423,15 +418,14 @@ Detect faces in a video stored in an Amazon S3 bucket\.
 
 
                 GetLabelDetectionRequest labelDetectionRequest= GetLabelDetectionRequest.builder()
-                        .jobId(startJobId)
-                        .sortBy(LabelDetectionSortBy.TIMESTAMP)
-                        .maxResults(maxResults)
-                        .nextToken(paginationToken)
-                        .build();
+                    .jobId(startJobId)
+                    .sortBy(LabelDetectionSortBy.TIMESTAMP)
+                    .maxResults(maxResults)
+                    .nextToken(paginationToken)
+                    .build();
 
                 labelDetectionResult = rekClient.getLabelDetection(labelDetectionRequest);
                 VideoMetadata videoMetaData=labelDetectionResult.videoMetadata();
-
                 System.out.println("Format: " + videoMetaData.format());
                 System.out.println("Codec: " + videoMetaData.codec());
                 System.out.println("Duration: " + videoMetaData.durationMillis());
@@ -441,7 +435,7 @@ Detect faces in a video stored in an Amazon S3 bucket\.
                 for (LabelDetection detectedLabel: detectedLabels) {
                     long seconds=detectedLabel.timestamp();
                     Label label=detectedLabel.label();
-                    System.out.println("Millisecond: " + Long.toString(seconds) + " ");
+                    System.out.println("Millisecond: " + seconds + " ");
 
                     System.out.println("   Label:" + label.name());
                     System.out.println("   Confidence:" + detectedLabel.label().confidence().toString());
@@ -451,7 +445,7 @@ Detect faces in a video stored in an Amazon S3 bucket\.
 
                     if (instances.isEmpty()) {
                         System.out.println("        " + "None");
-                    }  else {
+                    } else {
                         for (Instance instance : instances) {
                             System.out.println("        Confidence: " + instance.confidence().toString());
                             System.out.println("        Bounding box: " + instance.boundingBox().toString());
@@ -487,19 +481,19 @@ Detect inappropriate or offensive content in a video stored in an Amazon S3 buck
 
         try {
             S3Object s3Obj = S3Object.builder()
-                    .bucket(bucket)
-                    .name(video)
-                    .build();
+                .bucket(bucket)
+                .name(video)
+                .build();
 
             Video vidOb = Video.builder()
-                    .s3Object(s3Obj)
-                    .build();
+                .s3Object(s3Obj)
+                .build();
 
             StartContentModerationRequest modDetectionRequest = StartContentModerationRequest.builder()
-                    .jobTag("Moderation")
-                    .notificationChannel(channel)
-                    .video(vidOb)
-                    .build();
+                .jobTag("Moderation")
+                .notificationChannel(channel)
+                .video(vidOb)
+                .build();
 
             StartContentModerationResponse startModDetectionResult = rekClient.startContentModeration(modDetectionRequest);
             startJobId=startModDetectionResult.jobId();
@@ -515,24 +509,22 @@ Detect inappropriate or offensive content in a video stored in an Amazon S3 buck
         try {
             String paginationToken=null;
             GetContentModerationResponse modDetectionResponse=null;
-            Boolean finished = false;
-            String status="";
+            boolean finished = false;
+            String status;
             int yy=0 ;
 
             do{
-
                 if (modDetectionResponse !=null)
                     paginationToken = modDetectionResponse.nextToken();
 
                 GetContentModerationRequest modRequest = GetContentModerationRequest.builder()
-                        .jobId(startJobId)
-                        .nextToken(paginationToken)
-                        .maxResults(10)
-                        .build();
+                    .jobId(startJobId)
+                    .nextToken(paginationToken)
+                    .maxResults(10)
+                    .build();
 
                 // Wait until the job succeeds
                 while (!finished) {
-
                     modDetectionResponse = rekClient.getContentModeration(modRequest);
                     status = modDetectionResponse.jobStatusAsString();
 
@@ -549,7 +541,6 @@ Detect inappropriate or offensive content in a video stored in an Amazon S3 buck
 
                 // Proceed when the job is done - otherwise VideoMetadata is null
                 VideoMetadata videoMetaData=modDetectionResponse.videoMetadata();
-
                 System.out.println("Format: " + videoMetaData.format());
                 System.out.println("Codec: " + videoMetaData.codec());
                 System.out.println("Duration: " + videoMetaData.durationMillis());
@@ -581,35 +572,34 @@ Detect technical cue segments and shot detection segments in a video stored in a
                                    String video) {
         try {
             S3Object s3Obj = S3Object.builder()
-                    .bucket(bucket)
-                    .name(video)
-                    .build();
+                .bucket(bucket)
+                .name(video)
+                .build();
 
             Video vidOb = Video.builder()
-                    .s3Object(s3Obj)
-                    .build();
+                .s3Object(s3Obj)
+                .build();
 
             StartShotDetectionFilter cueDetectionFilter = StartShotDetectionFilter.builder()
-                    .minSegmentConfidence(60F)
-                    .build();
-
+                .minSegmentConfidence(60F)
+                .build();
 
             StartTechnicalCueDetectionFilter technicalCueDetectionFilter = StartTechnicalCueDetectionFilter.builder()
-                    .minSegmentConfidence(60F)
-                    .build();
+                .minSegmentConfidence(60F)
+                .build();
 
             StartSegmentDetectionFilters filters = StartSegmentDetectionFilters.builder()
-                    .shotFilter(cueDetectionFilter)
-                    .technicalCueFilter(technicalCueDetectionFilter)
-                    .build();
+                .shotFilter(cueDetectionFilter)
+                .technicalCueFilter(technicalCueDetectionFilter)
+                .build();
 
             StartSegmentDetectionRequest segDetectionRequest = StartSegmentDetectionRequest.builder()
-                    .jobTag("DetectingLabels")
-                    .notificationChannel(channel)
-                    .segmentTypes(SegmentType.TECHNICAL_CUE , SegmentType.SHOT)
-                    .video(vidOb)
-                    .filters(filters)
-                    .build();
+                .jobTag("DetectingLabels")
+                .notificationChannel(channel)
+                .segmentTypes(SegmentType.TECHNICAL_CUE , SegmentType.SHOT)
+                .video(vidOb)
+                .filters(filters)
+                .build();
 
             StartSegmentDetectionResponse segDetectionResponse = rekClient.startSegmentDetection(segDetectionRequest);
             startJobId = segDetectionResponse.jobId();
@@ -625,12 +615,11 @@ Detect technical cue segments and shot detection segments in a video stored in a
         try {
             String paginationToken = null;
             GetSegmentDetectionResponse segDetectionResponse = null;
-            Boolean finished = false;
-            String status = "";
+            boolean finished = false;
+            String status;
             int yy = 0;
 
             do {
-
                 if (segDetectionResponse != null)
                     paginationToken = segDetectionResponse.nextToken();
 
@@ -640,9 +629,8 @@ Detect technical cue segments and shot detection segments in a video stored in a
                         .maxResults(10)
                         .build();
 
-                // Wait until the job succeeds
+                // Wait until the job succeeds.
                 while (!finished) {
-
                     segDetectionResponse = rekClient.getSegmentDetection(recognitionRequest);
                     status = segDetectionResponse.jobStatusAsString();
 
@@ -656,9 +644,8 @@ Detect technical cue segments and shot detection segments in a video stored in a
                 }
                 finished = false;
 
-                // Proceed when the job is done - otherwise VideoMetadata is null
+                // Proceed when the job is done - otherwise VideoMetadata is null.
                 List<VideoMetadata> videoMetaData = segDetectionResponse.videoMetadata();
-
                 for (VideoMetadata metaData : videoMetaData) {
                     System.out.println("Format: " + metaData.format());
                     System.out.println("Codec: " + metaData.codec());
@@ -667,29 +654,32 @@ Detect technical cue segments and shot detection segments in a video stored in a
                     System.out.println("Job");
                 }
 
-                List<SegmentDetection> detectedSegment = segDetectionResponse.segments();
-                String type = detectedSegment.get(0).type().toString();
+                List<SegmentDetection> detectedSegments = segDetectionResponse.segments();
+                for (SegmentDetection detectedSegment : detectedSegments) {
+                    String type = detectedSegment.type().toString();
+                    if (type.contains(SegmentType.TECHNICAL_CUE.toString())) {
+                        System.out.println("Technical Cue");
+                        TechnicalCueSegment segmentCue = detectedSegment.technicalCueSegment();
+                        System.out.println("\tType: " + segmentCue.type());
+                        System.out.println("\tConfidence: " + segmentCue.confidence().toString());
+                    }
 
-                if (type.contains(SegmentType.TECHNICAL_CUE.toString())) {
-                    System.out.println("Technical Cue");
-                    TechnicalCueSegment segmentCue = detectedSegment.get(0).technicalCueSegment();
-                    System.out.println("\tType: " + segmentCue.type());
-                    System.out.println("\tConfidence: " + segmentCue.confidence().toString());
-                }
-                if (type.contains(SegmentType.SHOT.toString())) {
-                    System.out.println("Shot");
-                    ShotSegment segmentShot = detectedSegment.get(0).shotSegment();
-                    System.out.println("\tIndex " + segmentShot.index());
-                    System.out.println("\tConfidence: " + segmentShot.confidence().toString());
-                }
-                long seconds = detectedSegment.get(0).durationMillis();
-                System.out.println("\tDuration : " + Long.toString(seconds) + " milliseconds");
-                System.out.println("\tStart time code: " + detectedSegment.get(0).startTimecodeSMPTE());
-                System.out.println("\tEnd time code: " + detectedSegment.get(0).endTimecodeSMPTE());
-                System.out.println("\tDuration time code: " + detectedSegment.get(0).durationSMPTE());
-                System.out.println();
+                    if (type.contains(SegmentType.SHOT.toString())) {
+                        System.out.println("Shot");
+                        ShotSegment segmentShot = detectedSegment.shotSegment();
+                        System.out.println("\tIndex " + segmentShot.index());
+                        System.out.println("\tConfidence: " + segmentShot.confidence().toString());
+                    }
 
-        } while (segDetectionResponse !=null && segDetectionResponse.nextToken() != null);
+                    long seconds = detectedSegment.durationMillis();
+                    System.out.println("\tDuration : " + seconds + " milliseconds");
+                    System.out.println("\tStart time code: " + detectedSegment.startTimecodeSMPTE());
+                    System.out.println("\tEnd time code: " + detectedSegment.endTimecodeSMPTE());
+                    System.out.println("\tDuration time code: " + detectedSegment.durationSMPTE());
+                    System.out.println();
+                }
+
+            } while (segDetectionResponse !=null && segDetectionResponse.nextToken() != null);
 
         } catch(RekognitionException | InterruptedException e) {
             System.out.println(e.getMessage());
@@ -706,36 +696,36 @@ Detect text in a video stored in a video stored in an Amazon S3 bucket\.
                                    String video) {
         try {
             S3Object s3Obj = S3Object.builder()
-                    .bucket(bucket)
-                    .name(video)
-                    .build();
+                .bucket(bucket)
+                .name(video)
+                .build();
 
             Video vidOb = Video.builder()
-                    .s3Object(s3Obj)
-                    .build();
+                .s3Object(s3Obj)
+                .build();
 
             StartTextDetectionRequest labelDetectionRequest = StartTextDetectionRequest.builder()
-                    .jobTag("DetectingLabels")
-                    .notificationChannel(channel)
-                    .video(vidOb)
-                    .build();
+                .jobTag("DetectingLabels")
+                .notificationChannel(channel)
+                .video(vidOb)
+                .build();
 
             StartTextDetectionResponse labelDetectionResponse = rekClient.startTextDetection(labelDetectionRequest);
             startJobId = labelDetectionResponse.jobId();
 
-        } catch(RekognitionException e) {
+        } catch (RekognitionException e) {
             System.out.println(e.getMessage());
             System.exit(1);
         }
-      }
+    }
 
     public static void GetTextResults(RekognitionClient rekClient) {
 
         try {
             String paginationToken=null;
             GetTextDetectionResponse textDetectionResponse=null;
-            Boolean finished = false;
-            String status="";
+            boolean finished = false;
+            String status;
             int yy=0 ;
 
             do{
@@ -743,14 +733,13 @@ Detect text in a video stored in a video stored in an Amazon S3 bucket\.
                     paginationToken = textDetectionResponse.nextToken();
 
                 GetTextDetectionRequest recognitionRequest = GetTextDetectionRequest.builder()
-                        .jobId(startJobId)
-                        .nextToken(paginationToken)
-                        .maxResults(10)
-                        .build();
+                    .jobId(startJobId)
+                    .nextToken(paginationToken)
+                    .maxResults(10)
+                    .build();
 
-                // Wait until the job succeeds
+                // Wait until the job succeeds.
                 while (!finished) {
-
                     textDetectionResponse = rekClient.getTextDetection(recognitionRequest);
                     status = textDetectionResponse.jobStatusAsString();
 
@@ -765,9 +754,8 @@ Detect text in a video stored in a video stored in an Amazon S3 bucket\.
 
                 finished = false;
 
-                // Proceed when the job is done - otherwise VideoMetadata is null
+                // Proceed when the job is done - otherwise VideoMetadata is null.
                 VideoMetadata videoMetaData=textDetectionResponse.videoMetadata();
-
                 System.out.println("Format: " + videoMetaData.format());
                 System.out.println("Codec: " + videoMetaData.codec());
                 System.out.println("Duration: " + videoMetaData.durationMillis());
@@ -801,19 +789,19 @@ Detect people in a video stored in a video stored in an Amazon S3 bucket\.
                                        String video) {
         try {
             S3Object s3Obj = S3Object.builder()
-                    .bucket(bucket)
-                    .name(video)
-                    .build();
+                .bucket(bucket)
+                .name(video)
+                .build();
 
             Video vidOb = Video.builder()
-                    .s3Object(s3Obj)
-                    .build();
+                .s3Object(s3Obj)
+                .build();
 
             StartPersonTrackingRequest personTrackingRequest = StartPersonTrackingRequest.builder()
-                    .jobTag("DetectingLabels")
-                    .video(vidOb)
-                    .notificationChannel(channel)
-                    .build();
+                .jobTag("DetectingLabels")
+                .video(vidOb)
+                .notificationChannel(channel)
+                .build();
 
             StartPersonTrackingResponse labelDetectionResponse = rekClient.startPersonTracking(personTrackingRequest);
             startJobId = labelDetectionResponse.jobId();
@@ -829,8 +817,8 @@ Detect people in a video stored in a video stored in an Amazon S3 bucket\.
         try {
             String paginationToken=null;
             GetPersonTrackingResponse personTrackingResult=null;
-            Boolean finished = false;
-            String status="";
+            boolean finished = false;
+            String status;
             int yy=0 ;
 
             do{
@@ -861,7 +849,7 @@ Detect people in a video stored in a video stored in an Amazon S3 bucket\.
                 finished = false;
 
                 // Proceed when the job is done - otherwise VideoMetadata is null
-                VideoMetadata videoMetaData=personTrackingResult.videoMetadata();
+                VideoMetadata videoMetaData = personTrackingResult.videoMetadata();
 
                 System.out.println("Format: " + videoMetaData.format());
                 System.out.println("Codec: " + videoMetaData.codec());
@@ -874,7 +862,7 @@ Detect people in a video stored in a video stored in an Amazon S3 bucket\.
 
                     long seconds=detectedPerson.timestamp()/1000;
                     System.out.print("Sec: " + seconds + " ");
-                    System.out.println("Person Identifier: "  + detectedPerson.person().index());
+                    System.out.println("Person Identifier: " + detectedPerson.person().index());
                     System.out.println();
                 }
 
@@ -886,37 +874,50 @@ Detect people in a video stored in a video stored in an Amazon S3 bucket\.
         }
     }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
++ For API details, see the following topics in *AWS SDK for Java 2\.x API Reference*\.
+  + [GetCelebrityRecognition](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetCelebrityRecognition)
+  + [GetContentModeration](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetContentModeration)
+  + [GetLabelDetection](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetLabelDetection)
+  + [GetPersonTracking](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetPersonTracking)
+  + [GetSegmentDetection](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetSegmentDetection)
+  + [GetTextDetection](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/GetTextDetection)
+  + [StartCelebrityRecognition](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartCelebrityRecognition)
+  + [StartContentModeration](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartContentModeration)
+  + [StartLabelDetection](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartLabelDetection)
+  + [StartPersonTracking](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartPersonTracking)
+  + [StartSegmentDetection](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartSegmentDetection)
+  + [StartTextDetection](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/StartTextDetection)
 
 ------
 #### [ Kotlin ]
 
 **SDK for Kotlin**  
 This is prerelease documentation for a feature in preview release\. It is subject to change\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/example_code/rekognition/#code-examples)\. 
 Detect faces in a video stored in an Amazon S3 bucket\.  
 
 ```
 suspend fun startFaceDetection(channelVal: NotificationChannel?, bucketVal: String, videoVal: String) {
 
-        val s3Obj = S3Object {
-            bucket = bucketVal
-            name = videoVal
-        }
-        val vidOb = Video {
-            s3Object = s3Obj
-        }
+    val s3Obj = S3Object {
+        bucket = bucketVal
+        name = videoVal
+    }
+    val vidOb = Video {
+        s3Object = s3Obj
+    }
 
-        val request = StartFaceDetectionRequest {
-             jobTag = "Faces"
-             faceAttributes = FaceAttributes.All
-             notificationChannel = channelVal
-             video = vidOb
-        }
+    val request = StartFaceDetectionRequest {
+        jobTag = "Faces"
+        faceAttributes = FaceAttributes.All
+        notificationChannel = channelVal
+        video = vidOb
+    }
 
-        RekognitionClient { region = "us-east-1" }.use { rekClient ->
-          val startLabelDetectionResult = rekClient.startFaceDetection(request)
-          startJobId = startLabelDetectionResult.jobId.toString()
-        }
+    RekognitionClient { region = "us-east-1" }.use { rekClient ->
+        val startLabelDetectionResult = rekClient.startFaceDetection(request)
+        startJobId = startLabelDetectionResult.jobId.toString()
+    }
 }
 
 suspend fun getFaceResults() {
@@ -925,7 +926,7 @@ suspend fun getFaceResults() {
     var status: String
     var yy = 0
     RekognitionClient { region = "us-east-1" }.use { rekClient ->
-        var response : GetFaceDetectionResponse? = null
+        var response: GetFaceDetectionResponse? = null
 
         val recognitionRequest = GetFaceDetectionRequest {
             jobId = startJobId
@@ -1027,8 +1028,20 @@ suspend fun getModResults() {
     }
 }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/example_code/rekognition/#code-examples)\. 
++ For API details, see the following topics in *AWS SDK for Kotlin API reference*\.
+  + [GetCelebrityRecognition](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [GetContentModeration](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [GetLabelDetection](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [GetPersonTracking](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [GetSegmentDetection](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [GetTextDetection](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [StartCelebrityRecognition](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [StartContentModeration](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [StartLabelDetection](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [StartPersonTracking](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [StartSegmentDetection](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
+  + [StartTextDetection](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation)
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

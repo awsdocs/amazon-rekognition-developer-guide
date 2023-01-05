@@ -176,46 +176,40 @@ The example expands on the code in [Analyzing a video stored in an Amazon S3 buc
 #### [ Java V2 ]
 
    ```
-                               public static void StartSegmentDetection (RekognitionClient rekClient,
-                                                 NotificationChannel channel,
-                                                String bucket,
-                                                 String video) {
+       public static void StartSegmentDetection (RekognitionClient rekClient,
+                                      NotificationChannel channel,
+                                      String bucket,
+                                      String video) {
            try {
                S3Object s3Obj = S3Object.builder()
-                       .bucket(bucket)
-                       .name(video)
-                       .build();
+                   .bucket(bucket)
+                   .name(video)
+                   .build();
    
                Video vidOb = Video.builder()
-                       .s3Object(s3Obj)
-                       .build();
-   
-               BlackFrame blackFrame = BlackFrame.builder()
-                       .maxPixelThreshold(0.2F)
-                       .minCoveragePercentage(60F)
-                       .build();
+                   .s3Object(s3Obj)
+                   .build();
    
                StartShotDetectionFilter cueDetectionFilter = StartShotDetectionFilter.builder()
-                       .minSegmentConfidence(60F)
-                        .build();
+                   .minSegmentConfidence(60F)
+                   .build();
    
                StartTechnicalCueDetectionFilter technicalCueDetectionFilter = StartTechnicalCueDetectionFilter.builder()
-                       .minSegmentConfidence(60F)
-                       .blackFrame(blackFrame)
-                       .build();
+                   .minSegmentConfidence(60F)
+                   .build();
    
                StartSegmentDetectionFilters filters = StartSegmentDetectionFilters.builder()
-                       .shotFilter(cueDetectionFilter)
-                       .technicalCueFilter(technicalCueDetectionFilter)
-                       .build();
+                   .shotFilter(cueDetectionFilter)
+                   .technicalCueFilter(technicalCueDetectionFilter)
+                   .build();
    
                StartSegmentDetectionRequest segDetectionRequest = StartSegmentDetectionRequest.builder()
-                       .jobTag("DetectingLabels")
-                       .notificationChannel(channel)
-                       .segmentTypes(SegmentType.TECHNICAL_CUE , SegmentType.SHOT)
-                       .video(vidOb)
-                       .filters(filters)
-                       .build();
+                   .jobTag("DetectingLabels")
+                   .notificationChannel(channel)
+                   .segmentTypes(SegmentType.TECHNICAL_CUE , SegmentType.SHOT)
+                   .video(vidOb)
+                   .filters(filters)
+                   .build();
    
                StartSegmentDetectionResponse segDetectionResponse = rekClient.startSegmentDetection(segDetectionRequest);
                startJobId = segDetectionResponse.jobId();
@@ -231,12 +225,11 @@ The example expands on the code in [Analyzing a video stored in an Amazon S3 buc
            try {
                String paginationToken = null;
                GetSegmentDetectionResponse segDetectionResponse = null;
-               Boolean finished = false;
-               String status = "";
+               boolean finished = false;
+               String status;
                int yy = 0;
    
                do {
-   
                    if (segDetectionResponse != null)
                        paginationToken = segDetectionResponse.nextToken();
    
@@ -246,9 +239,8 @@ The example expands on the code in [Analyzing a video stored in an Amazon S3 buc
                            .maxResults(10)
                            .build();
    
-                   // Wait until the job succeeds
+                   // Wait until the job succeeds.
                    while (!finished) {
-   
                        segDetectionResponse = rekClient.getSegmentDetection(recognitionRequest);
                        status = segDetectionResponse.jobStatusAsString();
    
@@ -262,41 +254,40 @@ The example expands on the code in [Analyzing a video stored in an Amazon S3 buc
                    }
                    finished = false;
    
-                   // Proceed when the job is done - otherwise VideoMetadata is null
+                   // Proceed when the job is done - otherwise VideoMetadata is null.
                    List<VideoMetadata> videoMetaData = segDetectionResponse.videoMetadata();
-   
                    for (VideoMetadata metaData : videoMetaData) {
                        System.out.println("Format: " + metaData.format());
                        System.out.println("Codec: " + metaData.codec());
                        System.out.println("Duration: " + metaData.durationMillis());
-                       System.out.println("Color range: " + metaData.colorRange().toString());
                        System.out.println("FrameRate: " + metaData.frameRate());
                        System.out.println("Job");
                    }
    
-                   List<SegmentDetection> detectedSegment = segDetectionResponse.segments();
-                   String type = detectedSegment.get(0).type().toString();
+                   List<SegmentDetection> detectedSegments = segDetectionResponse.segments();
+                   for (SegmentDetection detectedSegment : detectedSegments) {
+                       String type = detectedSegment.type().toString();
+                       if (type.contains(SegmentType.TECHNICAL_CUE.toString())) {
+                           System.out.println("Technical Cue");
+                           TechnicalCueSegment segmentCue = detectedSegment.technicalCueSegment();
+                           System.out.println("\tType: " + segmentCue.type());
+                           System.out.println("\tConfidence: " + segmentCue.confidence().toString());
+                       }
    
-                   if (type.contains(SegmentType.TECHNICAL_CUE.toString())) {
-                       System.out.println("Technical Cue");
-                       TechnicalCueSegment segmentCue = detectedSegment.get(0).technicalCueSegment();
-                       System.out.println("\tType: " + segmentCue.type());
-                       System.out.println("\tConfidence: " + segmentCue.confidence().toString());
+                       if (type.contains(SegmentType.SHOT.toString())) {
+                           System.out.println("Shot");
+                           ShotSegment segmentShot = detectedSegment.shotSegment();
+                           System.out.println("\tIndex " + segmentShot.index());
+                           System.out.println("\tConfidence: " + segmentShot.confidence().toString());
+                       }
+   
+                       long seconds = detectedSegment.durationMillis();
+                       System.out.println("\tDuration : " + seconds + " milliseconds");
+                       System.out.println("\tStart time code: " + detectedSegment.startTimecodeSMPTE());
+                       System.out.println("\tEnd time code: " + detectedSegment.endTimecodeSMPTE());
+                       System.out.println("\tDuration time code: " + detectedSegment.durationSMPTE());
+                       System.out.println();
                    }
-                   if (type.contains(SegmentType.SHOT.toString())) {
-                       System.out.println("Shot");
-                       ShotSegment segmentShot = detectedSegment.get(0).shotSegment();
-                       System.out.println("\tIndex " + segmentShot.index());
-                       System.out.println("\tConfidence: " + segmentShot.confidence().toString());
-                   }
-   
-   
-                   long seconds = detectedSegment.get(0).durationMillis();
-                   System.out.println("\tDuration : " + Long.toString(seconds) + " milliseconds");
-                   System.out.println("\tStart time code: " + detectedSegment.get(0).startTimecodeSMPTE());
-                   System.out.println("\tEnd time code: " + detectedSegment.get(0).endTimecodeSMPTE());
-                   System.out.println("\tDuration time code: " + detectedSegment.get(0).durationSMPTE());
-                   System.out.println();
    
                } while (segDetectionResponse !=null && segDetectionResponse.nextToken() != null);
    

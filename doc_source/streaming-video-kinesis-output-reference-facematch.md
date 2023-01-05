@@ -6,7 +6,7 @@ Information about a face that matches a face detected in an analyzed video frame
 
 Face match information for a face in the input collection that matches the face in the [DetectedFace](streaming-video-kinesis-output-reference-detectedface.md) object\. 
 
-Type: [ Face ](API_Face.md) object 
+Type: [Face](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_Face.html) object 
 
 **Similarity**
 

@@ -12,4 +12,4 @@ We recommend using a threshold of 99% or more for use cases where the accuracy o
 
 One of the best uses of these attributes is generating aggregate statistics\. For example, attributes, such as Smile, Pose, and Sharpness, may be used to select the ‘best profile picture’ automatically in a social media application\. Another common use case is estimating demographics anonymously of a broad sample using the predicted gender and age attributes \(for example, at events or retail stores\)\. 
 
-For more information about attributes, see [ FaceDetail ](API_FaceDetail.md)\.
+For more information about attributes, see [FaceDetail](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_FaceDetail.html)\.

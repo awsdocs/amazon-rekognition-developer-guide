@@ -143,6 +143,8 @@ This feature allows a service to assume a [service role](https://docs.aws.amazon
 
 Amazon Rekognition supports service roles\. 
 
+Using a service role may create a security issue where Amazon Rekognition is used to call another service and act on resources it shouldn't have access to\. To keep your account secure, you should limit the scope of Amazon Rekognition's access to just the resources you are using\. This can be done by attaching a trust policy to your IAM service role\. For information on how to do this, see [Cross\-service confused deputy prevention](cross-service-confused-deputy-prevention.md)\.
+
 ### Choosing an IAM role in Amazon Rekognition<a name="security_iam_service-with-iam-roles-choose"></a>
 
 When you configure Amazon Rekognition to analyze stored videos, you must choose a role to allow Amazon Rekognition to access Amazon SNS on your behalf\. If you have previously created a service role or service\-linked role, then Amazon Rekognition provides you with a list of roles to choose from\. For more information, see [Configuring Amazon Rekognition Video](api-video-roles.md)\.

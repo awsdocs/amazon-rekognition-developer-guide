@@ -37,7 +37,7 @@ For best practice information about images and facial comparison, see [Best prac
 + Amazon Rekognition Video can analyze stored videos up to 6 hours in length\.
 + Amazon Rekognition Video supports a maximum of 20 concurrent jobs per account\.
 + Stored videos must be encoded using the H\.264 codec\. The supported file formats are MPEG\-4 and MOV\.
-+ Any Amazon Rekognition Video API that analyzes audio data only supports ACC audio codecs\.
++ Any Amazon Rekognition Video API that analyzes audio data only supports AAC audio codecs\.
 + The Time To Live \(TTL\) period for pagination tokens is 24 hours\. Pagination tokens are in the `NextToken` field retured by Get operations such as `GetLabeldetection`\.
 
 ### Amazon Rekognition Video streaming video<a name="limits-streaming-video"></a>

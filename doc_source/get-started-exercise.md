@@ -2,8 +2,8 @@
 
 After you've set up the AWS CLI and AWS SDKs that you want to use, you can build applications that use Amazon Rekognition\. The following topics show you how to get started with Amazon Rekognition Image and Amazon Rekognition Video\.
 + [Working with images](images.md)
-+ [Working with stored videos](video.md)
-+ [Working with streaming videos](streaming-video.md)
++ [Working with stored video analysis](video.md)
++ [Working with streaming video events](streaming-video.md)
 
 ## Formatting the AWS CLI examples<a name="format-cli"></a>
 

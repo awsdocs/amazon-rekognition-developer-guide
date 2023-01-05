@@ -2,15 +2,31 @@
 
 The following code examples show how to detect labels in an image with Amazon Rekognition\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
 For more information, see [Detecting labels in an image](https://docs.aws.amazon.com/rekognition/latest/dg/labels-detect-labels-image.html)\.
 
 ------
 #### [ \.NET ]
 
 **AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
   
 
 ```
+    using System;
+    using System.Threading.Tasks;
+    using Amazon.Rekognition;
+    using Amazon.Rekognition.Model;
+
+    /// <summary>
+    /// Uses the Amazon Rekognition Service to detect labels within an image
+    /// stored in an Amazon Simple Storage Service (Amazon S3) bucket. This
+    /// example was created using the AWS SDK for .NET and .NET Core 5.0.
+    /// </summary>
+    public class DetectLabels
+    {
         public static async Task Main()
         {
             string photo = "del_river_02092020_01.jpg"; // "input.jpg";
@@ -46,10 +62,24 @@ For more information, see [Detecting labels in an image](https://docs.aws.amazon
                 Console.WriteLine(ex.Message);
             }
         }
+    }
 ```
 Detect labels in an image file stored on your computer\.  
 
 ```
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using Amazon.Rekognition;
+    using Amazon.Rekognition.Model;
+
+    /// <summary>
+    /// Uses the Amazon Rekognition Service to detect labels within an image
+    /// stored locally. This example was created using the AWS SDK for .NET
+    /// and .NET Core 5.0.
+    /// </summary>
+    public class DetectLabelsLocalFile
+    {
         public static async Task Main()
         {
             string photo = "input.jpg";
@@ -92,52 +122,47 @@ Detect labels in an image file stored on your computer\.
                 Console.WriteLine(ex.Message);
             }
         }
+    }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
 +  For API details, see [DetectLabels](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectLabels) in *AWS SDK for \.NET API Reference*\. 
 
 ------
 #### [ Java ]
 
 **SDK for Java 2\.x**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
   
 
 ```
     public static void detectImageLabels(RekognitionClient rekClient, String sourceImage) {
 
         try {
-
-            InputStream sourceStream = new URL("https://images.unsplash.com/photo-1557456170-0cf4f4d0d362?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGFrZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80").openStream();
-           // InputStream sourceStream = new FileInputStream(sourceImage);
+            InputStream sourceStream = new FileInputStream(sourceImage);
             SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
 
             // Create an Image object for the source image.
             Image souImage = Image.builder()
-                    .bytes(sourceBytes)
-                    .build();
+                .bytes(sourceBytes)
+                .build();
 
             DetectLabelsRequest detectLabelsRequest = DetectLabelsRequest.builder()
-                    .image(souImage)
-                    .maxLabels(10)
-                    .build();
+                .image(souImage)
+                .maxLabels(10)
+                .build();
 
             DetectLabelsResponse labelsResponse = rekClient.detectLabels(detectLabelsRequest);
             List<Label> labels = labelsResponse.labels();
-
             System.out.println("Detected labels for the given photo");
             for (Label label: labels) {
                 System.out.println(label.name() + ": " + label.confidence().toString());
             }
 
-        } catch (RekognitionException | FileNotFoundException | MalformedURLException e) {
+        } catch (RekognitionException | FileNotFoundException e) {
             System.out.println(e.getMessage());
             System.exit(1);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
 +  For API details, see [DetectLabels](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DetectLabels) in *AWS SDK for Java 2\.x API Reference*\. 
 
 ------
@@ -145,34 +170,35 @@ Detect labels in an image file stored on your computer\.
 
 **SDK for Kotlin**  
 This is prerelease documentation for a feature in preview release\. It is subject to change\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
   
 
 ```
 suspend fun detectImageLabels(sourceImage: String) {
 
-        val souImage = Image {
-            bytes = (File(sourceImage).readBytes())
-        }
-        val request = DetectLabelsRequest {
-            image = souImage
-            maxLabels = 10
-        }
+    val souImage = Image {
+        bytes = (File(sourceImage).readBytes())
+    }
+    val request = DetectLabelsRequest {
+        image = souImage
+        maxLabels = 10
+    }
 
-        RekognitionClient { region = "us-east-1" }.use { rekClient ->
-          val response = rekClient.detectLabels(request)
-          response.labels?.forEach { label ->
-               println("${label.name} : ${label.confidence}")
+    RekognitionClient { region = "us-east-1" }.use { rekClient ->
+        val response = rekClient.detectLabels(request)
+        response.labels?.forEach { label ->
+            println("${label.name} : ${label.confidence}")
         }
-      }
+    }
 }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
 +  For API details, see [DetectLabels](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 
 
 ------
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
   
 
 ```
@@ -212,9 +238,8 @@ class RekognitionImage:
         else:
             return labels
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
 +  For API details, see [DetectLabels](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DetectLabels) in *AWS SDK for Python \(Boto3\) API Reference*\. 
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

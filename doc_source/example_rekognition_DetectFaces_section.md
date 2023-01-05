@@ -2,15 +2,32 @@
 
 The following code examples show how to detect faces in an image with Amazon Rekognition\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
 For more information, see [Detecting faces in an image](https://docs.aws.amazon.com/rekognition/latest/dg/faces-detect-images.html)\.
 
 ------
 #### [ \.NET ]
 
 **AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
   
 
 ```
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Amazon.Rekognition;
+    using Amazon.Rekognition.Model;
+
+    /// <summary>
+    /// Uses the Amazon Rekognition Service to detect faces within an image
+    /// stored in an Amazon Simple Storage Service (Amazon S3) bucket. This
+    /// example uses the AWS SDK for .NET version 3.7 and .NET Core 5.0.
+    /// </summary>
+    public class DetectFaces
+    {
         public static async Task Main()
         {
             string photo = "input.jpg";
@@ -58,10 +75,26 @@ For more information, see [Detecting faces in an image](https://docs.aws.amazon.
                 Console.WriteLine(ex.Message);
             }
         }
+    }
 ```
 Display bounding box information for all faces in an image\.  
 
 ```
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.IO;
+    using System.Threading.Tasks;
+    using Amazon.Rekognition;
+    using Amazon.Rekognition.Model;
+
+    /// <summary>
+    /// Uses the Amazon Rekognition Service to display the details of the
+    /// bounding boxes around the faces detected in an image. This example was
+    /// created using the AWS SDK for .NET version 3.7 and .NET Core 5.0.
+    /// </summary>
+    public class ImageOrientationBoundingBox
+    {
         public static async Task Main()
         {
             string photo = @"D:\Development\AWS-Examples\Rekognition\target.jpg"; // "photo.jpg";
@@ -174,39 +207,39 @@ Display bounding box information for all faces in an image\.
             Console.WriteLine($"Face Width: {imageWidth * box.Width}");
             Console.WriteLine($"Face Height: {imageHeight * box.Height}");
         }
+    }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
 +  For API details, see [DetectFaces](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/DetectFaces) in *AWS SDK for \.NET API Reference*\. 
 
 ------
 #### [ Java ]
 
 **SDK for Java 2\.x**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
   
 
 ```
     public static void detectFacesinImage(RekognitionClient rekClient,String sourceImage ) {
 
         try {
-            InputStream sourceStream = new FileInputStream(new File(sourceImage));
+            InputStream sourceStream = new FileInputStream(sourceImage);
             SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
 
             // Create an Image object for the source image.
             Image souImage = Image.builder()
-                    .bytes(sourceBytes)
-                    .build();
+                .bytes(sourceBytes)
+                .build();
 
             DetectFacesRequest facesRequest = DetectFacesRequest.builder()
-                    .attributes(Attribute.ALL)
-                    .image(souImage)
-                    .build();
+                .attributes(Attribute.ALL)
+                .image(souImage)
+                .build();
 
             DetectFacesResponse facesResponse = rekClient.detectFaces(facesRequest);
             List<FaceDetail> faceDetails = facesResponse.faceDetails();
-
             for (FaceDetail face : faceDetails) {
-                    AgeRange ageRange = face.ageRange();
-                    System.out.println("The detected face is estimated to be between "
+                AgeRange ageRange = face.ageRange();
+                System.out.println("The detected face is estimated to be between "
                             + ageRange.low().toString() + " and " + ageRange.high().toString()
                             + " years old.");
 
@@ -219,7 +252,6 @@ Display bounding box information for all faces in an image\.
         }
     }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
 +  For API details, see [DetectFaces](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/DetectFaces) in *AWS SDK for Java 2\.x API Reference*\. 
 
 ------
@@ -227,37 +259,38 @@ Display bounding box information for all faces in an image\.
 
 **SDK for Kotlin**  
 This is prerelease documentation for a feature in preview release\. It is subject to change\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
   
 
 ```
 suspend fun detectFacesinImage(sourceImage: String?) {
 
-        val souImage = Image {
-            bytes = (File(sourceImage).readBytes())
-        }
+    val souImage = Image {
+        bytes = (File(sourceImage).readBytes())
+    }
 
-        val request = DetectFacesRequest {
-            attributes = listOf(Attribute.All)
-            image = souImage
-        }
+    val request = DetectFacesRequest {
+        attributes = listOf(Attribute.All)
+        image = souImage
+    }
 
-        RekognitionClient { region = "us-east-1" }.use { rekClient ->
-          val response = rekClient.detectFaces(request)
-          response.faceDetails?.forEach { face ->
-               val ageRange = face.ageRange
-                println("The detected face is estimated to be between ${ageRange?.low.toString()} and ${ageRange?.high.toString()} years old.")
-                println("There is a smile ${face.smile?.value.toString()}")
-          }
-       }
+    RekognitionClient { region = "us-east-1" }.use { rekClient ->
+        val response = rekClient.detectFaces(request)
+        response.faceDetails?.forEach { face ->
+            val ageRange = face.ageRange
+            println("The detected face is estimated to be between ${ageRange?.low} and ${ageRange?.high} years old.")
+            println("There is a smile ${face.smile?.value}")
+        }
+    }
 }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
 +  For API details, see [DetectFaces](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 
 
 ------
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
   
 
 ```
@@ -296,9 +329,8 @@ class RekognitionImage:
         else:
             return faces
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
 +  For API details, see [DetectFaces](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/DetectFaces) in *AWS SDK for Python \(Boto3\) API Reference*\. 
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

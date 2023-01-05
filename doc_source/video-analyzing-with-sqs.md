@@ -12,11 +12,11 @@ The example code in this procedure shows you how to do the following:
 
 1. Subscribe the Amazon SQS queue to the Amazon SNS topic\.
 
-1. Start the video analysis request by calling [ StartLabelDetection ](API_StartLabelDetection.md)\. 
+1. Start the video analysis request by calling [StartLabelDetection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartLabelDetection.html)\. 
 
 1. Get the completion status from the Amazon SQS queue\. The example tracks the job identifier \(`JobId`\) that's returned in `StartLabelDetection` and only gets the results for matching job identifiers that are read from the completion status\. This is an important consideration if other applications are using the same queue and topic\. For simplicity, the example deletes jobs that don't match\. Consider adding them to an Amazon SQS dead\-letter queue for further investigation\.
 
-1. Get and display the video analysis results by calling [ GetLabelDetection ](API_GetLabelDetection.md)\.
+1. Get and display the video analysis results by calling [GetLabelDetection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetLabelDetection.html)\.
 
 ## Prerequisites<a name="video-prerequisites"></a>
 
@@ -29,6 +29,8 @@ The example code for this procedure is provided in Java and Python\. You need to
 1. Upload an MOV or MPEG\-4 format video file to an Amazon S3 Bucket\. For test purposes, upload a video that's no longer than 30 seconds in length\.
 
    For instructions, see [Uploading Objects into Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/UploadingObjectsintoAmazonS3.html) in the *Amazon Simple Storage Service User Guide*\.
+
+   
 
 1. Use the following code examples to detect labels in a video\. 
 
@@ -372,6 +374,7 @@ The example code for this procedure is provided in Java and Python\. You need to
    In the function `main`:
    + Replace `roleArn` with the ARN of the IAM service role that you created in step 7 of [To configure Amazon Rekognition Video](api-video-roles.md#configure-rekvid-procedure)\.
    + Replace the values of `bucket` and `video` with the bucket and video file name that you specified in step 2\. 
+   + You can also include filtration criteria in the settings paramter\. For example, you can use a `LabelsInclusionFilter` or a `LabelsExclusionFilter` alongside a list of desired values\. In the code below, you can uncomment the `Features` and `Settings` section and provide your own values to limit the returned results to just the labels your are interested in\.
 
    ```
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -452,7 +455,15 @@ The example code for this procedure is provided in Java and Python\. You need to
    
        def StartLabelDetection(self):
            response=self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
-               NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.snsTopicArn})
+               NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.snsTopicArn},
+               MinConfidence=90,
+               # Filtration options, uncomment and add desired labels to filter returned labels
+               #Features=['GENERAL_LABELS'],
+               #Settings={
+               #'GeneralLabels': {
+               #'LabelsInclusionFilter': ['cat','dog']
+               #}
+               )
    
            self.startJobId=response['JobId']
            print('Start Job Id: ' + self.startJobId)
@@ -827,20 +838,20 @@ The example code for this procedure is provided in Java and Python\. You need to
                                       String video) {
            try {
                S3Object s3Obj = S3Object.builder()
-                       .bucket(bucket)
-                       .name(video)
-                       .build();
+                   .bucket(bucket)
+                   .name(video)
+                   .build();
    
                Video vidOb = Video.builder()
-                       .s3Object(s3Obj)
-                       .build();
+                   .s3Object(s3Obj)
+                   .build();
    
                StartLabelDetectionRequest labelDetectionRequest = StartLabelDetectionRequest.builder()
-                       .jobTag("DetectingLabels")
-                       .notificationChannel(channel)
-                       .video(vidOb)
-                       .minConfidence(50F)
-                       .build();
+                   .jobTag("DetectingLabels")
+                   .notificationChannel(channel)
+                   .video(vidOb)
+                   .minConfidence(50F)
+                   .build();
    
                StartLabelDetectionResponse labelDetectionResponse = rekClient.startLabelDetection(labelDetectionRequest);
                startJobId = labelDetectionResponse.jobId();
@@ -851,9 +862,9 @@ The example code for this procedure is provided in Java and Python\. You need to
                while (ans) {
    
                    GetLabelDetectionRequest detectionRequest = GetLabelDetectionRequest.builder()
-                           .jobId(startJobId)
-                           .maxResults(10)
-                           .build();
+                       .jobId(startJobId)
+                       .maxResults(10)
+                       .build();
    
                    GetLabelDetectionResponse result = rekClient.getLabelDetection(detectionRequest);
                    status = result.jobStatusAsString();
@@ -868,20 +879,19 @@ The example code for this procedure is provided in Java and Python\. You need to
                }
    
                System.out.println(startJobId +" status is: "+status);
+   
            } catch(RekognitionException | InterruptedException e) {
                e.getMessage();
                System.exit(1);
            }
        }
    
-       public static void getLabelJob(RekognitionClient rekClient,
-                                      SqsClient sqs,
-                                      String queueUrl) {
+       public static void getLabelJob(RekognitionClient rekClient, SqsClient sqs, String queueUrl) {
    
-           List<Message> messages=null;
+           List<Message> messages;
            ReceiveMessageRequest messageRequest = ReceiveMessageRequest.builder()
-                   .queueUrl(queueUrl)
-                   .build();
+               .queueUrl(queueUrl)
+               .build();
    
            try {
                messages = sqs.receiveMessage(messageRequest).messages();
@@ -901,12 +911,11 @@ The example code for this procedure is provided in Java and Python\. You need to
                        System.out.println("Job found in JSON is " + operationJobId);
    
                        DeleteMessageRequest deleteMessageRequest = DeleteMessageRequest.builder()
-                               .queueUrl(queueUrl)
-                               .build();
+                           .queueUrl(queueUrl)
+                           .build();
    
                        String jobId = operationJobId.textValue();
                        if (startJobId.compareTo(jobId)==0) {
-   
                            System.out.println("Job id: " + operationJobId );
                            System.out.println("Status : " + operationStatus.toString());
    
@@ -932,8 +941,6 @@ The example code for this procedure is provided in Java and Python\. You need to
                e.printStackTrace();
            } catch (JsonProcessingException e) {
                e.printStackTrace();
-           } catch (Exception e) {
-               e.printStackTrace();
            }
        }
    
@@ -951,15 +958,14 @@ The example code for this procedure is provided in Java and Python\. You need to
    
    
                    GetLabelDetectionRequest labelDetectionRequest= GetLabelDetectionRequest.builder()
-                           .jobId(startJobId)
-                           .sortBy(LabelDetectionSortBy.TIMESTAMP)
-                           .maxResults(maxResults)
-                           .nextToken(paginationToken)
-                           .build();
+                       .jobId(startJobId)
+                       .sortBy(LabelDetectionSortBy.TIMESTAMP)
+                       .maxResults(maxResults)
+                       .nextToken(paginationToken)
+                       .build();
    
                    labelDetectionResult = rekClient.getLabelDetection(labelDetectionRequest);
                    VideoMetadata videoMetaData=labelDetectionResult.videoMetadata();
-   
                    System.out.println("Format: " + videoMetaData.format());
                    System.out.println("Codec: " + videoMetaData.codec());
                    System.out.println("Duration: " + videoMetaData.durationMillis());
@@ -969,7 +975,7 @@ The example code for this procedure is provided in Java and Python\. You need to
                    for (LabelDetection detectedLabel: detectedLabels) {
                        long seconds=detectedLabel.timestamp();
                        Label label=detectedLabel.label();
-                       System.out.println("Millisecond: " + Long.toString(seconds) + " ");
+                       System.out.println("Millisecond: " + seconds + " ");
    
                        System.out.println("   Label:" + label.name());
                        System.out.println("   Confidence:" + detectedLabel.label().confidence().toString());
@@ -979,7 +985,7 @@ The example code for this procedure is provided in Java and Python\. You need to
    
                        if (instances.isEmpty()) {
                            System.out.println("        " + "None");
-                       }  else {
+                       } else {
                            for (Instance instance : instances) {
                                System.out.println("        Confidence: " + instance.confidence().toString());
                                System.out.println("        Bounding box: " + instance.boundingBox().toString());

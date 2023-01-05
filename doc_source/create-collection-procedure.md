@@ -1,6 +1,6 @@
 # Creating a collection<a name="create-collection-procedure"></a>
 
-You can use the [ CreateCollection ](API_CreateCollection.md) operation to create a collection\.
+You can use the [CreateCollection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CreateCollection.html) operation to create a collection\.
 
 For more information, see [Managing collections](collections.md#managing-collections)\. 
 
@@ -69,18 +69,16 @@ For more information, see [Managing collections](collections.md#managing-collect
    
            try {
                CreateCollectionRequest collectionRequest = CreateCollectionRequest.builder()
-                       .collectionId(collectionId)
-                       .build();
+                   .collectionId(collectionId)
+                   .build();
    
                CreateCollectionResponse collectionResponse = rekClient.createCollection(collectionRequest);
-               System.out.println("CollectionArn : " +
-                       collectionResponse.collectionArn());
-               System.out.println("Status code : " +
-                       collectionResponse.statusCode().toString());
+               System.out.println("CollectionArn: " + collectionResponse.collectionArn());
+               System.out.println("Status code: " + collectionResponse.statusCode().toString());
    
            } catch(RekognitionException e) {
-                   System.out.println(e.getMessage());
-                   System.exit(1);
+               System.out.println(e.getMessage());
+               System.exit(1);
            }
        }
    ```

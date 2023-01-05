@@ -29,6 +29,8 @@ The examples in this section create a new Amazon SNS topic by using the instruct
 
 1. Create an IAM service role to give Amazon Rekognition Video access to your Amazon SNS topics\. Note the Amazon Resource Name \(ARN\) of the service role\. For more information, see [Giving access to multiple Amazon SNS topics](#api-video-roles-all-topics)\.
 
+1. To ensure your account is secure, you will want to limit the scope of Rekognition's access to just the resources you are using\. This can be done by attaching a Trust policy to your IAM service role\. For information on how to do this, see [Cross\-service confused deputy prevention](cross-service-confused-deputy-prevention.md)\.
+
 1. [ Add the following inline policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#embed-inline-policy-console) to the IAM user that you created in step 1: 
 
    ```
@@ -46,6 +48,25 @@ The examples in this section create a new Amazon SNS topic by using the instruct
    ```
 
    Give the inline policy a name of your choosing\.
+
+1. If you use a customer managed AWS Key Management Service key to encrypt the videos in your Amazon S3 bucket, [add](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying.html#key-policy-modifying-how-to-console-policy-view) permissions to the key that allow the service role you created in step 7 to decrypt the videos\. At a minimum the service role needs permission for `kms:GenerateDataKey` and `kms:Decrypt` actions\. For example:
+
+   ```
+   {
+       "Sid": "Decrypt only",
+       "Effect": "Allow",
+       "Principal": {
+           "AWS": "arn:aws:iam::111122223333:user/user from step 1"
+       },
+       "Action": [
+           "kms:Decrypt",
+           "kms:GenerateDataKey"
+       ],
+       "Resource": "*"
+   }
+   ```
+
+   For more information, see see [My Amazon S3 bucket has default encryption using a custom AWS KMS key\. How can I allow users to download from and upload to the bucket?](https://aws.amazon.com/premiumsupport/knowledge-center/s3-bucket-access-default-encryption/) and [Protecting Data Using Server\-Side Encryption with KMS keys Stored in AWS Key Management Service \(SSE\-KMS\)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html)\. 
 
 1. You can now run the examples in [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md) and [Analyzing a video with the AWS Command Line Interface](video-cli-commands.md)\.
 

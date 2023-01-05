@@ -1,6 +1,11 @@
 # Detect and display elements in images with Amazon Rekognition using an AWS SDK<a name="example_rekognition_Usage_DetectAndDisplayImage_section"></a>
 
-The following code example shows how to detect and display elements in images with Amazon Rekognition\.
+The following code example shows how to:
++ Detect elements in images by using Amazon Rekognition\.
++ Display images and draw bounding boxes around detected elements\.
+
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
 
 For more information, see [Displaying bounding boxes](https://docs.aws.amazon.com/rekognition/latest/dg/images-displaying-bounding-boxes.html)\.
 
@@ -8,6 +13,7 @@ For more information, see [Displaying bounding boxes](https://docs.aws.amazon.co
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
 Create classes to wrap Amazon Rekognition functions\.  
 
 ```
@@ -573,8 +579,7 @@ def usage_demo():
     print("Thanks for watching!")
     print('-'*88)
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

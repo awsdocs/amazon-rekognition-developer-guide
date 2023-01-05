@@ -1,6 +1,6 @@
 # Displaying bounding boxes<a name="images-displaying-bounding-boxes"></a>
 
-Amazon Rekognition Image operations can return bounding boxes coordinates for items that are detected in images\. For example, the [ DetectFaces ](API_DetectFaces.md) operation returns a bounding box \([ BoundingBox ](API_BoundingBox.md)\) for each face detected in an image\. You can use the bounding box coordinates to display a box around detected items\. For example, the following image shows a bounding box surrounding a face\.
+Amazon Rekognition Image operations can return bounding boxes coordinates for items that are detected in images\. For example, the [DetectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html) operation returns a bounding box \([BoundingBox](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_BoundingBox.html)\) for each face detected in an image\. You can use the bounding box coordinates to display a box around detected items\. For example, the following image shows a bounding box surrounding a face\.
 
 ![\[Image NOT FOUND\]](http://docs.aws.amazon.com/rekognition/latest/dg/images/face.png)
 
@@ -20,7 +20,7 @@ To display the bounding box with the correct location and size, you have to mult
 
 ```
 BoundingBox.Left: 0.3922065
-Bounding.Top: 0.15567766
+BoundingBox.Top: 0.15567766
 BoundingBox.Width: 0.284666
 BoundingBox.Height: 0.2930403
 ```
@@ -40,7 +40,7 @@ You use these values to display a bounding box around the face\.
 **Note**  
 An image can be orientated in various ways\. Your application might need to rotate the image to display it with the correction orientation\. Bounding box coordinates are affected by the orientation of the image\. You might need to translate the coordinates before you can display a bounding box at the right location\. For more information, see [Getting image orientation and bounding box coordinates](images-orientation.md)\.
 
-The following examples show how to display a bounding box around faces that are detected by calling [ DetectFaces ](API_DetectFaces.md)\. The examples assume that the images are oriented to 0 degrees\. The examples also show how to download the image from an Amazon S3 bucket\. 
+The following examples show how to display a bounding box around faces that are detected by calling [DetectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)\. The examples assume that the images are oriented to 0 degrees\. The examples also show how to download the image from an Amazon S3 bucket\. 
 
 **To display a bounding box**
 
@@ -270,78 +270,72 @@ The following examples show how to display a bounding box around faces that are 
                                           RekognitionClient rekClient,
                                           String sourceImage,
                                           String bucketName) {
-           int height = 0;
-           int width = 0;
-   
+           int height;
+           int width;
            byte[] data = getObjectBytes (s3, bucketName, sourceImage);
            InputStream is = new ByteArrayInputStream(data);
    
-          try {
-              SdkBytes sourceBytes = SdkBytes.fromInputStream(is);
-              image = ImageIO.read(sourceBytes.asInputStream());
+           try {
+               SdkBytes sourceBytes = SdkBytes.fromInputStream(is);
+               image = ImageIO.read(sourceBytes.asInputStream());
+               width = image.getWidth();
+               height = image.getHeight();
    
-              width = image.getWidth();
-              height = image.getHeight();
-   
-           // Create an Image object for the source image
-           software.amazon.awssdk.services.rekognition.model.Image souImage = Image.builder()
+               // Create an Image object for the source image
+               software.amazon.awssdk.services.rekognition.model.Image souImage = Image.builder()
                    .bytes(sourceBytes)
                    .build();
    
-           DetectFacesRequest facesRequest = DetectFacesRequest.builder()
+               DetectFacesRequest facesRequest = DetectFacesRequest.builder()
                    .attributes(Attribute.ALL)
                    .image(souImage)
                    .build();
    
-            result= rekClient.detectFaces(facesRequest);
+               result = rekClient.detectFaces(facesRequest);
    
-           // Show the bounding box info for each face.
-           List<FaceDetail> faceDetails = result.faceDetails();
-           for (FaceDetail face : faceDetails) {
+               // Show the bounding box info for each face.
+               List<FaceDetail> faceDetails = result.faceDetails();
+               for (FaceDetail face : faceDetails) {
+                   BoundingBox box = face.boundingBox();
+                   float left = width * box.left();
+                   float top = height * box.top();
+                   System.out.println("Face:");
    
-               BoundingBox box = face.boundingBox();
-               float left = width * box.left();
-               float top = height * box.top();
-               System.out.println("Face:");
+                   System.out.println("Left: " + (int) left);
+                   System.out.println("Top: " + (int) top);
+                   System.out.println("Face Width: " + (int) (width * box.width()));
+                   System.out.println("Face Height: " + (int) (height * box.height()));
+                   System.out.println();
+               }
    
-               System.out.println("Left: " + (int) left);
-               System.out.println("Top: " + (int) top);
-               System.out.println("Face Width: " + (int) (width * box.width()));
-               System.out.println("Face Height: " + (int) (height * box.height()));
-               System.out.println();
-           }
+               // Create the frame and panel.
+               JFrame frame = new JFrame("RotateImage");
+               frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+               DisplayFacesFrame panel = new DisplayFacesFrame(image);
+               panel.setPreferredSize(new Dimension(image.getWidth() / scale, image.getHeight() / scale));
+               frame.setContentPane(panel);
+               frame.pack();
+               frame.setVisible(true);
    
-           // Create the frame and panel.
-           JFrame frame = new JFrame("RotateImage");
-           frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-           DisplayFacesFrame panel = new DisplayFacesFrame(image);
-           panel.setPreferredSize(new Dimension(image.getWidth() / scale, image.getHeight() / scale));
-           frame.setContentPane(panel);
-           frame.pack();
-           frame.setVisible(true);
-   
-        } catch (RekognitionException | FileNotFoundException e) {
+           } catch (RekognitionException | FileNotFoundException e) {
                System.out.println(e.getMessage());
                System.exit(1);
-          } catch (IOException e) {
+           } catch (IOException e) {
               e.printStackTrace();
-          } catch (Exception e) {
-              e.printStackTrace();
-          }
+           }
        }
    
        public static byte[] getObjectBytes (S3Client s3, String bucketName, String keyName) {
    
            try {
                GetObjectRequest objectRequest = GetObjectRequest
-                       .builder()
-                       .key(keyName)
-                       .bucket(bucketName)
-                       .build();
+                   .builder()
+                   .key(keyName)
+                   .bucket(bucketName)
+                   .build();
    
                ResponseBytes<GetObjectResponse> objectBytes = s3.getObjectAsBytes(objectRequest);
-               byte[] data = objectBytes.asByteArray();
-               return data;
+               return objectBytes.asByteArray();
    
            } catch (S3Exception e) {
                System.err.println(e.awsErrorDetails().errorMessage());
@@ -350,7 +344,7 @@ The following examples show how to display a bounding box around faces that are 
            return null;
        }
    
-       public DisplayFacesFrame(BufferedImage bufImage) throws Exception {
+       public DisplayFacesFrame(BufferedImage bufImage) {
            super();
            scale = 1; // increase to shrink image size.
            image = bufImage;
@@ -358,11 +352,10 @@ The following examples show how to display a bounding box around faces that are 
    
        // Draws the bounding box around the detected faces.
        public void paintComponent(Graphics g) {
-           float left = 0;
-           float top = 0;
+           float left;
+           float top;
            int height = image.getHeight(this);
            int width = image.getWidth(this);
-   
            Graphics2D g2d = (Graphics2D) g; // Create a Java2D version of g.
    
            // Draw the image
@@ -372,7 +365,6 @@ The following examples show how to display a bounding box around faces that are 
            // Iterate through the faces and display bounding boxes.
            List<FaceDetail> faceDetails = result.faceDetails();
            for (FaceDetail face : faceDetails) {
-   
                BoundingBox box = face.boundingBox();
                left = width * box.left();
                top = height * box.top();

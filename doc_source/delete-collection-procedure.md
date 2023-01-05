@@ -1,6 +1,6 @@
 # Deleting a collection<a name="delete-collection-procedure"></a>
 
-You can use the [ DeleteCollection ](API_DeleteCollection.md) operation to delete a collection\.
+You can use the [DeleteCollection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteCollection.html) operation to delete a collection\.
 
 For more information, see [Managing collections](collections.md#managing-collections)\. 
 
@@ -64,20 +64,19 @@ For more information, see [Managing collections](collections.md#managing-collect
    ```
        public static void deleteMyCollection(RekognitionClient rekClient,String collectionId ) {
    
-       try {
-   
-           DeleteCollectionRequest deleteCollectionRequest = DeleteCollectionRequest.builder()
+           try {
+               DeleteCollectionRequest deleteCollectionRequest = DeleteCollectionRequest.builder()
                    .collectionId(collectionId)
                    .build();
    
-           DeleteCollectionResponse deleteCollectionResponse = rekClient.deleteCollection(deleteCollectionRequest);
-           System.out.println(collectionId + ": " + deleteCollectionResponse.statusCode().toString());
+               DeleteCollectionResponse deleteCollectionResponse = rekClient.deleteCollection(deleteCollectionRequest);
+               System.out.println(collectionId + ": " + deleteCollectionResponse.statusCode().toString());
    
-       } catch(RekognitionException e) {
-           System.out.println(e.getMessage());
-           System.exit(1);
+           } catch(RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
+           }
        }
-     }
    ```
 
 ------

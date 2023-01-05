@@ -1,6 +1,6 @@
 # Detecting inappropriate stored videos<a name="procedure-moderate-videos"></a>
 
-Amazon Rekognition Video inappropriate or offensive content detection in stored videos is an asynchronous operation\. To start detecting inappropriate or offensive content, call [ StartContentModeration ](API_StartContentModeration.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is successful, call [ GetContentModeration ](API_GetContentModeration.md) to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video operations](api-video.md)\. For a list of moderation labels in Amazon Rekognition, see [Using the image and video moderation APIs](https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html#moderation-api)\.
+Amazon Rekognition Video inappropriate or offensive content detection in stored videos is an asynchronous operation\. To start detecting inappropriate or offensive content, call [StartContentModeration](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartContentModeration.html)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is successful, call [GetContentModeration](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetContentModeration.html) to get the analysis results\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video operations](api-video.md)\. For a list of moderation labels in Amazon Rekognition, see [Using the image and video moderation APIs](https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html#moderation-api)\.
 
  This procedure expands on the code in [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), which uses an Amazon Simple Queue Service queue to get the completion status of a video analysis request\.
 
@@ -112,19 +112,19 @@ Amazon Rekognition Video inappropriate or offensive content detection in stored 
    
            try {
                S3Object s3Obj = S3Object.builder()
-                       .bucket(bucket)
-                       .name(video)
-                       .build();
+                   .bucket(bucket)
+                   .name(video)
+                   .build();
    
                Video vidOb = Video.builder()
-                       .s3Object(s3Obj)
-                       .build();
+                   .s3Object(s3Obj)
+                   .build();
    
                StartContentModerationRequest modDetectionRequest = StartContentModerationRequest.builder()
-                       .jobTag("Moderation")
-                       .notificationChannel(channel)
-                       .video(vidOb)
-                       .build();
+                   .jobTag("Moderation")
+                   .notificationChannel(channel)
+                   .video(vidOb)
+                   .build();
    
                StartContentModerationResponse startModDetectionResult = rekClient.startContentModeration(modDetectionRequest);
                startJobId=startModDetectionResult.jobId();
@@ -140,24 +140,22 @@ Amazon Rekognition Video inappropriate or offensive content detection in stored 
            try {
                String paginationToken=null;
                GetContentModerationResponse modDetectionResponse=null;
-               Boolean finished = false;
-               String status="";
+               boolean finished = false;
+               String status;
                int yy=0 ;
    
                do{
-   
                    if (modDetectionResponse !=null)
                        paginationToken = modDetectionResponse.nextToken();
    
                    GetContentModerationRequest modRequest = GetContentModerationRequest.builder()
-                           .jobId(startJobId)
-                           .nextToken(paginationToken)
-                           .maxResults(10)
-                           .build();
+                       .jobId(startJobId)
+                       .nextToken(paginationToken)
+                       .maxResults(10)
+                       .build();
    
                    // Wait until the job succeeds
                    while (!finished) {
-   
                        modDetectionResponse = rekClient.getContentModeration(modRequest);
                        status = modDetectionResponse.jobStatusAsString();
    
@@ -174,7 +172,6 @@ Amazon Rekognition Video inappropriate or offensive content detection in stored 
    
                    // Proceed when the job is done - otherwise VideoMetadata is null
                    VideoMetadata videoMetaData=modDetectionResponse.videoMetadata();
-   
                    System.out.println("Format: " + videoMetaData.format());
                    System.out.println("Codec: " + videoMetaData.codec());
                    System.out.println("Duration: " + videoMetaData.durationMillis());
@@ -269,7 +266,7 @@ If you've already run a video example other than [Analyzing a video stored in an
 
 ## GetContentModeration operation response<a name="getcontentmoderation-operationresponse"></a>
 
-The response from `GetContentModeration` is an array, `ModerationLabels`, of [ ContentModerationDetection ](API_ContentModerationDetection.md) objects\. The array contains an element for each time an inappropriate content label is detected\. Within a `ContentModerationDetectionObject` object, [ ModerationLabel ](API_ModerationLabel.md) contains information for a detected item of inappropriate or offensive content\. `Timestamp` is the time, in milliseconds from the start of the video, when the label was detected\. The labels are organized hierarchically in the same manner as the labels detected by inappropriate content image analysis\. For more information, see [Moderating content](moderation.md)\.
+The response from `GetContentModeration` is an array, `ModerationLabels`, of [ContentModerationDetection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ContentModerationDetection.html) objects\. The array contains an element for each time an inappropriate content label is detected\. Within a `ContentModerationDetectionObject` object, [ModerationLabel](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ModerationLabel.html) contains information for a detected item of inappropriate or offensive content\. `Timestamp` is the time, in milliseconds from the start of the video, when the label was detected\. The labels are organized hierarchically in the same manner as the labels detected by inappropriate content image analysis\. For more information, see [Moderating content](moderation.md)\.
 
 The following is an example response from `GetContentModeration`\.
 

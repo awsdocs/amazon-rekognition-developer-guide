@@ -1,8 +1,8 @@
 # Comparing faces in images<a name="faces-comparefaces"></a>
 
-To compare a face in the *source* image with each face in the *target* image, use the [ CompareFaces ](API_CompareFaces.md) operation\. 
+To compare a face in the *source* image with each face in the *target* image, use the [CompareFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CompareFaces.html) operation\. 
 
-To specify the minimum level of confidence in the match that you want returned in the response, use `similarityThreshold` in the request\. For more information, see [ CompareFaces ](API_CompareFaces.md)\.
+To specify the minimum level of confidence in the match that you want returned in the response, use `similarityThreshold` in the request\. For more information, see [CompareFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CompareFaces.html)\.
 
 If you provide a source image that contains multiple faces, the service detects the largest face and uses it to compare with each face that's detected in the target image\. 
 
@@ -117,28 +117,26 @@ CompareFaces uses machine learning algorithms, which are probabilistic\. A false
 
    ```
        public static void compareTwoFaces(RekognitionClient rekClient, Float similarityThreshold, String sourceImage, String targetImage) {
-   
            try {
                InputStream sourceStream = new FileInputStream(sourceImage);
                InputStream tarStream = new FileInputStream(targetImage);
-   
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
                SdkBytes targetBytes = SdkBytes.fromInputStream(tarStream);
    
                // Create an Image object for the source image.
                Image souImage = Image.builder()
-                  .bytes(sourceBytes)
-                  .build();
+                   .bytes(sourceBytes)
+                   .build();
    
                Image tarImage = Image.builder()
-                       .bytes(targetBytes)
-                       .build();
+                   .bytes(targetBytes)
+                   .build();
    
                CompareFacesRequest facesRequest = CompareFacesRequest.builder()
-                       .sourceImage(souImage)
-                       .targetImage(tarImage)
-                       .similarityThreshold(similarityThreshold)
-                       .build();
+                   .sourceImage(souImage)
+                   .targetImage(tarImage)
+                   .similarityThreshold(similarityThreshold)
+                   .build();
    
                // Compare the two images.
                CompareFacesResponse compareFacesResult = rekClient.compareFaces(facesRequest);

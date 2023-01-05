@@ -29,6 +29,8 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
    --notification-channel "SNSTopicArn=TopicARN,RoleArn=RoleARN" \
    --endpoint-url Endpoint \
    --region us-east-1
+   --features GENERAL_LABELS
+   --settings GeneralLabels={LabelsInclusionFilter=["values"]}
    ```
 
    Update the following values:
@@ -37,6 +39,7 @@ To run this procedure, you need to have the AWS CLI installed\. For more informa
    + Change `TopicARN` to the ARN of the Amazon SNS topic you created in step 3 of [Configuring Amazon Rekognition Video](api-video-roles.md)\.
    + Change `RoleARN` to the ARN of the IAM service role you created in step 7 of [Configuring Amazon Rekognition Video](api-video-roles.md)\.
    + If required, you can specify the `endpoint-url`\. The AWS CLI should automatically determine the proper endpoint URL based on the provided region\. However, if you are using an endpoint [from your private VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html#what-is-privatelink), you may need to specify the `endpoint-url`\. The [AWS Service Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints) resource lists the syntax for specifying endpoint urls and the names and codes for each region\.
+   + You can also include filtration criteria in the settings paramter\. For example, you can use a `LabelsInclusionFilter` or a `LabelsExclusionFilter` alongside a list of desired values\.
 
 1. Note the value of `JobId` in the response\. The response looks similar to the following JSON example\.
 

@@ -1,6 +1,6 @@
 # Setting up your Amazon Rekognition Video and Amazon Kinesis resources<a name="setting-up-your-amazon-rekognition-streaming-video-resources"></a>
 
-Amazon Rekognition Video can search faces in a collection that match faces that are detected in a streaming video\. For more information about collections, see [Searching faces in a collection](collections.md)\. The following procedure describes the steps you take to provision the Kinesis video stream and Kinesis data stream that will be used to recognize faces in a streaming video\.
+ The following procedures describe the steps you take to provision the Kinesis video stream and other resources that are used to recognize faces in a streaming video\.
 
 ## Prerequisites<a name="streaming-video-prerequisites"></a>
 
@@ -8,7 +8,7 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
 
 **To recognize faces in a video stream \(AWS SDK\)**
 
-1. If you haven't already, create an IAM service role to give Amazon Rekognition Video access to your Kinesis video streams and your Kinesis data streams\. Note the ARN\. For more information, see [Giving access to your Kinesis video streams and Kinesis data streams](api-streaming-video-roles.md#api-streaming-video-roles-all-stream)\.
+1. If you haven't already, create an IAM service role to give Amazon Rekognition Video access to your Kinesis video streams and your Kinesis data streams\. Note the ARN\. For more information, see [Giving access to streams using AmazonRekognitionServiceRole](api-streaming-video-roles.md#api-streaming-video-roles-all-stream)\.
 
 1. [Create a collection](create-collection-procedure.md) and note the collection identifier you used\.
 
@@ -18,12 +18,15 @@ To run this procedure, you need to have the AWS SDK for Java installed\. For mor
 
 1. [Create a Kinesis data stream](https://docs.aws.amazon.com/streams/latest/dev/learning-kinesis-module-one-create-stream.html)\. Prepend the stream name with *AmazonRekognition* and note the stream's ARN\.
 
-1. [Create the stream processor](using-rekognition-video-stream-processor.md#streaming-video-creating-stream-processor)\. Pass the following as parameters to [ CreateStreamProcessor ](API_CreateStreamProcessor.md): a name of your choosing, the Kinesis video stream ARN \(step 4\), the Kinesis data stream ARN \(step 5\), and the collection identifier \(step 2\)\.
+You can then [create the face search stream processor](rekognition-video-stream-processor-search-faces.md#streaming-video-creating-stream-processor) and [start the stream processor](rekognition-video-stream-processor-search-faces.md#streaming-video-starting-stream-processor) using the stream processor name that you chose\.
 
-1. [Start the stream processor](using-rekognition-video-stream-processor.md#streaming-video-starting-stream-processor.title) using the stream processor name that you chose in step 6\.
 **Note**  
  You should start the stream processor only after you have verified you can ingest media into the Kinesis video stream\. 
 
-## See next:<a name="see-next"></a>
+## Streaming video into Amazon Rekognition Video<a name="video-streaming-kinesisvideostreams-stream"></a>
+
+To stream video into Amazon Rekognition Video, you use the Amazon Kinesis Video Streams SDK to create and use a Kinesis video stream\. The `PutMedia` operation writes video data *fragments* into a Kinesis video stream that Amazon Rekognition Video consumes\. Each video data fragment is typically 2–10 seconds in length and contains a self\-contained sequence of video frames\. Amazon Rekognition Video supports H\.264 encoded videos, which can have three types of frames \(I, B, and P\)\. For more information, see [Inter Frame](https://en.wikipedia.org/wiki/Inter_frame)\. The first frame in the fragment must be an I\-frame\. An I\-frame can be decoded independent of any other frame\. 
+
+As video data arrives into the Kinesis video stream, Kinesis Video Streams assigns a unique number to the fragment\. For an example, see [PutMedia API Example](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-putmedia.html)\.
 +  If you are streaming from an Matroska \(MKV\) encoded source, use the [PutMedia](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_dataplane_PutMedia.html) operation to stream the source video into the Kinesis video stream that you created\. For more information, see [PutMedia API Example](https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/examples-putmedia.html)\. 
 +  If you are streaming from a device camera, see [Streaming using a GStreamer plugin](streaming-using-gstreamer-plugin.md)\.

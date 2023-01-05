@@ -1,10 +1,14 @@
 # Document history for Amazon Rekognition<a name="document-history"></a>
 
 The following table describes important changes in each release of the *Amazon Rekognition Developer Guide*\. For notification about updates to this documentation, you can subscribe to an RSS feed\. 
-+ **Latest documentation update:** May 21st, 2021
++ **Latest documentation update:** April 28th, 2022
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Update to Amazon Rekognition Video\.](#document-history) | Amazon Rekognition Video can now detect more labels and return more information about attributes of images and labels\. The GetLabelDetection API now returns information about aliases and categories\. Returned label information can be filtered with inclusive and exclusive filter options\. Results can be aggregated by Timestamps or video Segments\.  | December 7, 2022 | 
+| [Update to Amazon Rekognition Image\.](#document-history) | Amazon Rekognition Image can now detect more labels and it now returns more information about attributes of images and labels\. The DetectLabels API now returns information about aliases, categories, and image properties like dominant colors\. Returned label information can be filtered with inclusive and exclusive filter options\. | November 11, 2022 | 
+| [Amazon Rekognition Video can now detect labels in streaming video](#document-history) | Amazon Rekognition Video can detect labels such as pets and packages in streaming video\. This is done using `ConnectedHome` settings on stream processors created with the `CreateStreamProcessor` operation\. | April 28, 2022 | 
+| [API reference moved out of the Amazon Rekognition developer guide](#document-history) | The Amazon Rekognition API reference is now available at [Amazon Rekognition API Reference](https://docs.aws.amazon.com/rekognition/latest/APIReference/Welcome.html)\. | February 24, 2022 | 
 | [A new node in the table of contents shows Amazon Rekognition examples hosted on GitHub](#document-history) | Updated code examples from the AWS Code Examples Repository now show up in a separate node in the Amazon Rekognition developer guide for easier access\. | October 22, 2021 | 
 | [Amazon Rekognition can detect black frames and primary program content in video segments](#document-history) | Amazon Rekognition can identify black frames, color bars, opening credits, end credits, studio logos, and primary program content as technical cues in a video using the `StartSegmentDetection` and `GetSegmentDetection` operations\. | June 7, 2021 | 
 | [Amazon Rekognition DetectText can detect up to 100 words in an image](#document-history) | You can use the Amazon Rekognition `DetectText` operation to detect up to 100 words in an image\. | May 21, 2021 | 

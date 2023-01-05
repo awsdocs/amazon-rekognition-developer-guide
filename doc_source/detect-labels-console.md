@@ -225,4 +225,4 @@ The demo video must not be more than a minute long or larger than 30 MB\. It mus
 
 1. Drag and drop your video or select your video from the location where you've stored it\.
 
- For more video analysis options, see [Working with stored videos](video.md) or [Working with streaming videos](streaming-video.md)\.
+ For more video analysis options, see [Working with stored video analysis](video.md) or [Working with streaming video events](streaming-video.md)\.

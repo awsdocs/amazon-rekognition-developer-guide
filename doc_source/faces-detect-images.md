@@ -1,6 +1,6 @@
 # Detecting faces in an image<a name="faces-detect-images"></a>
 
-Amazon Rekognition Image provides the [ DetectFaces ](API_DetectFaces.md) operation that looks for key facial features such as eyes, nose, and mouth to detect faces in an input image\. Amazon Rekognition Image detects the 100 largest faces in an image\.
+Amazon Rekognition Image provides the [DetectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html) operation that looks for key facial features such as eyes, nose, and mouth to detect faces in an input image\. Amazon Rekognition Image detects the 100 largest faces in an image\.
 
 You can provide the input image as an image byte array \(base64\-encoded image bytes\), or specify an Amazon S3 object\. In this procedure, you upload an image \(JPEG or PNG\) to your S3 bucket and specify the object key name\.
 
@@ -99,25 +99,24 @@ You can provide the input image as an image byte array \(base64\-encoded image b
        public static void detectFacesinImage(RekognitionClient rekClient,String sourceImage ) {
    
            try {
-               InputStream sourceStream = new FileInputStream(new File(sourceImage));
+               InputStream sourceStream = new FileInputStream(sourceImage);
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
    
                // Create an Image object for the source image.
                Image souImage = Image.builder()
-                       .bytes(sourceBytes)
-                       .build();
+                   .bytes(sourceBytes)
+                   .build();
    
                DetectFacesRequest facesRequest = DetectFacesRequest.builder()
-                       .attributes(Attribute.ALL)
-                       .image(souImage)
-                       .build();
+                   .attributes(Attribute.ALL)
+                   .image(souImage)
+                   .build();
    
                DetectFacesResponse facesResponse = rekClient.detectFaces(facesRequest);
                List<FaceDetail> faceDetails = facesResponse.faceDetails();
-   
                for (FaceDetail face : faceDetails) {
-                       AgeRange ageRange = face.ageRange();
-                       System.out.println("The detected face is estimated to be between "
+                   AgeRange ageRange = face.ageRange();
+                   System.out.println("The detected face is estimated to be between "
                                + ageRange.low().toString() + " and " + ageRange.high().toString()
                                + " years old.");
    

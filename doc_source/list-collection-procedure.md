@@ -1,6 +1,6 @@
 # Listing collections<a name="list-collection-procedure"></a>
 
-You can use the [ ListCollections ](API_ListCollections.md) operation to list the collections in the region that you are using\.
+You can use the [ListCollections](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListCollections.html) operation to list the collections in the region that you are using\.
 
 For more information, see [Managing collections](collections.md#managing-collections)\. 
 
@@ -72,12 +72,10 @@ For more information, see [Managing collections](collections.md#managing-collect
 
    ```
        public static void listAllCollections(RekognitionClient rekClient) {
-   
            try {
-   
                ListCollectionsRequest listCollectionsRequest = ListCollectionsRequest.builder()
-                       .maxResults(10)
-                       .build();
+                   .maxResults(10)
+                   .build();
    
                ListCollectionsResponse response = rekClient.listCollections(listCollectionsRequest);
                List<String> collectionIds = response.collectionIds();
@@ -253,7 +251,7 @@ If the response has more collections than are requested by `MaxResults`, a token
 
 ## ListCollections operation response<a name="listcollections-operation-response"></a>
 
-Amazon Rekognition returns an array of collections \(`CollectionIds`\)\. A separate array \(`FaceModelversions`\) provides the version of the face model used to analyze faces in each collection\. For example, in the following JSON response, the collection `MyCollection` analyzes faces by using version 2\.0 of the face model\. The collection `AnotherCollection` uses version 3\.0 of the face model\. For more information, see [Model versioning](face-detection-model.md)\.
+Amazon Rekognition returns an array of collections \(`CollectionIds`\)\. A separate array \(`FaceModelVersions`\) provides the version of the face model used to analyze faces in each collection\. For example, in the following JSON response, the collection `MyCollection` analyzes faces by using version 2\.0 of the face model\. The collection `AnotherCollection` uses version 3\.0 of the face model\. For more information, see [Model versioning](face-detection-model.md)\.
 
 `NextToken` is the token that's used to get the next set of results, in a subsequent call to `ListCollections`\. 
 

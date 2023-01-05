@@ -1,6 +1,6 @@
 # Getting information about a celebrity<a name="get-celebrity-info-procedure"></a>
 
-In these procedures, you get celebrity information by using the [ GetCelebrityInfo ](API_GetCelebrityInfo.md) API operation\. The celebrity is identified by using the celebrity ID that's returned from a previous call to [ RecognizeCelebrities ](API_RecognizeCelebrities.md)\. 
+In these procedures, you get celebrity information by using the [getCelebrityInfo](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetCelebrityInfo.html) API operation\. The celebrity is identified by using the celebrity ID that's returned from a previous call to [RecognizeCelebrities](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_RecognizeCelebrities.html)\. 
 
 ## Calling GetCelebrityInfo<a name="get-celebrity-info-examples"></a>
 
@@ -66,26 +66,24 @@ These procedures require the celebrity ID for a celebrity that Amazon Rekognitio
    This code is taken from the AWS Documentation SDK examples GitHub repository\. See the full example [here](https://github.com/awsdocs/aws-doc-sdk-examples/blob/master/javav2/example_code/rekognition/src/main/java/com/example/rekognition/CelebrityInfo.java)\.
 
    ```
-       public static void getCelebrityInfo(RekognitionClient rekClient, String id ) {
+       public static void getCelebrityInfo(RekognitionClient rekClient, String id) {
    
-          try {
-           GetCelebrityInfoRequest info = GetCelebrityInfoRequest.builder()
+           try {
+               GetCelebrityInfoRequest info = GetCelebrityInfoRequest.builder()
                    .id(id)
                    .build();
    
-           GetCelebrityInfoResponse response = rekClient.getCelebrityInfo(info);
+               GetCelebrityInfoResponse response = rekClient.getCelebrityInfo(info);
+               System.out.println("celebrity name: " + response.name());
+               System.out.println("Further information (if available):");
+               for (String url: response.urls()){
+                   System.out.println(url);
+               }
    
-           // Display celebrity information.
-           System.out.println("celebrity name: " + response.name());
-           System.out.println("Further information (if available):");
-           for (String url: response.urls()){
-               System.out.println(url);
+           } catch (RekognitionException e) {
+               System.out.println(e.getMessage());
+               System.exit(1);
            }
-   
-          } catch (RekognitionException e) {
-              System.out.println(e.getMessage());
-              System.exit(1);
-          }
        }
    ```
 

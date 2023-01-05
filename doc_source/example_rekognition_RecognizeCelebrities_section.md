@@ -2,15 +2,32 @@
 
 The following code examples show how to recognize celebrities in an image with Amazon Rekognition\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
 For more information, see [Recognizing celebrities in an image](https://docs.aws.amazon.com/rekognition/latest/dg/celebrities-procedure-image.html)\.
 
 ------
 #### [ \.NET ]
 
 **AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
   
 
 ```
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+    using Amazon.Rekognition;
+    using Amazon.Rekognition.Model;
+
+    /// <summary>
+    /// Shows how to use Amazon Rekognition to identify celebrities in a photo.
+    /// This example was created using the AWS SDK for .NET version 3.7 and
+    /// .NET Core 5.0.
+    /// </summary>
+    public class CelebritiesInImage
+    {
         public static async Task Main(string[] args)
         {
             string photo = "moviestars.jpg";
@@ -56,37 +73,34 @@ For more information, see [Recognizing celebrities in an image](https://docs.aws
 
             Console.WriteLine($"{recognizeCelebritiesResponse.UnrecognizedFaces.Count} face(s) were unrecognized.");
         }
+    }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
 +  For API details, see [RecognizeCelebrities](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/RecognizeCelebrities) in *AWS SDK for \.NET API Reference*\. 
 
 ------
 #### [ Java ]
 
 **SDK for Java 2\.x**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
   
 
 ```
     public static void recognizeAllCelebrities(RekognitionClient rekClient, String sourceImage) {
 
         try {
-
             InputStream sourceStream = new FileInputStream(sourceImage);
             SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
-
             Image souImage = Image.builder()
                 .bytes(sourceBytes)
                 .build();
 
             RecognizeCelebritiesRequest request = RecognizeCelebritiesRequest.builder()
-                    .image(souImage)
-                    .build();
+                .image(souImage)
+                .build();
 
             RecognizeCelebritiesResponse result = rekClient.recognizeCelebrities(request) ;
-
             List<Celebrity> celebs=result.celebrityFaces();
             System.out.println(celebs.size() + " celebrity(s) were recognized.\n");
-
             for (Celebrity celebrity: celebs) {
                 System.out.println("Celebrity recognized: " + celebrity.name());
                 System.out.println("Celebrity ID: " + celebrity.id());
@@ -103,9 +117,8 @@ For more information, see [Recognizing celebrities in an image](https://docs.aws
             System.out.println(e.getMessage());
             System.exit(1);
         }
-     }
+    }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
 +  For API details, see [RecognizeCelebrities](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/RecognizeCelebrities) in *AWS SDK for Java 2\.x API Reference*\. 
 
 ------
@@ -113,40 +126,41 @@ For more information, see [Recognizing celebrities in an image](https://docs.aws
 
 **SDK for Kotlin**  
 This is prerelease documentation for a feature in preview release\. It is subject to change\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
   
 
 ```
 suspend fun recognizeAllCelebrities(sourceImage: String?) {
 
-        val souImage = Image {
-            bytes = (File(sourceImage).readBytes())
-        }
+    val souImage = Image {
+        bytes = (File(sourceImage).readBytes())
+    }
 
-        val request = RecognizeCelebritiesRequest{
-            image = souImage
-        }
+    val request = RecognizeCelebritiesRequest {
+        image = souImage
+    }
 
-        RekognitionClient { region = "us-east-1" }.use { rekClient ->
-          val response = rekClient.recognizeCelebrities(request)
-          response.celebrityFaces?.forEach { celebrity ->
-                println("Celebrity recognized: ${celebrity.name}")
-                println("Celebrity ID:${celebrity.id}")
-                println("Further information (if available):")
-                celebrity.urls?.forEach { url ->
-                      println(url)
-                }
-             }
-          println("${response.unrecognizedFaces?.size} face(s) were unrecognized.")
+    RekognitionClient { region = "us-east-1" }.use { rekClient ->
+        val response = rekClient.recognizeCelebrities(request)
+        response.celebrityFaces?.forEach { celebrity ->
+            println("Celebrity recognized: ${celebrity.name}")
+            println("Celebrity ID:${celebrity.id}")
+            println("Further information (if available):")
+            celebrity.urls?.forEach { url ->
+                println(url)
+            }
         }
-  }
+        println("${response.unrecognizedFaces?.size} face(s) were unrecognized.")
+    }
+}
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
 +  For API details, see [RecognizeCelebrities](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 
 
 ------
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
   
 
 ```
@@ -192,9 +206,8 @@ class RekognitionImage:
         else:
             return celebrities, other_faces
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
 +  For API details, see [RecognizeCelebrities](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/RecognizeCelebrities) in *AWS SDK for Python \(Boto3\) API Reference*\. 
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

@@ -4,7 +4,7 @@ You can use Amazon Rekognition API operations with images, stored videos, and st
 
 **Topics**
 + [Working with images](images.md)
-+ [Working with stored videos](video.md)
-+ [Working with streaming videos](streaming-video.md)
++ [Working with stored video analysis](video.md)
++ [Working with streaming video events](streaming-video.md)
 + [Error handling](error-handling.md)
 + [Using Amazon Rekognition as a FedRAMP authorized service](fedramp.md)

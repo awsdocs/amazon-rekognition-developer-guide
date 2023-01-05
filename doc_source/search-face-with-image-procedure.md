@@ -1,6 +1,6 @@
 # Searching for a face using an image<a name="search-face-with-image-procedure"></a>
 
-You can use the [ SearchFacesByImage ](API_SearchFacesByImage.md) operation to search for faces in a collection that match the largest face in a supplied image\.
+You can use the [SearchFacesByImage](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFacesByImage.html) operation to search for faces in a collection that match the largest face in a supplied image\.
 
 For more information, see [Searching for faces within a collection](collections.md#collections-search-faces)\. 
 
@@ -92,27 +92,25 @@ For more information, see [Searching for faces within a collection](collections.
            try {
                InputStream sourceStream = new FileInputStream(new File(sourceImage));
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
-   
                Image souImage = Image.builder()
-                       .bytes(sourceBytes)
-                       .build();
+                   .bytes(sourceBytes)
+                   .build();
    
                SearchFacesByImageRequest facesByImageRequest = SearchFacesByImageRequest.builder()
-                       .image(souImage)
-                       .maxFaces(10)
-                       .faceMatchThreshold(70F)
-                       .collectionId(collectionId)
-                       .build();
+                   .image(souImage)
+                   .maxFaces(10)
+                   .faceMatchThreshold(70F)
+                   .collectionId(collectionId)
+                   .build();
    
                SearchFacesByImageResponse imageResponse = rekClient.searchFacesByImage(facesByImageRequest) ;
-   
-               // Display the results.
                System.out.println("Faces matching in the collection");
                List<FaceMatch> faceImageMatches = imageResponse.faceMatches();
                for (FaceMatch face: faceImageMatches) {
                    System.out.println("The similarity level is  "+face.similarity());
                    System.out.println();
                }
+   
            } catch (RekognitionException | FileNotFoundException e) {
                System.out.println(e.getMessage());
                System.exit(1);

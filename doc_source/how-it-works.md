@@ -6,7 +6,7 @@ Both APIs analyze images and videos to provide insights you can use in your appl
 
 You can use Amazon Rekognition Video to track the path of people in a stored video\. Alternatively, you can use Amazon Rekognition Video to search a streaming video for persons whose facial descriptions match facial descriptions already stored by Amazon Rekognition\. 
 
-The Amazon Rekognition API makes deep learning image analysis easy to use\. For example, [ RecognizeCelebrities ](API_RecognizeCelebrities.md) returns information for up to 100 celebrities detected in an image\. This includes information about where celebrity faces are detected on the image and where to get further information about the celebrity\.
+The Amazon Rekognition API makes deep learning image analysis easy to use\. For example, [RecognizeCelebrities](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_RecognizeCelebrities.html) returns information for up to 100 celebrities detected in an image\. This includes information about where celebrity faces are detected on the image and where to get further information about the celebrity\.
 
 The following information covers the types of analysis that Amazon Rekognition provides and an overview of Amazon Rekognition Image and Amazon Rekognition Video operations\. Also covered is the difference between non\-storage and storage operations\.
 

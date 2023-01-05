@@ -38,13 +38,16 @@ Common use cases for using Amazon Rekognition include the following:
 + **Custom labels**– With Amazon Rekognition Custom Labels, you can identify the objects and scenes in images that are specific to your business needs\. For example, you can find your logo in social media posts, identify your products on store shelves, classify machine parts in an assembly line, distinguish healthy and infected plants, or detect animated characters in videos\. For more information, see [What is Amazon Rekognition Custom Labels?](https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/what-is.html) in the *Amazon Rekognition Custom Labels Developer Guide*\.
 
 Some of the benefits of using Amazon Rekognition include:
-+ **Integrating powerful image and video analysis into your apps** – You don’t need computer vision or deep learning expertise to take advantage of the reliable image and video analysis in Amazon Rekognition\. With the API, you can easily and quickly build image and video analysis into any web, mobile, or connected device application\.
++ **Integrating powerful image and video analysis into your apps** – You don’t need computer vision or deep learning expertise to take advantage of the reliable image and video analysis in Amazon Rekognition\. With the API, you can build image and video analysis into any web, mobile, or connected device application\.
 
    
-+ **Deep learning\-based image and video analysis** – Amazon Rekognition uses deep\-learning technology to accurately analyze images, find and compare faces in images, and detect objects and scenes within your images and videos\. 
++ **Deep learning\-based image and video analysis** – Amazon Rekognition uses deep\-learning technology to accurately analyze images, find and compare faces in images, and detect objects and scenes within your images and videos\. You can analyze images for the presence of many different labels and then filter the results to include and/or exclude sets of labels or label categories\. 
 
    
 + **Scalable image analysis** – Amazon Rekognition enables you to analyze millions of images so you can curate and organize massive amounts of visual data\.
+
+   
++ **Analyze and filter images based on image properties** – Amazon Rekognition lets you analyze image properties like quality or colors\. You can determine the sharpness, brightness, and contrast of images\. You can also detect dominant colors in the entire image, foreground, background, and objects with bounding boxes\. 
 
    
 + **Integration with other AWS services** – Amazon Rekognition is designed to work seamlessly with other AWS services like Amazon S3 and AWS Lambda\. You can call the Amazon Rekognition API directly from Lambda in response to Amazon S3 events\. Because Amazon S3 and Lambda scale automatically in response to your application’s demand, you can build scalable, affordable, and reliable image analysis applications\. For example, each time a person arrives at your residence, your door camera can upload a photo of the visitor to Amazon S3\. This triggers a Lambda function that uses Amazon Rekognition API operations to identify your guest\. You can run analysis directly on images that are stored in Amazon S3 without having to load or move the data\. Support for AWS Identity and Access Management \(IAM\) makes it easy to securely control access to Amazon Rekognition API operations\. Using IAM, you can create and manage AWS users and groups to grant the appropriate access to your developers and end users\.
@@ -66,6 +69,6 @@ If you're a first\-time user of Amazon Rekognition, we recommend that you read t
 
 1. **[Working with images](images.md)** – This section provides information about using Amazon Rekognition with images stored in Amazon S3 buckets and images loaded from a local file system\.
 
-1. **[Working with stored videos](video.md)** – This section provides information about using Amazon Rekognition with videos stored in an Amazon S3 bucket\.
+1. **[Working with stored video analysis](video.md)** – This section provides information about using Amazon Rekognition with videos stored in an Amazon S3 bucket\.
 
-1. **[Working with streaming videos](streaming-video.md)** – This section provides information about using Amazon Rekognition with streaming videos\.
+1. **[Working with streaming video events](streaming-video.md)** – This section provides information about using Amazon Rekognition with streaming videos\.

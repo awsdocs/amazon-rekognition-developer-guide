@@ -2,7 +2,7 @@
 
 Amazon Rekognition Image operations can analyze images that are supplied as image bytes or images stored in an Amazon S3 bucket\.
 
-These topics provide examples of supplying image bytes to Amazon Rekognition Image API operations by using a file loaded from a local file system\. You pass image bytes to an Amazon Rekognition API operation by using the [ Image ](API_Image.md) input parameter\. Within `Image`, you specify the `Bytes` property to pass base64\-encoded image bytes\.
+These topics provide examples of supplying image bytes to Amazon Rekognition Image API operations by using a file loaded from a local file system\. You pass image bytes to an Amazon Rekognition API operation by using the [Image](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_Image.html) input parameter\. Within `Image`, you specify the `Bytes` property to pass base64\-encoded image bytes\.
 
 Image bytes passed to an Amazon Rekognition API operation by using the `Bytes` input parameter must be base64 encoded\. The AWS SDKs that these examples use automatically base64\-encode images\. You don't need to encode image bytes before calling an Amazon Rekognition API operation\. For more information, see [Image specifications](images-information.md)\. 
 
@@ -302,34 +302,29 @@ For a client\-side JavaScript example, see [Using JavaScript](image-bytes-javasc
        public static void detectImageLabels(RekognitionClient rekClient, String sourceImage) {
    
            try {
-   
-               InputStream sourceStream = new URL("https://images.unsplash.com/photo-1557456170-0cf4f4d0d362?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGFrZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80").openStream();
-              // InputStream sourceStream = new FileInputStream(sourceImage);
+               InputStream sourceStream = new FileInputStream(sourceImage);
                SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
    
                // Create an Image object for the source image.
                Image souImage = Image.builder()
-                       .bytes(sourceBytes)
-                       .build();
+                   .bytes(sourceBytes)
+                   .build();
    
                DetectLabelsRequest detectLabelsRequest = DetectLabelsRequest.builder()
-                       .image(souImage)
-                       .maxLabels(10)
-                       .build();
+                   .image(souImage)
+                   .maxLabels(10)
+                   .build();
    
                DetectLabelsResponse labelsResponse = rekClient.detectLabels(detectLabelsRequest);
                List<Label> labels = labelsResponse.labels();
-   
                System.out.println("Detected labels for the given photo");
                for (Label label: labels) {
                    System.out.println(label.name() + ": " + label.confidence().toString());
                }
    
-           } catch (RekognitionException | FileNotFoundException | MalformedURLException e) {
+           } catch (RekognitionException | FileNotFoundException e) {
                System.out.println(e.getMessage());
                System.exit(1);
-           } catch (IOException e) {
-               e.printStackTrace();
            }
        }
    ```

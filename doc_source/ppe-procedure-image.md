@@ -1,6 +1,6 @@
 # Detecting personal protective equipment in an image<a name="ppe-procedure-image"></a>
 
-To detect Personal Protective Equipment \(PPE\) on persons in an image, use the [ DetectProtectiveEquipment ](API_DetectProtectiveEquipment.md) non\-storage API operation\. 
+To detect Personal Protective Equipment \(PPE\) on persons in an image, use the [DetectProtectiveEquipment](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectProtectiveEquipment.html) non\-storage API operation\. 
 
 You can provide the input image as an image byte array \(base64\-encoded image bytes\) or as an Amazon S3 object, by using the AWS SDK or the AWS Command Line Interface \(AWS CLI\)\. These examples use an image stored in an Amazon S3 bucket\. For more information, see [Working with images](images.md)\. 
 
@@ -166,23 +166,22 @@ You can provide the input image as an image byte array \(base64\-encoded image b
    
            try {
                ProtectiveEquipmentSummarizationAttributes summarizationAttributes = ProtectiveEquipmentSummarizationAttributes.builder()
-                       .minConfidence(80F)
-                       .requiredEquipmentTypesWithStrings("FACE_COVER", "HAND_COVER", "HEAD_COVER")
-                       .build();
+                   .minConfidence(80F)
+                   .requiredEquipmentTypesWithStrings("FACE_COVER", "HAND_COVER", "HEAD_COVER")
+                   .build();
    
                SdkBytes sourceBytes = SdkBytes.fromInputStream(is);
                software.amazon.awssdk.services.rekognition.model.Image souImage = Image.builder()
-                       .bytes(sourceBytes)
-                       .build();
+                   .bytes(sourceBytes)
+                   .build();
    
                DetectProtectiveEquipmentRequest request = DetectProtectiveEquipmentRequest.builder()
-                       .image(souImage)
-                       .summarizationAttributes(summarizationAttributes)
-                       .build();
+                   .image(souImage)
+                   .summarizationAttributes(summarizationAttributes)
+                   .build();
    
                DetectProtectiveEquipmentResponse result = rekClient.detectProtectiveEquipment(request);
                List<ProtectiveEquipmentPerson> persons = result.persons();
-   
                for (ProtectiveEquipmentPerson person: persons) {
                    System.out.println("ID: " + person.id());
                    List<ProtectiveEquipmentBodyPart> bodyParts=person.bodyParts();
@@ -203,7 +202,6 @@ You can provide the input image as an image byte array \(base64\-encoded image b
    
                                    System.out.println("\t\tBounding Box");
                                    BoundingBox box =item.boundingBox();
-   
                                    System.out.println("\t\tLeft: " +box.left().toString());
                                    System.out.println("\t\tTop: " + box.top().toString());
                                    System.out.println("\t\tWidth: " + box.width().toString());
@@ -216,15 +214,13 @@ You can provide the input image as an image byte array \(base64\-encoded image b
                }
                System.out.println("Person ID Summary\n-----------------");
    
-               DisplaySummary("With required equipment", result.summary().personsWithRequiredEquipment());
-               DisplaySummary("Without required equipment", result.summary().personsWithoutRequiredEquipment());
-               DisplaySummary("Indeterminate", result.summary().personsIndeterminate());
+               displaySummary("With required equipment", result.summary().personsWithRequiredEquipment());
+               displaySummary("Without required equipment", result.summary().personsWithoutRequiredEquipment());
+               displaySummary("Indeterminate", result.summary().personsIndeterminate());
    
            } catch (RekognitionException e) {
                e.printStackTrace();
                System.exit(1);
-           } catch (Exception e) {
-               e.printStackTrace();
            }
        }
    
@@ -232,14 +228,13 @@ You can provide the input image as an image byte array \(base64\-encoded image b
    
            try {
                GetObjectRequest objectRequest = GetObjectRequest
-                       .builder()
-                       .key(keyName)
-                       .bucket(bucketName)
-                       .build();
+                   .builder()
+                   .key(keyName)
+                   .bucket(bucketName)
+                   .build();
    
                ResponseBytes<GetObjectResponse> objectBytes = s3.getObjectAsBytes(objectRequest);
-               byte[] data = objectBytes.asByteArray();
-               return data;
+               return objectBytes.asByteArray();
    
            } catch (S3Exception e) {
                System.err.println(e.awsErrorDetails().errorMessage());
@@ -248,19 +243,16 @@ You can provide the input image as an image byte array \(base64\-encoded image b
            return null;
        }
    
-       static void DisplaySummary(String summaryType,List<Integer> idList)
-       {
+       static void displaySummary(String summaryType,List<Integer> idList) {
            System.out.print(summaryType + "\n\tIDs  ");
            if (idList.size()==0) {
                System.out.println("None");
-           }
-           else {
+           } else {
                int count=0;
                for (Integer id: idList ) {
                    if (count++ == idList.size()-1) {
                        System.out.println(id.toString());
-                   }
-                   else {
+                   } else {
                        System.out.print(id.toString() + ", ");
                    }
                }

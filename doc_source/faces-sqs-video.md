@@ -6,7 +6,7 @@ Amazon Rekognition Video can detect faces in videos that are stored in an Amazon
 + Facial landmarks such as the position of the left eye\. 
 + Additional attributes as explained on the [Guidelines on face attributes](guidance-face-attributes.md) page\.
 
-Amazon Rekognition Video face detection in stored videos is an asynchronous operation\. To start the detection of faces in videos, call [ StartFaceDetection ](API_StartFaceDetection.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service \(Amazon SNS\) topic\. If the video analysis is successful, you can call [ GetFaceDetection ](API_GetFaceDetection.md) to get the results of the video analysis\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video operations](api-video.md)\. 
+Amazon Rekognition Video face detection in stored videos is an asynchronous operation\. To start the detection of faces in videos, call [StartFaceDetection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartFaceDetection.html)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service \(Amazon SNS\) topic\. If the video analysis is successful, you can call [GetFaceDetection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetFaceDetection.html) to get the results of the video analysis\. For more information about starting video analysis and getting the results, see [Calling Amazon Rekognition Video operations](api-video.md)\. 
 
 This procedure expands on the code in [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md), which uses an Amazon Simple Queue Service \(Amazon SQS\) queue to get the completion status of a video analysis request\. 
 
@@ -114,20 +114,20 @@ This procedure expands on the code in [Analyzing a video stored in an Amazon S3 
    
            try {
                S3Object s3Obj = S3Object.builder()
-                       .bucket(bucket)
-                       .name(video)
-                       .build();
+                   .bucket(bucket)
+                   .name(video)
+                   .build();
    
                Video vidOb = Video.builder()
-                       .s3Object(s3Obj)
-                       .build();
+                   .s3Object(s3Obj)
+                   .build();
    
                StartFaceDetectionRequest  faceDetectionRequest = StartFaceDetectionRequest.builder()
-                       .jobTag("Faces")
-                       .faceAttributes(FaceAttributes.ALL)
-                       .notificationChannel(channel)
-                       .video(vidOb)
-                       .build();
+                   .jobTag("Faces")
+                   .faceAttributes(FaceAttributes.ALL)
+                   .notificationChannel(channel)
+                   .video(vidOb)
+                   .build();
    
                StartFaceDetectionResponse startLabelDetectionResult = rekClient.startFaceDetection(faceDetectionRequest);
                startJobId=startLabelDetectionResult.jobId();
@@ -143,8 +143,8 @@ This procedure expands on the code in [Analyzing a video stored in an Amazon S3 
            try {
                String paginationToken=null;
                GetFaceDetectionResponse faceDetectionResponse=null;
-               Boolean finished = false;
-               String status="";
+               boolean finished = false;
+               String status;
                int yy=0 ;
    
                do{
@@ -152,10 +152,10 @@ This procedure expands on the code in [Analyzing a video stored in an Amazon S3 
                        paginationToken = faceDetectionResponse.nextToken();
    
                    GetFaceDetectionRequest recognitionRequest = GetFaceDetectionRequest.builder()
-                           .jobId(startJobId)
-                           .nextToken(paginationToken)
-                          .maxResults(10)
-                           .build();
+                       .jobId(startJobId)
+                       .nextToken(paginationToken)
+                       .maxResults(10)
+                       .build();
    
                    // Wait until the job succeeds
                    while (!finished) {
@@ -176,7 +176,6 @@ This procedure expands on the code in [Analyzing a video stored in an Amazon S3 
    
                    // Proceed when the job is done - otherwise VideoMetadata is null
                    VideoMetadata videoMetaData=faceDetectionResponse.videoMetadata();
-   
                    System.out.println("Format: " + videoMetaData.format());
                    System.out.println("Codec: " + videoMetaData.codec());
                    System.out.println("Duration: " + videoMetaData.durationMillis());
@@ -187,13 +186,11 @@ This procedure expands on the code in [Analyzing a video stored in an Amazon S3 
                    List<FaceDetection> faces= faceDetectionResponse.faces();
    
                    for (FaceDetection face: faces) {
-   
                        String age = face.face().ageRange().toString();
-                       String beard = face.face().beard().toString();
-                       String eyeglasses = face.face().eyeglasses().toString();
-                       String eyesOpen = face.face().eyesOpen().toString();
-                       String mustache = face.face().mustache().toString();
                        String smile = face.face().smile().toString();
+                       System.out.println("The detected face is estimated to be"
+                                   + age + " years old.");
+                       System.out.println("There is a smile : "+smile);
                    }
    
                } while (faceDetectionResponse !=null && faceDetectionResponse.nextToken() != null);
@@ -272,10 +269,10 @@ If you've already run a video example other than [Analyzing a video stored in an
 
 ## GetFaceDetection operation response<a name="getfacedetection-operation-response"></a>
 
-`GetFaceDetection` returns an array \(`Faces`\) that contains information about the faces detected in the video\. An array element, [ FaceDetection ](API_FaceDetection.md), exists for each time a face is detected in the video\. The array elements returned are sorted by time, in milliseconds since the start of the video\.  
+`GetFaceDetection` returns an array \(`Faces`\) that contains information about the faces detected in the video\. An array element, [FaceDetection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_FaceDetection.html), exists for each time a face is detected in the video\. The array elements returned are sorted by time, in milliseconds since the start of the video\.  
 
 The following example is a partial JSON response from `GetFaceDetection`\. In the response, note the following:
-+ **Face information** – The `FaceDetection` array element contains information about the detected face \([ FaceDetail ](API_FaceDetail.md)\) and the time that the face was detected in the video \(`Timestamp`\)\.
++ **Face information** – The `FaceDetection` array element contains information about the detected face \([FaceDetail](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_FaceDetail.html)\) and the time that the face was detected in the video \(`Timestamp`\)\.
 + **Paging information** – The example shows one page of face detection information\. You can specify how many person elements to return in the `MaxResults` input parameter for `GetFaceDetection`\. If more results than `MaxResults` exist, `GetFaceDetection` returns a token \(`NextToken`\) that's used to get the next page of results\. For more information, see [Getting Amazon Rekognition Video analysis results](api-video.md#api-video-get)\.
 + **Video information** – The response includes information about the video format \(`VideoMetadata`\) in each page of information that's returned by `GetFaceDetection`\.
 

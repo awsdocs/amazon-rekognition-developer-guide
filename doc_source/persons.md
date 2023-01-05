@@ -4,7 +4,7 @@ Amazon Rekognition Video can create a track of the path people take in videos an
 + The location of the person in the video frame at the time their path is tracked\.
 + Facial landmarks such as the position of the left eye, when detected\. 
 
-Amazon Rekognition Video people pathing in stored videos is an asynchronous operation\. To start the pathing of people in videos call [ StartPersonTracking ](API_StartPersonTracking.md)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is succesful, call [ GetPersonTracking ](API_GetPersonTracking.md) to get results of the video analysis\. For more information about calling Amazon Rekognition Video API operations, see [Calling Amazon Rekognition Video operations](api-video.md)\. 
+Amazon Rekognition Video people pathing in stored videos is an asynchronous operation\. To start the pathing of people in videos call [StartPersonTracking](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartPersonTracking.html)\. Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service topic\. If the video analysis is successful, call [GetPersonTracking](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetPersonTracking.html) to get results of the video analysis\. For more information about calling Amazon Rekognition Video API operations, see [Calling Amazon Rekognition Video operations](api-video.md)\. 
 
 The following procedure shows how to track the path of people through a video stored in an Amazon S3 bucket\. The example expands on the code in [Analyzing a video stored in an Amazon S3 bucket with Java or Python \(SDK\)](video-analyzing-with-sqs.md) which uses an Amazon Simple Queue Service queue to get the completion status of a video analysis request\. 
 
@@ -112,19 +112,19 @@ The following procedure shows how to track the path of people through a video st
                                           String video) {
            try {
                S3Object s3Obj = S3Object.builder()
-                       .bucket(bucket)
-                       .name(video)
-                       .build();
+                   .bucket(bucket)
+                   .name(video)
+                   .build();
    
                Video vidOb = Video.builder()
-                       .s3Object(s3Obj)
-                       .build();
+                   .s3Object(s3Obj)
+                   .build();
    
                StartPersonTrackingRequest personTrackingRequest = StartPersonTrackingRequest.builder()
-                       .jobTag("DetectingLabels")
-                       .video(vidOb)
-                       .notificationChannel(channel)
-                       .build();
+                   .jobTag("DetectingLabels")
+                   .video(vidOb)
+                   .notificationChannel(channel)
+                   .build();
    
                StartPersonTrackingResponse labelDetectionResponse = rekClient.startPersonTracking(personTrackingRequest);
                startJobId = labelDetectionResponse.jobId();
@@ -140,8 +140,8 @@ The following procedure shows how to track the path of people through a video st
            try {
                String paginationToken=null;
                GetPersonTrackingResponse personTrackingResult=null;
-               Boolean finished = false;
-               String status="";
+               boolean finished = false;
+               String status;
                int yy=0 ;
    
                do{
@@ -172,7 +172,7 @@ The following procedure shows how to track the path of people through a video st
                    finished = false;
    
                    // Proceed when the job is done - otherwise VideoMetadata is null
-                   VideoMetadata videoMetaData=personTrackingResult.videoMetadata();
+                   VideoMetadata videoMetaData = personTrackingResult.videoMetadata();
    
                    System.out.println("Format: " + videoMetaData.format());
                    System.out.println("Codec: " + videoMetaData.codec());
@@ -185,7 +185,7 @@ The following procedure shows how to track the path of people through a video st
    
                        long seconds=detectedPerson.timestamp()/1000;
                        System.out.print("Sec: " + seconds + " ");
-                       System.out.println("Person Identifier: "  + detectedPerson.person().index());
+                       System.out.println("Person Identifier: " + detectedPerson.person().index());
                        System.out.println();
                    }
    
@@ -264,7 +264,7 @@ If you've already run a video example other than [Analyzing a video stored in an
 
 ## GetPersonTracking operation response<a name="getresultspersons-operation-response"></a>
 
-`GetPersonTracking` returns an array, `Persons`, of [ PersonDetection ](API_PersonDetection.md) objects which contain details about people detected in the video and when their paths are tracked\. 
+`GetPersonTracking` returns an array, `Persons`, of [PersonDetection](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_PersonDetection.html) objects which contain details about people detected in the video and when their paths are tracked\. 
 
 You can sort `Persons` by using the `SortBy` input parameter\. Specify `TIMESTAMP` to sort the elements by the time people's paths are tracked in the video\. Specify `INDEX` to sort by people tracked in the video\. Within each set of results for a person, the elements are sorted by descending confidence in the accuracy of the path tracking\. By default, `Persons` is returned sorted by `TIMESTAMP`\. The following example is the JSON response from `GetPersonDetection`\. The results are sorted by the time, in milliseconds since the start of the video, that people's paths are tracked in the video\. In the response, note the following:
 + **Person information** – The `PersonDetection` array element contains information about the detected person\. For example, the time the person was detected \(`Timestamp`\), the position of the person in the video frame at the time they were detected \(`BoundingBox`\), and how confident Amazon Rekognition Video is that the person has been correctly detected \(`Confidence`\)\.

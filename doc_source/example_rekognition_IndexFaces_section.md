@@ -2,15 +2,33 @@
 
 The following code examples show how to index faces in an image and add them to an Amazon Rekognition collection\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
 For more information, see [Adding faces to a collection](https://docs.aws.amazon.com/rekognition/latest/dg/add-faces-to-collection-procedure.html)\.
 
 ------
 #### [ \.NET ]
 
 **AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
   
 
 ```
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using Amazon.Rekognition;
+    using Amazon.Rekognition.Model;
+
+    /// <summary>
+    /// Uses the Amazon Rekognition Service to detect faces in an image
+    /// that has been uploaded to an Amazon Simple Storage Service (Amazon S3)
+    /// bucket and then adds the information to a collection. The example was
+    /// created using the AWS SDK for .NET and .NET Core 5.0.
+    /// </summary>
+    public class AddFaces
+    {
         public static async Task Main()
         {
             string collectionId = "MyCollection2";
@@ -44,39 +62,36 @@ For more information, see [Adding faces to a collection](https://docs.aws.amazon
                 Console.WriteLine($"Face detected: Faceid is {faceRecord.Face.FaceId}");
             }
         }
+    }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
 +  For API details, see [IndexFaces](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/IndexFaces) in *AWS SDK for \.NET API Reference*\. 
 
 ------
 #### [ Java ]
 
 **SDK for Java 2\.x**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
   
 
 ```
     public static void addToCollection(RekognitionClient rekClient, String collectionId, String sourceImage) {
 
         try {
-
             InputStream sourceStream = new FileInputStream(sourceImage);
             SdkBytes sourceBytes = SdkBytes.fromInputStream(sourceStream);
-
             Image souImage = Image.builder()
-                    .bytes(sourceBytes)
-                    .build();
+                .bytes(sourceBytes)
+                .build();
 
             IndexFacesRequest facesRequest = IndexFacesRequest.builder()
-                    .collectionId(collectionId)
-                    .image(souImage)
-                    .maxFaces(1)
-                    .qualityFilter(QualityFilter.AUTO)
-                    .detectionAttributes(Attribute.DEFAULT)
-                    .build();
+                .collectionId(collectionId)
+                .image(souImage)
+                .maxFaces(1)
+                .qualityFilter(QualityFilter.AUTO)
+                .detectionAttributes(Attribute.DEFAULT)
+                .build();
 
             IndexFacesResponse facesResponse = rekClient.indexFaces(facesRequest);
-
-            // Display the results.
             System.out.println("Results for the image");
             System.out.println("\n Faces indexed:");
             List<FaceRecord> faceRecords = facesResponse.faceRecords();
@@ -101,7 +116,6 @@ For more information, see [Adding faces to a collection](https://docs.aws.amazon
         }
     }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
 +  For API details, see [IndexFaces](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/IndexFaces) in *AWS SDK for Java 2\.x API Reference*\. 
 
 ------
@@ -109,53 +123,54 @@ For more information, see [Adding faces to a collection](https://docs.aws.amazon
 
 **SDK for Kotlin**  
 This is prerelease documentation for a feature in preview release\. It is subject to change\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
   
 
 ```
 suspend fun addToCollection(collectionIdVal: String?, sourceImage: String) {
 
-        val souImage = Image {
-            bytes = (File(sourceImage).readBytes())
+    val souImage = Image {
+        bytes = (File(sourceImage).readBytes())
+    }
+
+    val request = IndexFacesRequest {
+        collectionId = collectionIdVal
+        image = souImage
+        maxFaces = 1
+        qualityFilter = QualityFilter.Auto
+        detectionAttributes = listOf(Attribute.Default)
+    }
+
+    RekognitionClient { region = "us-east-1" }.use { rekClient ->
+        val facesResponse = rekClient.indexFaces(request)
+
+        // Display the results.
+        println("Results for the image")
+        println("\n Faces indexed:")
+        facesResponse.faceRecords?.forEach { faceRecord ->
+            println("Face ID: ${faceRecord.face?.faceId}")
+            println("Location: ${faceRecord.faceDetail?.boundingBox}")
         }
 
-        val request = IndexFacesRequest {
-            collectionId = collectionIdVal
-            image = souImage
-            maxFaces = 1
-            qualityFilter = QualityFilter.Auto
-            detectionAttributes = listOf(Attribute.Default)
-        }
+        println("Faces not indexed:")
+        facesResponse.unindexedFaces?.forEach { unindexedFace ->
+            println("Location: ${unindexedFace.faceDetail?.boundingBox}")
+            println("Reasons:")
 
-        RekognitionClient { region = "us-east-1" }.use { rekClient ->
-            val facesResponse = rekClient.indexFaces(request)
-
-            // Display the results.
-            println("Results for the image")
-            println("\n Faces indexed:")
-            facesResponse.faceRecords?.forEach { faceRecord ->
-                println("Face ID: ${faceRecord.face?.faceId}")
-                println("Location: ${faceRecord.faceDetail?.boundingBox.toString()}")
+            unindexedFace.reasons?.forEach { reason ->
+                println("Reason:  $reason")
             }
-
-            println("Faces not indexed:")
-            facesResponse.unindexedFaces?.forEach { unindexedFace ->
-                println("Location: ${unindexedFace.faceDetail?.boundingBox.toString()}")
-                println("Reasons:")
-
-                unindexedFace.reasons?.forEach { reason ->
-                    println("Reason:  $reason")
-                }
-            }
         }
+    }
 }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
 +  For API details, see [IndexFaces](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 
 
 ------
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
   
 
 ```
@@ -221,9 +236,8 @@ class RekognitionCollection:
         else:
             return indexed_faces, unindexed_faces
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
 +  For API details, see [IndexFaces](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/IndexFaces) in *AWS SDK for Python \(Boto3\) API Reference*\. 
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

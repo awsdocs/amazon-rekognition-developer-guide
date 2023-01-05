@@ -12,13 +12,13 @@ Today, many companies rely entirely on human moderators to review third\-party o
 
 ## Using the image and video moderation APIs<a name="moderation-api"></a>
 
-In the Amazon Rekognition Image API, you can use the [ DetectModerationLabels ](API_DetectModerationLabels.md) operation to detect inappropriate or offensive content in images\. You can use the Amazon Rekognition Video API to detect inappropriate content asynchronously by using the [ StartContentModeration ](API_StartContentModeration.md) and [ GetContentModeration ](API_GetContentModeration.md) operations\.
+In the Amazon Rekognition Image API, you can use the [DetectModerationLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectModerationLabels.html) operation to detect inappropriate or offensive content in images\. You can use the Amazon Rekognition Video API to detect inappropriate content asynchronously by using the [StartContentModeration](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StartContentModeration.html) and [GetContentModeration](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetContentModeration.html) operations\.
 
 Amazon Rekognition uses a two\-level hierarchical taxonomy to label categories of inappropriate or offensive content\. Each top\-level category has a number of second\-level categories\. 
 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/rekognition/latest/dg/moderation.html)
 
-You determine the suitability of content for your application\. For example, images of a suggestive nature might be acceptable, but images containing nudity might not\. To filter images, use the [ ModerationLabel ](API_ModerationLabel.md) labels array that's returned by `DetectModerationLabels` \(images\) and by `GetContentModeration` \(videos\)\.
+You determine the suitability of content for your application\. For example, images of a suggestive nature might be acceptable, but images containing nudity might not\. To filter images, use the [ModerationLabel](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ModerationLabel.html) labels array that's returned by `DetectModerationLabels` \(images\) and by `GetContentModeration` \(videos\)\.
 
 You can set the confidence threshold that Amazon Rekognition uses to detect inappropriate content by specifying the `MinConfidence` input parameter\. Labels aren't returned for inappropriate content that is detected with a lower confidence than `MinConfidence`\.
 

@@ -2,14 +2,14 @@
 
 When using Amazon Rekognition’s APIs, it’s important to remember that the API operations don’t save any of the generated labels\. You can save these labels by placing them in database, along with identifiers for the respective images\. 
 
-This tutorial demonstrates detecting labels and saving those detected labels to a database\. The sample application developed in this tutorial will read images from an [Amazon S3 ](https://docs.aws.amazon.com/s3/index.html)bucket call the [ DetectLabels ](API_DetectLabels.md) operation on these images, and store the resulting labels in a database\. The application will store data in either an Amazon RDS database instance or a DynamoDB database, depending on which database type you'd like to use\.
+This tutorial demonstrates detecting labels and saving those detected labels to a database\. The sample application developed in this tutorial will read images from an [Amazon S3 ](https://docs.aws.amazon.com/s3/index.html)bucket call the [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html) operation on these images, and store the resulting labels in a database\. The application will store data in either an Amazon RDS database instance or a DynamoDB database, depending on which database type you'd like to use\.
 
 You’ll use the [AWS SDK for Python](https://aws.amazon.com/sdk-for-python/) or this tutorial\. You can also see the AWS Documentation SDK examples [GitHub repo ](https://github.com/awsdocs/aws-doc-sdk-examples)for more Python tutorials\. 
 
 **Topics**
 + [Prerequisites](#storage-tutorial-prerequisites)
 + [Getting Labels for Images in an Amazon S3 Bucket](#storage-tutorial-getting-labels)
-+ [Creating an Amazyon DynamoDB Table](#storage-tutorial-creating-dynamodb)
++ [Creating an Amazon DynamoDB Table](#storage-tutorial-creating-dynamodb)
 + [Uploading Data to DynamoDB](#storage-tutorial-uploading-dynamodb)
 + [Creating a MySQL Database in Amazon RDS](#storage-tutorial-creating-mysql)
 + [Uploading Data to a Amazon RDS MySQL Table](#storage-tutorial-uploading-mysql)
@@ -32,13 +32,13 @@ Before you begin this tutorial, you’ll need install Python and complete the st
 
 ## Getting Labels for Images in an Amazon S3 Bucket<a name="storage-tutorial-getting-labels"></a>
 
-Start by writing a function that will take the name of an image in your Amazon S3 bucket and retrieve that image\. This image will be displayed to confirm that the correct images are being passed into a call to [ DetectLabels ](API_DetectLabels.md) which is also in the function\. 
+Start by writing a function that will take the name of an image in your Amazon S3 bucket and retrieve that image\. This image will be displayed to confirm that the correct images are being passed into a call to [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html) which is also in the function\. 
 
-1. Find the Amazon S3 bucket you would like to use and write down its name\. You will make calls to this Amazon S3 bucket and read the images inside it\. Ensure your bucket contains some images to pass to the [ DetectLabels ](API_DetectLabels.md) operation\.
+1. Find the Amazon S3 bucket you would like to use and write down its name\. You will make calls to this Amazon S3 bucket and read the images inside it\. Ensure your bucket contains some images to pass to the [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html) operation\.
 
 1. Write the code to connect to your Amazon S3 bucket\. You can connect to the Amazon S3 resource with Boto3 to retrieve an image from an Amazon S3 bucket\. Once connected to the Amazon S3 resource, you can access your bucket by providing the Bucket method with the name of your Amazon S3 bucket\. After connecting to the Amazon S3 bucket, you retrieve images from the bucket by using the Object method\. By making use of Matplotlib, you can use this connection to visualize your images as they process\. Boto3 is also used to connect to the Rekognition client\.
 
-   In the following code, provide your region to the region\_name parameter\. You will pass the Amazon S3 bucket name and the image name to [ DetectLabels ](API_DetectLabels.md) , which returns the labels for the corresponding image\. After selecting just the labels from the response, both the name of the image and the labels are returned\.
+   In the following code, provide your region to the region\_name parameter\. You will pass the Amazon S3 bucket name and the image name to [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html) , which returns the labels for the corresponding image\. After selecting just the labels from the response, both the name of the image and the labels are returned\.
 
    ```
    import boto3
@@ -79,7 +79,7 @@ Start by writing a function that will take the name of an image in your Amazon S
 
 1. Save this code in a file called get\_images\.py\.
 
-## Creating an Amazyon DynamoDB Table<a name="storage-tutorial-creating-dynamodb"></a>
+## Creating an Amazon DynamoDB Table<a name="storage-tutorial-creating-dynamodb"></a>
 
 The following code uses Boto3 to connect to DynamoDB and uses the DynamoDB `CreateTable` method to create a table named Images\. The table has a composite primary key consisting of a partition key called Image and a sort key called Labels\. The Image key contains the name of the image, while the Labels key stores the labels assigned to that Image\. 
 
@@ -203,7 +203,7 @@ Now that the DynamoDB database has been created and you have a function to get l
        print("Success!")
    ```
 
-You’ve just used [ DetectLabels ](API_DetectLabels.md) to generate labels for your images and stored those labels in an DynamoDB instance\. Be sure that you tear down all the resources you created while going through this tutorial\. That will prevent you from being charged for resources you aren’t using\. 
+You’ve just used [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html) to generate labels for your images and stored those labels in an DynamoDB instance\. Be sure that you tear down all the resources you created while going through this tutorial\. That will prevent you from being charged for resources you aren’t using\. 
 
 ## Creating a MySQL Database in Amazon RDS<a name="storage-tutorial-creating-mysql"></a>
 
@@ -277,7 +277,7 @@ The following code makes use of the [PyMySQL](https://pypi.org/project/PyMySQL/)
        return file_list
    ```
 
-1. The response from the [ DetectLabels ](API_DetectLabels.md) API contains more than just the labels, so write a function to extract only the label values\. The following function returns a list full of just the labels\.
+1. The response from the [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html) API contains more than just the labels, so write a function to extract only the label values\. The following function returns a list full of just the labels\.
 
    ```
    def find_values(id, json_repr):
@@ -308,7 +308,7 @@ The following code makes use of the [PyMySQL](https://pypi.org/project/PyMySQL/)
        print("Insert successful!")
    ```
 
-1. Finally, you must run the functions you defined above\. In the following code, the names of all the images in your bucket are collected and provided to the function that calls [ DetectLabels ](API_DetectLabels.md)\. Afterward, the labels and the name of the image they apply to are uploaded to your Amazon RDS database\. Copy the three functions defined above, along with the code below, into a Python file\. Run the Python file\.
+1. Finally, you must run the functions you defined above\. In the following code, the names of all the images in your bucket are collected and provided to the function that calls [DetectLabels](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectLabels.html)\. Afterward, the labels and the name of the image they apply to are uploaded to your Amazon RDS database\. Copy the three functions defined above, along with the code below, into a Python file\. Run the Python file\.
 
    ```
    bucket = "bucket-name"

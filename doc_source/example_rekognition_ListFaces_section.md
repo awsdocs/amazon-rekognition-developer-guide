@@ -2,15 +2,31 @@
 
 The following code examples show how to list faces in an Amazon Rekognition collection\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
 For more information, see [Listing faces in a collection](https://docs.aws.amazon.com/rekognition/latest/dg/list-faces-in-collection-procedure.html)\.
 
 ------
 #### [ \.NET ]
 
 **AWS SDK for \.NET**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
   
 
 ```
+    using System;
+    using System.Threading.Tasks;
+    using Amazon.Rekognition;
+    using Amazon.Rekognition.Model;
+
+    /// <summary>
+    /// Uses the Amazon Rekognition Service to retrieve the list of faces
+    /// stored in a collection. The example was created using AWS SDK for
+    /// .NET version 3.7 and .NET Core 5.0.
+    /// </summary>
+    public class ListFaces
+    {
         public static async Task Main()
         {
             string collectionId = "MyCollection2";
@@ -38,19 +54,19 @@ For more information, see [Listing faces in a collection](https://docs.aws.amazo
             }
             while (!string.IsNullOrEmpty(listFacesResponse.NextToken));
         }
+    }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/dotnetv3/Rekognition/#code-examples)\. 
 +  For API details, see [ListFaces](https://docs.aws.amazon.com/goto/DotNetSDKV3/rekognition-2016-06-27/ListFaces) in *AWS SDK for \.NET API Reference*\. 
 
 ------
 #### [ Java ]
 
 **SDK for Java 2\.x**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
   
 
 ```
     public static void listFacesCollection(RekognitionClient rekClient, String collectionId ) {
-
         try {
             ListFacesRequest facesRequest = ListFacesRequest.builder()
                 .collectionId(collectionId)
@@ -58,8 +74,6 @@ For more information, see [Listing faces in a collection](https://docs.aws.amazo
                 .build();
 
             ListFacesResponse facesResponse = rekClient.listFaces(facesRequest);
-
-            // For each face in the collection, print out the confidence level and face id value.
             List<Face> faces = facesResponse.faces();
             for (Face face: faces) {
                 System.out.println("Confidence level there is a face: "+face.confidence());
@@ -72,7 +86,6 @@ For more information, see [Listing faces in a collection](https://docs.aws.amazo
          }
       }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/rekognition/#readme)\. 
 +  For API details, see [ListFaces](https://docs.aws.amazon.com/goto/SdkForJavaV2/rekognition-2016-06-27/ListFaces) in *AWS SDK for Java 2\.x API Reference*\. 
 
 ------
@@ -80,32 +93,33 @@ For more information, see [Listing faces in a collection](https://docs.aws.amazo
 
 **SDK for Kotlin**  
 This is prerelease documentation for a feature in preview release\. It is subject to change\.
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
   
 
 ```
 suspend fun listFacesCollection(collectionIdVal: String?) {
 
-        val request = ListFacesRequest {
-            collectionId = collectionIdVal
-            maxResults =10
-        }
+    val request = ListFacesRequest {
+        collectionId = collectionIdVal
+        maxResults = 10
+    }
 
-        RekognitionClient { region = "us-east-1" }.use { rekClient ->
+    RekognitionClient { region = "us-east-1" }.use { rekClient ->
         val response = rekClient.listFaces(request)
         response.faces?.forEach { face ->
-                println("Confidence level there is a face: ${face.confidence}")
-                println("The face Id value is ${face.faceId}")
-            }
-       }
-  }
+            println("Confidence level there is a face: ${face.confidence}")
+            println("The face Id value is ${face.faceId}")
+        }
+    }
+}
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/rekognition#code-examples)\. 
 +  For API details, see [ListFaces](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 
 
 ------
 #### [ Python ]
 
 **SDK for Python \(Boto3\)**  
+ There's more on GitHub\. Find the complete example and learn how to set up and run in the [AWS Code Examples Repository](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
   
 
 ```
@@ -161,9 +175,8 @@ class RekognitionCollection:
         else:
             return faces
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/python/example_code/rekognition#code-examples)\. 
 +  For API details, see [ListFaces](https://docs.aws.amazon.com/goto/boto3/rekognition-2016-06-27/ListFaces) in *AWS SDK for Python \(Boto3\) API Reference*\. 
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using Rekognition with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

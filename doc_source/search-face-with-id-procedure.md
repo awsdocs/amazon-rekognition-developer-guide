@@ -1,8 +1,8 @@
 # Searching for a face using its face ID<a name="search-face-with-id-procedure"></a>
 
-You can use the [ SearchFaces ](API_SearchFaces.md) operation to search for faces in a collection that match a supplied face ID\.
+You can use the [SearchFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFaces.html) operation to search for faces in a collection that match a supplied face ID\.
 
-The face ID is returned in the [ IndexFaces ](API_IndexFaces.md) operation response when the face is detected and added to a collection\. For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\.
+The face ID is returned in the [IndexFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_IndexFaces.html) operation response when the face is detected and added to a collection\. For more information, see [Managing faces in a collection](collections.md#collections-index-faces)\.
 
 
 
@@ -82,21 +82,20 @@ The face ID is returned in the [ IndexFaces ](API_IndexFaces.md) operation respo
    
            try {
                SearchFacesRequest searchFacesRequest = SearchFacesRequest.builder()
-                       .collectionId(collectionId)
-                       .faceId(faceId)
-                       .faceMatchThreshold(70F)
-                       .maxFaces(2)
-                       .build();
+                   .collectionId(collectionId)
+                   .faceId(faceId)
+                   .faceMatchThreshold(70F)
+                   .maxFaces(2)
+                   .build();
    
                SearchFacesResponse imageResponse = rekClient.searchFaces(searchFacesRequest) ;
-   
-               // Display the results.
                System.out.println("Faces matching in the collection");
                List<FaceMatch> faceImageMatches = imageResponse.faceMatches();
                for (FaceMatch face: faceImageMatches) {
                    System.out.println("The similarity level is  "+face.similarity());
                    System.out.println();
                }
+   
            } catch (RekognitionException e) {
                System.out.println(e.getMessage());
                System.exit(1);

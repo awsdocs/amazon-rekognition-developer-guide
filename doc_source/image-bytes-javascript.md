@@ -1,6 +1,6 @@
 # Using JavaScript<a name="image-bytes-javascript"></a>
 
-The following JavaScript webpage example allows a user to choose an image and view the estimated ages of faces that are detected in the image\. The estimated ages are returned by a call to [ DetectFaces ](API_DetectFaces.md)\. 
+The following JavaScript webpage example allows a user to choose an image and view the estimated ages of faces that are detected in the image\. The estimated ages are returned by a call to [DetectFaces](https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DetectFaces.html)\. 
 
 The chosen image is loaded by using the JavaScript `FileReader.readAsDataURL` function, which base64\-encodes the image\. This is useful for displaying the image on an HTML canvas\. But, it means the image bytes have to be unencoded before they're passed to an Amazon Rekognition Image operation\. This example shows how to unencode the loaded image bytes\. If the encoded image bytes aren't useful to you, use `FileReader.readAsArrayBuffer` instead because the loaded image isn't encoded\. This means that Amazon Rekognition Image operations can be called without first unencoding the image bytes\. For an example, see [Using readAsArrayBuffer](#image-bytes-javascript-unencoded)\.
 
@@ -115,7 +115,7 @@ PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazo
           ua[i] = image.charCodeAt(i);
         }
         //Call Rekognition  
-        DetectFaces(imageBytes);
+        DetectFaces(ua);
       };
     })(file);
     reader.readAsDataURL(file);
