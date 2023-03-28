@@ -380,211 +380,226 @@ The example code for this procedure is provided in Java and Python\. You need to
    #Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
    #PDX-License-Identifier: MIT-0 (For details, see https://github.com/awsdocs/amazon-rekognition-developer-guide/blob/master/LICENSE-SAMPLECODE.)
    
-   import boto3
+
    import json
    import sys
    import time
-   
-   
-   
+
+   import boto3
+
+
    class VideoDetect:
-       jobId = ''
-       rek = boto3.client('rekognition')
-       sqs = boto3.client('sqs')
-       sns = boto3.client('sns')
-       
-       roleArn = ''
-       bucket = ''
-       video = ''
-       startJobId = ''
-   
-       sqsQueueUrl = ''
-       snsTopicArn = ''
-       processType = ''
-   
-       def __init__(self, role, bucket, video):    
-           self.roleArn = role
+       job_id = ""
+       rek = boto3.client("rekognition")
+       sqs = boto3.client("sqs")
+       sns = boto3.client("sns")
+
+       role_arn = ""
+       bucket = ""
+       video = ""
+       start_job_id = ""
+
+       sqs_queue_url = ""
+       sns_topic_arn = ""
+       process_type = ""
+
+       def __init__(self, role, bucket, video):
+           self.role_arn = role
            self.bucket = bucket
            self.video = video
-   
+
        def GetSQSMessageSuccess(self):
-   
-           jobFound = False
+
+           job_found = False
            succeeded = False
-       
-           dotLine=0
-           while jobFound == False:
-               sqsResponse = self.sqs.receive_message(QueueUrl=self.sqsQueueUrl, MessageAttributeNames=['ALL'],
-                                             MaxNumberOfMessages=10)
-   
-               if sqsResponse:
-                   
-                   if 'Messages' not in sqsResponse:
-                       if dotLine<40:
-                           print('.', end='')
-                           dotLine=dotLine+1
+
+           dot_line = 0
+           while job_found == False:
+               sqs_response = self.sqs.receive_message(
+                   QueueUrl=self.sqs_queue_url,
+                   MessageAttributeNames=["ALL"],
+                   MaxNumberOfMessages=10,
+               )
+
+               if sqs_response:
+
+                   if "Messages" not in sqs_response:
+                       if dot_line < 40:
+                           print(".", end="")
+                           dot_line = dot_line + 1
                        else:
                            print()
-                           dotLine=0    
+                           dot_line = 0
                        sys.stdout.flush()
                        time.sleep(5)
                        continue
-   
-                   for message in sqsResponse['Messages']:
-                       notification = json.loads(message['Body'])
-                       rekMessage = json.loads(notification['Message'])
-                       print(rekMessage['JobId'])
-                       print(rekMessage['Status'])
-                       if rekMessage['JobId'] == self.startJobId:
-                           print('Matching Job Found:' + rekMessage['JobId'])
-                           jobFound = True
-                           if (rekMessage['Status']=='SUCCEEDED'):
-                               succeeded=True
-   
-                           self.sqs.delete_message(QueueUrl=self.sqsQueueUrl,
-                                          ReceiptHandle=message['ReceiptHandle'])
+
+                   for message in sqs_response["Messages"]:
+                       notification = json.loads(message["Body"])
+                       rek_message = json.loads(notification["Message"])
+                       print(rek_message["JobId"])
+                       print(rek_message["Status"])
+                       if rek_message["JobId"] == self.start_job_id:
+                           print("Matching Job Found:" + rek_message["JobId"])
+                           job_found = True
+                           if rek_message["Status"] == "SUCCEEDED":
+                               succeeded = True
+
+                           self.sqs.delete_message(
+                               QueueUrl=self.sqs_queue_url,
+                               ReceiptHandle=message["ReceiptHandle"],
+                           )
                        else:
-                           print("Job didn't match:" +
-                                 str(rekMessage['JobId']) + ' : ' + self.startJobId)
+                           print(
+                               "Job didn't match:"
+                               + str(rek_message["JobId"])
+                               + " : "
+                               + self.start_job_id
+                           )
                        # Delete the unknown message. Consider sending to dead letter queue
-                       self.sqs.delete_message(QueueUrl=self.sqsQueueUrl,
-                                      ReceiptHandle=message['ReceiptHandle'])
-   
-   
+                       self.sqs.delete_message(
+                           QueueUrl=self.sqs_queue_url,
+                           ReceiptHandle=message["ReceiptHandle"],
+                       )
+
            return succeeded
-   
-       def StartLabelDetection(self):
-           response=self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
-               NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.snsTopicArn},
+
+       def start_label_detection(self):
+           response = self.rek.start_label_detection(
+               Video={"S3Object": {"Bucket": self.bucket, "Name": self.video}},
+               NotificationChannel={
+                   "RoleArn": self.role_arn,
+                   "SNSTopicArn": self.sns_topic_arn,
+               },
                MinConfidence=90,
                # Filtration options, uncomment and add desired labels to filter returned labels
-               #Features=['GENERAL_LABELS'],
-               #Settings={
+               # Features=['GENERAL_LABELS'],
+               # Settings={
                #'GeneralLabels': {
                #'LabelsInclusionFilter': ['cat','dog']
-               #}
-               )
-   
-           self.startJobId=response['JobId']
-           print('Start Job Id: ' + self.startJobId)
-   
-   
-       def GetLabelDetectionResults(self):
-           maxResults = 10
-           paginationToken = ''
+               # }
+           )
+
+           self.start_job_id = response["JobId"]
+           print("Start Job Id: " + self.start_job_id)
+
+       def get_label_detection_results(self):
+           max_results = 10
+           pagination_token = ""
            finished = False
-   
-           while finished == False:
-               response = self.rek.get_label_detection(JobId=self.startJobId,
-                                               MaxResults=maxResults,
-                                               NextToken=paginationToken,
-                                               SortBy='TIMESTAMP')
-   
-               print('Codec: ' + response['VideoMetadata']['Codec'])
-               print('Duration: ' + str(response['VideoMetadata']['DurationMillis']))
-               print('Format: ' + response['VideoMetadata']['Format'])
-               print('Frame rate: ' + str(response['VideoMetadata']['FrameRate']))
+
+           while not finished:
+               response = self.rek.get_label_detection(
+                   JobId=self.start_job_id,
+                   MaxResults=max_results,
+                   NextToken=pagination_token,
+                   SortBy="TIMESTAMP",
+               )
+
+               print("Codec: " + response["VideoMetadata"]["Codec"])
+               print("Duration: " + str(response["VideoMetadata"]["DurationMillis"]))
+               print("Format: " + response["VideoMetadata"]["Format"])
+               print("Frame rate: " + str(response["VideoMetadata"]["FrameRate"]))
                print()
-   
-               for labelDetection in response['Labels']:
-                   label=labelDetection['Label']
-   
-                   print("Timestamp: " + str(labelDetection['Timestamp']))
-                   print("   Label: " + label['Name'])
-                   print("   Confidence: " +  str(label['Confidence']))
+
+               for label_detection in response["Labels"]:
+                   label = label_detection["Label"]
+
+                   print("Timestamp: " + str(label_detection["Timestamp"]))
+                   print("   Label: " + label["Name"])
+                   print("   Confidence: " + str(label["Confidence"]))
                    print("   Instances:")
-                   for instance in label['Instances']:
-                       print ("      Confidence: " + str(instance['Confidence']))
-                       print ("      Bounding box")
-                       print ("        Top: " + str(instance['BoundingBox']['Top']))
-                       print ("        Left: " + str(instance['BoundingBox']['Left']))
-                       print ("        Width: " +  str(instance['BoundingBox']['Width']))
-                       print ("        Height: " +  str(instance['BoundingBox']['Height']))
+                   for instance in label["Instances"]:
+                       print("      Confidence: " + str(instance["Confidence"]))
+                       print("      Bounding box")
+                       print("        Top: " + str(instance["BoundingBox"]["Top"]))
+                       print("        Left: " + str(instance["BoundingBox"]["Left"]))
+                       print("        Width: " + str(instance["BoundingBox"]["Width"]))
+                       print("        Height: " + str(instance["BoundingBox"]["Height"]))
                        print()
                    print()
-                   print ("   Parents:")
-                   for parent in label['Parents']:
-                       print ("      " + parent['Name'])
-                   print ()
-   
-                   if 'NextToken' in response:
-                       paginationToken = response['NextToken']
+                   print("   Parents:")
+                   for parent in label["Parents"]:
+                       print("      " + parent["Name"])
+                   print()
+
+                   if "NextToken" in response:
+                       pagination_token = response["NextToken"]
                    else:
                        finished = True
-          
-       
-       def CreateTopicandQueue(self):
-         
+
+       def create_topic_and_queue(self):
+
            millis = str(int(round(time.time() * 1000)))
-   
-           #Create SNS topic
-           
-           snsTopicName="AmazonRekognitionExample" + millis
-   
-           topicResponse=self.sns.create_topic(Name=snsTopicName)
-           self.snsTopicArn = topicResponse['TopicArn']
-   
-           #create SQS queue
-           sqsQueueName="AmazonRekognitionQueue" + millis
-           self.sqs.create_queue(QueueName=sqsQueueName)
-           self.sqsQueueUrl = self.sqs.get_queue_url(QueueName=sqsQueueName)['QueueUrl']
-    
-           attribs = self.sqs.get_queue_attributes(QueueUrl=self.sqsQueueUrl,
-                                                       AttributeNames=['QueueArn'])['Attributes']
-                                           
-           sqsQueueArn = attribs['QueueArn']
-   
+
+           # Create SNS topic
+
+           sns_topic_name = "AmazonRekognitionExample" + millis
+
+           topic_response = self.sns.create_topic(Name=sns_topic_name)
+           self.sns_topic_arn = topic_response["TopicArn"]
+
+           # create SQS queue
+           sqs_queue_name = "AmazonRekognitionQueue" + millis
+           self.sqs.create_queue(QueueName=sqs_queue_name)
+           self.sqs_queue_url = self.sqs.get_queue_url(QueueName=sqs_queue_name)["QueueUrl"]
+
+           attribs = self.sqs.get_queue_attributes(
+               QueueUrl=self.sqs_queue_url, AttributeNames=["QueueArn"]
+           )["Attributes"]
+
+           sqs_queue_arn = attribs["QueueArn"]
+
            # Subscribe SQS queue to SNS topic
            self.sns.subscribe(
-               TopicArn=self.snsTopicArn,
-               Protocol='sqs',
-               Endpoint=sqsQueueArn)
-   
-           #Authorize SNS to write SQS queue 
+               TopicArn=self.sns_topic_arn, Protocol="sqs", Endpoint=sqs_queue_arn
+           )
+
+           # Authorize SNS to write SQS queue
            policy = """{{
-     "Version":"2012-10-17",
-     "Statement":[
+       "Version":"2012-10-17",
+       "Statement":[
        {{
-         "Sid":"MyPolicy",
-         "Effect":"Allow",
-         "Principal" : {{"AWS" : "*"}},
-         "Action":"SQS:SendMessage",
-         "Resource": "{}",
-         "Condition":{{
+           "Sid":"MyPolicy",
+           "Effect":"Allow",
+           "Principal" : {{"AWS" : "*"}},
+           "Action":"SQS:SendMessage",
+           "Resource": "{}",
+           "Condition":{{
            "ArnEquals":{{
-             "aws:SourceArn": "{}"
+               "aws:SourceArn": "{}"
            }}
-         }}
+           }}
        }}
-     ]
-   }}""".format(sqsQueueArn, self.snsTopicArn)
-    
+       ]
+   }}""".format(
+               sqs_queue_arn, self.sns_topic_arn
+           )
+
            response = self.sqs.set_queue_attributes(
-               QueueUrl = self.sqsQueueUrl,
-               Attributes = {
-                   'Policy' : policy
-               })
-   
-       def DeleteTopicandQueue(self):
-           self.sqs.delete_queue(QueueUrl=self.sqsQueueUrl)
-           self.sns.delete_topic(TopicArn=self.snsTopicArn)
-   
-   
+               QueueUrl=self.sqs_queue_url, Attributes={"Policy": policy}
+           )
+
+       def delete_topic_and_queue(self):
+           self.sqs.delete_queue(QueueUrl=self.sqs_queue_url)
+           self.sns.delete_topic(TopicArn=self.sns_topic_arn)
+
+
    def main():
-       roleArn = ''   
-       bucket = ''
-       video = ''
-   
-       analyzer=VideoDetect(roleArn, bucket,video)
-       analyzer.CreateTopicandQueue()
-   
-       analyzer.StartLabelDetection()
-       if analyzer.GetSQSMessageSuccess()==True:
-           analyzer.GetLabelDetectionResults()
-       
-       analyzer.DeleteTopicandQueue()
-   
-   
+       role_arn = ""
+       bucket = ""
+       video = ""
+
+       analyzer = VideoDetect(role_arn, bucket, video)
+       analyzer.create_topic_and_queue()
+
+       analyzer.start_label_detection()
+       if analyzer.GetSQSMessageSuccess() == True:
+           analyzer.get_label_detection_results()
+
+       analyzer.delete_topic_and_queue()
+
+
    if __name__ == "__main__":
        main()
    ```
