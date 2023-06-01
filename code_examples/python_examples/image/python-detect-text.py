@@ -16,7 +16,7 @@ if __name__ == "__main__":
                         
     textDetections=response['TextDetections']
     print response
-    print 'Matching faces'
+   
     for text in textDetections:
             print 'Detected text:' + text['DetectedText']
             print 'Confidence: ' + "{:.2f}".format(text['Confidence']) + "%"
